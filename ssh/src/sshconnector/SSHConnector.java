@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
 import java.io.Writer;
+import java.lang.management.ManagementFactory;
 import java.lang.reflect.Field;
 import java.net.InetSocketAddress;
 import java.net.MalformedURLException;
@@ -89,13 +90,36 @@ public class SSHConnector {
     private static final SSHConfig CONFIG   = loadConfig();
 
     public static void main(String[] args) {
+        if (isMeRunning()) {
+            System.exit(0);
+        }
         updateSSHConn();
         doCheckAlive();
     }
 
+    private static boolean isMeRunning() {
+        String currentPid = ManagementFactory.getRuntimeMXBean().getName().split("@")[0];
+        String pName = SSHConnector.class.getSimpleName();
+        String cmd = "jps";
+        ProcessBuilder pb = new ProcessBuilder(cmd.split("\\s"));
+        BufferedReader br = new BufferedReader(new StringReader(getProcessOutput(pb)));
+        try {
+            for (String ln; ((ln = br.readLine()) != null);) {
+                if ((!ln.contains(currentPid)) && ln.contains(pName)) {
+                    log(SSHConnector.class.getSimpleName() + " is running!");
+                    return true;
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        log(SSHConnector.class.getSimpleName() + " is NOT running!");
+        return false;
+    }
+
     private static SSHConfig loadConfig() {
 
-        List<String> fieldList = Arrays.asList("username", "password", "host", "port", "beat_url");
+        List<String> fieldList = Arrays.asList("username", "password", "host", "port", "beat_sec", "beat_url");
 
         File p = new File(System.getProperty("user.home") + "/ssh_setting.properties");
         if (!p.exists()) {
@@ -134,7 +158,7 @@ public class SSHConnector {
                      CONFIG.getUsername() + "@" + CONFIG.getHost() + " -D " + CONFIG.getPort() + "" + "\n" + // NL
                      "expect {" + "\n" + // NL
                      "\"password:\" {" + "\n" + // NL
-                     "send \"" + CONFIG.getPassword() + "\r\"" + "\n" + // NL
+                     "send \"" + CONFIG.getPassword() + "\\r\"" + "\n" + // NL
                      "}" + "\n" + // NL
                      "}" + "\n" + // NL
                      "interact {" + "\n" + // NL

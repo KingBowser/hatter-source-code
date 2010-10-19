@@ -90,6 +90,7 @@ public class SSHConnector {
     private static final SSHConfig CONFIG   = loadConfig();
 
     public static void main(String[] args) {
+        log("If you want to disable log add property: connector.disable.log");
         if (isMeRunning()) {
             System.exit(0);
         }
@@ -195,7 +196,9 @@ public class SSHConnector {
     }
 
     private static void log(String message) {
-        System.out.println(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date()) + ": " + message);
+        if (!System.getProperties().containsKey("connector.disable.log")) {
+            System.out.println(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date()) + ": " + message);
+        }
     }
 
     private static void dealSshD() {

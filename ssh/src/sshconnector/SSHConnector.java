@@ -12,7 +12,6 @@ import java.io.Writer;
 import java.lang.management.ManagementFactory;
 import java.lang.reflect.Field;
 import java.net.InetSocketAddress;
-import java.net.MalformedURLException;
 import java.net.Proxy;
 import java.net.Proxy.Type;
 import java.net.URL;
@@ -23,6 +22,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -214,18 +214,34 @@ public class SSHConnector {
     }
 
     private static boolean checkSshD() {
-        Proxy proxy = new Proxy(Type.SOCKS, new InetSocketAddress("127.0.0.1", Integer.valueOf(CONFIG.getPort())));
         try {
-            URL url = new URL(CONFIG.getBeat_url());
-            URLConnection conn = url.openConnection(proxy);
-            if ((conn.getHeaderFields() == null) || (conn.getHeaderFields().isEmpty())) {
-                throw new IOException("Open failed.");
-            }
-            log("Check SshD ok!");
-            return true;
-        } catch (MalformedURLException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
+            final AtomicBoolean successFlag = new AtomicBoolean(false);
+
+            Thread thread = new Thread() {
+
+                public void run() {
+                    try {
+                        Proxy proxy = new Proxy(Type.SOCKS, new InetSocketAddress("127.0.0.1",
+                                                                                  Integer.valueOf(CONFIG.getPort())));
+                        URL url = new URL(CONFIG.getBeat_url());
+                        URLConnection conn = url.openConnection(proxy);
+
+                        if ((conn.getHeaderFields() == null) || (conn.getHeaderFields().isEmpty())) {
+                            throw new RuntimeException("Open failed.");
+                        }
+
+                        log("Check SshD ok!");
+                        successFlag.set(true);
+                    } catch (Throwable e) {
+                        log("Failed! " + e.getMessage());
+                    }
+                }
+            };
+            thread.start();
+            thread.join(TimeUnit.SECONDS.toMillis(10));
+
+            return successFlag.get();
+        } catch (InterruptedException e) {
             // open google failed!
             log("Check SshD FAILED!");
             return false;

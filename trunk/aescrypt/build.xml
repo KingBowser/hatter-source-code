@@ -43,8 +43,10 @@
 		<copy todir="/usr/local/bin/aescrypt_lib">
 			<fileset dir="${dist.dir}" />
 		</copy>
-		<copy file="aescrypt" todir="/usr/local/bin/" />
+		<echo file="${dist.dir}/aescrypt" message="java -cp ${dist.dir}/aescrypt.jar $@" />
+		<copy file="${dist.dir}/aescrypt" todir="/usr/local/bin/" />
 		<chmod file="/usr/local/bin/aescrypt" perm="+x" />
+		<delete file="${dist.dir}/aescrypt" />
 	</target>
 
 	<target name="clean">

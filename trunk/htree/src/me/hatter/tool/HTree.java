@@ -1,6 +1,9 @@
 package me.hatter.tool;
 
 import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Stack;
 
 public class HTree {
@@ -9,6 +12,9 @@ public class HTree {
 
         public boolean size;
         public String  unit;
+        public boolean date;
+        public String  format;
+        public String  filter;
     }
 
     static enum GetInFlag {
@@ -23,12 +29,19 @@ public class HTree {
     private static String USER_DIR = System.getProperty("user.dir");
 
     public static void main(String[] args) {
+        args = new String[] { "-size", "-unit/X", "-date", "-format/yyyy/MM/dd HH:mm:ss", "/Users" };
+
+        Flags flags = new Flags();
+        args = ArgsUtil.mappingArgs(args, flags);
         String dir = (args.length > 0) ? args[0].trim() : "";
         File dirFile = getDirFile(dir);
+
         GetInStack refGetInStack = new GetInStack();
-        Flags flags = new Flags();
-        flags.size = true;
-        flags.unit = "X";
+        try {
+            System.out.println(dirFile.getCanonicalPath());
+        } catch (IOException e) {
+            // IGNORE
+        }
         showFiles(dirFile, refGetInStack, flags);
     }
 
@@ -50,6 +63,9 @@ public class HTree {
                     line.append(f.getName());
                     if (flags.size) {
                         line.append(" [" + getSize(f, flags.unit) + "]");
+                    }
+                    if (flags.date) {
+                        line.append(" #" + getDate(file, flags.format));
                     }
                     System.out.println(line.toString());
                 }
@@ -78,6 +94,25 @@ public class HTree {
             dirFile = new File(USER_DIR);
         }
         return dirFile;
+    }
+
+    private static String getDate(File file, String format) {
+        SimpleDateFormat sdf;
+        if (format == null) {
+            sdf = new SimpleDateFormat();
+        } else {
+            try {
+                sdf = new SimpleDateFormat(format);
+            } catch (Exception e) {
+                System.err.println("[ERROR] Error in create date format: " + e.getMessage());
+                if (System.getProperties().containsKey("program.trace")) {
+                    e.printStackTrace();
+                }
+                sdf = new SimpleDateFormat();
+            }
+        }
+        Date lastModifed = new Date(file.lastModified());
+        return sdf.format(lastModifed);
     }
 
     private static long K = 1024;

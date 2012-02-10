@@ -3,7 +3,10 @@ package me.hatter.tool;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Stack;
 
 public class HTree {
@@ -15,6 +18,8 @@ public class HTree {
         public boolean date;
         public String  format;
         public String  filter;
+        public boolean hiddenoff;
+        public String  suffix;
     }
 
     static enum GetInFlag {
@@ -29,7 +34,7 @@ public class HTree {
     private static String USER_DIR = System.getProperty("user.dir");
 
     public static void main(String[] args) {
-        args = new String[] { "-size", "-unit/X", "-date", "-format/yyyy/MM/dd HH:mm:ss", "/Users" };
+        // args = new String[] { "-size", "-unit/X", "-date", "-format/yyyy/MM/dd HH:mm:ss", "/Users" };
 
         Flags flags = new Flags();
         args = ArgsUtil.mappingArgs(args, flags);
@@ -48,6 +53,7 @@ public class HTree {
     private static void showFiles(File file, GetInStack refGetInStack, Flags flags) {
         File[] files = file.listFiles();
         if (files != null) {
+            files = filterFiles(files, flags);
             for (int i = 0; i < files.length; i++) {
                 File f = files[i];
                 boolean isLast = (i == (files.length - 1));
@@ -62,15 +68,37 @@ public class HTree {
                 } else {
                     line.append(f.getName());
                     if (flags.size) {
-                        line.append(" [" + getSize(f, flags.unit) + "]");
+                        line.append(" SIZE:" + getSize(f, flags.unit));
                     }
                     if (flags.date) {
-                        line.append(" #" + getDate(file, flags.format));
+                        line.append(" DATE:" + getDate(file, flags.format));
                     }
                     System.out.println(line.toString());
                 }
             }
         }
+    }
+
+    private static File[] filterFiles(File[] files, Flags flags) {
+        List<File> fileList = new ArrayList<File>();
+        for (File f : files) {
+            if (f.getName().startsWith(".")) {
+                if (flags.hiddenoff) {
+                    continue;
+                }
+            }
+            if ((flags.suffix != null) && (flags.suffix.length() > 0)) {
+                String[] suffixs = flags.suffix.toLowerCase().split(",");
+                if (f.isFile()) {
+                    int lastIndexOfDot = f.getName().lastIndexOf('.');
+                    if (!Arrays.asList(suffixs).contains(f.getName().substring(lastIndexOfDot + 1).toLowerCase())) {
+                        continue;
+                    }
+                }
+            }
+            fileList.add(f);
+        }
+        return fileList.toArray(new File[0]);
     }
 
     private static String getPrefix(GetInStack refGetInStack) {

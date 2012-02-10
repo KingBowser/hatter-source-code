@@ -31,7 +31,7 @@
 		<manifest file="${jar.manifest}">
 			<attribute name="Main-Class" value="${jar.main}" />
 		</manifest>
-		<jar destfile="${dist.dir}/aescrypt.jar" manifest="${jar.manifest}">
+		<jar destfile="${dist.dir}/htree.jar" manifest="${jar.manifest}">
 			<fileset dir="${classes.dir}" includes="**/*.class" />
 		</jar>
 		<delete dir="${classes.dir}" />

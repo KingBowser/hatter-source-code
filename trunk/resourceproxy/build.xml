@@ -1,0 +1,37 @@
+<project basedir="." default="dist" name="ResourceProxy">
+	<target name="prepares">
+		<mkdir dir="classes/httpobjects" />
+		<mkdir dir="classes/proxyserver" />
+	</target>
+
+	<target name="step-httpobjects" depends="prepares">
+		<javac srcdir="httpobjects/src" destdir="classes/httpobjects" source="1.6" target="1.6" debug="on">
+		</javac>
+	</target>
+
+	<target name="step-proxyserver" depends="step-httpobjects">
+		<javac srcdir="proxyserver/src" destdir="classes/proxyserver" source="1.6" target="1.6" debug="on">
+			<classpath>
+				<path>
+					<pathelement path="classes/httpobjects"/>
+				</path>
+			</classpath>
+		</javac>
+	</target>
+
+	<target name="dist" depends="step-proxyserver">
+	        <manifest file="temp-jar.manifest">
+       			<attribute name="Main-Class" value="me.hatter.tools.resourceproxy.proxyserver.main.ProxyServer"/>
+        	</manifest>
+		<jar destfile="resourceproxy.jar" manifest="temp-jar.manifest">
+			<fileset dir="classes/httpobjects" includes="**/*.class" />
+			<fileset dir="classes/proxyserver" includes="**/*.class" />
+		</jar>
+		<delete file="temp-jar.manifest" />
+		<delete dir="classes" />
+	</target>
+
+	<target name="clean">
+		<delete file="resourceproxy.jar"/>
+	</target>
+</project>

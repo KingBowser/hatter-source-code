@@ -1,7 +1,6 @@
 package me.hatter.tools.resourceproxy.proxyserver.main;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
@@ -25,11 +24,11 @@ import com.sun.net.httpserver.HttpServer;
 
 public class ProxyServer {
 
-    private static Properties hostProperties = new Properties();
+    private static Properties HOST_PROPERTIES = new Properties();
     static {
         if (System.getProperties().containsKey("debug")) {
             try {
-                hostProperties.load(new FileInputStream("hosts.properties"));
+                HOST_PROPERTIES.load(new FileInputStream("hosts.properties"));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -72,13 +71,13 @@ public class ProxyServer {
                         return; // ERROR and RETURN
                     }
                     String realHost = null;
-                    if (hostProperties.containsKey(host)) {
+                    if (HOST_PROPERTIES.containsKey(host)) {
                         realHost = host;
-                        u = "http://" + hostProperties.getProperty(host) + request.getUri().toString();
+                        u = "http://" + HOST_PROPERTIES.getProperty(host) + request.getUri().toString();
                     }
                     URL url = new URL(u);
                     HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-                    httpURLConnection.setRequestMethod("GET");
+                    httpURLConnection.setRequestMethod(request.getMethod());
                     System.out.println("Request headers: ");
                     for (String key : request.getHeaderMap().keySet()) {
                         for (String value : request.get(key)) {

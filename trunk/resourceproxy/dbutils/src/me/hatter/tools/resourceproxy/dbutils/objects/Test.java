@@ -2,13 +2,18 @@ package me.hatter.tools.resourceproxy.dbutils.objects;
 
 import me.hatter.tools.resourceproxy.dbutils.annotation.Field;
 import me.hatter.tools.resourceproxy.dbutils.annotation.Table;
-import me.hatter.tools.resourceproxy.dbutils.util.DBUtil;
+import me.hatter.tools.resourceproxy.dbutils.dataaccess.DataAccessObject;
 
 @Table(defaultAllFields = true)
 public class Test {
 
     public static void main(String[] a) {
-        System.out.println(DBUtil.generateCreateSQL(Test.class));
+        Test t = new Test();
+        for (int i = 101; i <= 200; i++) {
+            t.setId(i);
+            t.setName("hatter" + "@" + i);
+            DataAccessObject.insertObject(t);
+        }
     }
 
     @Field(pk = true)

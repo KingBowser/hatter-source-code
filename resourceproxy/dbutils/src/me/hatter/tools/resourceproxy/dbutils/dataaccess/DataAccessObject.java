@@ -51,6 +51,7 @@ public class DataAccessObject {
 
             @Override
             public Void execute(Connection connection) throws Exception {
+                System.out.println("[INFO] insert sql: " + sql);
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 setPreparedStatmentValues(preparedStatement, clazz, object, refFieldList);
                 preparedStatement.execute();
@@ -68,6 +69,7 @@ public class DataAccessObject {
 
             @Override
             public Void execute(Connection connection) throws Exception {
+                System.out.println("[INFO] update sql: " + sql);
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 setPreparedStatmentValues(preparedStatement, clazz, object, refFieldList);
                 preparedStatement.execute();
@@ -85,6 +87,7 @@ public class DataAccessObject {
 
             @Override
             public Void execute(Connection connection) throws Exception {
+                System.out.println("[INFO] delete sql: " + sql);
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 setPreparedStatmentValues(preparedStatement, clazz, object, refFieldList);
                 preparedStatement.execute();
@@ -105,6 +108,7 @@ public class DataAccessObject {
 
             @Override
             public List<T> execute(Connection connection) throws Exception {
+                System.out.println("[INFO] query sql: " + runSql);
                 PreparedStatement preparedStatement = connection.prepareStatement(runSql);
                 if (objectList != null) {
                     for (int i = 0; i < objectList.size(); i++) {
@@ -165,35 +169,4 @@ public class DataAccessObject {
             throw new RuntimeException("Unsupoort ed type: " + type);
         }
     }
-
-    //
-    // public static AccessItem getAccessItem(final String ip, final String url) {
-    // return execute(new Execute<AccessItem>() {
-    //
-    // @Override
-    // public AccessItem execute(Connection connection) throws Exception {
-    // PreparedStatement preparedStatement =
-    // connection.prepareStatement("select * from access_table where ip=? and url=?");
-    // preparedStatement.setString(1, ip);
-    // preparedStatement.setString(2, url);
-    // ResultSet resultSet = preparedStatement.executeQuery();
-    //
-    // AccessItem accessItem = null;
-    // if (resultSet.next()) {
-    // accessItem = new AccessItem();
-    // accessItem.setId(resultSet.getInt("id"));
-    // accessItem.setIp(resultSet.getString("ip"));
-    // accessItem.setCreated(getSDF().parse(resultSet.getString("created")));
-    // accessItem.setModified(getSDF().parse(resultSet.getString("modified")));
-    // accessItem.setAccess_count(resultSet.getInt("access_count"));
-    // accessItem.setUrl(resultSet.getString("url"));
-    // accessItem.setStatus(resultSet.getInt("status"));
-    // accessItem.setHeader(resultSet.getString("header"));
-    // accessItem.setContent(resultSet.getString("content"));
-    // }
-    //
-    // return accessItem;
-    // }
-    // });
-    // }
 }

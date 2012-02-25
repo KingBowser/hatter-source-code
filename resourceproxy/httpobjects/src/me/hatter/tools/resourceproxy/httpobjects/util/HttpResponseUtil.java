@@ -32,7 +32,7 @@ public class HttpResponseUtil {
         response.setEncoding(httpURLConnection.getContentEncoding());
         Map<String, List<String>> headFields = httpURLConnection.getHeaderFields();
         for (String key : headFields.keySet()) {
-            String firstValue = headFields.get(null).get(0);
+            String firstValue = headFields.get(key).get(0);
             if (key == null) {
                 Matcher m = Pattern.compile("HTTP/((0\\.9)|(1\\.0)|(1\\.1))\\s+(\\d+)\\s+(.*)").matcher(firstValue);
                 if (m.matches()) {

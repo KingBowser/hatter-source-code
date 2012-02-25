@@ -11,6 +11,7 @@ import java.util.Map;
 public class HttpRequest {
 
     private String                    method;
+    private String                    host;
     private URI                       uri;
     private InetSocketAddress         remoteAddress;
     private Map<String, List<String>> headerMap = new LinkedHashMap<String, List<String>>();
@@ -21,6 +22,10 @@ public class HttpRequest {
 
     public void setMethod(String method) {
         this.method = method;
+    }
+
+    public void setHost(String host) {
+        this.host = host;
     }
 
     public URI getUri() {

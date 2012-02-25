@@ -11,8 +11,11 @@ import java.util.Arrays;
 import java.util.Properties;
 import java.util.concurrent.Executors;
 
+import me.hatter.tools.resourceproxy.dbutils.dataaccess.DataAccessObject;
+import me.hatter.tools.resourceproxy.httpobjects.objects.HttpObject;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpRequest;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpResponse;
+import me.hatter.tools.resourceproxy.httpobjects.util.HttpObjectUtil;
 import me.hatter.tools.resourceproxy.httpobjects.util.HttpRequestUtil;
 import me.hatter.tools.resourceproxy.httpobjects.util.HttpResponseUtil;
 import me.hatter.tools.resourceproxy.proxyserver.util.ResponseUtil;
@@ -48,7 +51,6 @@ public class ProxyServer {
     @SuppressWarnings("restriction")
     static class MyHandler implements HttpHandler {
 
-        @SuppressWarnings("restriction")
         public void handle(HttpExchange exchange) throws IOException {
             try {
                 HttpRequest request = HttpRequestUtil.build(exchange);
@@ -63,7 +65,7 @@ public class ProxyServer {
 
                     System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
                     long startMills = System.currentTimeMillis();
-                    String u = " http://" + host + request.getUri().toString();
+                    String u = "http://" + host + request.getUri().toString();
                     System.out.println("Request: " + request.getMethod() + " " + u + " #" + request.getRemoteAddress());
                     if ("localhost".equals(host) || host.matches("\\d+(\\.\\d+){3}(:\\d+)?")) {
                         System.out.println("Ignore IP request.");
@@ -91,6 +93,20 @@ public class ProxyServer {
                     httpURLConnection.setUseCaches(false);
 
                     HttpResponse response = HttpResponseUtil.build(httpURLConnection);
+
+                    HttpObject httpObject = HttpObjectUtil.frHttpRequest(request, response);
+                    HttpObject httpObjectFromDB = DataAccessObject.selectObject(httpObject);
+                    if (httpObjectFromDB == null) {
+                        try {
+                            DataAccessObject.insertObject(httpObject);
+                        } catch (Exception e) {
+                            System.out.println("[ERROR] insert data error " + httpObject.getUrl() + " @"
+                                               + httpObject.getAccessAddress() + " /" + e.getMessage());
+                            e.printStackTrace();
+                        }
+                    } else {
+                        DataAccessObject.updateObject(httpObject);
+                    }
 
                     System.out.println("Status: " + response.getStatus());
 

@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Field {
 
-    boolean id() default false;
+    boolean pk() default false;
 
     String name() default "";
 }

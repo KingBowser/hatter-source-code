@@ -2,20 +2,24 @@ package me.hatter.tools.resourceproxy.dbutils.objects;
 
 import me.hatter.tools.resourceproxy.dbutils.annotation.Field;
 import me.hatter.tools.resourceproxy.dbutils.annotation.Table;
+import me.hatter.tools.resourceproxy.dbutils.util.DBUtil;
 
-@Table(name = "test")
+@Table(defaultAllFields = true)
 public class Test {
 
-    @Field
-    private Long   id;
-    @Field
-    private String name;
+    public static void main(String[] a) {
+        System.out.println(DBUtil.generateCreateSQL(Test.class));
+    }
 
-    public Long getId() {
+    @Field(pk = true)
+    private Integer id;
+    private String  name;
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

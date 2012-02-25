@@ -1,9 +1,12 @@
 package me.hatter.tools.resourceproxy.dbutils.util;
 
 import java.lang.reflect.Field;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import me.hatter.tools.resourceproxy.dbutils.annotation.NonField;
 import me.hatter.tools.resourceproxy.dbutils.annotation.Table;
@@ -13,6 +16,38 @@ public class DBUtil {
     private static Map<Class<?>, String>       tableNameMap   = new HashMap<Class<?>, String>();
     private static Map<Class<?>, List<String>> fieldListMap   = new HashMap<Class<?>, List<String>>();
     private static Map<Class<?>, List<String>> fieldPkListMap = new HashMap<Class<?>, List<String>>();
+
+    public static String generateCreateSQL(final Class<?> clazz) {
+        String tableName = getTableName(clazz);
+        List<String> fieldList = getTableFields(clazz);
+        final Set<String> pkSet = new HashSet<String>(getPkList(clazz));
+
+        StringBuilder sql = new StringBuilder();
+        sql.append("create table ");
+        sql.append(tableName);
+        sql.append(" ( ");
+        sql.append(StringUtil.join(CollUtil.transform(fieldList, new CollUtil.Transformer<String, String>() {
+
+            @Override
+            public String transform(String object) {
+                Field f = ReflectUtil.getField(clazz, object);
+                String type = null;
+                if (f.getType() == String.class) {
+                    type = "TEXT";
+                } else if (f.getType() == Integer.class) {
+                    type = "INT";
+                } else if (f.getType() == Date.class) {
+                    type = "TEXT";
+                } else {
+                    throw new RuntimeException("Unsupoort ed type: " + type);
+                }
+                return object + " " + type + ((pkSet.contains(object)) ? " PRIMARY KEY" : "");
+            }
+        }), ", "));
+        sql.append(" )");
+
+        return sql.toString();
+    }
 
     public static String generateInsertSQL(Class<?> clazz, List<String> refFieldList) {
         String tableName = getTableName(clazz);
@@ -118,8 +153,9 @@ public class DBUtil {
         Table table = clazz.getAnnotation(Table.class);
         if ((table != null) && (!table.name().isEmpty())) {
             tableName = table.name();
+        } else {
+            tableName = StringUtil.toUnder(clazz.getSimpleName());
         }
-        tableName = StringUtil.toUnder(clazz.getName());
         tableNameMap.put(clazz, tableName);
         return tableName;
     }
@@ -154,7 +190,7 @@ public class DBUtil {
                 if (f == null) {
                     return false;
                 }
-                return f.id();
+                return f.pk();
             }
         });
         fieldList = transformToDatabaseName(fieldTypeList);

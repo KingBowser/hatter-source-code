@@ -57,6 +57,10 @@ public class HttpResponse {
         this.encoding = encoding;
     }
 
+    public void setHeaderMap(Map<String, List<String>> headerMap) {
+        this.headerMap = headerMap;
+    }
+
     public Map<String, List<String>> getHeaderMap() {
         return headerMap;
     }

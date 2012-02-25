@@ -1,11 +1,22 @@
 <project basedir="." default="dist" name="ResourceProxy">
 	<target name="prepares">
+		<mkdir dir="classes/dbutils" />
 		<mkdir dir="classes/httpobjects" />
 		<mkdir dir="classes/proxyserver" />
 	</target>
 
-	<target name="step-httpobjects" depends="prepares">
+	<target name="step-dbutils" depends="prepares">
+		<javac srcdir="dbutils/src" destdir="classes/dbutils" source="1.6" target="1.6" debug="on">
+		</javac>
+	</target>
+
+	<target name="step-httpobjects" depends="step-dbutils">
 		<javac srcdir="httpobjects/src" destdir="classes/httpobjects" source="1.6" target="1.6" debug="on">
+			<classpath>
+				<path>
+					<pathelement path="classes/dbutils" />
+				</path>
+			</classpath>
 		</javac>
 	</target>
 
@@ -13,7 +24,8 @@
 		<javac srcdir="proxyserver/src" destdir="classes/proxyserver" source="1.6" target="1.6" debug="on">
 			<classpath>
 				<path>
-					<pathelement path="classes/httpobjects"/>
+					<pathelement path="classes/dbutils" />
+					<pathelement path="classes/httpobjects" />
 				</path>
 			</classpath>
 		</javac>
@@ -24,6 +36,7 @@
        			<attribute name="Main-Class" value="me.hatter.tools.resourceproxy.proxyserver.main.ProxyServer"/>
         	</manifest>
 		<jar destfile="resourceproxy.jar" manifest="temp-jar.manifest">
+			<fileset dir="classes/dbutils" includes="**/*.class" />
 			<fileset dir="classes/httpobjects" includes="**/*.class" />
 			<fileset dir="classes/proxyserver" includes="**/*.class" />
 		</jar>

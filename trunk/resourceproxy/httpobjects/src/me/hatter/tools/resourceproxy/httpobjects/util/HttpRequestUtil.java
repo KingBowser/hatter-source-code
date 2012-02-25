@@ -28,6 +28,7 @@ public class HttpRequestUtil {
                 request.set(key, values);
             }
         }
+        request.setHost(request.getHost());
         return request;
     }
 }

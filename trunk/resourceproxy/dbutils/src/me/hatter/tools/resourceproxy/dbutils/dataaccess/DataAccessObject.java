@@ -11,8 +11,10 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
 import me.hatter.tools.resourceproxy.dbutils.factory.ConnectionPool;
+import me.hatter.tools.resourceproxy.dbutils.util.CollUtil;
 import me.hatter.tools.resourceproxy.dbutils.util.DBUtil;
 import me.hatter.tools.resourceproxy.dbutils.util.ReflectUtil;
+import me.hatter.tools.resourceproxy.dbutils.util.StringUtil;
 
 //
 public class DataAccessObject {
@@ -96,6 +98,28 @@ public class DataAccessObject {
         });
     }
 
+    @SuppressWarnings("unchecked")
+    public static <T> T selectObject(final T object) {
+        final Class<T> clazz = (Class<T>) object.getClass();
+        List<String> pkList = DBUtil.getPkList(clazz);
+        final List<Object> pkVList = new ArrayList<Object>();
+        String where = StringUtil.join(CollUtil.transform(pkList, new CollUtil.Transformer<String, String>() {
+
+            @Override
+            public String transform(String object2) {
+                Object o = ReflectUtil.getFieldValue(clazz, object, StringUtil.toCamel(object2),
+                                                     new AtomicReference<Class<?>>());
+                pkVList.add(o);
+                return object2 + " = ?";
+            }
+        }), " and ");
+        List<T> resultList = listObjects(clazz, where, pkVList);
+        if ((resultList == null) || (resultList.isEmpty())) {
+            return null;
+        }
+        return resultList.get(0);
+    }
+
     public static <T> List<T> listObjects(final Class<T> clazz, String where, final List<Object> objectList) {
         String sql = null;
         if (where.trim().toUpperCase().startsWith("SELECT")) {
@@ -113,7 +137,7 @@ public class DataAccessObject {
                 if (objectList != null) {
                     for (int i = 0; i < objectList.size(); i++) {
                         int index = i + 1;
-                        Object o = objectList;
+                        Object o = objectList.get(i);
                         Class<?> type = (o == null) ? null : o.getClass();
                         setPreparedStatmentByValue(preparedStatement, index, type, o);
                     }
@@ -125,7 +149,7 @@ public class DataAccessObject {
                 if (resultSet.next()) {
                     T o = clazz.newInstance();
                     for (String f : fieldList) {
-                        Field field = ReflectUtil.getField(clazz, f);
+                        Field field = ReflectUtil.getField(clazz, StringUtil.toCamel(f));
                         field.setAccessible(true);
                         if (field.getType() == String.class) {
                             field.set(o, resultSet.getString(f));
@@ -150,7 +174,7 @@ public class DataAccessObject {
         for (int i = 0; i < refFieldList.size(); i++) {
             int index = i + 1;
             AtomicReference<Class<?>> refType = new AtomicReference<Class<?>>();
-            Object o = ReflectUtil.getFieldValue(clazz, object, refFieldList.get(i), refType);
+            Object o = ReflectUtil.getFieldValue(clazz, object, StringUtil.toCamel(refFieldList.get(i)), refType);
             setPreparedStatmentByValue(preparedStatement, index, refType.get(), o);
         }
     }
@@ -166,7 +190,7 @@ public class DataAccessObject {
         } else if (type == Date.class) {
             preparedStatement.setDate(index, new java.sql.Date(((Date) o).getTime()));
         } else {
-            throw new RuntimeException("Unsupoort ed type: " + type);
+            throw new RuntimeException("Unsupoorted type: " + type);
         }
     }
 }

@@ -14,6 +14,8 @@ public class HttpObject {
     @Field(pk = true)
     private Integer id;
     @Field
+    private String  method;
+    @Field
     private String  url;
     @Field
     private String  accessAddress;
@@ -40,6 +42,14 @@ public class HttpObject {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getMethod() {
+        return method;
+    }
+
+    public void setMethod(String method) {
+        this.method = method;
     }
 
     public String getUrl() {

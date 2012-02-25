@@ -2,7 +2,9 @@ package me.hatter.tools.resourceproxy.dbutils.util;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class CollUtil {
 
@@ -21,6 +23,17 @@ public class CollUtil {
         public boolean accept(T object) {
             return (object != null);
         }
+    }
+
+    public static <T> List<T> minus(Collection<T> list, Collection<T> minusList) {
+        final Set<T> minusSet = new HashSet<T>(minusList);
+        return filter(list, new CollUtil.Filter<T>() {
+
+            @Override
+            public boolean accept(T object) {
+                return (!minusSet.contains(object));
+            }
+        });
     }
 
     public static <T> List<T> filter(Collection<T> list, Filter<T> filter) {

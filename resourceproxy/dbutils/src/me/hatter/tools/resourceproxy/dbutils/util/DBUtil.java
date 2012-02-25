@@ -14,6 +14,99 @@ public class DBUtil {
     private static Map<Class<?>, List<String>> fieldListMap   = new HashMap<Class<?>, List<String>>();
     private static Map<Class<?>, List<String>> fieldPkListMap = new HashMap<Class<?>, List<String>>();
 
+    public static String generateInsertSQL(Class<?> clazz, List<String> refFieldList) {
+        String tableName = getTableName(clazz);
+        List<String> fieldList = getTableFields(clazz);
+        List<String> quesList = transformToQuesList(fieldList);
+
+        StringBuilder sql = new StringBuilder();
+        sql.append("insert into ");
+        sql.append(tableName);
+        sql.append(" (");
+        sql.append(StringUtil.join(fieldList, ", "));
+        sql.append(") values (");
+        sql.append(StringUtil.join(quesList, ", "));
+        sql.append(")");
+
+        refFieldList.addAll(fieldList);
+
+        return sql.toString();
+    }
+
+    public static String generateSelectSQL(Class<?> clazz, List<String> refFieldList) {
+        String tableName = getTableName(clazz);
+        List<String> pkList = getPkList(clazz);
+
+        StringBuilder sql = new StringBuilder();
+        sql.append("select * from ");
+        sql.append(tableName);
+        sql.append(" where ");
+        sql.append(StringUtil.join(CollUtil.transform(pkList, new CollUtil.Transformer<String, String>() {
+
+            @Override
+            public String transform(String object) {
+                return (object + " = ?");
+            }
+        }), " and "));
+
+        refFieldList.addAll(pkList);
+
+        return sql.toString();
+    }
+
+    public static String generateUpdateSQL(Class<?> clazz, List<String> refFieldList) {
+        String tableName = getTableName(clazz);
+        List<String> fieldList = getTableFields(clazz);
+        List<String> pkList = getPkList(clazz);
+        List<String> setFieldList = CollUtil.minus(fieldList, pkList);
+
+        StringBuilder sql = new StringBuilder();
+        sql.append("update ");
+        sql.append(tableName);
+        sql.append(" set ");
+        sql.append(StringUtil.join(CollUtil.transform(setFieldList, new CollUtil.Transformer<String, String>() {
+
+            @Override
+            public String transform(String object) {
+                return (object + " = ?");
+            }
+        }), ", "));
+        sql.append(" where ");
+        sql.append(StringUtil.join(CollUtil.transform(pkList, new CollUtil.Transformer<String, String>() {
+
+            @Override
+            public String transform(String object) {
+                return (object + " = ?");
+            }
+        }), " and "));
+
+        refFieldList.addAll(setFieldList);
+        refFieldList.addAll(pkList);
+
+        return sql.toString();
+    }
+
+    public static String generateDeleteSQL(Class<?> clazz, List<String> refFieldList) {
+        String tableName = getTableName(clazz);
+        List<String> pkList = getPkList(clazz);
+
+        StringBuilder sql = new StringBuilder();
+        sql.append("delete from ");
+        sql.append(tableName);
+        sql.append(" where ");
+        sql.append(StringUtil.join(CollUtil.transform(pkList, new CollUtil.Transformer<String, String>() {
+
+            @Override
+            public String transform(String object) {
+                return (object + " = ?");
+            }
+        }), " and "));
+
+        refFieldList.addAll(pkList);
+
+        return sql.toString();
+    }
+
     synchronized public static String getTableName(Class<?> clazz) {
         if (clazz == null) {
             return null;
@@ -67,6 +160,16 @@ public class DBUtil {
         fieldList = transformToDatabaseName(fieldTypeList);
         fieldPkListMap.put(clazz, fieldList);
         return fieldList;
+    }
+
+    private static <T> List<String> transformToQuesList(List<T> list) {
+        return CollUtil.transform(list, new CollUtil.Transformer<T, String>() {
+
+            @Override
+            public String transform(T object) {
+                return "?";
+            }
+        });
     }
 
     private static List<String> transformToDatabaseName(List<Field> fieldTypeList) {

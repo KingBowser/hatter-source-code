@@ -4,18 +4,20 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class ReflectUtil {
 
-    public static Object getFieldValue(Object object, String field) {
-        return getFieldValue(object.getClass(), object, field);
+    public static Object getFieldValue(Object object, String field, AtomicReference<Class<?>> refType) {
+        return getFieldValue(object.getClass(), object, field, refType);
     }
 
-    public static Object getFieldValue(Class<?> clazz, Object object, String field) {
+    public static Object getFieldValue(Class<?> clazz, Object object, String field, AtomicReference<Class<?>> refType) {
         Field f = getField(clazz, field);
         if (f == null) {
             throw new RuntimeException("Field " + field + " not found in class " + clazz + ".");
         }
+        refType.set(f.getType());
         f.setAccessible(true);
         try {
             return f.get(object);

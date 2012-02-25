@@ -30,12 +30,12 @@ public class DBUtil {
 
             @Override
             public String transform(String object) {
-                Field f = ReflectUtil.getField(clazz, object);
+                Field f = ReflectUtil.getField(clazz, StringUtil.toCamel(object));
                 String type = null;
                 if (f.getType() == String.class) {
                     type = "TEXT";
                 } else if (f.getType() == Integer.class) {
-                    type = "INT";
+                    type = "INTEGER";
                 } else if (f.getType() == Date.class) {
                     type = "TEXT";
                 } else {

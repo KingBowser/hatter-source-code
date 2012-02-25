@@ -4,6 +4,7 @@ import me.hatter.tools.resourceproxy.dbutils.annotation.Field;
 import me.hatter.tools.resourceproxy.dbutils.annotation.Table;
 import me.hatter.tools.resourceproxy.dbutils.dataaccess.DataAccessObject;
 
+// this is a test class
 @Table(defaultAllFields = true)
 public class Test {
 

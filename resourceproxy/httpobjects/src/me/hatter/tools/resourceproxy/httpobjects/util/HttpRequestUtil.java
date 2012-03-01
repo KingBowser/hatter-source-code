@@ -17,19 +17,26 @@ public class HttpRequestUtil {
 
     @SuppressWarnings("restriction")
     public static HttpRequest build(HttpExchange exchange) {
+        int uploadCount = 0;
         HttpRequest request = new HttpRequest();
         request.setMethod(exchange.getRequestMethod().toUpperCase());
         request.setUri(exchange.getRequestURI());
         request.setRemoteAddress(exchange.getRemoteAddress());
         Headers requestHeaders = exchange.getRequestHeaders();
+        uploadCount += (3 + 7 + 2 + exchange.getRequestURI().toString().length());
         for (String key : requestHeaders.keySet()) {
             if (!IGNORE_HEADER_SET.contains(key)) {
                 List<String> values = requestHeaders.get(key);
                 request.set(key, values);
+                uploadCount += key.length();
+                for (String v : values) {
+                    uploadCount += v.length();
+                }
             }
         }
         request.setHost(request.getHost());
         request.setFullUrl("http://" + request.getHost() + request.getUri().toString());
+        request.setUploadCount(uploadCount);
         return request;
     }
 }

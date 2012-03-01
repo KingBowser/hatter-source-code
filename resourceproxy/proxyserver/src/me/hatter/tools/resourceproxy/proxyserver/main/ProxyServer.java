@@ -12,6 +12,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Properties;
 import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicLong;
 
 import me.hatter.tools.resourceproxy.commons.util.CollUtil;
 import me.hatter.tools.resourceproxy.dbutils.dataaccess.DataAccessObject;
@@ -30,7 +31,9 @@ import com.sun.net.httpserver.HttpServer;
 
 public class ProxyServer {
 
-    private static Properties HOST_PROPERTIES = new Properties();
+    private static AtomicLong TOTAL_UPLOAD_COUNT = new AtomicLong(0);
+
+    private static Properties HOST_PROPERTIES    = new Properties();
     static {
         if (System.getProperties().containsKey("debug")) {
             try {
@@ -61,6 +64,7 @@ public class ProxyServer {
         public void handle(HttpExchange exchange) throws IOException {
             try {
                 HttpRequest request = HttpRequestUtil.build(exchange);
+                TOTAL_UPLOAD_COUNT.addAndGet((long) request.getUploadCount());
                 if (request.getMethod().equals("GET")) {
 
                     String host = request.getHost();
@@ -98,6 +102,7 @@ public class ProxyServer {
                     }
 
                     writeResponse(exchange, startMills, response);
+                    System.out.println("[INFO] Total upload bytes: " + TOTAL_UPLOAD_COUNT.get());
                 } else {
                     System.out.println("Not supported method: " + request.getMethod());
                     ResponseUtil.writeErrorAndClose(exchange, "Not supported method: " + request.getMethod());
@@ -108,7 +113,6 @@ public class ProxyServer {
             }
         }
 
-        @SuppressWarnings("restriction")
         private void writeResponse(HttpExchange exchange, long startMills, HttpResponse response)
                                                                                                  throws UnsupportedEncodingException,
                                                                                                  IOException {
@@ -154,24 +158,30 @@ public class ProxyServer {
                                                                                                    IOException,
                                                                                                    ProtocolException {
             HttpResponse response;
-            String realHost = null;
+            // String realHost = null;
             if (HOST_PROPERTIES.containsKey(host)) {
-                realHost = host;
+                // realHost = host;
                 u = "http://" + HOST_PROPERTIES.getProperty(host) + request.getUri().toString();
             }
             URL url = new URL(u);
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             httpURLConnection.setRequestMethod(request.getMethod());
-            System.out.println("Request headers: ");
+            System.out.println("[INFO] Request headers for: " + u);
             for (String key : request.getHeaderMap().keySet()) {
-                for (String value : request.get(key)) {
-                    System.out.println("    " + key + ": " + value);
-                    httpURLConnection.addRequestProperty(key, value);
+                if ("Host".equalsIgnoreCase(key)) {
+                    System.out.println("\t" + key + ": " + request.get(key).get(0));
+                    httpURLConnection.setRequestProperty(key, request.get(key).get(0));
+                } else {
+                    for (String value : request.get(key)) {
+                        System.out.println("\t" + key + ": " + value);
+                        httpURLConnection.addRequestProperty(key, value);
+                    }
                 }
             }
-            if (realHost != null) {
-                httpURLConnection.addRequestProperty("Host", realHost);
-            }
+            // if (realHost != null) {
+            // httpURLConnection.addRequestProperty("Host", realHost);
+            // System.out.println("\tHost: " + realHost);
+            // }
             httpURLConnection.setUseCaches(false);
 
             response = HttpResponseUtil.build(httpURLConnection);

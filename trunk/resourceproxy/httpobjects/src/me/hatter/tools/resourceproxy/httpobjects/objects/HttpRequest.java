@@ -10,12 +10,21 @@ import java.util.Map;
 
 public class HttpRequest {
 
+    private int                       uploadCount;
     private String                    method;
     private String                    host;
     private URI                       uri;
     private String                    fullUrl;
     private InetSocketAddress         remoteAddress;
     private Map<String, List<String>> headerMap = new LinkedHashMap<String, List<String>>();
+
+    public int getUploadCount() {
+        return uploadCount;
+    }
+
+    public void setUploadCount(int uploadCount) {
+        this.uploadCount = uploadCount;
+    }
 
     public String getMethod() {
         return method;

@@ -1,4 +1,4 @@
-package me.hatter.tools.resourceproxy.dbutils.util;
+package me.hatter.tools.resourceproxy.commons.util;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -72,5 +72,9 @@ public class CollUtil {
             }
         }
         return result;
+    }
+
+    public static <T> T firstObject(List<T> list) {
+        return ((list == null) || list.isEmpty()) ? null : list.get(0);
     }
 }

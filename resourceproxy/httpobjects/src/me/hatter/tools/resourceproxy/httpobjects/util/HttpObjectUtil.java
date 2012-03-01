@@ -1,6 +1,6 @@
 package me.hatter.tools.resourceproxy.httpobjects.util;
 
-import me.hatter.tools.resourceproxy.dbutils.util.StringUtil;
+import me.hatter.tools.resourceproxy.commons.util.StringUtil;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpObject;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpRequest;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpResponse;

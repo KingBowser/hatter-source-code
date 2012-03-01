@@ -8,6 +8,7 @@ import java.util.Map;
 
 public class HttpResponse {
 
+    private boolean                   isFromNetwork;
     private int                       status;
     private String                    statusMessage;
     private String                    contentType;
@@ -16,6 +17,14 @@ public class HttpResponse {
     private Map<String, List<String>> headerMap = new LinkedHashMap<String, List<String>>();
     private byte[]                    bytes;
     private String                    string;
+
+    public boolean isFromNetwork() {
+        return isFromNetwork;
+    }
+
+    public void setFromNetwork(boolean isFromNetwork) {
+        this.isFromNetwork = isFromNetwork;
+    }
 
     public int getStatus() {
         return status;

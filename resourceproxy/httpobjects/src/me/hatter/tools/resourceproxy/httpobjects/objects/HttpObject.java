@@ -11,13 +11,13 @@ public class HttpObject {
         System.out.println(DBUtil.generateCreateSQL(HttpObject.class));
     }
 
-    @Field(pk = true)
+    @Field
     private Integer id;
     @Field
     private String  method;
-    @Field
+    @Field(pk = true)
     private String  url;
-    @Field
+    @Field(pk = true)
     private String  accessAddress;
     @Field
     private Integer status;

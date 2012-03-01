@@ -17,15 +17,19 @@ import java.util.regex.Pattern;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.InflaterInputStream;
 
+import me.hatter.tools.resourceproxy.dbutils.util.CollUtil;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpResponse;
 
 public class HttpResponseUtil {
 
-    private static Set<String> IGNORE_HEADER_SET = new HashSet<String>(Arrays.asList("Transfer-Encoding", // ,
-                                                                                     "Content-Encoding", // ,
-                                                                                     "Content-Length", // ,
-                                                                                     "Cache-Control", // ,
-                                                                                     "Expires"));
+    private static Set<String> IGNORE_HEADER_SET         = new HashSet<String>(
+                                                                               CollUtil.toUpperCase(Arrays.asList("Transfer-Encoding", // ,
+                                                                                                                  "Content-Encoding", // ,
+                                                                                                                  "Content-Length", // ,
+                                                                                                                  "Cache-Control", // ,
+                                                                                                                  "Expires")));
+    private static Set<String> STRINGFY_CONTENT_TYPE_SET = new HashSet<String>(
+                                                                               CollUtil.toUpperCase(Arrays.asList("application/javascript")));
 
     public static HttpResponse build(HttpURLConnection httpURLConnection) throws IOException {
         HttpResponse response = new HttpResponse();
@@ -52,12 +56,16 @@ public class HttpResponseUtil {
                 // if ("Content-Encoding".equalsIgnoreCase(key)) {
                 // response.setEncoding(firstValue);
                 // }
-                if (!IGNORE_HEADER_SET.contains(key)) {
+                // XXX kkk
+                if ("Transfer-encoding".equalsIgnoreCase(key)) {
+                    System.out.println("ZZZZZZZZZZZZZZZZZZ " + key + " // "
+                                       + (!IGNORE_HEADER_SET.contains(key.toUpperCase())));
+                }
+                if (!IGNORE_HEADER_SET.contains(key.toUpperCase())) {
                     response.set(key, headFields.get(key));
                 }
             }
         }
-        response.set("XX-Server", Arrays.asList("ResourceProxy_By_Hatter/0.1"));
 
         InputStream inputStream = httpURLConnection.getInputStream();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -77,10 +85,15 @@ public class HttpResponseUtil {
             }
         }
         response.setBytes(bytes);
-        String charset = (response.getCharset() == null) ? "UTF-8" : response.getCharset();
-        Reader reader = new InputStreamReader(new ByteArrayInputStream(bytes), charset);
-        String string = IOUtil.copyToString(reader);
-        response.setString(string);
+        if ((response.getContentType() != null) && (response.getCharset() != null)) {
+            if (response.getContentType().toUpperCase().startsWith("TEXT/")
+                || STRINGFY_CONTENT_TYPE_SET.contains(response.getContentType().toUpperCase())) {
+                String charset = (response.getCharset() == null) ? "UTF-8" : response.getCharset();
+                Reader reader = new InputStreamReader(new ByteArrayInputStream(bytes), charset);
+                String string = IOUtil.copyToString(reader);
+                response.setString(string);
+            }
+        }
 
         return response;
     }

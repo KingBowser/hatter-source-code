@@ -1,7 +1,6 @@
 package me.hatter.tools.resourceproxy.dbutils.util;
 
 import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
 import java.io.PrintWriter;
 import java.io.StringReader;
 import java.io.StringWriter;
@@ -78,28 +77,11 @@ public class StringUtil {
     }
 
     public static byte[] stringToByteArray(String string) {
-        if ((string.length() % 2) > 0) {
-            throw new RuntimeException("String input farmat error.");
-        }
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        for (int i = 0; i < string.length(); i += 2) {
-            char c1 = string.charAt(i);
-            char c2 = string.charAt(i + 1);
-            baos.write((int) (byte) Integer.parseInt(new String(new char[] { c1, c2 }), 16));
-        }
-        return baos.toByteArray();
+        return Base64.base64ToByteArray(string);
     }
 
     public static String byteArrayToString(byte[] bytes) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < bytes.length; i++) {
-            String hex = Integer.toHexString((int) bytes[i]);
-            if (hex.length() == 0) {
-                sb.append("0");
-            }
-            sb.append(hex);
-        }
-        return sb.toString();
+        return Base64.byteArrayToBase64(bytes);
     }
 
     public static String headerToString(Map<String, List<String>> headerMap) {

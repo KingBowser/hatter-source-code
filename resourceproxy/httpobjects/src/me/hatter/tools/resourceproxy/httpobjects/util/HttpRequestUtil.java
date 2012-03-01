@@ -29,6 +29,7 @@ public class HttpRequestUtil {
             }
         }
         request.setHost(request.getHost());
+        request.setFullUrl("http://" + request.getHost() + request.getUri().toString());
         return request;
     }
 }

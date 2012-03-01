@@ -1,4 +1,4 @@
-package me.hatter.tools.resourceproxy.dbutils.util;
+package me.hatter.tools.resourceproxy.commons.util;
 
 import java.lang.reflect.Method;
 

@@ -1,12 +1,23 @@
 <project basedir="." default="dist" name="ResourceProxy">
 	<target name="prepares">
+		<mkdir dir="classes/commons" />
 		<mkdir dir="classes/dbutils" />
 		<mkdir dir="classes/httpobjects" />
 		<mkdir dir="classes/proxyserver" />
 	</target>
 
-	<target name="step-dbutils" depends="prepares">
+	<target name="step-commons" depends="prepares">
+		<javac srcdir="commons/src" destdir="classes/commons" source="1.6" target="1.6" debug="on">
+		</javac>
+	</target>
+
+	<target name="step-dbutils" depends="step-commons">
 		<javac srcdir="dbutils/src" destdir="classes/dbutils" source="1.6" target="1.6" debug="on">
+			<classpath>
+				<path>
+					<pathelement path="classes/commons" />
+				</path>
+			</classpath>
 		</javac>
 	</target>
 
@@ -14,6 +25,7 @@
 		<javac srcdir="httpobjects/src" destdir="classes/httpobjects" source="1.6" target="1.6" debug="on">
 			<classpath>
 				<path>
+					<pathelement path="classes/commons" />
 					<pathelement path="classes/dbutils" />
 				</path>
 			</classpath>
@@ -24,6 +36,7 @@
 		<javac srcdir="proxyserver/src" destdir="classes/proxyserver" source="1.6" target="1.6" debug="on">
 			<classpath>
 				<path>
+					<pathelement path="classes/commons" />
 					<pathelement path="classes/dbutils" />
 					<pathelement path="classes/httpobjects" />
 				</path>
@@ -32,10 +45,11 @@
 	</target>
 
 	<target name="dist" depends="step-proxyserver">
-	        <manifest file="temp-jar.manifest">
-       			<attribute name="Main-Class" value="me.hatter.tools.resourceproxy.proxyserver.main.ProxyServer"/>
-        	</manifest>
+		<manifest file="temp-jar.manifest">
+			<attribute name="Main-Class" value="me.hatter.tools.resourceproxy.proxyserver.main.ProxyServer" />
+		</manifest>
 		<jar destfile="resourceproxy.jar" manifest="temp-jar.manifest">
+			<fileset dir="classes/commons" includes="**/*.class" />
 			<fileset dir="classes/dbutils" includes="**/*.class" />
 			<fileset dir="classes/httpobjects" includes="**/*.class" />
 			<fileset dir="classes/proxyserver" includes="**/*.class" />
@@ -45,6 +59,6 @@
 	</target>
 
 	<target name="clean">
-		<delete file="resourceproxy.jar"/>
+		<delete file="resourceproxy.jar" />
 	</target>
 </project>

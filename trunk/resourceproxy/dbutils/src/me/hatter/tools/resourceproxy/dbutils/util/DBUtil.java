@@ -8,6 +8,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import me.hatter.tools.resourceproxy.commons.util.CollUtil;
+import me.hatter.tools.resourceproxy.commons.util.ReflectUtil;
+import me.hatter.tools.resourceproxy.commons.util.StringUtil;
 import me.hatter.tools.resourceproxy.dbutils.annotation.NonField;
 import me.hatter.tools.resourceproxy.dbutils.annotation.Table;
 

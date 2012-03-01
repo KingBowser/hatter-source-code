@@ -10,11 +10,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
+import me.hatter.tools.resourceproxy.commons.util.CollUtil;
+import me.hatter.tools.resourceproxy.commons.util.ReflectUtil;
+import me.hatter.tools.resourceproxy.commons.util.StringUtil;
 import me.hatter.tools.resourceproxy.dbutils.factory.ConnectionPool;
-import me.hatter.tools.resourceproxy.dbutils.util.CollUtil;
 import me.hatter.tools.resourceproxy.dbutils.util.DBUtil;
-import me.hatter.tools.resourceproxy.dbutils.util.ReflectUtil;
-import me.hatter.tools.resourceproxy.dbutils.util.StringUtil;
 
 //
 public class DataAccessObject {

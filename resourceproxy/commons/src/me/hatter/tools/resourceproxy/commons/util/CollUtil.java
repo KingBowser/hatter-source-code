@@ -1,6 +1,7 @@
 package me.hatter.tools.resourceproxy.commons.util;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -76,5 +77,10 @@ public class CollUtil {
 
     public static <T> T firstObject(List<T> list) {
         return ((list == null) || list.isEmpty()) ? null : list.get(0);
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <T> List<T> objectToList(T object) {
+        return new ArrayList<T>(Arrays.asList(object));
     }
 }

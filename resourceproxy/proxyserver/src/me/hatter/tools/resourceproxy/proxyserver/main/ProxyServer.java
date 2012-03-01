@@ -3,16 +3,17 @@ package me.hatter.tools.resourceproxy.proxyserver.main;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.InetSocketAddress;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Properties;
 import java.util.concurrent.Executors;
 
+import me.hatter.tools.resourceproxy.commons.util.CollUtil;
 import me.hatter.tools.resourceproxy.dbutils.dataaccess.DataAccessObject;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpObject;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpRequest;
@@ -86,53 +87,17 @@ public class ProxyServer {
                         System.out.println("[INFO] Http Object from db first is null.");
                     }
 
-                    boolean isFromNetWork;
                     HttpResponse response = null;
                     if (httpObjectFromDBFirst != null) {
                         System.out.println("[INFO] Http Object deserilize from db.");
-                        isFromNetWork = false;
                         response = HttpObjectUtil.toHttpRequest(request, httpObjectFromDBFirst);
+                        response.setFromNetwork(false);
                     } else {
-                        isFromNetWork = true;
                         response = getHttpResponseFromNetwork(request, host, u);
+                        response.setFromNetwork(true);
                     }
 
-                    byte[] theBytes = response.getBytes();
-                    if (response.getString() != null) {
-                        String charset = (response.getCharset() == null) ? "UTF-8" : response.getCharset();
-                        theBytes = response.getString().getBytes(charset);
-                    }
-
-                    System.out.println("[INFO] Response status: " + response.getStatus());
-
-                    Headers responseHeaders = exchange.getResponseHeaders();
-                    System.out.println("[INFO] Response headers: ");
-
-                    System.out.println("[INFO] Header Map: " + response.getHeaderMap());
-                    for (String key : response.getHeaderMap().keySet()) {
-                        if (key != null) {
-                            responseHeaders.put(key, new ArrayList<String>(response.get(key)));
-                        }
-                    }
-                    // we are using chunked, so content-length is useless
-                    // responseHeaders.put("Content-Length", new
-                    // ArrayList<String>(Arrays.asList(String.valueOf(theBytes.length))));
-
-                    responseHeaders.put("X-Powered-Server",
-                                        new ArrayList<String>(Arrays.asList("ResourceProxy_By_Hatter/0.1")));
-                    if (!isFromNetWork) {
-                        responseHeaders.put("X-Powered-Cache", new ArrayList<String>(Arrays.asList("DB")));
-                    }
-                    exchange.sendResponseHeaders(response.getStatus(), 0);
-
-                    System.out.println("[INFO] Response Body-Commit-Length: " + theBytes.length);
-                    System.out.println("[INFO] Response Cost-Time: " + (System.currentTimeMillis() - startMills) + "ms");
-                    System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-
-                    OutputStream responseBody = exchange.getResponseBody();
-                    responseBody.write(theBytes);
-
-                    responseBody.close();
+                    writeResponse(exchange, startMills, response);
                 } else {
                     System.out.println("Not supported method: " + request.getMethod());
                     ResponseUtil.writeErrorAndClose(exchange, "Not supported method: " + request.getMethod());
@@ -141,6 +106,47 @@ public class ProxyServer {
                 t.printStackTrace();
                 ResponseUtil.writeThrowableAndClose(exchange, t);
             }
+        }
+
+        @SuppressWarnings("restriction")
+        private void writeResponse(HttpExchange exchange, long startMills, HttpResponse response)
+                                                                                                 throws UnsupportedEncodingException,
+                                                                                                 IOException {
+            byte[] theBytes = response.getBytes();
+            if (response.getString() != null) {
+                String charset = (response.getCharset() == null) ? "UTF-8" : response.getCharset();
+                theBytes = response.getString().getBytes(charset);
+            }
+
+            System.out.println("[INFO] Response status: " + response.getStatus());
+
+            Headers responseHeaders = exchange.getResponseHeaders();
+            System.out.println("[INFO] Response headers: ");
+
+            System.out.println("[INFO] Header Map: " + response.getHeaderMap());
+            for (String key : response.getHeaderMap().keySet()) {
+                if (key != null) {
+                    responseHeaders.put(key, new ArrayList<String>(response.get(key)));
+                }
+            }
+            // we are using chunked, so content-length is useless
+            // responseHeaders.put("Content-Length", new
+            // ArrayList<String>(Arrays.asList(String.valueOf(theBytes.length))));
+
+            responseHeaders.put("X-Powered-Server", CollUtil.objectToList("ResourceProxy_By_Hatter/0.1"));
+            if (!response.isFromNetwork()) {
+                responseHeaders.put("X-Powered-Cache", CollUtil.objectToList("DB"));
+            }
+            exchange.sendResponseHeaders(response.getStatus(), 0);
+
+            System.out.println("[INFO] Response Body-Commit-Length: " + theBytes.length);
+            System.out.println("[INFO] Response Cost-Time: " + (System.currentTimeMillis() - startMills) + "ms");
+            System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+
+            OutputStream responseBody = exchange.getResponseBody();
+            responseBody.write(theBytes);
+
+            responseBody.close();
         }
 
         private HttpResponse getHttpResponseFromNetwork(HttpRequest request, String host, String u)

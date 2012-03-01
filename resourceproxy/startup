@@ -1,0 +1,1 @@
+java -cp dbutils/lib/sqlite-jdbc-3.6.7.jar:resourceproxy.jar -Ddebug me.hatter.tools.resourceproxy.proxyserver.main.ProxyServer

@@ -1,5 +1,6 @@
-package me.hatter.tools.resourceproxy.httpobjects.util;
+package me.hatter.tools.resourceproxy.commons.util;
 
+import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -30,5 +31,13 @@ public class IOUtil {
         StringWriter sw = new StringWriter();
         copy(reader, sw);
         return sw.toString();
+    }
+
+    public static void closeQuitely(Closeable closeable) {
+        try {
+            closeable.close();
+        } catch (IOException e) {
+            // EAT EXCEPTION
+        }
     }
 }

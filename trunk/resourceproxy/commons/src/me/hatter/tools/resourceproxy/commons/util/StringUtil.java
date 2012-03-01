@@ -4,14 +4,20 @@ import java.io.BufferedReader;
 import java.io.PrintWriter;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 public class StringUtil {
 
-    public static String EMPTY = "";
+    public static final StringUtil INSTANCE = new StringUtil();
+
+    public static String           EMPTY    = "";
 
     public static String join(List<String> list, String separater) {
         if (list == null) {
@@ -116,5 +122,158 @@ public class StringUtil {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static final boolean isEmpty(final String str) {
+        return ((str == null) || (str.length() == 0));
+    }
+
+    public static final boolean isNotEmpty(final String str) {
+        return !isEmpty(str);
+    }
+
+    public static final String notNull(final String str) {
+        return (str == null) ? "" : str;
+    }
+
+    public static final String upper(final String str) {
+        return isEmpty(str) ? str : str.toUpperCase();
+    }
+
+    public static final String lower(final String str) {
+        return isEmpty(str) ? str : str.toLowerCase();
+    }
+
+    public static final boolean equals(final String str0, final String str1) {
+        if (str0 == str1) {
+            return true;
+        }
+        return ((str0 != null) && str0.equals(str1));
+    }
+
+    public static final List<Pair<String, String>> makePairs(final String s, final String regSep, final char eq) {
+        if (isEmpty(s)) {
+            return new ArrayList<Pair<String, String>>();
+        }
+        List<Pair<String, String>> pairs = new ArrayList<Pair<String, String>>();
+        String[] pairss = s.split(regSep);
+        for (int i = 0; i < pairss.length; i++) {
+            String key = pairss[i];
+            String value = "";
+            int equal = key.indexOf(eq);
+            if (equal >= 0) {
+                value = key.substring(equal + 1);
+                key = key.substring(0, equal);
+            }
+            pairs.add(new Pair<String, String>(key, value));
+        }
+        return pairs;
+    }
+
+    public static final Map<String, String> pairsToMap(final List<Pair<String, String>> pairs) {
+        Map<String, String> map = new HashMap<String, String>();
+        if (pairs != null) {
+            for (Pair<String, String> pair : pairs) {
+                map.put(pair.getKey(), pair.getValue());
+            }
+        }
+        return map;
+    }
+
+    public static String escapeHtml(String html) {
+        if (html == null) {
+            return null;
+        }
+        int len = html.length();
+        StringBuilder sb = new StringBuilder(len + 100);
+        for (int i = 0; i < len; i++) {
+            char c = html.charAt(i);
+            switch (c) {
+                case '<':
+                    sb.append("&lt;");
+                    break;
+                case '>':
+                    sb.append("&gt;");
+                    break;
+                case '"':
+                    sb.append("&quot;");
+                    break;
+                default:
+                    sb.append(c);
+                    break;
+            }
+        }
+        return sb.toString();
+    }
+
+    public static String preTextHtml(String html) {
+        if (html == null) {
+            return null;
+        }
+        int len = html.length();
+        StringBuilder sb = new StringBuilder(len + 100);
+        for (int i = 0; i < len; i++) {
+            char c = html.charAt(i);
+            switch (c) {
+                case '<':
+                    sb.append("&lt;");
+                    break;
+                case '>':
+                    sb.append("&gt;");
+                    break;
+                case '"':
+                    sb.append("&quot;");
+                    break;
+                default:
+                    sb.append(c);
+                    break;
+            }
+        }
+        return sb.toString().replace(" ", "&nbsp;").replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;").replaceAll("((\r\n)|(\r)|(\n))",
+                                                                                                         "<br/>");
+    }
+
+    public static String formatDate(Date date) {
+        if (date == null) {
+            return "";
+        }
+        return new SimpleDateFormat("yyyy-MM-dd").format(date);
+    }
+
+    public static String formatDateMMDD(Date date) {
+        if (date == null) {
+            return "";
+        }
+        return new SimpleDateFormat("MM-dd").format(date);
+    }
+
+    public static String showDateColor(Date date) {
+        if (date == null) {
+            return "";
+        }
+        String GREY = "grey";
+        String RED = "red";
+        String PINK = "pink";
+        String BLUE = "lightblue";
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date now = null;
+        try {
+            date = sdf.parse(sdf.format(date));
+            now = sdf.parse(sdf.format(new Date()));
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+
+        if (date.getTime() == now.getTime()) {
+            return RED;
+        }
+        if (date.getTime() < now.getTime()) {
+            return GREY;
+        }
+        if ((date.getTime() - now.getTime()) <= (1000 * 60 * 60 * 24)) {
+            return PINK;
+        }
+        return BLUE;
     }
 }

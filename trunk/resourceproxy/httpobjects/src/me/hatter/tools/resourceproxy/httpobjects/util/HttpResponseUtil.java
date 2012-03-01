@@ -18,6 +18,7 @@ import java.util.zip.GZIPInputStream;
 import java.util.zip.InflaterInputStream;
 
 import me.hatter.tools.resourceproxy.commons.util.CollUtil;
+import me.hatter.tools.resourceproxy.commons.util.IOUtil;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpResponse;
 
 public class HttpResponseUtil {

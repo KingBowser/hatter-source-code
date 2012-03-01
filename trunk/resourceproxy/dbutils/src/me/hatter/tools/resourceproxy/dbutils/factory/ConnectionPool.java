@@ -32,4 +32,8 @@ public class ConnectionPool {
             ConnectionFactory.destoryConnection(connection);
         }
     }
+
+    public void returnConnectionWithError(Connection connection) {
+        ConnectionFactory.destoryConnection(connection);
+    }
 }

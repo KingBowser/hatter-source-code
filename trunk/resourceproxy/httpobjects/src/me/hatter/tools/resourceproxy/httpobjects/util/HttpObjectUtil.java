@@ -10,9 +10,8 @@ public class HttpObjectUtil {
     public static HttpObject frHttpRequest(HttpRequest request, HttpResponse response) {
         HttpObject httpObject = new HttpObject();
         httpObject.setMethod(request.getMethod());
-        httpObject.setUrl("http://" + request.getHost() + request.getUri().toString());
-        String ip = request.getRemoteAddress().getAddress().toString();
-        httpObject.setAccessAddress(ip.startsWith("/") ? ip.substring(1) : ip);
+        httpObject.setUrl(request.getFullUrl());
+        httpObject.setAccessAddress(request.getIp());
         httpObject.setStatus(response.getStatus());
         httpObject.setStatusMessage(response.getStatusMessage());
         httpObject.setContentType(response.getContentType());

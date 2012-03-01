@@ -13,6 +13,7 @@ public class HttpRequest {
     private String                    method;
     private String                    host;
     private URI                       uri;
+    private String                    fullUrl;
     private InetSocketAddress         remoteAddress;
     private Map<String, List<String>> headerMap = new LinkedHashMap<String, List<String>>();
 
@@ -36,12 +37,25 @@ public class HttpRequest {
         this.uri = uri;
     }
 
+    public String getFullUrl() {
+        return fullUrl;
+    }
+
+    public void setFullUrl(String fullUrl) {
+        this.fullUrl = fullUrl;
+    }
+
     public InetSocketAddress getRemoteAddress() {
         return remoteAddress;
     }
 
     public void setRemoteAddress(InetSocketAddress remoteAddress) {
         this.remoteAddress = remoteAddress;
+    }
+
+    public String getIp() {
+        String ip = this.getRemoteAddress().getAddress().toString();
+        return ip.startsWith("/") ? ip.substring(1) : ip;
     }
 
     public Map<String, List<String>> getHeaderMap() {

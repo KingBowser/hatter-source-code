@@ -35,12 +35,23 @@ public class DataAccessObject {
 
     protected static <T> T execute(Execute<T> execute) {
         Connection connection = connectionPool.borrowConnection();
+        boolean hasError = false;
         try {
             return execute.execute(connection);
         } catch (Exception e) {
+            hasError = true;
             throw new RuntimeException(e);
         } finally {
-            connectionPool.returnConnection(connection);
+            try {
+                if (hasError) {
+                    connectionPool.returnConnectionWithError(connection);
+                } else {
+                    connectionPool.returnConnection(connection);
+                }
+            } catch (Exception ex) {
+                System.out.println("[ERROR] error when return connection with flag: " + hasError);
+                ex.printStackTrace();
+            }
         }
     }
 
@@ -138,6 +149,7 @@ public class DataAccessObject {
                     for (int i = 0; i < objectList.size(); i++) {
                         int index = i + 1;
                         Object o = objectList.get(i);
+                        System.out.println("[INFO] object @" + index + "=" + o);
                         Class<?> type = (o == null) ? null : o.getClass();
                         setPreparedStatmentByValue(preparedStatement, index, type, o);
                     }
@@ -164,7 +176,7 @@ public class DataAccessObject {
                         result.add(o);
                     }
                 }
-                return null;
+                return result;
             }
         });
     }

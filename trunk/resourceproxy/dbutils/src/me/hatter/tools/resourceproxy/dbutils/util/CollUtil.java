@@ -25,6 +25,18 @@ public class CollUtil {
         }
     }
 
+    public static class StringToUpperCase implements Transformer<String, String> {
+
+        @Override
+        public String transform(String object) {
+            return (object == null) ? null : object.toUpperCase();
+        }
+    }
+
+    public static List<String> toUpperCase(Collection<String> list) {
+        return transform(list, new CollUtil.StringToUpperCase());
+    }
+
     public static <T> List<T> minus(Collection<T> list, Collection<T> minusList) {
         final Set<T> minusSet = new HashSet<T>(minusList);
         return filter(list, new CollUtil.Filter<T>() {

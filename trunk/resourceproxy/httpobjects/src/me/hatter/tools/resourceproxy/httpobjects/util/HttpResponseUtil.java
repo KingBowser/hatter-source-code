@@ -30,7 +30,8 @@ public class HttpResponseUtil {
                                                                                                                   "Cache-Control", // ,
                                                                                                                   "Expires")));
     private static Set<String> STRINGFY_CONTENT_TYPE_SET = new HashSet<String>(
-                                                                               CollUtil.toUpperCase(Arrays.asList("application/javascript")));
+                                                                               CollUtil.toUpperCase(Arrays.asList("application/javascript",
+                                                                                                                  "application/x-javascript")));
 
     public static HttpResponse build(HttpURLConnection httpURLConnection) throws IOException {
         HttpResponse response = new HttpResponse();
@@ -57,11 +58,6 @@ public class HttpResponseUtil {
                 // if ("Content-Encoding".equalsIgnoreCase(key)) {
                 // response.setEncoding(firstValue);
                 // }
-                // XXX kkk
-                if ("Transfer-encoding".equalsIgnoreCase(key)) {
-                    System.out.println("ZZZZZZZZZZZZZZZZZZ " + key + " // "
-                                       + (!IGNORE_HEADER_SET.contains(key.toUpperCase())));
-                }
                 if (!IGNORE_HEADER_SET.contains(key.toUpperCase())) {
                     response.set(key, headFields.get(key));
                 }

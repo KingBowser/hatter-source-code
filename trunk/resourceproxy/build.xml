@@ -2,12 +2,24 @@
 	<target name="prepares">
 		<mkdir dir="classes/commons" />
 		<mkdir dir="classes/dbutils" />
+		<mkdir dir="classes/jsspexec" />
+		<mkdir dir="classes/jsspserver" />
 		<mkdir dir="classes/httpobjects" />
 		<mkdir dir="classes/proxyserver" />
 	</target>
 
 	<target name="step-commons" depends="prepares">
 		<javac srcdir="commons/src" destdir="classes/commons" source="1.6" target="1.6" debug="on">
+		</javac>
+	</target>
+
+	<target name="step-jsspexec" depends="step-commons">
+		<javac srcdir="jsspexec/src" destdir="classes/jsspexec" source="1.6" target="1.6" debug="on">
+			<classpath>
+				<path>
+					<pathelement path="classes/commons" />
+				</path>
+			</classpath>
 		</javac>
 	</target>
 
@@ -32,13 +44,28 @@
 		</javac>
 	</target>
 
-	<target name="step-proxyserver" depends="step-httpobjects">
+	<target name="step-jsspserver" depends="step-jsspexec,step-httpobjects">
+		<javac srcdir="jsspserver/src" destdir="classes/jsspserver" source="1.6" target="1.6" debug="on">
+			<classpath>
+				<path>
+					<pathelement path="classes/commons" />
+					<pathelement path="classes/dbutils" />
+					<pathelement path="classes/jsspexec" />
+					<pathelement path="classes/httpobjects" />
+				</path>
+			</classpath>
+		</javac>
+	</target>
+
+	<target name="step-proxyserver" depends="step-httpobjects,step-jsspserver">
 		<javac srcdir="proxyserver/src" destdir="classes/proxyserver" source="1.6" target="1.6" debug="on">
 			<classpath>
 				<path>
 					<pathelement path="classes/commons" />
 					<pathelement path="classes/dbutils" />
 					<pathelement path="classes/httpobjects" />
+					<pathelement path="classes/jsspexec" />
+					<pathelement path="classes/jsspserver" />
 				</path>
 			</classpath>
 		</javac>

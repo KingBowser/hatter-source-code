@@ -89,7 +89,7 @@ public class StringUtil {
         return Base64.byteArrayToBase64(bytes);
     }
 
-    public static String headerToString(Map<String, List<String>> headerMap) {
+    public static String headerToString(KeyValueListMap headerMap) {
         StringWriter sw = new StringWriter();
         PrintWriter pw = new PrintWriter(sw);
         for (String key : headerMap.keySet()) {

@@ -68,6 +68,10 @@ public class ProxyServer {
                 System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 
                 HttpRequest request = HttpRequestUtil.build(exchange);
+                String u = request.getFullUrl();
+                System.out.println("[INFO] Request: " + request.getMethod() + " " + u + " #"
+                                   + request.getRemoteAddress());
+
                 TOTAL_UPLOAD_COUNT.addAndGet((long) request.getUploadCount());
                 if (request.getMethod().equals("GET")) {
 
@@ -79,8 +83,6 @@ public class ProxyServer {
                     }
 
                     long startMills = System.currentTimeMillis();
-                    String u = request.getFullUrl();
-                    System.out.println("Request: " + request.getMethod() + " " + u + " #" + request.getRemoteAddress());
 
                     HttpResponse response = null;
                     if ("localhost".equals(host) || host.matches("\\d+(\\.\\d+){3}(:\\d+)?")) {
@@ -113,7 +115,7 @@ public class ProxyServer {
                     writeResponse(exchange, startMills, response);
                     System.out.println("[INFO] Total upload bytes: " + TOTAL_UPLOAD_COUNT.get());
                 } else {
-                    System.out.println("Not supported method: " + request.getMethod());
+                    System.out.println("[ERROR] Not supported method: " + request.getMethod());
                     ResponseUtil.writeErrorAndClose(exchange, "Not supported method: " + request.getMethod());
                 }
             } catch (Throwable t) {
@@ -152,12 +154,14 @@ public class ProxyServer {
             }
             exchange.sendResponseHeaders(response.getStatus(), 0);
 
-            System.out.println("[INFO] Response Body-Commit-Length: " + theBytes.length);
+            System.out.println("[INFO] Response Body-Commit-Length: " + ((theBytes == null) ? 0 : theBytes.length));
             System.out.println("[INFO] Response Cost-Time: " + (System.currentTimeMillis() - startMills) + "ms");
             System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
 
             OutputStream responseBody = exchange.getResponseBody();
-            responseBody.write(theBytes);
+            if (theBytes != null) {
+                responseBody.write(theBytes);
+            }
 
             responseBody.close();
         }

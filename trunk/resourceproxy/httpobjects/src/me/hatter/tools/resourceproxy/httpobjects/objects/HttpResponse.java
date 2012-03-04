@@ -1,7 +1,5 @@
 package me.hatter.tools.resourceproxy.httpobjects.objects;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -117,11 +115,6 @@ public class HttpResponse {
     public void redirect(String url) {
         this.setStatus(302);
         this.setStatusMessage("OK");
-        try {
-            this.headerMap.set("Location", URLEncoder.encode(url, "UTF-8"));
-        } catch (UnsupportedEncodingException e) {
-            this.headerMap.set("Location", url);
-
-        }
+        this.headerMap.set("Location", url);
     }
 }

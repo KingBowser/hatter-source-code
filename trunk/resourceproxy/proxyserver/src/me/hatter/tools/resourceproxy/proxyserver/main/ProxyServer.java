@@ -88,6 +88,7 @@ public class ProxyServer {
                         JsspResult result = JsspServer.process(request, response);
                         if (result == JsspResult.NOT_FOUND) {
                             ResponseUtil.writeErrorAndClose(exchange, "Page not found: " + request.getUri().getPath());
+                            return;
                         }
                     } else {
                         HttpObject queryHttpObject = new HttpObject();

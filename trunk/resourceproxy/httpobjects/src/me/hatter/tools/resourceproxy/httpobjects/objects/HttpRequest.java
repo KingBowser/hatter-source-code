@@ -121,6 +121,7 @@ public class HttpRequest {
 
     public String getQueryValue(String key) {
         List<String> list = getQueryValueList(key);
+        System.out.println("XXXXXX " + list);
         return ((list == null) || list.isEmpty()) ? null : list.get(0);
     }
 

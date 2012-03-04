@@ -121,14 +121,13 @@ public class HttpRequest {
 
     public String getQueryValue(String key) {
         List<String> list = getQueryValueList(key);
-        System.out.println("XXXXXX " + list);
         return ((list == null) || list.isEmpty()) ? null : list.get(0);
     }
 
     public List<String> getQueryValueList(String key) {
         List<String> list1 = getQueryMap().get(key);
         List<String> list2 = getPostMap().get(key);
-        if ((list1 == null) || (list2 == null)) {
+        if ((list1 == null) && (list2 == null)) {
             return null;
         }
         List<String> list = new ArrayList<String>();

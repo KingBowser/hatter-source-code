@@ -3,10 +3,12 @@ package me.hatter.tools.resourceproxy.jsspexec;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.Writer;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.script.Bindings;
@@ -26,6 +28,22 @@ public class JsspExecutor {
     public static String                     JSSP_EXPLAINED_EXT   = ".jssp";
     private static final String              JSSP_SCRIPT_LANGUAGE = "JavaScript";
     private static final ScriptEngineManager JSSP_ENG_MAN         = new ScriptEngineManager();
+
+    public static void main(String[] a) throws Exception {
+        initJsspWork();
+        Map<String, Object> context = new HashMap<String, Object>();
+        BufferWriter bw = new BufferWriter();
+        File f = File.createTempFile("test", "jssp");
+        f.deleteOnExit();
+        FileWriter fw = new FileWriter(f);
+        fw.write("<%=\"hello world\"%>\n<% var i = 0; i++;%><%=i%>");
+        fw.flush();
+        fw.close();
+
+        executeJssp(f, context, null, bw);
+
+        System.out.println(bw.getBufferedString());
+    }
 
     public static void initJsspWork() {
         File work = getJsspWorkDir();

@@ -1,10 +1,15 @@
 package me.hatter.tools.resourceproxy.httpobjects.util;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.net.URLDecoder;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import me.hatter.tools.resourceproxy.commons.util.IOUtil;
+import me.hatter.tools.resourceproxy.commons.util.KeyValueListMap;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpRequest;
 
 import com.sun.net.httpserver.Headers;
@@ -37,6 +42,48 @@ public class HttpRequestUtil {
         request.setHost(request.getHost());
         request.setFullUrl("http://" + request.getHost() + request.getUri().toString());
         request.setUploadCount(uploadCount);
+
+        String query = exchange.getRequestURI().getQuery();
+        try {
+            parseKVListMap(request.getQueryMap(), query);
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+
+        if ("POST".equalsIgnoreCase(exchange.getRequestMethod())) {
+            try {
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                IOUtil.copy(exchange.getRequestBody(), baos);
+                String post = new String(baos.toByteArray(), "UTF-8");
+                parseKVListMap(request.getPostMap(), post);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        KeyValueListMap queryValueMap = new KeyValueListMap(request.getQueryMap());
+        queryValueMap.addMap(request.getPostMap());
+        request.setQueryValueMap(queryValueMap);
+
         return request;
+    }
+
+    private static void parseKVListMap(KeyValueListMap kvlMap, String query) throws IOException {
+        if (query == null) {
+            return;
+        }
+        String[] ql = query.split("&");
+        for (String kev : ql) {
+            if (kev.length() > 0) {
+                int indexOfE = kev.indexOf('=');
+                if (indexOfE < 0) {
+                    kvlMap.add(kev, "");
+                } else {
+                    String k = kev.substring(0, indexOfE);
+                    String v = kev.substring(indexOfE + 1);
+                    kvlMap.add(k, URLDecoder.decode(v, "UTF-8"));
+                }
+            }
+        }
     }
 }

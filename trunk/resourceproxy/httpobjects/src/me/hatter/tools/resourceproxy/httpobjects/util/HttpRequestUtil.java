@@ -69,6 +69,7 @@ public class HttpRequestUtil {
     }
 
     private static void parseKVListMap(KeyValueListMap kvlMap, String query) throws IOException {
+        System.out.println("[INFO] Parse query: " + query);
         if (query == null) {
             return;
         }

@@ -78,6 +78,8 @@
 		<jar destfile="resourceproxy.jar" manifest="temp-jar.manifest">
 			<fileset dir="classes/commons" includes="**/*.class" />
 			<fileset dir="classes/dbutils" includes="**/*.class" />
+			<fileset dir="classes/jsspexec" includes="**/*.class" />
+			<fileset dir="classes/jsspserver" includes="**/*.class" />
 			<fileset dir="classes/httpobjects" includes="**/*.class" />
 			<fileset dir="classes/proxyserver" includes="**/*.class" />
 		</jar>

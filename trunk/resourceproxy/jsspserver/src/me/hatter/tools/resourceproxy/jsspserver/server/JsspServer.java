@@ -26,6 +26,10 @@ public class JsspServer {
         }
     }
 
+    static {
+        JsspExecutor.initJsspWork();
+    }
+
     public static JsspResult process(HttpRequest request, HttpResponse response) {
         String path = request.getUri().getPath();
         System.out.println("[INFO] Query jssp page: " + path);

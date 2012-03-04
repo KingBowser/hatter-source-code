@@ -65,6 +65,8 @@ public class ProxyServer {
 
         public void handle(HttpExchange exchange) throws IOException {
             try {
+                System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+
                 HttpRequest request = HttpRequestUtil.build(exchange);
                 TOTAL_UPLOAD_COUNT.addAndGet((long) request.getUploadCount());
                 if (request.getMethod().equals("GET")) {
@@ -76,7 +78,6 @@ public class ProxyServer {
                         return; // ERROR and RETURN
                     }
 
-                    System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
                     long startMills = System.currentTimeMillis();
                     String u = request.getFullUrl();
                     System.out.println("Request: " + request.getMethod() + " " + u + " #" + request.getRemoteAddress());

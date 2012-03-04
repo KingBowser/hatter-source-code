@@ -61,6 +61,9 @@ public class HttpRequestUtil {
             }
         }
 
+        System.out.println("[INFO] Parsed query: " + request.getQueryMap());
+        System.out.println("[INFO] Parsed post: " + request.getPostMap());
+
         KeyValueListMap queryValueMap = new KeyValueListMap(request.getQueryMap());
         queryValueMap.addMap(request.getPostMap());
         request.setQueryValueMap(queryValueMap);

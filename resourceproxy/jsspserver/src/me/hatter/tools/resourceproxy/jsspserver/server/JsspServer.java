@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import me.hatter.tools.resourceproxy.commons.util.FileUtil;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpRequest;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpResponse;
 import me.hatter.tools.resourceproxy.jsspexec.JsspExecutor;
@@ -33,23 +34,46 @@ public class JsspServer {
     }
 
     public static JsspResult process(HttpRequest request, HttpResponse response) {
-        String path = request.getUri().getPath();
-        System.out.println("[INFO] Query jssp page: " + path);
-        if (!path.toLowerCase().endsWith(".jssp")) {
+        String fpath = request.getFPath();
+        System.out.println("[INFO] Query local/ip page: " + fpath + " of: " + request.getUri().getPath());
+        if ("/".equals(fpath)) {
+            System.out.println("[INFO] Redirect: index.jssp?jsspaction=resourceproxy.Index");
+            response.redirect("index.jssp?jsspaction=resourceproxy.Index");
+            return null;
+        }
+
+        if (fpath.toLowerCase().endsWith(".png")) {
+            File tfile = new File(JSSP_PATH, fpath);
+            if (!tfile.exists()) {
+                System.out.println("[WARN] File not found: " + tfile);
+                return JsspResult.NOT_FOUND;
+            }
+            System.out.println("[INFO] Found file: " + tfile);
+            response.setContentType("image/png");
+            response.setStatus(200);
+            response.setStatusMessage("OK");
+            response.set("Content-Type", new ArrayList<String>(Arrays.asList("image/png")));
+            response.setBytes(FileUtil.readFileToBytes(tfile));
+            return null;
+        }
+
+        if (!fpath.toLowerCase().endsWith(".jssp")) {
             return JsspResult.NOT_FOUND;
         }
 
-        File jsspFile = new File(JSSP_PATH, path);
+        File jsspFile = new File(JSSP_PATH, fpath);
         if (!jsspFile.exists()) {
             System.out.println("[WARN] Jssp file not found: " + jsspFile);
             return JsspResult.NOT_FOUND;
         }
+        System.out.println("[INFO] Found jssp file: " + jsspFile);
 
         Map<String, Object> context = new HashMap<String, Object>();
         String jsspAction = request.getQueryValue("jsspaction");
         if (jsspAction != null) {
             try {
                 Class<?> jsspActionClazz = Class.forName(jsspAction);
+                System.out.println("[INFO] Found jssp action: " + jsspActionClazz);
                 if (Action.class.isAssignableFrom(jsspActionClazz)) {
                     Action a = ((Action) jsspActionClazz.newInstance());
                     context = a.doAction(request, response);

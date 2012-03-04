@@ -54,6 +54,16 @@ public class HttpRequest {
         this.uri = uri;
     }
 
+    public String getFPath() {
+        String path = this.uri.getPath();
+        int indexOfQ = path.indexOf('?');
+        if (indexOfQ < 0) {
+            return path;
+        } else {
+            return path.substring(0, indexOfQ);
+        }
+    }
+
     public String getFullUrl() {
         return fullUrl;
     }

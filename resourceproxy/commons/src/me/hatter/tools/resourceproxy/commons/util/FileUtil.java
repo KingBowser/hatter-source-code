@@ -1,6 +1,7 @@
 package me.hatter.tools.resourceproxy.commons.util;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileReader;
@@ -14,6 +15,17 @@ public final class FileUtil {
     public static final String SEPARATER         = File.separator;
     public static final String DOUBLE_SEPARATER  = SEPARATER + SEPARATER;
     public static final String ANOTHER_SEPARATER = "/".equals(SEPARATER) ? "\\" : "/";
+
+    public static byte[] readFileToBytes(File file) {
+        try {
+            FileInputStream fis = new FileInputStream(file);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            IOUtil.copy(fis, baos);
+            return baos.toByteArray();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public static final String readFileToString(File file) {
         return readFileToString(file, null);

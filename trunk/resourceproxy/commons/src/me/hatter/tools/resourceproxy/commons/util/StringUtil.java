@@ -9,7 +9,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -102,10 +101,10 @@ public class StringUtil {
         return sw.toString();
     }
 
-    public static Map<String, List<String>> stringToHeader(String str) {
+    public static KeyValueListMap stringToHeader(String str) {
         StringReader sr = new StringReader(str.trim());
         BufferedReader br = new BufferedReader(sr);
-        Map<String, List<String>> headerMap = new LinkedHashMap<String, List<String>>();
+        KeyValueListMap headerMap = new KeyValueListMap();
         try {
             for (String line; ((line = br.readLine()) != null);) {
                 int indexOfComma = line.indexOf(':');

@@ -1,22 +1,24 @@
 package me.hatter.tools.resourceproxy.httpobjects.objects;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
+
+import me.hatter.tools.resourceproxy.commons.util.KeyValueListMap;
 
 public class HttpResponse {
 
-    private boolean                   isFromNetwork;
-    private int                       status;
-    private String                    statusMessage;
-    private String                    contentType;
-    private String                    charset;
-    private String                    encoding;
-    private Map<String, List<String>> headerMap = new LinkedHashMap<String, List<String>>();
-    private byte[]                    bytes;
-    private String                    string;
+    private boolean         isFromNetwork;
+    private int             status;
+    private String          statusMessage;
+    private String          contentType;
+    private String          charset;
+    private String          encoding;
+    private KeyValueListMap headerMap = new KeyValueListMap();
+    private byte[]          bytes;
+    private String          string;
 
     public boolean isFromNetwork() {
         return isFromNetwork;
@@ -66,11 +68,11 @@ public class HttpResponse {
         this.encoding = encoding;
     }
 
-    public void setHeaderMap(Map<String, List<String>> headerMap) {
+    public void setHeaderMap(KeyValueListMap headerMap) {
         this.headerMap = headerMap;
     }
 
-    public Map<String, List<String>> getHeaderMap() {
+    public KeyValueListMap getHeaderMap() {
         return headerMap;
     }
 
@@ -106,5 +108,20 @@ public class HttpResponse {
 
     public void setString(String string) {
         this.string = string;
+    }
+
+    public boolean isRedirect() {
+        return ((getStatus() == 301) || (getStatus() == 302));
+    }
+
+    public void redirect(String url) {
+        this.setStatus(302);
+        this.setStatusMessage("OK");
+        try {
+            this.headerMap.set("Location", URLEncoder.encode(url, "UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+            this.headerMap.set("Location", url);
+
+        }
     }
 }

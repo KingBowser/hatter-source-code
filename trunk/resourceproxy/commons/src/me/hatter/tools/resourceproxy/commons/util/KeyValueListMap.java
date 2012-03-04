@@ -22,6 +22,12 @@ public class KeyValueListMap extends LinkedHashMap<String, List<String>> {
         }
     }
 
+    public void set(String key, String value) {
+        List<String> list = new ArrayList<String>(1);
+        list.add(value);
+        put(key, list);
+    }
+
     public void add(String key, String value) {
         List<String> valueList = get(key);
         if (valueList == null) {

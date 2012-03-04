@@ -22,6 +22,8 @@ import me.hatter.tools.resourceproxy.httpobjects.objects.HttpResponse;
 import me.hatter.tools.resourceproxy.httpobjects.util.HttpObjectUtil;
 import me.hatter.tools.resourceproxy.httpobjects.util.HttpRequestUtil;
 import me.hatter.tools.resourceproxy.httpobjects.util.HttpResponseUtil;
+import me.hatter.tools.resourceproxy.jsspserver.server.JsspServer;
+import me.hatter.tools.resourceproxy.jsspserver.server.JsspServer.JsspResult;
 import me.hatter.tools.resourceproxy.proxyserver.util.ResponseUtil;
 
 import com.sun.net.httpserver.Headers;
@@ -78,27 +80,32 @@ public class ProxyServer {
                     long startMills = System.currentTimeMillis();
                     String u = request.getFullUrl();
                     System.out.println("Request: " + request.getMethod() + " " + u + " #" + request.getRemoteAddress());
-                    if ("localhost".equals(host) || host.matches("\\d+(\\.\\d+){3}(:\\d+)?")) {
-                        System.out.println("Ignore IP request.");
-                        ResponseUtil.writeErrorAndClose(exchange, "Ignore IP request: " + request.getMethod() + " " + u);
-                        return; // ERROR and RETURN
-                    }
-                    HttpObject queryHttpObject = new HttpObject();
-                    queryHttpObject.setUrl(request.getFullUrl());
-                    queryHttpObject.setAccessAddress(request.getIp());
-                    HttpObject httpObjectFromDBFirst = DataAccessObject.selectObject(queryHttpObject);
-                    if (httpObjectFromDBFirst == null) {
-                        System.out.println("[INFO] Http Object from db first is null.");
-                    }
 
                     HttpResponse response = null;
-                    if (httpObjectFromDBFirst != null) {
-                        System.out.println("[INFO] Http Object deserilize from db.");
-                        response = HttpObjectUtil.toHttpRequest(request, httpObjectFromDBFirst);
-                        response.setFromNetwork(false);
+                    if ("localhost".equals(host) || host.matches("\\d+(\\.\\d+){3}(:\\d+)?")) {
+                        System.out.println("[INFO] Local or IP access: " + host);
+                        response = new HttpResponse();
+                        JsspResult result = JsspServer.process(request, response);
+                        if (result == JsspResult.NOT_FOUND) {
+                            ResponseUtil.writeErrorAndClose(exchange, "Page not found: " + request.getUri().getPath());
+                        }
                     } else {
-                        response = getHttpResponseFromNetwork(request, host, u);
-                        response.setFromNetwork(true);
+                        HttpObject queryHttpObject = new HttpObject();
+                        queryHttpObject.setUrl(request.getFullUrl());
+                        queryHttpObject.setAccessAddress(request.getIp());
+                        HttpObject httpObjectFromDBFirst = DataAccessObject.selectObject(queryHttpObject);
+                        if (httpObjectFromDBFirst == null) {
+                            System.out.println("[INFO] Http Object from db first is null.");
+                        }
+
+                        if (httpObjectFromDBFirst != null) {
+                            System.out.println("[INFO] Http Object deserilize from db.");
+                            response = HttpObjectUtil.toHttpRequest(request, httpObjectFromDBFirst);
+                            response.setFromNetwork(false);
+                        } else {
+                            response = getHttpResponseFromNetwork(request, host, u);
+                            response.setFromNetwork(true);
+                        }
                     }
 
                     writeResponse(exchange, startMills, response);

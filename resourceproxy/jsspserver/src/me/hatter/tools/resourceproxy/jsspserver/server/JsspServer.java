@@ -1,6 +1,8 @@
 package me.hatter.tools.resourceproxy.jsspserver.server;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -66,6 +68,7 @@ public class JsspServer {
         response.setCharset("UTF-8");
         response.setStatus(200);
         response.setStatusMessage("OK");
+        response.set("Content-Type", new ArrayList<String>(Arrays.asList("text/html;charset=UTF-8")));
         response.setString(bw.getBufferedString());
 
         return JsspResult.SUCCESS;

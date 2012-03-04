@@ -34,7 +34,7 @@ public class JsspServer {
         }
 
         File jsspFile = new File(JSSP_PATH, path);
-        if (jsspFile.exists()) {
+        if (!jsspFile.exists()) {
             return JsspResult.NOT_FOUND;
         }
 

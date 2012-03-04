@@ -29,7 +29,7 @@ public class JsspServer {
     public static JsspResult process(HttpRequest request, HttpResponse response) {
         String path = request.getUri().getPath();
         System.out.println("[INFO] Query jssp page: " + path);
-        if (path.toLowerCase().endsWith(".jssp")) {
+        if (!path.toLowerCase().endsWith(".jssp")) {
             return JsspResult.NOT_FOUND;
         }
 

@@ -10,7 +10,7 @@ public class RootPathFilter implements ResourceFilter {
     @Override
     public HttpResponse filter(HttpRequest request, ResourceFilterChain chain) {
         String fpath = request.getFPath();
-        if ("/".equals(fpath)) {
+        if (request.isLocalHostOrIP() && "/".equals(fpath)) {
             System.out.println("[INFO] Redirect: index.jssp?jsspaction=resourceproxy.Index");
             HttpResponse response = new HttpResponse();
             response.redirect("index.jssp?jsspaction=resourceproxy.Index");

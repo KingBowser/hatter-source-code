@@ -19,7 +19,7 @@ public class JsspServer {
         SUCCESS, NOT_FOUND;
     }
 
-    private static File JSSP_PATH;
+    public static File JSSP_PATH;
     static {
         String jsspPath = System.getProperty("jssp.path");
         if (jsspPath == null) {

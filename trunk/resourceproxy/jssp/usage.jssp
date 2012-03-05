@@ -7,7 +7,35 @@
     ResourceProxy is a tool for online JavaScript, CSS debug. It is a proxy tool. ResourceProxy give you the way to format, modify the online JavaScript, CSS resource(s).<br/><br/>
     <li>How does ResourceProxy work?</li>
     ResourceProxy work like the graph below:<br/>
-    <img src="resourceproxy.png"/>
+    <img src="resourceproxy.png"/><br/>
+    The proxy use the 'Host' field(<a href="http://www.ietf.org/rfc/rfc2616.txt" target="_blank">RFC 2616</a> Section 14.23) in http request header to know the resource uri.<br/>
+    Example: Access http://www.example.com/hello_world.txt from the browser.<br/>
+    Add this to the /etc/hosts:<br>
+    <pre>127.0.0.1	www.example.com</pre>
+    Client request (send to the proxy):<br/>
+    <pre>
+    GET /hello_world.txt HTTP/1.0
+    Host: www.example.com</pre>
+    Proxy received the request:<br/>
+    Find from database<br>
+      <pre>select * from http_object where ip=&lt;client's ip&gt; and url=&lt;request's host+path&gt;</pre>
+    Not found:
+    Proxy resend the request(send to the real server):<br/>
+    <pre>
+    GET /hello_world.txt HTTP/1.0
+    Host: www.example.com</pre>
+    The server received the request and return:
+    <pre>
+    HTTP/1.0 200 OK
+    Date: Mon, 05 Mar 2012 06:28:45 GMT
+    Server: Apache
+    Content-Language: en-US
+    Connection: Close
+    Transfer-Encoding: chunked
+    Content-Type: text/plain;charset=UTF-8
+    
+    Returned contents...</pre>
+    Then the proxy received the response, record to the database and return the real response to the client.
   </ol>
 </body>
 </html>

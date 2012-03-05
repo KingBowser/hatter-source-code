@@ -54,6 +54,10 @@ public class HttpRequest {
         this.uri = uri;
     }
 
+    public boolean isLocalHostOrIP() {
+        return ("localhost".equalsIgnoreCase(getHost()) || getHost().matches("\\d+(\\.\\d+){3}(:\\d+)?"));
+    }
+
     public String getFPath() {
         String path = this.uri.getPath();
         int indexOfQ = path.indexOf('?');

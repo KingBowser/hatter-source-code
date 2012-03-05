@@ -1,29 +1,18 @@
 package me.hatter.tools.resourceproxy.proxyserver.main;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
 import java.net.InetSocketAddress;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Properties;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicLong;
 
 import me.hatter.tools.resourceproxy.commons.util.CollUtil;
-import me.hatter.tools.resourceproxy.dbutils.dataaccess.DataAccessObject;
-import me.hatter.tools.resourceproxy.httpobjects.objects.HttpObject;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpRequest;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpResponse;
-import me.hatter.tools.resourceproxy.httpobjects.util.HttpObjectUtil;
 import me.hatter.tools.resourceproxy.httpobjects.util.HttpRequestUtil;
-import me.hatter.tools.resourceproxy.httpobjects.util.HttpResponseUtil;
-import me.hatter.tools.resourceproxy.jsspserver.server.JsspServer;
-import me.hatter.tools.resourceproxy.jsspserver.server.JsspServer.JsspResult;
+import me.hatter.tools.resourceproxy.jsspserver.filter.ResourceFilterChain;
 import me.hatter.tools.resourceproxy.proxyserver.util.ResponseUtil;
 
 import com.sun.net.httpserver.Headers;
@@ -34,17 +23,6 @@ import com.sun.net.httpserver.HttpServer;
 public class ProxyServer {
 
     private static AtomicLong TOTAL_UPLOAD_COUNT = new AtomicLong(0);
-
-    private static Properties HOST_PROPERTIES    = new Properties();
-    static {
-        if (System.getProperties().containsKey("debug")) {
-            try {
-                HOST_PROPERTIES.load(new FileInputStream("hosts.properties"));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
 
     @SuppressWarnings("restriction")
     public static void main(String[] args) throws Exception {
@@ -66,59 +44,17 @@ public class ProxyServer {
         public void handle(HttpExchange exchange) throws IOException {
             try {
                 System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-
                 HttpRequest request = HttpRequestUtil.build(exchange);
-                String u = request.getFullUrl();
-                System.out.println("[INFO] Request: " + request.getMethod() + " " + u + " #"
+                System.out.println("[INFO] Request: " + request.getMethod() + " " + request.getFullUrl() + " #"
                                    + request.getRemoteAddress());
 
                 TOTAL_UPLOAD_COUNT.addAndGet((long) request.getUploadCount());
-                if (request.getMethod().equals("GET")) {
-
-                    String host = request.getHost();
-                    if (host == null) {
-                        System.out.println("No host assigned: " + request.getUri().toString());
-                        ResponseUtil.writeErrorAndClose(exchange, "No host assigned: " + request.getUri().toString());
-                        return; // ERROR and RETURN
-                    }
-
-                    long startMills = System.currentTimeMillis();
-
-                    HttpResponse response = null;
-                    if ("localhost".equals(host) || host.matches("\\d+(\\.\\d+){3}(:\\d+)?")) {
-                        System.out.println("[INFO] Local or IP access: " + host);
-                        response = new HttpResponse();
-                        JsspResult result = JsspServer.process(request, response);
-                        if (result == JsspResult.NOT_FOUND) {
-                            ResponseUtil.writeErrorAndClose(exchange, "Page not found: " + request.getUri().getPath());
-                            return;
-                        }
-                    } else {
-                        HttpObject queryHttpObject = new HttpObject();
-                        queryHttpObject.setUrl(request.getFullUrl());
-                        queryHttpObject.setAccessAddress(request.getIp());
-                        HttpObject httpObjectFromDBFirst = DataAccessObject.selectObject(queryHttpObject);
-                        if (httpObjectFromDBFirst == null) {
-                            System.out.println("[INFO] Http Object from db first is null.");
-                        }
-
-                        if (httpObjectFromDBFirst != null) {
-                            System.out.println("[INFO] Http Object deserilize from db.");
-                            response = HttpObjectUtil.toHttpRequest(request, httpObjectFromDBFirst);
-                            response.setFromNetwork(false);
-                        } else {
-                            response = getHttpResponseFromNetwork(request, host, u);
-                            response.setFromNetwork(true);
-                        }
-                    }
-
-                    writeResponse(exchange, startMills, response);
-                    System.out.println("[INFO] Total upload bytes: " + TOTAL_UPLOAD_COUNT.get());
-                } else {
-                    System.out.println("[ERROR] Not supported method: " + request.getMethod());
-                    ResponseUtil.writeErrorAndClose(exchange, "Not supported method: " + request.getMethod());
-                }
+                long startMills = System.currentTimeMillis();
+                HttpResponse response = ResourceFilterChain.filterChain(request);
+                writeResponse(exchange, startMills, response);
+                System.out.println("[INFO] >>>> Total upload bytes: " + TOTAL_UPLOAD_COUNT.get());
             } catch (Throwable t) {
+                System.out.println("[ERROR] Exception occured: ");
                 t.printStackTrace();
                 ResponseUtil.writeThrowableAndClose(exchange, t);
             }
@@ -164,56 +100,6 @@ public class ProxyServer {
             }
 
             responseBody.close();
-        }
-
-        private HttpResponse getHttpResponseFromNetwork(HttpRequest request, String host, String u)
-                                                                                                   throws MalformedURLException,
-                                                                                                   IOException,
-                                                                                                   ProtocolException {
-            HttpResponse response;
-            // String realHost = null;
-            if (HOST_PROPERTIES.containsKey(host)) {
-                // realHost = host;
-                u = "http://" + HOST_PROPERTIES.getProperty(host) + request.getUri().toString();
-            }
-            URL url = new URL(u);
-            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-            httpURLConnection.setRequestMethod(request.getMethod());
-            System.out.println("[INFO] Request headers for: " + u);
-            for (String key : request.getHeaderMap().keySet()) {
-                if ("Host".equalsIgnoreCase(key)) {
-                    System.out.println("\t" + key + ": " + request.get(key).get(0));
-                    httpURLConnection.setRequestProperty(key, request.get(key).get(0));
-                } else {
-                    for (String value : request.get(key)) {
-                        System.out.println("\t" + key + ": " + value);
-                        httpURLConnection.addRequestProperty(key, value);
-                    }
-                }
-            }
-            // if (realHost != null) {
-            // httpURLConnection.addRequestProperty("Host", realHost);
-            // System.out.println("\tHost: " + realHost);
-            // }
-            httpURLConnection.setUseCaches(false);
-
-            response = HttpResponseUtil.build(httpURLConnection);
-
-            HttpObject httpObject = HttpObjectUtil.frHttpRequest(request, response);
-            HttpObject httpObjectFromDB = DataAccessObject.selectObject(httpObject);
-            if (httpObjectFromDB == null) {
-                System.out.println("[INFO] Http Object from db is null.");
-                try {
-                    DataAccessObject.insertObject(httpObject);
-                } catch (Exception e) {
-                    System.out.println("[ERROR] insert data error " + httpObject.getUrl() + " @"
-                                       + httpObject.getAccessAddress() + " /" + e.getMessage());
-                    e.printStackTrace();
-                }
-            } else {
-                DataAccessObject.updateObject(httpObject);
-            }
-            return response;
         }
     }
 }

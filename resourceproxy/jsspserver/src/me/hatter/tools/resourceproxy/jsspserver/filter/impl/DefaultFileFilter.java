@@ -9,7 +9,6 @@ import me.hatter.tools.resourceproxy.httpobjects.objects.HttpRequest;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpResponse;
 import me.hatter.tools.resourceproxy.jsspserver.filter.ResourceFilter;
 import me.hatter.tools.resourceproxy.jsspserver.filter.ResourceFilterChain;
-import me.hatter.tools.resourceproxy.jsspserver.server.JsspServer;
 
 public class DefaultFileFilter implements ResourceFilter {
 
@@ -27,8 +26,8 @@ public class DefaultFileFilter implements ResourceFilter {
     @Override
     public HttpResponse filter(HttpRequest request, ResourceFilterChain chain) {
         String fpath = request.getFPath();
-        File tfile = new File(JsspServer.JSSP_PATH, fpath);
-        if (tfile.exists()) {
+        File tfile = new File(JsspFilter.JSSP_PATH, fpath);
+        if ((!fpath.equals("/")) && tfile.exists()) {
             int indexOfLastDot = fpath.lastIndexOf('.');
             String tfileExt = (indexOfLastDot < 0) ? fpath : fpath.substring(indexOfLastDot + 1);
             String contentType = CONTENT_TYPE_PROPERTIES.getProperty(tfileExt.toLowerCase());

@@ -23,15 +23,16 @@ import me.hatter.tools.resourceproxy.httpobjects.objects.HttpResponse;
 
 public class HttpResponseUtil {
 
-    private static Set<String> IGNORE_HEADER_SET         = new HashSet<String>(
-                                                                               CollUtil.toUpperCase(Arrays.asList("Transfer-Encoding", // ,
-                                                                                                                  "Content-Encoding", // ,
-                                                                                                                  "Content-Length", // ,
-                                                                                                                  "Cache-Control", // ,
-                                                                                                                  "Expires")));
-    private static Set<String> STRINGFY_CONTENT_TYPE_SET = new HashSet<String>(
-                                                                               CollUtil.toUpperCase(Arrays.asList("application/javascript",
-                                                                                                                  "application/x-javascript")));
+    private static Set<Integer> NO_CONTENT_STATUS         = new HashSet<Integer>(Arrays.asList(301, 302, 304));
+    private static Set<String>  IGNORE_HEADER_SET         = new HashSet<String>(
+                                                                                CollUtil.toUpperCase(Arrays.asList("Transfer-Encoding", // ,
+                                                                                                                   "Content-Encoding", // ,
+                                                                                                                   "Content-Length", // ,
+                                                                                                                   "Cache-Control", // ,
+                                                                                                                   "Expires")));
+    private static Set<String>  STRINGFY_CONTENT_TYPE_SET = new HashSet<String>(
+                                                                                CollUtil.toUpperCase(Arrays.asList("application/javascript",
+                                                                                                                   "application/x-javascript")));
 
     public static HttpResponse build(HttpURLConnection httpURLConnection) throws IOException {
         HttpResponse response = new HttpResponse();
@@ -64,31 +65,37 @@ public class HttpResponseUtil {
             }
         }
 
-        InputStream inputStream = httpURLConnection.getInputStream();
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        IOUtil.copy(inputStream, baos);
-        byte[] bytes = baos.toByteArray();
-        if (response.getEncoding() != null) {
-            if ("gzip".equalsIgnoreCase(response.getEncoding())) {
-                ByteArrayOutputStream decodebaos = new ByteArrayOutputStream();
-                IOUtil.copy(new GZIPInputStream(new ByteArrayInputStream(bytes)), decodebaos);
-                bytes = decodebaos.toByteArray();
-            } else if ("deflate".equalsIgnoreCase(response.getEncoding())) {
-                ByteArrayOutputStream decodebaos = new ByteArrayOutputStream();
-                IOUtil.copy(new InflaterInputStream(new ByteArrayInputStream(bytes)), decodebaos);
-                bytes = decodebaos.toByteArray();
-            } else {
-                System.out.println("Unknow content encoding: " + response.getEncoding());
-            }
+        if (NO_CONTENT_STATUS.contains(response.getStatus())) {
+            System.out.println("[INFO] Response status code is: " + response.getStatus() + " "
+                               + response.getStatusMessage());
         }
-        response.setBytes(bytes);
-        if ((response.getContentType() != null) && (response.getCharset() != null)) {
-            if (response.getContentType().toUpperCase().startsWith("TEXT/")
-                || STRINGFY_CONTENT_TYPE_SET.contains(response.getContentType().toUpperCase())) {
-                String charset = (response.getCharset() == null) ? "UTF-8" : response.getCharset();
-                Reader reader = new InputStreamReader(new ByteArrayInputStream(bytes), charset);
-                String string = IOUtil.copyToString(reader);
-                response.setString(string);
+        if (!NO_CONTENT_STATUS.contains(response.getStatus())) {
+            InputStream inputStream = httpURLConnection.getInputStream();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            IOUtil.copy(inputStream, baos);
+            byte[] bytes = baos.toByteArray();
+            if (response.getEncoding() != null) {
+                if ("gzip".equalsIgnoreCase(response.getEncoding())) {
+                    ByteArrayOutputStream decodebaos = new ByteArrayOutputStream();
+                    IOUtil.copy(new GZIPInputStream(new ByteArrayInputStream(bytes)), decodebaos);
+                    bytes = decodebaos.toByteArray();
+                } else if ("deflate".equalsIgnoreCase(response.getEncoding())) {
+                    ByteArrayOutputStream decodebaos = new ByteArrayOutputStream();
+                    IOUtil.copy(new InflaterInputStream(new ByteArrayInputStream(bytes)), decodebaos);
+                    bytes = decodebaos.toByteArray();
+                } else {
+                    System.out.println("Unknow content encoding: " + response.getEncoding());
+                }
+            }
+            response.setBytes(bytes);
+            if ((response.getContentType() != null) && (response.getCharset() != null)) {
+                if (response.getContentType().toUpperCase().startsWith("TEXT/")
+                    || STRINGFY_CONTENT_TYPE_SET.contains(response.getContentType().toUpperCase())) {
+                    String charset = (response.getCharset() == null) ? "UTF-8" : response.getCharset();
+                    Reader reader = new InputStreamReader(new ByteArrayInputStream(bytes), charset);
+                    String string = IOUtil.copyToString(reader);
+                    response.setString(string);
+                }
             }
         }
 

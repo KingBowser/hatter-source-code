@@ -1,0 +1,4 @@
+
+me.hatter.tools.resourceproxy.jsspserver.filter.impl.JsspServer
+me.hatter.tools.resourceproxy.jsspserver.filter.impl.DefaultFileFilter
+me.hatter.tools.resourceproxy.jsspserver.filter.impl.Default404Filter

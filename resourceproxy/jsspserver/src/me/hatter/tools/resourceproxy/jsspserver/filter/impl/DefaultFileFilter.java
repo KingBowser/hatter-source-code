@@ -25,7 +25,7 @@ public class DefaultFileFilter implements ResourceFilter {
     }
 
     @Override
-    public void filter(HttpRequest request, HttpResponse response, ResourceFilterChain chain) {
+    public HttpResponse filter(HttpRequest request, ResourceFilterChain chain) {
         String fpath = request.getFPath();
         File tfile = new File(JsspServer.JSSP_PATH, fpath);
         if (tfile.exists()) {
@@ -36,13 +36,15 @@ public class DefaultFileFilter implements ResourceFilter {
                 contentType = DEFAULT_CONTENT_TYE; // unknow type
             }
             System.out.println("[INFO] Found file: " + tfile + ", content-type: " + contentType);
+            HttpResponse response = new HttpResponse();
             response.setContentType(contentType);
             response.setStatus(200);
             response.setStatusMessage("OK");
             response.getHeaderMap().set("Content-Type", contentType);
             response.setBytes(FileUtil.readFileToBytes(tfile));
+            return response;
         } else {
-            chain.next().filter(request, response, chain);
+            return chain.next().filter(request, chain);
         }
     }
 }

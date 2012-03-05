@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ServiceLoader;
 
+import me.hatter.tools.resourceproxy.httpobjects.objects.HttpRequest;
+import me.hatter.tools.resourceproxy.httpobjects.objects.HttpResponse;
+
 public class ResourceFilterChain {
 
     private static List<ResourceFilter> filterList = new ArrayList<ResourceFilter>();
@@ -17,4 +20,9 @@ public class ResourceFilterChain {
     public ResourceFilter next() {
         return (index >= filterList.size()) ? null : filterList.get(index++);
     };
+
+    public static HttpResponse filterChain(HttpRequest request) {
+        ResourceFilterChain chain = new ResourceFilterChain();
+        return chain.next().filter(request, chain);
+    }
 }

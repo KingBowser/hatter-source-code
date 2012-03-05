@@ -83,6 +83,7 @@
 			<fileset dir="classes/httpobjects" includes="**/*.class" />
 			<fileset dir="classes/proxyserver" includes="**/*.class" />
 			<fileset dir="jsspserver/conf" includes="**/*.*" />
+			<fileset dir="proxyserver/conf" includes="**/*.*" />
 		</jar>
 		<delete file="temp-jar.manifest" />
 		<delete dir="classes" />

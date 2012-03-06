@@ -30,6 +30,10 @@ public class NetworkFilter implements ResourceFilter {
         }
     }
 
+    static {
+        HttpURLConnection.setFollowRedirects(false);
+    }
+
     @Override
     public HttpResponse filter(HttpRequest request, ResourceFilterChain chain) {
         String host = request.getHost();
@@ -81,6 +85,7 @@ public class NetworkFilter implements ResourceFilter {
         // System.out.println("\tHost: " + realHost);
         // }
         httpURLConnection.setUseCaches(false);
+        httpURLConnection.connect();
 
         response = HttpResponseUtil.build(httpURLConnection);
 

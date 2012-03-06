@@ -2,6 +2,7 @@
 <head><title>ResourceProxy Usage</title></head>
 <body>
   <h1>ResourceProxy Usage</h1>
+  <a href="/"> &lt;&lt; Back </a>
   <ol>
     <li>What is ResourceProxy?</li>
     ResourceProxy is a tool for online JavaScript, CSS debug. It is a proxy tool. ResourceProxy give you the way to format, modify the online JavaScript, CSS resource(s).<br/><br/>

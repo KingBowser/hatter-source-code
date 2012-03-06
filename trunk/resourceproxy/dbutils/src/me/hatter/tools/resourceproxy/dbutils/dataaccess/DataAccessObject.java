@@ -131,6 +131,12 @@ public class DataAccessObject {
         return resultList.get(0);
     }
 
+    public static <T> int countObject(Class<T> clazz, String where, List<Object> objectList) {
+        String sql = "select count(*) count from " + DBUtil.getTableName(clazz) + " where " + where;
+        List<Count> countList = listObjects(Count.class, sql, objectList);
+        return ((countList == null) || countList.isEmpty()) ? 0 : countList.get(0).getCount().intValue();
+    }
+
     public static <T> List<T> listObjects(final Class<T> clazz, String where, final List<Object> objectList) {
         String sql = null;
         if (where.trim().toUpperCase().startsWith("SELECT")) {
@@ -158,7 +164,7 @@ public class DataAccessObject {
                 List<String> fieldList = DBUtil.getTableFields(clazz);
                 ResultSet resultSet = preparedStatement.executeQuery();
 
-                if (resultSet.next()) {
+                while (resultSet.next()) {
                     T o = clazz.newInstance();
                     for (String f : fieldList) {
                         Field field = ReflectUtil.getField(clazz, StringUtil.toCamel(f));
@@ -173,8 +179,8 @@ public class DataAccessObject {
                         } else {
                             throw new RuntimeException("Unsupoort ed type: " + field.getType());
                         }
-                        result.add(o);
                     }
+                    result.add(o);
                 }
                 return result;
             }

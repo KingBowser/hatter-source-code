@@ -34,6 +34,7 @@ public class Show extends BaseAction {
         }
         context.put("id", id);
         context.put("charset", charset);
+        context.put("isTextContentType", HttpResponseUtil.isTextContentType(httpObject.getContentType()));
         context.put("httpObject", httpObject);
     }
 }

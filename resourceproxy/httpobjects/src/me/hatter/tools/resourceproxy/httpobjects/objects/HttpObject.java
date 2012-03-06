@@ -35,6 +35,8 @@ public class HttpObject {
     private String  bytes;
     @Field
     private String  string;
+    @Field
+    private String  isUpdated;
 
     public Integer getId() {
         return id;
@@ -130,5 +132,13 @@ public class HttpObject {
 
     public void setString(String string) {
         this.string = string;
+    }
+
+    public String getIsUpdated() {
+        return isUpdated;
+    }
+
+    public void setIsUpdated(String isUpdated) {
+        this.isUpdated = isUpdated;
     }
 }

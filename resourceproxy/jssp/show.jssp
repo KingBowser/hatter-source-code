@@ -164,12 +164,20 @@ function beautify() {
     string: 
     <a href="?jsspaction=resourceproxy.Show&id=<%=app_context.get("id")%>&charset=UTF-8">UTF-8</a> &nbsp;
     <a href="?jsspaction=resourceproxy.Show&id=<%=app_context.get("id")%>&charset=GBK">GBK</a> &nbsp;
+    <a href="?jsspaction=resourceproxy.Show&id=<%=app_context.get("id")%>&charset=GB2312">GB2312</a> &nbsp;
     <a href="?jsspaction=resourceproxy.Show&id=<%=app_context.get("id")%>&charset=UTF-16">UTF-16</a> &nbsp;
     <% if (/.*javascript.*/.test(httpObject.getContentType())) { %>
-      <button onclick="beautify();" style="width: 60px; height: 22px;">Format</button>
+      <button onclick="beautify();" style="width: 60px; height: 22px;">Format</button> &nbsp;
+    <% } %>
+    <% if (app_context.get("isTextContentType")) { %>
+      <button onclick="document.getElementById('saveSource').submit();" style="width: 60px; height: 22px;">Save</button> &nbsp;
     <% } %>
     <br/>
-    <textarea id="source" style="width: 100%; height: 180px;"><%=httpObject.getString()%></textarea><br/>
+    <form id="saveSource" action="x.jssp?jsspaction=resourceproxy.Save" method="POST">
+    <input type="hidden" name="id" value="<%=app_context.get("id")%>"/>
+    <input type="hidden" name="charset" value="<%=app_context.get("charset")%>"/>
+    <textarea name="source" id="source" style="width: 100%; height: 600px;"><%=httpObject.getString()%></textarea><br/>
+    </form>
   <% } %>
   <br/>
   <a href="#" onclick="window.close();">[Close]</a>

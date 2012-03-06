@@ -17,7 +17,7 @@ public class DatabaseFilter implements ResourceFilter {
             queryHttpObject.setUrl(request.getFullUrl());
             queryHttpObject.setAccessAddress(request.getIp());
             HttpObject httpObjectFromDBFirst = DataAccessObject.selectObject(queryHttpObject);
-            if (httpObjectFromDBFirst != null) {
+            if ((httpObjectFromDBFirst != null) && ("Y".equalsIgnoreCase(httpObjectFromDBFirst.getIsUpdated()))) {
                 System.out.println("[INFO] Http Object deserilize from db.");
                 HttpResponse response = HttpObjectUtil.toHttpRequest(request, httpObjectFromDBFirst);
                 response.setFromNetwork(false);

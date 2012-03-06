@@ -12,7 +12,7 @@
   <% } %>
   <br/><br/>
   <% for (var i = 1; i <= Math.ceil(app_context.get("count") * 1.0 / app_context.get("pageSize")); i++) { %>
-    <a href="/index.jssp?jsspaction=resourceproxy.Index&page=<%=i%>&page_size=<%=app_context.get("pageSize")%>"><%=i%></a> &nbsp;
+    <a href="/index.jssp?jsspaction=resourceproxy.Index&page=<%=i%>&page_size=<%=app_context.get("pageSize")%>">[<%=i%>]</a> &nbsp;
   <% } %>
   <br/><br/>
   <foot>Your IP address is: <%=app_context.get("ip")%> Total records: <%=app_context.get("count")%></foot>

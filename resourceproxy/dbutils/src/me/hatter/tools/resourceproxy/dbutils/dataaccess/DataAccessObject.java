@@ -131,6 +131,27 @@ public class DataAccessObject {
         return resultList.get(0);
     }
 
+    public static int executeSql(final String sql, final List<Object> objectList) {
+        return execute(new Execute<Integer>() {
+
+            @Override
+            public Integer execute(Connection connection) throws Exception {
+                System.out.println("[INFO] query sql: " + sql);
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                if (objectList != null) {
+                    for (int i = 0; i < objectList.size(); i++) {
+                        int index = i + 1;
+                        Object o = objectList.get(i);
+                        System.out.println("[INFO] object @" + index + "=" + o);
+                        Class<?> type = (o == null) ? null : o.getClass();
+                        setPreparedStatmentByValue(preparedStatement, index, type, o);
+                    }
+                }
+                return preparedStatement.executeUpdate();
+            }
+        });
+    }
+
     public static <T> int countObject(Class<T> clazz, String where, List<Object> objectList) {
         String sql = "select count(*) count from " + DBUtil.getTableName(clazz) + " where " + where;
         List<Count> countList = listObjects(Count.class, sql, objectList);

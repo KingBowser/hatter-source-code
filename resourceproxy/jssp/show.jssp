@@ -1,0 +1,179 @@
+<html>
+<head><title>show</title>
+<script src="jquery/jquery.js"></script>
+<script src="jquery/jquery.cookie.js"></script>
+
+<script src="beautify.js"></script>
+<script src="beautify-html.js"></script>
+<script src="tests/sanitytest.js"></script>
+<script src="tests/beautify-tests.js"></script>
+<script src="unpackers/javascriptobfuscator_unpacker.js"></script>
+<script src="unpackers/urlencode_unpacker.js"></script>
+<script src="unpackers/p_a_c_k_e_r_unpacker.js"></script>
+<script src="unpackers/myobfuscate_unpacker.js"></script>
+<script>
+
+var the = {
+    beautify_in_progress: false
+};
+
+if (/chrome/.test(navigator.userAgent.toLowerCase())) {
+    // this dummy function alleviates Chrome large string corruption by
+    // probably shoveling the corruption bug to some other area
+    //
+    //   http://code.google.com/p/chromium/issues/detail?id=100409
+    //   http://jsbeautifier.org/chrome-bug/
+
+    String.prototype.old_charAt = String.prototype.charAt;
+    String.prototype.charAt = function (n) { return this.old_charAt(n); }
+}
+
+
+function run_tests() {
+    var st = new SanityTest();
+    run_beautifier_tests(st);
+    JavascriptObfuscator.run_tests(st);
+    P_A_C_K_E_R.run_tests(st);
+    Urlencoded.run_tests(st);
+    MyObfuscate.run_tests(st);
+    $('#testresults').html(st.results()).show();
+}
+
+
+function any(a, b) {
+    return a || b;
+}
+
+function read_settings_from_cookie() {
+    $('#tabsize').val(any($.cookie('tabsize'), '4'));
+    $('#brace-style').val(any($.cookie('brace-style'), 'collapse'));
+    $('#detect-packers').attr('checked', $.cookie('detect-packers') !== 'off');
+    $('#preserve-newlines').attr('checked', $.cookie('preserve-newlines') !== 'off');
+    $('#keep-array-indentation').attr('checked', $.cookie('keep-array-indentation') === 'on');
+}
+
+function store_settings_to_cookie() {
+    var opts = { expires: 360 };
+    $.cookie('tabsize', $('#tabsize').val(), opts);
+    $.cookie('brace-style', $('#brace-style').val(), opts);
+    $.cookie('detect-packers', $('#detect-packers').attr('checked') ? 'on' : 'off', opts);
+    $.cookie('preserve-newlines', $('#preserve-newlines').attr('checked') ? 'on' : 'off', opts);
+    $.cookie('keep-array-indentation', $('#keep-array-indentation').attr('checked') ? 'on' : 'off', opts);
+}
+
+function unpacker_filter(source) {
+    var trailing_comments = '';
+    var comment = '';
+    var found = false;
+
+    do {
+        found = false;
+        if (/^\s*\/\*/.test(source)) {
+            found = true;
+            comment = source.substr(0, source.indexOf('*/') + 2);
+            source = source.substr(comment.length).replace(/^\s+/, '');
+            trailing_comments += comment + "\n";
+        } else if (/^\s*\/\//.test(source)) {
+            found = true;
+            comment = source.match(/^\s*\/\/.*/)[0];
+            source = source.substr(comment.length).replace(/^\s+/, '');
+            trailing_comments += comment + "\n";
+        }
+    } while (found);
+
+    if (P_A_C_K_E_R.detect(source)) {
+        source = unpacker_filter(P_A_C_K_E_R.unpack(source))
+    }
+    if (Urlencoded.detect(source)) {
+        source = unpacker_filter(Urlencoded.unpack(source))
+    }
+    if (JavascriptObfuscator.detect(source)) {
+        source = unpacker_filter(JavascriptObfuscator.unpack(source))
+    }
+    if (MyObfuscate.detect(source)) {
+        source = unpacker_filter(MyObfuscate.unpack(source))
+    }
+
+    return trailing_comments + source;
+}
+
+
+function beautify() {
+    if (the.beautify_in_progress) return;
+
+    store_settings_to_cookie();
+
+    the.beautify_in_progress = true;
+
+    var source = $('#source').val();
+    var indent_size = 4;
+    var indent_char = indent_size == 1 ? '\t' : ' ';
+    var preserve_newlines = true;
+    var keep_array_indentation = false;
+    var brace_style = "collapse";
+
+    // if ($('#detect-packers').attr('checked')) {
+        source = unpacker_filter(source);
+    // }
+
+    var comment_mark = '<-' + '-';
+    var opts = {
+                indent_size: indent_size,
+                indent_char: indent_char,
+                preserve_newlines:preserve_newlines,
+                brace_style: brace_style,
+                keep_array_indentation:keep_array_indentation,
+                space_after_anon_function:true};
+
+    if (source && source[0] === '<' && source.substring(0, 4) !== comment_mark) {
+        $('#source').val(
+            style_html(source, opts)
+        );
+    } else {
+        var v = js_beautify(unpacker_filter(source), opts);
+        $('#source').val(v);
+    }
+
+    the.beautify_in_progress = false;
+}
+
+</script>
+
+</head>
+<body>
+  <h1>Show response</h1>
+  <% var httpObject = app_context.get("httpObject"); %>
+  <% if (httpObject == null) { %>
+    Http object not found, or id is not assigned.
+  <% } else { %>
+    id: <%=httpObject.getId()%><br/>
+    method: <%=httpObject.getMethod()%><br/>
+    url: <%=httpObject.getUrl()%><br/>
+    <% if (/image\/.*/.test(httpObject.getContentType())) { %>
+      <img src="<%=httpObject.getUrl()%>" border="3" style="border-color: red;"/><br/>
+    <% } %>
+    access address: <%=httpObject.getAccessAddress()%><br/>
+    status: <%=httpObject.getStatus()%><br/>
+    status message: <%=httpObject.getStatusMessage()%><br/>
+    content type: <%=httpObject.getContentType()%><br/>
+    charset: <%=httpObject.getCharset()%><br/>
+    encoding: <%=httpObject.getEncoding()%><br/>
+    header: <br/><pre><%=httpObject.getHeader()%></pre>
+    bytes: <br/>
+    <textarea style="width: 100%; height: 80px;"><%=httpObject.getBytes()%></textarea><br/>
+    string: 
+    <a href="?jsspaction=resourceproxy.Show&id=<%=app_context.get("id")%>&charset=UTF-8">UTF-8</a> &nbsp;
+    <a href="?jsspaction=resourceproxy.Show&id=<%=app_context.get("id")%>&charset=GBK">GBK</a> &nbsp;
+    <a href="?jsspaction=resourceproxy.Show&id=<%=app_context.get("id")%>&charset=UTF-16">UTF-16</a> &nbsp;
+    <% if (/.*javascript.*/.test(httpObject.getContentType())) { %>
+      <button onclick="beautify();" style="width: 60px; height: 22px;">Format</button>
+    <% } %>
+    <br/>
+    <textarea id="source" style="width: 100%; height: 180px;"><%=httpObject.getString()%></textarea><br/>
+  <% } %>
+  <br/>
+  <a href="#" onclick="window.close();">[Close]</a>
+</body>
+</html>
+
+

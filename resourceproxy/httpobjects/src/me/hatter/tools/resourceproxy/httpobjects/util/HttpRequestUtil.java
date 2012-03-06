@@ -43,7 +43,7 @@ public class HttpRequestUtil {
         request.setFullUrl("http://" + request.getHost() + request.getUri().toString());
         request.setUploadCount(uploadCount);
 
-        String query = exchange.getRequestURI().getQuery();
+        String query = exchange.getRequestURI().getRawQuery();
         try {
             parseKVListMap(request.getQueryMap(), query);
         } catch (IOException ex) {

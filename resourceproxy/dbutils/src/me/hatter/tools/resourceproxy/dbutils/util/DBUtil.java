@@ -1,6 +1,7 @@
 package me.hatter.tools.resourceproxy.dbutils.util;
 
 import java.lang.reflect.Field;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -19,6 +20,10 @@ public class DBUtil {
     private static Map<Class<?>, String>       tableNameMap   = new HashMap<Class<?>, String>();
     private static Map<Class<?>, List<String>> fieldListMap   = new HashMap<Class<?>, List<String>>();
     private static Map<Class<?>, List<String>> fieldPkListMap = new HashMap<Class<?>, List<String>>();
+
+    public static List<Object> objects(Object... objects) {
+        return Arrays.asList(objects);
+    }
 
     public static String generateCreateSQL(final Class<?> clazz) {
         String tableName = getTableName(clazz);

@@ -90,8 +90,7 @@ public class HttpResponseUtil {
         }
         response.setBytes(bytes);
         if ((response.getContentType() != null) && (response.getCharset() != null)) {
-            if (response.getContentType().toUpperCase().startsWith("TEXT/")
-                || STRINGFY_CONTENT_TYPE_SET.contains(response.getContentType().toUpperCase())) {
+            if (isTextContentType(response.getContentType())) {
                 String charset = (response.getCharset() == null) ? "UTF-8" : response.getCharset();
                 Reader reader = new InputStreamReader(new ByteArrayInputStream(bytes), charset);
                 String string = IOUtil.copyToString(reader);
@@ -100,5 +99,13 @@ public class HttpResponseUtil {
         }
 
         return response;
+    }
+
+    public static boolean isTextContentType(String contentType) {
+        if (contentType == null) {
+            return false;
+        }
+        return contentType.toUpperCase().startsWith("TEXT/")
+               || STRINGFY_CONTENT_TYPE_SET.contains(contentType.toUpperCase());
     }
 }

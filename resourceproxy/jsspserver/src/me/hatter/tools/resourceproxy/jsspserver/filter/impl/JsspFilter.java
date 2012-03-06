@@ -51,6 +51,9 @@ public class JsspFilter implements ResourceFilter {
                         throw new RuntimeException(e);
                     }
                 }
+                if (response.isRedirect()) {
+                    return response;
+                }
 
                 BufferWriter bw = new BufferWriter();
                 Map<String, Object> addContext = new HashMap<String, Object>();

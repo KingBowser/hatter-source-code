@@ -51,6 +51,9 @@ public class JsspFilter implements ResourceFilter {
                         throw new RuntimeException(e);
                     }
                 }
+                if (response.isFinish()) {
+                    return response;
+                }
                 if (response.isRedirect()) {
                     return response;
                 }

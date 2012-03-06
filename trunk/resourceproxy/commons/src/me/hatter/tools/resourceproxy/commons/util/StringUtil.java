@@ -20,6 +20,10 @@ public class StringUtil {
 
     public static String           EMPTY    = "";
 
+    public static String trim(String str) {
+        return (str == null) ? null : str.trim();
+    }
+
     public static String join(List<String> list, String separater) {
         if (list == null) {
             return null;
@@ -84,10 +88,16 @@ public class StringUtil {
     }
 
     public static byte[] stringToByteArray(String string) {
+        if (string == null) {
+            return null;
+        }
         return Base64.base64ToByteArray(string);
     }
 
     public static String byteArrayToString(byte[] bytes) {
+        if (bytes == null) {
+            return null;
+        }
         return Base64.byteArrayToBase64(bytes);
     }
 
@@ -198,6 +208,9 @@ public class StringUtil {
                     break;
                 case '"':
                     sb.append("&quot;");
+                    break;
+                case '&':
+                    sb.append("&amp;");
                     break;
                 default:
                     sb.append(c);

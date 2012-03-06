@@ -17,6 +17,7 @@ public class HttpResponse {
     private KeyValueListMap headerMap = new KeyValueListMap();
     private byte[]          bytes;
     private String          string;
+    private boolean         isFinish  = false;
 
     public boolean isFromNetwork() {
         return isFromNetwork;
@@ -106,6 +107,14 @@ public class HttpResponse {
 
     public void setString(String string) {
         this.string = string;
+    }
+
+    public boolean isFinish() {
+        return isFinish;
+    }
+
+    public void setFinish(boolean isFinish) {
+        this.isFinish = isFinish;
     }
 
     public boolean isRedirect() {

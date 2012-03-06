@@ -4,9 +4,18 @@
   <head><span style="font-size:60px;"><strong>Resource Proxy</strong></span>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;version 0.1 alpha</span></head>
   <br/>
-  <a href="usage.jssp">Usage</a>
-  <br/><br/><br/>
-  <foot>Your IP address is: <%=app_context.get("ip")%></foot>
+  <a href="usage.jssp">Usage</a><br/><br/>
+  <% var httpObjectList =  app_context.get("httpObjectList"); %>
+  <% for (var i = 0; i < httpObjectList.size(); i++) { %>
+    <% var httpObject = httpObjectList.get(i); %>
+    <%=httpObject.getId()%> <%=httpObject.getUrl()%><br/>
+  <% } %>
+  <br/><br/>
+  <% for (var i = 1; i <= Math.ceil(app_context.get("count") * 1.0 / app_context.get("pageSize")); i++) { %>
+    <a href="/index.jssp?jsspaction=resourceproxy.Index&page=<%=i%>&page_size=<%=app_context.get("pageSize")%>"><%=i%></a> &nbsp;
+  <% } %>
+  <br/><br/>
+  <foot>Your IP address is: <%=app_context.get("ip")%> Total records: <%=app_context.get("count")%></foot>
 </body>
 </html>
 

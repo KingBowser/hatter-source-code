@@ -4,12 +4,36 @@
   <head><span style="font-size:60px;"><strong>Resource Proxy</strong></span>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;version 0.1 alpha</span></head>
   <br/>
-  <a href="usage.jssp">Usage</a><br/><br/>
+  <a href="usage.jssp">Usage</a> &nbsp;
+  <a href="#" onclick="window.location.reload();">Refresh</a> &nbsp;
+  <a href="?jsspaction=resourceproxy.Remove&ip=all" style="float: right; padding-right: 10px;">Remove all</a>
+  <br/><br/>
   <% var httpObjectList =  app_context.get("httpObjectList"); %>
+  <table border="0" cellspacing="0" cellpadding="0" style="width:100%;">
+  <tr>
+    <td style="width: 30px;">id</td>
+    <td style="width: 50px;">method</td>
+    <td>url</td>
+    <td style="width: 40px;">status</td>
+    <td style="width: 50px;">message</td>
+    <td style="width: 30px;">&nbsp;V</td>
+    <td style="width: 30px;">&nbsp;S</td>
+    <td style="width: 30px;">&nbsp;X</td>
+  </tr>
   <% for (var i = 0; i < httpObjectList.size(); i++) { %>
     <% var httpObject = httpObjectList.get(i); %>
-    <%=httpObject.getId()%> <%=httpObject.getUrl()%><br/>
+    <tr onmouseover="this.style.background='lightgray';" onmouseout="this.style.background='';">
+      <td><%=httpObject.getId()%></td>
+      <td><%=httpObject.getMethod()%></td>
+      <td><%=httpObject.getUrl()%></td>
+      <td><%=httpObject.getStatus()%></td>
+      <td><%=httpObject.getStatusMessage()%></td>
+      <td><a href="<%=httpObject.getUrl()%>" target="_blank">[V]</a></td>
+      <td><a href="/show.jssp?jsspaction=resourceproxy.Show&id=<%=httpObject.getId()%>" target="_blank">[S]</a></td>
+      <td><a href="?jsspaction=resourceproxy.Remove&id=<%=httpObject.getId()%>&ref=<%=stringUtil.encodeURL(request.getFullUrl())%>">[X]</a></td>
+    </tr>
   <% } %>
+  </table>
   <br/><br/>
   <% for (var i = 1; i <= Math.ceil(app_context.get("count") * 1.0 / app_context.get("pageSize")); i++) { %>
     <a href="/index.jssp?jsspaction=resourceproxy.Index&page=<%=i%>&page_size=<%=app_context.get("pageSize")%>">[<%=i%>]</a> &nbsp;

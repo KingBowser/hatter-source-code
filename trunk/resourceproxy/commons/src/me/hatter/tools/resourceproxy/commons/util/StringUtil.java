@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.PrintWriter;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -274,5 +276,13 @@ public class StringUtil {
             return PINK;
         }
         return BLUE;
+    }
+
+    public static String encodeURL(String url) {
+        try {
+            return URLEncoder.encode(url, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

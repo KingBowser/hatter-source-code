@@ -16,6 +16,7 @@
     <td>url</td>
     <td style="width: 40px;">status</td>
     <td style="width: 50px;">message</td>
+    <td style="width: 200px;">content/type</td>
     <td style="width: 99px;">View</td>
     <td style="width: 70px;">Operation</td>
   </tr>
@@ -37,6 +38,7 @@
           </a></td>
       <td><%=httpObject.getStatus()%></td>
       <td><%=httpObject.getStatusMessage()%></td>
+      <td><%=httpObject.getContentType()%></td>
       <td><a href="<%=httpObject.getUrl()%>" target="_blank">View Object</a></td>
       <td><a href="?jsspaction=resourceproxy.Remove&id=<%=httpObject.getId()%>&ref=<%=stringUtil.encodeURL(request.getFullUrl())%>">Delete</a></td>
     </tr>

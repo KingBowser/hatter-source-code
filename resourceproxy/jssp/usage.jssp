@@ -49,7 +49,7 @@ CREATE TABLE test ( id INT PRIMARY KEY, name TEXT );
     Then run: startup<br/>
     <li>How to use it?</li>
     For example we debug www.baidu.com<br/>
-    Step 1 Add host to your /etc/hsots (Unix/Linux, Mac) file:
+    Step 1 Add host to your /etc/hosts (Unix/Linux, Mac) file:
     <pre>
     10.20.157.110      www.baidu.com
     </pre>

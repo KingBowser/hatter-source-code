@@ -16,21 +16,21 @@
     <td>url</td>
     <td style="width: 40px;">status</td>
     <td style="width: 50px;">message</td>
-    <td style="width: 30px;">&nbsp;V</td>
-    <td style="width: 30px;">&nbsp;S</td>
-    <td style="width: 30px;">&nbsp;X</td>
+    <td style="width: 90px;">View</td>
+    <td style="width: 70px;">Operation</td>
   </tr>
   <% for (var i = 0; i < httpObjectList.size(); i++) { %>
     <% var httpObject = httpObjectList.get(i); %>
     <tr onmouseover="this.style.background='lightgray';" onmouseout="this.style.background='';">
-      <td><%=httpObject.getId()%></td>
+      <td><%=httpObject.getId()%>&nbsp;</td>
       <td><%=httpObject.getMethod()%></td>
-      <td><%=httpObject.getUrl()%></td>
+      <td><a href="/show.jssp?jsspaction=resourceproxy.Show&id=<%=httpObject.getId()%>" target="_blank">
+          <%=httpObject.getUrl()%>
+          </a></td>
       <td><%=httpObject.getStatus()%></td>
       <td><%=httpObject.getStatusMessage()%></td>
-      <td><a href="<%=httpObject.getUrl()%>" target="_blank">[V]</a></td>
-      <td><a href="/show.jssp?jsspaction=resourceproxy.Show&id=<%=httpObject.getId()%>" target="_blank">[S]</a></td>
-      <td><a href="?jsspaction=resourceproxy.Remove&id=<%=httpObject.getId()%>&ref=<%=stringUtil.encodeURL(request.getFullUrl())%>">[X]</a></td>
+      <td><a href="<%=httpObject.getUrl()%>" target="_blank">View Object</a></td>
+      <td><a href="?jsspaction=resourceproxy.Remove&id=<%=httpObject.getId()%>&ref=<%=stringUtil.encodeURL(request.getFullUrl())%>">Delete</a></td>
     </tr>
   <% } %>
   </table>

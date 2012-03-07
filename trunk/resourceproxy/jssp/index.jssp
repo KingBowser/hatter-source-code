@@ -25,12 +25,14 @@
       <td><%=httpObject.getId()%>&nbsp;</td>
       <td><%=httpObject.getMethod()%></td>
       <%
+        var isShort = false;
         var url = httpObject.getUrl();
         if (url.length() > 128) {
+          isShort = true;
           url = url.substring(0, 110) + "..." + url.substring(url.length() - 128 + 114);
         }
       %>
-      <td><a href="/show.jssp?jsspaction=resourceproxy.Show&id=<%=httpObject.getId()%>" target="_blank">
+      <td><a href="/show.jssp?jsspaction=resourceproxy.Show&id=<%=httpObject.getId()%>" target="_blank" <%if (isShort) {%>title="<%=httpObject.getUrl()%>"<%}%>>
           <%=url%>
           </a></td>
       <td><%=httpObject.getStatus()%></td>

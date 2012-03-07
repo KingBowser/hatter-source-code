@@ -162,12 +162,13 @@ function beautify() {
     header: <br/><pre><%=httpObject.getHeader()%></pre>
     bytes: <br/>
     <textarea style="width: 100%; height: 80px;"><%=httpObject.getBytes()%></textarea><br/>
+    <% if (app_context.get("isTextContentType") == true) { %>
     string: 
     <a href="?jsspaction=resourceproxy.Show&id=<%=app_context.get("id")%>&charset=UTF-8">UTF-8</a> &nbsp;
     <a href="?jsspaction=resourceproxy.Show&id=<%=app_context.get("id")%>&charset=GBK">GBK</a> &nbsp;
     <a href="?jsspaction=resourceproxy.Show&id=<%=app_context.get("id")%>&charset=GB2312">GB2312</a> &nbsp;
     <a href="?jsspaction=resourceproxy.Show&id=<%=app_context.get("id")%>&charset=UTF-16">UTF-16</a> &nbsp;
-    <% if (app_context.get("isTextContentType") && stringUtil.isEmpty(httpObject.getCharset()) && stringUtil.isEmpty(app_context.get("charset"))) { %>
+    <% if ((app_context.get("isTextContentType") == true) && stringUtil.isEmpty(httpObject.getCharset()) && stringUtil.isEmpty(app_context.get("charset"))) { %>
        <font style="color: red;">Charset was not assigned in the http response, try click the charset left.</font>
     <% } %>
     <% if (/.*javascript.*/.test(httpObject.getContentType()) && stringUtil.isNotEmpty(httpObject.getString())) { %>
@@ -182,6 +183,7 @@ function beautify() {
     <input type="hidden" name="charset" value="<%=app_context.get("charset")%>"/>
     <textarea name="source" id="source" style="width: 100%; height: 600px;"><%=httpObject.getString()%></textarea><br/>
     </form>
+    <% } %>
   <% } %>
   <br/>
   <a href="#" onclick="window.close();">[Close]</a>

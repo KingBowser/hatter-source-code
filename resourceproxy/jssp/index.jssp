@@ -16,7 +16,7 @@
     <td>url</td>
     <td style="width: 40px;">status</td>
     <td style="width: 50px;">message</td>
-    <td style="width: 200px;">content/type</td>
+    <td style="width: 180px;">content/type</td>
     <td style="width: 99px;">View</td>
     <td style="width: 70px;">Operation</td>
   </tr>
@@ -28,9 +28,9 @@
       <%
         var isShort = false;
         var url = httpObject.getUrl();
-        if (url.length() > 128) {
+        if (url.length() > 118) {
           isShort = true;
-          url = url.substring(0, 110) + "..." + url.substring(url.length() - 128 + 114);
+          url = url.substring(0, 100) + "..." + url.substring(url.length() - 118 + 104);
         }
       %>
       <td><a href="/show.jssp?jsspaction=resourceproxy.Show&id=<%=httpObject.getId()%>" target="_blank" <%if (isShort) {%>title="<%=httpObject.getUrl()%>"<%}%>>

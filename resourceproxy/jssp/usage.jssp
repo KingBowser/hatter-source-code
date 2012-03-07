@@ -42,7 +42,9 @@
     Build it by Ant(My ant version is: 1.7.0)<br/>
     Create sqlite data file: data.db<br/>
     <pre>
-    CREATE TABLE http_object ( id INTEGER PRIMARY KEY, method TEXT, url TEXT, access_address TEXT, status INTEGER, status_message TEXT, content_type TEXT, charset TEXT, encoding TEXT, header TEXT, bytes TEXT, string TEXT, is_updated TEXT );
+    CREATE TABLE http_object ( id INTEGER PRIMARY KEY, method TEXT, url TEXT, access_address TEXT, 
+status INTEGER, status_message TEXT, content_type TEXT, charset TEXT, encoding TEXT, header TEXT, 
+bytes TEXT, string TEXT, is_updated TEXT );
 CREATE TABLE test ( id INT PRIMARY KEY, name TEXT );
     CREATE UNIQUE INDEX idx_http_object_url_accaddr on http_object (url, access_address);
     </pre>

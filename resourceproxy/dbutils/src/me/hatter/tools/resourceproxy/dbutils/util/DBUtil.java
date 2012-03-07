@@ -14,12 +14,14 @@ import me.hatter.tools.resourceproxy.commons.util.ReflectUtil;
 import me.hatter.tools.resourceproxy.commons.util.StringUtil;
 import me.hatter.tools.resourceproxy.dbutils.annotation.NonField;
 import me.hatter.tools.resourceproxy.dbutils.annotation.Table;
+import me.hatter.tools.resourceproxy.dbutils.annotation.UpdateIgnore;
 
 public class DBUtil {
 
-    private static Map<Class<?>, String>       tableNameMap   = new HashMap<Class<?>, String>();
-    private static Map<Class<?>, List<String>> fieldListMap   = new HashMap<Class<?>, List<String>>();
-    private static Map<Class<?>, List<String>> fieldPkListMap = new HashMap<Class<?>, List<String>>();
+    private static Map<Class<?>, String>       tableNameMap         = new HashMap<Class<?>, String>();
+    private static Map<Class<?>, List<String>> fieldListMap         = new HashMap<Class<?>, List<String>>();
+    private static Map<Class<?>, List<String>> fieldPkListMap       = new HashMap<Class<?>, List<String>>();
+    private static Map<Class<?>, List<String>> fieldUpIgnoreListMap = new HashMap<Class<?>, List<String>>();
 
     public static List<Object> objects(Object... objects) {
         return Arrays.asList(objects);
@@ -101,7 +103,8 @@ public class DBUtil {
         String tableName = getTableName(clazz);
         List<String> fieldList = getTableFields(clazz);
         List<String> pkList = getPkList(clazz);
-        List<String> setFieldList = CollUtil.minus(fieldList, pkList);
+        List<String> upIgnoreList = getUpIgnoreList(clazz);
+        List<String> setFieldList = CollUtil.minus(CollUtil.minus(fieldList, pkList), upIgnoreList);
 
         StringBuilder sql = new StringBuilder();
         sql.append("update ");
@@ -179,6 +182,27 @@ public class DBUtil {
         List<Field> fieldTypeList = getDatabaseTableFields(clazz);
         fieldList = transformToDatabaseName(fieldTypeList);
         fieldListMap.put(clazz, fieldList);
+        return fieldList;
+    }
+
+    synchronized public static List<String> getUpIgnoreList(Class<?> clazz) {
+        if (clazz == null) {
+            return null;
+        }
+        List<String> fieldList = fieldUpIgnoreListMap.get(clazz);
+        if (fieldList != null) {
+            return fieldList;
+        }
+        List<Field> fieldTypeList = CollUtil.filter(getDatabaseTableFields(clazz), new CollUtil.Filter<Field>() {
+
+            @Override
+            public boolean accept(Field object) {
+                UpdateIgnore ui = object.getAnnotation(UpdateIgnore.class);
+                return (ui != null);
+            }
+        });
+        fieldList = transformToDatabaseName(fieldTypeList);
+        fieldUpIgnoreListMap.put(clazz, fieldList);
         return fieldList;
     }
 

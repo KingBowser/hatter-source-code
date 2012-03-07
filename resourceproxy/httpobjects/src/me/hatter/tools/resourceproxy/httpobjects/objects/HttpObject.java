@@ -2,6 +2,7 @@ package me.hatter.tools.resourceproxy.httpobjects.objects;
 
 import me.hatter.tools.resourceproxy.dbutils.annotation.Field;
 import me.hatter.tools.resourceproxy.dbutils.annotation.Table;
+import me.hatter.tools.resourceproxy.dbutils.annotation.UpdateIgnore;
 import me.hatter.tools.resourceproxy.dbutils.util.DBUtil;
 
 @Table
@@ -12,6 +13,7 @@ public class HttpObject {
     }
 
     @Field
+    @UpdateIgnore
     private Integer id;
     @Field
     private String  method;

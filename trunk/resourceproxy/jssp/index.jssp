@@ -24,8 +24,14 @@
     <tr onmouseover="this.style.background='lightgray';" onmouseout="this.style.background='';">
       <td><%=httpObject.getId()%>&nbsp;</td>
       <td><%=httpObject.getMethod()%></td>
+      <%
+        var url = httpObject.getUrl();
+        if (url.length() > 128) {
+          url = url.substring(0, 110) + "..." + url.substring(114);
+        }
+      %>
       <td><a href="/show.jssp?jsspaction=resourceproxy.Show&id=<%=httpObject.getId()%>" target="_blank">
-          <%=httpObject.getUrl()%>
+          <%=url%>
           </a></td>
       <td><%=httpObject.getStatus()%></td>
       <td><%=httpObject.getStatusMessage()%></td>

@@ -28,9 +28,9 @@
       <%
         var isShort = false;
         var url = httpObject.getUrl();
-        if (url.length() > 118) {
+        if (url.length() > 108) {
           isShort = true;
-          url = url.substring(0, 100) + "..." + url.substring(url.length() - 118 + 104);
+          url = url.substring(0, 90) + "..." + url.substring(url.length() - 108 + 94);
         }
       %>
       <td><a href="/show.jssp?jsspaction=resourceproxy.Show&id=<%=httpObject.getId()%>" target="_blank" <%if (isShort) {%>title="<%=httpObject.getUrl()%>"<%}%>>

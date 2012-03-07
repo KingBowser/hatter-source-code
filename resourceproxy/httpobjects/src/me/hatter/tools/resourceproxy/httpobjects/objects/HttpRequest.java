@@ -12,17 +12,28 @@ import me.hatter.tools.resourceproxy.commons.util.KeyValueListMap;
 
 public class HttpRequest {
 
-    private int               uploadCount;
-    private String            method;
-    private String            host;
-    private URI               uri;
-    private String            fullUrl;
-    private InetSocketAddress remoteAddress;
-    private KeyValueListMap   headerMap     = new KeyValueListMap();
+    private static Set<String> THIS_HOST_SET = new HashSet<String>();
+    static {
+        String th = System.getProperty("thishost");
+        THIS_HOST_SET.add("localhost");
+        if (th != null) {
+            for (String h : th.split(",")) {
+                THIS_HOST_SET.add(h.toLowerCase());
+            }
+        }
+    }
 
-    private KeyValueListMap   queryValueMap = new KeyValueListMap();
-    private KeyValueListMap   queryMap      = new KeyValueListMap();
-    private KeyValueListMap   postMap       = new KeyValueListMap();
+    private int                uploadCount;
+    private String             method;
+    private String             host;
+    private URI                uri;
+    private String             fullUrl;
+    private InetSocketAddress  remoteAddress;
+    private KeyValueListMap    headerMap     = new KeyValueListMap();
+
+    private KeyValueListMap    queryValueMap = new KeyValueListMap();
+    private KeyValueListMap    queryMap      = new KeyValueListMap();
+    private KeyValueListMap    postMap       = new KeyValueListMap();
 
     public int getUploadCount() {
         return uploadCount;
@@ -57,15 +68,7 @@ public class HttpRequest {
     }
 
     public boolean isLocalHostOrIP() {
-        String th = System.getProperty("thishost");
-        Set<String> thisHostSet = new HashSet<String>();
-        thisHostSet.add("localhost");
-        if (th != null) {
-            for (String h : th.split(",")) {
-                thisHostSet.add(h.toLowerCase());
-            }
-        }
-        return (thisHostSet.contains(getHost().toLowerCase()) || getHost().matches("\\d+(\\.\\d+){3}(:\\d+)?"));
+        return (THIS_HOST_SET.contains(getHost().toLowerCase()) || getHost().matches("\\d+(\\.\\d+){3}(:\\d+)?"));
     }
 
     public String getFPath() {

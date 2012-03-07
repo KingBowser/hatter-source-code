@@ -167,10 +167,13 @@ function beautify() {
     <a href="?jsspaction=resourceproxy.Show&id=<%=app_context.get("id")%>&charset=GBK">GBK</a> &nbsp;
     <a href="?jsspaction=resourceproxy.Show&id=<%=app_context.get("id")%>&charset=GB2312">GB2312</a> &nbsp;
     <a href="?jsspaction=resourceproxy.Show&id=<%=app_context.get("id")%>&charset=UTF-16">UTF-16</a> &nbsp;
-    <% if (/.*javascript.*/.test(httpObject.getContentType())) { %>
+    <% if (app_context.get("isTextContentType") && stringUtil.isEmpty(httpObject.getCharset()) && stringUtil.isEmpty(app_context.get("charset"))) { %>
+       <font style="color: red;">Charset was not assigned in the http response, try click the charset left.</font>
+    <% } %>
+    <% if (/.*javascript.*/.test(httpObject.getContentType()) && stringUtil.isNotEmpty(httpObject.getString())) { %>
       <button onclick="beautify();" style="width: 60px; height: 22px;">Format</button> &nbsp;
     <% } %>
-    <% if (app_context.get("isTextContentType")) { %>
+    <% if (app_context.get("isTextContentType") && (stringUtil.isNotEmpty(httpObject.getCharset()) || stringUtil.isNotEmpty(app_context.get("charset")))) { %>
       <button onclick="document.getElementById('saveSource').submit();" style="width: 60px; height: 22px;">Save</button> &nbsp;
     <% } %>
     <br/>

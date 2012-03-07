@@ -214,6 +214,7 @@ public class DataAccessObject {
             int index = i + 1;
             AtomicReference<Class<?>> refType = new AtomicReference<Class<?>>();
             Object o = ReflectUtil.getFieldValue(clazz, object, StringUtil.toCamel(refFieldList.get(i)), refType);
+            System.out.println("[INFO] object @" + index + "=" + o);
             setPreparedStatmentByValue(preparedStatement, index, refType.get(), o);
         }
     }

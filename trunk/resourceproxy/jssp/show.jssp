@@ -158,6 +158,7 @@ function beautify() {
     content type: <%=httpObject.getContentType()%><br/>
     charset: <%=httpObject.getCharset()%><br/>
     encoding: <%=httpObject.getEncoding()%><br/>
+    is updated: <%=httpObject.getIsUpdated()%><br/>
     header: <br/><pre><%=httpObject.getHeader()%></pre>
     bytes: <br/>
     <textarea style="width: 100%; height: 80px;"><%=httpObject.getBytes()%></textarea><br/>

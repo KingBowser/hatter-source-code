@@ -12,7 +12,7 @@
     The proxy use the 'Host' field(<a href="http://www.ietf.org/rfc/rfc2616.txt" target="_blank">RFC 2616</a> Section 14.23) in http request header to know the resource uri.<br/>
     Example: Access http://www.example.com/hello_world.txt from the browser.<br/>
     Add this to the /etc/hosts:<br>
-    <pre>127.0.0.1	www.example.com</pre>
+    <pre>10.20.157.110	www.example.com</pre>
     Client request (send to the proxy):<br/>
     <pre>
     GET /hello_world.txt HTTP/1.0
@@ -37,6 +37,16 @@
     
     Returned contents...</pre>
     Then the proxy received the response, record to the database and return the real response to the client.
+    <li>How to install ResourceProxy?</li>
+    Check out: <pre>https://hatter-source-code.googlecode.com/svn/trunk/resourceproxy</pre><br/>
+    Build it by Ant(My ant version is: 1.7.0)<br/>
+    Create sqlite data file: data.db<br/>
+    <pre>
+    CREATE TABLE http_object ( id INTEGER PRIMARY KEY, method TEXT, url TEXT, access_address TEXT, status INTEGER, status_message TEXT, content_type TEXT, charset TEXT, encoding TEXT, header TEXT, bytes TEXT, string TEXT, is_updated TEXT );
+CREATE TABLE test ( id INT PRIMARY KEY, name TEXT );
+    CREATE UNIQUE INDEX idx_http_object_url_accaddr on http_object (url, access_address);
+    </pre>
+    Then run: startup<br/>
   </ol>
 </body>
 </html>

@@ -4,7 +4,9 @@ import java.net.InetSocketAddress;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import me.hatter.tools.resourceproxy.commons.util.KeyValueListMap;
 
@@ -55,7 +57,15 @@ public class HttpRequest {
     }
 
     public boolean isLocalHostOrIP() {
-        return ("localhost".equalsIgnoreCase(getHost()) || getHost().matches("\\d+(\\.\\d+){3}(:\\d+)?"));
+        String th = System.getProperty("thishost");
+        Set<String> thisHostSet = new HashSet<String>();
+        thisHostSet.add("localhost");
+        if (th != null) {
+            for (String h : th.split(",")) {
+                thisHostSet.add(h.toLowerCase());
+            }
+        }
+        return (thisHostSet.contains(getHost().toLowerCase()) || getHost().matches("\\d+(\\.\\d+){3}(:\\d+)?"));
     }
 
     public String getFPath() {

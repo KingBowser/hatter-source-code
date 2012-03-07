@@ -47,6 +47,21 @@ CREATE TABLE test ( id INT PRIMARY KEY, name TEXT );
     CREATE UNIQUE INDEX idx_http_object_url_accaddr on http_object (url, access_address);
     </pre>
     Then run: startup<br/>
+    <li>How to use it?</li>
+    For example we debug www.baidu.com<br/>
+    Step 1 Add host to your /etc/hsots (Unix/Linux, Mac) file:
+    <pre>
+    10.20.157.110      www.baidu.com
+    </pre>
+    Step 2 Access: www.baidu.com<br/>
+    <img src="baidu1.png" border="1" style="border-color: black;"/><br/>
+    Step 3 Access: http://c2.hatter.zj.cn/, you will see:<br/>
+    <img src="resourceproxy1.png" border="1" style="border-color: black;"/><br/>
+    Step 4 Modify http://www.baidu.com/, and save it:
+    <img src="resourceproxy2.png" border="1" style="border-color: black;"/><br/>
+    Step 5 Refresh www.baidu.com, and you see:<br/>
+    <img src="baidu2.png" border="1" style="border-color: black;"/><br/>
+    If you modify JavaScript file, you can format it.
   </ol>
 </body>
 </html>

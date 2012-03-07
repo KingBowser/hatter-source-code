@@ -9,14 +9,14 @@
   <a href="?jsspaction=resourceproxy.Remove&ip=all" style="float: right; padding-right: 10px;">Remove all</a>
   <br/><br/>
   <% var httpObjectList =  app_context.get("httpObjectList"); %>
-  <table border="0" cellspacing="0" cellpadding="0" style="width:100%;">
+  <table border="0" cellspacing="0" cellpadding="0" style="width:100%;font-size:14px;">
   <tr>
     <td style="width: 30px;">id</td>
     <td style="width: 50px;">method</td>
     <td>url</td>
     <td style="width: 40px;">status</td>
     <td style="width: 50px;">message</td>
-    <td style="width: 90px;">View</td>
+    <td style="width: 99px;">View</td>
     <td style="width: 70px;">Operation</td>
   </tr>
   <% for (var i = 0; i < httpObjectList.size(); i++) { %>

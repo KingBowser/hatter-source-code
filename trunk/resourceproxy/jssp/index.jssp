@@ -27,7 +27,7 @@
       <%
         var url = httpObject.getUrl();
         if (url.length() > 128) {
-          url = url.substring(0, 110) + "..." + url.substring(url.length - 128 + 114);
+          url = url.substring(0, 110) + "..." + url.substring(url.length() - 128 + 114);
         }
       %>
       <td><a href="/show.jssp?jsspaction=resourceproxy.Show&id=<%=httpObject.getId()%>" target="_blank">

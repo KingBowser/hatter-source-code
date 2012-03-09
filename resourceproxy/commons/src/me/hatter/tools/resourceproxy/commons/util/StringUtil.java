@@ -24,6 +24,14 @@ public class StringUtil {
         return (str == null) ? null : str.trim();
     }
 
+    public static String toUpperCase(String string) {
+        return (string == null) ? null : string.toUpperCase();
+    }
+
+    public static String toLowerCase(String string) {
+        return (string == null) ? null : string.toLowerCase();
+    }
+
     public static String join(List<String> list, String separater) {
         if (list == null) {
             return null;

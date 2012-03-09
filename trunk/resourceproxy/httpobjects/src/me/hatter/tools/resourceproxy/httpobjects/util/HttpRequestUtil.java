@@ -8,8 +8,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import me.hatter.tools.resourceproxy.commons.util.CollUtil;
 import me.hatter.tools.resourceproxy.commons.util.IOUtil;
 import me.hatter.tools.resourceproxy.commons.util.KeyValueListMap;
+import me.hatter.tools.resourceproxy.commons.util.StringUtil;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpRequest;
 
 import com.sun.net.httpserver.Headers;
@@ -17,8 +19,9 @@ import com.sun.net.httpserver.HttpExchange;
 
 public class HttpRequestUtil {
 
-    private static Set<String> IGNORE_HEADER_SET = new HashSet<String>(Arrays.asList("If-modified-since", // ,
-                                                                                     "If-none-match"));
+    private static Set<String> IGNORE_HEADER_SET = new HashSet<String>(
+                                                                       CollUtil.toUpperCase(Arrays.asList("If-modified-since", // ,
+                                                                                                          "If-none-match")));
 
     @SuppressWarnings("restriction")
     public static HttpRequest build(HttpExchange exchange) {
@@ -29,13 +32,19 @@ public class HttpRequestUtil {
         request.setRemoteAddress(exchange.getRemoteAddress());
         Headers requestHeaders = exchange.getRequestHeaders();
         uploadCount += (3 + 7 + 2 + exchange.getRequestURI().toString().length());
+        boolean isMultipartFormData = false;
         for (String key : requestHeaders.keySet()) {
-            if (!IGNORE_HEADER_SET.contains(key)) {
+            if (!IGNORE_HEADER_SET.contains(StringUtil.toUpperCase(key))) {
                 List<String> values = requestHeaders.get(key);
                 request.set(key, values);
                 uploadCount += key.length();
                 for (String v : values) {
                     uploadCount += v.length();
+                }
+            }
+            if ("Content-Type".equalsIgnoreCase(key)) {
+                if (requestHeaders.getFirst(key).toLowerCase().startsWith("multipart/form-data")) {
+                    isMultipartFormData = true;
                 }
             }
         }
@@ -54,15 +63,17 @@ public class HttpRequestUtil {
             try {
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 IOUtil.copy(exchange.getRequestBody(), baos);
-                String post = new String(baos.toByteArray(), "UTF-8");
-                parseKVListMap(request.getPostMap(), post);
+                request.setPostBytes(baos.toByteArray());
+                if (isMultipartFormData) {
+                    System.out.println("[WARN] The request is multiplepart/form-data: " + request.getFullUrl());
+                } else {
+                    String post = new String(baos.toByteArray(), "UTF-8");
+                    parseKVListMap(request.getPostMap(), post);
+                }
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
-
-        System.out.println("[INFO] Parsed query: " + request.getQueryMap());
-        System.out.println("[INFO] Parsed post: " + request.getPostMap());
 
         KeyValueListMap queryValueMap = new KeyValueListMap(request.getQueryMap());
         queryValueMap.addMap(request.getPostMap());
@@ -72,7 +83,6 @@ public class HttpRequestUtil {
     }
 
     private static void parseKVListMap(KeyValueListMap kvlMap, String query) throws IOException {
-        System.out.println("[INFO] Parse query: " + query);
         if (query == null) {
             return;
         }

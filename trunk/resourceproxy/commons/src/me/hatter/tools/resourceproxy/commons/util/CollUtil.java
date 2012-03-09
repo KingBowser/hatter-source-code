@@ -34,8 +34,20 @@ public class CollUtil {
         }
     }
 
+    public static class StringToLowerCase implements Transformer<String, String> {
+
+        @Override
+        public String transform(String object) {
+            return (object == null) ? null : object.toLowerCase();
+        }
+    }
+
     public static List<String> toUpperCase(Collection<String> list) {
         return transform(list, new CollUtil.StringToUpperCase());
+    }
+
+    public static List<String> toLowerCase(Collection<String> list) {
+        return transform(list, new CollUtil.StringToLowerCase());
     }
 
     public static <T> List<T> minus(Collection<T> list, Collection<T> minusList) {

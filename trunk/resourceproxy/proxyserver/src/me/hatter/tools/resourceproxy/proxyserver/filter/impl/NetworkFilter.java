@@ -1,5 +1,6 @@
 package me.hatter.tools.resourceproxy.proxyserver.filter.impl;
 
+import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -8,6 +9,7 @@ import java.net.ProtocolException;
 import java.net.URL;
 import java.util.Properties;
 
+import me.hatter.tools.resourceproxy.commons.util.IOUtil;
 import me.hatter.tools.resourceproxy.dbutils.dataaccess.DataAccessObject;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpObject;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpRequest;
@@ -38,7 +40,7 @@ public class NetworkFilter implements ResourceFilter {
     public HttpResponse filter(HttpRequest request, ResourceFilterChain chain) {
         String host = request.getHost();
         if (!request.isLocalHostOrIP()) {
-            if ("GET".equalsIgnoreCase(request.getMethod())) {
+            if (request.isGET() || request.isPOST()) {
                 String u = request.getFullUrl();
                 try {
                     HttpResponse response = getHttpResponseFromNetwork(request, host, u);
@@ -67,8 +69,9 @@ public class NetworkFilter implements ResourceFilter {
         }
         URL url = new URL(u);
         HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+        httpURLConnection.setUseCaches(false);
         httpURLConnection.setRequestMethod(request.getMethod());
-        System.out.println("[INFO] Request headers for: " + u);
+        System.out.println("[INFO] Request headers for: " + request.getMethod().toUpperCase() + " " + u);
         for (String key : request.getHeaderMap().keySet()) {
             if ("Host".equalsIgnoreCase(key)) {
                 System.out.println("\t" + key + ": " + request.get(key).get(0));
@@ -84,24 +87,29 @@ public class NetworkFilter implements ResourceFilter {
         // httpURLConnection.addRequestProperty("Host", realHost);
         // System.out.println("\tHost: " + realHost);
         // }
-        httpURLConnection.setUseCaches(false);
+        if (request.isPOST() && (request.getPostBytes() != null)) { // if post request, send the data to the server
+            httpURLConnection.setDoOutput(true);
+            IOUtil.copy(new ByteArrayInputStream(request.getPostBytes()), httpURLConnection.getOutputStream());
+        }
         httpURLConnection.connect();
 
         response = HttpResponseUtil.build(httpURLConnection);
 
-        HttpObject httpObject = HttpObjectUtil.frHttpRequest(request, response);
-        HttpObject httpObjectFromDB = DataAccessObject.selectObject(httpObject);
-        if (httpObjectFromDB == null) {
-            System.out.println("[INFO] Http Object from db is null.");
-            try {
-                DataAccessObject.insertObject(httpObject);
-            } catch (Exception e) {
-                System.out.println("[ERROR] insert data error " + httpObject.getUrl() + " @"
-                                   + httpObject.getAccessAddress() + " /" + e.getMessage());
-                e.printStackTrace();
+        if (request.isGET()) { // POST cannot proxy, so currently only proxy GET request
+            HttpObject httpObject = HttpObjectUtil.frHttpRequest(request, response);
+            HttpObject httpObjectFromDB = DataAccessObject.selectObject(httpObject);
+            if (httpObjectFromDB == null) {
+                System.out.println("[INFO] Http Object from db is null.");
+                try {
+                    DataAccessObject.insertObject(httpObject);
+                } catch (Exception e) {
+                    System.out.println("[ERROR] insert data error " + httpObject.getUrl() + " @"
+                                       + httpObject.getAccessAddress() + " /" + e.getMessage());
+                    e.printStackTrace();
+                }
+            } else {
+                DataAccessObject.updateObject(httpObject);
             }
-        } else {
-            DataAccessObject.updateObject(httpObject);
         }
         return response;
     }

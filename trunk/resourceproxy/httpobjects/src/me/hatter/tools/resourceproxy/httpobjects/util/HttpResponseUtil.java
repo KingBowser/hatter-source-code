@@ -33,6 +33,7 @@ public class HttpResponseUtil {
     private static Set<String>  STRINGFY_CONTENT_TYPE_SET = new HashSet<String>(
                                                                                 CollUtil.toUpperCase(Arrays.asList("application/javascript",
                                                                                                                    "application/json",
+                                                                                                                   "application/xml",
                                                                                                                    "application/x-javascript")));
 
     public static HttpResponse build(HttpURLConnection httpURLConnection) throws IOException {

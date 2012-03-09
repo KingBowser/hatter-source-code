@@ -30,10 +30,19 @@ public class HttpRequest {
     private String             fullUrl;
     private InetSocketAddress  remoteAddress;
     private KeyValueListMap    headerMap     = new KeyValueListMap();
+    private byte[]             postBytes;
 
     private KeyValueListMap    queryValueMap = new KeyValueListMap();
     private KeyValueListMap    queryMap      = new KeyValueListMap();
     private KeyValueListMap    postMap       = new KeyValueListMap();
+
+    public boolean isGET() {
+        return "GET".equalsIgnoreCase(method);
+    }
+
+    public boolean isPOST() {
+        return "POST".equalsIgnoreCase(method);
+    }
 
     public int getUploadCount() {
         return uploadCount;
@@ -120,6 +129,14 @@ public class HttpRequest {
 
     public List<String> get(String key) {
         return headerMap.get(key);
+    }
+
+    public byte[] getPostBytes() {
+        return postBytes;
+    }
+
+    public void setPostBytes(byte[] postBytes) {
+        this.postBytes = postBytes;
     }
 
     public KeyValueListMap getQueryMap() {

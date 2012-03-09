@@ -94,7 +94,11 @@ public class NetworkFilter implements ResourceFilter {
         httpURLConnection.connect();
 
         response = HttpResponseUtil.build(httpURLConnection);
+        saveOrUpdateResponse(request, response);
+        return response;
+    }
 
+    private void saveOrUpdateResponse(HttpRequest request, HttpResponse response) {
         if (request.isGET()) { // POST cannot proxy, so currently only proxy GET request
             HttpObject httpObject = HttpObjectUtil.frHttpRequest(request, response);
             HttpObject httpObjectFromDB = DataAccessObject.selectObject(httpObject);
@@ -111,6 +115,5 @@ public class NetworkFilter implements ResourceFilter {
                 DataAccessObject.updateObject(httpObject);
             }
         }
-        return response;
     }
 }

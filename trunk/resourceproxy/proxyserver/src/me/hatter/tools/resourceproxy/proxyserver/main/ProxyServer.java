@@ -26,6 +26,7 @@ public class ProxyServer {
 
     @SuppressWarnings("restriction")
     public static void main(String[] args) throws Exception {
+        long start = System.currentTimeMillis();
         InetSocketAddress addr = new InetSocketAddress(80);
         HttpServer httpServer = HttpServer.create(addr, 0);
         if (System.getProperties().containsKey("debug")) {
@@ -35,7 +36,8 @@ public class ProxyServer {
         }
         httpServer.createContext("/", new MyHandler());
         httpServer.start();
-        System.out.println("Start server on: " + addr.getPort());
+        System.out.println("Start server on: " + addr.getPort() + " cost: " + (System.currentTimeMillis() - start)
+                           + " ms");
     }
 
     @SuppressWarnings("restriction")

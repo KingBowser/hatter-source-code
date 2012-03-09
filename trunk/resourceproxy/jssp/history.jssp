@@ -1,0 +1,14 @@
+<html>
+<head><title>ResourceProxy update history</title></head>
+<body>
+<h1>ResourceProxy</h1>
+<a href="/"> &lt;&lt; Back </a>
+<ol>
+  <li>0.2 alpha</li>
+  Add POST redirect support.
+  <li>0.1 alpha</li>
+  First version.
+</ol>
+</body>
+</html>
+

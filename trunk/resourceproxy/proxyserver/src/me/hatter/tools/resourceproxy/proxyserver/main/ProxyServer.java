@@ -36,8 +36,8 @@ public class ProxyServer {
         }
         httpServer.createContext("/", new MyHandler());
         httpServer.start();
-        System.out.println("Start server on: " + addr.getPort() + " cost: " + (System.currentTimeMillis() - start)
-                           + " ms");
+        System.out.println("[INFO] Start ProxyServer on: " + addr.getPort() + " cost: "
+                           + (System.currentTimeMillis() - start) + " ms");
     }
 
     @SuppressWarnings("restriction")

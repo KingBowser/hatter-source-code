@@ -8,7 +8,8 @@
   Add POST redirect support.<br/>
   Add [UPDATE] in show.jssp, is_updated can be updated beside [Save].<br/>
   JSSP file can be cached in jssp file manager.<br/>
-  Add host bind support.
+  Add host bind support.<br/>
+  Add user agent config.
   <li>0.1 alpha</li>
   First version.
 </ol>

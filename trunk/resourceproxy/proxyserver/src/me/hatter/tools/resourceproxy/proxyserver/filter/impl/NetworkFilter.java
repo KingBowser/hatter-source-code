@@ -75,6 +75,8 @@ public class NetworkFilter implements ResourceFilter {
             u = "http://" + HOST_PROPERTIES.getProperty(host) + request.getUri().toString();
         } else {
             HostConfig hostConfig = new HostConfig();
+            hostConfig.setDomain(host);
+            hostConfig.setAccessAddress(request.getIp());
             HostConfig hostConfigFromDB = DataAccessObject.selectObject(hostConfig);
             if (hostConfigFromDB != null) {
                 realHost = host;
@@ -82,7 +84,6 @@ public class NetworkFilter implements ResourceFilter {
                                    + hostConfigFromDB.getTargetIp());
                 u = "http://" + hostConfigFromDB.getTargetIp() + request.getUri().toString();
             }
-
         }
         URL url = new URL(u); // currently only support 80 port
         HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();

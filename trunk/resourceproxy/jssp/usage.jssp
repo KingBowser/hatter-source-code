@@ -63,6 +63,10 @@ bytes TEXT, string TEXT, is_updated TEXT );
     Step 5 Refresh www.baidu.com, and you see:<br/>
     <img src="baidu2.png" border="1" style="border-color: black;"/><br/>
     If you modify JavaScript file, you can format it.
+    <li>Startup properties</li>
+    -Ddebug&lt;no value&gt; set thread pool to single thread<br/>
+    -Dthishost=example.com set current host domain, access local jssp file(s)<br/>
+    -Dcheckjsspupdate=n set n second(s) to check jssp file if updated
   </ol>
 </body>
 </html>

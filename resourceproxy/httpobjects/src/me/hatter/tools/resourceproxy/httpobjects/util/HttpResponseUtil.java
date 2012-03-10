@@ -14,8 +14,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.zip.DeflaterInputStream;
 import java.util.zip.GZIPInputStream;
+import java.util.zip.Inflater;
+import java.util.zip.InflaterInputStream;
 
 import me.hatter.tools.resourceproxy.commons.util.CollUtil;
 import me.hatter.tools.resourceproxy.commons.util.IOUtil;
@@ -84,7 +85,7 @@ public class HttpResponseUtil {
                 bytes = decodebaos.toByteArray();
             } else if ("deflate".equalsIgnoreCase(response.getEncoding())) {
                 ByteArrayOutputStream decodebaos = new ByteArrayOutputStream();
-                IOUtil.copy(new DeflaterInputStream(new ByteArrayInputStream(bytes)), decodebaos);
+                IOUtil.copy(new InflaterInputStream(new ByteArrayInputStream(bytes), new Inflater(true)), decodebaos);
                 bytes = decodebaos.toByteArray();
             } else {
                 System.out.println("Unknow content encoding: " + response.getEncoding());

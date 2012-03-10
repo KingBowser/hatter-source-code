@@ -2,14 +2,16 @@
 <head><title>ResourceProxy hosts config</title></head>
 <body>
 <h1>ResourceProxy</h1>
-<a href="/"> &lt;&lt; Back </a>
-&nbsp; <a href="#" onclick="window.location.reload();">Refresh</a>
-&nbsp; <a style="margin-left: 400px;" href="?jsspaction=resourceproxy.RemoveHosts&host=all">Remove all</a>
+<table border="0" cellspacing="0" cellpadding="0" style="width:600px;font-size:14px;">
+<tr><td>
+<a href="/"> &lt;&lt; Back </a> &nbsp;
+<a href="#" onclick="window.location.reload();">Refresh</a> &nbsp;
+<a style="float: right;margin-right: 10px;" href="?jsspaction=resourceproxy.RemoveHosts&host=all">Remove all</a>
   <% var hostConfigList =  app_context.get("hostConfigList"); %>
-  <table border="0" cellspacing="0" cellpadding="0" style="width:600px;font-size:14px;">
+  <table border="0" cellspacing="0" cellpadding="0" style="width:100%;font-size:14px;">
     <tr>
       <td style="width:30px;"><strong>id</strong></td>
-      <td style="width:90px;"><strong>domain</strong></td>
+      <td><strong>domain</strong></td>
       <td style="width:80px;"><strong>target ip</strong></td>
       <td style="width:70px;"><strong>operation</strong></td>
     </tr>
@@ -31,9 +33,11 @@
   <br/><br/><br/>
   <form method="POST" action="?jsspaction=resourceproxy.SaveHosts&ref=<%=stringUtil.encodeURL(request.getFullUrl())%>">
   Add hosts:<br/>
-  <textarea name="hosts" style="width: 600px; height: 100px;"></textarea>
-  &nbsp;&nbsp;<button style="width:60px;height:22px;">Save</button>
+  <textarea name="hosts" style="width: 600px; height: 100px;"></textarea><br/><br/>
+  <button style="float: right;width:60px;height:22px;">Save</button>
   </form>
+</td></tr>
+</table>
 </body>
 </html>
 

@@ -22,7 +22,11 @@ import com.sun.net.httpserver.HttpServer;
 
 public class ProxyServer {
 
-    private static AtomicLong TOTAL_UPLOAD_COUNT = new AtomicLong(0);
+    public static final String HEADER_X_REQUEST_BY     = "X-Request-By";
+    public static final String HEADER_X_POWERED_SERVER = "X-Powered-Server";
+    public static final String HEADER_X_POWERED_CACHE  = "X-Powered-Cache";
+    public static final String PROXY_SERVER_VERSION    = "ResourceProxy/0.2";
+    private static AtomicLong  TOTAL_UPLOAD_COUNT      = new AtomicLong(0);
 
     @SuppressWarnings("restriction")
     public static void main(String[] args) throws Exception {
@@ -86,9 +90,9 @@ public class ProxyServer {
             // responseHeaders.put("Content-Length", new
             // ArrayList<String>(Arrays.asList(String.valueOf(theBytes.length))));
 
-            responseHeaders.put("X-Powered-Server", CollUtil.objectToList("ResourceProxy_By_Hatter/0.1"));
+            responseHeaders.put(HEADER_X_POWERED_SERVER, CollUtil.objectToList(PROXY_SERVER_VERSION));
             if (!response.isFromNetwork()) {
-                responseHeaders.put("X-Powered-Cache", CollUtil.objectToList("DB"));
+                responseHeaders.put(HEADER_X_POWERED_CACHE, CollUtil.objectToList("DB"));
             }
             exchange.sendResponseHeaders(response.getStatus(), 0);
 

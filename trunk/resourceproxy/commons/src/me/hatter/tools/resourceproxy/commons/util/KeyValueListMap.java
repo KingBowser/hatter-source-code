@@ -50,7 +50,23 @@ public class KeyValueListMap extends LinkedHashMap<String, List<String>> {
     }
 
     public String getFirst(String key) {
-        List<String> valueList = get(key);
-        return ((valueList == null) || (valueList.isEmpty())) ? null : valueList.get(0);
+        return CollUtil.firstObject(get(key));
+    }
+
+    public List<String> getIgnoreCase(String key) {
+        if (key == null) {
+            return this.get(key);
+        }
+        List<String> list = new ArrayList<String>();
+        for (Map.Entry<String, List<String>> entry : this.entrySet()) {
+            if (key.equalsIgnoreCase(entry.getKey())) {
+                list.addAll(entry.getValue());
+            }
+        }
+        return list;
+    }
+
+    public String getFirstIgnoreCase(String key) {
+        return CollUtil.firstObject(getIgnoreCase(key));
     }
 }

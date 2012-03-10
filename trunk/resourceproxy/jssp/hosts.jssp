@@ -8,10 +8,10 @@
   <% var hostConfigList =  app_context.get("hostConfigList"); %>
   <table border="0" cellspacing="0" cellpadding="0" style="width:600px;font-size:14px;">
     <tr>
-      <td style="width:30px;">id</td>
-      <td style="width:90px;">domain</td>
-      <td style="width:80px;">target ip</td>
-      <td style="width:70px;">operation</td>
+      <td style="width:30px;"><strong>id</strong></td>
+      <td style="width:90px;"><strong>domain</strong></td>
+      <td style="width:80px;"><strong>target ip</strong></td>
+      <td style="width:70px;"><strong>operation</strong></td>
     </tr>
     <% for (var i = 0; i < hostConfigList.size(); i++) { %>
     <% var hostConfig = hostConfigList.get(i); %>

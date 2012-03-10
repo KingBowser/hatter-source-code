@@ -5,8 +5,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.io.Reader;
+import java.io.StringReader;
 import java.io.Writer;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,7 +20,6 @@ import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 import javax.script.SimpleBindings;
 
-import me.hatter.tools.resourceproxy.commons.util.FileUtil;
 import me.hatter.tools.resourceproxy.commons.util.IOUtil;
 import me.hatter.tools.resourceproxy.commons.util.StringUtil;
 import me.hatter.tools.resourceproxy.jsspexec.exception.JsspEvalException;
@@ -54,16 +56,11 @@ public class JsspExecutor {
 
     public static void executeJssp(File file, Map<String, Object> context, Map<String, Object> addContext,
                                    BufferWriter out) {
-        File explained;
-        try {
-            explained = explainJssp(file);
-        } catch (IOException e) {
-            throw new JsspEvalException(e);
-        }
-        executeExplained(explained, context, addContext, out);
+        File explained = tryExplainJssp(file);
+        executeExplained(new StringReader(explainAndReadJssp(explained)), context, addContext, out);
     }
 
-    public static void executeExplained(File file, Map<String, Object> context, Map<String, Object> addContext,
+    public static void executeExplained(Reader reader, Map<String, Object> context, Map<String, Object> addContext,
                                         BufferWriter out) {
         ScriptEngine se = JSSP_ENG_MAN.getEngineByName(JSSP_SCRIPT_LANGUAGE);
 
@@ -79,11 +76,34 @@ public class JsspExecutor {
         b.put("out", out);
 
         try {
-            se.eval(FileUtil.readFileToString(file, "UTF-8"), b);
+            se.eval(IOUtil.readToString(reader), b);
         } catch (ScriptException e) {
             throw new JsspEvalException(e);
         }
         out.flush();
+    }
+
+    public static String explainAndReadJssp(File file) {
+        try {
+            File explained = tryExplainJssp(file);
+            InputStream fis = new FileInputStream(explained);
+            InputStreamReader isr = new InputStreamReader(fis, "UTF-8");
+            try {
+                return IOUtil.readToString(isr);
+            } finally {
+                IOUtil.closeQuitely(isr);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static File tryExplainJssp(File file) {
+        try {
+            return explainJssp(file);
+        } catch (IOException e) {
+            throw new JsspEvalException("Error occured in explain jssp file: " + file, e);
+        }
     }
 
     public static File explainJssp(File file) throws IOException {

@@ -1,6 +1,7 @@
 package me.hatter.tools.resourceproxy.jsspserver.filter.impl;
 
 import java.io.File;
+import java.io.StringReader;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,6 +12,8 @@ import me.hatter.tools.resourceproxy.jsspexec.utl.BufferWriter;
 import me.hatter.tools.resourceproxy.jsspserver.action.Action;
 import me.hatter.tools.resourceproxy.jsspserver.filter.ResourceFilter;
 import me.hatter.tools.resourceproxy.jsspserver.filter.ResourceFilterChain;
+import me.hatter.tools.resourceproxy.jsspserver.util.JsspFile;
+import me.hatter.tools.resourceproxy.jsspserver.util.JsspFileManager;
 
 public class JsspFilter implements ResourceFilter {
 
@@ -32,9 +35,9 @@ public class JsspFilter implements ResourceFilter {
     public HttpResponse filter(HttpRequest request, ResourceFilterChain chain) {
         String fpath = request.getFPath();
         if (fpath.toLowerCase().endsWith(".jssp")) {
-            File tfile = new File(JSSP_PATH, fpath);
-            if (tfile.exists()) {
-                System.out.println("[INFO] Found jssp file: " + tfile);
+            JsspFile jsspFile = JsspFileManager.getJsspFile(new File(JSSP_PATH, fpath));
+            if (jsspFile.exists()) {
+                System.out.println("[INFO] Found jssp file: " + jsspFile.getFile());
 
                 HttpResponse response = new HttpResponse();
                 Map<String, Object> context = new HashMap<String, Object>();
@@ -61,7 +64,7 @@ public class JsspFilter implements ResourceFilter {
                 BufferWriter bw = new BufferWriter();
                 Map<String, Object> addContext = new HashMap<String, Object>();
                 addContext.put("request", request);
-                JsspExecutor.executeJssp(tfile, context, addContext, bw);
+                JsspExecutor.executeExplained(new StringReader(jsspFile.getExplainedContent()), context, addContext, bw);
 
                 response.setContentType("text/html");
                 response.setCharset("UTF-8");

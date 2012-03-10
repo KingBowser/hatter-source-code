@@ -6,7 +6,8 @@
 <ol>
   <li>0.2 alpha</li>
   Add POST redirect support.<br/>
-  Add [UPDATE] in show.jssp, is_updated can be updated beside [Save].
+  Add [UPDATE] in show.jssp, is_updated can be updated beside [Save].<br/>
+  JSSP file can be cached in jssp file manager.
   <li>0.1 alpha</li>
   First version.
 </ol>

@@ -1,5 +1,6 @@
 package me.hatter.tools.resourceproxy.commons.util;
 
+import java.io.BufferedReader;
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,6 +10,22 @@ import java.io.StringWriter;
 import java.io.Writer;
 
 public class IOUtil {
+
+    public static String readToString(Reader reader) {
+        StringBuilder sb = new StringBuilder();
+        if (reader != null) {
+            BufferedReader br = (reader instanceof BufferedReader) ? (BufferedReader) reader : new BufferedReader(
+                                                                                                                  reader);
+            try {
+                for (int b; ((b = br.read()) != -1);) {
+                    sb.append((char) b);
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return sb.toString();
+    }
 
     public static long copy(InputStream is, OutputStream os) throws IOException {
         long total = 0;

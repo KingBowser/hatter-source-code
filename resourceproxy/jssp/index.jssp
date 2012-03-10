@@ -3,7 +3,7 @@
 <body>
   <head><span style="font-size:40px;"><strong>ResourceProxy</strong></span>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;version 0.2 alpha</span></head>
-  <br/>
+  <br/><br/>
   <a href="usage.jssp">Usage</a> &nbsp;
   <a href="hosts.jssp?jsspaction=resourceproxy.HostsConfig">Hosts config</a> &nbsp;
   <a href="userconfig.jssp?jsspaction=resourceproxy.UsersConfig">User config</a> &nbsp;

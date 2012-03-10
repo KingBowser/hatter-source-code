@@ -45,6 +45,7 @@ public class JsspFile {
 
     synchronized public String getExplainedContent(boolean update) {
         if (update) {
+            explainedFile = null;
             explainedContent = null;
         }
         if (explainedContent == null) {

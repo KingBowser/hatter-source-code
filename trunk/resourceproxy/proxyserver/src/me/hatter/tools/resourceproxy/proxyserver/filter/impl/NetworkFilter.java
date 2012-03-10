@@ -11,11 +11,13 @@ import java.net.URL;
 import java.util.Properties;
 
 import me.hatter.tools.resourceproxy.commons.util.IOUtil;
+import me.hatter.tools.resourceproxy.commons.util.StringUtil;
 import me.hatter.tools.resourceproxy.dbutils.dataaccess.DataAccessObject;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HostConfig;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpObject;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpRequest;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpResponse;
+import me.hatter.tools.resourceproxy.httpobjects.objects.UserConfig;
 import me.hatter.tools.resourceproxy.httpobjects.util.HttpObjectUtil;
 import me.hatter.tools.resourceproxy.httpobjects.util.HttpResponseUtil;
 import me.hatter.tools.resourceproxy.jsspserver.filter.ResourceFilter;
@@ -94,6 +96,17 @@ public class NetworkFilter implements ResourceFilter {
             if ("Host".equalsIgnoreCase(key)) {
                 System.out.println("\t" + key + ": " + request.get(key).get(0));
                 httpURLConnection.setRequestProperty(key, request.get(key).get(0));
+            } else if ("User-Agent".equalsIgnoreCase(key)) {
+                String userAgent = getUserAgent(request);
+                if (userAgent == null) {
+                    for (String value : request.get(key)) {
+                        System.out.println("\t" + key + ": " + value);
+                        httpURLConnection.addRequestProperty(key, value);
+                    }
+                } else {
+                    System.out.println("[INFO] Set user agent to: " + userAgent);
+                    httpURLConnection.setRequestProperty("User-Agent", userAgent);
+                }
             } else {
                 for (String value : request.get(key)) {
                     System.out.println("\t" + key + ": " + value);
@@ -125,6 +138,13 @@ public class NetworkFilter implements ResourceFilter {
         response = HttpResponseUtil.build(httpURLConnection);
         saveOrUpdateResponse(request, response);
         return response;
+    }
+
+    private String getUserAgent(HttpRequest request) {
+        UserConfig userConfig = new UserConfig();
+        userConfig.setAccessAddress(request.getIp());
+        UserConfig userConfigFromDB = DataAccessObject.selectObject(userConfig);
+        return StringUtil.trimToNull((userConfigFromDB == null) ? null : userConfigFromDB.getUserAgent());
     }
 
     private void saveOrUpdateResponse(HttpRequest request, HttpResponse response) {

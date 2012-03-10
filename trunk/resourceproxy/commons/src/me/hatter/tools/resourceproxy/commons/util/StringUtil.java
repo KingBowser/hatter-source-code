@@ -24,6 +24,11 @@ public class StringUtil {
         return (str == null) ? null : str.trim();
     }
 
+    public static String trimToNull(String str) {
+        str = trim(str);
+        return ((str == null) || str.isEmpty()) ? null : str;
+    }
+
     public static String toUpperCase(String string) {
         return (string == null) ? null : string.toUpperCase();
     }

@@ -1,3 +1,4 @@
+me.hatter.tools.resourceproxy.proxyserver.filter.impl.CircleRequestCheckFilter
 me.hatter.tools.resourceproxy.proxyserver.filter.impl.HostCheckFilter
 me.hatter.tools.resourceproxy.proxyserver.filter.impl.RootPathFilter
 me.hatter.tools.resourceproxy.proxyserver.filter.impl.DatabaseFilter

@@ -46,6 +46,8 @@
 status INTEGER, status_message TEXT, content_type TEXT, charset TEXT, encoding TEXT, header TEXT, 
 bytes TEXT, string TEXT, is_updated TEXT );
     CREATE UNIQUE INDEX idx_http_object_url_accaddr on http_object (url, access_address);
+    CREATE TABLE host_config ( id INTEGER PRIMARY KEY, domain TEXT , access_address TEXT, target_ip TEXT);
+    CREATE UNIQUE INDEX idx_host_config_domain_accaddr on host_config (domain, access_address);
     </pre>
     Then run: startup<br/>
     <li>How to use it?</li>

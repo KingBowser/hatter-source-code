@@ -6,6 +6,7 @@
   <br/>
   <a href="usage.jssp">Usage</a> &nbsp;
   <a href="history.jssp">Update history</a> &nbsp;
+  <a href="hosts.jssp?jsspaction=resourceproxy.HostsConfig">Hosts config</a> &nbsp;
   <a href="#" onclick="window.location.reload();">Refresh</a> &nbsp;
   <a href="?jsspaction=resourceproxy.Remove&ip=all" style="float: right; padding-right: 10px;">Remove all</a>
   <br/><br/>

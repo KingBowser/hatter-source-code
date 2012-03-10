@@ -3,6 +3,7 @@ package me.hatter.tools.resourceproxy.proxyserver.filter.impl;
 import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
@@ -11,6 +12,7 @@ import java.util.Properties;
 
 import me.hatter.tools.resourceproxy.commons.util.IOUtil;
 import me.hatter.tools.resourceproxy.dbutils.dataaccess.DataAccessObject;
+import me.hatter.tools.resourceproxy.httpobjects.objects.HostConfig;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpObject;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpRequest;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpResponse;
@@ -18,6 +20,8 @@ import me.hatter.tools.resourceproxy.httpobjects.util.HttpObjectUtil;
 import me.hatter.tools.resourceproxy.httpobjects.util.HttpResponseUtil;
 import me.hatter.tools.resourceproxy.jsspserver.filter.ResourceFilter;
 import me.hatter.tools.resourceproxy.jsspserver.filter.ResourceFilterChain;
+import me.hatter.tools.resourceproxy.proxyserver.main.ProxyServer;
+import sun.net.www.MessageHeader;
 
 public class NetworkFilter implements ResourceFilter {
 
@@ -57,17 +61,30 @@ public class NetworkFilter implements ResourceFilter {
         }
     }
 
+    @SuppressWarnings("restriction")
     private HttpResponse getHttpResponseFromNetwork(HttpRequest request, String host, String u)
                                                                                                throws MalformedURLException,
                                                                                                IOException,
                                                                                                ProtocolException {
         HttpResponse response;
-        // String realHost = null;
+        String realHost = null;
         if (HOST_PROPERTIES.containsKey(host)) {
-            // realHost = host;
+            realHost = host;
+            System.out.println("[INFO] Send message to host: " + realHost + " redirected to ip: "
+                               + HOST_PROPERTIES.getProperty(host));
             u = "http://" + HOST_PROPERTIES.getProperty(host) + request.getUri().toString();
+        } else {
+            HostConfig hostConfig = new HostConfig();
+            HostConfig hostConfigFromDB = DataAccessObject.selectObject(hostConfig);
+            if (hostConfigFromDB != null) {
+                realHost = host;
+                System.out.println("[INFO] Send message to host: " + realHost + " redirected to ip: "
+                                   + hostConfigFromDB.getTargetIp());
+                u = "http://" + hostConfigFromDB.getTargetIp() + request.getUri().toString();
+            }
+
         }
-        URL url = new URL(u);
+        URL url = new URL(u); // currently only support 80 port
         HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
         httpURLConnection.setUseCaches(false);
         httpURLConnection.setRequestMethod(request.getMethod());
@@ -81,6 +98,17 @@ public class NetworkFilter implements ResourceFilter {
                     System.out.println("\t" + key + ": " + value);
                     httpURLConnection.addRequestProperty(key, value);
                 }
+            }
+        }
+        httpURLConnection.setRequestProperty(ProxyServer.HEADER_X_REQUEST_BY, ProxyServer.PROXY_SERVER_VERSION);
+        if (realHost != null) {
+            try {
+                Field fieldOfRequests = httpURLConnection.getClass().getDeclaredField("requests");
+                fieldOfRequests.setAccessible(true);
+                MessageHeader h = (MessageHeader) fieldOfRequests.get(httpURLConnection);
+                h.set("Host", realHost);
+            } catch (Exception e) {
+                throw new RuntimeException("Set real host failed: " + realHost, e);
             }
         }
         // if (realHost != null) {

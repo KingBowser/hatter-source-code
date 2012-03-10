@@ -13,14 +13,14 @@
   <% var httpObjectList =  app_context.get("httpObjectList"); %>
   <table border="0" cellspacing="0" cellpadding="0" style="width:100%;font-size:14px;">
   <tr>
-    <td style="width: 30px;">id</td>
-    <td style="width: 50px;">method</td>
-    <td>url</td>
-    <td style="width: 40px;">status</td>
-    <td style="width: 50px;">message</td>
-    <td style="width: 180px;">content/type</td>
-    <td style="width: 99px;">View</td>
-    <td style="width: 70px;">Operation</td>
+    <td style="width: 30px;"><strong>id</strong></td>
+    <td style="width: 50px;"><strong>method</strong></td>
+    <td><strong>url</strong></td>
+    <td style="width: 40px;"><strong>status</strong></td>
+    <td style="width: 50px;"><strong>message</strong></td>
+    <td style="width: 180px;"><strong>content/type</strong></td>
+    <td style="width: 99px;"><strong>view</strong></td>
+    <td style="width: 70px;"><strong>operation</strong></td>
   </tr>
   <% for (var i = 0; i < httpObjectList.size(); i++) { %>
     <% var httpObject = httpObjectList.get(i); %>

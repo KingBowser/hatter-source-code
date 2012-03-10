@@ -1,7 +1,7 @@
 <html>
 <head><title>index page</title></head>
 <body>
-  <head><span style="font-size:60px;"><strong>Resource Proxy</strong></span>
+  <head><span style="font-size:40px;"><strong>ResourceProxy</strong></span>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;version 0.2 alpha</span></head>
   <br/>
   <a href="usage.jssp">Usage</a> &nbsp;

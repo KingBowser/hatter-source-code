@@ -32,9 +32,9 @@ public class HttpResponseUtil {
                                                                                                                    "Expires")));
     private static Set<String>  STRINGFY_CONTENT_TYPE_SET = new HashSet<String>(
                                                                                 CollUtil.toUpperCase(Arrays.asList("application/javascript",
+                                                                                                                   "application/x-javascript",
                                                                                                                    "application/json",
-                                                                                                                   "application/xml",
-                                                                                                                   "application/x-javascript")));
+                                                                                                                   "application/xml")));
 
     public static HttpResponse build(HttpURLConnection httpURLConnection) throws IOException {
         System.out.println("[INFO] Response conent length: " + httpURLConnection.getContentLength());

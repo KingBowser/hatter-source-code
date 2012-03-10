@@ -1,0 +1,14 @@
+<html>
+<head><title>ResourceProxy hosts config</title></head>
+<body>
+<h1>ResourceProxy</h1>
+<a href="/"> &lt;&lt; Back </a>
+&nbsp; <a href="#" onclick="window.location.reload();">Refresh</a><br/><br/>
+  <% var userConfig = app_context.get("userConfig"); %>
+  <form method="POST" action="?jsspaction=resourceproxy.SaveUsersConfig">
+  User agent:<input name="userAgent" type="text" style="width:900px;" value="<%=userConfig.getUserAgent()%>"/><br/><br/>
+  <button style="width: 60px; height: 22px;">Save</button>
+  </form>
+</body>
+</html>
+

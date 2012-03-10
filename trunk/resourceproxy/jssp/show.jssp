@@ -176,7 +176,7 @@ function doUpdate(id) {
     <% if (stringUtil.isEmpty(httpObject.getCharset()) && stringUtil.isEmpty(app_context.get("charset"))) { %>
        <font style="color: red;">Charset was not assigned in the http response, try click the charset left.</font>
     <% } %>
-    <% if (/.*javascript.*/.test(httpObject.getContentType()) && stringUtil.isNotEmpty(httpObject.getString())) { %>
+    <% if (/.*(javascript)|(json).*/.test(httpObject.getContentType()) && stringUtil.isNotEmpty(httpObject.getString())) { %>
       <button onclick="beautify();" style="width: 60px; height: 22px;">Format</button> &nbsp;
     <% } %>
     <% if ((stringUtil.isNotEmpty(httpObject.getCharset()) || stringUtil.isNotEmpty(app_context.get("charset")))) { %>

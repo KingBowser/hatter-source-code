@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Reader;
-import java.io.StringWriter;
 import java.io.Writer;
 
 public class IOUtil {
@@ -42,12 +41,6 @@ public class IOUtil {
             writer.write(c);
         }
         return total;
-    }
-
-    public static String copyToString(Reader reader) throws IOException {
-        StringWriter sw = new StringWriter();
-        copy(reader, sw);
-        return sw.toString();
     }
 
     public static void closeQuitely(Closeable closeable) {

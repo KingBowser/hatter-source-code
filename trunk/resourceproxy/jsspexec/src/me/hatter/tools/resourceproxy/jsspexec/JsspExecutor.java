@@ -27,6 +27,7 @@ import me.hatter.tools.resourceproxy.jsspexec.utl.BufferWriter;
 
 public class JsspExecutor {
 
+    public static String                     DEFAULT_CHARSET      = "UTF-8";
     public static String                     JSSP_EXPLAINED_EXT   = ".jssp";
     private static final String              JSSP_SCRIPT_LANGUAGE = "JavaScript";
     private static final ScriptEngineManager JSSP_ENG_MAN         = new ScriptEngineManager();
@@ -87,7 +88,7 @@ public class JsspExecutor {
         try {
             File explained = tryExplainJssp(file);
             InputStream fis = new FileInputStream(explained);
-            InputStreamReader isr = new InputStreamReader(fis, "UTF-8");
+            InputStreamReader isr = new InputStreamReader(fis, DEFAULT_CHARSET);
             try {
                 return IOUtil.readToString(isr);
             } finally {
@@ -114,9 +115,9 @@ public class JsspExecutor {
             }
         }
         FileInputStream fis = new FileInputStream(file);
-        BufferedReader br = new BufferedReader(new InputStreamReader(fis, "UTF-8"));
+        BufferedReader br = new BufferedReader(new InputStreamReader(fis, DEFAULT_CHARSET));
         try {
-            PrintWriter pw = new PrintWriter(explainedFile, "UTF-8");
+            PrintWriter pw = new PrintWriter(explainedFile, DEFAULT_CHARSET);
             // support return
             pw.write("(function() {\r\n");
             StringBuilder sb = new StringBuilder();

@@ -96,7 +96,7 @@ public class HttpResponseUtil {
             if (isTextContentType(response.getContentType())) {
                 String charset = (response.getCharset() == null) ? "UTF-8" : response.getCharset();
                 Reader reader = new InputStreamReader(new ByteArrayInputStream(bytes), charset);
-                String string = IOUtil.copyToString(reader);
+                String string = IOUtil.readToString(reader);
                 response.setString(string);
             }
         }

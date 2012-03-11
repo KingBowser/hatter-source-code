@@ -70,6 +70,6 @@ public class BufferWriter {
                 o = Double.valueOf(doubleValue).longValue();
             }
         }
-        return ((o == null) ? "" : o.toString());
+        return ((o == null) ? StringUtil.EMPTY : o.toString());
     }
 }

@@ -52,7 +52,7 @@ public class JsspFile {
             if (explainedFile == null) {
                 explainedFile = JsspExecutor.tryExplainJssp(file);
             }
-            explainedContent = FileUtil.readFileToString(explainedFile, "UTF-8");
+            explainedContent = FileUtil.readFileToString(explainedFile, ContentTypes.UTF8_CHARSET);
         }
         return explainedContent;
     }

@@ -22,6 +22,7 @@ import me.hatter.tools.resourceproxy.httpobjects.util.HttpObjectUtil;
 import me.hatter.tools.resourceproxy.httpobjects.util.HttpResponseUtil;
 import me.hatter.tools.resourceproxy.jsspserver.filter.ResourceFilter;
 import me.hatter.tools.resourceproxy.jsspserver.filter.ResourceFilterChain;
+import me.hatter.tools.resourceproxy.jsspserver.util.HttpConstants;
 import me.hatter.tools.resourceproxy.proxyserver.main.ProxyServer;
 import sun.net.www.MessageHeader;
 
@@ -33,7 +34,7 @@ public class NetworkFilter implements ResourceFilter {
             try {
                 HOST_PROPERTIES.load(new FileInputStream("hosts.properties"));
             } catch (Exception e) {
-                e.printStackTrace();
+                System.out.println("[ERROR] Parse hosts.properties failed. " + StringUtil.printStackTrace(e));
             }
         }
     }
@@ -93,10 +94,10 @@ public class NetworkFilter implements ResourceFilter {
         httpURLConnection.setRequestMethod(request.getMethod());
         System.out.println("[INFO] Request headers for: " + request.getMethod().toUpperCase() + " " + u);
         for (String key : request.getHeaderMap().keySet()) {
-            if ("Host".equalsIgnoreCase(key)) {
+            if (HttpConstants.HEADER_HOST.equalsIgnoreCase(key)) {
                 System.out.println("\t" + key + ": " + request.get(key).get(0));
                 httpURLConnection.setRequestProperty(key, request.get(key).get(0));
-            } else if ("User-Agent".equalsIgnoreCase(key)) {
+            } else if (HttpConstants.HEADER_USER_AGENT.equalsIgnoreCase(key)) {
                 String userAgent = getUserAgent(request);
                 if (userAgent == null) {
                     for (String value : request.get(key)) {
@@ -105,7 +106,7 @@ public class NetworkFilter implements ResourceFilter {
                     }
                 } else {
                     System.out.println("[INFO] Set user agent to: " + userAgent);
-                    httpURLConnection.setRequestProperty("User-Agent", userAgent);
+                    httpURLConnection.setRequestProperty(HttpConstants.HEADER_USER_AGENT, userAgent);
                 }
             } else {
                 for (String value : request.get(key)) {
@@ -120,7 +121,7 @@ public class NetworkFilter implements ResourceFilter {
                 Field fieldOfRequests = httpURLConnection.getClass().getDeclaredField("requests");
                 fieldOfRequests.setAccessible(true);
                 MessageHeader h = (MessageHeader) fieldOfRequests.get(httpURLConnection);
-                h.set("Host", realHost);
+                h.set(HttpConstants.HEADER_HOST, realHost);
             } catch (Exception e) {
                 throw new RuntimeException("Set real host failed: " + realHost, e);
             }
@@ -157,8 +158,8 @@ public class NetworkFilter implements ResourceFilter {
                     DataAccessObject.insertObject(httpObject);
                 } catch (Exception e) {
                     System.out.println("[ERROR] insert data error " + httpObject.getUrl() + " @"
-                                       + httpObject.getAccessAddress() + " /" + e.getMessage());
-                    e.printStackTrace();
+                                       + httpObject.getAccessAddress() + " /" + e.getMessage() + " "
+                                       + StringUtil.printStackTrace(e));
                 }
             } else {
                 DataAccessObject.updateObject(httpObject);

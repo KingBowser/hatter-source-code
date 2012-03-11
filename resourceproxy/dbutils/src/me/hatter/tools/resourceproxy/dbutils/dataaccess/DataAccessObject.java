@@ -49,8 +49,8 @@ public class DataAccessObject {
                     connectionPool.returnConnection(connection);
                 }
             } catch (Exception ex) {
-                System.out.println("[ERROR] error when return connection with flag: " + hasError);
-                ex.printStackTrace();
+                System.out.println("[ERROR] error when return connection with flag: " + hasError + " "
+                                   + StringUtil.printStackTrace(ex));
             }
         }
     }

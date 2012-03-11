@@ -7,12 +7,13 @@ import me.hatter.tools.resourceproxy.httpobjects.objects.HttpResponse;
 import me.hatter.tools.resourceproxy.httpobjects.util.HttpObjectUtil;
 import me.hatter.tools.resourceproxy.jsspserver.filter.ResourceFilter;
 import me.hatter.tools.resourceproxy.jsspserver.filter.ResourceFilterChain;
+import me.hatter.tools.resourceproxy.jsspserver.util.HttpConstants;
 
 public class DatabaseFilter implements ResourceFilter {
 
     @Override
     public HttpResponse filter(HttpRequest request, ResourceFilterChain chain) {
-        if ((!request.isLocalHostOrIP()) && ("GET".equalsIgnoreCase(request.getMethod()))) {
+        if ((!request.isLocalHostOrIP()) && (HttpConstants.METHOD_GET.equalsIgnoreCase(request.getMethod()))) {
             HttpObject queryHttpObject = new HttpObject();
             queryHttpObject.setUrl(request.getFullUrl());
             queryHttpObject.setAccessAddress(request.getIp());

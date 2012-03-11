@@ -7,6 +7,8 @@ import me.hatter.tools.resourceproxy.httpobjects.objects.HttpResponse;
 
 public interface Action {
 
+    public static final String JSSP_ACTION = "jsspaction";
+
     Map<String, Object> doAction(HttpRequest request, HttpResponse response);
 
 }

@@ -1,8 +1,10 @@
 package me.hatter.tools.resourceproxy.proxyserver.util;
 
 import java.io.OutputStream;
-import java.io.PrintWriter;
-import java.io.StringWriter;
+
+import me.hatter.tools.resourceproxy.commons.util.StringUtil;
+import me.hatter.tools.resourceproxy.jsspserver.util.ContentTypes;
+import me.hatter.tools.resourceproxy.jsspserver.util.HttpConstants;
 
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
@@ -14,23 +16,20 @@ public class ResponseUtil {
 
     @SuppressWarnings("restriction")
     public static void writeThrowableAndClose(HttpExchange exchange, Throwable t) {
-        StringWriter sw = new StringWriter();
-        PrintWriter pw = new PrintWriter(sw);
-        t.printStackTrace(pw);
-        writeErrorAndClose(exchange, "Unknow error.\r\n\r\nExcepton: " + sw.toString());
+        writeErrorAndClose(exchange, "Unknow error.\r\n\r\nExcepton: " + StringUtil.printStackTrace(t));
     }
 
     @SuppressWarnings("restriction")
     public static void writeErrorAndClose(HttpExchange exchange, String message) {
         try {
             Headers responseHeaders = exchange.getResponseHeaders();
-            responseHeaders.set("Content-Type", "text/plain;charset=UTF-8");
-            exchange.sendResponseHeaders(500, 0);
+            responseHeaders.set(ContentTypes.CONTENT_TYPE, ContentTypes.PLAIN_AND_UTF8);
+            exchange.sendResponseHeaders(HttpConstants.STATUS_SERVICE_ERROR, 0);
             OutputStream responseBody = exchange.getResponseBody();
-            responseBody.write((message).getBytes("UTF-8"));
+            responseBody.write((message).getBytes(ContentTypes.UTF8_CHARSET));
             responseBody.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("[ERROR] Write error to response failed. " + StringUtil.printStackTrace(e));
         }
     }
 }

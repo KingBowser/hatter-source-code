@@ -12,6 +12,8 @@ import me.hatter.tools.resourceproxy.jsspexec.utl.BufferWriter;
 import me.hatter.tools.resourceproxy.jsspserver.action.Action;
 import me.hatter.tools.resourceproxy.jsspserver.filter.ResourceFilter;
 import me.hatter.tools.resourceproxy.jsspserver.filter.ResourceFilterChain;
+import me.hatter.tools.resourceproxy.jsspserver.util.ContentTypes;
+import me.hatter.tools.resourceproxy.jsspserver.util.HttpConstants;
 import me.hatter.tools.resourceproxy.jsspserver.util.JsspFile;
 import me.hatter.tools.resourceproxy.jsspserver.util.JsspFileManager;
 
@@ -41,7 +43,7 @@ public class JsspFilter implements ResourceFilter {
 
                 HttpResponse response = new HttpResponse();
                 Map<String, Object> context = new HashMap<String, Object>();
-                String jsspAction = request.getQueryValue("jsspaction");
+                String jsspAction = request.getQueryValue(Action.JSSP_ACTION);
                 if (jsspAction != null) {
                     try {
                         Class<?> jsspActionClazz = Class.forName(jsspAction);
@@ -66,11 +68,11 @@ public class JsspFilter implements ResourceFilter {
                 addContext.put("request", request);
                 JsspExecutor.executeExplained(new StringReader(jsspFile.getExplainedContent()), context, addContext, bw);
 
-                response.setContentType("text/html");
-                response.setCharset("UTF-8");
-                response.setStatus(200);
+                response.setContentType(ContentTypes.HTML_CONTENT_TYPE);
+                response.setCharset(ContentTypes.UTF8_CHARSET);
+                response.setStatus(HttpConstants.STATUS_SUCCESS);
                 response.setStatusMessage("OK");
-                response.getHeaderMap().set("Content-Type", "text/html;charset=UTF-8");
+                response.getHeaderMap().set(ContentTypes.CONTENT_TYPE, ContentTypes.HTML_AND_UTF8);
                 response.setString(bw.getBufferedString());
                 return response;
             } else {

@@ -7,6 +7,8 @@ import me.hatter.tools.resourceproxy.commons.util.StringUtil;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpRequest;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpResponse;
 import me.hatter.tools.resourceproxy.jsspserver.action.BaseAction;
+import me.hatter.tools.resourceproxy.jsspserver.util.ContentTypes;
+import me.hatter.tools.resourceproxy.jsspserver.util.HttpConstants;
 import me.hatter.tools.resourceproxy.proxyserver.util.UserAgents;
 
 public class GetUserAgent extends BaseAction {
@@ -31,11 +33,11 @@ public class GetUserAgent extends BaseAction {
             js.append("document.getElementById(\"userAgent\").value = \"" + theUserAgent.replaceAll("\"", "\\\"")
                       + "\";");
 
-            response.setContentType("application/javascript");
-            response.setCharset("UTF-8");
-            response.setStatus(200);
+            response.setContentType(ContentTypes.JAVASCRIPT_CONTENT_TYPE);
+            response.setCharset(ContentTypes.UTF8_CHARSET);
+            response.setStatus(HttpConstants.STATUS_SUCCESS);
             response.setStatusMessage("OK");
-            response.getHeaderMap().set("Content-Type", "application/javascript;charset=UTF-8");
+            response.getHeaderMap().set(ContentTypes.CONTENT_TYPE, ContentTypes.JAVASCRIPT_AND_UTF8);
             response.setString(js.toString());
             response.setFinish(true);
         }

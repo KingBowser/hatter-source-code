@@ -9,10 +9,12 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicLong;
 
 import me.hatter.tools.resourceproxy.commons.util.CollUtil;
+import me.hatter.tools.resourceproxy.commons.util.StringUtil;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpRequest;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpResponse;
 import me.hatter.tools.resourceproxy.httpobjects.util.HttpRequestUtil;
 import me.hatter.tools.resourceproxy.jsspserver.filter.ResourceFilterChain;
+import me.hatter.tools.resourceproxy.jsspserver.util.ContentTypes;
 import me.hatter.tools.resourceproxy.proxyserver.util.ResponseUtil;
 
 import com.sun.net.httpserver.Headers;
@@ -60,8 +62,7 @@ public class ProxyServer {
                 writeResponse(exchange, startMills, response);
                 System.out.println("[INFO] >>>> Total upload bytes: " + TOTAL_UPLOAD_COUNT.get());
             } catch (Throwable t) {
-                System.out.println("[ERROR] Exception occured: ");
-                t.printStackTrace();
+                System.out.println("[ERROR] Exception occured: " + StringUtil.printStackTrace(t));
                 ResponseUtil.writeThrowableAndClose(exchange, t);
             }
         }
@@ -71,7 +72,7 @@ public class ProxyServer {
                                                                                                  IOException {
             byte[] theBytes = response.getBytes();
             if (response.getString() != null) {
-                String charset = (response.getCharset() == null) ? "UTF-8" : response.getCharset();
+                String charset = (response.getCharset() == null) ? ContentTypes.UTF8_CHARSET : response.getCharset();
                 theBytes = response.getString().getBytes(charset);
             }
 

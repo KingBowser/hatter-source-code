@@ -38,8 +38,7 @@ public class JsspFileManager {
                                 }
                             } catch (Exception ex) {
                                 System.out.println("[ERROR] Error occured in check jssp file: "
-                                                   + entry.getValue().getFile());
-                                ex.printStackTrace();
+                                                   + entry.getValue().getFile() + " " + StringUtil.printStackTrace(ex));
                             }
                         }
                         if (pendingRemoveList.size() > 0) {
@@ -50,8 +49,7 @@ public class JsspFileManager {
                         Thread.sleep(chkJsspUpdate);
                     }
                 } catch (Exception e) {
-                    System.out.println("[ERROR] Error occured in check jssp file.");
-                    e.printStackTrace();
+                    System.out.println("[ERROR] Error occured in check jssp file." + StringUtil.printStackTrace(e));
                 }
             }
         }).start();

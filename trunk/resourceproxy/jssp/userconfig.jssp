@@ -10,7 +10,7 @@ function selectUserAgentChange() {
 }
 </script>
 <body>
-<h1>ResourceProxy</h1>
+<h1>ResourceProxy user config</h1>
 <a href="/"> &lt;&lt; Back </a>
 &nbsp; <a href="#" onclick="window.location.reload();">Refresh</a><br/><br/>
   <% var userAgentNameList = app_context.get("userAgentNameList"); %>

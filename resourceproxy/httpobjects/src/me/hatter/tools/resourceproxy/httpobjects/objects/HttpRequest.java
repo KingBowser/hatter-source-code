@@ -26,6 +26,7 @@ public class HttpRequest {
     private int                uploadCount;
     private String             method;
     private String             host;
+    private Integer            port;
     private URI                uri;
     private String             fullUrl;
     private InetSocketAddress  remoteAddress;
@@ -66,6 +67,14 @@ public class HttpRequest {
 
     public String getHost() {
         return host;
+    }
+
+    public Integer getPort() {
+        return port;
+    }
+
+    public void setPort(Integer port) {
+        this.port = port;
     }
 
     public URI getUri() {
@@ -123,7 +132,13 @@ public class HttpRequest {
         }
         valueList.addAll(values);
         if ("Host".equalsIgnoreCase(key)) {
-            this.host = valueList.get(0);
+            String theHost = valueList.get(0);
+            if (theHost.indexOf(':') >= 0) {
+                this.host = theHost.substring(0, theHost.indexOf(':'));
+                this.port = new Integer(theHost.substring(theHost.indexOf(':') + 1));
+            } else {
+                this.host = theHost;
+            }
         }
     }
 

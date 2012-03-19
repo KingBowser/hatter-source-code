@@ -75,7 +75,8 @@ public class NetworkFilter implements ResourceFilter {
             realHost = host;
             System.out.println("[INFO] Send message to host: " + realHost + " redirected to ip: "
                                + HOST_PROPERTIES.getProperty(host));
-            u = "http://" + HOST_PROPERTIES.getProperty(host) + request.getUri().toString();
+            u = "http://" + HOST_PROPERTIES.getProperty(host)
+                + ((request.getPort() == null) ? "" : (":" + request.getPort())) + request.getUri().toString();
         } else {
             HostConfig hostConfig = new HostConfig();
             hostConfig.setDomain(host);
@@ -85,7 +86,8 @@ public class NetworkFilter implements ResourceFilter {
                 realHost = host;
                 System.out.println("[INFO] Send message to host: " + realHost + " redirected to ip: "
                                    + hostConfigFromDB.getTargetIp());
-                u = "http://" + hostConfigFromDB.getTargetIp() + request.getUri().toString();
+                u = "http://" + hostConfigFromDB.getTargetIp()
+                    + ((request.getPort() == null) ? "" : (":" + request.getPort())) + request.getUri().toString();
             }
         }
         URL url = new URL(u); // currently only support 80 port

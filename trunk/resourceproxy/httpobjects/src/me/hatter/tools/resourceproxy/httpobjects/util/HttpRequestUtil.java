@@ -49,7 +49,9 @@ public class HttpRequestUtil {
             }
         }
         request.setHost(request.getHost());
-        request.setFullUrl("http://" + request.getHost() + request.getUri().toString());
+        request.setFullUrl("http://" + request.getHost()
+                           + ((request.getPort() == null) ? "" : (":" + request.getPort()))
+                           + request.getUri().toString());
         request.setUploadCount(uploadCount);
 
         String query = exchange.getRequestURI().getRawQuery();

@@ -3,6 +3,7 @@ package me.hatter.tools.resourceproxy.proxyserver.main;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.net.BindException;
 import java.net.InetSocketAddress;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -37,15 +38,19 @@ public class ProxyServer {
         long start = System.currentTimeMillis();
         List<Integer> ports = Arrays.asList(80, 8080, 2080, 3080);
         for (int port : ports) {
-            InetSocketAddress addr = new InetSocketAddress(port);
-            HttpServer httpServer = HttpServer.create(addr, 0);
-            if (System.getProperties().containsKey("debug")) {
-                httpServer.setExecutor(Executors.newFixedThreadPool(1));
-            } else {
-                httpServer.setExecutor(Executors.newFixedThreadPool(12));
+            try {
+                InetSocketAddress addr = new InetSocketAddress(port);
+                HttpServer httpServer = HttpServer.create(addr, 0);
+                if (System.getProperties().containsKey("debug")) {
+                    httpServer.setExecutor(Executors.newFixedThreadPool(1));
+                } else {
+                    httpServer.setExecutor(Executors.newFixedThreadPool(12));
+                }
+                httpServer.createContext("/", new MyHandler());
+                httpServer.start();
+            } catch (BindException be) {
+                System.out.println("[ERROR] Bind port failed: " + port);
             }
-            httpServer.createContext("/", new MyHandler());
-            httpServer.start();
         }
         System.out.println("[INFO] Start ProxyServer on: " + ports + " cost: " + (System.currentTimeMillis() - start)
                            + " ms");

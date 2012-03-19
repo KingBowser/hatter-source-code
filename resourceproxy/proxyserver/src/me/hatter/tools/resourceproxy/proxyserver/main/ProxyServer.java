@@ -5,6 +5,8 @@ import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.InetSocketAddress;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -33,17 +35,20 @@ public class ProxyServer {
     @SuppressWarnings("restriction")
     public static void main(String[] args) throws Exception {
         long start = System.currentTimeMillis();
-        InetSocketAddress addr = new InetSocketAddress(80);
-        HttpServer httpServer = HttpServer.create(addr, 0);
-        if (System.getProperties().containsKey("debug")) {
-            httpServer.setExecutor(Executors.newFixedThreadPool(1));
-        } else {
-            httpServer.setExecutor(Executors.newFixedThreadPool(12));
+        List<Integer> ports = Arrays.asList(80, 8080, 2080, 3080);
+        for (int port : ports) {
+            InetSocketAddress addr = new InetSocketAddress(port);
+            HttpServer httpServer = HttpServer.create(addr, 0);
+            if (System.getProperties().containsKey("debug")) {
+                httpServer.setExecutor(Executors.newFixedThreadPool(1));
+            } else {
+                httpServer.setExecutor(Executors.newFixedThreadPool(12));
+            }
+            httpServer.createContext("/", new MyHandler());
+            httpServer.start();
         }
-        httpServer.createContext("/", new MyHandler());
-        httpServer.start();
-        System.out.println("[INFO] Start ProxyServer on: " + addr.getPort() + " cost: "
-                           + (System.currentTimeMillis() - start) + " ms");
+        System.out.println("[INFO] Start ProxyServer on: " + ports + " cost: " + (System.currentTimeMillis() - start)
+                           + " ms");
     }
 
     @SuppressWarnings("restriction")

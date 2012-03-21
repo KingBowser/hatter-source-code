@@ -23,6 +23,10 @@ public abstract class AbstractProcessExecuteService {
         System.out.println("[INFO] Process executor service; maxQueueCount: " + maxQueueCount);
     }
 
+    abstract protected ExecutorService getCurrentExecutor();
+
+    abstract protected List<ExecutorService> getAllExecutors();
+
     public <T> Future<T> submit(final Callable<T> task) {
         totalCount.incrementAndGet();
         try {
@@ -55,10 +59,6 @@ public abstract class AbstractProcessExecuteService {
         semaphore.acquire(maxQueueCount); // all task finished
         semaphore.release(maxQueueCount);
     }
-
-    abstract protected ExecutorService getCurrentExecutor();
-
-    abstract protected List<ExecutorService> getAllExecutors();
 
     public void shutDown() {
         List<ExecutorService> executorServices = getAllExecutors();

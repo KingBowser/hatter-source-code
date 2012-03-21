@@ -19,6 +19,7 @@ public abstract class AbstractProcessExecuteService {
 
     public AbstractProcessExecuteService(int maxQueueCount) {
         this.maxQueueCount = maxQueueCount;
+        this.semaphore = new Semaphore(this.maxQueueCount);
         System.out.println("[INFO] Process executor service; maxQueueCount: " + maxQueueCount);
     }
 

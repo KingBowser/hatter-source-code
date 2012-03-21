@@ -22,6 +22,7 @@ public class DayNightProcessExecuteService extends AbstractProcessExecuteService
 
     public DayNightProcessExecuteService(int maxQueueCount, int dayTimeThreadCount, int nightThreadCount) {
         super(maxQueueCount);
+        this.dayTimeThreadCount = dayTimeThreadCount;
         this.nightThreadCount = nightThreadCount;
         // create excutors and semaphore
         dayTimeExecutor = (ThreadPoolExecutor) Executors.newFixedThreadPool(this.dayTimeThreadCount);

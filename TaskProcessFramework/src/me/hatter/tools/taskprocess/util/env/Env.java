@@ -14,10 +14,24 @@ public class Env {
     }
 
     public static int getIntProperty(String property, int defaultValue) {
-        return Integer.parseInt(System.getProperty("skiptoline", String.valueOf(defaultValue)));
+        return Integer.parseInt(getProperty(property, String.valueOf(defaultValue)));
     }
 
-    public static boolean getPropertyAsBooleanOrDie(String property) {
+    public static long getLongProperty(String property, long defaultValue) {
+        return Long.parseLong(getProperty(property, String.valueOf(defaultValue)));
+    }
+
+    public static boolean getBoolProperty(String property, boolean defaultValue) {
+        return isOn(getProperty(property, String.valueOf(defaultValue)));
+    }
+
+    public static String getProperty(String property, String defaultValue) {
+        String value = System.getProperty(property, defaultValue);
+        System.out.println("[INFO] Property: " + property + " is set to: " + value);
+        return value;
+    }
+
+    public static boolean getBoolPropertyOrDie(String property) {
         String v = getPropertyOrDie(property);
         return isOn(v);
     }
@@ -36,6 +50,6 @@ public class Env {
         if (v == null) {
             return false;
         }
-        return Arrays.asList("Y", "ON", "YES", "TRUE").contains(v.toUpperCase());
+        return Arrays.asList("Y", "ON", "OK", "YES", "TRUE").contains(v.toUpperCase());
     }
 }

@@ -12,36 +12,21 @@ import me.hatter.tools.taskprocess.util.concurrent.DayNightProcessExecuteService
 import me.hatter.tools.taskprocess.util.env.Env;
 import me.hatter.tools.taskprocess.util.io.FileBufferedReader;
 import me.hatter.tools.taskprocess.util.io.RollFilePrintWriter;
+import me.hatter.tools.taskprocess.util.misc.ExceptionUtils;
 import me.hatter.tools.taskprocess.util.misc.StringUtils;
 
 public abstract class FileLineBasedProcess {
 
-    protected static final boolean      isDryRun;
-    static {
-        String dryRun = System.getProperty("dryrun");
-        if (dryRun == null) {
-            System.out.println("[ERROR] dryrun is null.");
-            System.exit(0);
-        }
-        isDryRun = "Y".equalsIgnoreCase(dryRun);
-        System.out.println("[INFO] is dry run mode:  " + isDryRun);
-    }
-    protected static final String       dataFile         = System.getProperty("datafile");
-    static {
-        if (dataFile == null) {
-            System.out.println("[ERROR] datafile is null.");
-            System.exit(0);
-        }
-    }
+    protected static final boolean      isDryRun         = Env.getPropertyAsBooleanOrDie("dryrun");
+    protected static final String       dataFile         = Env.getPropertyOrDie("datafile");
     protected static BufferedReader     dataReader       = null;
     static {
         try {
-            File dataf = new File(Env.USER_DIR, dataFile);
+            File dataf = Env.newUserDirFile(dataFile);
             System.out.println("[INFO] data file:  " + dataf);
             dataReader = new FileBufferedReader(dataf);
         } catch (IOException e) {
-            System.out.println("[ERROR] Open data file failed.");
-            e.printStackTrace();
+            System.out.println("[ERROR] Open data file failed: " + ExceptionUtils.getStackTrace(e));
             System.exit(0);
         }
     }
@@ -50,11 +35,9 @@ public abstract class FileLineBasedProcess {
     protected final RollFilePrintWriter failLog          = new RollFilePrintWriter(Env.USER_DIR,
                                                                                    dataFile + ".fail.log",
                                                                                    getFailFileRollCount(), true);
-    protected final AtomicInteger       skipToLine       = new AtomicInteger(
-                                                                             Integer.parseInt(System.getProperty("skiptoline",
-                                                                                                                 "0")));
-    protected final int                 threadCountNight = Integer.parseInt(System.getProperty("threadcountnight", "30"));
-    protected final int                 threadCountDay   = Integer.parseInt(System.getProperty("threadcountday", "5"));
+    protected final AtomicInteger       skipToLine       = new AtomicInteger(Env.getIntProperty("skiptoline", 0));
+    protected final int                 threadCountNight = Env.getIntProperty("threadcountnight", 30);
+    protected final int                 threadCountDay   = Env.getIntProperty("threadcountday", 5);
     protected final ProcessStopCheck    processStopCheck = newProcessStopCheck();
     protected final AtomicInteger       totalCount       = new AtomicInteger(0);
     protected final AtomicInteger       thisCount        = new AtomicInteger(0);
@@ -118,8 +101,7 @@ public abstract class FileLineBasedProcess {
             System.out.println("[INFO] Finish!!!!!!! " + new Date());
             processExecuteService.shutDown();
         } catch (Throwable t) {
-            System.out.println("[ERROR] UNKNOW ERROR!!!!!!!  " + t.getMessage());
-            t.printStackTrace();
+            System.out.println("[ERROR] UNKNOW ERROR!!!!!!!  " + ExceptionUtils.getStackTrace(t));
         }
         System.exit(0);
     }
@@ -137,9 +119,10 @@ public abstract class FileLineBasedProcess {
     private void printSummaryDataLog(final DayNightProcessExecuteService processExecuteService, final long start,
                                      long ccount) {
         if ((ccount % getSummaryInterval()) == 0) {
-            System.out.println("[INFO] Total count: " + totalCount.get() + ", Count: " + ccount + ", Time: "
-                               + (System.currentTimeMillis() - start) + " ms, Average: "
-                               + ((System.currentTimeMillis() - start) / ccount) + " ms/product");
+            long current = System.currentTimeMillis();
+            long cost = current - start;
+            System.out.println("[INFO] Total count: " + totalCount.get() + ", Count: " + ccount + ", Time: " + cost
+                               + " ms, Average: " + (cost / ccount) + " ms/product");
         }
     }
 

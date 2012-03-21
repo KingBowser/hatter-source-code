@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import me.hatter.tools.taskprocess.util.env.Env;
 import me.hatter.tools.taskprocess.util.misc.FileUtils;
 
 public class ProcessStopCheck {
@@ -52,21 +53,21 @@ public class ProcessStopCheck {
     }
 
     public String readLastMessage() {
-        File f = new File(System.getProperty("user.dir"), stopName + ".message");
+        File f = new File(Env.USER_DIR, stopName + ".message");
         if (!f.exists()) {
             return "";
         }
         try {
-            return FileUtils.readFileToString(f, "UTF-8").trim();
+            return FileUtils.readFileToString(f, Env.UTF_8).trim();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
     public void writeLastMessage(String message) {
-        File f = new File(System.getProperty("user.dir"), stopName + ".message");
+        File f = new File(Env.USER_DIR, stopName + ".message");
         try {
-            FileUtils.writeStringToFile(f, message, "UTF-8");
+            FileUtils.writeStringToFile(f, message, Env.UTF_8);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

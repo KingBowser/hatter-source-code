@@ -38,7 +38,7 @@ public abstract class FileLineBasedProcess {
     protected final AtomicInteger       skipToLine       = new AtomicInteger(Env.getIntProperty("skiptoline", 0));
     protected final int                 threadCountDay   = Env.getIntProperty("threadcountday", 10);
     protected final int                 threadCountNight = Env.getIntProperty("threadcountnight", 30);
-    protected final ProcessStopFlag     processStopCheck = newProcessStopCheck();
+    protected final ProcessStopFlag     processStopFlag  = newProcessStopCheck();
     protected final AtomicInteger       totalCount       = new AtomicInteger(0);
     protected final AtomicInteger       thisCount        = new AtomicInteger(0);
 
@@ -60,8 +60,8 @@ public abstract class FileLineBasedProcess {
             System.out.println("[INFO] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
             final long start = System.currentTimeMillis();
             for (String line; ((line = dataReader.readLine()) != null);) {
-                if (processStopCheck.checkStopFlag()) {
-                    processStopCheck.writeLastMessage("" + totalCount.get());
+                if (processStopFlag.checkStopFlag()) {
+                    processStopFlag.writeLastMessage("" + totalCount.get());
                     break; // END
                 }
 
@@ -145,7 +145,7 @@ public abstract class FileLineBasedProcess {
     // run next after last processed item
     protected void dealSkipToLine() {
         if (skipToLine.get() == 0) {
-            String message = processStopCheck.readLastMessage();
+            String message = processStopFlag.readLastMessage();
             if (StringUtils.isNotEmpty(message)) {
                 int lastLine = Integer.parseInt(message);
                 skipToLine.set(lastLine);

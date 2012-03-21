@@ -70,7 +70,7 @@ public class RollFilePrintWriter implements Closeable {
         while (true) {
             File f = new File(basePath, fileName + "." + (rollIndex.getAndIncrement()));
             if (!f.exists()) {
-                System.out.println("[INFO] Find not exists file: " + f);
+                System.out.println("[INFO] File is valid: " + f);
                 return f;
             }
             System.out.println("[INFO] Skip exists file: " + f);

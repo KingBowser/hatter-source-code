@@ -8,9 +8,9 @@ public class FileLineBasedProcessTest extends FileLineBasedProcess {
         (new FileLineBasedProcessTest()).mainProcss();
     }
 
-    protected void doProcess(String line) throws Exception {
+    protected void doProcess(String line, boolean isDryRun) throws Exception {
         Thread.sleep(100);
-        dataLog.println(line);
+        dataLog.println("XX: " + line);
         System.out.println(thisCount.get() + " --> " + line);
     }
 }

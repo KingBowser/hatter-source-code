@@ -9,13 +9,13 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import me.hatter.tools.taskprocess.util.check.ProcessStopCheck;
 import me.hatter.tools.taskprocess.util.concurrent.ProcessExecuteService;
+import me.hatter.tools.taskprocess.util.env.Env;
 import me.hatter.tools.taskprocess.util.io.FileBufferedReader;
 import me.hatter.tools.taskprocess.util.io.RollFilePrintWriter;
 import me.hatter.tools.taskprocess.util.misc.StringUtils;
 
 public abstract class FileLineBasedProcess {
 
-    protected static final String       USER_DIR         = System.getProperty("user.dir");
     protected static final boolean      isDryRun;
     static {
         String dryRun = System.getProperty("dryrun");
@@ -36,7 +36,7 @@ public abstract class FileLineBasedProcess {
     protected static BufferedReader     dataReader       = null;
     static {
         try {
-            File dataf = new File(USER_DIR, dataFile);
+            File dataf = new File(Env.USER_DIR, dataFile);
             System.out.println("[INFO] data file:  " + dataf);
             dataReader = new FileBufferedReader(dataf);
         } catch (IOException e) {
@@ -45,9 +45,10 @@ public abstract class FileLineBasedProcess {
             System.exit(0);
         }
     }
-    protected final RollFilePrintWriter dataLog          = new RollFilePrintWriter(USER_DIR, dataFile + ".log",
+    protected final RollFilePrintWriter dataLog          = new RollFilePrintWriter(Env.USER_DIR, dataFile + ".log",
                                                                                    getDataFileRollCount(), true);
-    protected final RollFilePrintWriter failLog          = new RollFilePrintWriter(USER_DIR, dataFile + ".fail.log",
+    protected final RollFilePrintWriter failLog          = new RollFilePrintWriter(Env.USER_DIR,
+                                                                                   dataFile + ".fail.log",
                                                                                    getFailFileRollCount(), true);
     protected final AtomicInteger       skipToLine       = new AtomicInteger(
                                                                              Integer.parseInt(System.getProperty("skiptoline",
@@ -58,7 +59,8 @@ public abstract class FileLineBasedProcess {
     protected final AtomicInteger       totalCount       = new AtomicInteger(0);
     protected final AtomicInteger       thisCount        = new AtomicInteger(0);
 
-    abstract protected void doProcess(String line) throws Exception;
+    // do actual work
+    abstract protected void doProcess(String line, boolean isDryRun) throws Exception;
 
     protected void mainProcss() {
         try {
@@ -98,7 +100,7 @@ public abstract class FileLineBasedProcess {
                                                    + " ms, Average: " + ((System.currentTimeMillis() - start) / ccount)
                                                    + " ms/product");
                             }
-                            doProcess(theLine);
+                            doProcess(theLine, isDryRun);
                         } catch (Exception e) {
                             failLog.println(theLine);
                             throw e;
@@ -148,11 +150,11 @@ public abstract class FileLineBasedProcess {
             String message = processStopCheck.readLastMessage();
             if (StringUtils.isNotEmpty(message)) {
                 int lastLine = Integer.parseInt(message);
-                if (lastLine > 50) {
-                    skipToLine.set(lastLine - 50);
-                } else {
+//                if (lastLine > 50) {
+//                    skipToLine.set(lastLine - 50);
+//                } else {
                     skipToLine.set(lastLine);
-                }
+//                }
             }
         }
         System.out.println("[INFO] skip to line: " + skipToLine.get());

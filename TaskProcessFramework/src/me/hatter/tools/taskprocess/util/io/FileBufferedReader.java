@@ -6,9 +6,11 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import me.hatter.tools.taskprocess.util.env.Env;
+
 public class FileBufferedReader extends BufferedReader {
 
     public FileBufferedReader(File file) throws IOException {
-        super(new InputStreamReader(new FileInputStream(file), "UTF-8"));
+        super(new InputStreamReader(new FileInputStream(file), Env.UTF_8));
     }
 }

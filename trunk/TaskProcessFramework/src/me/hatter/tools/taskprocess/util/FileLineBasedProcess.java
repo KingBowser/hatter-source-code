@@ -36,9 +36,9 @@ public abstract class FileLineBasedProcess {
                                                                                    dataFile + ".fail.log",
                                                                                    getFailFileRollCount(), true);
     protected final AtomicInteger       skipToLine       = new AtomicInteger(Env.getIntProperty("skiptoline", 0));
+    protected final int                 threadCountDay   = Env.getIntProperty("threadcountday", 10);
     protected final int                 threadCountNight = Env.getIntProperty("threadcountnight", 30);
-    protected final int                 threadCountDay   = Env.getIntProperty("threadcountday", 5);
-    protected final ProcessStopFlag    processStopCheck = newProcessStopCheck();
+    protected final ProcessStopFlag     processStopCheck = newProcessStopCheck();
     protected final AtomicInteger       totalCount       = new AtomicInteger(0);
     protected final AtomicInteger       thisCount        = new AtomicInteger(0);
 

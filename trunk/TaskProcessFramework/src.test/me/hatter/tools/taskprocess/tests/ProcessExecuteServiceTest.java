@@ -3,13 +3,13 @@ package me.hatter.tools.taskprocess.tests;
 import java.util.Arrays;
 import java.util.concurrent.Callable;
 
-import me.hatter.tools.taskprocess.util.concurrent.ProcessExecuteService;
+import me.hatter.tools.taskprocess.util.concurrent.DayNightProcessExecuteService;
 
 
 public class ProcessExecuteServiceTest {
 
     public static void main(String[] a) {
-        final ProcessExecuteService pes = new ProcessExecuteService(3, 10);
+        final DayNightProcessExecuteService pes = new DayNightProcessExecuteService(3, 10);
         for (int time : Arrays.asList(10, 20, 10, 20, 30, 40, 50, 100, 20, 40, 50, 50, 100, 200)) {
             final int ftime = time;
             pes.submit(new Callable<Void>() {

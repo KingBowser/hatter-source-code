@@ -2,7 +2,7 @@ package me.hatter.tools.taskprocess.tests;
 
 import java.io.File;
 
-import me.hatter.tools.taskprocess.util.FilePrintWriter;
+import me.hatter.tools.taskprocess.util.io.FilePrintWriter;
 
 
 public class WriteTestFile {

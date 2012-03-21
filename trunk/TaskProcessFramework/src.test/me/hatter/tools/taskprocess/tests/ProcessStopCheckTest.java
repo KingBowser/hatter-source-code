@@ -1,6 +1,6 @@
 package me.hatter.tools.taskprocess.tests;
 
-import me.hatter.tools.taskprocess.util.ProcessStopCheck;
+import me.hatter.tools.taskprocess.util.check.ProcessStopCheck;
 
 public class ProcessStopCheckTest {
 

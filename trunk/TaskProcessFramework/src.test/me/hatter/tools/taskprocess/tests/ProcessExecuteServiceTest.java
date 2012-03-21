@@ -3,7 +3,7 @@ package me.hatter.tools.taskprocess.tests;
 import java.util.Arrays;
 import java.util.concurrent.Callable;
 
-import me.hatter.tools.taskprocess.util.ProcessExecuteService;
+import me.hatter.tools.taskprocess.util.concurrent.ProcessExecuteService;
 
 
 public class ProcessExecuteServiceTest {

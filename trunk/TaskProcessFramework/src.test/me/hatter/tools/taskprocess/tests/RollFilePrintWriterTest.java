@@ -1,6 +1,6 @@
 package me.hatter.tools.taskprocess.tests;
 
-import me.hatter.tools.taskprocess.util.RollFilePrintWriter;
+import me.hatter.tools.taskprocess.util.io.RollFilePrintWriter;
 
 public class RollFilePrintWriterTest {
 

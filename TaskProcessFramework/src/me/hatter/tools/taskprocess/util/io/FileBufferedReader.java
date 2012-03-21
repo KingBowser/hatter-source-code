@@ -1,4 +1,4 @@
-package me.hatter.tools.taskprocess.util;
+package me.hatter.tools.taskprocess.util.io;
 
 import java.io.BufferedReader;
 import java.io.File;

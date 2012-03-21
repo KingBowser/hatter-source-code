@@ -1,4 +1,4 @@
-package me.hatter.tools.taskprocess.util;
+package me.hatter.tools.taskprocess.util.io;
 
 import java.io.BufferedOutputStream;
 import java.io.File;

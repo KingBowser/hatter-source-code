@@ -1,0 +1,56 @@
+<project name="taskprocessframework" default="release" basedir=".">
+
+    <!-- Output Directories -->
+    <property name="dist.dir" value="dist"/>
+    <property name="classes.dir" value="${dist.dir}/classes"/>
+    <property name="jar.name" value="taskprocessframework.jar"/>
+    <property name="jar.release.name" value="taskprocessframework-1.0"/>
+
+    <!-- Source Directories -->
+    <property name="src.dir" value="src"/>
+    <property name="lib.dir" value="lib"/>
+
+    <property name="jar.manifest" value="${dist.dir}/jar.manifest"/>
+
+    <!-- Class Path -->
+    <path id="classpath">
+        <!-- <pathelement location="${lib.dir}/log4j-1.2.15.jar"/> -->
+    </path>
+    
+    <!-- Targets -->
+    <target name="prepare">
+        <mkdir dir="${classes.dir}"/>
+    </target>
+
+    <target name="compile" depends="prepare">
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" source="1.5" target="1.5">
+            <classpath>
+                <path refid="classpath"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="dist" depends="compile">
+        <manifest file="${jar.manifest}">
+            <!-- <attribute name="Main-Class" value="${jar.main}"/> -->
+        </manifest>
+        <jar destfile="${dist.dir}/${jar.name}" manifest="${jar.manifest}">
+            <fileset dir="${classes.dir}" includes="**/*.class" />
+            <fileset dir="${src.dir}" includes="**/*.java" />
+        </jar>
+        <delete dir="${classes.dir}"/>
+        <delete file="${jar.manifest}"/>
+    </target>
+
+    <target name="release" depends="dist">
+    	<tstamp>
+            <format property="date.ymd" pattern="yyyyMMdd"/>
+        </tstamp>
+    	<copy file="${dist.dir}/${jar.name}" tofile="${jar.release.name}_${date.ymd}.jar"/>
+        <delete dir="${dist.dir}"/>
+    </target>
+
+    <target name="clean">
+        <delete dir="${dist.dir}"/>
+    </target>
+</project>

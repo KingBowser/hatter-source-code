@@ -8,7 +8,7 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import me.hatter.tools.taskprocess.util.check.ProcessStopCheck;
-import me.hatter.tools.taskprocess.util.concurrent.ProcessExecuteService;
+import me.hatter.tools.taskprocess.util.concurrent.DayNightProcessExecuteService;
 import me.hatter.tools.taskprocess.util.env.Env;
 import me.hatter.tools.taskprocess.util.io.FileBufferedReader;
 import me.hatter.tools.taskprocess.util.io.RollFilePrintWriter;
@@ -70,8 +70,9 @@ public abstract class FileLineBasedProcess {
             dealSkipToLine();
             skipingToLine();
 
-            final ProcessExecuteService processExecuteService = new ProcessExecuteService(threadCountDay,
-                                                                                          threadCountNight);
+            final DayNightProcessExecuteService processExecuteService = new DayNightProcessExecuteService(
+                                                                                                          threadCountDay,
+                                                                                                          threadCountNight);
             System.out.println("[INFO] Start processing: " + new Date());
             System.out.println("[INFO] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
             final long start = System.currentTimeMillis();
@@ -87,19 +88,11 @@ public abstract class FileLineBasedProcess {
                 }
 
                 final String theLine = line;
-                processExecuteService.submit(new Callable<Void>() {
+                Callable<Void> task = new Callable<Void>() {
 
                     public Void call() throws Exception {
                         try {
-                            long ccount = thisCount.incrementAndGet();
-                            dataLog.println("[INFO] CT:" + ccount + ", CO:" + (System.currentTimeMillis() - start)
-                                            + " ms" + ", CC:" + processExecuteService.getRunningCount());
-                            if ((ccount % getSummaryInterval()) == 0) {
-                                System.out.println("[INFO] Total count: " + totalCount.get() + ", Count: " + ccount
-                                                   + ", Time: " + (System.currentTimeMillis() - start)
-                                                   + " ms, Average: " + ((System.currentTimeMillis() - start) / ccount)
-                                                   + " ms/product");
-                            }
+                            printDataLog(processExecuteService, start, thisCount.incrementAndGet());
                             doProcess(theLine, isDryRun);
                         } catch (Exception e) {
                             failLog.println(theLine);
@@ -107,7 +100,8 @@ public abstract class FileLineBasedProcess {
                         }
                         return null;
                     }
-                });
+                };
+                processExecuteService.submit(getProtectedCallable(task));
             }
 
             System.out.println("[INFO] Waiting all process task to finish, ramain task count: "
@@ -130,6 +124,26 @@ public abstract class FileLineBasedProcess {
         System.exit(0);
     }
 
+    protected Callable<Void> getProtectedCallable(Callable<Void> task) {
+        return new ProcessDelayProtection<Void>(task);
+    }
+
+    protected void printDataLog(final DayNightProcessExecuteService processExecuteService, final long start, long ccount) {
+        dataLog.println("[INFO] CT:" + ccount + ", CO:" + (System.currentTimeMillis() - start) + " ms" + ", CC:"
+                        + processExecuteService.getRunningCount());
+        printSummaryDataLog(processExecuteService, start, ccount);
+    }
+
+    private void printSummaryDataLog(final DayNightProcessExecuteService processExecuteService, final long start,
+                                     long ccount) {
+        if ((ccount % getSummaryInterval()) == 0) {
+            System.out.println("[INFO] Total count: " + totalCount.get() + ", Count: " + ccount + ", Time: "
+                               + (System.currentTimeMillis() - start) + " ms, Average: "
+                               + ((System.currentTimeMillis() - start) / ccount) + " ms/product");
+        }
+    }
+
+    // skip to the assigned item
     protected void skipingToLine() throws IOException {
         if (skipToLine.get() > 0) {
             System.out.println("[INFO] skiping line(s): " + skipToLine);
@@ -145,16 +159,13 @@ public abstract class FileLineBasedProcess {
         }
     }
 
+    // run next after last processed item
     protected void dealSkipToLine() {
         if (skipToLine.get() == 0) {
             String message = processStopCheck.readLastMessage();
             if (StringUtils.isNotEmpty(message)) {
                 int lastLine = Integer.parseInt(message);
-//                if (lastLine > 50) {
-//                    skipToLine.set(lastLine - 50);
-//                } else {
-                    skipToLine.set(lastLine);
-//                }
+                skipToLine.set(lastLine);
             }
         }
         System.out.println("[INFO] skip to line: " + skipToLine.get());

@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.concurrent.Callable;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import me.hatter.tools.taskprocess.util.check.ProcessStopCheck;
+import me.hatter.tools.taskprocess.util.check.ProcessStopFlag;
 import me.hatter.tools.taskprocess.util.concurrent.DayNightProcessExecuteService;
 import me.hatter.tools.taskprocess.util.env.Env;
 import me.hatter.tools.taskprocess.util.io.FileBufferedReader;
@@ -17,7 +17,7 @@ import me.hatter.tools.taskprocess.util.misc.StringUtils;
 
 public abstract class FileLineBasedProcess {
 
-    protected static final boolean      isDryRun         = Env.getPropertyAsBooleanOrDie("dryrun");
+    protected static final boolean      isDryRun         = Env.getBoolPropertyOrDie("dryrun");
     protected static final String       dataFile         = Env.getPropertyOrDie("datafile");
     protected static BufferedReader     dataReader       = null;
     static {
@@ -38,7 +38,7 @@ public abstract class FileLineBasedProcess {
     protected final AtomicInteger       skipToLine       = new AtomicInteger(Env.getIntProperty("skiptoline", 0));
     protected final int                 threadCountNight = Env.getIntProperty("threadcountnight", 30);
     protected final int                 threadCountDay   = Env.getIntProperty("threadcountday", 5);
-    protected final ProcessStopCheck    processStopCheck = newProcessStopCheck();
+    protected final ProcessStopFlag    processStopCheck = newProcessStopCheck();
     protected final AtomicInteger       totalCount       = new AtomicInteger(0);
     protected final AtomicInteger       thisCount        = new AtomicInteger(0);
 
@@ -87,7 +87,7 @@ public abstract class FileLineBasedProcess {
                 processExecuteService.submit(getProtectedCallable(task));
             }
 
-            System.out.println("[INFO] Waiting all process task to finish, ramain task count: "
+            System.out.println("[INFO] Waiting all processing task(s) to finish, ramain task count: "
                                + processExecuteService.getRunningCount() + "/" + processExecuteService.getTotalCount());
             processExecuteService.waitUntilFinish();
             System.out.println("[INFO] Closing file handler(s).");
@@ -167,7 +167,7 @@ public abstract class FileLineBasedProcess {
         return 10000000;
     }
 
-    protected ProcessStopCheck newProcessStopCheck() {
-        return new ProcessStopCheck();
+    protected ProcessStopFlag newProcessStopCheck() {
+        return new ProcessStopFlag();
     }
 }

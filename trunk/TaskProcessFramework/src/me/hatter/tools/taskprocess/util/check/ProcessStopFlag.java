@@ -7,22 +7,22 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import me.hatter.tools.taskprocess.util.env.Env;
 import me.hatter.tools.taskprocess.util.misc.FileUtils;
 
-public class ProcessStopCheck {
+public class ProcessStopFlag {
 
     private String        stopName;
     private File          flagFile;
     private long          checkMills;
     private AtomicBoolean stopFlag = new AtomicBoolean(false);
 
-    public ProcessStopCheck() {
+    public ProcessStopFlag() {
         this("stop.cmd", 3000);
     }
 
-    public ProcessStopCheck(long checkMills) {
+    public ProcessStopFlag(long checkMills) {
         this("stop.cmd", checkMills);
     }
 
-    public ProcessStopCheck(String stopName, long checkMills) {
+    public ProcessStopFlag(String stopName, long checkMills) {
         System.out.println("[INFO] Stop flag: " + stopName);
         this.stopName = stopName;
         this.checkMills = checkMills;
@@ -38,7 +38,7 @@ public class ProcessStopCheck {
             public void run() {
                 while (true) {
                     try {
-                        Thread.sleep(ProcessStopCheck.this.checkMills);
+                        Thread.sleep(ProcessStopFlag.this.checkMills);
                         if (flagFile.exists()) {
                             stopFlag.set(true);
                             System.out.println("[INFO] Stop flag changed to ON!");

@@ -2,21 +2,21 @@ package me.hatter.tools.taskprocess.util;
 
 import java.util.concurrent.Callable;
 
+import me.hatter.tools.taskprocess.util.env.Env;
 import me.hatter.tools.taskprocess.util.misc.ExceptionUtils;
 
 public class ProcessDelayProtection<T> implements Callable<T> {
 
-    private static boolean    protectionOn = Boolean.valueOf(System.getProperty("protectionon", "true"));
-    static {
-        System.out.println("[INFO] Protection mode: " + (protectionOn ? "ON" : "OFF"));
-    }
-    private static final long MAX_SLEEP    = 10000;
+    private static boolean    protectionOn = Env.getBoolProperty("protectionon", true);
+    private static final long MAX_SLEEP    = Env.getLongProperty("maxsleep", 10000);
+    private static final int  DEF_MIN_COST = Env.getIntProperty("defmincost", 100);
+    private static final int  DEF_MAX_COST = Env.getIntProperty("defmaxcost", 200);
     private int               minCost;
     private int               maxCost;
     private Callable<T>       callable;
 
     public ProcessDelayProtection(Callable<T> callable) {
-        this(callable, 100, 200);
+        this(callable, DEF_MIN_COST, DEF_MAX_COST);
     }
 
     public ProcessDelayProtection(Callable<T> callable, int minCost, int maxCost) {

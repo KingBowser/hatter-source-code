@@ -9,13 +9,14 @@ import me.hatter.tools.taskprocess.util.misc.FileUtils;
 
 public class ProcessStopFlag {
 
-    private String        stopName;
-    private File          flagFile;
-    private long          checkMills;
-    private AtomicBoolean stopFlag = new AtomicBoolean(false);
+    private static final long DEF_CHECK_MILLS = Env.getLongProperty("defcheckmills", 3000);
+    private String            stopName;
+    private File              flagFile;
+    private long              checkMills;
+    private AtomicBoolean     stopFlag        = new AtomicBoolean(false);
 
     public ProcessStopFlag() {
-        this("stop.cmd", 3000);
+        this("stop.cmd", DEF_CHECK_MILLS);
     }
 
     public ProcessStopFlag(long checkMills) {

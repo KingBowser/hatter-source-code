@@ -27,7 +27,7 @@ public class Env {
 
     public static String getProperty(String property, String defaultValue) {
         String value = System.getProperty(property, defaultValue);
-        System.out.println("[INFO] Property: " + property + " is set to: " + value);
+        System.out.println("[INFO] Property '" + property + "' is set to: " + value);
         return value;
     }
 
@@ -39,10 +39,10 @@ public class Env {
     public static String getPropertyOrDie(String property) {
         String value = System.getProperty(property);
         if (value == null) {
-            System.out.println("[ERROR] Property: " + property + " is null.");
+            System.out.println("[ERROR] Property '" + property + "' is null.");
             System.exit(0);
         }
-        System.out.println("[INFO] Property: " + property + " is set to: " + value);
+        System.out.println("[INFO] Property '" + property + "' is set to: " + value);
         return value;
     }
 

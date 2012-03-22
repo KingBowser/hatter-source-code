@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
+import me.hatter.tools.taskprocess.util.env.Env;
 import me.hatter.tools.taskprocess.util.misc.IOUtils;
 
 public class RollFilePrintWriter implements Closeable {
@@ -18,11 +19,16 @@ public class RollFilePrintWriter implements Closeable {
     private AtomicInteger   rollIndex    = new AtomicInteger(0);
     private AtomicLong      currentCount = new AtomicLong(0);
 
+    public RollFilePrintWriter(String fileName, long rollCount) {
+        this(Env.USER_DIR, fileName, rollCount);
+    }
+
+    public RollFilePrintWriter(String fileName, long rollCount, boolean append) {
+        this(Env.USER_DIR, fileName, rollCount, append);
+    }
+
     public RollFilePrintWriter(String basePath, String fileName, long rollCount) {
-        this.basePath = basePath;
-        this.fileName = fileName;
-        this.rollCount = rollCount;
-        updateWriter();
+        this(basePath, fileName, rollCount, true);
     }
 
     public RollFilePrintWriter(String basePath, String fileName, long rollCount, boolean append) {

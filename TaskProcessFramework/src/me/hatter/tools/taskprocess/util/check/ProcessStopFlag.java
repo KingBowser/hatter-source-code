@@ -27,7 +27,7 @@ public class ProcessStopFlag {
         System.out.println("[INFO] Stop flag: " + stopName);
         this.stopName = stopName;
         this.checkMills = checkMills;
-        this.flagFile = new File(System.getProperty("user.dir"), stopName);
+        this.flagFile = new File(Env.USER_DIR, stopName);
 
         if (flagFile.exists()) {
             System.out.println("[ERROR] Stop flag is ON!!!");

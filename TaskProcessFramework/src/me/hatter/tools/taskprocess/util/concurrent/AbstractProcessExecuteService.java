@@ -8,6 +8,8 @@ import java.util.concurrent.Future;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import me.hatter.tools.taskprocess.util.concurrent.exception.DefaultExceptionHandler;
+import me.hatter.tools.taskprocess.util.concurrent.exception.ExceptionHandler;
 import me.hatter.tools.taskprocess.util.misc.ExceptionUtils;
 
 public abstract class AbstractProcessExecuteService {
@@ -41,10 +43,23 @@ public abstract class AbstractProcessExecuteService {
                 runningCount.incrementAndGet();
                 try {
                     return task.call();
-                } catch (Exception e) {
-                    System.out.println("[ERROR] Unknow exception occured thread:" + Thread.currentThread().getName()
-                                       + " #" + Thread.currentThread().getId() + ", exception: "
-                                       + ExceptionUtils.getStackTrace(e));
+                } catch (Throwable t) {
+                    if (t instanceof Exception) {
+                        try {
+                            getExceptionHandle().handle((Exception) t);
+                        } catch (Exception e) {
+                            // GOD, something serious occured!
+                            System.out.println("[ERROR] Unknow Exception in handle exception, thread:"
+                                               + Thread.currentThread().getName() + " #"
+                                               + Thread.currentThread().getId() + ", exception: "
+                                               + ExceptionUtils.getStackTrace(t));
+                        }
+                    } else {
+                        // GOD, something serious occured!
+                        System.out.println("[ERROR] GOD, Unknow ERROR occured thread:"
+                                           + Thread.currentThread().getName() + " #" + Thread.currentThread().getId()
+                                           + ", exception: " + ExceptionUtils.getStackTrace(t));
+                    }
                     return null;
                 } finally {
                     runningCount.decrementAndGet();
@@ -55,9 +70,17 @@ public abstract class AbstractProcessExecuteService {
         });
     }
 
-    public void waitUntilFinish() throws InterruptedException {
+    public final void waitUntilFinish() throws InterruptedException {
         semaphore.acquire(maxQueueCount); // all task finished
         semaphore.release(maxQueueCount);
+    }
+
+    public final int getRunningCount() {
+        return runningCount.get();
+    }
+
+    public final int getTotalCount() {
+        return totalCount.get();
     }
 
     public void shutDown() {
@@ -76,11 +99,7 @@ public abstract class AbstractProcessExecuteService {
         return list;
     }
 
-    public int getRunningCount() {
-        return runningCount.get();
-    }
-
-    public int getTotalCount() {
-        return totalCount.get();
+    protected ExceptionHandler getExceptionHandle() {
+        return new DefaultExceptionHandler();
     }
 }

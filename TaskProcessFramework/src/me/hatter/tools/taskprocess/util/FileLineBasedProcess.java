@@ -30,10 +30,9 @@ public abstract class FileLineBasedProcess {
             System.exit(0);
         }
     }
-    protected final RollFilePrintWriter dataLog          = new RollFilePrintWriter(Env.USER_DIR, dataFile + ".log",
+    protected final RollFilePrintWriter dataLog          = new RollFilePrintWriter(dataFile + ".log",
                                                                                    getDataFileRollCount(), true);
-    protected final RollFilePrintWriter failLog          = new RollFilePrintWriter(Env.USER_DIR,
-                                                                                   dataFile + ".fail.log",
+    protected final RollFilePrintWriter failLog          = new RollFilePrintWriter(dataFile + ".fail.log",
                                                                                    getFailFileRollCount(), true);
     protected final AtomicInteger       skipToLine       = new AtomicInteger(Env.getIntProperty("skiptoline", 0));
     protected final int                 threadCountDay   = Env.getIntProperty("threadcountday", 10);

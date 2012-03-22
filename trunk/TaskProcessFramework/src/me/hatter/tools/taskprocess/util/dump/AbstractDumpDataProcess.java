@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,7 +16,7 @@ import me.hatter.tools.taskprocess.util.io.RollFilePrintWriter;
 import me.hatter.tools.taskprocess.util.misc.ExceptionUtils;
 import me.hatter.tools.taskprocess.util.misc.StringUtils;
 
-public abstract class DumpDataProcess {
+public abstract class AbstractDumpDataProcess {
 
     protected static final String DRIVER_ORACLE = "oracle.jdbc.OracleDriver";
     protected static final String DRIVER_MYSQL  = "com.mysql.jdbc.Driver";
@@ -53,7 +54,7 @@ public abstract class DumpDataProcess {
         }
     }
 
-    protected List<String> getRow(ResultSet resultSet) {
+    protected List<String> getRow(ResultSet resultSet) throws SQLException {
         List<String> row = new ArrayList<String>();
         for (String field : getFields()) {
             row.add(getFieldValue(resultSet, field));
@@ -98,5 +99,5 @@ public abstract class DumpDataProcess {
 
     abstract protected String getPassword();
 
-    abstract protected String getFieldValue(ResultSet resultSet, String field);
+    abstract protected String getFieldValue(ResultSet resultSet, String field) throws SQLException;
 }

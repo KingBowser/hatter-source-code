@@ -1,3 +1,4 @@
+# Hatter Jiang's linux commands.
 
 # maven
 alias mci='mvn clean install -Dmaven.test.skip'

@@ -48,12 +48,15 @@ public class ProcessStopFlag {
                     try {
                         Thread.sleep(ProcessStopFlag.this.checkMills);
                         if (flagFile.exists()) {
-                            stopFlag.set(true);
+                            synchronized (ProcessStopFlag.this) {
+                                stopFlag.set(true);
+                                lastMessage.set(null);
+                            }
                             System.out.println("[INFO] Stop flag changed to ON!");
                             break;
                         }
                     } catch (Exception e) {
-                        System.out.println("[ERROR] Error in check stop flag: " + ExceptionUtils.getStackTrace(e));
+                        System.out.println("[WARN] Error in check stop flag: " + ExceptionUtils.getStackTrace(e));
                     }
                 }
             }
@@ -65,23 +68,25 @@ public class ProcessStopFlag {
                 while (true) {
                     try {
                         Thread.sleep(ProcessStopFlag.this.writeMills);
-                        if (stopFlag.get()) {
-                            System.out.println("[INFO] Stop flag is ON, do not write message any more.");
-                            break;
-                        }
-                        String beforeMsg = beforeMessage.get();
-                        String lastMsg = lastMessage.get();
-                        if (lastMsg != null) {
-                            if ((beforeMsg == null) || (!lastMsg.equals(beforeMsg))) {
-                                // Write last message
-                                System.out.println("[INFO] Synchronized last message to file; before: " + beforeMsg
-                                                   + ", last: " + lastMsg);
-                                writeLastMessage(lastMsg);
-                                lastMessage.set(lastMsg);
+                        synchronized (ProcessStopFlag.this) {
+                            if (stopFlag.get()) {
+                                System.out.println("[INFO] Stop flag is ON, do not write message any more.");
+                                break;
+                            }
+                            String beforeMsg = beforeMessage.get();
+                            String lastMsg = lastMessage.get();
+                            if (lastMsg != null) {
+                                if ((beforeMsg == null) || (!lastMsg.equals(beforeMsg))) {
+                                    // Write last message
+                                    System.out.println("[INFO] Synchronized last message to file; before: " + beforeMsg
+                                                       + ", last: " + lastMsg);
+                                    writeLastMessage(lastMsg);
+                                    lastMessage.set(lastMsg);
+                                }
                             }
                         }
                     } catch (Exception e) {
-                        System.out.println("[ERROR] Error in write message: " + ExceptionUtils.getStackTrace(e));
+                        System.out.println("[WARN] Error in write message: " + ExceptionUtils.getStackTrace(e));
                     }
                 }
             }

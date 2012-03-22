@@ -1,4 +1,4 @@
-<project name="j-profiler" default="compile" basedir=".">
+<project name="aescrypt" default="compile" basedir=".">
 
 	<!-- Output Directories -->
 	<property name="dist.dir" value="dist" />

@@ -69,6 +69,7 @@ public abstract class FileLineBasedProcess {
                     continue; // skip empty line(s)
                 }
 
+                processStopFlag.sendLastMessage(line);
                 final String theLine = line;
                 Callable<Void> task = new Callable<Void>() {
 

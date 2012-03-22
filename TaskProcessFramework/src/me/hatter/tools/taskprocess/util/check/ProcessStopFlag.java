@@ -3,20 +3,26 @@ package me.hatter.tools.taskprocess.util.check;
 import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicReference;
 
 import me.hatter.tools.taskprocess.util.env.Env;
+import me.hatter.tools.taskprocess.util.misc.ExceptionUtils;
 import me.hatter.tools.taskprocess.util.misc.FileUtils;
 
 public class ProcessStopFlag {
 
-    private static final long DEF_CHECK_MILLS = Env.getLongProperty("defcheckmills", 3000);
-    private String            stopName;
-    private File              flagFile;
-    private long              checkMills;
-    private AtomicBoolean     stopFlag        = new AtomicBoolean(false);
+    private static final long       DEF_CHECK_MILLS = Env.getLongProperty("defcheckmills", 3000);
+    private static final long       DEF_WRITE_MILLS = Env.getLongProperty("defcheckmills", 10000);
+    private String                  stopName;
+    private File                    flagFile;
+    private long                    checkMills;
+    private long                    writeMills;
+    private AtomicReference<String> beforeMessage   = new AtomicReference<String>(null);
+    private AtomicReference<String> lastMessage     = new AtomicReference<String>(null);
+    private AtomicBoolean           stopFlag        = new AtomicBoolean(false);
 
     public ProcessStopFlag() {
-        this("stop.cmd", DEF_CHECK_MILLS);
+        this(DEF_CHECK_MILLS);
     }
 
     public ProcessStopFlag(long checkMills) {
@@ -27,6 +33,7 @@ public class ProcessStopFlag {
         System.out.println("[INFO] Stop flag: " + stopName);
         this.stopName = stopName;
         this.checkMills = checkMills;
+        this.writeMills = DEF_WRITE_MILLS;
         this.flagFile = new File(Env.USER_DIR, stopName);
 
         if (flagFile.exists()) {
@@ -46,14 +53,42 @@ public class ProcessStopFlag {
                             break;
                         }
                     } catch (Exception e) {
-                        e.printStackTrace();
+                        System.out.println("[ERROR] Error in check stop flag: " + ExceptionUtils.getStackTrace(e));
                     }
                 }
             }
         }, "StopFlagCheckThread").start();
+
+        new Thread(new Runnable() {
+
+            public void run() {
+                while (true) {
+                    try {
+                        Thread.sleep(ProcessStopFlag.this.writeMills);
+                        if (stopFlag.get()) {
+                            System.out.println("[INFO] Stop flag is ON, do not write message any more.");
+                            break;
+                        }
+                        String beforeMsg = beforeMessage.get();
+                        String lastMsg = lastMessage.get();
+                        if (lastMsg != null) {
+                            if ((beforeMsg == null) || (!lastMsg.equals(beforeMsg))) {
+                                // Write last message
+                                System.out.println("[INFO] Synchronized last message to file; before: " + beforeMsg
+                                                   + ", last: " + lastMsg);
+                                writeLastMessage(lastMsg);
+                                lastMessage.set(lastMsg);
+                            }
+                        }
+                    } catch (Exception e) {
+                        System.out.println("[ERROR] Error in write message: " + ExceptionUtils.getStackTrace(e));
+                    }
+                }
+            }
+        }, "StopFlagWriteMessageThread").start();
     }
 
-    public String readLastMessage() {
+    synchronized public String readLastMessage() {
         File f = new File(Env.USER_DIR, stopName + ".message");
         if (!f.exists()) {
             return "";
@@ -65,13 +100,17 @@ public class ProcessStopFlag {
         }
     }
 
-    public void writeLastMessage(String message) {
+    synchronized public void writeLastMessage(String message) {
         File f = new File(Env.USER_DIR, stopName + ".message");
         try {
             FileUtils.writeStringToFile(f, message, Env.UTF_8);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void sendLastMessage(String message) {
+        lastMessage.set(message);
     }
 
     public boolean checkStopFlag() {

@@ -4,7 +4,8 @@
     <property name="dist.dir" value="dist"/>
     <property name="classes.dir" value="${dist.dir}/classes"/>
     <property name="jar.name" value="taskprocessframework.jar"/>
-    <property name="jar.release.name" value="taskprocessframework-1.0"/>
+    <property name="jar.release.version" value="1.0"/>
+    <property name="jar.release.name" value="taskprocessframework-${jar.release.version}"/>
 
     <!-- Source Directories -->
     <property name="src.dir" value="src"/>
@@ -33,6 +34,9 @@
     <target name="dist" depends="compile">
         <manifest file="${jar.manifest}">
             <!-- <attribute name="Main-Class" value="${jar.main}"/> -->
+        	<attribute name="X-Author" value="Hatter Jiang"/>
+        	<attribute name="X-Email" value="jht5945@gmail.com"/>
+        	<attribute name="X-Version" value="${jar.release.version}"/>
         </manifest>
         <jar destfile="${dist.dir}/${jar.name}" manifest="${jar.manifest}">
             <fileset dir="${classes.dir}" includes="**/*.class" />

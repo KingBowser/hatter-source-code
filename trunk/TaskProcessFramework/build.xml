@@ -38,7 +38,7 @@
     <target name="dist" depends="compile">
         <manifest file="${jar.manifest}">
             <!-- <attribute name="Main-Class" value="${jar.main}"/> -->
-        	<attribute name="Implementation-Title" value="Task Process Frameword"/>
+        	<attribute name="Implementation-Title" value="Task Process Framework"/>
         	<attribute name="Implementation-Version" value="${jar.release.version}_${date.ymd}"/>
         	<attribute name="Implementation-Vendor" value="Hatter Jiang"/>
         	<attribute name="Implementation-Email" value="jht5945@gmail.com"/>

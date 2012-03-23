@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class QueueSemaphore {
 
     private AtomicInteger          permits = new AtomicInteger(0);
-    private BlockingQueue<Boolean> queue   = new LinkedBlockingQueue<Boolean>();
+    private BlockingQueue<Boolean> queue;
 
     public QueueSemaphore(int permits) {
         this(new LinkedBlockingQueue<Boolean>(), permits);
@@ -29,21 +29,6 @@ public class QueueSemaphore {
         return queue.size();
     }
 
-    synchronized public void setPermits(int permits) {
-        if (permits <= 0) {
-            throw new IllegalArgumentException("Semaphore count MUST greater than 0.");
-        }
-        // calculate the left lot, and add them
-        int oldPermits = this.permits.get();
-        int shouldAddPermits = permits - oldPermits;
-        if (shouldAddPermits > 0) {
-            for (int i = 0; i < shouldAddPermits; i++) {
-                queue.add(Boolean.TRUE);
-            }
-        }
-        this.permits.set(permits);
-    }
-
     public void acquire() throws InterruptedException {
         queue.take(); // take from queue, wait until the resource is available
     }
@@ -60,7 +45,7 @@ public class QueueSemaphore {
 
     public void release() {
         // if reduce the queue permits, then do not put it back to the queue
-        if (permits.get() > queue.size()) {
+        if (this.permits.get() > queue.size()) {
             queue.add(Boolean.TRUE);
         }
     }
@@ -73,5 +58,20 @@ public class QueueSemaphore {
 
     public String toString() {
         return "QueueSemaphore: " + getLeftPermits() + "/" + getPermits();
+    }
+
+    private void setPermits(int permits) {
+        if (permits <= 0) {
+            throw new IllegalArgumentException("Semaphore count MUST greater than 0.");
+        }
+        // calculate the left lot, and add them
+        int oldPermits = this.permits.get();
+        int shouldAddPermits = permits - oldPermits;
+        if (shouldAddPermits > 0) {
+            for (int i = 0; i < shouldAddPermits; i++) {
+                queue.add(Boolean.TRUE);
+            }
+        }
+        this.permits.set(permits);
     }
 }

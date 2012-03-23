@@ -49,7 +49,7 @@ public class OriDynamicSemaphore {
 
     public void acquireAll() throws InterruptedException {
         synchronized (lock) {
-            lock.notify();
+            acquire(getPermits());
         }
     }
 

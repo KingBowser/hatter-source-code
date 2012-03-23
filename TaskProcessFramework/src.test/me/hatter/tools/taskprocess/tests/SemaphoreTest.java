@@ -5,13 +5,13 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import me.hatter.tools.taskprocess.util.concurrent.OriDynamicSemaphore;
+import me.hatter.tools.taskprocess.util.concurrent.DynamicSemaphore;
 
 public class SemaphoreTest {
 
     public static void main(String[] a) {
 
-        final OriDynamicSemaphore semaphore = new OriDynamicSemaphore(20);
+        final DynamicSemaphore semaphore = new DynamicSemaphore(20);
         ExecutorService es = Executors.newFixedThreadPool(10);
 
         final AtomicInteger count = new AtomicInteger(0);
@@ -26,9 +26,9 @@ public class SemaphoreTest {
             }
 
             final int x = i;
-             if ((i + 1) % 31 == 0) {
-             semaphore.setPermits(3);
-             }
+            if ((i + 1) % 31 == 0) {
+                semaphore.setPermits(3);
+            }
             es.submit(new Callable<Void>() {
 
                 public Void call() throws Exception {

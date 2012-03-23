@@ -74,7 +74,9 @@ public class DynamicSemaphore {
         permitsLock.lock();
         try {
             this.leftPermits.addAndGet(permits);
-            permitsCondition.signal();
+            if (this.leftPermits.get() > 0) {
+                permitsCondition.signal();
+            }
         } finally {
             permitsLock.unlock();
         }

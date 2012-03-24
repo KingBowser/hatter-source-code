@@ -7,7 +7,7 @@ import java.util.concurrent.locks.ReentrantLock;
 public class DynamicSemaphore {
 
     private AtomicInteger permits          = new AtomicInteger(0);
-    private AtomicInteger leftPermits      = new AtomicInteger(0);
+    private AtomicInteger usedPermits      = new AtomicInteger(0);
 
     private ReentrantLock permitsLock      = new ReentrantLock();
     private Condition     permitsCondition = permitsLock.newCondition();
@@ -21,18 +21,11 @@ public class DynamicSemaphore {
     }
 
     public int getLeftPermits() {
-        return leftPermits.get();
+        return (permits.get() - usedPermits.get());
     }
 
     public void setPermits(int permits) {
-        permitsLock.lock();
-        try {
-            int oldPermits = this.permits.get();
-            this.permits.set(permits);
-            this.leftPermits.addAndGet(permits - oldPermits);
-        } finally {
-            permitsLock.unlock();
-        }
+        this.permits.set(permits);
     }
 
     public void acquire() throws InterruptedException {
@@ -40,29 +33,27 @@ public class DynamicSemaphore {
     }
 
     public void acquire(int permits) throws InterruptedException {
-        permitsLock.lock();
-        try {
-            int leftPermits;
-            do {
-                leftPermits = this.leftPermits.get();
-                if ((leftPermits - permits) < 0) {
+        int usedPermits;
+        do {
+            usedPermits = this.usedPermits.get();
+            while ((usedPermits + permits) > this.permits.get()) {
+                permitsLock.lock();
+                try {
                     permitsCondition.await();
+                } finally {
+                    permitsLock.unlock();
                 }
-            } while (!this.leftPermits.compareAndSet(leftPermits, (leftPermits - permits)));
-            if (this.leftPermits.get() > 0) {
-                permitsCondition.signal();
+                usedPermits = this.usedPermits.get();
             }
-        } finally {
-            permitsLock.unlock();
-        }
-    }
+        } while (!this.usedPermits.compareAndSet(usedPermits, (usedPermits + permits)));
 
-    public void acquireAll() throws InterruptedException {
-        permitsLock.lock();
-        try {
-            acquire(getPermits());
-        } finally {
-            permitsLock.unlock();
+        if (this.usedPermits.get() < this.permits.get()) {
+            permitsLock.lock();
+            try {
+                permitsCondition.signal();
+            } finally {
+                permitsLock.unlock();
+            }
         }
     }
 
@@ -71,14 +62,14 @@ public class DynamicSemaphore {
     }
 
     public void release(int permits) {
-        permitsLock.lock();
-        try {
-            this.leftPermits.addAndGet(permits);
-            if (this.leftPermits.get() > 0) {
+        this.usedPermits.addAndGet(-permits);
+        if (this.usedPermits.get() < this.permits.get()) {
+            permitsLock.lock();
+            try {
                 permitsCondition.signal();
+            } finally {
+                permitsLock.unlock();
             }
-        } finally {
-            permitsLock.unlock();
         }
     }
 

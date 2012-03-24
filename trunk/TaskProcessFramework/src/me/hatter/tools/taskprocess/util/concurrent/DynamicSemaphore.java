@@ -25,7 +25,11 @@ public class DynamicSemaphore {
     }
 
     public void setPermits(int permits) {
+        if (permits <= 0) {
+            throw new IllegalArgumentException("Permits MUST greater than 0.");
+        }
         this.permits.set(permits);
+        trySignalCondition();
     }
 
     public void acquire() throws InterruptedException {
@@ -47,14 +51,7 @@ public class DynamicSemaphore {
             }
         } while (!this.usedPermits.compareAndSet(usedPermits, (usedPermits + permits)));
 
-        if (this.usedPermits.get() < this.permits.get()) {
-            permitsLock.lock();
-            try {
-                permitsCondition.signal();
-            } finally {
-                permitsLock.unlock();
-            }
-        }
+        trySignalCondition();
     }
 
     public void release() {
@@ -63,6 +60,10 @@ public class DynamicSemaphore {
 
     public void release(int permits) {
         this.usedPermits.addAndGet(-permits);
+        trySignalCondition();
+    }
+
+    private void trySignalCondition() {
         if (this.usedPermits.get() < this.permits.get()) {
             permitsLock.lock();
             try {

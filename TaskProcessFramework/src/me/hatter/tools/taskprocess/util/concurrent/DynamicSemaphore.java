@@ -32,6 +32,21 @@ public class DynamicSemaphore {
         trySignalCondition();
     }
 
+    public boolean tryAcquire() {
+        return tryAcquire(1);
+    }
+
+    public boolean tryAcquire(int permits) {
+        int usedPermits;
+        do {
+            usedPermits = this.usedPermits.get();
+            if ((usedPermits + permits) > this.permits.get()) {
+                return false;
+            }
+        } while (!this.usedPermits.compareAndSet(usedPermits, (usedPermits + permits)));
+        return true;
+    }
+
     public void acquire() throws InterruptedException {
         acquire(1);
     }

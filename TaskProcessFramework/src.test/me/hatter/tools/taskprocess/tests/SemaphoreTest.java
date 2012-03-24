@@ -47,7 +47,7 @@ public class SemaphoreTest {
         }
         System.out.println("wait all!!!!!!!! " + semaphore);
         try {
-            semaphore.acquireAll();
+            semaphore.acquire(semaphore.getPermits());
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

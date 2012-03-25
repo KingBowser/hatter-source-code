@@ -9,8 +9,8 @@ public class ProcessDelayProtection<T> implements Callable<T> {
 
     private static boolean    protectionOn = Env.getBoolProperty("protectionon", true);
     private static final long MAX_SLEEP    = Env.getLongProperty("maxsleep", 10000);
-    private static final int  DEF_MIN_COST = Env.getIntProperty("defmincost", 100);
-    private static final int  DEF_MAX_COST = Env.getIntProperty("defmaxcost", 200);
+    private static final int  DEF_MIN_COST = Env.getIntProperty("defmincost", 400);
+    private static final int  DEF_MAX_COST = Env.getIntProperty("defmaxcost", 600);
     private int               minCost;
     private int               maxCost;
     private Callable<T>       callable;

@@ -9,6 +9,7 @@ public class ProcessDelayProtection<T> implements Callable<T> {
 
     private static boolean    protectionOn = Env.getBoolProperty("protectionon", true);
     private static final long MAX_SLEEP    = Env.getLongProperty("maxsleep", 10000);
+    private static final long LOG_MILLS    = Env.getLongProperty("logmills", 10);
     private static final int  DEF_MIN_COST = Env.getIntProperty("defmincost", 400);
     private static final int  DEF_MAX_COST = Env.getIntProperty("defmaxcost", 600);
     private int               minCost;
@@ -23,7 +24,6 @@ public class ProcessDelayProtection<T> implements Callable<T> {
         this.callable = callable;
         this.minCost = minCost;
         this.maxCost = maxCost;
-        System.out.println("[INFO] Process delay protection; min: " + minCost + ", max: " + maxCost);
     }
 
     public T call() throws Exception {
@@ -40,7 +40,7 @@ public class ProcessDelayProtection<T> implements Callable<T> {
         long cost = end - start;
         long delay = getDelayMillis(cost);
         if (delay > 0) {
-            if (delay > 10) {
+            if (delay > LOG_MILLS) {
                 System.out.println("[INFO] ProcessDelayProtection: Sleep: " + delay);
             }
             try {

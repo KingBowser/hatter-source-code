@@ -31,6 +31,16 @@ public class Env {
         return value;
     }
 
+    public static int getIntPropertyOrDie(String property) {
+        String v = getPropertyOrDie(property);
+        return Integer.parseInt(v);
+    }
+
+    public static long getLongPropertyOrDie(String property) {
+        String v = getPropertyOrDie(property);
+        return Long.parseLong(v);
+    }
+
     public static boolean getBoolPropertyOrDie(String property) {
         String v = getPropertyOrDie(property);
         return isOn(v);

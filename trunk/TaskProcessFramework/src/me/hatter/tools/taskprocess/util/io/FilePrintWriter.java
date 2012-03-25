@@ -28,7 +28,7 @@ public class FilePrintWriter extends PrintWriter {
     }
 
     public FilePrintWriter(File file) throws IOException {
-        super(new OutputStreamWriter(new BufferedOutputStream(new FileOutputStream(file)), Env.UTF_8));
+        this(file, true);
     }
 
     public FilePrintWriter(File file, boolean append) throws IOException {

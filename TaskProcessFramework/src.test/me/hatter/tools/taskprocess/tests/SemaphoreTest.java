@@ -15,7 +15,7 @@ public class SemaphoreTest {
         ExecutorService es = Executors.newFixedThreadPool(10);
 
         final AtomicInteger count = new AtomicInteger(0);
-        for (int i = 0; i < 180; i++) {
+        for (int i = 0; i < 80; i++) {
             try {
                 long s = System.currentTimeMillis();
                 semaphore.acquire();

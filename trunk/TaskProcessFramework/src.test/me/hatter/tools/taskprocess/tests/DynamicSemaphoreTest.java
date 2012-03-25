@@ -12,7 +12,7 @@ public class DynamicSemaphoreTest {
         final DynamicSemaphore dy = new DynamicSemaphore(10);
 
         long s = System.currentTimeMillis();
-        ExecutorService es = Executors.newFixedThreadPool(4);
+        ExecutorService es = Executors.newFixedThreadPool(2);
         for (int i = 0; i < 1000000; i++) {
             es.submit(new Callable<Void>() {
 

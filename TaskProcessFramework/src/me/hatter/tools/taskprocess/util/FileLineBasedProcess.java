@@ -97,6 +97,8 @@ public abstract class FileLineBasedProcess {
             dataLog.close();
             dataReader.close();
 
+            System.out.println("[INFO] Processed current count: " + this.thisCount.get() + ", all count: "
+                               + this.totalCount.get());
             System.out.println("[INFO] <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
             System.out.println("[INFO] Finish!!!!!!! " + new Date());
             processExecuteService.shutDown();

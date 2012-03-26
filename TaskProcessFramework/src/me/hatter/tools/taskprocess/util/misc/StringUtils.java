@@ -15,14 +15,14 @@ public class StringUtils {
         return !StringUtils.isEmpty(str);
     }
 
-    public static String join(Collection collection, String separator) {
+    public static String join(Collection<?> collection, String separator) {
         if (collection == null) {
             return null;
         }
         return join(collection.iterator(), separator);
     }
 
-    public static String join(Iterator iterator, String separator) {
+    public static String join(Iterator<?> iterator, String separator) {
 
         // handle null, zero and one elements before building a buffer
         if (iterator == null) {

@@ -14,6 +14,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import me.hatter.tools.taskprocess.util.env.Env;
 import me.hatter.tools.taskprocess.util.io.RollFilePrintWriter;
 import me.hatter.tools.taskprocess.util.misc.ExceptionUtils;
+import me.hatter.tools.taskprocess.util.misc.ObjectUtils;
 import me.hatter.tools.taskprocess.util.misc.StringUtils;
 
 public abstract class AbstractDumpDataProcess {
@@ -62,6 +63,10 @@ public abstract class AbstractDumpDataProcess {
         return row;
     }
 
+    protected String getFieldValue(ResultSet resultSet, String field) throws SQLException {
+        return ObjectUtils.toString(resultSet.getObject(field));
+    }
+
     protected String getOutputFileName() {
         SimpleDateFormat SDF = new SimpleDateFormat("yyyy.MM.dd_HH.mm.ss");
         return "dataexport_" + getTable() + "." + SDF.format(new Date()) + ".txt";
@@ -85,12 +90,7 @@ public abstract class AbstractDumpDataProcess {
         return sql.toString();
     }
 
-    abstract protected List<String> getFields();
-
-    abstract protected String getTable();
-
-    abstract protected String getWhere();
-
+    // -----------------------------------------
     abstract protected String getDriver();
 
     abstract protected String getUrl();
@@ -99,5 +99,10 @@ public abstract class AbstractDumpDataProcess {
 
     abstract protected String getPassword();
 
-    abstract protected String getFieldValue(ResultSet resultSet, String field) throws SQLException;
+    // -----------------------------------------
+    abstract protected String getTable();
+
+    abstract protected List<String> getFields();
+
+    abstract protected String getWhere();
 }

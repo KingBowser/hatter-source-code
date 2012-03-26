@@ -12,7 +12,7 @@ import me.hatter.tools.taskprocess.util.misc.FileUtils;
 public class ProcessStopFlag {
 
     private static final long       DEF_CHECK_MILLS = Env.getLongProperty("defcheckmills", 3000);
-    private static final long       DEF_WRITE_MILLS = Env.getLongProperty("defcheckmills", 10000);
+    private static final long       DEF_WRITE_MILLS = Env.getLongProperty("defsavemills", 10000);
     private String                  stopName;
     private File                    flagFile;
     private long                    checkMills;

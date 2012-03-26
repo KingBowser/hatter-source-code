@@ -81,7 +81,7 @@ public class ProcessStopFlag {
                                     System.out.println("[INFO] Synchronized last message to file; before: " + beforeMsg
                                                        + ", last: " + lastMsg);
                                     writeLastMessage(lastMsg);
-                                    lastMessage.set(lastMsg);
+                                    beforeMessage.set(lastMsg);
                                 }
                             }
                         }

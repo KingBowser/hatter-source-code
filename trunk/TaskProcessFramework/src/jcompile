@@ -1,0 +1,6 @@
+echo "[INFO] Listing java file(s) ..."
+find . -name '*.java' -print > java.list
+echo "[INFO] Compiling ..."
+javac -cp /Users/hatterjiang/Documents/hatter_eclipse_workspace/TaskProcessFramework/lib/jdbc.oracle-11.2.0.3.jar -d /Users/hatterjiang/Documents/hatter_eclipse_workspace/TaskProcessFramework/classes @java.list
+rm java.list
+echo "[INFO] Finish!"

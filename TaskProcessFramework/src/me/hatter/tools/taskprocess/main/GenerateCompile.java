@@ -14,14 +14,14 @@ import me.hatter.tools.taskprocess.util.misc.StringUtils;
 
 public class GenerateCompile {
 
-    private String basePath = Env.getProperty("basepath", Env.USER_DIR);
-    private String src      = Env.getProperty("src", "src");
-    private String lib      = Env.getProperty("lib", "lib");
-    private String classes  = Env.getProperty("classes", "classes");
-    private File   fsrc     = new File(basePath, src);
-    private File   jcompile = new File(fsrc, "jcompile");
-    private File   flib     = new File(basePath, lib);
-    private File   fclasses = new File(basePath, classes);
+    private String basePath  = Env.getProperty("basepath", Env.USER_DIR);
+    private String src       = Env.getProperty("src", "src");
+    private String lib       = Env.getProperty("lib", "lib");
+    private String classes   = Env.getProperty("classes", "classes");
+    private File   fsrc      = new File(basePath, src);
+    private File   fjcompile = new File(fsrc, "jcompile");
+    private File   flib      = new File(basePath, lib);
+    private File   fclasses  = new File(basePath, classes);
 
     public static void main(String[] args) {
         (new GenerateCompile()).doMain(Env.parseArgs(args));
@@ -46,11 +46,11 @@ public class GenerateCompile {
         pw.println("echo \"[INFO] Finish!\"");
         pw.flush();
         try {
-            FileUtils.writeStringToFile(jcompile, jc.toString(), Env.UTF_8);
+            FileUtils.writeStringToFile(fjcompile, jc.toString(), Env.UTF_8);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        System.out.println("[INFO] File writen to: " + jcompile);
+        System.out.println("[INFO] File writen to: " + fjcompile);
     }
 
     protected List<String> listLibs() {

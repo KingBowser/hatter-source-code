@@ -3,12 +3,11 @@ package me.hatter.tools.taskprocess.main;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 
 import me.hatter.tools.taskprocess.util.env.Env;
+import me.hatter.tools.taskprocess.util.io.StringPrintWriter;
 import me.hatter.tools.taskprocess.util.misc.FileUtils;
 import me.hatter.tools.taskprocess.util.misc.StringUtils;
 
@@ -30,21 +29,20 @@ public class GenerateCompile {
     protected void doMain(String[] args) {
         checkDirs();
         List<String> libs = listLibs();
-        StringWriter jc = new StringWriter();
-        PrintWriter pw = new PrintWriter(jc, true);
-        pw.println("echo \"[INFO] Listing java file(s) ...\"");
-        pw.println("find . -name '*.java' -print > java.list");
-        pw.println("echo \"[INFO] Compiling ...\"");
-        pw.print("javac");
+        StringPrintWriter jc = new StringPrintWriter();
+        jc.println("echo \"[INFO] Listing java file(s) ...\"");
+        jc.println("find . -name '*.java' -print > java.list");
+        jc.println("echo \"[INFO] Compiling ...\"");
+        jc.print("javac");
         if (!libs.isEmpty()) {
-            pw.print(" -cp " + StringUtils.join(libs, ":"));
+            jc.print(" -cp " + StringUtils.join(libs, ":"));
         }
-        pw.print(" -d " + fclasses.toString());
-        pw.print(" @java.list");
-        pw.println();
-        pw.println("rm java.list");
-        pw.println("echo \"[INFO] Finish!\"");
-        pw.flush();
+        jc.print(" -d " + fclasses.toString());
+        jc.print(" @java.list");
+        jc.println();
+        jc.println("rm java.list");
+        jc.println("echo \"[INFO] Finish!\"");
+        jc.flush();
         try {
             FileUtils.writeStringToFile(fjcompile, jc.toString(), Env.UTF_8);
         } catch (IOException e) {

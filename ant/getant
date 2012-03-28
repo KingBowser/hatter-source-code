@@ -3,7 +3,6 @@ wget http://hatter-source-code.googlecode.com/svn/trunk/ant/ant1.7.tar.gz
 echo '[INFO] Extract ant ...'
 tar -xzf ant1.7.tar.gz
 echo '[INFO] Set ant to path.'
-set $P=`pwd`
-set $PATH="$P/ant1.7/bin:$PATH"
-export $PATH
+P=`pwd`
+export PATH="$P/ant1.7/bin:$PATH"
 echo '[INFO] Finish.' 

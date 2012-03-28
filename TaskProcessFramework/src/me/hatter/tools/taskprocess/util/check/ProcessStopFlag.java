@@ -13,7 +13,7 @@ public class ProcessStopFlag {
 
     private static final long       DEF_CHECK_MILLS = Env.getLongProperty("defcheckmills", 3000);
     private static final long       DEF_WRITE_MILLS = Env.getLongProperty("defsavemills", 10000);
-    private static final String     DEF_STOP_FLAG   = Env.getProperty("defstopflag", "stop.cmd");
+    private static final String     DEF_STOP_FLAG   = Env.getProperty("defstopflag", "cmd.stop");
     private String                  stopName;
     private File                    flagFile;
     private long                    checkMills;

@@ -5,6 +5,7 @@
 <fieldset>
 <legend>
   Group [<%=i%>]: <%=(group.getGroup() == null)? "[no name]": group.getGroup()%>
+  &nbsp; &nbsp;- &nbsp;
   <img src="icon/delete.png" title="delete" onclick="do_delete(<%=i%>);">
   <img src="icon/edit.png" title="edit">
   &nbsp;

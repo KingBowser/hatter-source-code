@@ -1,4 +1,12 @@
 <project basedir="." default="dist" name="ResourceProxy">
+	
+    <property name="jar.release.version" value="1.0"/>
+    <property name="jar.release.name" value="jsspserver-${jar.release.version}"/>
+
+	<tstamp>
+        <format property="date.ymd" pattern="yyyyMMdd"/>
+    </tstamp>
+	
 	<target name="prepares">
 		<mkdir dir="classes/commons" />
 		<mkdir dir="classes/dbutils" />
@@ -9,12 +17,12 @@
 	</target>
 
 	<target name="step-commons" depends="prepares">
-		<javac srcdir="commons/src" destdir="classes/commons" source="1.6" target="1.6" debug="on">
+		<javac srcdir="commons/src" destdir="classes/commons" source="1.6" debug="true" debuglevel="lines,vars,source">
 		</javac>
 	</target>
 
 	<target name="step-jsspexec" depends="step-commons">
-		<javac srcdir="jsspexec/src" destdir="classes/jsspexec" source="1.6" target="1.6" debug="on">
+		<javac srcdir="jsspexec/src" destdir="classes/jsspexec" source="1.6" target="1.6" debug="true" debuglevel="lines,vars,source">
 			<classpath>
 				<path>
 					<pathelement path="classes/commons" />
@@ -24,7 +32,7 @@
 	</target>
 
 	<target name="step-dbutils" depends="step-commons">
-		<javac srcdir="dbutils/src" destdir="classes/dbutils" source="1.6" target="1.6" debug="on">
+		<javac srcdir="dbutils/src" destdir="classes/dbutils" source="1.6" target="1.6" debug="true" debuglevel="lines,vars,source">
 			<classpath>
 				<path>
 					<pathelement path="classes/commons" />
@@ -34,7 +42,7 @@
 	</target>
 
 	<target name="step-httpobjects" depends="step-dbutils">
-		<javac srcdir="httpobjects/src" destdir="classes/httpobjects" source="1.6" target="1.6" debug="on">
+		<javac srcdir="httpobjects/src" destdir="classes/httpobjects" source="1.6" target="1.6" debug="true" debuglevel="lines,vars,source">
 			<classpath>
 				<path>
 					<pathelement path="classes/commons" />
@@ -45,7 +53,7 @@
 	</target>
 
 	<target name="step-jsspserver" depends="step-jsspexec,step-httpobjects">
-		<javac srcdir="jsspserver/src" destdir="classes/jsspserver" source="1.6" target="1.6" debug="on">
+		<javac srcdir="jsspserver/src" destdir="classes/jsspserver" source="1.6" target="1.6" debug="true" debuglevel="lines,vars,source">
 			<classpath>
 				<path>
 					<pathelement path="classes/commons" />
@@ -58,7 +66,7 @@
 	</target>
 
 	<target name="step-proxyserver" depends="step-httpobjects,step-jsspserver">
-		<javac srcdir="proxyserver/src" destdir="classes/proxyserver" source="1.6" target="1.6" debug="on">
+		<javac srcdir="proxyserver/src" destdir="classes/proxyserver" source="1.6" target="1.6" debug="true" debuglevel="lines,vars,source">
 			<classpath>
 				<path>
 					<pathelement path="classes/commons" />
@@ -69,6 +77,26 @@
 				</path>
 			</classpath>
 		</javac>
+	</target>
+	
+	<target name="jsspserver" depends="step-jsspserver">
+        <manifest file="temp-jar.manifest">
+        	<attribute name="Implementation-Title" value="Jssp Server"/>
+        	<attribute name="Implementation-Version" value="${jar.release.version}_${date.ymd}"/>
+        	<attribute name="Implementation-Vendor" value="Hatter Jiang"/>
+        	<attribute name="Implementation-Email" value="jht5945@gmail.com"/>
+        </manifest>
+		<jar destfile="${jar.release.name}.jar" manifest="temp-jar.manifest">
+			<fileset dir="classes/commons" includes="**/*.class" />
+			<fileset dir="classes/dbutils" includes="**/*.class" />
+			<fileset dir="classes/jsspexec" includes="**/*.class" />
+			<fileset dir="classes/jsspserver" includes="**/*.class" />
+			<fileset dir="classes/httpobjects" includes="**/*.class" />
+			<fileset dir="dbutils/conf" includes="**/*" />
+			<fileset dir="jsspserver/conf" includes="**/*.*" />
+		</jar>
+		<delete file="temp-jar.manifest" />
+		<delete dir="classes" />
 	</target>
 
 	<target name="dist" depends="step-proxyserver">
@@ -83,7 +111,7 @@
 			<fileset dir="classes/httpobjects" includes="**/*.class" />
 			<fileset dir="classes/proxyserver" includes="**/*.class" />
 			<fileset dir="dbutils/conf" includes="**/*" />
-                        <fileset dir="jsspserver/conf" includes="**/*.*" />
+            <fileset dir="jsspserver/conf" includes="**/*.*" />
 			<fileset dir="proxyserver/conf" includes="**/*.*" />
 		</jar>
 		<delete file="temp-jar.manifest" />

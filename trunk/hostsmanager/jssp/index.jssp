@@ -1,5 +1,8 @@
 <h1>/etc/hosts manager</h1>
-<a href="valid.jssp?jsspaction=hostsmanager.Valid">valid hosts</a><br/>
+<a href="valid.jssp?jsspaction=hostsmanager.Valid">valid hosts</a> &nbsp;
+<img src="icon/add.png" tile="add group">
+<img src="icon/refresh.png" tile="refresh">
+<br/>
 <br/>
 <% var hosts = app_context.get("hosts")%>
 <% for (var i = 0; i < hosts.getGroups().size(); i++) { %>

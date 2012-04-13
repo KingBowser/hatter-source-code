@@ -1,7 +1,7 @@
 <h1>/etc/hosts manager</h1>
 <a href="valid.jssp?jsspaction=hostsmanager.Valid">valid hosts</a> &nbsp;
 <img src="icon/add.png" tile="add group">
-<img src="icon/refresh.png" tile="refresh">
+<img src="icon/refresh.png" tile="refresh" onclick="window.location.reload();">
 <br/>
 <br/>
 <% var hosts = app_context.get("hosts")%>
@@ -16,6 +16,9 @@
   &nbsp;
   <img src="icon/enable.png" tile="enable" onclick="window.location='?jsspaction=hostsmanager.Enable&index=<%=i%>'">
   <img src="icon/disable.png" tilte="disable" onclick="window.location='?jsspaction=hostsmanager.Disable&index=<%=i%>'">
+  &nbsp;
+  <img src="icon/up.png" tile="enable" onclick="window.location='?jsspaction=hostsmanager.Up&index=<%=i%>'">
+  <img src="icon/down.png" tilte="disable" onclick="window.location='?jsspaction=hostsmanager.Down&index=<%=i%>'">
 </legend>
   <% for (var j = 0; j < group.getLines().size(); j++) { %>
   <% var line = group.getLines().get(j); %>

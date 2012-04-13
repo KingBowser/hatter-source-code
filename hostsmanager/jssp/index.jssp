@@ -1,0 +1,4 @@
+hello world
+<pre>
+<%=app_context.get("hosts")%>
+</pre>

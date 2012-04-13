@@ -1,4 +1,29 @@
-hello world
-<pre>
-<%=app_context.get("hosts")%>
-</pre>
+<h1>/etc/hosts manager</h1>
+<% var hosts = app_context.get("hosts")%>
+<% for (var i = 0; i < hosts.getGroups().size(); i++) { %>
+<% var group = hosts.getGroups().get(i); %>
+<fieldset>
+<legend>
+  Group [<%=i%>]: <%=(group.getGroup() == null)? "[no name]": group.getGroup()%>
+  <img src="icon/delete.png" title="delete" onclick="do_delete(<%=i%>);">
+  <img src="icon/edit.png" title="edit">
+  &nbsp;
+  <img src="icon/enable.png" tile="enable" onclick="window.location='?jsspaction=hostsmanager.Enable&index=<%=i%>'">
+  <img src="icon/disable.png" tilte="disable" onclick="window.location='?jsspaction=hostsmanager.Disable&index=<%=i%>'">
+</legend>
+  <% for (var j = 0; j < group.getLines().size(); j++) { %>
+  <% var line = group.getLines().get(j); %>
+  <% if (!line.isGroup()) { %>
+    <%=line.getLine()%><br/>
+  <% } %>
+  <% } %>
+</fieldset>
+<% } %>
+
+<script type="text/javascript">
+function do_delete(idx) {
+  if (confirm("Really delete it?")) {
+    window.location = "?jsspaction=hostsmanager.Delete&index=" + idx;
+  }
+}
+</script>

@@ -1,0 +1,9 @@
+<h1>/etc/hosts manager</h1>
+<a href="/">home</a><br/>
+<br/>
+<fieldset>
+<legend>valid hosts</legend>
+<pre>
+<%=app_context.get("validhosts")%>
+</pre>
+</fieldset>

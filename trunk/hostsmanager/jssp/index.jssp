@@ -1,4 +1,6 @@
 <h1>/etc/hosts manager</h1>
+<a href="valid.jssp?jsspaction=hostsmanager.Valid">valid hosts</a><br/>
+<br/>
 <% var hosts = app_context.get("hosts")%>
 <% for (var i = 0; i < hosts.getGroups().size(); i++) { %>
 <% var group = hosts.getGroups().get(i); %>

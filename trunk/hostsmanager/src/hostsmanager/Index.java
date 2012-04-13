@@ -13,11 +13,6 @@ import java.util.List;
 import java.util.Map;
 
 import me.hatter.tools.hostsmanager.hosts.Hosts;
-import me.hatter.tools.hostsmanager.hostsfilter.HostsFilter;
-import me.hatter.tools.hostsmanager.hostsfilter.HostsFilters;
-import me.hatter.tools.hostsmanager.hostsfilter.impl.CommentFilter;
-import me.hatter.tools.hostsmanager.hostsfilter.impl.DefaultFilter;
-import me.hatter.tools.hostsmanager.hostsfilter.impl.EmptyFilter;
 import me.hatter.tools.resourceproxy.commons.util.FileUtil;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpRequest;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpResponse;
@@ -32,21 +27,7 @@ public class Index extends BaseAction {
         String etchosts = FileUtil.readFileToString(new File(ETC_HOSTS), HOSTS_CHARSET);
         List<String> lines = readToLines(etchosts);
 
-        String status = request.getQueryValue("status");
-        List<HostsFilter> filters = new ArrayList<HostsFilter>();
-        filters.add(new DefaultFilter());
-        if ("valid".equals(status)) {
-            filters.add(new EmptyFilter());
-            filters.add(new CommentFilter());
-        }
-        List<String> filteredLines = HostsFilters.filter(filters, lines);
-
         Hosts hosts = Hosts.parse(lines);
-
-        context.put("filteredLines", filteredLines);
-        context.put("lines", lines);
-        context.put("filteredEtcHosts", writeLinesToString(filteredLines));
-        context.put("etchosts", etchosts);
         context.put("hosts", hosts);
     }
 

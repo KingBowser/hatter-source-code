@@ -2,7 +2,9 @@ package hostsmanager;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.StringReader;
 import java.io.StringWriter;
@@ -10,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import me.hatter.tools.hostsmanager.hosts.Hosts;
 import me.hatter.tools.hostsmanager.hostsfilter.HostsFilter;
 import me.hatter.tools.hostsmanager.hostsfilter.HostsFilters;
 import me.hatter.tools.hostsmanager.hostsfilter.impl.CommentFilter;
@@ -22,11 +25,12 @@ import me.hatter.tools.resourceproxy.jsspserver.action.BaseAction;
 
 public class Index extends BaseAction {
 
-    private static final String ETC_HOSTS = "/etc/hosts";
+    public static final String ETC_HOSTS     = "/etc/hosts";
+    public static final String HOSTS_CHARSET = "UTF-8";
 
     protected void doAction(HttpRequest request, HttpResponse response, Map<String, Object> context) {
-        String hosts = FileUtil.readFileToString(new File(ETC_HOSTS));
-        List<String> lines = readToLines(hosts);
+        String etchosts = FileUtil.readFileToString(new File(ETC_HOSTS), HOSTS_CHARSET);
+        List<String> lines = readToLines(etchosts);
 
         String status = request.getQueryValue("status");
         List<HostsFilter> filters = new ArrayList<HostsFilter>();
@@ -37,13 +41,34 @@ public class Index extends BaseAction {
         }
         List<String> filteredLines = HostsFilters.filter(filters, lines);
 
+        Hosts hosts = Hosts.parse(lines);
+
         context.put("filteredLines", filteredLines);
         context.put("lines", lines);
-        context.put("filteredHosts", writeLinesToString(filteredLines));
+        context.put("filteredEtcHosts", writeLinesToString(filteredLines));
+        context.put("etchosts", etchosts);
         context.put("hosts", hosts);
     }
 
-    private static String writeLinesToString(List<String> lines) {
+    public static Hosts readHosts() {
+        String etchosts = FileUtil.readFileToString(new File(ETC_HOSTS), HOSTS_CHARSET);
+        List<String> lines = readToLines(etchosts);
+        return Hosts.parse(lines);
+    }
+
+    public static void writeHosts(Hosts hosts) {
+        String newEtcHosts = Index.writeLinesToString(hosts.toLines());
+        try {
+            OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(new File(Index.ETC_HOSTS)));
+            osw.write(newEtcHosts);
+            osw.flush();
+            osw.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static String writeLinesToString(List<String> lines) {
         StringWriter sw = new StringWriter();
         PrintWriter pw = new PrintWriter(sw);
         for (String l : lines) {
@@ -53,7 +78,7 @@ public class Index extends BaseAction {
         return sw.toString();
     }
 
-    private static List<String> readToLines(String str) {
+    public static List<String> readToLines(String str) {
         try {
             List<String> lines = new ArrayList<String>();
             if (str != null) {

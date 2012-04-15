@@ -1,7 +1,11 @@
+<html>
+<head><title>/etc/hosts manager</title></head>
+<body>
 <h1>/etc/hosts manager</h1>
 <a href="valid.jssp?jsspaction=hostsmanager.Valid">valid hosts</a> &nbsp;
-<img src="icon/add.png" tile="add group">
+<img src="icon/add.png" tile="add group" onclick="window.location='group.jssp?jsspaction=hostsmanager.AddEdit'">
 <img src="icon/refresh.png" tile="refresh" onclick="window.location.reload();">
+<img src="icon/help.png" tile="help" onclick="show_help();">
 <br/>
 <br/>
 <% var hosts = app_context.get("hosts")%>
@@ -9,30 +13,38 @@
 <% var group = hosts.getGroups().get(i); %>
 <fieldset>
 <legend>
-  Group [<%=i%>]: <%=(group.getGroup() == null)? "[no name]": group.getGroup()%>
-  &nbsp; &nbsp;- &nbsp;
+  Group[<%=i%>]: <%=(group.getGroup() == null)? "[no name]": group.getGroup()%>
+  &nbsp; &nbsp; - &nbsp; 
   <img src="icon/delete.png" title="delete" onclick="do_delete(<%=i%>);">
-  <img src="icon/edit.png" title="edit">
-  &nbsp;
+  <img src="icon/edit.png" title="edit" onclick="window.location='group.jssp?jsspaction=hostsmanager.AddEdit&index=<%=i%>'">
+  &nbsp; &nbsp;
   <img src="icon/enable.png" tile="enable" onclick="window.location='?jsspaction=hostsmanager.Enable&index=<%=i%>'">
   <img src="icon/disable.png" tilte="disable" onclick="window.location='?jsspaction=hostsmanager.Disable&index=<%=i%>'">
-  &nbsp;
+  &nbsp; &nbsp;
+  <% if (i > 0) { %>
   <img src="icon/up.png" tile="enable" onclick="window.location='?jsspaction=hostsmanager.Up&index=<%=i%>'">
+  <% } %>
+  <% if (i < (hosts.getGroups().size() - 1)) { %>
   <img src="icon/down.png" tilte="disable" onclick="window.location='?jsspaction=hostsmanager.Down&index=<%=i%>'">
+  <% } %>
 </legend>
-  <% for (var j = 0; j < group.getLines().size(); j++) { %>
-  <% var line = group.getLines().get(j); %>
-  <% if (!line.isGroup()) { %>
-    <%=line.getLine()%><br/>
-  <% } %>
-  <% } %>
+<span  style="font-family:courier new;">
+<pre><%=group.getJoinedLines()%></pre>
+<span>
 </fieldset>
 <% } %>
 
 <script type="text/javascript">
+function show_help() {
+  alert("/etc/hosts manager\n"
+  + "this software is written by Hatter Jiang");
+}
+
 function do_delete(idx) {
   if (confirm("Really delete it?")) {
     window.location = "?jsspaction=hostsmanager.Delete&index=" + idx;
   }
 }
 </script>
+</body>
+</html>

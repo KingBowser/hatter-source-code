@@ -14,7 +14,7 @@ public class Up extends BaseAction {
         Hosts hosts = Index.readHosts();
 
         int delindex = Integer.valueOf(request.getQueryValue("index"));
-        Group g = hosts.getGroups().get(delindex);
+        Group g = hosts.getGroups().remove(delindex);
         hosts.getGroups().add(delindex - 1, g);
 
         Index.writeHosts(hosts);

@@ -1,18 +1,14 @@
 package hostsmanager;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.io.StringReader;
-import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import me.hatter.tools.hostsmanager.hosts.Hosts;
+import me.hatter.tools.resourceproxy.commons.io.StringBufferedReader;
+import me.hatter.tools.resourceproxy.commons.io.StringPrintWriter;
 import me.hatter.tools.resourceproxy.commons.util.FileUtil;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpRequest;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpResponse;
@@ -39,32 +35,23 @@ public class Index extends BaseAction {
 
     public static void writeHosts(Hosts hosts) {
         String newEtcHosts = Index.writeLinesToString(hosts.toLines());
-        try {
-            OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(new File(Index.ETC_HOSTS)));
-            osw.write(newEtcHosts);
-            osw.flush();
-            osw.close();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        FileUtil.writeStringToFile(new File(ETC_HOSTS), newEtcHosts, HOSTS_CHARSET);
     }
 
     public static String writeLinesToString(List<String> lines) {
-        StringWriter sw = new StringWriter();
-        PrintWriter pw = new PrintWriter(sw);
+        StringPrintWriter writer = new StringPrintWriter();
         for (String l : lines) {
-            pw.println(l);
+            writer.println(l);
         }
-        pw.flush();
-        return sw.toString();
+        return writer.toString();
     }
 
     public static List<String> readToLines(String str) {
         try {
             List<String> lines = new ArrayList<String>();
             if (str != null) {
-                BufferedReader br = new BufferedReader(new StringReader(str));
-                for (String l; ((l = br.readLine()) != null);) {
+                StringBufferedReader reader = new StringBufferedReader(str);
+                for (String l; ((l = reader.readLine()) != null);) {
                     lines.add(l);
                 }
             }

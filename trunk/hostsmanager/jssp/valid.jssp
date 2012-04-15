@@ -1,9 +1,12 @@
+<html>
+<head><title>/etc/hosts manager</title></head>
+<body>
 <h1>/etc/hosts manager</h1>
 <a href="/">home</a><br/>
 <br/>
 <fieldset>
 <legend>valid hosts</legend>
-<pre>
-<%=app_context.get("validhosts")%>
-</pre>
+<pre style="font-family:courier new;"><%=app_context.get("validhosts")%></pre>
 </fieldset>
+</body>
+</html>

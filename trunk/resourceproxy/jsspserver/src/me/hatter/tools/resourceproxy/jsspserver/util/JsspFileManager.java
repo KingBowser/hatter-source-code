@@ -20,7 +20,8 @@ public class JsspFileManager {
             @Override
             public void run() {
                 String checkJsspUpdate = System.getProperty("checkjsspupdate");
-                long chkJsspUpdate = (StringUtil.isEmpty(checkJsspUpdate)) ? TimeUnit.SECONDS.toMillis(30) : TimeUnit.SECONDS.toMillis(Long.parseLong(checkJsspUpdate));
+                long defaultChkJsspUpdateMillis = TimeUnit.SECONDS.toMillis(180);
+                long chkJsspUpdate = (StringUtil.isEmpty(checkJsspUpdate)) ? defaultChkJsspUpdateMillis : TimeUnit.SECONDS.toMillis(Long.parseLong(checkJsspUpdate));
                 try {
                     for (int i = 0; i < Integer.MAX_VALUE; i++) {
                         System.out.println("[INFO] Update jssp file manager round: " + i);

@@ -19,7 +19,9 @@ import me.hatter.tools.resourceproxy.jsspserver.util.JsspFileManager;
 
 public class JsspFilter implements ResourceFilter {
 
-    public static File JSSP_PATH;
+    public static final boolean JSSP_DEBUG = Boolean.valueOf(System.getProperty("jsspdebug"));
+
+    public static File          JSSP_PATH;
     static {
         String jsspPath = System.getProperty("jssp.path");
         if (jsspPath == null) {
@@ -66,7 +68,8 @@ public class JsspFilter implements ResourceFilter {
                 BufferWriter bw = new BufferWriter();
                 Map<String, Object> addContext = new HashMap<String, Object>();
                 addContext.put("request", request);
-                JsspExecutor.executeExplained(new StringReader(jsspFile.getExplainedContent()), context, addContext, bw);
+                JsspExecutor.executeExplained(new StringReader(jsspFile.getExplainedContent(JSSP_DEBUG)), context,
+                                              addContext, bw);
 
                 response.setContentType(ContentTypes.HTML_CONTENT_TYPE);
                 response.setCharset(ContentTypes.UTF8_CHARSET);

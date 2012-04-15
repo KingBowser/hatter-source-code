@@ -87,6 +87,11 @@
         	<attribute name="Implementation-Email" value="jht5945@gmail.com"/>
         </manifest>
 		<jar destfile="${jar.release.name}.jar" manifest="temp-jar.manifest">
+			<fileset dir="commons/src" includes="**/*.java" />
+			<fileset dir="dbutils/src" includes="**/*.java" />
+			<fileset dir="jsspexec/src" includes="**/*.java" />
+			<fileset dir="jsspserver/src" includes="**/*.java" />
+			<fileset dir="httpobjects/src" includes="**/*.java" />
 			<fileset dir="classes/commons" includes="**/*.class" />
 			<fileset dir="classes/dbutils" includes="**/*.class" />
 			<fileset dir="classes/jsspexec" includes="**/*.class" />

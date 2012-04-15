@@ -5,10 +5,12 @@ import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
@@ -17,6 +19,26 @@ public final class FileUtil {
     public static final String SEPARATER         = File.separator;
     public static final String DOUBLE_SEPARATER  = SEPARATER + SEPARATER;
     public static final String ANOTHER_SEPARATER = "/".equals(SEPARATER) ? "\\" : "/";
+
+    public static void writeStringToFile(File file, String str) {
+        writeStringToFile(file, str, null);
+    }
+
+    public static void writeStringToFile(File file, String str, String charset) {
+        try {
+            OutputStreamWriter osw;
+            if (charset == null) {
+                osw = new OutputStreamWriter(new FileOutputStream(file));
+            } else {
+                osw = new OutputStreamWriter(new FileOutputStream(file), charset);
+            }
+            osw.write(str);
+            osw.flush();
+            osw.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public static byte[] readFileToBytes(File file) {
         InputStream fis = null;
@@ -36,11 +58,11 @@ public final class FileUtil {
         return readFileToString(file, null);
     }
 
-    public static final String readFileToString(File file, String encoding) {
+    public static final String readFileToString(File file, String charset) {
         try {
             StringWriter sw = new StringWriter();
             PrintWriter pw = new PrintWriter(sw);
-            BufferedReader br = getFileBufferedReader(file, encoding);
+            BufferedReader br = getFileBufferedReader(file, charset);
             try {
                 for (String line; (line = br.readLine()) != null;) {
                     pw.println(line);
@@ -56,13 +78,13 @@ public final class FileUtil {
         }
     }
 
-    public static BufferedReader getFileBufferedReader(File file, String encoding) {
+    public static BufferedReader getFileBufferedReader(File file, String charset) {
         try {
             InputStreamReader isr;
-            if (encoding == null) {
+            if (charset == null) {
                 isr = new FileReader(file);
             } else {
-                isr = new InputStreamReader(new FileInputStream(file), encoding);
+                isr = new InputStreamReader(new FileInputStream(file), charset);
             }
             return new BufferedReader(isr);
         } catch (IOException e) {

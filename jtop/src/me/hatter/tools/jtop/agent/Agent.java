@@ -3,6 +3,8 @@ package me.hatter.tools.jtop.agent;
 import java.lang.instrument.Instrumentation;
 import java.util.Arrays;
 
+import me.hatter.tools.jtop.rmi.RmiServer;
+
 public class Agent {
 
     static final String            javaSpecVersion = System.getProperty("java.specification.version");
@@ -12,11 +14,13 @@ public class Agent {
     public static void premain(String agentArgs, Instrumentation inst) throws Exception {
         instrumentation = inst;
         System.out.println("[INFO] " + Agent.class.getName() + "#premain(String, Instrumentation)");
+        RmiServer.startup();
     }
 
     public static void agentmain(String agentArgs, Instrumentation inst) throws Exception {
         instrumentation = inst;
         System.out.println("[INFO] " + Agent.class.getName() + "#agentmain(String, Instrumentation)");
+        RmiServer.startup();
     }
 
     public static void initializeIfNeeded() {

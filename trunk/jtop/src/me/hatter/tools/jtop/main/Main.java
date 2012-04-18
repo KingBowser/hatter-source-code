@@ -1,9 +1,14 @@
 package me.hatter.tools.jtop.main;
 
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import me.hatter.tools.jtop.agent.AgentInitialization;
 import me.hatter.tools.jtop.agent.JDK6AgentLoader;
@@ -23,7 +28,7 @@ public class Main {
                 System.out.println("[ERROR] pid is not assigned.");
                 System.exit(0);
             }
-            RmiClient rc = new RmiClient("127.0.0.1", 1127);
+            RmiClient rc = new RmiClient("127.0.0.1", Integer.parseInt(System.getProperty("port", "1127")));
             if (!tryConnect(rc)) {
                 int pid = Integer.valueOf(System.getProperty("pid"));
                 attachAgent(pid);
@@ -34,12 +39,16 @@ public class Main {
                 System.err.println("[ERROR] connect to server failed.");
                 System.exit(0);
             }
+            long lastNano = System.nanoTime();
             JThreadInfo[] lastJThreadInfos = null;
             Map<Long, JThreadInfo> lastJThreadInfoMap = null;
             while (true) {
+                long nano = System.nanoTime();
                 JThreadInfo[] jThreadInfos = jStackService.listThreadInfos();
                 Map<Long, JThreadInfo> jThreadInfoMap = jThreadInfoToMap(jThreadInfos);
-                if (lastJThreadInfos != null) {
+                if (lastJThreadInfos == null) {
+                    System.out.println("[INFO] First Round");
+                } else {
                     // display to console
                     System.out.println("NEW ROUND ================================================== ");
                     JThreadInfo[] cJThreadInfos = caculateJThreadInfos(jThreadInfos, lastJThreadInfoMap);
@@ -60,21 +69,56 @@ public class Main {
                     int threadtopn = Integer.valueOf(System.getProperty("threadtopn", "10"));
                     int stacktracetopn = Integer.valueOf(System.getProperty("stacktracetopn", "6"));
 
+                    long cost = nano - lastNano;
+                    long totalCpu = 0;
+                    long totalUser = 0;
+                    DecimalFormat nf = new DecimalFormat("0.00");
+                    List<String> outputs = new ArrayList<String>();
                     for (int i = 0; ((i < cJThreadInfos.length) && (i < threadtopn)); i++) {
                         JThreadInfo jThreadInfo = cJThreadInfos[i];
-                        System.out.println(jThreadInfo.getThreadName() //
-                                           + "  PID=" + jThreadInfo.getThreadId() //
-                                           + "  STATE=" + jThreadInfo.getThreadState().name() //
-                                           + "  CPU_TIME=" + jThreadInfo.getCpuTime() //
-                                           + "  USER_TIME=" + jThreadInfo.getUserTime());
+                        totalCpu += jThreadInfo.getCpuTime();
+                        totalUser += jThreadInfo.getUserTime();
+                        outputs.add(jThreadInfo.getThreadName() //
+                                    + "  PID=" + jThreadInfo.getThreadId() //
+                                    + "  STATE=" + jThreadInfo.getThreadState().name() //
+                                    + "  CPU_TIME=" + TimeUnit.NANOSECONDS.toMillis(jThreadInfo.getCpuTime())//
+                                    + " (" + nf.format(((double) jThreadInfo.getCpuTime()) * 100 / cost) + "%)" //
+                                    + "  USER_TIME=" + TimeUnit.NANOSECONDS.toMillis(jThreadInfo.getUserTime()) //
+                                    + " (" + nf.format(((double) jThreadInfo.getUserTime()) * 100 / cost) + "%)");
                         for (int j = 0; ((j < jThreadInfo.getStackTrace().length) && (j < stacktracetopn)); j++) {
                             StackTraceElement stackTrace = jThreadInfo.getStackTrace()[j];
-                            System.out.println("\t" + stackTrace.toString());
+                            outputs.add("\t" + stackTrace.toString());
                         }
-                        System.out.println();
+                        outputs.add("");
+                    }
+
+                    Map<Thread.State, AtomicInteger> stateMap = new HashMap<Thread.State, AtomicInteger>();
+                    for (JThreadInfo jThreadInfo : cJThreadInfos) {
+                        Thread.State state = jThreadInfo.getThreadState();
+                        if (stateMap.containsKey(state)) {
+                            stateMap.get(state).incrementAndGet();
+                        } else {
+                            stateMap.put(state, new AtomicInteger(1));
+                        }
+                    }
+
+                    System.out.println("Total threads: " + cJThreadInfos.length //
+                                       + "  CPU=" + TimeUnit.NANOSECONDS.toMillis(totalCpu) //
+                                       + " (" + nf.format(((double) totalCpu) * 100 / cost) + "%)" //
+                                       + "  USER=" + TimeUnit.NANOSECONDS.toMillis(totalUser) //
+                                       + " (" + nf.format(((double) totalUser) * 100 / cost) + "%)");
+                    for (Thread.State state : Thread.State.values()) {
+                        AtomicInteger ai = stateMap.get(state);
+                        ai = (ai == null) ? new AtomicInteger(0) : ai;
+                        System.out.print(state + "=" + ai.get() + "  ");
+                    }
+                    System.out.println();
+                    for (String s : outputs) {
+                        System.out.println(s);
                     }
                     System.out.println();
                 }
+                lastNano = nano;
                 lastJThreadInfos = jThreadInfos;
                 lastJThreadInfoMap = jThreadInfoMap;
 

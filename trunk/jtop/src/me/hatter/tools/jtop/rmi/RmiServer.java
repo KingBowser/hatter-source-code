@@ -43,10 +43,10 @@ public class RmiServer implements JStackService {
 
     private static boolean isStarted = false;
 
-    synchronized public static void startup() {
+    synchronized public static void startup(int port) {
         if (!isStarted) {
             try {
-                (new RmiServer()).bind(1127);
+                (new RmiServer()).bind(port);
             } catch (RemoteException e) {
                 System.err.println("[ERROR] error in startup rmi server: " + e.getMessage());
                 e.printStackTrace();

@@ -92,7 +92,7 @@ public class Main {
                         totalCpu += jThreadInfo.getCpuTime();
                         totalUser += jThreadInfo.getUserTime();
                         outputs.add(jThreadInfo.getThreadName() //
-                                    + "  PID=" + jThreadInfo.getThreadId() //
+                                    + "  TID=" + jThreadInfo.getThreadId() //
                                     + "  STATE=" + jThreadInfo.getThreadState().name() //
                                     + "  CPU_TIME=" + TimeUnit.NANOSECONDS.toMillis(jThreadInfo.getCpuTime())//
                                     + " (" + nf.format(((double) jThreadInfo.getCpuTime()) * 100 / cost) + "%)" //

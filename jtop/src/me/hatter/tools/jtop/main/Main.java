@@ -40,10 +40,10 @@ public class Main {
                 System.exit(0);
             }
             String pid = jStackService.getProcessId();
-            if (pid.equals(System.getProperty("pid"))) {
-                System.out.print("[ERROR] Remote server's pid not match, PORT=" + rc.getPort() //
-                                 + "  REQUIRE_PID=" + System.getProperty("pid") //
-                                 + "  ACTURE_PID=" + pid);
+            if (!pid.equals(System.getProperty("pid"))) {
+                System.out.println("[ERROR] Remote server's pid not match, PORT=" + rc.getPort() //
+                                   + "  REQUIRE_PID=" + System.getProperty("pid") //
+                                   + "  ACTURE_PID=" + pid);
                 System.exit(0);
             }
 

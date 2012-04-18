@@ -14,6 +14,9 @@ import me.hatter.tools.jtop.rmi.interfaces.JThreadInfo;
 public class RmiServer implements JStackService {
 
     private static final long serialVersionUID = -6161020091463825016L;
+
+    private static RmiServer  RMI_SERVER       = null;
+
     private int               thisPort;
     private String            thisAddress;
     private Registry          registry;
@@ -41,17 +44,15 @@ public class RmiServer implements JStackService {
         }
     }
 
-    private static boolean isStarted = false;
-
     synchronized public static void startup(int port) {
-        if (!isStarted) {
+        if (RMI_SERVER == null) {
             try {
-                (new RmiServer()).bind(port);
+                RMI_SERVER = new RmiServer();
+                RMI_SERVER.bind(port);
             } catch (RemoteException e) {
                 System.err.println("[ERROR] error in startup rmi server: " + e.getMessage());
                 e.printStackTrace();
             }
-            isStarted = true;
         }
     }
 

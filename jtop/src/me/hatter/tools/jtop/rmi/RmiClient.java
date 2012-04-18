@@ -2,8 +2,8 @@ package me.hatter.tools.jtop.rmi;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.util.Arrays;
 
+import me.hatter.tools.jtop.rmi.exception.ServiceNotStartedException;
 import me.hatter.tools.jtop.rmi.interfaces.JStackService;
 
 public class RmiClient {
@@ -23,11 +23,12 @@ public class RmiClient {
                 return jStackService;
             }
             Registry registry = LocateRegistry.getRegistry(server, Integer.valueOf(port));
-            Object o = registry.lookup("jStackService");
-            System.out.println("XXX" + Arrays.asList(o.getClass().getInterfaces()));
             jStackService = (JStackService) (registry.lookup("jStackService"));
             return jStackService;
         } catch (Exception e) {
+            if (e.getMessage().toLowerCase().contains("connection refused")) {
+                throw new ServiceNotStartedException();
+            }
             System.err.println("[ERROR] RMI register error: " + e.getMessage());
             e.printStackTrace();
             return null;

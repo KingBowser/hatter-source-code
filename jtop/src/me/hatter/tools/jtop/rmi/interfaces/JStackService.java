@@ -5,5 +5,5 @@ import java.rmi.RemoteException;
 
 public interface JStackService extends Remote {
 
-    String[] listThreadInfos() throws RemoteException;
+    JThreadInfo[] listThreadInfos() throws RemoteException;
 }

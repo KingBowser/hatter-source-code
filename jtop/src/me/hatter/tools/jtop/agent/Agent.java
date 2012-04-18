@@ -12,17 +12,28 @@ public class Agent {
     static final String            javaSpecVersion = System.getProperty("java.specification.version");
     static final boolean           jdk6OrLater     = Arrays.asList("1.6", "1.7").contains(javaSpecVersion);
     private static Instrumentation instrumentation;
+    private static int             serverPort;
 
     public static void premain(String agentArgs, Instrumentation inst) throws Exception {
+        if (instrumentation != null) {
+            System.out.println("[WARN] Areadly inited, port=" + serverPort);
+            return;
+        }
         instrumentation = inst;
+        serverPort = Integer.valueOf(getValue(agentArgs, "port", "1127"));
         System.out.println("[INFO] " + Agent.class.getName() + "#premain(" + agentArgs + ", " + inst + ")");
-        RmiServer.startup(Integer.valueOf(getValue(agentArgs, "port", "1127")));
+        RmiServer.startup(serverPort);
     }
 
     public static void agentmain(String agentArgs, Instrumentation inst) throws Exception {
+        if (instrumentation != null) {
+            System.out.println("[WARN] Areadly inited, port=" + serverPort);
+            return;
+        }
         instrumentation = inst;
+        serverPort = Integer.valueOf(getValue(agentArgs, "port", "1127"));
         System.out.println("[INFO] " + Agent.class.getName() + "#agentmain(" + agentArgs + ", " + inst + ")");
-        RmiServer.startup(Integer.valueOf(getValue(agentArgs, "port", "1127")));
+        RmiServer.startup(serverPort);
     }
 
     public static String getValue(String str, String key, String def) {

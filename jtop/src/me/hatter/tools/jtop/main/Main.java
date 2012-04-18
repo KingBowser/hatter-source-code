@@ -26,6 +26,7 @@ public class Main {
 
             if (System.getProperty("pid") == null) {
                 System.out.println("[ERROR] pid is not assigned.");
+                usage();
                 System.exit(0);
             }
             RmiClient rc = new RmiClient("127.0.0.1", Integer.parseInt(System.getProperty("port", "1127")));
@@ -180,5 +181,15 @@ public class Main {
         System.out.println("[INFO] jar file: " + jarFilePath);
         JDK6AgentLoader agentLoader = new JDK6AgentLoader(jarFilePath, String.valueOf(pid));
         agentLoader.loadAgent();
+    }
+
+    static void usage() {
+        System.out.println("Usage:");
+        System.out.println("java -cp jtop.jar jtop [args]");
+        System.out.println("    -Dpid=<PID>                   Process ID");
+        System.out.println("    -Dport=<PORT>                 Port");
+        System.out.println("    -Dsleepmillis=<MILLIS>        Sleep Mills");
+        System.out.println("    -Dthreadtopn=<N>              Thread Top N");
+        System.out.println("    -Dstacktracetopn=<N>          Stacktrace Top N");
     }
 }

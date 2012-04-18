@@ -45,6 +45,9 @@ public class Main {
                 System.out.println("[ERROR] Remote server's pid not match, PORT=" + rc.getPort() //
                                    + "  REQUIRE_PID=" + System.getProperty("pid") //
                                    + "  ACTURE_PID=" + pid);
+                String jarFilePath = (new AgentInitialization()).findPathToJarFileFromClasspath();
+                System.out.println("[ERROR] The target VM PORT="
+                                   + (new JDK6AgentLoader(jarFilePath, System.getProperty("pid"))).getVMProperty("jtop.port"));
                 System.exit(0);
             }
 

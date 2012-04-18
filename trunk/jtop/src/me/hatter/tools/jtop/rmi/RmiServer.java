@@ -50,6 +50,7 @@ public class RmiServer implements JStackService {
             try {
                 RMI_SERVER = new RmiServer();
                 RMI_SERVER.bind(port);
+                System.setProperty("jtop.port", String.valueOf(port));
             } catch (RemoteException e) {
                 System.err.println("[ERROR] error in startup rmi server: " + e.getMessage());
                 e.printStackTrace();

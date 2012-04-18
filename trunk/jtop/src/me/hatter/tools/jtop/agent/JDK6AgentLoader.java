@@ -2,6 +2,7 @@ package me.hatter.tools.jtop.agent;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Properties;
 
 import sun.tools.attach.LinuxVirtualMachine;
 import sun.tools.attach.WindowsVirtualMachine;
@@ -46,13 +47,30 @@ public class JDK6AgentLoader {
     }
 
     public void loadAgent() {
+        VirtualMachine vm = getThisVM();
+        loadAgentAndDetachFromThisVM(vm);
+    }
+
+    public String getVMProperty(String key) {
+        VirtualMachine vm = getThisVM();
+        try {
+            Properties properties = vm.getSystemProperties();
+            String value = properties.getProperty(key);
+            vm.detach();
+            return value;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private VirtualMachine getThisVM() {
         VirtualMachine vm;
         if (AttachProvider.providers().isEmpty()) {
             vm = getVirtualMachineImplementationFromEmbeddedOnes();
         } else {
             vm = attachToThisVM();
         }
-        loadAgentAndDetachFromThisVM(vm);
+        return vm;
     }
 
     private VirtualMachine attachToThisVM() {

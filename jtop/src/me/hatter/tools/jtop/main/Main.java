@@ -14,6 +14,7 @@ import me.hatter.tools.jtop.agent.AgentInitialization;
 import me.hatter.tools.jtop.agent.JDK6AgentLoader;
 import me.hatter.tools.jtop.rmi.RmiClient;
 import me.hatter.tools.jtop.rmi.exception.ServiceNotStartedException;
+import me.hatter.tools.jtop.rmi.interfaces.JMemoryInfo;
 import me.hatter.tools.jtop.rmi.interfaces.JStackService;
 import me.hatter.tools.jtop.rmi.interfaces.JThreadInfo;
 import me.hatter.tools.jtop.util.ArgsUtil;
@@ -115,6 +116,17 @@ public class Main {
                         }
                     }
 
+                    String size = System.getProperty("size");
+                    JMemoryInfo jMemoryInfo = jStackService.getMemoryInfo();
+                    System.out.println("Heap Memory: INIT=" + toSize(jMemoryInfo.getHeap().getInit(), size) //
+                                       + "  USED=" + toSize(jMemoryInfo.getHeap().getUsed(), size) //
+                                       + "  COMMITED=" + toSize(jMemoryInfo.getHeap().getCommitted(), size) //
+                                       + "  MAX=" + toSize(jMemoryInfo.getHeap().getMax(), size));
+                    System.out.println("NonHeap Memory: INIT=" + toSize(jMemoryInfo.getNonHeap().getInit(), size) //
+                                       + "  USED=" + toSize(jMemoryInfo.getNonHeap().getUsed(), size) //
+                                       + "  COMMITED=" + toSize(jMemoryInfo.getNonHeap().getCommitted(), size) //
+                                       + "  MAX=" + toSize(jMemoryInfo.getNonHeap().getMax(), size));
+
                     System.out.println("Total threads: " + cJThreadInfos.length //
                                        + "  CPU=" + TimeUnit.NANOSECONDS.toMillis(totalCpu) //
                                        + " (" + nf.format(((double) totalCpu) * 100 / cost) + "%)" //
@@ -186,6 +198,33 @@ public class Main {
         agentLoader.loadAgent();
     }
 
+    static String toSize(long b, String s) {
+        if (s == null) {
+            return String.valueOf(b);
+        }
+        DecimalFormat nf = new DecimalFormat("0.00");
+        char c = s.toLowerCase().trim().charAt(0);
+        if (c == 'h') {
+            if (b > 1024 * 1024 * 1024) {
+                c = 'g';
+            } else if (b > 1024 * 1024) {
+                c = 'm';
+            } else if (b > 1024) {
+                c = 'k';
+            }
+        }
+        switch (c) {
+            case 'k':
+                return nf.format(((double) b) / 1024) + "K";
+            case 'm':
+                return nf.format(((double) b) / 1024 / 1024) + "M";
+            case 'g':
+                return nf.format(((double) b) / 1024 / 1024 / 1024) + "G";
+            default:
+                return String.valueOf(b);
+        }
+    }
+
     static void usage() {
         System.out.println("Usage:");
         System.out.println("java -jar jtop.jar [args]");
@@ -193,6 +232,7 @@ public class Main {
         System.out.println("java -cp jtop.jar jtop [args]");
         System.out.println("    -Dpid=<PID>                   Process ID");
         System.out.println("    -Dport=<PORT>                 Port (default: 1127)");
+        System.out.println("    -Dsize=B|K|M|G|H              Size, case insensitive (default: B, H for human)");
         System.out.println("    -Ddumpcount=<COUNT>           Dump Count (default: 1)");
         System.out.println("    -Dsleepmillis=<MILLIS>        Sleep Mills (default: 2000)");
         System.out.println("    -Dthreadtopn=<N>              Thread Top N (default: 5)");

@@ -39,6 +39,14 @@ public class Main {
                 System.err.println("[ERROR] connect to server failed.");
                 System.exit(0);
             }
+            String pid = jStackService.getProcessId();
+            if (pid.equals(System.getProperty("pid"))) {
+                System.out.print("[ERROR] Remote server's pid not match, PORT=" + rc.getPort() //
+                                 + "  REQUIRE_PID=" + System.getProperty("pid") //
+                                 + "  ACTURE_PID=" + pid);
+                System.exit(0);
+            }
+
             long lastNano = System.nanoTime();
             JThreadInfo[] lastJThreadInfos = null;
             Map<Long, JThreadInfo> lastJThreadInfoMap = null;

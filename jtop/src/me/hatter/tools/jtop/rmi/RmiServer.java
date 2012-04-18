@@ -8,6 +8,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
+import me.hatter.tools.jtop.agent.Agent;
 import me.hatter.tools.jtop.rmi.interfaces.JStackService;
 import me.hatter.tools.jtop.rmi.interfaces.JThreadInfo;
 
@@ -57,6 +58,10 @@ public class RmiServer implements JStackService {
     }
 
     // implemention
+    public String getProcessId() throws RemoteException {
+        return Agent.discoverProcessIdForRunningVM();
+    }
+
     public JThreadInfo[] listThreadInfos() throws RemoteException {
         ThreadInfo[] tis = ManagementFactory.getThreadMXBean().dumpAllThreads(false, false);
         JThreadInfo[] jtis = new JThreadInfo[tis.length];

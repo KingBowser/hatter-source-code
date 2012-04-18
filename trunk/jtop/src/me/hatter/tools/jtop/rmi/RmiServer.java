@@ -7,10 +7,9 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
-import java.util.List;
 
 import me.hatter.tools.jtop.rmi.interfaces.JStackService;
+import me.hatter.tools.jtop.rmi.interfaces.JThreadInfo;
 
 public class RmiServer implements JStackService {
 
@@ -56,14 +55,16 @@ public class RmiServer implements JStackService {
         }
     }
 
-    public String[] listThreadInfos() throws RemoteException {
+    // implemention
+    public JThreadInfo[] listThreadInfos() throws RemoteException {
         ThreadInfo[] tis = ManagementFactory.getThreadMXBean().dumpAllThreads(true, true);
-        List<String> ss = new ArrayList<String>();
-        // TODO Auto-generated method stub
-        for (ThreadInfo ti : tis) {
-            long cpu = ManagementFactory.getThreadMXBean().getThreadCpuTime(ti.getThreadId());
-            ss.add(ti.getThreadId() + ": " + ti.getThreadName() + "  " + ti.getThreadState().name() + " cpu: " + cpu);
+        JThreadInfo[] jtis = new JThreadInfo[tis.length];
+        for (int i = 0; i < tis.length; i++) {
+            long threadId = tis[i].getThreadId();
+            long cpuTime = ManagementFactory.getThreadMXBean().getThreadCpuTime(threadId);
+            long userTime = ManagementFactory.getThreadMXBean().getThreadUserTime(threadId);
+            jtis[i] = new JThreadInfo(tis[i], cpuTime, userTime);
         }
-        return ss.toArray(new String[0]);
+        return jtis;
     }
 }

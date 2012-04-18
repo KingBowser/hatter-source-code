@@ -2,7 +2,6 @@ package me.hatter.tools.jtop.agent;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.management.ManagementFactory;
 
 import sun.tools.attach.LinuxVirtualMachine;
 import sun.tools.attach.WindowsVirtualMachine;
@@ -38,18 +37,12 @@ public class JDK6AgentLoader {
 
     public JDK6AgentLoader(String jarFilePath) {
         this.jarFilePath = jarFilePath;
-        pid = discoverProcessIdForRunningVM();
+        pid = Agent.discoverProcessIdForRunningVM();
     }
 
     public JDK6AgentLoader(String jarFilePath, String pid) {
         this.jarFilePath = jarFilePath;
         this.pid = pid;
-    }
-
-    public String discoverProcessIdForRunningVM() {
-        String nameOfRunningVM = ManagementFactory.getRuntimeMXBean().getName();
-        int p = nameOfRunningVM.indexOf('@');
-        return nameOfRunningVM.substring(0, p);
     }
 
     public void loadAgent() {

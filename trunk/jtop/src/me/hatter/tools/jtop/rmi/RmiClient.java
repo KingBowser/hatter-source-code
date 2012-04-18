@@ -17,6 +17,14 @@ public class RmiClient {
         this.port = port;
     }
 
+    public String getServer() {
+        return server;
+    }
+
+    public int getPort() {
+        return port;
+    }
+
     synchronized public JStackService getJStackService() {
         try {
             if (jStackService != null) {

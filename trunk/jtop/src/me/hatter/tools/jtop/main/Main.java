@@ -131,7 +131,9 @@ public class Main {
                 lastJThreadInfos = jThreadInfos;
                 lastJThreadInfoMap = jThreadInfoMap;
 
-                Thread.sleep(Long.parseLong(System.getProperty("sleepmillis", "2000")));
+                if (c < (dumpcount - 1)) {
+                    Thread.sleep(Long.parseLong(System.getProperty("sleepmillis", "2000")));
+                }
             }
             System.out.println("[INFO] Dump Finish");
         } catch (Exception e) {

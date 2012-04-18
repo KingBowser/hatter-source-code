@@ -187,9 +187,10 @@ public class Main {
         System.out.println("Usage:");
         System.out.println("java -cp jtop.jar jtop [args]");
         System.out.println("    -Dpid=<PID>                   Process ID");
-        System.out.println("    -Dport=<PORT>                 Port");
-        System.out.println("    -Dsleepmillis=<MILLIS>        Sleep Mills");
-        System.out.println("    -Dthreadtopn=<N>              Thread Top N");
-        System.out.println("    -Dstacktracetopn=<N>          Stacktrace Top N");
+        System.out.println("    -Dport=<PORT>                 Port (default: 1127)");
+        System.out.println("    -Ddumpcount=<COUNT>           Dump Count (default: 1)");
+        System.out.println("    -Dsleepmillis=<MILLIS>        Sleep Mills (default: 2000)");
+        System.out.println("    -Dthreadtopn=<N>              Thread Top N (default: 5)");
+        System.out.println("    -Dstacktracetopn=<N>          Stacktrace Top N (default: 8)");
     }
 }

@@ -1,6 +1,7 @@
 package me.hatter.tools.jtop.rmi;
 
 import java.lang.management.ManagementFactory;
+import java.lang.management.MemoryMXBean;
 import java.lang.management.ThreadInfo;
 import java.net.InetAddress;
 import java.rmi.RemoteException;
@@ -9,6 +10,8 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
 import me.hatter.tools.jtop.agent.Agent;
+import me.hatter.tools.jtop.rmi.interfaces.JMemoryInfo;
+import me.hatter.tools.jtop.rmi.interfaces.JMemoryUsage;
 import me.hatter.tools.jtop.rmi.interfaces.JStackService;
 import me.hatter.tools.jtop.rmi.interfaces.JThreadInfo;
 
@@ -61,6 +64,12 @@ public class RmiServer implements JStackService {
     // implemention
     public String getProcessId() throws RemoteException {
         return Agent.discoverProcessIdForRunningVM();
+    }
+
+    public JMemoryInfo getMemoryInfo() throws RemoteException {
+        MemoryMXBean memoryMXBean = ManagementFactory.getMemoryMXBean();
+        return new JMemoryInfo(new JMemoryUsage(memoryMXBean.getHeapMemoryUsage()),
+                               new JMemoryUsage(memoryMXBean.getNonHeapMemoryUsage()));
     }
 
     public JThreadInfo[] listThreadInfos() throws RemoteException {

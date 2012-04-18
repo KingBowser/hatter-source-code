@@ -42,7 +42,8 @@ public class Main {
             long lastNano = System.nanoTime();
             JThreadInfo[] lastJThreadInfos = null;
             Map<Long, JThreadInfo> lastJThreadInfoMap = null;
-            while (true) {
+            int dumpcount = Integer.parseInt(System.getProperty("dumpcount", "1"));
+            for (int c = -1; c < dumpcount; c++) {
                 long nano = System.nanoTime();
                 JThreadInfo[] jThreadInfos = jStackService.listThreadInfos();
                 Map<Long, JThreadInfo> jThreadInfoMap = jThreadInfoToMap(jThreadInfos);
@@ -124,6 +125,7 @@ public class Main {
 
                 Thread.sleep(Long.parseLong(System.getProperty("sleepmillis", "2000")));
             }
+            System.out.println("[INFO] Dump Finish");
         } catch (Exception e) {
             System.err.println("[ERROR] unknow error occured: " + e.getMessage());
             e.printStackTrace();

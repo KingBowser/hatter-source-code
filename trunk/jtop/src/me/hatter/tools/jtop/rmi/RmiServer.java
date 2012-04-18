@@ -57,7 +57,7 @@ public class RmiServer implements JStackService {
 
     // implemention
     public JThreadInfo[] listThreadInfos() throws RemoteException {
-        ThreadInfo[] tis = ManagementFactory.getThreadMXBean().dumpAllThreads(true, true);
+        ThreadInfo[] tis = ManagementFactory.getThreadMXBean().dumpAllThreads(false, false);
         JThreadInfo[] jtis = new JThreadInfo[tis.length];
         for (int i = 0; i < tis.length; i++) {
             long threadId = tis[i].getThreadId();

@@ -185,6 +185,8 @@ public class Main {
 
     static void usage() {
         System.out.println("Usage:");
+        System.out.println("java -jar jtop.jar [args]");
+        System.out.println("-OR-");
         System.out.println("java -cp jtop.jar jtop [args]");
         System.out.println("    -Dpid=<PID>                   Process ID");
         System.out.println("    -Dport=<PORT>                 Port (default: 1127)");

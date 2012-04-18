@@ -66,8 +66,8 @@ public class Main {
                             return o2.getThreadName().compareTo(o1.getThreadName());
                         }
                     });
-                    int threadtopn = Integer.valueOf(System.getProperty("threadtopn", "10"));
-                    int stacktracetopn = Integer.valueOf(System.getProperty("stacktracetopn", "6"));
+                    int threadtopn = Integer.valueOf(System.getProperty("threadtopn", "5"));
+                    int stacktracetopn = Integer.valueOf(System.getProperty("stacktracetopn", "8"));
 
                     long cost = nano - lastNano;
                     long totalCpu = 0;

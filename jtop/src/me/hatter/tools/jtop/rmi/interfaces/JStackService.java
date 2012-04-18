@@ -9,5 +9,9 @@ public interface JStackService extends Remote {
 
     JMemoryInfo getMemoryInfo() throws RemoteException;
 
+    JGCInfo[] getGCInfos() throws RemoteException;
+
+    JClassLoadingInfo getClassLoadingInfo() throws RemoteException;
+
     JThreadInfo[] listThreadInfos() throws RemoteException;
 }

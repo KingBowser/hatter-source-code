@@ -14,6 +14,8 @@ import me.hatter.tools.jtop.agent.AgentInitialization;
 import me.hatter.tools.jtop.agent.JDK6AgentLoader;
 import me.hatter.tools.jtop.rmi.RmiClient;
 import me.hatter.tools.jtop.rmi.exception.ServiceNotStartedException;
+import me.hatter.tools.jtop.rmi.interfaces.JClassLoadingInfo;
+import me.hatter.tools.jtop.rmi.interfaces.JGCInfo;
 import me.hatter.tools.jtop.rmi.interfaces.JMemoryInfo;
 import me.hatter.tools.jtop.rmi.interfaces.JStackService;
 import me.hatter.tools.jtop.rmi.interfaces.JThreadInfo;
@@ -126,6 +128,20 @@ public class Main {
                                        + "  USED=" + toSize(jMemoryInfo.getNonHeap().getUsed(), size) //
                                        + "  COMMITED=" + toSize(jMemoryInfo.getNonHeap().getCommitted(), size) //
                                        + "  MAX=" + toSize(jMemoryInfo.getNonHeap().getMax(), size));
+
+                    JGCInfo[] jgcInfos = jStackService.getGCInfos();
+                    for (JGCInfo jgcInfo : jgcInfos) {
+                        System.out.println("GC " + jgcInfo.getName() //
+                                           + "  " + (jgcInfo.isValid() ? "VALID" : "NOT_VALID") //
+                                           + "  " + Arrays.asList(jgcInfo.getMemoryPoolNames()) //
+                                           + "  GC=" + jgcInfo.getCollectionCount() //
+                                           + "  GCT=" + jgcInfo.getCollectionTime());
+                    }
+
+                    JClassLoadingInfo jClassLoadingInfo = jStackService.getClassLoadingInfo();
+                    System.out.println("ClassLoading LOADED=" + jClassLoadingInfo.getLoadedClassCount() //
+                                       + "  TOTAL_LOADED=" + jClassLoadingInfo.getTotalLoadedClassCount() //
+                                       + "  UNLOADED=" + jClassLoadingInfo.getUnloadedClassCount());
 
                     System.out.println("Total threads: " + cJThreadInfos.length //
                                        + "  CPU=" + TimeUnit.NANOSECONDS.toMillis(totalCpu) //

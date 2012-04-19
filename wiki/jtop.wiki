@@ -4,8 +4,12 @@
 
 The java edition command of top.
 
-
 = Details =
+
+Get jtop:
+{{{
+wget http://hatter-source-code.googlecode.com/svn/trunk/jtop/jtop.jar
+}}}
 
 Usage: 
 {{{

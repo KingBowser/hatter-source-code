@@ -12,6 +12,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import me.hatter.tools.jtop.agent.AgentInitialization;
 import me.hatter.tools.jtop.agent.JDK6AgentLoader;
+import me.hatter.tools.jtop.main.objects.MainOutput;
 import me.hatter.tools.jtop.rmi.RmiClient;
 import me.hatter.tools.jtop.rmi.exception.ServiceNotStartedException;
 import me.hatter.tools.jtop.rmi.interfaces.JClassLoadingInfo;
@@ -20,6 +21,9 @@ import me.hatter.tools.jtop.rmi.interfaces.JMemoryInfo;
 import me.hatter.tools.jtop.rmi.interfaces.JStackService;
 import me.hatter.tools.jtop.rmi.interfaces.JThreadInfo;
 import me.hatter.tools.jtop.util.ArgsUtil;
+import me.hatter.tools.jtop.util.console.Color;
+import me.hatter.tools.jtop.util.console.Font;
+import me.hatter.tools.jtop.util.console.Text;
 
 public class Main {
 
@@ -55,14 +59,15 @@ public class Main {
             }
 
             long lastNano = System.nanoTime();
-            JThreadInfo[] lastJThreadInfos = null;
+            MainOutput lastMainOutput = null;
             Map<Long, JThreadInfo> lastJThreadInfoMap = null;
             int dumpcount = Integer.parseInt(System.getProperty("dumpcount", "1"));
             for (int c = -1; c < dumpcount; c++) {
                 long nano = System.nanoTime();
+                MainOutput mainOutput = new MainOutput(c + 1);
                 JThreadInfo[] jThreadInfos = jStackService.listThreadInfos();
                 Map<Long, JThreadInfo> jThreadInfoMap = jThreadInfoToMap(jThreadInfos);
-                if (lastJThreadInfos == null) {
+                if (lastMainOutput == null) {
                     System.out.println("[INFO] First Round");
                 } else {
                     // display to console
@@ -107,6 +112,9 @@ public class Main {
                         }
                         outputs.add("");
                     }
+                    mainOutput.setTotalThreadCount(cJThreadInfos.length);
+                    mainOutput.setTotalCpuTime(totalCpu);
+                    mainOutput.setTotalUserTime(totalUser);
 
                     Map<Thread.State, AtomicInteger> stateMap = new HashMap<Thread.State, AtomicInteger>();
                     for (JThreadInfo jThreadInfo : cJThreadInfos) {
@@ -143,11 +151,20 @@ public class Main {
                                        + "  TOTAL_LOADED=" + jClassLoadingInfo.getTotalLoadedClassCount() //
                                        + "  UNLOADED=" + jClassLoadingInfo.getUnloadedClassCount());
 
-                    System.out.println("Total threads: " + cJThreadInfos.length //
-                                       + "  CPU=" + TimeUnit.NANOSECONDS.toMillis(totalCpu) //
-                                       + " (" + nf.format(((double) totalCpu) * 100 / cost) + "%)" //
-                                       + "  USER=" + TimeUnit.NANOSECONDS.toMillis(totalUser) //
-                                       + " (" + nf.format(((double) totalUser) * 100 / cost) + "%)");
+                    System.out.println("Total threads: " //
+                                       + Text.createText(getFont(mainOutput, cJThreadInfos.length,
+                                                                 mainOutput.getTotalThreadCount()),
+                                                         String.valueOf(cJThreadInfos.length))
+                                       + Text.createText(getFont(mainOutput, totalCpu, lastMainOutput.getTotalCpuTime()),
+                                                         "  CPU=" + TimeUnit.NANOSECONDS.toMillis(totalCpu) + " ("
+                                                                 + nf.format(((double) totalCpu) * 100 / cost) + "%)")//
+                                       + Text.createText(getFont(mainOutput, totalUser,
+                                                                 lastMainOutput.getTotalUserTime()),
+                                                         "  USER="
+                                                                 + TimeUnit.NANOSECONDS.toMillis(totalUser) //
+                                                                 + " (" + nf.format(((double) totalUser) * 100 / cost)
+                                                                 + "%)") //
+                    );
                     for (Thread.State state : Thread.State.values()) {
                         AtomicInteger ai = stateMap.get(state);
                         ai = (ai == null) ? new AtomicInteger(0) : ai;
@@ -160,7 +177,7 @@ public class Main {
                     System.out.println();
                 }
                 lastNano = nano;
-                lastJThreadInfos = jThreadInfos;
+                lastMainOutput = mainOutput;
                 lastJThreadInfoMap = jThreadInfoMap;
 
                 if (c < (dumpcount - 1)) {
@@ -171,6 +188,20 @@ public class Main {
         } catch (Exception e) {
             System.err.println("[ERROR] unknow error occured: " + e.getMessage());
             e.printStackTrace();
+        }
+    }
+
+    static Font getFont(MainOutput mainOutput, long value, long lastValue) {
+        if (value == lastValue) {
+            return null;
+        }
+        if (mainOutput.getRound() == 0) {
+            return null;
+        }
+        if (value > lastValue) {
+            return Font.createFont(Color.RED, false);
+        } else {
+            return Font.createFont(Color.GREEN, false);
         }
     }
 

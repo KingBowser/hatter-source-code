@@ -12,6 +12,11 @@ Get jtop:
 wget http://hatter-source-code.googlecode.com/svn/trunk/jtop/jtop.jar
 }}}
 
+SVN:
+{{{
+svn co http://hatter-source-code.googlecode.com/svn/trunk/jtop/ jtop
+}}}
+
 Usage: 
 {{{
 java -jar jtop.jar [args]

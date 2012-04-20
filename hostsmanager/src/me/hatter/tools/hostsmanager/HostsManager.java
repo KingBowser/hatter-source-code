@@ -10,7 +10,8 @@ public class HostsManager {
 
     public static void main(String[] args) {
         args = ArgsUtil.processArgs(args);
-        MainHttpServer httpServer = new MainHttpServer(new HttpServerHandler(), Arrays.asList(1127));
+        int port = Integer.parseInt(System.getProperty("port", "1127"));
+        MainHttpServer httpServer = new MainHttpServer(new HttpServerHandler(), Arrays.asList(port));
         httpServer.run();
     }
 }

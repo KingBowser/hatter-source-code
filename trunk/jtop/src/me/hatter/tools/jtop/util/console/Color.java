@@ -2,6 +2,8 @@ package me.hatter.tools.jtop.util.console;
 
 public enum Color {
 
+    DEFAULT(0),
+
     RED(31),
 
     BLUE(34),
@@ -10,7 +12,11 @@ public enum Color {
 
     GREEN(32),
 
-    YELLOW(33);
+    YELLOW(33),
+
+    WHITE(37),
+
+    BLACK(30);
 
     private int value;
 

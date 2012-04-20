@@ -21,6 +21,7 @@ import me.hatter.tools.jtop.rmi.interfaces.JMemoryInfo;
 import me.hatter.tools.jtop.rmi.interfaces.JStackService;
 import me.hatter.tools.jtop.rmi.interfaces.JThreadInfo;
 import me.hatter.tools.jtop.util.ArgsUtil;
+import me.hatter.tools.jtop.util.EnvUtil;
 import me.hatter.tools.jtop.util.console.Color;
 import me.hatter.tools.jtop.util.console.Font;
 import me.hatter.tools.jtop.util.console.Text;
@@ -36,7 +37,7 @@ public class Main {
                 usage();
                 System.exit(0);
             }
-            RmiClient rc = new RmiClient("127.0.0.1", Integer.parseInt(System.getProperty("port", "1127")));
+            RmiClient rc = new RmiClient("127.0.0.1", EnvUtil.getPort());
             if (!tryConnect(rc)) {
                 int pid = Integer.valueOf(System.getProperty("pid"));
                 attachAgent(pid);
@@ -50,18 +51,18 @@ public class Main {
             String pid = jStackService.getProcessId();
             if (!pid.equals(System.getProperty("pid"))) {
                 System.out.println("[ERROR] Remote server's pid not match, PORT=" + rc.getPort() //
-                                   + "  REQUIRE_PID=" + System.getProperty("pid") //
+                                   + "  REQUIRE_PID=" + EnvUtil.getPort() //
                                    + "  ACTURE_PID=" + pid);
                 String jarFilePath = (new AgentInitialization()).findPathToJarFileFromClasspath();
                 System.out.println("[ERROR] The target VM PORT="
-                                   + (new JDK6AgentLoader(jarFilePath, System.getProperty("pid"))).getVMProperty("jtop.port"));
+                                   + (new JDK6AgentLoader(jarFilePath, String.valueOf(EnvUtil.getPort()))).getVMProperty("jtop.port"));
                 System.exit(0);
             }
 
             long lastNano = System.nanoTime();
             MainOutput lastMainOutput = null;
             Map<Long, JThreadInfo> lastJThreadInfoMap = null;
-            int dumpcount = Integer.parseInt(System.getProperty("dumpcount", "1"));
+            int dumpcount = EnvUtil.getDumpCount();
             for (int c = -1; c < dumpcount; c++) {
                 long nano = System.nanoTime();
                 MainOutput mainOutput = new MainOutput(c + 1);
@@ -73,32 +74,25 @@ public class Main {
                     // display to console
                     System.out.println("NEW ROUND ================================================== ");
                     JThreadInfo[] cJThreadInfos = caculateJThreadInfos(jThreadInfos, lastJThreadInfoMap);
-                    Arrays.sort(cJThreadInfos, new Comparator<JThreadInfo>() {
-
-                        public int compare(JThreadInfo o1, JThreadInfo o2) {
-                            int rCpu = Long.valueOf(o2.getCpuTime()).compareTo(Long.valueOf(o1.getCpuTime()));
-                            if (rCpu != 0) {
-                                return rCpu;
-                            }
-                            int rUser = Long.valueOf(o2.getUserTime()).compareTo(Long.valueOf(o1.getUserTime()));
-                            if (rUser != 0) {
-                                return rUser;
-                            }
-                            return o2.getThreadName().compareTo(o1.getThreadName());
-                        }
-                    });
-                    int threadtopn = Integer.valueOf(System.getProperty("threadtopn", "5"));
-                    int stacktracetopn = Integer.valueOf(System.getProperty("stacktracetopn", "8"));
+                    cJThreadInfos = sortJThreadInfos(cJThreadInfos);
+                    int threadtopn = EnvUtil.getThreadTopN();
+                    int stacktracetopn = EnvUtil.getStacktraceTopN();
 
                     long cost = nano - lastNano;
                     long totalCpu = 0;
                     long totalUser = 0;
+                    for (JThreadInfo jThreadInfo : cJThreadInfos) {
+                        totalCpu += jThreadInfo.getCpuTime();
+                        totalUser += jThreadInfo.getUserTime();
+                    }
+                    mainOutput.setTotalThreadCount(cJThreadInfos.length);
+                    mainOutput.setTotalCpuTime(totalCpu);
+                    mainOutput.setTotalUserTime(totalUser);
+
                     DecimalFormat nf = new DecimalFormat("0.00");
                     List<String> outputs = new ArrayList<String>();
                     for (int i = 0; ((i < cJThreadInfos.length) && (i < threadtopn)); i++) {
                         JThreadInfo jThreadInfo = cJThreadInfos[i];
-                        totalCpu += jThreadInfo.getCpuTime();
-                        totalUser += jThreadInfo.getUserTime();
                         outputs.add(jThreadInfo.getThreadName() //
                                     + "  TID=" + jThreadInfo.getThreadId() //
                                     + "  STATE=" + jThreadInfo.getThreadState().name() //
@@ -112,9 +106,6 @@ public class Main {
                         }
                         outputs.add("");
                     }
-                    mainOutput.setTotalThreadCount(cJThreadInfos.length);
-                    mainOutput.setTotalCpuTime(totalCpu);
-                    mainOutput.setTotalUserTime(totalUser);
 
                     Map<Thread.State, AtomicInteger> stateMap = new HashMap<Thread.State, AtomicInteger>();
                     for (JThreadInfo jThreadInfo : cJThreadInfos) {
@@ -126,16 +117,21 @@ public class Main {
                         }
                     }
 
-                    String size = System.getProperty("size");
+                    String size = EnvUtil.getSize();
                     JMemoryInfo jMemoryInfo = jStackService.getMemoryInfo();
-                    System.out.println("Heap Memory: INIT=" + toSize(jMemoryInfo.getHeap().getInit(), size) //
+                    mainOutput.setjMemoryInfo(jMemoryInfo);
+                    System.out.println("Heap Memory:" //
+                                       + " INIT=" + toSize(jMemoryInfo.getHeap().getInit(), size) //
                                        + "  USED=" + toSize(jMemoryInfo.getHeap().getUsed(), size) //
                                        + "  COMMITED=" + toSize(jMemoryInfo.getHeap().getCommitted(), size) //
-                                       + "  MAX=" + toSize(jMemoryInfo.getHeap().getMax(), size));
-                    System.out.println("NonHeap Memory: INIT=" + toSize(jMemoryInfo.getNonHeap().getInit(), size) //
+                                       + "  MAX=" + toSize(jMemoryInfo.getHeap().getMax(), size) //
+                    );
+                    System.out.println("NonHeap Memory:" //
+                                       + " INIT=" + toSize(jMemoryInfo.getNonHeap().getInit(), size) //
                                        + "  USED=" + toSize(jMemoryInfo.getNonHeap().getUsed(), size) //
                                        + "  COMMITED=" + toSize(jMemoryInfo.getNonHeap().getCommitted(), size) //
-                                       + "  MAX=" + toSize(jMemoryInfo.getNonHeap().getMax(), size));
+                                       + "  MAX=" + toSize(jMemoryInfo.getNonHeap().getMax(), size) //
+                    );
 
                     JGCInfo[] jgcInfos = jStackService.getGCInfos();
                     for (JGCInfo jgcInfo : jgcInfos) {
@@ -143,13 +139,16 @@ public class Main {
                                            + "  " + (jgcInfo.isValid() ? "VALID" : "NOT_VALID") //
                                            + "  " + Arrays.asList(jgcInfo.getMemoryPoolNames()) //
                                            + "  GC=" + jgcInfo.getCollectionCount() //
-                                           + "  GCT=" + jgcInfo.getCollectionTime());
+                                           + "  GCT=" + jgcInfo.getCollectionTime() //
+                        );
                     }
 
                     JClassLoadingInfo jClassLoadingInfo = jStackService.getClassLoadingInfo();
-                    System.out.println("ClassLoading LOADED=" + jClassLoadingInfo.getLoadedClassCount() //
+                    System.out.println("ClassLoading" //
+                                       + " LOADED=" + jClassLoadingInfo.getLoadedClassCount() //
                                        + "  TOTAL_LOADED=" + jClassLoadingInfo.getTotalLoadedClassCount() //
-                                       + "  UNLOADED=" + jClassLoadingInfo.getUnloadedClassCount());
+                                       + "  UNLOADED=" + jClassLoadingInfo.getUnloadedClassCount() //
+                    );
 
                     System.out.println("Total threads: " //
                                        + Text.createText(getFont(mainOutput, cJThreadInfos.length,
@@ -189,6 +188,24 @@ public class Main {
             System.err.println("[ERROR] unknow error occured: " + e.getMessage());
             e.printStackTrace();
         }
+    }
+
+    static JThreadInfo[] sortJThreadInfos(JThreadInfo[] cJThreadInfos) {
+        Arrays.sort(cJThreadInfos, new Comparator<JThreadInfo>() {
+
+            public int compare(JThreadInfo o1, JThreadInfo o2) {
+                int rCpu = Long.valueOf(o2.getCpuTime()).compareTo(Long.valueOf(o1.getCpuTime()));
+                if (rCpu != 0) {
+                    return rCpu;
+                }
+                int rUser = Long.valueOf(o2.getUserTime()).compareTo(Long.valueOf(o1.getUserTime()));
+                if (rUser != 0) {
+                    return rUser;
+                }
+                return o2.getThreadName().compareTo(o1.getThreadName());
+            }
+        });
+        return cJThreadInfos;
     }
 
     static Font getFont(MainOutput mainOutput, long value, long lastValue) {

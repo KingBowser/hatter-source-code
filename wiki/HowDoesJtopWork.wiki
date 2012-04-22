@@ -7,4 +7,5 @@ Introduce how does jtop work.
 = Details =
 
 Seq of jtop:
+
 http://hatter-source-code.googlecode.com/svn/trunk/attachments/jtop/seq_jtop.png

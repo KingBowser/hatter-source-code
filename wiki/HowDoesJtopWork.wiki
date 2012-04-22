@@ -2,12 +2,9 @@
 
 = Introduction =
 
-Add your content here.
-
+Introduce how does jtop work.
 
 = Details =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+Seq of jtop:
+http://hatter-source-code.googlecode.com/svn/trunk/attachments/jtop/seq_jtop.png

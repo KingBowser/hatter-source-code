@@ -9,3 +9,24 @@ Introduce how does jtop work.
 Seq of jtop:
 
 http://hatter-source-code.googlecode.com/svn/trunk/attachments/jtop/seq_jtop.png
+
+Get RMI service client:
+{{{synchronized public JStackService getJStackService() {
+    try {
+        if (jStackService != null) {
+            return jStackService;
+        }
+        Registry registry = LocateRegistry.getRegistry(server, Integer.valueOf(port));
+        jStackService = (JStackService) (registry.lookup("jStackService"));
+        return jStackService;
+    } catch (Exception e) {
+        if (e.getMessage().toLowerCase().contains("connection refused")) {
+            throw new ServiceNotStartedException();
+        }
+        System.err.println("[ERROR] RMI register error: " + e.getMessage());
+        e.printStackTrace();
+        return null;
+    }
+}
+
+}}}

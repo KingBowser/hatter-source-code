@@ -31,7 +31,7 @@ Get RMI service client:
     }
 }}}
 
-Attach VM
+Attach VM:
 If `AttachProvider.providers().isEmpty()` then
 {{{
     private VirtualMachine getVirtualMachineImplementationFromEmbeddedOnes() {

@@ -11,22 +11,73 @@ Seq of jtop:
 http://hatter-source-code.googlecode.com/svn/trunk/attachments/jtop/seq_jtop.png
 
 Get RMI service client:
-{{{synchronized public JStackService getJStackService() {
-    try {
-        if (jStackService != null) {
+{{{
+    synchronized public JStackService getJStackService() {
+        try {
+            if (jStackService != null) {
+                return jStackService;
+            }
+            Registry registry = LocateRegistry.getRegistry(server, Integer.valueOf(port));
+            jStackService = (JStackService) (registry.lookup("jStackService"));
             return jStackService;
+        } catch (Exception e) {
+            if (e.getMessage().toLowerCase().contains("connection refused")) {
+                throw new ServiceNotStartedException();
+            }
+            System.err.println("[ERROR] RMI register error: " + e.getMessage());
+            e.printStackTrace();
+            return null;
         }
-        Registry registry = LocateRegistry.getRegistry(server, Integer.valueOf(port));
-        jStackService = (JStackService) (registry.lookup("jStackService"));
-        return jStackService;
-    } catch (Exception e) {
-        if (e.getMessage().toLowerCase().contains("connection refused")) {
-            throw new ServiceNotStartedException();
-        }
-        System.err.println("[ERROR] RMI register error: " + e.getMessage());
-        e.printStackTrace();
-        return null;
     }
-}
+}}}
 
+Attach VM
+If `AttachProvider.providers().isEmpty()` then
+{{{
+    private VirtualMachine getVirtualMachineImplementationFromEmbeddedOnes() {
+        try {
+            if (File.separatorChar == '\\') {
+                return new WindowsVirtualMachine(ATTACH_PROVIDER, pid);
+            } else {
+                return new LinuxVirtualMachine(ATTACH_PROVIDER, pid);
+            }
+        } catch (AttachNotSupportedException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (UnsatisfiedLinkError ignore) {
+            // noinspection ThrowInsideCatchBlockWhichIgnoresCaughtException
+            throw new IllegalStateException("Unable to load Java agent; please add lib/tools.jar "
+                                                          + "from your JDK to the classpath");
+        }
+    }
+}}}
+else
+{{{
+    private VirtualMachine attachToThisVM() {
+        try {
+            return VirtualMachine.attach(pid);
+        } catch (AttachNotSupportedException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+}}}
+
+Load agent:
+{{{
+    private void loadAgentAndDetachFromThisVM(VirtualMachine vm) {
+        try {
+            String port = System.getProperty("port", "1127");
+            vm.loadAgent(jarFilePath, "port=" + port);
+            vm.detach();
+        } catch (AgentLoadException e) {
+            throw new RuntimeException(e);
+        } catch (AgentInitializationException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }}}

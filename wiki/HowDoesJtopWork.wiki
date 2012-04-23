@@ -81,3 +81,60 @@ Load agent:
         }
     }
 }}}
+
+Start RMI service:
+{{{
+    public void bind(int port) throws RemoteException {
+        this.thisPort = port;
+        System.out.println("[INFO] this address=" + thisAddress + ",port=" + thisPort);
+        try {
+            registry = LocateRegistry.createRegistry(thisPort);
+            registry.rebind("jStackService", (JStackService) UnicastRemoteObject.exportObject(this, 0));
+        } catch (RemoteException e) {
+            throw e;
+        }
+    }
+}}}
+
+RMI service impl(Get server MXBean info):
+{{{
+    public JMemoryInfo getMemoryInfo() throws RemoteException {
+        MemoryMXBean memoryMXBean = ManagementFactory.getMemoryMXBean();
+        return new JMemoryInfo(new JMemoryUsage(memoryMXBean.getHeapMemoryUsage()),
+                               new JMemoryUsage(memoryMXBean.getNonHeapMemoryUsage()));
+    }
+
+    public JGCInfo[] getGCInfos() throws RemoteException {
+        List<JGCInfo> jgcInfos = new ArrayList<JGCInfo>();
+        List<GarbageCollectorMXBean> garbageCollectorMXBeans = ManagementFactory.getGarbageCollectorMXBeans();
+        for (GarbageCollectorMXBean garbageCollectorMXBean : garbageCollectorMXBeans) {
+            JGCInfo jgcInfo = new JGCInfo();
+            jgcInfo.setName(garbageCollectorMXBean.getName());
+            jgcInfo.setValid(garbageCollectorMXBean.isValid());
+            jgcInfo.setMemoryPoolNames(garbageCollectorMXBean.getMemoryPoolNames());
+            jgcInfo.setCollectionCount(garbageCollectorMXBean.getCollectionCount());
+            jgcInfo.setCollectionTime(garbageCollectorMXBean.getCollectionTime());
+            jgcInfos.add(jgcInfo);
+        }
+        return jgcInfos.toArray(new JGCInfo[0]);
+    }
+
+    public JClassLoadingInfo getClassLoadingInfo() throws RemoteException {
+        ClassLoadingMXBean classLoadingMXBean = ManagementFactory.getClassLoadingMXBean();
+        return new JClassLoadingInfo(classLoadingMXBean.getTotalLoadedClassCount(),
+                                     classLoadingMXBean.getLoadedClassCount(),
+                                     classLoadingMXBean.getUnloadedClassCount());
+    }
+
+    public JThreadInfo[] listThreadInfos() throws RemoteException {
+        ThreadInfo[] tis = ManagementFactory.getThreadMXBean().dumpAllThreads(false, false);
+        JThreadInfo[] jtis = new JThreadInfo[tis.length];
+        for (int i = 0; i < tis.length; i++) {
+            long threadId = tis[i].getThreadId();
+            long cpuTime = ManagementFactory.getThreadMXBean().getThreadCpuTime(threadId);
+            long userTime = ManagementFactory.getThreadMXBean().getThreadUserTime(threadId);
+            jtis[i] = new JThreadInfo(tis[i], cpuTime, userTime);
+        }
+        return jtis;
+    }
+}}}

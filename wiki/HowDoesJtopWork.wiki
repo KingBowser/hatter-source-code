@@ -138,3 +138,6 @@ RMI service impl(Get server MXBean info):
         return jtis;
     }
 }}}
+
+Reference:
+ * http://code.google.com/p/jmockit/

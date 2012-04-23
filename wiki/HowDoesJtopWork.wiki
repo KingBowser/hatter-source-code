@@ -139,5 +139,7 @@ RMI service impl(Get server MXBean info):
     }
 }}}
 
+For more, check out http://hatter-source-code.googlecode.com/svn/trunk/jtop/ and read it.
+
 Reference:
  * http://code.google.com/p/jmockit/

@@ -23,7 +23,7 @@ public class ConnectionPool {
     public void returnConnection(Connection connection) {
         boolean returnedToPool = false;
         synchronized (connectionStack) {
-            if (connectionStack.size() < poolSize) {
+            if ((connectionStack.size() < poolSize) && ConnectionFactory.validConnection(connection)) {
                 connectionStack.push(connection);
                 returnedToPool = true;
             }

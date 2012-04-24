@@ -2,7 +2,6 @@ package me.hatter.tools.resourceproxy.jsspexec;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,6 +19,8 @@ import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 import javax.script.SimpleBindings;
 
+import me.hatter.tools.resourceproxy.commons.resource.FileResource;
+import me.hatter.tools.resourceproxy.commons.resource.Resource;
 import me.hatter.tools.resourceproxy.commons.util.IOUtil;
 import me.hatter.tools.resourceproxy.commons.util.StringUtil;
 import me.hatter.tools.resourceproxy.jsspexec.exception.JsspEvalException;
@@ -28,7 +29,7 @@ import me.hatter.tools.resourceproxy.jsspexec.utl.BufferWriter;
 public class JsspExecutor {
 
     public static String                     DEFAULT_CHARSET      = "UTF-8";
-    public static String                     JSSP_EXPLAINED_EXT   = ".jssp";
+    public static String                     JSSP_EXPLAINED_EXT   = ".jssp_explain";
     private static final String              JSSP_SCRIPT_LANGUAGE = "JavaScript";
     private static final ScriptEngineManager JSSP_ENG_MAN         = new ScriptEngineManager();
 
@@ -43,7 +44,7 @@ public class JsspExecutor {
         fw.flush();
         fw.close();
 
-        executeJssp(f, context, null, bw);
+        executeJssp(new FileResource(f), context, null, bw);
 
         System.out.println(bw.getBufferedString());
     }
@@ -55,10 +56,9 @@ public class JsspExecutor {
         }
     }
 
-    public static void executeJssp(File file, Map<String, Object> context, Map<String, Object> addContext,
+    public static void executeJssp(Resource resource, Map<String, Object> context, Map<String, Object> addContext,
                                    BufferWriter out) {
-        File explained = tryExplainJssp(file);
-        executeExplained(new StringReader(explainAndReadJssp(explained)), context, addContext, out);
+        executeExplained(new StringReader(explainAndReadJssp(resource)), context, addContext, out);
     }
 
     public static void executeExplained(Reader reader, Map<String, Object> context, Map<String, Object> addContext,
@@ -84,10 +84,10 @@ public class JsspExecutor {
         out.flush();
     }
 
-    public static String explainAndReadJssp(File file) {
+    public static String explainAndReadJssp(Resource resource) {
         try {
-            File explained = tryExplainJssp(file);
-            InputStream fis = new FileInputStream(explained);
+            Resource explained = tryExplainJssp(resource);
+            InputStream fis = explained.openInputStream();
             InputStreamReader isr = new InputStreamReader(fis, DEFAULT_CHARSET);
             try {
                 return IOUtil.readToString(isr);
@@ -99,22 +99,22 @@ public class JsspExecutor {
         }
     }
 
-    public static File tryExplainJssp(File file) {
+    public static Resource tryExplainJssp(Resource resource) {
         try {
-            return explainJssp(file);
+            return explainJssp(resource);
         } catch (IOException e) {
-            throw new JsspEvalException("Error occured in explain jssp file: " + file, e);
+            throw new JsspEvalException("Error occured in explain jssp resource: " + resource, e);
         }
     }
 
-    public static File explainJssp(File file) throws IOException {
-        File explainedFile = getExplainedFile(file);
+    public static Resource explainJssp(Resource resource) throws IOException {
+        File explainedFile = getExplainedFile(resource);
         if (explainedFile.exists()) {
-            if (explainedFile.lastModified() > file.lastModified()) {
-                return explainedFile;
+            if (explainedFile.lastModified() > resource.lastModified()) {
+                return new FileResource(explainedFile);
             }
         }
-        FileInputStream fis = new FileInputStream(file);
+        InputStream fis = resource.openInputStream();
         BufferedReader br = new BufferedReader(new InputStreamReader(fis, DEFAULT_CHARSET));
         try {
             PrintWriter pw = new PrintWriter(explainedFile, DEFAULT_CHARSET);
@@ -199,11 +199,11 @@ public class JsspExecutor {
             IOUtil.closeQuitely(fis);
         }
 
-        return explainedFile;
+        return new FileResource(explainedFile);
     }
 
-    private static final File getExplainedFile(File file) {
-        String path = file.getPath() + JSSP_EXPLAINED_EXT;
+    private static final File getExplainedFile(Resource resource) {
+        String path = resource.getResId() + JSSP_EXPLAINED_EXT;
         path = path.replaceAll("[:\\\\/]", "_");
         return new File(getJsspWorkDir(), path);
     }

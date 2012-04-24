@@ -1,0 +1,16 @@
+#summary One-sentence summary of this page.
+#labels Featured,java,hostmanager
+
+= Introduction =
+
+A simple browser based hosts manager.
+
+= Details =
+
+Usage:
+{{{
+wget http://hatter-source-code.googlecode.com/svn/trunk/hostsmanager/ hostsmanager.jar
+java -jar hostsmanager.jar [-Dport=NNN]
+}}}
+
+Then open browser and enjoy it.

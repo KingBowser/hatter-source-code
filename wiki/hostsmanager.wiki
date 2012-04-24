@@ -13,4 +13,4 @@ wget http://hatter-source-code.googlecode.com/svn/trunk/hostsmanager/hostsmanage
 java -jar hostsmanager.jar [-Dport=NNN]
 }}}
 
-Then open browser and enjoy it.
+Then open browser and enjoy it(default port is 1127), access `http://localhost:1127` or `http://127.0.0.1:1127`.

@@ -1,6 +1,8 @@
 package me.hatter.tools.resourceproxy.commons.util;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,6 +26,21 @@ public class IOUtil {
             }
         }
         return sb.toString();
+    }
+
+    public static byte[] readToBytes(InputStream inputStream) {
+        InputStream fis = null;
+        try {
+            fis = (inputStream instanceof BufferedInputStream) ? (BufferedInputStream) inputStream : new BufferedInputStream(
+                                                                                                                             inputStream);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            IOUtil.copy(fis, baos);
+            return baos.toByteArray();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            IOUtil.closeQuitely(fis);
+        }
     }
 
     public static long copy(InputStream is, OutputStream os) throws IOException {

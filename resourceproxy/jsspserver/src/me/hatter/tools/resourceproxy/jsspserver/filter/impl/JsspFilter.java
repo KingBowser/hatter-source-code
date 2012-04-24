@@ -5,6 +5,8 @@ import java.io.StringReader;
 import java.util.HashMap;
 import java.util.Map;
 
+import me.hatter.tools.resourceproxy.commons.resource.Resource;
+import me.hatter.tools.resourceproxy.commons.resource.Resources;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpRequest;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpResponse;
 import me.hatter.tools.resourceproxy.jsspexec.JsspExecutor;
@@ -14,8 +16,8 @@ import me.hatter.tools.resourceproxy.jsspserver.filter.ResourceFilter;
 import me.hatter.tools.resourceproxy.jsspserver.filter.ResourceFilterChain;
 import me.hatter.tools.resourceproxy.jsspserver.util.ContentTypes;
 import me.hatter.tools.resourceproxy.jsspserver.util.HttpConstants;
-import me.hatter.tools.resourceproxy.jsspserver.util.JsspFile;
-import me.hatter.tools.resourceproxy.jsspserver.util.JsspFileManager;
+import me.hatter.tools.resourceproxy.jsspserver.util.JsspResource;
+import me.hatter.tools.resourceproxy.jsspserver.util.JsspResourceManager;
 
 public class JsspFilter implements ResourceFilter {
 
@@ -30,6 +32,7 @@ public class JsspFilter implements ResourceFilter {
             JSSP_PATH = new File(jsspPath);
         }
     }
+    public static Resources     RESOURCES  = new Resources(JSSP_PATH);
 
     static {
         JsspExecutor.initJsspWork();
@@ -39,9 +42,9 @@ public class JsspFilter implements ResourceFilter {
     public HttpResponse filter(HttpRequest request, ResourceFilterChain chain) {
         String fpath = request.getFPath();
         if (fpath.toLowerCase().endsWith(".jssp")) {
-            JsspFile jsspFile = JsspFileManager.getJsspFile(new File(JSSP_PATH, fpath));
-            if (jsspFile.exists()) {
-                System.out.println("[INFO] Found jssp file: " + jsspFile.getFile());
+            JsspResource jsspResource = JsspResourceManager.getJsspResource(getResource(fpath));
+            if (jsspResource.exists()) {
+                System.out.println("[INFO] Found jssp resource: " + jsspResource.getResource());
 
                 HttpResponse response = new HttpResponse();
                 Map<String, Object> context = new HashMap<String, Object>();
@@ -68,7 +71,7 @@ public class JsspFilter implements ResourceFilter {
                 BufferWriter bw = new BufferWriter();
                 Map<String, Object> addContext = new HashMap<String, Object>();
                 addContext.put("request", request);
-                JsspExecutor.executeExplained(new StringReader(jsspFile.getExplainedContent(JSSP_DEBUG)), context,
+                JsspExecutor.executeExplained(new StringReader(jsspResource.getExplainedContent(JSSP_DEBUG)), context,
                                               addContext, bw);
 
                 response.setContentType(ContentTypes.HTML_CONTENT_TYPE);
@@ -84,5 +87,23 @@ public class JsspFilter implements ResourceFilter {
         } else {
             return chain.next().filter(request, chain);
         }
+    }
+
+    public static Resource getResource(String fpath) {
+        return RESOURCES.findResource(Resources.RESOURCE + dealFPath(fpath));
+    }
+
+    public static String dealFPath(String fpath) {
+        if (fpath == null) {
+            return null;
+        }
+        if (!Resources.isDefClasspath()) {
+            return fpath;
+        }
+        fpath = fpath.replace('\\', '/').trim();
+        while (fpath.startsWith("/")) {
+            fpath = fpath.substring(1);
+        }
+        return fpath;
     }
 }

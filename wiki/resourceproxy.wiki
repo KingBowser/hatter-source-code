@@ -5,3 +5,79 @@
 ResourceProxy is a tool for online JavaScript, CSS debug.
 
 = Details =
+
+ ===1. What is ResourceProxy?===
+ResourceProxy is a tool for online JavaScript, CSS debug. It is a proxy tool. ResourceProxy give you the way to format, modify the online JavaScript, CSS resource(s).
+
+ ===2. How does ResourceProxy work?===
+ResourceProxy work like the graph below:
+
+The proxy use the 'Host' field(RFC 2616 Section 14.23) in http request header to know the resource uri.<br>
+Example: Access http://www.example.com/hello_world.txt from the browser.<br>
+Add this to the /etc/hosts:
+{{{
+10.20.157.110	www.example.com
+}}}
+Client request (send to the proxy):
+{{{
+    GET /hello_world.txt HTTP/1.0
+    Host: www.example.com
+}}}
+Proxy received the request:<br>
+Find from database
+{{{
+select * from http_object where ip=<client's ip> and url=<request's host+path>
+}}}
+Not found: Proxy resend the request(send to the real server):
+{{{
+    GET /hello_world.txt HTTP/1.0
+    Host: www.example.com
+}}}
+The server received the request and return:
+{{{
+    HTTP/1.0 200 OK
+    Date: Mon, 05 Mar 2012 06:28:45 GMT
+    Server: Apache
+    Content-Language: en-US
+    Connection: Close
+    Transfer-Encoding: chunked
+    Content-Type: text/plain;charset=UTF-8
+    
+    Returned contents...
+}}}
+Then the proxy received the response, record to the database and return the real response to the client.
+ ===3. How to install ResourceProxy?===
+Check out:
+{{{
+svn co https://hatter-source-code.googlecode.com/svn/trunk/resourceproxy/ resourceproxy
+}}}
+
+Build it by Ant(My ant version is: 1.7.0)
+{{{
+Create sqlite data file: data.db
+    CREATE TABLE http_object ( id INTEGER PRIMARY KEY, method TEXT, url TEXT, access_address TEXT, 
+status INTEGER, status_message TEXT, content_type TEXT, charset TEXT, encoding TEXT, header TEXT, 
+bytes TEXT, string TEXT, is_updated TEXT );
+    CREATE UNIQUE INDEX idx_http_object_url_accaddr on http_object (url, access_address);
+    CREATE TABLE host_config ( id INTEGER PRIMARY KEY, domain TEXT , access_address TEXT, target_ip TEXT);
+    CREATE UNIQUE INDEX idx_host_config_domain_accaddr on host_config (domain, access_address);
+    CREATE TABLE user_config ( access_address TEXT PRIMARY KEY, user_agent TEXT );
+}}}
+    
+Then run: startup
+ ===4. How to use it?===
+For example we debug www.baidu.com
+Step 1 Add host to your /etc/hosts (Unix/Linux, Mac) file:
+{{{
+    10.20.157.110      www.baidu.com
+}}}
+Step 2 Access: www.baidu.com<br>
+Step 3 Access: http://c2.hatter.zj.cn/, you will see:<br>
+Step 4 Modify http://www.baidu.com/, and save it: <br>
+Step 5 Refresh www.baidu.com, and you see:<br>
+
+If you modify JavaScript file, you can format it.
+ ===5. Startup properties===
+-Ddebug<no value> set thread pool to single thread
+-Dthishost=example.com set current host domain, access local jssp file(s)
+-Dcheckjsspupdate=n set n second(s) to check jssp file if updated

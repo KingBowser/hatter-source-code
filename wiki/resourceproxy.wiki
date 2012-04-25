@@ -78,6 +78,8 @@ Step 5 Refresh www.baidu.com, and you see:<br>
 
 If you modify JavaScript file, you can format it.
  ===5. Startup properties===
+{{{
 -Ddebug<no value> set thread pool to single thread
 -Dthishost=example.com set current host domain, access local jssp file(s)
 -Dcheckjsspupdate=n set n second(s) to check jssp file if updated
+}}}

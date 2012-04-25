@@ -73,9 +73,13 @@ Step 1 Add host to your /etc/hosts (Unix/Linux, Mac) file:
     10.20.157.110      www.baidu.com
 }}}
 Step 2 Access: www.baidu.com<br>
+http://hatter-source-code.googlecode.com/svn/trunk/attachments/resourceproxy/baidu1.png
 Step 3 Access: http://c2.hatter.zj.cn/, you will see:<br>
+http://hatter-source-code.googlecode.com/svn/trunk/attachments/resourceproxy/resourceproxy1.png
 Step 4 Modify http://www.baidu.com/, and save it: <br>
+http://hatter-source-code.googlecode.com/svn/trunk/attachments/resourceproxy/resourceproxy2.png
 Step 5 Refresh www.baidu.com, and you see:<br>
+http://hatter-source-code.googlecode.com/svn/trunk/attachments/resourceproxy/baidu2.png
 
 If you modify JavaScript file, you can format it.
  ===5. Startup properties===

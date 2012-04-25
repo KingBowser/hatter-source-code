@@ -8,7 +8,7 @@ import me.hatter.tools.resourceproxy.httpobjects.objects.HttpResponse;
 import me.hatter.tools.resourceproxy.jsspserver.filter.ResourceFilter;
 import me.hatter.tools.resourceproxy.jsspserver.filter.ResourceFilterChain;
 import me.hatter.tools.resourceproxy.jsspserver.util.ContentTypes;
-import me.hatter.tools.resourceproxy.jsspserver.util.FileCacheManager;
+import me.hatter.tools.resourceproxy.jsspserver.util.ResourceCacheManager;
 import me.hatter.tools.resourceproxy.jsspserver.util.HttpConstants;
 
 public class DefaultFileFilter implements ResourceFilter {
@@ -21,7 +21,7 @@ public class DefaultFileFilter implements ResourceFilter {
         }
         Resource resource = JsspFilter.getResource(fpath);
         AtomicBoolean isFromCache = new AtomicBoolean(false);
-        byte[] bytes = FileCacheManager.readCacheFile(resource, isFromCache);
+        byte[] bytes = ResourceCacheManager.readCacheFile(resource, isFromCache);
         if (bytes != null) {
             int indexOfLastDot = fpath.lastIndexOf('.');
             String tfileExt = (indexOfLastDot < 0) ? fpath : fpath.substring(indexOfLastDot + 1);

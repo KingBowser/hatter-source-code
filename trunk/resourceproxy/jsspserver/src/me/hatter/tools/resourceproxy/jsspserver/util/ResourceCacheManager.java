@@ -10,7 +10,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import me.hatter.tools.resourceproxy.commons.resource.Resource;
 import me.hatter.tools.resourceproxy.commons.resource.Resources;
 
-public class FileCacheManager {
+public class ResourceCacheManager {
 
     public static class TimeControlBytes {
 
@@ -26,21 +26,21 @@ public class FileCacheManager {
     private static final long                      CACHE_BYTES    = 300 * 1024;
     private static final long                      CACHE_SIZE     = 1000;
     private static final long                      CACHE_MILLS    = TimeUnit.MINUTES.toMillis(5);
-    private static BlockingQueue<Resource>         fileCacheQueue = new LinkedBlockingQueue<Resource>();
-    private static Map<Resource, TimeControlBytes> fileCacheMap   = new WeakHashMap<Resource, TimeControlBytes>();
+    private static BlockingQueue<Resource>         resourceCacheQueue = new LinkedBlockingQueue<Resource>();
+    private static Map<Resource, TimeControlBytes> resourceCacheMap   = new WeakHashMap<Resource, TimeControlBytes>();
 
     public static byte[] readCacheFile(Resource resource, AtomicBoolean isFromCache) {
         if (isFromCache != null) {
             isFromCache.set(false);
         }
         TimeControlBytes timeControlBytes = null;
-        synchronized (fileCacheQueue) {
-            timeControlBytes = fileCacheMap.get(resource);
+        synchronized (resourceCacheQueue) {
+            timeControlBytes = resourceCacheMap.get(resource);
             if (timeControlBytes != null) {
                 if ((timeControlBytes.cacheMills + CACHE_MILLS) < System.currentTimeMillis()) {
                     // timeout
-                    fileCacheQueue.remove(resource);
-                    fileCacheMap.remove(resource);
+                    resourceCacheQueue.remove(resource);
+                    resourceCacheMap.remove(resource);
                     timeControlBytes = null;
                 }
             }
@@ -59,17 +59,17 @@ public class FileCacheManager {
                 return bytes;
             }
         }
-        synchronized (fileCacheQueue) {
-            if (fileCacheQueue.size() > CACHE_SIZE) {
+        synchronized (resourceCacheQueue) {
+            if (resourceCacheQueue.size() > CACHE_SIZE) {
                 try {
-                    Resource r = fileCacheQueue.take();
-                    fileCacheMap.remove(r);
+                    Resource r = resourceCacheQueue.take();
+                    resourceCacheMap.remove(r);
                 } catch (InterruptedException e) {
                     throw new RuntimeException();
                 }
             }
-            fileCacheQueue.add(resource);
-            fileCacheMap.put(resource, new TimeControlBytes(bytes));
+            resourceCacheQueue.add(resource);
+            resourceCacheMap.put(resource, new TimeControlBytes(bytes));
         }
         return bytes;
     }

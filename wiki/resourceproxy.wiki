@@ -11,6 +11,7 @@ ResourceProxy is a tool for online JavaScript, CSS debug. It is a proxy tool. Re
 
  ===2. How does ResourceProxy work?===
 ResourceProxy work like the graph below:
+http://hatter-source-code.googlecode.com/svn/trunk/attachments/resourceproxy/resourceproxy.png
 
 The proxy use the 'Host' field(RFC 2616 Section 14.23) in http request header to know the resource uri.<br>
 Example: Access http://www.example.com/hello_world.txt from the browser.<br>

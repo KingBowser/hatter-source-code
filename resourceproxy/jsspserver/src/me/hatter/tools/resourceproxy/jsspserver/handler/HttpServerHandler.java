@@ -9,7 +9,7 @@ import me.hatter.tools.resourceproxy.commons.util.StringUtil;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpRequest;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpResponse;
 import me.hatter.tools.resourceproxy.httpobjects.util.HttpRequestUtil;
-import me.hatter.tools.resourceproxy.jsspserver.filter.ResourceFilterChain;
+import me.hatter.tools.resourceproxy.jsspserver.filter.DefaultResourceFilterChain;
 import me.hatter.tools.resourceproxy.jsspserver.util.ContentTypes;
 import me.hatter.tools.resourceproxy.jsspserver.util.HttpConstants;
 
@@ -29,7 +29,7 @@ public class HttpServerHandler implements HttpHandler {
             System.out.println("[INFO] Request: " + request.getMethod() + " " + request.getFullUrl() + " #"
                                + request.getRemoteAddress());
 
-            HttpResponse response = ResourceFilterChain.filterChain(request);
+            HttpResponse response = DefaultResourceFilterChain.filterChain(request);
             writeResponse(exchange, response);
         } catch (Throwable t) {
             System.out.println("[ERROR] Exception occured: " + StringUtil.printStackTrace(t));

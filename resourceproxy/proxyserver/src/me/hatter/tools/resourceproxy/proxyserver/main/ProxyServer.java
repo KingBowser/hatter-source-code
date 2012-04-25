@@ -16,7 +16,7 @@ import me.hatter.tools.resourceproxy.commons.util.StringUtil;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpRequest;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpResponse;
 import me.hatter.tools.resourceproxy.httpobjects.util.HttpRequestUtil;
-import me.hatter.tools.resourceproxy.jsspserver.filter.ResourceFilterChain;
+import me.hatter.tools.resourceproxy.jsspserver.filter.DefaultResourceFilterChain;
 import me.hatter.tools.resourceproxy.jsspserver.util.ContentTypes;
 import me.hatter.tools.resourceproxy.proxyserver.util.ResponseUtil;
 
@@ -68,7 +68,7 @@ public class ProxyServer {
 
                 TOTAL_UPLOAD_COUNT.addAndGet((long) request.getUploadCount());
                 long startMills = System.currentTimeMillis();
-                HttpResponse response = ResourceFilterChain.filterChain(request);
+                HttpResponse response = DefaultResourceFilterChain.filterChain(request);
                 writeResponse(exchange, startMills, response);
                 System.out.println("[INFO] >>>> Total upload bytes: " + TOTAL_UPLOAD_COUNT.get());
             } catch (Throwable t) {

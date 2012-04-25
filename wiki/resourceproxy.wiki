@@ -1,0 +1,7 @@
+#summary One-sentence summary of this page.
+
+= Introduction =
+
+ResourceProxy is a tool for online JavaScript, CSS debug.
+
+= Details =

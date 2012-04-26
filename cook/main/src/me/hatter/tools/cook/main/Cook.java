@@ -13,13 +13,21 @@ import me.hatter.tools.cook.util.GoalTaskUtil;
 public class Cook {
 
     public static void main(String[] args) {
-        CookContext context = buildContext(args);
+        System.out.println("[INFO] Cook started");
+        boolean hasError = false;
+        try {
+            CookContext context = buildContext(args);
 
-        // run goals
-        for (GoalTask goalTask : context.getGoalTaskList()) {
-            Goal goal = GoalLoader.getGoal(goalTask.getGoal());
-            goal.run(context, goalTask.getTask());
+            // run goals
+            for (GoalTask goalTask : context.getGoalTaskList()) {
+                Goal goal = GoalLoader.getGoal(goalTask.getGoal());
+                goal.run(context, goalTask.getTask());
+            }
+        } catch (Throwable t) {
+            t.printStackTrace();
+            hasError = true;
         }
+        System.out.println("[INFO] FINISH " + (hasError ? "FAILED" : "SUCCESS"));
     }
 
     public static CookContext buildContext(String[] args) {

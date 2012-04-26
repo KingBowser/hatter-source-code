@@ -1,4 +1,4 @@
-<project name="cook" default="compile" basedir=".">
+<project name="cook" default="install" basedir=".">
 
 	<!-- Output Directories -->
 	<property name="classes.dir" value="classes" />
@@ -36,5 +36,12 @@
 		</jar>
 		<delete dir="${classes.dir}" />
 		<delete file="${jar.manifest}" />
+	</target>
+
+	<target name="install" depends="compile">
+		<mkdir dir="/usr/local/bin/cook_lib" />
+		<copy file="cook.jar" todir="/usr/local/bin/cook_lib" />
+		<copy file="cook" todir="/usr/local/bin/" />
+		<chmod file="/usr/local/bin/cook" perm="+x" />
 	</target>
 </project>

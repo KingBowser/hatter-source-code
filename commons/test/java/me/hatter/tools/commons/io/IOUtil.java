@@ -2,12 +2,15 @@ package me.hatter.tools.commons.io;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.StringWriter;
+import java.io.Reader;
+import java.io.Writer;
+
+import me.hatter.tools.commons.exception.ExceptionUtil;
 
 public class IOUtil {
 
@@ -46,18 +49,30 @@ public class IOUtil {
     }
 
     public static String readToString(InputStream inputStream, String charset) {
-        StringWriter sw = new StringWriter();
-        InputStream bis = getBufferedInputStream(inputStream);
         try {
-            InputStreamReader reader = new InputStreamReader(bis, charset);
-            for (int c; ((c = reader.read()) != -1);) {
-                sw.write(c);
-            }
+            return new String(readToBytes(inputStream), charset);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw ExceptionUtil.wrapRuntimeException(e);
         }
-        sw.flush();
-        return sw.toString();
+    }
+
+    public static byte[] readToBytesAndClose(InputStream inputStream) {
+        try {
+            return readToBytes(inputStream);
+        } finally {
+            closeQuitely(inputStream);
+        }
+    }
+
+    public static byte[] readToBytes(InputStream inputStream) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        try {
+            IOUtil.copy(inputStream, baos);
+            baos.flush();
+        } catch (IOException e) {
+            throw ExceptionUtil.wrapRuntimeException(e);
+        }
+        return baos.toByteArray();
     }
 
     public static void writeStringAndClose(OutputStream outputStream, String content) {
@@ -77,12 +92,28 @@ public class IOUtil {
     }
 
     public static void writeString(OutputStream outputStream, String content, String charset) {
+        try {
+            writeBytes(outputStream, content.getBytes(charset));
+        } catch (IOException e) {
+            throw ExceptionUtil.wrapRuntimeException(e);
+        }
+    }
+
+    public static void writeBytesAndClose(OutputStream outputStream, byte[] bytes) {
+        try {
+            writeBytes(outputStream, bytes);
+        } finally {
+            closeQuitely(outputStream);
+        }
+    }
+
+    public static void writeBytes(OutputStream outputStream, byte[] bytes) {
         OutputStream bos = getBufferedOutputStream(outputStream);
         try {
-            bos.write(content.getBytes(charset));
+            bos.write(bytes);
             bos.flush();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw ExceptionUtil.wrapRuntimeException(e);
         }
     }
 
@@ -102,6 +133,23 @@ public class IOUtil {
         } else {
             return new BufferedOutputStream(outputStream);
         }
+    }
+
+    public static long copy(InputStream is, OutputStream os) throws IOException {
+        long total = 0;
+        for (int b = 0; ((b = is.read()) != -1);) {
+            os.write(b);
+            total++;
+        }
+        return total;
+    }
+
+    public static long copy(Reader reader, Writer writer) throws IOException {
+        long total = 0;
+        for (int c; ((c = reader.read()) != -1);) {
+            writer.write(c);
+        }
+        return total;
     }
 
     public static void closeQuitely(Closeable closeable) {

@@ -2,7 +2,7 @@ package me.hatter.tools.commons.console;
 
 public class ConsoleUtil {
 
-    public static String readLie(String prompt) {
+    public static String readLine(String prompt) {
         String line;
         do {
             System.out.print(prompt);

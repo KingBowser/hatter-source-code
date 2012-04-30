@@ -50,6 +50,13 @@ public class CollectionUtil {
         return transform(list, new CollectionUtil.StringToLowerCase());
     }
 
+    public static <T> List<T> add(Collection<T> list, Collection<T> addList) {
+        List<T> newList = new ArrayList<T>();
+        newList.addAll(list);
+        newList.addAll(addList);
+        return newList;
+    }
+
     public static <T> List<T> minus(Collection<T> list, Collection<T> minusList) {
         final Set<T> minusSet = new HashSet<T>(minusList);
         return filter(list, new CollectionUtil.Filter<T>() {

@@ -35,7 +35,8 @@
 		</manifest>
 		-->
 		<jar destfile="commons-1.0.jar"> <!-- manifest="${jar.manifest}"> -->
-			<fileset dir="${classes.dir}" includes="**/*.*" />
+			<fileset dir="${classes.dir}" includes="**/*.class" />
+			<fileset dir="${src.dir}" includes="**/*.java" />
 			<fileset dir="${config.dir}" includes="**/*.*" />
 		</jar>
 		<delete dir="${classes.dir}" />

@@ -1,8 +1,20 @@
 package me.hatter.tools.commons.log;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class LogUtil {
 
     public static enum LogType {
+
+        TRACE,
+
+        DEBUG,
+
         INFO,
 
         WARN,
@@ -10,20 +22,76 @@ public class LogUtil {
         ERROR
     }
 
-    public static void info(String message) {
+    private static Set<LogType> LOG_TYPE_SET = new HashSet<LogUtil.LogType>();
+    static {
+        String logTypes = System.getProperty("log.types");
+        List<LogType> logTypeList = new ArrayList<LogType>();
+        if (logTypes != null) {
+            String[] logTypesArray = logTypes.split("[,;]");
+            for (String lt : logTypesArray) {
+                for (LogType lte : LogType.values()) {
+                    if (lte.name().equalsIgnoreCase(lt.trim())) {
+                        logTypeList.add(lte);
+                    }
+                }
+            }
+        }
+        setLogTypeSet((logTypeList == null) ? Arrays.asList(LogType.values()) : logTypeList);
+    }
+
+    synchronized public static void setLogTypeSet(Collection<LogType> logTypeSet) {
+        Set<LogType> logTypes = new HashSet<LogUtil.LogType>();
+        logTypes.add(LogType.ERROR);
+        if (logTypeSet != null) {
+            logTypes.addAll(logTypeSet);
+        }
+        System.out.println("[INFO] Log types is set to: " + logTypes);
+        LOG_TYPE_SET = logTypes;
+    }
+
+    synchronized public static boolean isTraceEnable() {
+        return LOG_TYPE_SET.contains(LogType.TRACE);
+    }
+
+    synchronized public static boolean isDebugEnable() {
+        return LOG_TYPE_SET.contains(LogType.DEBUG);
+    }
+
+    synchronized public static boolean isInfoEnable() {
+        return LOG_TYPE_SET.contains(LogType.INFO);
+    }
+
+    synchronized public static boolean isWarnEnable() {
+        return LOG_TYPE_SET.contains(LogType.WARN);
+    }
+
+    synchronized public static void trace(String message) {
+        message(LogType.TRACE, message);
+    }
+
+    synchronized public static void debug(String message) {
+        message(LogType.DEBUG, message);
+    }
+
+    synchronized public static void info(String message) {
         message(LogType.INFO, message);
     }
 
-    public static void warn(String message) {
+    synchronized public static void warn(String message) {
         message(LogType.WARN, message);
     }
 
-    public static void error(String message) {
+    synchronized public static void error(String message) {
         message(LogType.ERROR, message);
     }
 
-    public static void message(LogType type, String message) {
-        StringBuilder msg = new StringBuilder();
+    synchronized public static void message(LogType type, String message) {
+        if (type != null) {
+            if (!LOG_TYPE_SET.contains(type)) {
+                return;
+            }
+        }
+        StringBuilder msg = new StringBuilder((message == null) ? 16 : (message.length() + 10));
         if (type != null) {
             msg.append("[");
             msg.append(type.name());

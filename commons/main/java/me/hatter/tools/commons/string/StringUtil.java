@@ -28,7 +28,7 @@ public class StringUtil {
         return (string == null) ? null : string.toLowerCase();
     }
 
-    public static String join(Object[] objects, String separater) {
+    public static String join(Object[] objects, String separator) {
         if (objects == null) {
             return null;
         }
@@ -38,19 +38,19 @@ public class StringUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(objects[0]);
         for (int i = 1; i < objects.length; i++) {
-            sb.append(separater).append(objects[i]);
+            sb.append(separator).append(objects[i]);
         }
         return sb.toString();
     }
 
-    public static String join(Collection<String> collection, String separater) {
+    public static String join(Collection<String> collection, String separator) {
         if (collection == null) {
             return null;
         }
         if (collection.size() == 0) {
             return EMPTY;
         }
-        return join(collection.toArray(new String[collection.size()]), separater);
+        return join(collection.toArray(new String[collection.size()]), separator);
     }
 
     public static String toUnder(String str) {

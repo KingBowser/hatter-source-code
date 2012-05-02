@@ -4,8 +4,16 @@ import me.hatter.tools.commons.log.LogUtil;
 
 public class Environment {
 
-    public static final String USER_DIR  = System.getProperty("user.dir");
-    public static final String USER_HOME = System.getProperty("user.home");
+    public static final String USER_DIR       = System.getProperty("user.dir");
+    public static final String USER_NAME      = System.getProperty("user.name");
+    public static final String USER_HOME      = System.getProperty("user.home");
+
+    // File separator ("/" on UNIX)
+    public static final String FILE_SEPARATOR = System.getProperty("file.separator");
+    // Path separator (":" on UNIX)
+    public static final String PATH_SEPARATOR = System.getProperty("path.separator");
+    // Line separator ("\n" on UNIX)
+    public static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
     public static String getStrPropertyOrDie(String key) {
         String value = System.getProperty(key);

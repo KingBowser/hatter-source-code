@@ -1,6 +1,6 @@
 package me.hatter.tools.commons.string;
 
-import java.util.List;
+import java.util.Collection;
 
 public class StringUtil {
 
@@ -28,20 +28,29 @@ public class StringUtil {
         return (string == null) ? null : string.toLowerCase();
     }
 
-    public static String join(List<String> list, String separater) {
-        if (list == null) {
+    public static String join(Object[] objects, String separater) {
+        if (objects == null) {
             return null;
         }
-        if (list.size() == 0) {
+        if (objects.length == 0) {
             return EMPTY;
         }
         StringBuilder sb = new StringBuilder();
-        sb.append(list.get(0));
-        for (int i = 1; i < list.size(); i++) {
-            sb.append(separater);
-            sb.append(list.get(i));
+        sb.append(objects[0]);
+        for (int i = 1; i < objects.length; i++) {
+            sb.append(separater).append(objects[i]);
         }
         return sb.toString();
+    }
+
+    public static String join(Collection<String> collection, String separater) {
+        if (collection == null) {
+            return null;
+        }
+        if (collection.size() == 0) {
+            return EMPTY;
+        }
+        return join(collection.toArray(new String[collection.size()]), separater);
     }
 
     public static String toUnder(String str) {
@@ -91,27 +100,35 @@ public class StringUtil {
         return sb.toString();
     }
 
-    public static final boolean isEmpty(final String str) {
+    public static boolean isNull(String str) {
+        return (str == null);
+    }
+
+    public static boolean isNotNull(String str) {
+        return !isNull(str);
+    }
+
+    public static boolean isEmpty(final String str) {
         return ((str == null) || (str.length() == 0));
     }
 
-    public static final boolean isNotEmpty(final String str) {
+    public static boolean isNotEmpty(final String str) {
         return !isEmpty(str);
     }
 
-    public static final String notNull(final String str) {
+    public static String notNull(final String str) {
         return (str == null) ? "" : str;
     }
 
-    public static final String upper(final String str) {
+    public static String upper(final String str) {
         return isEmpty(str) ? str : str.toUpperCase();
     }
 
-    public static final String lower(final String str) {
+    public static String lower(final String str) {
         return isEmpty(str) ? str : str.toLowerCase();
     }
 
-    public static final boolean equals(final String str0, final String str1) {
+    public static boolean equals(final String str0, final String str1) {
         if (str0 == str1) {
             return true;
         }

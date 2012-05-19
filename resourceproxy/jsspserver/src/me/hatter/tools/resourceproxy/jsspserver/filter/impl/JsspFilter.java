@@ -10,6 +10,8 @@ import me.hatter.tools.resourceproxy.commons.resource.Resources;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpRequest;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpResponse;
 import me.hatter.tools.resourceproxy.jsspexec.JsspExecutor;
+import me.hatter.tools.resourceproxy.jsspexec.JsspReader;
+import me.hatter.tools.resourceproxy.jsspexec.jsspreader.ExplainedJsspReader;
 import me.hatter.tools.resourceproxy.jsspexec.utl.BufferWriter;
 import me.hatter.tools.resourceproxy.jsspserver.action.Action;
 import me.hatter.tools.resourceproxy.jsspserver.filter.ResourceFilter;
@@ -43,6 +45,15 @@ public class JsspFilter implements ResourceFilter {
         String fpath = request.getFPath();
         if (fpath.toLowerCase().endsWith(".jssp")) {
             JsspResource jsspResource = JsspResourceManager.getJsspResource(getResource(fpath));
+
+            JsspReader jsspReader = new ExplainedJsspReader() {
+
+                @Override
+                public String readExplained(String path) {
+                    return JsspResourceManager.getJsspResource(getResource(path)).getExplainedContent(JSSP_DEBUG);
+                }
+            };
+
             if (jsspResource.exists()) {
                 System.out.println("[INFO] Found jssp resource: " + jsspResource.getResource());
 
@@ -72,7 +83,7 @@ public class JsspFilter implements ResourceFilter {
                 Map<String, Object> addContext = new HashMap<String, Object>();
                 addContext.put("request", request);
                 JsspExecutor.executeExplained(new StringReader(jsspResource.getExplainedContent(JSSP_DEBUG)), context,
-                                              addContext, bw);
+                                              addContext, jsspReader, bw);
 
                 response.setContentType(ContentTypes.HTML_CONTENT_TYPE);
                 response.setCharset(ContentTypes.UTF8_CHARSET);

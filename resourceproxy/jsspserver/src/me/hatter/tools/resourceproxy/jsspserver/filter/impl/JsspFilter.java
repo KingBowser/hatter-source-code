@@ -50,7 +50,12 @@ public class JsspFilter implements ResourceFilter {
 
                 @Override
                 public String readExplained(String path) {
-                    return JsspResourceManager.getJsspResource(getResource(path)).getExplainedContent(JSSP_DEBUG);
+                    Resource resource = getResource(path);
+                    if (!resource.exists()) {
+                        throw new RuntimeException("Resource not found: " + path);
+                    }
+                    JsspResource jsspResource = JsspResourceManager.getJsspResource(resource);
+                    return jsspResource.getExplainedContent(JSSP_DEBUG);
                 }
             };
 

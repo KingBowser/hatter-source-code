@@ -1,0 +1,7 @@
+<html>
+<head> <% if (app_context.get("subject")) { %>
+  <title><%=app_context.get("subject")%></title>
+<% } else { %>
+  <title>/etc/hosts manager</title>
+<% } %></head>
+<body>

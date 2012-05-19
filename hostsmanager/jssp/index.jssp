@@ -1,6 +1,4 @@
-<html>
-<head><title>/etc/hosts manager</title></head>
-<body>
+<%!=control.jssp("control/header.jssp")%>
 <h1>/etc/hosts manager</h1>
 <a href="valid.jssp?jsspaction=hostsmanager.Valid">valid hosts</a> &nbsp;
 <img src="icon/add.png" tile="add group" onclick="window.location='group.jssp?jsspaction=hostsmanager.AddEdit'">
@@ -46,5 +44,4 @@ function do_delete(idx) {
   }
 }
 </script>
-</body>
-</html>
+<%!=control.jssp("control/footer.jssp")%>

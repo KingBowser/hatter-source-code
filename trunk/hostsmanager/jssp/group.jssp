@@ -1,6 +1,4 @@
-<html>
-<head><title>/etc/hosts manager</title></head>
-<body>
+<%!=control.jssp("control/header.jssp").param("subject", "edit hosts group")%>
 <h1>/etc/hosts manager</h1>
 <a href="/">home</a><br/>
 <% if (request.getQueryValue("save") == "ok") { %>
@@ -36,5 +34,4 @@ function do_cancle() {
   }
 }
 </script>
-</body>
-</html>
+<%!=control.jssp("control/footer.jssp")%>

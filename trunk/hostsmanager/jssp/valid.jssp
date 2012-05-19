@@ -1,6 +1,4 @@
-<html>
-<head><title>/etc/hosts manager</title></head>
-<body>
+<%!=control.jssp("control/header.jssp").param("subject", "view valid hosts")%>
 <h1>/etc/hosts manager</h1>
 <a href="/">home</a><br/>
 <br/>
@@ -8,5 +6,4 @@
 <legend>valid hosts</legend>
 <pre style="font-family:courier new;"><%=app_context.get("validhosts")%></pre>
 </fieldset>
-</body>
-</html>
+<%!=control.jssp("control/footer.jssp")%>

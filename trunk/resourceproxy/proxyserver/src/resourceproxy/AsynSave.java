@@ -44,7 +44,7 @@ public class AsynSave extends BaseAction {
         response.setStatus(HttpConstants.STATUS_SUCCESS);
         response.setStatusMessage("OK");
         response.getHeaderMap().set(ContentTypes.CONTENT_TYPE, ContentTypes.JAVASCRIPT_AND_UTF8);
-        response.setString(success ? "\"success\"" : "\"failed\"");
+        response.setString("{\"result\": " + (success ? "\"success\"" : "\"failed\"") + "}");
         response.setFinish(true);
     }
 }

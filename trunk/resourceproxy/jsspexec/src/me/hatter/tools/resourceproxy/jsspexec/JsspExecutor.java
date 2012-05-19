@@ -21,9 +21,11 @@ import javax.script.SimpleBindings;
 
 import me.hatter.tools.resourceproxy.commons.resource.FileResource;
 import me.hatter.tools.resourceproxy.commons.resource.Resource;
+import me.hatter.tools.resourceproxy.commons.resource.TextResource;
 import me.hatter.tools.resourceproxy.commons.util.IOUtil;
 import me.hatter.tools.resourceproxy.commons.util.StringUtil;
 import me.hatter.tools.resourceproxy.jsspexec.exception.JsspEvalException;
+import me.hatter.tools.resourceproxy.jsspexec.jsspreader.SimpleJsspReader;
 import me.hatter.tools.resourceproxy.jsspexec.utl.BufferWriter;
 
 public class JsspExecutor {
@@ -40,11 +42,19 @@ public class JsspExecutor {
         File f = File.createTempFile("test", "jssp");
         f.deleteOnExit();
         FileWriter fw = new FileWriter(f);
-        fw.write("<%=\"hello world\"%>\n<% var i = 0; i++;%><%=i%>");
+        fw.write("<%=\"hello world\"%>\n<% var i = 0; i++;%><%=i%> <%=control.jssp(\"\").param(\"num\", 111)%>");
         fw.flush();
         fw.close();
 
-        executeJssp(new FileResource(f), context, null, bw);
+        JsspReader jr = new SimpleJsspReader() {
+
+            @Override
+            public Resource readResource(String path) {
+                return new TextResource("test 1234 |<%=app_context.get(\"num\")%>|", "res/test");
+            }
+        };
+
+        executeJssp(new FileResource(f), context, null, jr, bw);
 
         System.out.println(bw.getBufferedString());
     }
@@ -58,11 +68,21 @@ public class JsspExecutor {
 
     public static void executeJssp(Resource resource, Map<String, Object> context, Map<String, Object> addContext,
                                    BufferWriter out) {
-        executeExplained(new StringReader(explainAndReadJssp(resource)), context, addContext, out);
+        executeJssp(resource, context, addContext, null, out);
+    }
+
+    public static void executeJssp(Resource resource, Map<String, Object> context, Map<String, Object> addContext,
+                                   JsspReader jsspReader, BufferWriter out) {
+        executeExplained(new StringReader(explainAndReadJssp(resource)), context, addContext, jsspReader, out);
     }
 
     public static void executeExplained(Reader reader, Map<String, Object> context, Map<String, Object> addContext,
                                         BufferWriter out) {
+        executeExplained(reader, context, addContext, null, out);
+    }
+
+    public static void executeExplained(Reader reader, Map<String, Object> context, Map<String, Object> addContext,
+                                        JsspReader jsspReader, BufferWriter out) {
         ScriptEngine se = JSSP_ENG_MAN.getEngineByName(JSSP_SCRIPT_LANGUAGE);
 
         Bindings b = new SimpleBindings();
@@ -71,6 +91,10 @@ public class JsspExecutor {
             for (String key : addContext.keySet()) {
                 b.put(key, addContext.get(key));
             }
+        }
+        if (jsspReader != null) {
+            JsspControl control = new JsspControl(jsspReader);
+            b.put("control", control);
         }
         b.put("stringUtil", StringUtil.INSTANCE);
         b.put("app_context", context);

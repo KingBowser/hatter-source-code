@@ -141,6 +141,11 @@ function doUpdate(id) {
   jQuery.getScript("/x.jssp?jsspaction=resourceproxy.SetIsUpdate&id=" + id);
 }
 
+function doAsyncSave() {
+  jQuery.post('/x.jssp?jsspaction=resourceproxy.AsynSave', jQuery("#saveSource").serialize(), function(d) {
+    document.getElementById("asyncSaveMessage").innerHTML = d;
+  });
+}
 </script>
 
 </head>
@@ -180,7 +185,8 @@ function doUpdate(id) {
       <button onclick="beautify();" style="width: 60px; height: 22px;">Format</button> &nbsp;
     <% } %>
     <% if ((stringUtil.isNotEmpty(httpObject.getCharset()) || stringUtil.isNotEmpty(app_context.get("charset")))) { %>
-      <button onclick="document.getElementById('saveSource').submit();" style="width: 60px; height: 22px;">Save</button> &nbsp;
+      <button onclick="document.getElementById('saveSource').submit();" style="width: 60px; height: 22px; margin-top: 4px; margin-bottom: 4px;">Save</button> &nbsp;
+      <button style="width: 100px; height: 22px;" onclick="doAsyncSave()">Async Save</button> <span id="asyncSaveMessage"></span> &nbsp; &nbsp;
     <% } %>
     <br/>
     <form id="saveSource" action="x.jssp?jsspaction=resourceproxy.Save" method="POST">

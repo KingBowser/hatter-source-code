@@ -143,8 +143,12 @@ function doUpdate(id) {
 
 function doAsyncSave() {
   jQuery.post('/x.jssp?jsspaction=resourceproxy.AsynSave', jQuery("#saveSource").serialize(), function(d) {
-    document.getElementById("asyncSaveMessage").innerHTML = d;
-  });
+    document.getElementById("asyncSaveMessage").innerHTML = "&nbsp;&nbsp;&nbsp;" + d.result + "&nbsp;&nbsp;&nbsp;";
+    document.getElementById("asyncSaveMessage").style.backgroundColor = "yellow";
+    setTimeout(function() {
+      document.getElementById("asyncSaveMessage").style.backgroundColor = "";
+    }, 500);
+  }, "json");
 }
 </script>
 

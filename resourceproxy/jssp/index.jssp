@@ -48,14 +48,14 @@
   <% } %>
   </table>
   <% if (httpObjectList.size() ==0 ) { %> <br/><br/>
-     Add: 10.20.157.110 www.example.com(The domain to be test) to your host file, and enjoy it. for detail see <a href="/usage.jssp">Usage</a><br/>
+     Add: <code><%=app_context.get("sip")%> www.example.com(The domain to be test)</code> to your host file, and enjoy it. for detail see <a href="/usage.jssp">Usage</a><br/>
   <% } %>
   <br/><br/>
   <% for (var i = 1; i <= Math.ceil(app_context.get("count") * 1.0 / app_context.get("pageSize")); i++) { %>
     <a href="/index.jssp?jsspaction=resourceproxy.Index&page=<%=i%>&page_size=<%=app_context.get("pageSize")%>">[<%=i%>]</a> &nbsp;
   <% } %>
   <br/><br/>
-  <foot>Your IP address is: <%=app_context.get("ip")%> Total records: <%=app_context.get("count")%></foot>
+  <foot>Your IP: <%=app_context.get("ip")%>, Server IP: <%=app_context.get("sip")%>, Listen on: <%=app_context.get("ports")%>, Total records: <%=app_context.get("count")%></foot>
 </body>
 </html>
 

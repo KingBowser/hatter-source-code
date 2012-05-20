@@ -55,7 +55,7 @@
     <a href="/index.jssp?jsspaction=resourceproxy.Index&page=<%=i%>&page_size=<%=app_context.get("pageSize")%>">[<%=i%>]</a> &nbsp;
   <% } %>
   <br/><br/>
-  <foot>Your IP: <%=app_context.get("ip")%>, Server IP: <%=app_context.get("sip")%>, Listen on: <%=app_context.get("ports")%>, Total records: <%=app_context.get("count")%></foot>
+  <foot>Server IP: <%=app_context.get("sip")%>, Listen on: <%=app_context.get("ports")%>, Your IP: <%=app_context.get("ip")%>, Total records: <%=app_context.get("count")%></foot>
 </body>
 </html>
 

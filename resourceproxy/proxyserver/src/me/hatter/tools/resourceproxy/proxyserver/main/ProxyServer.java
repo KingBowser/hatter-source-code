@@ -27,17 +27,18 @@ import com.sun.net.httpserver.HttpServer;
 
 public class ProxyServer {
 
-    public static final String HEADER_X_REQUEST_BY     = "X-Request-By";
-    public static final String HEADER_X_POWERED_SERVER = "X-Powered-Server";
-    public static final String HEADER_X_POWERED_CACHE  = "X-Powered-Cache";
-    public static final String PROXY_SERVER_VERSION    = "ResourceProxy/0.2";
-    private static AtomicLong  TOTAL_UPLOAD_COUNT      = new AtomicLong(0);
+    public static final String        HEADER_X_REQUEST_BY     = "X-Request-By";
+    public static final String        HEADER_X_POWERED_SERVER = "X-Powered-Server";
+    public static final String        HEADER_X_POWERED_CACHE  = "X-Powered-Cache";
+    public static final String        PROXY_SERVER_VERSION    = "ResourceProxy/0.2";
+    public static final List<Integer> DEFAULT_PORTS           = Arrays.asList(80, 8080, 2080, 3080);
+    public static final List<Integer> PORTS                   = getIntPropertyList("ports", DEFAULT_PORTS);
+    private static final AtomicLong   TOTAL_UPLOAD_COUNT      = new AtomicLong(0);
 
     @SuppressWarnings("restriction")
     public static void main(String[] args) throws Exception {
         long start = System.currentTimeMillis();
-        List<Integer> ports = Arrays.asList(80, 8080, 2080, 3080);
-        for (int port : ports) {
+        for (int port : PORTS) {
             try {
                 InetSocketAddress addr = new InetSocketAddress(port);
                 HttpServer httpServer = HttpServer.create(addr, 0);
@@ -52,7 +53,7 @@ public class ProxyServer {
                 System.out.println("[ERROR] Bind port failed: " + port);
             }
         }
-        System.out.println("[INFO] Start ProxyServer on: " + ports + " cost: " + (System.currentTimeMillis() - start)
+        System.out.println("[INFO] Start ProxyServer on: " + PORTS + " cost: " + (System.currentTimeMillis() - start)
                            + " ms");
     }
 
@@ -118,5 +119,42 @@ public class ProxyServer {
 
             responseBody.close();
         }
+    }
+
+    public static List<Integer> getIntPropertyList(String key, List<Integer> defaultValue) {
+        return getIntPropertyList(key, ",", defaultValue);
+    }
+
+    public static List<Integer> getIntPropertyList(String key, String regexSeparater, List<Integer> defaultValue) {
+        List<String> result = getInnerStrPropertyList(key, regexSeparater);
+        List<Integer> intListResult = new ArrayList<Integer>();
+        if (result != null) {
+            for (String v : result) {
+                try {
+                    Integer i = Integer.valueOf(v);
+                    intListResult.add(i);
+                } catch (Exception e) {
+                    throw new RuntimeException("Cannot parse property key/value: " + key + " / " + v + " of: " + result);
+                }
+            }
+        }
+        intListResult = intListResult.isEmpty() ? defaultValue : intListResult;
+        return intListResult;
+    }
+
+    private static List<String> getInnerStrPropertyList(String key, String regexSeparater) {
+        String value = System.getProperty(key);
+        if (value == null) {
+            return null;
+        }
+        String[] vals = value.split(regexSeparater);
+        List<String> result = new ArrayList<String>();
+        for (String v : vals) {
+            v = v.trim();
+            if (!v.isEmpty()) {
+                result.add(v);
+            }
+        }
+        return result.isEmpty() ? null : result;
     }
 }

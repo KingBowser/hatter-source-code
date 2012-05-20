@@ -1,5 +1,7 @@
 package resourceproxy;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -9,8 +11,18 @@ import me.hatter.tools.resourceproxy.httpobjects.objects.HttpObject;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpRequest;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpResponse;
 import me.hatter.tools.resourceproxy.jsspserver.action.BaseAction;
+import me.hatter.tools.resourceproxy.proxyserver.main.ProxyServer;
 
 public class Index extends BaseAction {
+
+    private static String sip;
+    static {
+        try {
+            sip = InetAddress.getLocalHost().getHostAddress();
+        } catch (UnknownHostException e) {
+            sip = "unknow";
+        }
+    }
 
     @Override
     protected void doAction(HttpRequest request, HttpResponse response, Map<String, Object> context) {
@@ -26,7 +38,9 @@ public class Index extends BaseAction {
                                                                        "access_address = ? order by id desc limit ?, ?",
                                                                        Arrays.asList((Object) request.getIp(), from,
                                                                                      pageSize));
+        context.put("ports", ProxyServer.PORTS);
         context.put("ip", request.getIp());
+        context.put("sip", sip);
         context.put("count", count);
         context.put("pageSize", pageSize);
         context.put("httpObjectList", httpObjectList);

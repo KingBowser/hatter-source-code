@@ -1,6 +1,7 @@
 package me.hatter.tools.filesync.file;
 
 import java.io.File;
+import java.util.Arrays;
 
 public class FileInfo {
 
@@ -43,5 +44,20 @@ public class FileInfo {
             return (signature == null);
         }
         return this.signature.equals(signature);
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.asList((Object) file, path, signature).hashCode();
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if ((object == null) || (object.getClass() != FileInfo.class)) {
+            return false;
+        }
+        FileInfo another = (FileInfo) object;
+        return Arrays.asList((Object) this.file, this.path, this.signature).equals( //
+        Arrays.asList((Object) another.file, another.path, another.signature));
     }
 }

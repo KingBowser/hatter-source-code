@@ -24,7 +24,8 @@ public class Show extends BaseAction {
             httpObject = CollUtil.firstObject(DataAccessObject.listObjects(HttpObject.class, "id = ?",
                                                                            DBUtil.objects(id)));
         }
-        if (StringUtil.isNotEmpty(charset) && HttpResponseUtil.isTextContentType(httpObject.getContentType())) {
+        if (StringUtil.isNotEmpty(charset) && HttpResponseUtil.isTextContentType(httpObject.getContentType())
+            && (httpObject.getBytes() != null)) {
             byte[] bytes = StringUtil.stringToByteArray(httpObject.getBytes());
             try {
                 httpObject.setString(new String(bytes, charset));

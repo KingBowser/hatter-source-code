@@ -1,0 +1,7 @@
+
+echo "[INFO] Copy commons-1.0.jar"
+cp ../commons/commons-1.0.jar lib/
+
+echo "[INFO] Copy jsspserver-1.0.jar "
+cp ../resourceproxy/jsspserver-1.0.jar lib/
+

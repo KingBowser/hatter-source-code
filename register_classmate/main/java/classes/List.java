@@ -12,7 +12,7 @@ import me.hatter.tools.resourceproxy.jsspserver.action.BaseAction;
 public class List extends BaseAction {
 
     protected void doAction(HttpRequest request, HttpResponse response, Map<String, Object> context) {
-        if ("helloworld".equals(request.getQueryValue("pass"))) {
+        if (System.getProperty("pass").equals(request.getQueryValue("pass"))) {
             java.util.List<ClassMate> cms = DataAccessObject.listObjects(ClassMate.class, "1=1", null);
             context.put("cms", cms);
         } else {

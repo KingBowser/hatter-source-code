@@ -21,6 +21,11 @@ public class EnvUtil {
     public static String getSize() {
         return getStr("size", "b");
     }
+    
+    public static boolean getColor() {
+        String color = getStr("color", "off");
+        return "on".equals(color.trim().toLowerCase());
+    }
 
     public static String getStr(String key, String def) {
         String val = System.getProperty(key);

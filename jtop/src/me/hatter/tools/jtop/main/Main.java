@@ -215,6 +215,9 @@ public class Main {
         if (mainOutput.getRound() == 0) {
             return null;
         }
+        if (!EnvUtil.getColor()) {
+            return null;
+        }
         if (value > lastValue) {
             return Font.createFont(Color.RED, false);
         } else {
@@ -301,6 +304,7 @@ public class Main {
         System.out.println("    -Dsleepmillis=<MILLIS>        Sleep Mills (default: 2000)");
         System.out.println("    -Dthreadtopn=<N>              Thread Top N (default: 5)");
         System.out.println("    -Dstacktracetopn=<N>          Stacktrace Top N (default: 8)");
+        System.out.println("    -Dcolor=on|off                Display color (default: off)");
         System.out.println();
     }
 }

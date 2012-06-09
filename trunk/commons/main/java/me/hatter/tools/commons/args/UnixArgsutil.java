@@ -35,9 +35,19 @@ public class UnixArgsutil {
             return ((vs == null) || (vs.size() == 0)) ? null : vs.get(0);
         }
 
+        public String kvalue(String key, String defval) {
+            List<String> vs = keyvalues.get(key);
+            return ((vs == null) || (vs.size() == 0)) ? defval : vs.get(0);
+        }
+
         public List<String> kvalues(String key) {
             List<String> vs = keyvalues.get(key);
             return (vs == null) ? null : Collections.unmodifiableList(vs);
+        }
+
+        public List<String> kvalues(String key, List<String> defval) {
+            List<String> vs = keyvalues.get(key);
+            return (vs == null) ? defval : Collections.unmodifiableList(vs);
         }
     }
 

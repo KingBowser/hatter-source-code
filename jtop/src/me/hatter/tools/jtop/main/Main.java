@@ -20,8 +20,8 @@ import me.hatter.tools.jtop.rmi.interfaces.JGCInfo;
 import me.hatter.tools.jtop.rmi.interfaces.JMemoryInfo;
 import me.hatter.tools.jtop.rmi.interfaces.JStackService;
 import me.hatter.tools.jtop.rmi.interfaces.JThreadInfo;
-import me.hatter.tools.jtop.util.ArgsUtil;
 import me.hatter.tools.jtop.util.EnvUtil;
+import me.hatter.tools.jtop.util.UnixArgsutil;
 import me.hatter.tools.jtop.util.console.Color;
 import me.hatter.tools.jtop.util.console.Font;
 import me.hatter.tools.jtop.util.console.Text;
@@ -30,16 +30,17 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            args = ArgsUtil.processArgs(args);
+            UnixArgsutil.parseGlobalArgs(args);
+            // args = ArgsUtil.processArgs(args);
 
-            if (System.getProperty("pid") == null) {
+            if (EnvUtil.getPid() == null) {
                 System.out.println("[ERROR] pid is not assigned.");
                 usage();
                 System.exit(0);
             }
             RmiClient rc = new RmiClient("127.0.0.1", EnvUtil.getPort());
             if (!tryConnect(rc)) {
-                int pid = Integer.valueOf(System.getProperty("pid"));
+                int pid = Integer.valueOf(EnvUtil.getPid());
                 attachAgent(pid);
             }
 
@@ -49,7 +50,7 @@ public class Main {
                 System.exit(0);
             }
             String pid = jStackService.getProcessId();
-            if (!pid.equals(System.getProperty("pid"))) {
+            if (!pid.equals(EnvUtil.getPid())) {
                 System.out.println("[ERROR] Remote server's pid not match, PORT=" + rc.getPort() //
                                    + "  REQUIRE_PID=" + EnvUtil.getPort() //
                                    + "  ACTURE_PID=" + pid);
@@ -180,7 +181,7 @@ public class Main {
                 lastJThreadInfoMap = jThreadInfoMap;
 
                 if (c < (dumpcount - 1)) {
-                    Thread.sleep(Long.parseLong(System.getProperty("sleepmillis", "2000")));
+                    Thread.sleep(EnvUtil.getSleepMillis());
                 }
             }
             System.out.println("[INFO] Dump Finish");
@@ -297,14 +298,14 @@ public class Main {
         System.out.println("java -jar jtop.jar [args]");
         System.out.println("-OR-");
         System.out.println("java -cp jtop.jar jtop [args]");
-        System.out.println("    -Dpid=<PID>                   Process ID");
-        System.out.println("    -Dport=<PORT>                 Port (default: 1127)");
-        System.out.println("    -Dsize=B|K|M|G|H              Size, case insensitive (default: B, H for human)");
-        System.out.println("    -Ddumpcount=<COUNT>           Dump Count (default: 1)");
-        System.out.println("    -Dsleepmillis=<MILLIS>        Sleep Mills (default: 2000)");
-        System.out.println("    -Dthreadtopn=<N>              Thread Top N (default: 5)");
-        System.out.println("    -Dstacktracetopn=<N>          Stacktrace Top N (default: 8)");
-        System.out.println("    -Dcolor=on|off                Display color (default: off)");
+        System.out.println("    -pid <PID>                    Process ID");
+        System.out.println("    -port <PORT>                  Port (default: 1127)");
+        System.out.println("    -size <B|K|M|G|H>             Size, case insensitive (default: B, H for human)");
+        System.out.println("    -count <COUNT>                Dump Count (default: 1)");
+        System.out.println("    -sleep <MILLIS>               Sleep Mills (default: 2000)");
+        System.out.println("    -thread <N>                   Thread Top N (default: 5)");
+        System.out.println("    -stack <N>                    Stacktrace Top N (default: 8)");
+        System.out.println("    --color                       Display color (default: off)");
         System.out.println();
     }
 }

@@ -10,6 +10,8 @@ import java.util.Set;
 
 public class UnixArgsutil {
 
+    public static final UnixArgs ARGS = new UnixArgs();
+
     public static class UnixArgs {
 
         private List<String>              args      = new ArrayList<String>();
@@ -39,8 +41,17 @@ public class UnixArgsutil {
         }
     }
 
-    public static UnixArgs processArgs(String[] args) {
+    public static void parseGlobalArgs(String[] args) {
+        processArgs(ARGS, args);
+    }
+
+    public static UnixArgs parseArgs(String[] args) {
         UnixArgs unixArgs = new UnixArgs();
+        processArgs(unixArgs, args);
+        return unixArgs;
+    }
+
+    public static void processArgs(UnixArgs unixArgs, String[] args) {
         if (args != null) {
             String lastkv = null;
             for (int i = 0; i < args.length; i++) {
@@ -64,6 +75,5 @@ public class UnixArgsutil {
                 }
             }
         }
-        return unixArgs;
     }
 }

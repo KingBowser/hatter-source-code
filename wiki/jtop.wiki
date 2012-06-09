@@ -22,18 +22,19 @@ Usage:
 java -jar jtop.jar [args]
 -OR-
 java -cp jtop.jar jtop [args]
-    -Dpid=<PID>                   Process ID
-    -Dport=<PORT>                 Port (default: 1127)
-    -Dsize=B|K|M|G|H              Size, case insensitive (default: B, H for human)
-    -Ddumpcount=<COUNT>           Dump Count (default: 1)
-    -Dsleepmillis=<MILLIS>        Sleep Mills (default: 2000)
-    -Dthreadtopn=<N>              Thread Top N (default: 5)
-    -Dstacktracetopn=<N>          Stacktrace Top N (default: 8)
+    -pid <PID>                    Process ID
+    -port <PORT>                  Port (default: 1127)
+    -size <B|K|M|G|H>             Size, case insensitive (default: B, H for human)
+    -count <COUNT>                Dump Count (default: 1)
+    -sleep <MILLIS>               Sleep Mills (default: 2000)
+    -thread <N>                   Thread Top N (default: 5)
+    -stack <N>                    Stacktrace Top N (default: 8)
+    --color                       Display color (default: off)
 }}}
 
 Use this command to view the eclipse's top:
 {{{
-$ java -jar jtop.jar -Dpid=387 -Dsize=h -Dthreadtopn=3 -Dstacktracetopn=4
+$ java -jar jtop.jar -pid 387 -size h -thread 3 -stack 4
 }}}
 
 You would see:

@@ -81,6 +81,7 @@ public class InvokeFind {
                 System.exit(-1);
             }
             PW = new FilePrintWriter(ff);
+            System.out.println("[INFO] Output: " + ff.getAbsolutePath().toString());
         }
         final PrintWriter PPW = PW;
 

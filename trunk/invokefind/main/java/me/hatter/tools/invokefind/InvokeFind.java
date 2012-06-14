@@ -35,6 +35,13 @@ public class InvokeFind {
         UnixArgsutil.parseGlobalArgs(args);
         if (UnixArgsutil.ARGS.args().length == 0) {
             System.out.println("[ERROR] No args assiged.");
+            System.out.println("Usage:");
+            System.out.println("  invokefind [flags] <args>");
+            System.out.println("    -d <dir>       target dir[default user.dir]");
+            System.out.println("    --vc           print visit class");
+            System.out.println("    --vm           print visit method");
+            System.out.println("    --noins        print no instructions methods");
+
             System.exit(-1);
         }
         System.out.println("[INFO] Args: " + Arrays.asList(UnixArgsutil.ARGS.args()));

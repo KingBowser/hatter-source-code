@@ -5,9 +5,8 @@
 Find invoke method in class/jar files.
 
 
-= Details =
+= Usage =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+ # Install
+  # Check out
+   svn co http://hatter-source-code.googlecode.com/svn/trunk/invokefind/

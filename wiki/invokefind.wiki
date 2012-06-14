@@ -8,5 +8,22 @@ Find invoke method in class/jar files.
 = Usage =
 
  # Install
-  # Check out
+  * Check out
    svn co http://hatter-source-code.googlecode.com/svn/trunk/invokefind/
+  * Compile & Install
+   ant install
+ # Usage
+{{{
+Usage:
+  invokefind [flags] <args>
+  java -jar invokefind [flags] <args>
+  java -cp invokefind.jar invokefind [flags] <args>
+    -d <dir>       target dir[default user.dir]
+    -f <file>      output file
+    --vf           print visit file
+    --vc           print visit class
+    --vm           print visit method
+    --noins        print no instructions methods
+Sample:
+  invokefind --vc "xstream.<init>" string.intern
+}}}

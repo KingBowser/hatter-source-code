@@ -37,10 +37,15 @@ public class InvokeFind {
             System.out.println("[ERROR] No args assiged.");
             System.out.println("Usage:");
             System.out.println("  invokefind [flags] <args>");
+            System.out.println("  java -jar invokefind [flags] <args>");
+            System.out.println("  java -cp invokefind.jar invokefind [flags] <args>");
             System.out.println("    -d <dir>       target dir[default user.dir]");
+            System.out.println("    --vf           print visit file");
             System.out.println("    --vc           print visit class");
             System.out.println("    --vm           print visit method");
             System.out.println("    --noins        print no instructions methods");
+            System.out.println("Sample:");
+            System.out.println("  invokefind --vc xstream.<init> string.intern");
 
             System.exit(-1);
         }
@@ -49,6 +54,7 @@ public class InvokeFind {
         final List<String> clsmes = CollectionUtil.toLowerCase(Arrays.asList(UnixArgsutil.ARGS.args()));
 
         String d = UnixArgsutil.ARGS.kvalue("d", System.getProperty("user.dir"));
+        System.out.println("[INFO] Dir: " + d);
 
         JavaUtil.walk(new File(d), true, new JavaWalker() {
 
@@ -59,12 +65,21 @@ public class InvokeFind {
             }
 
             public void read(File file) {
+                if (!file.toString().endsWith(".class")) {
+                    return;
+                }
+                if (UnixArgsutil.ARGS.flags().contains("vf")) {
+                    System.out.println("[INFO] Visit file: " + file);
+                }
                 byte[] bytes = FileUtil.readFileToBytes(file);
                 ClassReader cr = new ClassReader(bytes);
                 visitClassReader(cr, clsmes);
             }
 
             public boolean accept(JarEntry jarEntry) {
+                if (UnixArgsutil.ARGS.flags().contains("vf")) {
+                    System.out.println("[INFO] Visit jar file: " + jarEntry.getName());
+                }
                 return jarEntry.getName().endsWith(".class");
             }
 

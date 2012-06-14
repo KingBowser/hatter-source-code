@@ -70,7 +70,7 @@ public class InvokeFind {
         final List<String> clsmes = CollectionUtil.toLowerCase(Arrays.asList(UnixArgsutil.ARGS.args()));
 
         String d = UnixArgsutil.ARGS.kvalue("d", System.getProperty("user.dir"));
-        System.out.println("[INFO] Dir: " + d);
+        System.out.println("[INFO] Target: " + d);
 
         String f = UnixArgsutil.ARGS.kvalue("f");
         PrintWriter PW = null;

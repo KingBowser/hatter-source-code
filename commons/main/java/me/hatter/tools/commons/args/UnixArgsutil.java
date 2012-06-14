@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 public class UnixArgsutil {
@@ -14,9 +13,9 @@ public class UnixArgsutil {
 
     public static class UnixArgs {
 
-        private List<String>              args      = new ArrayList<String>();
-        private Set<String>               flags     = new LinkedHashSet<String>();
-        private Map<String, List<String>> keyvalues = new LinkedHashMap<String, List<String>>();
+        private KList args      = new KList();
+        private KSet  flags     = new KSet();
+        private KMap  keyvalues = new KMap();
 
         public String[] args() {
             return args.toArray(new String[0]);
@@ -49,6 +48,35 @@ public class UnixArgsutil {
             List<String> vs = keyvalues.get(key);
             return (vs == null) ? defval : Collections.unmodifiableList(vs);
         }
+    }
+
+    public static class KList extends ArrayList<String> {
+
+        private static final long serialVersionUID = -156830291036307953L;
+    }
+
+    public static class KSet extends LinkedHashSet<String> {
+
+        private static final long serialVersionUID = 178791470286450518L;
+
+        public boolean containsAny(String key, String... keys) {
+            if (this.contains(key)) {
+                return true;
+            }
+            if (keys != null) {
+                for (int i = 0; i < keys.length; i++) {
+                    if (this.contains(keys[i])) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+    }
+
+    public static class KMap extends LinkedHashMap<String, List<String>> {
+
+        private static final long serialVersionUID = -156830291036307953L;
     }
 
     public static void parseGlobalArgs(String[] args) {

@@ -1,0 +1,47 @@
+<project name="smartdeveloper" default="compile" basedir=".">
+
+	<!-- Output Directories -->
+	<property name="classes.dir" value="classes" />
+
+	<!-- Source Directories -->
+	<property name="src.dir" value="main/java" />
+	<property name="lib.dir" value="lib" />
+
+	<property name="jar.main" value="me.hatter.tools.invokefind.InvokeFind" />
+	<property name="jar.manifest" value="jar.manifest" />
+
+	<!-- Class Path -->
+	<path id="classpath">
+		<fileset dir="${lib.dir}" includes="**/*.jar" />
+	</path>
+
+	<!-- Targets -->
+	<target name="prepare">
+		<mkdir dir="${classes.dir}" />
+	</target>
+
+	<target name="compile" depends="prepare">
+		<unzip src="lib/asm-debug-all-4.0.jar" dest="${classes.dir}"/>
+		<unzip src="lib/commons-1.0.jar" dest="${classes.dir}"/>
+		<javac srcdir="${src.dir}" destdir="${classes.dir}" source="1.6" target="1.6" debug="true" debuglevel="lines,vars,source">
+			<classpath>
+				<path refid="classpath" />
+			</classpath>
+		</javac>
+		<manifest file="${jar.manifest}">
+			<attribute name="Main-Class" value="${jar.main}" />
+		</manifest>
+		<jar destfile="invokefind.jar" manifest="${jar.manifest}">
+			<fileset dir="${classes.dir}" includes="**/*.*" />
+		</jar>
+		<delete dir="${classes.dir}" />
+		<delete file="${jar.manifest}" />
+	</target>
+	
+    <target name="install" depends="compile">
+            <mkdir dir="/usr/local/bin/invokefind_lib" />
+            <copy file="invokefind.jar" todir="/usr/local/bin/invokefind_lib" />
+            <copy file="invokefind" todir="/usr/local/bin/" />
+            <chmod file="/usr/local/bin/invokefind" perm="+x" />
+    </target>
+</project>

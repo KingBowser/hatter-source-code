@@ -23,6 +23,7 @@ Usage:
     --vf           print visit file
     --vc           print visit class
     --vm           print visit method
+    --vs           print summary
     --noins        print no instructions methods
 Sample:
   invokefind --vc "xstream.<init>" string.intern

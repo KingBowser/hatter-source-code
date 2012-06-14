@@ -20,6 +20,9 @@ Usage:
   java -cp invokefind.jar invokefind [flags] <args>
     -d <dir>       target dir[default user.dir]
     -f <file>      output file
+    -ig            ignore[contains]
+    -igc           ignore class[contains]
+    -igm           ignore method[equals]
     --vf           print visit file
     --vc           print visit class
     --vm           print visit method

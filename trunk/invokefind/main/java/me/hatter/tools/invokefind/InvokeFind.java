@@ -45,7 +45,7 @@ public class InvokeFind {
             System.out.println("    --vm           print visit method");
             System.out.println("    --noins        print no instructions methods");
             System.out.println("Sample:");
-            System.out.println("  invokefind --vc xstream.<init> string.intern");
+            System.out.println("  invokefind --vc \"xstream.<init>\" string.intern");
 
             System.exit(-1);
         }

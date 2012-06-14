@@ -2,6 +2,7 @@ package me.hatter.tools.invokefind;
 
 import java.io.File;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -14,6 +15,7 @@ import me.hatter.tools.commons.collection.CollectionUtil;
 import me.hatter.tools.commons.file.FileUtil;
 import me.hatter.tools.commons.file.JavaUtil;
 import me.hatter.tools.commons.file.JavaUtil.JavaWalker;
+import me.hatter.tools.commons.io.FilePrintWriter;
 import me.hatter.tools.commons.io.IOUtil;
 
 import org.objectweb.asm.ClassReader;
@@ -40,14 +42,28 @@ public class InvokeFind {
             System.out.println("  java -jar invokefind [flags] <args>");
             System.out.println("  java -cp invokefind.jar invokefind [flags] <args>");
             System.out.println("    -d <dir>       target dir[default user.dir]");
+            System.out.println("    -f <file>      output file");
+            System.out.println("    -ig            ignore[contains]");
+            System.out.println("    -igc           ignore class[contains]");
+            System.out.println("    -igm           ignore method[equals]");
             System.out.println("    --vf           print visit file");
             System.out.println("    --vc           print visit class");
             System.out.println("    --vm           print visit method");
+            System.out.println("    --vs           print summary");
             System.out.println("    --noins        print no instructions methods");
             System.out.println("Sample:");
             System.out.println("  invokefind --vc \"xstream.<init>\" string.intern");
 
             System.exit(-1);
+        }
+        if (UnixArgsutil.ARGS.kvalues("ig") != null) {
+            System.out.println("[INFO] Ignore: " + UnixArgsutil.ARGS.kvalues("ig"));
+        }
+        if (UnixArgsutil.ARGS.kvalues("igc") != null) {
+            System.out.println("[INFO] Ignore class: " + UnixArgsutil.ARGS.kvalues("igc"));
+        }
+        if (UnixArgsutil.ARGS.kvalues("igm") != null) {
+            System.out.println("[INFO] Ignore method: " + UnixArgsutil.ARGS.kvalues("igm"));
         }
         System.out.println("[INFO] Args: " + Arrays.asList(UnixArgsutil.ARGS.args()));
 
@@ -56,12 +72,24 @@ public class InvokeFind {
         String d = UnixArgsutil.ARGS.kvalue("d", System.getProperty("user.dir"));
         System.out.println("[INFO] Dir: " + d);
 
+        String f = UnixArgsutil.ARGS.kvalue("f");
+        PrintWriter PW = null;
+        if (f != null) {
+            File ff = new File(f);
+            if (ff.exists()) {
+                System.out.println("[INFO] File exists: " + f);
+                System.exit(-1);
+            }
+            PW = new FilePrintWriter(ff);
+        }
+        final PrintWriter PPW = PW;
+
         JavaUtil.walk(new File(d), true, new JavaWalker() {
 
             public void read(InputStream is, String name) {
                 byte[] bytes = IOUtil.readToBytesAndClose(is);
                 ClassReader cr = new ClassReader(bytes);
-                visitClassReader(cr, clsmes);
+                visitClassReader(cr, clsmes, PPW);
             }
 
             public void read(File file) {
@@ -73,7 +101,7 @@ public class InvokeFind {
                 }
                 byte[] bytes = FileUtil.readFileToBytes(file);
                 ClassReader cr = new ClassReader(bytes);
-                visitClassReader(cr, clsmes);
+                visitClassReader(cr, clsmes, PPW);
             }
 
             public boolean accept(JarEntry jarEntry) {
@@ -90,20 +118,49 @@ public class InvokeFind {
 
         System.out.println();
         System.out.println("[INFO] Walk finish!");
-        for (String f : FOUNDS) {
-            System.out.println(f);
+        if (UnixArgsutil.ARGS.flags().contains("vs")) {
+            for (String fo : FOUNDS) {
+                System.out.println(fo);
+            }
         }
+        IOUtil.closeQuitely(PPW);
     }
 
-    private static void visitClassReader(ClassReader cl, final List<String> clsmes) {
+    private static void visitClassReader(ClassReader cl, final List<String> clsmes, final PrintWriter pw) {
         final ClassNode cn = new ClassNode();
         cl.accept(cn, ClassReader.SKIP_DEBUG);
         if (UnixArgsutil.ARGS.flags().contains("vc")) {
             System.out.println("[INFO] Visit class: " + cn.name);
         }
 
+        String lcn = cn.name.replace('/', '.').replace('$', '.').toLowerCase();
+        if (UnixArgsutil.ARGS.kvalues("igc") != null) {
+            for (String igc : UnixArgsutil.ARGS.kvalues("igc")) {
+                if (lcn.contains(igc)) {
+                    return;
+                }
+            }
+        }
+
         List<MethodNode> methods = cn.methods;
-        for (final MethodNode mn : methods) {
+        FOR_METHOD: for (final MethodNode mn : methods) {
+
+            String lmn = mn.name.toLowerCase();
+            if (UnixArgsutil.ARGS.kvalues("igm") != null) {
+                for (String igm : UnixArgsutil.ARGS.kvalues("igm")) {
+                    if (lmn.equals(igm)) {
+                        continue FOR_METHOD;
+                    }
+                }
+            }
+            if (UnixArgsutil.ARGS.kvalues("ig") != null) {
+                for (String igm : UnixArgsutil.ARGS.kvalues("ig")) {
+                    if ((lcn + "." + lmn).equals(igm)) {
+                        continue FOR_METHOD;
+                    }
+                }
+            }
+
             if (mn.instructions.size() == 0) {
                 if (UnixArgsutil.ARGS.flags().contains("noins")) {
                     System.out.println("[INFO] No instructions, method: " + cn.name + "#" + mn.name + mn.desc);
@@ -126,10 +183,15 @@ public class InvokeFind {
                                 if (INVOKES.contains(op)) {
                                     for (String clsm : clsmes) {
                                         if (cm.contains(clsm)) {
-                                            String found = "[INFO] Match found: [" + cn.name + "#" + mn.name + mn.desc
+                                            String found = "[INFO] Match found: [" + cn.name + "." + mn.name + mn.desc
                                                            + "]:  " + c;
                                             System.out.println(found);
-                                            FOUNDS.add(found);
+                                            if (pw != null) {
+                                                pw.println(found);
+                                            }
+                                            if (UnixArgsutil.ARGS.flags().contains("vs")) {
+                                                FOUNDS.add(found);
+                                            }
                                         }
                                     }
                                 }

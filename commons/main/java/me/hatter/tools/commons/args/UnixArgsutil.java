@@ -91,22 +91,36 @@ public class UnixArgsutil {
 
     public static void processArgs(UnixArgs unixArgs, String[] args) {
         if (args != null) {
-            String lastkv = null;
+            String lastk = null;
             for (int i = 0; i < args.length; i++) {
                 String arg = args[i];
-                if (lastkv != null) {
-                    List<String> vs = unixArgs.keyvalues.get(lastkv);
+                if (lastk != null) {
+                    List<String> vs = unixArgs.keyvalues.get(lastk);
                     if (vs == null) {
                         vs = new ArrayList<String>();
-                        unixArgs.keyvalues.put(lastkv, vs);
+                        unixArgs.keyvalues.put(lastk, vs);
                     }
                     vs.add(arg);
-                    lastkv = null;
+                    lastk = null;
                 } else {
                     if (arg.startsWith("--")) {
-                        unixArgs.flags.add(arg.substring(2));
+                        String ar = arg.substring(2);
+                        int indexOfEq = ar.indexOf('=');
+                        if (indexOfEq > 0) {
+                            String k = ar.substring(0, indexOfEq);
+                            String v = ar.substring(indexOfEq + 1);
+
+                            List<String> vs = unixArgs.keyvalues.get(k);
+                            if (vs == null) {
+                                vs = new ArrayList<String>();
+                                unixArgs.keyvalues.put(k, vs);
+                            }
+                            vs.add(v);
+                        } else {
+                            unixArgs.flags.add(ar);
+                        }
                     } else if (arg.startsWith("-")) {
-                        lastkv = arg.substring(1);
+                        lastk = arg.substring(1);
                     } else {
                         unixArgs.args.add(arg);
                     }

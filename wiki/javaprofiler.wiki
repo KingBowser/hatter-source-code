@@ -18,3 +18,5 @@ Java Profiler
  http://jcoverage.sourceforge.net/
 
  http://profiler4j.sourceforge.net/
+
+ http://jiprof.sourceforge.net/

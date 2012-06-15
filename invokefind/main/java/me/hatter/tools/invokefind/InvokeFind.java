@@ -41,8 +41,8 @@ public class InvokeFind {
             System.out.println("  invokefind [flags] <args>");
             System.out.println("  java -jar invokefind [flags] <args>");
             System.out.println("  java -cp invokefind.jar invokefind [flags] <args>");
-            System.out.println("    -d <dir>       target dir[default user.dir]");
-            System.out.println("    -f <file>      output file");
+            System.out.println("    -t <dir>       target dir[default user.dir]");
+            System.out.println("    -o <file>      output file");
             System.out.println("    -ig            ignore[contains]");
             System.out.println("    -igc           ignore class[contains]");
             System.out.println("    -igm           ignore method[equals]");
@@ -69,10 +69,10 @@ public class InvokeFind {
 
         final List<String> clsmes = CollectionUtil.toLowerCase(Arrays.asList(UnixArgsutil.ARGS.args()));
 
-        String d = UnixArgsutil.ARGS.kvalue("d", System.getProperty("user.dir"));
+        String d = UnixArgsutil.ARGS.kvalue("t", System.getProperty("user.dir"));
         System.out.println("[INFO] Target: " + d);
 
-        String f = UnixArgsutil.ARGS.kvalue("f");
+        String f = UnixArgsutil.ARGS.kvalue("o");
         PrintWriter PW = null;
         if (f != null) {
             File ff = new File(f);

@@ -4,9 +4,10 @@ import static com.sun.btrace.BTraceUtils.*;
 @BTrace
 public class ClassLoaderDefine {
 
-    @OnMethod(clazz = "java.lang.ClassLoader", method = "defineClass")
-    public static void onClassLoaderDefine() {
-        print("=== java.lang.ClassLoader#defineClass ===");
-        jstack(10);
+    @OnMethod(clazz = "+java.lang.ClassLoader", method = "defineClass", location = @Location(Kind.RETURN))
+    public static void onClassLoaderDefine(@Return Class cl) {
+        println("=== java.lang.ClassLoader#defineClass ===");
+        println(Strings.strcat("Loaded class: ", Reflective.name(cl)));
+        jstack(20);
     }
 }

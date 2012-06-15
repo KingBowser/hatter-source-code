@@ -9,6 +9,6 @@ public class ClassLoaderDefine {
     public static void onClassLoaderDefine(@Return Class cl) {
         println("=== java.lang.ClassLoader#defineClass ===");
         println(Strings.strcat("Loaded class: ", Reflective.name(cl)));
-        jstack(20);
+        jstack(10);
     }
 }

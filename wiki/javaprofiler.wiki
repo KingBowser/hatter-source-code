@@ -10,3 +10,5 @@ Java Profiler
  http://java-source.net/open-source/profilers
 
  http://java.sun.com/developer/technicalArticles/Programming/HPROF.html
+
+http://mchr3k.github.com/org.inmemprofiler/

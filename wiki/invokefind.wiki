@@ -24,8 +24,8 @@ Usage:
   invokefind [flags] <args>
   java -jar invokefind [flags] <args>
   java -cp invokefind.jar invokefind [flags] <args>
-    -d <dir>       target dir[default user.dir]
-    -f <file>      output file
+    -t <dir>       target dir[default user.dir]
+    -o <file>      output file
     -ig            ignore[contains]
     -igc           ignore class[contains]
     -igm           ignore method[equals]

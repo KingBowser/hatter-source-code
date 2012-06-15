@@ -43,9 +43,9 @@ public class InvokeFind {
             System.out.println("  java -cp invokefind.jar invokefind [flags] <args>");
             System.out.println("    -t <dir>       target dir[default user.dir]");
             System.out.println("    -o <file>      output file");
-            System.out.println("    -ig            ignore[contains]");
-            System.out.println("    -igc           ignore class[contains]");
-            System.out.println("    -igm           ignore method[equals]");
+            System.out.println("    -ig <str>      ignore[contains]");
+            System.out.println("    -igc <str>     ignore class[contains]");
+            System.out.println("    -igm <str>     ignore method[equals]");
             System.out.println("    --vf           print visit file");
             System.out.println("    --vc           print visit class");
             System.out.println("    --vm           print visit method");

@@ -17,6 +17,9 @@ public class UnixArgsutil {
         private KSet  flags     = new KSet();
         private KMap  keyvalues = new KMap();
 
+        // private Map<String, Set<String>> aliasMap = new LinkedHashMap<String, Set<String>>();
+        // private Set<Set<String>> allaliases = new HashSet<Set<String>>();
+
         public String[] args() {
             return args.toArray(new String[0]);
         }
@@ -48,6 +51,36 @@ public class UnixArgsutil {
             List<String> vs = keyvalues.get(key);
             return (vs == null) ? defval : Collections.unmodifiableList(vs);
         }
+        //
+        // public void addAlias(String alias) {
+        // if ((alias != null) && (alias.length() > 0)) {
+        // addAlias(new HashSet<String>(Arrays.asList(alias.split(","))));
+        // }
+        // }
+        //
+        // public void addAlias(Set<String> alias) {
+        // if ((alias != null) && (alias.size() > 0)) {
+        // allaliases.add(alias);
+        // }
+        // }
+        //
+        // public void updateAliases() {
+        // Set<String> theallaliases = new HashSet<String>();
+        // for (Set<String> aliases : allaliases) {
+        // Set<String> tas = new HashSet<String>();
+        // for (String alias : aliases) {
+        // String a = alias.trim();
+        // if (theallaliases.contains(a)) {
+        // throw new RuntimeException("Alias: " + a + " duplicate.");
+        // }
+        // theallaliases.add(a);
+        // tas.add(a);
+        // }
+        // for (String alias : tas) {
+        // aliasMap.put(alias, tas);
+        // }
+        // }
+        // }
     }
 
     public static class KList extends ArrayList<String> {

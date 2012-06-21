@@ -15,6 +15,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import me.hatter.tools.jsspserver.action.Action;
 import me.hatter.tools.resourceproxy.commons.resource.Resource;
 import me.hatter.tools.resourceproxy.commons.resource.Resources;
 import me.hatter.tools.resourceproxy.jsspexec.JsspExecutor;
@@ -25,6 +26,7 @@ import me.hatter.tools.resourceproxy.jsspserver.util.ContentTypes;
 import me.hatter.tools.resourceproxy.jsspserver.util.HttpConstants;
 import me.hatter.tools.resourceproxy.jsspserver.util.JsspResource;
 import me.hatter.tools.resourceproxy.jsspserver.util.JsspResourceManager;
+import winstone.WinstoneResponse;
 
 public class JSSPFilter implements Filter {
 
@@ -76,25 +78,26 @@ public class JSSPFilter implements Filter {
                 System.out.println("[INFO] Found jssp resource: " + jsspResource.getResource());
 
                 Map<String, Object> context = new HashMap<String, Object>();
-                // String jsspAction = request.getQueryValue(Action.JSSP_ACTION);
-                // if (jsspAction != null) {
-                // try {
-                // Class<?> jsspActionClazz = Class.forName(jsspAction);
-                // System.out.println("[INFO] Found jssp action: " + jsspActionClazz);
-                // if (Action.class.isAssignableFrom(jsspActionClazz)) {
-                // Action a = ((Action) jsspActionClazz.newInstance());
-                // context = a.doAction(request, response);
-                // }
-                // } catch (Exception e) {
-                // throw new RuntimeException(e);
-                // }
-                // }
-                // if (response.isFinish()) {
-                // return response;
-                // }
-                // if (response.isRedirect()) {
-                // return response;
-                // }
+                String jsspAction = httpRequest.getParameter(Action.JSSP_ACTION);
+                if (jsspAction != null) {
+                    try {
+                        Class<?> jsspActionClazz = Class.forName(jsspAction);
+                        System.out.println("[INFO] Found jssp action: " + jsspActionClazz);
+                        if (Action.class.isAssignableFrom(jsspActionClazz)) {
+                            Action a = ((Action) jsspActionClazz.newInstance());
+                            context = a.doAction(httpRequest, httpResponse);
+                        }
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+                if (httpResponse instanceof WinstoneResponse) {
+                    int status = ((WinstoneResponse) httpResponse).getStatus();
+                    if ((status == HttpServletResponse.SC_MOVED_PERMANENTLY)
+                        || (status == HttpServletResponse.SC_MOVED_TEMPORARILY)) {
+                        return; // redirected
+                    }
+                }
 
                 BufferWriter bw = new BufferWriter();
                 Map<String, Object> addContext = new HashMap<String, Object>();

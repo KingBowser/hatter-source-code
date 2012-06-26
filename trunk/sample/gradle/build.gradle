@@ -4,16 +4,19 @@ apply plugin: 'eclipse'
 task initapp {
   file('lib').mkdirs()
   file('src/main/java').mkdirs()
-  file('src/main/resources').mkdir()
+  file('src/main/resources').mkdirs()
   file('src/test/java').mkdirs()
-  file('src/test/resources').mkdir()
-  println 'Init app finished.'
+  file('src/test/resources').mkdirs()
+  println 'Init app finished [lib, src/main/java|resources, src/test/java|resources].'
 }
+
+def eclipseProjectName = 'testapp'
+def eclipseProjectCommect = 'my test application'
+def jarManifestMainClass = 'me.hatter.tools.xxx.Main'
 
 archivesBaseName = 'testapp'
 sourceCompatibility = 1.5
 targetCompatibility = 1.5
-jarManifestMainClass = 'me.hatter.tools.xxx.Main'
 
 dependencies {
     runtime files(fileTree(dir: 'lib', includes: ['*.jar']))
@@ -21,8 +24,8 @@ dependencies {
 
 eclipse {
   project {
-    name = 'testapp'
-    comment = 'my test application'
+    name = eclipseProjectName
+    comment = eclipseProjectCommect
   }
   classpath {
     defaultOutputDir = file('classes')

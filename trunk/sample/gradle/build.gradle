@@ -1,7 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
 
-task initapp {
+task initapp << {
   file('lib').mkdirs()
   file('src/main/java').mkdirs()
   file('src/main/resources').mkdirs()

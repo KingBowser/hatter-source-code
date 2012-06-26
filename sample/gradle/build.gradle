@@ -1,0 +1,50 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+task initapp {
+  file('lib').mkdirs()
+  file('src/main/java').mkdirs()
+  file('src/main/resources').mkdir()
+  file('src/test/java').mkdirs()
+  file('src/test/resources').mkdir()
+  println 'Init app finished.'
+}
+
+dependencies { 
+    runtime files(fileTree(dir: 'lib', includes: ['*.jar']))
+}
+
+eclipse {
+  project {
+    name = 'testapp'
+    comment = 'my test application'
+  }
+  classpath {
+    defaultOutputDir = file('classes')
+  }
+}
+
+archivesBaseName = 'testapp'
+sourceCompatibility = 1.5
+targetCompatibility = 1.5
+
+//sourceSets {
+//    main {
+//        java {
+//            srcDir 'main/java'
+//        }
+//        resources {
+//            srcDir 'main/resources'
+//        }
+//    }
+//    test {
+//        java {
+//            srcDir 'test/java'
+//        }
+//        resources {
+//            srcDir 'test/resources'
+//        }
+//    }
+//}
+
+

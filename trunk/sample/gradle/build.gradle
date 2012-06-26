@@ -10,6 +10,10 @@ task initapp {
   println 'Init app finished.'
 }
 
+archivesBaseName = 'testapp'
+sourceCompatibility = 1.5
+targetCompatibility = 1.5
+
 dependencies { 
     runtime files(fileTree(dir: 'lib', includes: ['*.jar']))
 }
@@ -23,28 +27,4 @@ eclipse {
     defaultOutputDir = file('classes')
   }
 }
-
-archivesBaseName = 'testapp'
-sourceCompatibility = 1.5
-targetCompatibility = 1.5
-
-//sourceSets {
-//    main {
-//        java {
-//            srcDir 'main/java'
-//        }
-//        resources {
-//            srcDir 'main/resources'
-//        }
-//    }
-//    test {
-//        java {
-//            srcDir 'test/java'
-//        }
-//        resources {
-//            srcDir 'test/resources'
-//        }
-//    }
-//}
-
 

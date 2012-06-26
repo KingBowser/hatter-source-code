@@ -13,8 +13,9 @@ task initapp {
 archivesBaseName = 'testapp'
 sourceCompatibility = 1.5
 targetCompatibility = 1.5
+jarManifestMainClass = 'me.hatter.tools.xxx.Main'
 
-dependencies { 
+dependencies {
     runtime files(fileTree(dir: 'lib', includes: ['*.jar']))
 }
 
@@ -25,6 +26,12 @@ eclipse {
   }
   classpath {
     defaultOutputDir = file('classes')
+  }
+}
+
+jar {
+  manifest {
+    attributes('Main-Class': jarManifestMainClass)
   }
 }
 

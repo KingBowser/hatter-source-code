@@ -10,8 +10,18 @@ task initapp << {
   println 'Init app finished [lib, src/main/java|resources, src/test/java|resources].'
 }
 
+task install << {
+  def installBinDir = 'testapp'
+  def installBinName = 'testappbin'
+  def installBinDirLib = "${installBinDir}_lib"
+  println installBinDirLib
+  if (!file("/usr/local/bin/${installBinDirLib}").exists()) {
+    println "/usr/local/bin/${installBinDirLib} not exists."
+  }
+}
+
 def eclipseProjectName = 'testapp'
-def eclipseProjectCommect = 'my test application'
+def eclipseProjectComment = 'my test application'
 def jarManifestMainClass = 'me.hatter.tools.xxx.Main'
 
 archivesBaseName = 'testapp'
@@ -25,7 +35,7 @@ dependencies {
 eclipse {
   project {
     name = eclipseProjectName
-    comment = eclipseProjectCommect
+    comment = eclipseProjectComment
   }
   classpath {
     defaultOutputDir = file('classes')

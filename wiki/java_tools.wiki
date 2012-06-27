@@ -6,8 +6,11 @@ Java Tools.
 
 = Details =
 
- # ant
- # appserver
+ # build tool
+  # ant
+  # maven
+  # gradle
+ # app server
   # glassfish
   # jboss
   # jetty
@@ -18,10 +21,8 @@ Java Tools.
  # btrace
  # dex2jar
  # findbugs
- # gradle
  # hadoop
  # jarjar
  # jmeter
- # maven
  # rhino
  # xstream

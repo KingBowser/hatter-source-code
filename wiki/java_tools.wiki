@@ -26,3 +26,5 @@ Java Tools.
  # jmeter
  # rhino
  # xstream
+ # fastjson
+ # druid

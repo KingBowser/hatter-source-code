@@ -1,6 +1,14 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
 
+def eclipseProjectName = 'testapp'
+def eclipseProjectComment = 'my test application'
+def jarManifestMainClass = 'me.hatter.tools.xxx.Main'
+
+archivesBaseName = 'testapp'
+sourceCompatibility = 1.5
+targetCompatibility = 1.5
+
 task initapp << {
   file('lib').mkdirs()
   file('src/main/java').mkdirs()
@@ -11,22 +19,22 @@ task initapp << {
 }
 
 task install << {
-  def installBinDir = 'testapp'
+  def installLib = 'testapp.lib'
   def installBinName = 'testappbin'
-  def installBinDirLib = "${installBinDir}_lib"
-  println installBinDirLib
+  def installBinDirLib = "testapp_lib"
   if (!file("/usr/local/bin/${installBinDirLib}").exists()) {
-    println "/usr/local/bin/${installBinDirLib} not exists."
+    file("/usr/local/bin/${installBinDirLib}").mkdirs()
   }
+  copy {
+    from installLib
+    into "/usr/local/bin/${installBinDirLib}/"
+  }
+  copy {
+    from installBinName
+    into '/usr/local/bin/'
+  }
+  ant.chmod(file: "/usr/local/bin/${installBinName}", perm: 'a+x')
 }
-
-def eclipseProjectName = 'testapp'
-def eclipseProjectComment = 'my test application'
-def jarManifestMainClass = 'me.hatter.tools.xxx.Main'
-
-archivesBaseName = 'testapp'
-sourceCompatibility = 1.5
-targetCompatibility = 1.5
 
 dependencies {
     runtime files(fileTree(dir: 'lib', includes: ['*.jar']))

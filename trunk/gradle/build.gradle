@@ -19,21 +19,22 @@ task initapp << {
 }
 
 task install << {
-  def installLib = 'testapp.lib'
-  def installBinName = 'testappbin'
+  def installTargetBin = '/usr/local/bin/'
   def installBinDirLib = "testapp_lib"
-  if (!file("/usr/local/bin/${installBinDirLib}").exists()) {
-    file("/usr/local/bin/${installBinDirLib}").mkdirs()
+  if (!file("${installTargetBin}${installBinDirLib}").exists()) {
+    file("${installTargetBin}${installBinDirLib}").mkdirs()
   }
   copy {
-    from installLib
-    into "/usr/local/bin/${installBinDirLib}/"
+    from ('.')
+    into "${installTargetBin}${installBinDirLib}/"
+    include 'testapp.lib'
   }
   copy {
-    from installBinName
-    into '/usr/local/bin/'
+    from ('.')
+    into "${installTargetBin}"
+    include 'testappbin'
   }
-  ant.chmod(file: "/usr/local/bin/${installBinName}", perm: 'a+x')
+  ant.chmod(file: "${installTargetBin}testappbin", perm: 'a+x')
 }
 
 dependencies {

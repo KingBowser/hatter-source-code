@@ -178,7 +178,7 @@ public class HistoAna {
 
     private static void printUsage() {
         System.out.println("Usage:");
-        System.out.println("  histoana [flags] <jpid> [<interval> [<count>]]");
+        System.out.println("  histodiff [flags] <jpid> [<interval> [<count>]]");
         System.out.println("    -top <count>    Top class count[default 10, -1 unlimit]");
         System.out.println("    --ordercount    Order by count[default by size]");
         System.out.println("    --live          Dump live objects[default off]");
@@ -186,7 +186,7 @@ public class HistoAna {
         System.out.println("    <interval>      Print interval(ms)[default 5000ms]");
         System.out.println("    <count>         Print count[default unlimit]");
         System.out.println("Sample:");
-        System.out.println("  histoana          -- display this message");
-        System.out.println("  histoana 12345    -- print jpid 12345's histo info");
+        System.out.println("  histodiff          -- display this message");
+        System.out.println("  histodiff 12345    -- print jpid 12345's histo info");
     }
 }

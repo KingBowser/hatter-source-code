@@ -8,6 +8,6 @@ fi
 BASE_BIN_DIR=`dirname $0`
 
 $JAVA_HOME/bin/java \
-  -cp $BASE_BIN_DIR/histoana_lib/commons-1.0.jar:$BASE_BIN_DIR/histoana_lib/histoana.jar \
+  -cp $BASE_BIN_DIR/histodiff_lib/commons-1.0.jar:$BASE_BIN_DIR/histodiff_lib/histodiff.jar \
   me.hatter.tools.histoana.HistoAna $@
 

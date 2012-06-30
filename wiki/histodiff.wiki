@@ -8,3 +8,19 @@ Histo-Diff.
 = Details =
 
 We can use `jmap -histo` get object count in heap, but we don't know the increase objects between two `jmap -histo`, And the `histodiff` is help you do this.
+
+Usage:
+{{{
+Usage:
+  histodiff [flags] <jpid> [<interval> [<count>]]
+  java -jar histodiffall.jar [flags] <jpid> [<interval> [<count>]]
+    -top <count>    Top class count[default 10, -1 unlimit]
+    --ordercount    Order by count[default by size]
+    --live          Dump live objects[default off]
+    <jpid>          Java PID
+    <interval>      Print interval(ms)[default 5000ms]
+    <count>         Print count[default unlimit]
+Sample:
+  histodiff          -- display this message
+  histodiff 12345    -- print jpid 12345's histo info
+}}}

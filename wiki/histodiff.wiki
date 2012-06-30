@@ -1,0 +1,10 @@
+#summary One-sentence summary of this page.
+
+= Introduction =
+
+Histo-Diff.
+
+
+= Details =
+
+We can use `jmap -histo` get object count in heap, but we don't know the increase objects between two `jmap -histo`, And the `histodiff` is help you do this.

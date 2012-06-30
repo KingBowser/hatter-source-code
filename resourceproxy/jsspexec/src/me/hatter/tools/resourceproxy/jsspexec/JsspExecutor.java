@@ -6,11 +6,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.io.Reader;
 import java.io.StringReader;
-import java.io.Writer;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.script.Bindings;
@@ -27,6 +27,7 @@ import me.hatter.tools.resourceproxy.commons.util.StringUtil;
 import me.hatter.tools.resourceproxy.jsspexec.exception.JsspEvalException;
 import me.hatter.tools.resourceproxy.jsspexec.jsspreader.SimpleJsspReader;
 import me.hatter.tools.resourceproxy.jsspexec.utl.BufferWriter;
+import me.hatter.tools.resourceproxy.jsspexec.utl.LineNumberWriter;
 
 public class JsspExecutor {
 
@@ -141,7 +142,7 @@ public class JsspExecutor {
         InputStream fis = resource.openInputStream();
         BufferedReader br = new BufferedReader(new InputStreamReader(fis, DEFAULT_CHARSET));
         try {
-            PrintWriter pw = new PrintWriter(explainedFile, DEFAULT_CHARSET);
+            LineNumberWriter pw = new LineNumberWriter(explainedFile, DEFAULT_CHARSET);
             // support return
             pw.write("(function() {\r\n");
             StringBuilder sb = new StringBuilder();
@@ -149,7 +150,11 @@ public class JsspExecutor {
             boolean isStart = false;
             boolean isEnd = false;
             try {
+                List<String> sourceTargetLineMappingList = new ArrayList<String>();
+                int sourceLine = 0;
                 for (String readLine; ((readLine = br.readLine()) != null);) {
+                    sourceTargetLineMappingList.add("[" + sourceLine + ", " + pw.getCurrentLine() + "]");
+
                     String line = readLine + "\\r\\n";
 
                     for (int i = 0; i < line.length(); i++) {
@@ -213,8 +218,10 @@ public class JsspExecutor {
                             }
                         }
                     }
+                    sourceLine++;
                 }
                 pw.write("})();\r\n");
+                pw.write("// " + StringUtil.join(sourceTargetLineMappingList, ";") + "\r\n");
                 pw.flush();
             } finally {
                 pw.close();
@@ -232,7 +239,7 @@ public class JsspExecutor {
         return new File(getJsspWorkDir(), path);
     }
 
-    private static final void explainPlain(Writer pw, String plain) throws IOException {
+    private static final void explainPlain(LineNumberWriter pw, String plain) throws IOException {
         if (plain.endsWith("\\r\\n")) {
             plain = plain.substring(0, plain.length() - "\\r\\n".length()).replace("\\", "\\\\") + "\\r\\n";
         }
@@ -242,7 +249,7 @@ public class JsspExecutor {
         pw.write("\r\n");
     }
 
-    private static final void explainScript(Writer pw, String script) throws IOException {
+    private static final void explainScript(LineNumberWriter pw, String script) throws IOException {
         if (script.endsWith("\\r\\n")) {
             script = script.substring(0, (script.length() - "\\r\\n".length()));
         }

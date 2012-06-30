@@ -62,7 +62,7 @@ public class HistoAna {
                 ClassCountSizeMap ccsm = HistoParser.parseHisto(heapHisto(refVM.get(), histoAnaArgs));
 
                 List<ClassCountSize> diff = ClassCountSizeMap.diff(lastCCSM, ccsm);
-                System.out.println("---- histo ana ----");
+                System.out.println("---- histo diff ----");
                 Collections.sort(diff, new Comparator<ClassCountSize>() {
 
                     public int compare(ClassCountSize o0, ClassCountSize o1) {

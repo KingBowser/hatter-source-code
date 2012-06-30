@@ -1,6 +1,7 @@
 package me.hatter.tools.commons.classloader;
 
 import java.lang.reflect.Method;
+import java.net.URLClassLoader;
 import java.util.Arrays;
 import java.util.List;
 
@@ -8,6 +9,17 @@ import me.hatter.tools.commons.collection.CollectionUtil;
 import me.hatter.tools.commons.exception.ExceptionUtil;
 
 public class ClassLoaderUtil {
+
+    public static URLClassLoader getSystemURLClassLoader() {
+        ClassLoader cl = ClassLoader.getSystemClassLoader();
+        if (cl == null) {
+            throw new Error("System classloader is null.");
+        }
+        if (cl instanceof URLClassLoader) {
+            return (URLClassLoader) cl;
+        }
+        throw new RuntimeException("System classloader is not extends from URLClassLoader: " + cl.getClass());
+    }
 
     public static ClassLoader getContextClassLoader() {
         return Thread.currentThread().getContextClassLoader();

@@ -1,0 +1,59 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+def eclipseProjectName = 'histoana'
+def eclipseProjectComment = 'jmap -histo ana'
+def jarManifestMainClass = 'me.hatter.tools.histoana.Main'
+
+archivesBaseName = 'histoana'
+sourceCompatibility = 1.5
+targetCompatibility = 1.5
+
+task initapp << {
+  file('lib').mkdirs()
+  file('src/main/java').mkdirs()
+  file('src/main/resources').mkdirs()
+  file('src/test/java').mkdirs()
+  file('src/test/resources').mkdirs()
+  println 'Init app finished [lib, src/main/java|resources, src/test/java|resources].'
+}
+
+task install << {
+  def installTargetBin = '/usr/local/bin/'
+  def installBinDirLib = "histoana_lib"
+  if (!file("${installTargetBin}${installBinDirLib}").exists()) {
+    file("${installTargetBin}${installBinDirLib}").mkdirs()
+  }
+  copy {
+    from ('.')
+    into "${installTargetBin}${installBinDirLib}/"
+    include 'testapp.lib'
+  }
+  copy {
+    from ('.')
+    into "${installTargetBin}"
+    include 'histoana'
+  }
+  ant.chmod(file: "${installTargetBin}histoana", perm: 'a+x')
+}
+
+dependencies {
+    runtime files(fileTree(dir: 'lib', includes: ['*.jar']))
+}
+
+eclipse {
+  project {
+    name = eclipseProjectName
+    comment = eclipseProjectComment
+  }
+  classpath {
+    defaultOutputDir = file('classes')
+  }
+}
+
+jar {
+  manifest {
+    attributes('Main-Class': jarManifestMainClass)
+  }
+}
+

@@ -24,3 +24,31 @@ Sample:
   histodiff          -- display this message
   histodiff 12345    -- print jpid 12345's histo info
 }}}
+
+Command: `java -jar histodiffall.jar -top 5 428 1000 3`, outputs:
+{{{
+[INFO] Attach to vm: 428
+---- histo diff ----
+     num     #instances         #bytes  class name
+      0:         707278       97731808  [C
+      1:         216929        7940568  [I
+      2:             37           1480  sun.security.pkcs11.wrapper.CK_SLOT_INFO
+      3:             74           1184  sun.security.pkcs11.wrapper.CK_VERSION
+
+---- histo diff ----
+     num     #instances         #bytes  class name
+      0:         707288       97732544  [C
+      1:        1420729       45463328  java.lang.String
+      2:         438497       14031904  java.util.HashMap$Entry
+      3:         216932        8212528  [I
+      4:          50536        4981376  [Ljava.lang.Object;
+
+---- histo diff ----
+     num     #instances         #bytes  class name
+      0:         707290       97732768  [C
+      1:         216933        8214320  [I
+      2:             39           1560  sun.security.pkcs11.wrapper.CK_SLOT_INFO
+      3:             78           1248  sun.security.pkcs11.wrapper.CK_VERSION
+
+[INFO] Detach from vm.
+}}}

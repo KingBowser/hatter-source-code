@@ -20,7 +20,7 @@ task initapp << {
 
 task install << {
   if (!file('build/libs/histoana.jar').exists()) {
-    println('[ERROR] Target histoana.jar not exists, please run gradle jar first.')
+    println('[ERROR] Target histoana.jar not exists, please run [gradle jar] first.')
   } else {
     def installTargetBin = '/usr/local/bin/'
     def installBinDirLib = "histoana_lib"
@@ -28,16 +28,17 @@ task install << {
       file("${installTargetBin}${installBinDirLib}").mkdirs()
     }
     copy {
-      from ('.')
+      from 'build/libs/histoana.jar'
       into "${installTargetBin}${installBinDirLib}/"
-      include 'build/libs/histoana.jar'
-      include 'lib/commons-1.0.jar'
-      rename '.*/([^/]*.jar)', '$1'
     }
     copy {
-      from ('.')
+      from ('lib')
+      into "${installTargetBin}${installBinDirLib}/"
+      include 'commons-1.0.jar'
+    }
+    copy {
+      from 'histoana'
       into "${installTargetBin}"
-      include 'histoana'
     }
     ant.chmod(file: "${installTargetBin}histoana", perm: 'a+x')
   }

@@ -3,7 +3,7 @@ apply plugin: 'eclipse'
 
 def eclipseProjectName = 'histoana'
 def eclipseProjectComment = 'jmap -histo ana'
-def jarManifestMainClass = 'me.hatter.tools.histoana.Main'
+def jarManifestMainClass = 'me.hatter.tools.histoana.HistoAna'
 
 archivesBaseName = 'histoana'
 sourceCompatibility = 1.5
@@ -19,26 +19,32 @@ task initapp << {
 }
 
 task install << {
-  def installTargetBin = '/usr/local/bin/'
-  def installBinDirLib = "histoana_lib"
-  if (!file("${installTargetBin}${installBinDirLib}").exists()) {
-    file("${installTargetBin}${installBinDirLib}").mkdirs()
+  if (!file('build/libs/histoana.jar').exists()) {
+    println('[ERROR] Target histoana.jar not exists, please run gradle jar first.')
+  } else {
+    def installTargetBin = '/usr/local/bin/'
+    def installBinDirLib = "histoana_lib"
+    if (!file("${installTargetBin}${installBinDirLib}").exists()) {
+      file("${installTargetBin}${installBinDirLib}").mkdirs()
+    }
+    copy {
+      from ('.')
+      into "${installTargetBin}${installBinDirLib}/"
+      include 'build/libs/histoana.jar'
+      include 'lib/commons-1.0.jar'
+      rename '.*/([^/]*.jar)', '$1'
+    }
+    copy {
+      from ('.')
+      into "${installTargetBin}"
+      include 'histoana'
+    }
+    ant.chmod(file: "${installTargetBin}histoana", perm: 'a+x')
   }
-  copy {
-    from ('.')
-    into "${installTargetBin}${installBinDirLib}/"
-    include 'testapp.lib'
-  }
-  copy {
-    from ('.')
-    into "${installTargetBin}"
-    include 'histoana'
-  }
-  ant.chmod(file: "${installTargetBin}histoana", perm: 'a+x')
 }
 
 dependencies {
-    runtime files(fileTree(dir: 'lib', includes: ['*.jar']))
+    compile files(fileTree(dir: 'lib', includes: ['*.jar']))
 }
 
 eclipse {

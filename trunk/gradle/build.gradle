@@ -38,7 +38,7 @@ task install << {
 }
 
 dependencies {
-    runtime files(fileTree(dir: 'lib', includes: ['*.jar']))
+    compile files(fileTree(dir: 'lib', includes: ['*.jar']))
 }
 
 eclipse {

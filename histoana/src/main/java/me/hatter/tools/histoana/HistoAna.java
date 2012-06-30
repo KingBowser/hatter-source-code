@@ -179,6 +179,7 @@ public class HistoAna {
     private static void printUsage() {
         System.out.println("Usage:");
         System.out.println("  histodiff [flags] <jpid> [<interval> [<count>]]");
+        System.out.println("  java -jar histodiffall.jar [flags] <jpid> [<interval> [<count>]]");
         System.out.println("    -top <count>    Top class count[default 10, -1 unlimit]");
         System.out.println("    --ordercount    Order by count[default by size]");
         System.out.println("    --live          Dump live objects[default off]");

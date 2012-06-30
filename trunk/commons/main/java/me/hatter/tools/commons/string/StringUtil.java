@@ -134,4 +134,26 @@ public class StringUtil {
         }
         return ((str0 != null) && str0.equals(str1));
     }
+
+    public static String repeat(String s, int count) {
+        StringBuilder sb = new StringBuilder(notNull(s).length() * count + 1);
+        for (int i = 0; i < count; i++) {
+            sb.append(s);
+        }
+        return sb.toString();
+    }
+
+    public static String paddingSpaceLeft(String str, int len) {
+        return padding(str, len, ' ', true);
+    }
+
+    public static String paddingSpaceRight(String str, int len) {
+        return padding(str, len, ' ', false);
+    }
+
+    public static String padding(String str, int len, char c, boolean isLeft) {
+        String s = notNull(str);
+        String rc = repeat(new String(new char[] { c }), (len - s.length()));
+        return (isLeft ? rc + s : s + rc);
+    }
 }

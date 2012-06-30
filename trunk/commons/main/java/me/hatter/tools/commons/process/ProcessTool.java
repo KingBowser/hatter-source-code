@@ -7,7 +7,7 @@ import java.io.UnsupportedEncodingException;
 
 public class ProcessTool {
 
-    private long   waitMills    = 500;
+    private long   waitMills    = 100;
     private String shellCharset = "UTF-8";
 
     public ProcessTool() {

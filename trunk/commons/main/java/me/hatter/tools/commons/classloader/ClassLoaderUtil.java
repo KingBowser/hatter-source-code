@@ -1,6 +1,7 @@
 package me.hatter.tools.commons.classloader;
 
 import java.lang.reflect.Method;
+import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.Arrays;
 import java.util.List;
@@ -19,6 +20,21 @@ public class ClassLoaderUtil {
             return (URLClassLoader) cl;
         }
         throw new RuntimeException("System classloader is not extends from URLClassLoader: " + cl.getClass());
+    }
+
+    public static void addURLs(URLClassLoader ucl, URL... urls) {
+        if ((urls == null) || (urls.length == 0)) {
+            return;
+        }
+        try {
+            Method m = URLClassLoader.class.getDeclaredMethod("addURL", new Class[] { URL.class });
+            m.setAccessible(true);
+            for (URL url : urls) {
+                m.invoke(ucl, new Object[] { url });
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static ClassLoader getContextClassLoader() {

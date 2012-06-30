@@ -1,0 +1,22 @@
+<project name="invokefind" default="jarall" basedir=".">
+
+	<property name="temp.classes.dir" value="temp.classes" />
+	<property name="temp.jar.manifest" value="temp.jar.manifest" />
+
+	<property name="jar.main" value="me.hatter.tools.histoana.HistoAna" />
+	<property name="jar.manifest" value="jar.manifest" />
+
+	<target name="jarall">
+		<mkdir dir="${temp.classes.dir}" />
+		<unzip src="build/libs/histodiff.jar" dest="${temp.classes.dir}"/>
+		<unzip src="lib/commons-1.0.jar" dest="${temp.classes.dir}"/>
+		<manifest file="${temp.jar.manifest}">
+			<attribute name="Main-Class" value="${jar.main}" />
+		</manifest>
+		<jar destfile="histodiffall.jar" manifest="${temp.jar.manifest}">
+			<fileset dir="${temp.classes.dir}" includes="**/*.*" />
+		</jar>
+		<delete file="${temp.jar.manifest}" />
+		<delete dir="${temp.classes.dir}" />
+	</target>
+</project>

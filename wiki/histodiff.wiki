@@ -28,7 +28,11 @@ Sample:
   histodiff 12345    -- print jpid 12345's histo info
 }}}
 
-Command: `java -jar histodiffall.jar -top 5 428 1000 3`, outputs:
+Command: 
+{{{
+java -jar histodiffall.jar -top 5 428 1000 3
+}}}
+Outputs:
 {{{
 [INFO] Attach to vm: 428
 ---- histo diff ----

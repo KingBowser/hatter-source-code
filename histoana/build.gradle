@@ -1,11 +1,11 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
 
-def eclipseProjectName = 'histoana'
+def eclipseProjectName = 'histodiff'
 def eclipseProjectComment = 'jmap -histo ana'
 def jarManifestMainClass = 'me.hatter.tools.histoana.HistoAna'
 
-archivesBaseName = 'histoana'
+archivesBaseName = 'histodiff'
 sourceCompatibility = 1.5
 targetCompatibility = 1.5
 
@@ -19,16 +19,16 @@ task initapp << {
 }
 
 task install << {
-  if (!file('build/libs/histoana.jar').exists()) {
-    println('[ERROR] Target histoana.jar not exists, please run [gradle jar] first.')
+  if (!file('build/libs/histodiff.jar').exists()) {
+    println('[ERROR] Target histodiff.jar not exists, please run [gradle jar] first.')
   } else {
     def installTargetBin = '/usr/local/bin/'
-    def installBinDirLib = "histoana_lib"
+    def installBinDirLib = "histodiff_lib"
     if (!file("${installTargetBin}${installBinDirLib}").exists()) {
       file("${installTargetBin}${installBinDirLib}").mkdirs()
     }
     copy {
-      from 'build/libs/histoana.jar'
+      from 'build/libs/histodiff.jar'
       into "${installTargetBin}${installBinDirLib}/"
     }
     copy {
@@ -37,10 +37,10 @@ task install << {
       include 'commons-1.0.jar'
     }
     copy {
-      from 'histoana'
+      from 'histodiff'
       into "${installTargetBin}"
     }
-    ant.chmod(file: "${installTargetBin}histoana", perm: 'a+x')
+    ant.chmod(file: "${installTargetBin}histodiff", perm: 'a+x')
   }
 }
 

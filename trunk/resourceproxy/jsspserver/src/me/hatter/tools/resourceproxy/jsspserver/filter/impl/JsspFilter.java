@@ -88,7 +88,7 @@ public class JsspFilter implements ResourceFilter {
                 Map<String, Object> addContext = new HashMap<String, Object>();
                 addContext.put("request", request);
                 JsspExecutor.executeExplained(new StringReader(jsspResource.getExplainedContent(JSSP_DEBUG)), context,
-                                              addContext, jsspReader, bw);
+                                              addContext, jsspReader, bw, jsspResource.getResource());
 
                 response.setContentType(ContentTypes.HTML_CONTENT_TYPE);
                 response.setCharset(ContentTypes.UTF8_CHARSET);

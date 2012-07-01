@@ -55,16 +55,17 @@ public class JsspControl {
                 throw new RuntimeException("Jssp reader is null.");
             }
             String explainedJssp;
+            Resource source = null;
             if (jsspReader instanceof SimpleJsspReader) {
-                Resource resource = ((SimpleJsspReader) jsspReader).readResource(jssp);
-                explainedJssp = JsspExecutor.explainAndReadJssp(resource);
+                source = ((SimpleJsspReader) jsspReader).readResource(jssp);
+                explainedJssp = JsspExecutor.explainAndReadJssp(source);
             } else if (jsspReader instanceof ExplainedJsspReader) {
                 explainedJssp = ((ExplainedJsspReader) jsspReader).readExplained(jssp);
             } else {
                 throw new RuntimeException("Unknow jssp reader type: " + jsspReader.getClass().getName());
             }
             BufferWriter out = new BufferWriter();
-            JsspExecutor.executeExplained(new StringReader(explainedJssp), context, null, jsspReader, out);
+            JsspExecutor.executeExplained(new StringReader(explainedJssp), context, null, jsspReader, out, source);
             return out.getBufferedString();
         } catch (Exception e) {
             throw new RuntimeException("Error in explain and execute jssp: " + jssp, e);

@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.script.Bindings;
 import javax.script.ScriptEngine;
@@ -43,7 +45,7 @@ public class JsspExecutor {
         File f = File.createTempFile("test", "jssp");
         f.deleteOnExit();
         FileWriter fw = new FileWriter(f);
-        fw.write("<%=\"hello world\"%>\n<% var i = 0; i++;%><%=i%> <%=control.jssp(\"\").param(\"num\", 111)%>");
+        fw.write("<%=\"hello world\"%>\n<% var i = 0; i++;%>\r\n<%=i%>\r\n <%=control.jssp(\"\").param(\"num\", 111)%>");
         fw.flush();
         fw.close();
 
@@ -74,16 +76,16 @@ public class JsspExecutor {
 
     public static void executeJssp(Resource resource, Map<String, Object> context, Map<String, Object> addContext,
                                    JsspReader jsspReader, BufferWriter out) {
-        executeExplained(new StringReader(explainAndReadJssp(resource)), context, addContext, jsspReader, out);
+        executeExplained(new StringReader(explainAndReadJssp(resource)), context, addContext, jsspReader, out, resource);
     }
 
     public static void executeExplained(Reader reader, Map<String, Object> context, Map<String, Object> addContext,
-                                        BufferWriter out) {
-        executeExplained(reader, context, addContext, null, out);
+                                        BufferWriter out, Resource source) {
+        executeExplained(reader, context, addContext, null, out, source);
     }
 
     public static void executeExplained(Reader reader, Map<String, Object> context, Map<String, Object> addContext,
-                                        JsspReader jsspReader, BufferWriter out) {
+                                        JsspReader jsspReader, BufferWriter out, Resource source) {
         ScriptEngine se = JSSP_ENG_MAN.getEngineByName(JSSP_SCRIPT_LANGUAGE);
 
         Bindings b = new SimpleBindings();
@@ -101,9 +103,51 @@ public class JsspExecutor {
         b.put("app_context", context);
         b.put("out", out);
 
+        String explainedSource = IOUtil.readToString(reader);
         try {
-            se.eval(IOUtil.readToString(reader), b);
+            se.eval(explainedSource, b);
         } catch (ScriptException e) {
+            String msg = e.getMessage();
+            Matcher m = Pattern.compile(".*at line number\\s+(\\d+).*").matcher(msg);
+            if (!m.matches()) {
+                throw new JsspEvalException(e);
+            }
+            int errorLineCount = Integer.parseInt(m.group(1));
+            int lastIndexOfDoubleSlash = explainedSource.lastIndexOf("//");
+            Pattern pstt = Pattern.compile("\\[\\s*(\\d+),\\s*(\\d+)\\s*\\]");
+            if (lastIndexOfDoubleSlash > 0) {
+                String sttml = explainedSource.substring(lastIndexOfDoubleSlash + 2).trim();
+                String[] sttms = sttml.split(";");
+                for (int i = (sttms.length - 1); i >= 0; i--) {
+                    String stt = sttms[i].trim();
+                    Matcher mm = pstt.matcher(stt);
+                    if (mm.matches()) {
+                        int tc = Integer.parseInt(mm.group(2));
+                        if (errorLineCount >= tc) {
+                            int sc = Integer.parseInt(mm.group(1));
+                            int brln = 0;
+                            String theSourceLine = null;
+                            if (source != null) {
+                                BufferedReader br = new BufferedReader(new InputStreamReader(source.openInputStream()));
+                                try {
+                                    for (String ln; ((ln = br.readLine()) != null);) {
+                                        if (brln == sc) {
+                                            theSourceLine = ln;
+                                            break;
+                                        }
+                                        brln++;
+                                    }
+                                } catch (IOException ex) {
+                                    // IGNORE
+                                }
+                                IOUtil.closeQuitely(br);
+                            }
+                            throw new JsspEvalException("Jssp execute error at line: " + sc + ", the source is: "
+                                                        + theSourceLine, e);
+                        }
+                    }
+                }
+            }
             throw new JsspEvalException(e);
         }
         out.flush();

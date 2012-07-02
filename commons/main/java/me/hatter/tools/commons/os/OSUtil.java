@@ -21,7 +21,7 @@ public class OSUtil {
     }
 
     public static OS getOS() {
-        String osn = StringUtil.notNull(osName).trim().toLowerCase();
+        String osn = StringUtil.notNull(osName).trim().toUpperCase();
         if (osn.contains("MAC OS")) {
             return OS.MacOS;
         }

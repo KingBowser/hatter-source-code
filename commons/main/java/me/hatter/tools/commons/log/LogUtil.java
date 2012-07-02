@@ -38,16 +38,19 @@ public class LogUtil {
                 }
             }
         }
-        setLogTypeSet((logTypeList == null) ? Arrays.asList(LogType.values()) : logTypeList);
+        setLogTypeSet(((logTypeList == null) || logTypeList.isEmpty()) ? Arrays.asList(LogType.values()) : logTypeList,
+                      (logTypes != null));
     }
 
-    synchronized public static void setLogTypeSet(Collection<LogType> logTypeSet) {
+    synchronized public static void setLogTypeSet(Collection<LogType> logTypeSet, boolean printSetInfo) {
         Set<LogType> logTypes = new HashSet<LogUtil.LogType>();
         logTypes.add(LogType.ERROR);
         if (logTypeSet != null) {
             logTypes.addAll(logTypeSet);
         }
-        System.out.println("[INFO] Log types is set to: " + logTypes);
+        if (printSetInfo) {
+            System.out.println("[INFO] Log types is set to: " + logTypes);
+        }
         LOG_TYPE_SET = logTypes;
     }
 

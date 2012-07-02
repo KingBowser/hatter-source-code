@@ -1,11 +1,14 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
 
-def eclipseProjectName = 'testapp'
+def baseProjectName = 'testapp'
+def shellCommandName = baseProjectName
+def eclipseProjectName = baseProjectName
 def eclipseProjectComment = 'my test application'
 def jarManifestMainClass = 'me.hatter.tools.xxx.Main'
+def installTargetBin = '/usr/local/bin/'
 
-archivesBaseName = 'testapp'
+archivesBaseName = baseProjectName
 sourceCompatibility = 1.5
 targetCompatibility = 1.5
 
@@ -19,22 +22,46 @@ task initapp << {
 }
 
 task install << {
-  def installTargetBin = '/usr/local/bin/'
-  def installBinDirLib = "testapp_lib"
+  def installBinDirLib = "${baseProjectName}_lib"
   if (!file("${installTargetBin}${installBinDirLib}").exists()) {
     file("${installTargetBin}${installBinDirLib}").mkdirs()
   }
   copy {
-    from ('.')
+    from ('lib')
     into "${installTargetBin}${installBinDirLib}/"
-    include 'testapp.lib'
+    include '*.jar'
+  }
+  copy {
+    from ('build/libs')
+    into "${installTargetBin}${installBinDirLib}/"
+    include '*.jar'
   }
   copy {
     from ('.')
     into "${installTargetBin}"
-    include 'testappbin'
+    include shellCommandName
   }
-  ant.chmod(file: "${installTargetBin}testappbin", perm: 'a+x')
+  ant.chmod(file: "${installTargetBin}${shellCommandName}", perm: 'a+x')
+}
+
+task packall << {
+  def packtempclasses = "packtempclasses"
+  def packtempmanifest = "packtempmanifest"
+  def libs = ant.path {
+    fileset(dir: 'lib', includes: '*.jar')
+    fileset(dir: 'build/libs', includes: '*.jar')
+  }
+  libs.list().each {
+    ant.unzip(dest: packtempclasses, src: it) 
+  }
+  def antmanifest = ant.manifest(file: packtempmanifest) {
+    attribute(name: 'Main-Class', value: jarManifestMainClass)
+  }
+  ant.jar(destfile: "${baseProjectName}all.jar", manifest: packtempmanifest) {
+    fileset(dir: packtempclasses, includes: '**/*.*')
+  }
+  ant.delete(dir: packtempclasses)
+  ant.delete(file: packtempmanifest)
 }
 
 dependencies {

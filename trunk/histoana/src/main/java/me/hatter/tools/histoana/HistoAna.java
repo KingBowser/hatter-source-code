@@ -140,8 +140,10 @@ public class HistoAna {
             File toolsJar = new File(Environment.JAVA_HOME, "lib/tools.jar").getAbsoluteFile();
             if (!toolsJar.exists()) {
                 LogUtil.error("JDK tools.jar not found: " + toolsJar.getPath());
+                return;
             }
             try {
+                System.out.println("[INFO] Add system classloader jar url: " + toolsJar);
                 ClassLoaderUtil.addURLs(ClassLoaderUtil.getSystemURLClassLoader(), toolsJar.toURI().toURL());
             } catch (MalformedURLException e) {
                 throw new RuntimeException(e);

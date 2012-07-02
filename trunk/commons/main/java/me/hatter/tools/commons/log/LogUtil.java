@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import me.hatter.tools.commons.exception.ExceptionUtil;
+
 public class LogUtil {
 
     public static enum LogType {
@@ -83,6 +85,10 @@ public class LogUtil {
 
     synchronized public static void error(String message) {
         message(LogType.ERROR, message);
+    }
+
+    synchronized public static void error(String message, Throwable t) {
+        message(LogType.ERROR, message + ", exception: " + ExceptionUtil.printStackTrace(t));
     }
 
     synchronized public static void message(LogType type, String message) {

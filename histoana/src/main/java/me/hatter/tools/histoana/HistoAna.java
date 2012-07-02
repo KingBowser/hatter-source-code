@@ -1,22 +1,17 @@
 package me.hatter.tools.histoana;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
 
 import me.hatter.tools.commons.args.UnixArgsutil;
-import me.hatter.tools.commons.classloader.ClassLoaderUtil;
-import me.hatter.tools.commons.environment.Environment;
 import me.hatter.tools.commons.exception.ExceptionUtil;
 import me.hatter.tools.commons.io.IOUtil;
-import me.hatter.tools.commons.log.LogUtil;
+import me.hatter.tools.commons.jvm.HotSpotAttachTool;
+import me.hatter.tools.commons.jvm.HotSpotVMUtil;
 import me.hatter.tools.commons.number.LongUtil;
-import me.hatter.tools.commons.os.OSUtil;
 import me.hatter.tools.commons.string.StringUtil;
 import sun.tools.attach.HotSpotVirtualMachine;
 
@@ -41,25 +36,20 @@ public class HistoAna {
     public static void main(String[] args) {
         UnixArgsutil.parseGlobalArgs(args);
         final Args histoAnaArgs = parseArgs();
-        tryAddLibToolsJar();
+        HotSpotVMUtil.autoAddToolsJarDependency();
 
         // File jmap = new File(System.getProperty("java.home"), "/bin/jmap");
         // System.out.println(jmap.exists());
         // System.out.println(jmap.getAbsolutePath());
 
-        VirtualMachine vm = attach(String.valueOf(histoAnaArgs.jpid));
-        final AtomicReference<VirtualMachine> refVM = new AtomicReference<VirtualMachine>(vm);
-        Runtime.getRuntime().addShutdownHook(new Thread() {
+        HotSpotAttachTool attachTool = new HotSpotAttachTool(String.valueOf(histoAnaArgs.jpid));
+        attachTool.attach();
 
-            public void run() {
-                detach(refVM);
-            }
-        });
         try {
-            ClassCountSizeMap lastCCSM = HistoParser.parseHisto(heapHisto(refVM.get(), histoAnaArgs));
+            ClassCountSizeMap lastCCSM = HistoParser.parseHisto(heapHisto(attachTool.getVM(), histoAnaArgs));
             for (long loop = 0; loop < histoAnaArgs.count; loop++) {
                 Thread.sleep((histoAnaArgs.interval < 0) ? 0 : histoAnaArgs.interval);
-                ClassCountSizeMap ccsm = HistoParser.parseHisto(heapHisto(refVM.get(), histoAnaArgs));
+                ClassCountSizeMap ccsm = HistoParser.parseHisto(heapHisto(attachTool.getVM(), histoAnaArgs));
 
                 List<ClassCountSize> diff = ClassCountSizeMap.diff(lastCCSM, ccsm);
                 System.out.println("---- histo diff ----");
@@ -94,7 +84,7 @@ public class HistoAna {
         } catch (Exception e) {
             System.out.println("[ERROR] Unknow error: " + ExceptionUtil.printStackTrace(e));
         } finally {
-            detach(refVM);
+            attachTool.detach();
         }
     }
 
@@ -108,47 +98,6 @@ public class HistoAna {
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }
-    }
-
-    private static void detach(AtomicReference<VirtualMachine> refVM) {
-        synchronized (refVM) {
-            if (refVM.get() != null) {
-                VirtualMachine vm = refVM.get();
-                refVM.set(null);
-                try {
-                    System.out.println("[INFO] Detach from vm.");
-                    vm.detach();
-                } catch (IOException e) {
-                    LogUtil.error("Detach from vm failed: " + ExceptionUtil.printStackTrace(e));
-                }
-            }
-        }
-    }
-
-    private static VirtualMachine attach(String pid) {
-        try {
-            System.out.println("[INFO] Attach to vm: " + pid);
-            return VirtualMachine.attach(pid);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private static void tryAddLibToolsJar() {
-        if (OSUtil.isUnixCompatible() && (!OSUtil.isMacOS())) {
-            String javaHome = Environment.JAVA_HOME.replaceAll("\\/jre(\\/)?$", "");
-            File toolsJar = new File(javaHome, "lib/tools.jar").getAbsoluteFile();
-            if (!toolsJar.exists()) {
-                LogUtil.error("JDK tools.jar not found: " + toolsJar.getPath());
-                return;
-            }
-            try {
-                System.out.println("[INFO] Add system classloader jar url: " + toolsJar);
-                ClassLoaderUtil.addURLs(ClassLoaderUtil.getSystemURLClassLoader(), toolsJar.toURI().toURL());
-            } catch (MalformedURLException e) {
-                throw new RuntimeException(e);
-            }
         }
     }
 

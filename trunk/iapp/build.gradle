@@ -1,0 +1,40 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+def eclipseProjectName = 'iapp'
+def eclipseProjectComment = 'iapp agent sample'
+def jarManifestMainClass = 'me.hatter.tools.iapp.main.Main'
+
+archivesBaseName = 'iapp'
+sourceCompatibility = 1.5
+targetCompatibility = 1.5
+
+task initapp << {
+  file('lib').mkdirs()
+  file('src/main/java').mkdirs()
+  file('src/main/resources').mkdirs()
+  file('src/test/java').mkdirs()
+  file('src/test/resources').mkdirs()
+  println 'Init app finished [lib, src/main/java|resources, src/test/java|resources].'
+}
+
+dependencies {
+    compile files(fileTree(dir: 'lib', includes: ['*.jar']))
+}
+
+eclipse {
+  project {
+    name = eclipseProjectName
+    comment = eclipseProjectComment
+  }
+  classpath {
+    defaultOutputDir = file('classes')
+  }
+}
+
+jar {
+  manifest {
+    attributes('Main-Class': jarManifestMainClass)
+  }
+}
+

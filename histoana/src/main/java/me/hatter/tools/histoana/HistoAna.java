@@ -136,9 +136,9 @@ public class HistoAna {
     }
 
     private static void tryAddLibToolsJar() {
-        System.out.println("[INFO] " + OSUtil.isUnixCompatible() + " / " + OSUtil.isMacOS());
         if (OSUtil.isUnixCompatible() && (!OSUtil.isMacOS())) {
-            File toolsJar = new File(Environment.JAVA_HOME, "lib/tools.jar").getAbsoluteFile();
+            String javaHome = Environment.JAVA_HOME.replaceAll("\\/jre(\\/)?$", "");
+            File toolsJar = new File(javaHome, "lib/tools.jar").getAbsoluteFile();
             if (!toolsJar.exists()) {
                 LogUtil.error("JDK tools.jar not found: " + toolsJar.getPath());
                 return;

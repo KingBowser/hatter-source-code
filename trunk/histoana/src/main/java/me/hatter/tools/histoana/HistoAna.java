@@ -11,6 +11,8 @@ import me.hatter.tools.commons.exception.ExceptionUtil;
 import me.hatter.tools.commons.io.IOUtil;
 import me.hatter.tools.commons.jvm.HotSpotAttachTool;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil;
+import me.hatter.tools.commons.jvm.HotSpotVMUtil.JDKLib;
+import me.hatter.tools.commons.jvm.HotSpotVMUtil.JDKTarget;
 import me.hatter.tools.commons.number.LongUtil;
 import me.hatter.tools.commons.string.StringUtil;
 import sun.tools.attach.HotSpotVirtualMachine;
@@ -34,9 +36,9 @@ public class HistoAna {
     }
 
     public static void main(String[] args) {
+        HotSpotVMUtil.autoAddToolsJarDependency(JDKTarget.SYSTEM_CLASSLOADER, JDKLib.TOOLS);
         UnixArgsutil.parseGlobalArgs(args);
         final Args histoAnaArgs = parseArgs();
-        HotSpotVMUtil.autoAddToolsJarDependency();
 
         // File jmap = new File(System.getProperty("java.home"), "/bin/jmap");
         // System.out.println(jmap.exists());

@@ -44,7 +44,7 @@ public class JDKUtil {
         } else if ("1.1".equals(javaSpecVersion)) {
             return JDKVersion.JDK1_1;
         } else if ("1.2".equals(javaSpecVersion)) {
-            return JDKVersion.JDK1_1;
+            return JDKVersion.JDK1_2;
         } else if ("1.3".equals(javaSpecVersion)) {
             return JDKVersion.JDK1_3;
         } else if ("1.4".equals(javaSpecVersion)) {

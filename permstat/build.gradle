@@ -5,7 +5,7 @@ def baseProjectName = 'permstat'
 def shellCommandName = baseProjectName
 def eclipseProjectName = baseProjectName
 def eclipseProjectComment = 'my test application'
-def jarManifestMainClass = 'me.hatter.tools.xxx.Main'
+def jarManifestMainClass = 'me.hatter.tools.permstat.PermStat'
 def installTargetBin = '/usr/local/bin/'
 
 archivesBaseName = baseProjectName

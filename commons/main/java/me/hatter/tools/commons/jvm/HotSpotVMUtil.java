@@ -40,7 +40,11 @@ public class HotSpotVMUtil {
     }
 
     public static enum JDKTarget {
-        SYSTEM_CLASSLOADER, BOOTSTRAP_CLASSPATH;
+        SYSTEM_CLASSLOADER,
+
+        @Deprecated
+        // Actually, I don't know how to add bootstrap classpath at runtime
+        BOOTSTRAP_CLASSPATH;
     }
 
     private static Set<JDKLib> addedSysJDKLibs  = new HashSet<HotSpotVMUtil.JDKLib>();

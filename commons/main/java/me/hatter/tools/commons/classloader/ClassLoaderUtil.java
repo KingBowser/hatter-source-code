@@ -1,5 +1,6 @@
 package me.hatter.tools.commons.classloader;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -32,6 +33,17 @@ public class ClassLoaderUtil {
             for (URL url : urls) {
                 m.invoke(ucl, new Object[] { url });
             }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @SuppressWarnings("restriction")
+    public static URLClassLoader getAppClassLoader() {
+        try {
+            Field loader = sun.misc.Launcher.class.getDeclaredField("loader");
+            loader.setAccessible(true);
+            return (URLClassLoader) loader.get(sun.misc.Launcher.getLauncher());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

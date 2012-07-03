@@ -40,10 +40,6 @@ public class HistoAna {
         UnixArgsutil.parseGlobalArgs(args);
         final Args histoAnaArgs = parseArgs();
 
-        // File jmap = new File(System.getProperty("java.home"), "/bin/jmap");
-        // System.out.println(jmap.exists());
-        // System.out.println(jmap.getAbsolutePath());
-
         HotSpotAttachTool attachTool = new HotSpotAttachTool(String.valueOf(histoAnaArgs.jpid));
         attachTool.attach();
 

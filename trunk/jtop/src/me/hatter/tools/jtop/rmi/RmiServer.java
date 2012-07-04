@@ -30,6 +30,7 @@ public class RmiServer implements JStackService {
     private int               thisPort;
     private String            thisAddress;
     private Registry          registry;
+    private JStackService     exportedJStackService;
 
     public void receiveMessage(String x) throws RemoteException {
         System.out.println(x);
@@ -48,7 +49,10 @@ public class RmiServer implements JStackService {
         System.out.println("[INFO] this address=" + thisAddress + ",port=" + thisPort);
         try {
             registry = LocateRegistry.createRegistry(thisPort);
-            registry.rebind("jStackService", (JStackService) UnicastRemoteObject.exportObject(this, 0));
+            if (exportedJStackService == null) {
+                exportedJStackService = (JStackService) UnicastRemoteObject.exportObject(this, 0);
+            }
+            registry.rebind("jStackService", exportedJStackService);
         } catch (RemoteException e) {
             throw e;
         }

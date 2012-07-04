@@ -10,6 +10,10 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import me.hatter.tools.commons.jvm.HotSpotAttachTool;
+import me.hatter.tools.commons.jvm.HotSpotVMUtil;
+import me.hatter.tools.commons.jvm.HotSpotVMUtil.JDKLib;
+import me.hatter.tools.commons.jvm.HotSpotVMUtil.JDKTarget;
 import me.hatter.tools.jtop.agent.AgentInitialization;
 import me.hatter.tools.jtop.agent.JDK6AgentLoader;
 import me.hatter.tools.jtop.main.objects.MainOutput;
@@ -30,6 +34,7 @@ public class Main {
 
     public static void main(String[] args) {
         try {
+            HotSpotVMUtil.autoAddToolsJarDependency(JDKTarget.SYSTEM_CLASSLOADER, JDKLib.TOOLS);
             UnixArgsutil.parseGlobalArgs(args);
             // args = ArgsUtil.processArgs(args);
 

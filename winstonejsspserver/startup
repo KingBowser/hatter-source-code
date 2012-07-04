@@ -1,6 +1,0 @@
-java \
-   -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=4000,suspend=n \
-   -Djssp.path=war/jssp \
-   -Djsspdebug=true \
-   -jar lib/winstone-0.9.10.jar \
-   --webroot war

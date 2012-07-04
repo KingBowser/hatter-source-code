@@ -1,9 +1,0 @@
-me.hatter.tools.resourceproxy.proxyserver.filter.impl.CircleRequestCheckFilter
-me.hatter.tools.resourceproxy.proxyserver.filter.impl.HostCheckFilter
-me.hatter.tools.resourceproxy.proxyserver.filter.impl.RootPathFilter
-me.hatter.tools.resourceproxy.proxyserver.filter.impl.DatabaseFilter
-me.hatter.tools.resourceproxy.proxyserver.filter.impl.NetworkFilter
-
-me.hatter.tools.resourceproxy.jsspserver.filter.impl.JsspFilter
-me.hatter.tools.resourceproxy.jsspserver.filter.impl.DefaultFileFilter
-me.hatter.tools.resourceproxy.jsspserver.filter.impl.Default404Filter

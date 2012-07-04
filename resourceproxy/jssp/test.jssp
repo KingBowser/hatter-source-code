@@ -1,7 +1,0 @@
-hello world<br/>
-<%="hello world"%><br/>
-<%
-  var i = 100;
-%>
-<%i++;%>
-<%=i%>

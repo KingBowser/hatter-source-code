@@ -1,8 +1,0 @@
-<project basedir="." default="srcjar" name="test">
-	<target name="srcjar">
-		<jar destfile="test.src.jar">
-			<fileset dir="./src" />
-		</jar>
-	</target>
-</project>
-

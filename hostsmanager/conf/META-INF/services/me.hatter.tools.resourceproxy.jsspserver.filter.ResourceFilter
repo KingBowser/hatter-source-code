@@ -1,7 +1,0 @@
-me.hatter.tools.hostsmanager.filter.LocalhostFilter
-me.hatter.tools.hostsmanager.filter.RootPathFilter
-
-me.hatter.tools.resourceproxy.jsspserver.filter.impl.JsspFilter
-me.hatter.tools.resourceproxy.jsspserver.filter.impl.CacheFilter
-me.hatter.tools.resourceproxy.jsspserver.filter.impl.DefaultFileFilter
-me.hatter.tools.resourceproxy.jsspserver.filter.impl.Default404Filter

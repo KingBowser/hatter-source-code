@@ -1,7 +1,0 @@
-<%!=control.jssp("control_header.jssp")%>
-
-<div style="font-size:20px;background-color:#f0f000;">提交成功</div><br/>
-<br/>
-
-
-<%!=control.jssp("control_footer.jssp")%>

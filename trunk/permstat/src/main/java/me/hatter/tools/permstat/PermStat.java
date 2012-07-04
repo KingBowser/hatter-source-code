@@ -64,7 +64,10 @@ public class PermStat {
             }
         }
 
-        PermStatTool.main(new String[] { UnixArgsutil.ARGS.args()[0] });
+        int loopCount = (interval == 0) ? 1 : count;
+        for (int i = 0; i < loopCount; i++) {
+            PermStatTool.main(new String[] { UnixArgsutil.ARGS.args()[0] });
+        }
     }
 
     private static void usage() {
@@ -136,22 +139,19 @@ public class PermStat {
             System.out.println(StringUtil.paddingSpaceRight("COUNT", 12) + StringUtil.paddingSpaceRight("SIZE", 20)
                                + StringUtil.paddingSpaceRight("DIFF COUNT", 12)
                                + StringUtil.paddingSpaceRight("DIFF SIZE", 20));
-            int loopCount = (interval == 0) ? 1 : count;
-            for (int i = 0; i < loopCount; i++) {
-                StringStat stat = new StringStat();
-                StringTable strTable = VM.getVM().getStringTable();
-                // VM.getVM().fireVMSuspended();
-                try {
-                    strTable.stringsDo(stat);
-                } finally {
-                    // VM.getVM().fireVMResumed();
-                }
-                stat.print();
-                try {
-                    Thread.sleep(interval);
-                } catch (Exception e) {
-                    // IGNORE
-                }
+            StringStat stat = new StringStat();
+            StringTable strTable = VM.getVM().getStringTable();
+            // VM.getVM().fireVMSuspended();
+            try {
+                strTable.stringsDo(stat);
+            } finally {
+                // VM.getVM().fireVMResumed();
+            }
+            stat.print();
+            try {
+                Thread.sleep(interval);
+            } catch (Exception e) {
+                // IGNORE
             }
         }
     }

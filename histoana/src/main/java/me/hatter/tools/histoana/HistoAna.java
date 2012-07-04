@@ -7,6 +7,8 @@ import java.util.Comparator;
 import java.util.List;
 
 import me.hatter.tools.commons.args.UnixArgsutil;
+import me.hatter.tools.commons.bytes.ByteUtil;
+import me.hatter.tools.commons.bytes.ByteUtil.ByteFormat;
 import me.hatter.tools.commons.exception.ExceptionUtil;
 import me.hatter.tools.commons.io.IOUtil;
 import me.hatter.tools.commons.jvm.HotSpotAttachTool;
@@ -64,15 +66,20 @@ public class HistoAna {
                 } else {
                     int cc = (histoAnaArgs.topcount < 0) ? Integer.MAX_VALUE : (int) histoAnaArgs.topcount;
                     cc = (cc == 0) ? 1 : cc;
-                    System.out.println(StringUtil.paddingSpaceLeft("num", 8)
-                                       + StringUtil.paddingSpaceLeft("#instances", 15)
-                                       + StringUtil.paddingSpaceLeft("#bytes", 15) + "  " + "class name");
+                    System.out.println(StringUtil.paddingSpaceLeft("num", 6)
+                                       + StringUtil.paddingSpaceLeft("#instances", 12)
+                                       + StringUtil.paddingSpaceLeft("#bytes", 12)
+                                       + StringUtil.paddingSpaceLeft("#human", 10)
+                                       + StringUtil.paddingSpaceLeft("#aver", 7) + "  " + "class name");
                     for (int i = 0; ((i < cc) && (i < diff.size())); i++) {
                         ClassCountSize ccs = diff.get(i);
-                        System.out.println(StringUtil.paddingSpaceLeft((String.valueOf(i) + ":"), 8)
-                                           + StringUtil.paddingSpaceLeft(String.valueOf(ccs.count), 15)
-                                           + StringUtil.paddingSpaceLeft(String.valueOf(ccs.size), 15) + "  "
-                                           + ccs.name);
+                        System.out.println(StringUtil.paddingSpaceLeft((String.valueOf(i) + ":"), 6)
+                                           + StringUtil.paddingSpaceLeft(String.valueOf(ccs.count), 12)
+                                           + StringUtil.paddingSpaceLeft(String.valueOf(ccs.size), 12)
+                                           + StringUtil.paddingSpaceLeft(ByteUtil.formatBytes(ByteFormat.HUMAN,
+                                                                                              ccs.size), 10)
+                                           + StringUtil.paddingSpaceLeft(String.valueOf(ccs.size / ccs.count), 7)
+                                           + "  " + ccs.name);
                     }
                 }
                 System.out.println();

@@ -10,7 +10,7 @@ Usage:
 {{{
 Usage:
   java -jar permstatall.jar [options] <PID> [<interval> [<count>]]
-    -f B|K|M|G|H              Byte/KB/MB/GB/Humarn(default B)
+    -size B|K|M|G|H              Byte/KB/MB/GB/Humarn(default B)
 }}}
 
 Sample:

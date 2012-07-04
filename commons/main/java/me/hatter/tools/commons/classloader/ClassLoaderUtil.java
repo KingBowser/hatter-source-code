@@ -139,7 +139,8 @@ public class ClassLoaderUtil {
         }
         URL u = getClassLoaderByClass(ClassLoaderUtil.class).getResource(className.replace('.', '/') + ".class");
         if (u != null) {
-            return u.getFile();
+            String f = u.getFile();
+            return f.substring(0, f.indexOf(".jar!/") + 4);
         }
         return null;
     }

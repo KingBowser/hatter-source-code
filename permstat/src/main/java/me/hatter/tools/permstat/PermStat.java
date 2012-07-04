@@ -120,7 +120,6 @@ public class PermStat {
 
                 public void print() {
                     ByteFormat format = ByteFormat.fromString(UnixArgsutil.ARGS.kvalue("size"));
-                    System.out.println(count + " intern Strings occupying " + size + " bytes.");
 
                     String diffCount = (lastCount == 0) ? "-" : String.valueOf(count - lastCount);
                     String diffSize = (lastSize == 0L) ? "-" : ByteUtil.formatBytes(format, size - lastSize);

@@ -1,40 +1,18 @@
 package me.hatter.tools.jtop.agent;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Properties;
 
-import sun.tools.attach.LinuxVirtualMachine;
-import sun.tools.attach.WindowsVirtualMachine;
+import me.hatter.tools.commons.jvm.HotSpotAttachTool;
 
 import com.sun.tools.attach.AgentInitializationException;
 import com.sun.tools.attach.AgentLoadException;
-import com.sun.tools.attach.AttachNotSupportedException;
 import com.sun.tools.attach.VirtualMachine;
-import com.sun.tools.attach.spi.AttachProvider;
 
 public class JDK6AgentLoader {
 
-    private static final AttachProvider ATTACH_PROVIDER = new AttachProvider() {
-
-                                                            @Override
-                                                            public String name() {
-                                                                return null;
-                                                            }
-
-                                                            @Override
-                                                            public String type() {
-                                                                return null;
-                                                            }
-
-                                                            @Override
-                                                            public VirtualMachine attachVirtualMachine(String id) {
-                                                                return null;
-                                                            }
-                                                        };
-
-    private final String                jarFilePath;
-    private final String                pid;
+    private final String jarFilePath;
+    private final String pid;
 
     public JDK6AgentLoader(String jarFilePath) {
         this.jarFilePath = jarFilePath;
@@ -47,57 +25,26 @@ public class JDK6AgentLoader {
     }
 
     public void loadAgent() {
-        VirtualMachine vm = getThisVM();
-        loadAgentAndDetachFromThisVM(vm);
+        HotSpotAttachTool attach = new HotSpotAttachTool(pid);
+        attach.attach();
+        try {
+            loadAgentAndDetachFromThisVM(attach.getVM());
+        } finally {
+            attach.detach();
+        }
     }
 
     public String getVMProperty(String key) {
-        VirtualMachine vm = getThisVM();
+        HotSpotAttachTool attach = new HotSpotAttachTool(pid);
+        attach.attach();
         try {
-            Properties properties = vm.getSystemProperties();
+            Properties properties = attach.getVM().getSystemProperties();
             String value = properties.getProperty(key);
-            vm.detach();
             return value;
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }
-    }
-
-    private VirtualMachine getThisVM() {
-        VirtualMachine vm;
-        if (AttachProvider.providers().isEmpty()) {
-            vm = getVirtualMachineImplementationFromEmbeddedOnes();
-        } else {
-            vm = attachToThisVM();
-        }
-        return vm;
-    }
-
-    private VirtualMachine attachToThisVM() {
-        try {
-            return VirtualMachine.attach(pid);
-        } catch (AttachNotSupportedException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private VirtualMachine getVirtualMachineImplementationFromEmbeddedOnes() {
-        try {
-            if (File.separatorChar == '\\') {
-                return new WindowsVirtualMachine(ATTACH_PROVIDER, pid);
-            } else {
-                return new LinuxVirtualMachine(ATTACH_PROVIDER, pid);
-            }
-        } catch (AttachNotSupportedException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (UnsatisfiedLinkError ignore) {
-            // noinspection ThrowInsideCatchBlockWhichIgnoresCaughtException
-            throw new IllegalStateException(
-                                            "Unable to load Java agent; please add lib/tools.jar from your JDK to the classpath");
+        } finally {
+            attach.detach();
         }
     }
 

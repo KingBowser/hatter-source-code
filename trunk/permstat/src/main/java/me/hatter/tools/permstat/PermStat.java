@@ -89,6 +89,12 @@ public class PermStat {
             printInternStringStatistics();
         }
 
+        protected void stop() {
+            if (getAgent() != null) {
+                getAgent().detach();
+            }
+        }
+
         private static int  lastCount = 0;
         private static long lastSize  = 0L;
 

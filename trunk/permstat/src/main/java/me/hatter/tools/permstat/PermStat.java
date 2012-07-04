@@ -76,7 +76,7 @@ public class PermStat {
     private static void usage() {
         System.out.println("Usage:");
         System.out.println("  java -jar permstatall.jar [options] <PID> [<interval> [<count>]]");
-        System.out.println("    -f B|K|M|G|H              Byte/KB/MB/GB/Humarn(default B)");
+        System.out.println("    -size B|K|M|G|H              Byte/KB/MB/GB/Humarn(default B)");
         System.exit(0);
     }
 
@@ -139,6 +139,7 @@ public class PermStat {
 
                     System.out.println(StringUtil.paddingSpaceRight(String.valueOf(count), 12)
                                        + StringUtil.paddingSpaceRight(ByteUtil.formatBytes(format, size), 20)
+                                       + StringUtil.paddingSpaceRight(String.valueOf(size / count), 20)
                                        + StringUtil.paddingSpaceRight(diffCount, 12)
                                        + StringUtil.paddingSpaceRight(diffSize, 20));
                     lastCount = count;
@@ -149,6 +150,7 @@ public class PermStat {
             if (firstTime) {
                 firstTime = false;
                 System.out.println(StringUtil.paddingSpaceRight("COUNT", 12) + StringUtil.paddingSpaceRight("SIZE", 20)
+                                   + StringUtil.paddingSpaceRight("AVERAGE(byte)", 20)
                                    + StringUtil.paddingSpaceRight("DIFF COUNT", 12)
                                    + StringUtil.paddingSpaceRight("DIFF SIZE", 20));
             }

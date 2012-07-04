@@ -98,8 +98,9 @@ public class PermStat {
             }
         }
 
-        private static int  lastCount = 0;
-        private static long lastSize  = 0L;
+        private static int     lastCount = 0;
+        private static long    lastSize  = 0L;
+        private static boolean firstTime = true;
 
         private void printInternStringStatistics() {
             class StringStat implements StringTable.StringVisitor {
@@ -145,9 +146,12 @@ public class PermStat {
                 }
             }
 
-            System.out.println(StringUtil.paddingSpaceRight("COUNT", 12) + StringUtil.paddingSpaceRight("SIZE", 20)
-                               + StringUtil.paddingSpaceRight("DIFF COUNT", 12)
-                               + StringUtil.paddingSpaceRight("DIFF SIZE", 20));
+            if (firstTime) {
+                firstTime = false;
+                System.out.println(StringUtil.paddingSpaceRight("COUNT", 12) + StringUtil.paddingSpaceRight("SIZE", 20)
+                                   + StringUtil.paddingSpaceRight("DIFF COUNT", 12)
+                                   + StringUtil.paddingSpaceRight("DIFF SIZE", 20));
+            }
 
             StringStat stat = new StringStat();
             StringTable strTable = VM.getVM().getStringTable();

@@ -129,6 +129,8 @@ public class PermStat {
                                        + StringUtil.paddingSpaceRight(ByteUtil.formatBytes(format, size), 20)
                                        + StringUtil.paddingSpaceRight(diffCount, 12)
                                        + StringUtil.paddingSpaceRight(diffSize, 20));
+                    lastCount = count;
+                    lastSize = size;
                 }
             }
 

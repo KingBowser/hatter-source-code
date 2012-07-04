@@ -1,0 +1,3 @@
+{{{
+wget https://hatter-source-code.googlecode.com/svn/trunk/permstat/permstatall.jar
+}}}

@@ -14,21 +14,19 @@ public class JDK6AgentLoader {
     private final String jarFilePath;
     private final String pid;
 
-    public JDK6AgentLoader(String jarFilePath) {
-        this.jarFilePath = jarFilePath;
-        pid = Agent.discoverProcessIdForRunningVM();
-    }
-
     public JDK6AgentLoader(String jarFilePath, String pid) {
         this.jarFilePath = jarFilePath;
         this.pid = pid;
     }
 
-    public void loadAgent() {
+    public String loadAgent() {
         HotSpotAttachTool attach = new HotSpotAttachTool(pid);
         attach.attach();
         try {
             loadAgentAndDetachFromThisVM(attach.getVM());
+            return attach.getVM().getSystemProperties().getProperty("jtop.port");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         } finally {
             attach.detach();
         }
@@ -52,7 +50,6 @@ public class JDK6AgentLoader {
         try {
             String port = System.getProperty("port", "1127");
             vm.loadAgent(jarFilePath, "port=" + port);
-            vm.detach();
         } catch (AgentLoadException e) {
             throw new RuntimeException(e);
         } catch (AgentInitializationException e) {

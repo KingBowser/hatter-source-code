@@ -1,7 +1,6 @@
 package me.hatter.tools.jtop.agent;
 
 import java.lang.instrument.Instrumentation;
-import java.lang.management.ManagementFactory;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -59,17 +58,5 @@ public class Agent {
             }
         }
         return map;
-    }
-
-    public static String discoverProcessIdForRunningVM() {
-        String nameOfRunningVM = ManagementFactory.getRuntimeMXBean().getName();
-        int p = nameOfRunningVM.indexOf('@');
-        return nameOfRunningVM.substring(0, p);
-    }
-
-    public static void initializeIfNeeded() {
-        if (instrumentation == null) {
-            new AgentInitialization().initializeAccordingToJDKVersion();
-        }
     }
 }

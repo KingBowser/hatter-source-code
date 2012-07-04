@@ -13,6 +13,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.hatter.tools.commons.management.ManagementUtil;
 import me.hatter.tools.jtop.agent.Agent;
 import me.hatter.tools.jtop.rmi.interfaces.JClassLoadingInfo;
 import me.hatter.tools.jtop.rmi.interfaces.JGCInfo;
@@ -73,7 +74,7 @@ public class RmiServer implements JStackService {
 
     // implemention
     public String getProcessId() throws RemoteException {
-        return Agent.discoverProcessIdForRunningVM();
+        return ManagementUtil.getCurrentVMPid();
     }
 
     public JMemoryInfo getMemoryInfo() throws RemoteException {

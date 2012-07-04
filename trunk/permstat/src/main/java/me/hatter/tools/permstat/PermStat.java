@@ -14,6 +14,9 @@
 // copyed from jdk source
 package me.hatter.tools.permstat;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 import me.hatter.tools.commons.args.UnixArgsutil;
 import me.hatter.tools.commons.bytes.ByteUtil;
 import me.hatter.tools.commons.bytes.ByteUtil.ByteFormat;
@@ -28,7 +31,6 @@ import sun.jvm.hotspot.oops.Instance;
 import sun.jvm.hotspot.oops.InstanceKlass;
 import sun.jvm.hotspot.oops.OopField;
 import sun.jvm.hotspot.runtime.VM;
-import sun.jvm.hotspot.tools.Tool;
 
 /**
  * A command line tool to print perm. generation statistics.
@@ -64,10 +66,11 @@ public class PermStat {
             }
         }
         //
-        // int loopCount = (interval == 0) ? 1 : count;
-        // for (int i = 0; i < loopCount; i++) {
-        PermStatTool.main(new String[] { UnixArgsutil.ARGS.args()[0] });
-        // }
+        int loopCount = (interval == 0) ? 1 : count;
+        for (int i = 0; i < loopCount; i++) {
+            PrintStream err = (i == 0) ? System.out : new PrintStream(new ByteArrayOutputStream());
+            PermStatTool.main(new String[] { UnixArgsutil.ARGS.args()[0] }, err);
+        }
     }
 
     private static void usage() {
@@ -79,9 +82,9 @@ public class PermStat {
 
     public static class PermStatTool extends Tool {
 
-        public static void main(String[] args) {
+        public static void main(String[] args, PrintStream err) {
             PermStatTool ps = new PermStatTool();
-            ps.start(args);
+            ps.start(args, err);
             ps.stop();
         }
 
@@ -145,22 +148,20 @@ public class PermStat {
             System.out.println(StringUtil.paddingSpaceRight("COUNT", 12) + StringUtil.paddingSpaceRight("SIZE", 20)
                                + StringUtil.paddingSpaceRight("DIFF COUNT", 12)
                                + StringUtil.paddingSpaceRight("DIFF SIZE", 20));
-            int loopCount = (interval == 0) ? 1 : count;
-            for (int i = 0; i < loopCount; i++) {
-                StringStat stat = new StringStat();
-                StringTable strTable = VM.getVM().getStringTable();
-                // VM.getVM().fireVMSuspended();
-                try {
-                    strTable.stringsDo(stat);
-                } finally {
-                    // VM.getVM().fireVMResumed();
-                }
-                stat.print();
-                try {
-                    Thread.sleep(interval);
-                } catch (Exception e) {
-                    // IGNORE
-                }
+
+            StringStat stat = new StringStat();
+            StringTable strTable = VM.getVM().getStringTable();
+            // VM.getVM().fireVMSuspended();
+            try {
+                strTable.stringsDo(stat);
+            } finally {
+                // VM.getVM().fireVMResumed();
+            }
+            stat.print();
+            try {
+                Thread.sleep(interval);
+            } catch (Exception e) {
+                // IGNORE
             }
         }
     }

@@ -14,9 +14,14 @@
 // copyed from jdk source
 package me.hatter.tools.permstat;
 
+import me.hatter.tools.commons.args.UnixArgsutil;
+import me.hatter.tools.commons.bytes.ByteUtil;
+import me.hatter.tools.commons.bytes.ByteUtil.ByteFormat;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil.JDKLib;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil.JDKTarget;
+import me.hatter.tools.commons.log.LogUtil;
+import me.hatter.tools.commons.string.StringUtil;
 import sun.jvm.hotspot.memory.StringTable;
 import sun.jvm.hotspot.memory.SystemDictionary;
 import sun.jvm.hotspot.oops.Instance;
@@ -31,9 +36,42 @@ import sun.jvm.hotspot.tools.Tool;
 
 public class PermStat {
 
+    private static long interval = 0L;
+    private static int  count    = Integer.MAX_VALUE;
+
     public static void main(String[] args) {
         HotSpotVMUtil.autoAddToolsJarDependency(JDKTarget.SYSTEM_CLASSLOADER, JDKLib.SA_JDI);
-        PermStatTool.main(args);
+        UnixArgsutil.parseGlobalArgs(args);
+
+        if (UnixArgsutil.ARGS.args().length == 0) {
+            usage();
+        }
+        if (UnixArgsutil.ARGS.args().length > 1) {
+            try {
+                interval = Long.parseLong(UnixArgsutil.ARGS.args()[1]);
+                interval = (interval < 0L) ? 0L : interval;
+            } catch (Exception e) {
+                LogUtil.error("Parse interval failed.");
+                System.exit(-1);
+            }
+        }
+        if (UnixArgsutil.ARGS.args().length > 2) {
+            try {
+                count = Integer.parseInt(UnixArgsutil.ARGS.args()[2]);
+            } catch (Exception e) {
+                LogUtil.error("Parse count failed.");
+                System.exit(-1);
+            }
+        }
+
+        PermStatTool.main(new String[] { UnixArgsutil.ARGS.args()[0] });
+    }
+
+    private static void usage() {
+        System.out.println("Usage:");
+        System.out.println("  java -jar permstatall.jar [options] <PID> [<interval> [<count>]]");
+        System.out.println("    -f B|K|M|G|H              Byte/KB/MB/GB/Humarn(default B)");
+        System.exit(0);
     }
 
     public static class PermStatTool extends Tool {
@@ -47,6 +85,9 @@ public class PermStat {
         public void run() {
             printInternStringStatistics();
         }
+
+        private static int  lastCount = 0;
+        private static long lastSize  = 0L;
 
         private void printInternStringStatistics() {
             class StringStat implements StringTable.StringVisitor {
@@ -78,19 +119,39 @@ public class PermStat {
                 }
 
                 public void print() {
+                    ByteFormat format = ByteFormat.fromString(UnixArgsutil.ARGS.kvalue("size"));
                     System.out.println(count + " intern Strings occupying " + size + " bytes.");
+
+                    String diffCount = (lastCount == 0) ? "-" : String.valueOf(count - lastCount);
+                    String diffSize = (lastSize == 0L) ? "-" : ByteUtil.formatBytes(format, size - lastSize);
+
+                    System.out.println(StringUtil.paddingSpaceRight(String.valueOf(count), 12)
+                                       + StringUtil.paddingSpaceRight(ByteUtil.formatBytes(format, size), 20)
+                                       + StringUtil.paddingSpaceRight(diffCount, 12)
+                                       + StringUtil.paddingSpaceRight(diffSize, 20));
                 }
             }
 
-            StringStat stat = new StringStat();
-            StringTable strTable = VM.getVM().getStringTable();
-            // VM.getVM().fireVMSuspended();
-            try {
-                strTable.stringsDo(stat);
-            } finally {
-                // VM.getVM().fireVMResumed();
+            System.out.println(StringUtil.paddingSpaceRight("COUNT", 12) + StringUtil.paddingSpaceRight("SIZE", 20)
+                               + StringUtil.paddingSpaceRight("DIFF COUNT", 12)
+                               + StringUtil.paddingSpaceRight("DIFF SIZE", 20));
+            int loopCount = (interval == 0) ? 1 : count;
+            for (int i = 0; i < loopCount; i++) {
+                StringStat stat = new StringStat();
+                StringTable strTable = VM.getVM().getStringTable();
+                // VM.getVM().fireVMSuspended();
+                try {
+                    strTable.stringsDo(stat);
+                } finally {
+                    // VM.getVM().fireVMResumed();
+                }
+                stat.print();
+                try {
+                    Thread.sleep(interval);
+                } catch (Exception e) {
+                    // IGNORE
+                }
             }
-            stat.print();
         }
     }
 }

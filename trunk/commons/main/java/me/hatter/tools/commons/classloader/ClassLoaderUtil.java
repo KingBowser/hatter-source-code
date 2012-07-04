@@ -127,4 +127,20 @@ public class ClassLoaderUtil {
             throw ExceptionUtil.wrapRuntimeException(e);
         }
     }
+
+    public static String findClassJarPath(Object classOrName) {
+        String className;
+        if (classOrName instanceof String) {
+            className = (String) classOrName;
+        } else if (classOrName instanceof Class) {
+            className = ((Class<?>) classOrName).getName();
+        } else {
+            throw new RuntimeException("Argument classOrName must be String or Class.");
+        }
+        URL u = getClassLoaderByClass(ClassLoaderUtil.class).getResource(className.replace('.', '/') + ".class");
+        if (u != null) {
+            return u.getFile();
+        }
+        return null;
+    }
 }

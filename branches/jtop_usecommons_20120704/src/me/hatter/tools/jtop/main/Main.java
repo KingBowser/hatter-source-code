@@ -48,7 +48,7 @@ public class Main {
             if (!tryConnect(rc)) {
                 int pid = Integer.valueOf(EnvUtil.getPid());
                 String port = attachAgent(pid);
-                if (!String.valueOf(EnvUtil.getPort()).equals(port)) {
+                if ((port != null) && (!String.valueOf(EnvUtil.getPort()).equals(port))) {
                     System.out.println("[ERROR] Remote server's pid not match, PORT=" + rc.getPort() //
                                        + "  REQUIRE_PID=" + EnvUtil.getPid() //
                                        + "  ACTURE_PID=" + pid);

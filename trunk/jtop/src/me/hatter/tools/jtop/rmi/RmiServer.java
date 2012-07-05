@@ -13,7 +13,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.hatter.tools.jtop.agent.Agent;
+import me.hatter.tools.commons.management.ManagementUtil;
 import me.hatter.tools.jtop.rmi.interfaces.JClassLoadingInfo;
 import me.hatter.tools.jtop.rmi.interfaces.JGCInfo;
 import me.hatter.tools.jtop.rmi.interfaces.JMemoryInfo;
@@ -27,7 +27,7 @@ public class RmiServer implements JStackService {
 
     private static RmiServer  RMI_SERVER       = null;
 
-    private int               thisPort;
+    private Integer           thisPort;
     private String            thisAddress;
     private Registry          registry;
     private JStackService     exportedJStackService;
@@ -45,35 +45,39 @@ public class RmiServer implements JStackService {
     }
 
     public void bind(int port) throws RemoteException {
-        this.thisPort = port;
-        System.out.println("[INFO] this address=" + thisAddress + ",port=" + thisPort);
+        System.out.println("[INFO] this address=" + thisAddress + ",port=" + port);
         try {
-            registry = LocateRegistry.createRegistry(thisPort);
+            registry = LocateRegistry.createRegistry(port);
             if (exportedJStackService == null) {
                 exportedJStackService = (JStackService) UnicastRemoteObject.exportObject(this, 0);
             }
             registry.rebind("jStackService", exportedJStackService);
+            this.thisPort = port; // recored port, mark as success
         } catch (RemoteException e) {
             throw e;
         }
     }
 
     synchronized public static void startup(int port) {
-        if (RMI_SERVER == null) {
-            try {
+        try {
+            if (RMI_SERVER == null) {
                 RMI_SERVER = new RmiServer();
-                RMI_SERVER.bind(port);
-                System.setProperty("jtop.port", String.valueOf(port));
-            } catch (RemoteException e) {
-                System.err.println("[ERROR] error in startup rmi server: " + e.getMessage());
-                e.printStackTrace();
             }
+            if (RMI_SERVER.thisPort != null) {
+                System.out.println("[WARN] Areadly inited, port=" + RMI_SERVER.thisPort);
+                return;
+            }
+            RMI_SERVER.bind(port);
+            System.setProperty("jtop.port", String.valueOf(port));
+        } catch (RemoteException e) {
+            System.err.println("[ERROR] error in startup rmi server: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
     // implemention
     public String getProcessId() throws RemoteException {
-        return Agent.discoverProcessIdForRunningVM();
+        return ManagementUtil.getCurrentVMPid();
     }
 
     public JMemoryInfo getMemoryInfo() throws RemoteException {

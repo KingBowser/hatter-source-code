@@ -21,6 +21,7 @@
 	</target>
 
 	<target name="compile" depends="prepare">
+		<unzip src="lib/commons-1.0.jar" dest="${classes.dir}"/>
 		<javac srcdir="${src.dir}" destdir="${classes.dir}" source="1.6" target="1.6" debug="true" debuglevel="lines,vars,source">
 			<classpath>
 				<path refid="classpath" />

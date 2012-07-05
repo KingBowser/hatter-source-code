@@ -51,7 +51,6 @@ public class JDK6AgentLoader {
     private void loadAgentAndDetachFromThisVM(VirtualMachine vm) {
         try {
             String port = String.valueOf(EnvUtil.getPort());
-            LogUtil.info("PPPPPPP "+port);
             vm.loadAgent(jarFilePath, "port=" + port);
         } catch (AgentLoadException e) {
             throw new RuntimeException(e);

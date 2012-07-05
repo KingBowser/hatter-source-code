@@ -45,9 +45,9 @@ public class RmiServer implements JStackService {
     }
 
     public void bind(int port) throws RemoteException {
-        System.out.println("[INFO] this address=" + thisAddress + ",port=" + thisPort);
+        System.out.println("[INFO] this address=" + thisAddress + ",port=" + port);
         try {
-            registry = LocateRegistry.createRegistry(thisPort);
+            registry = LocateRegistry.createRegistry(port);
             if (exportedJStackService == null) {
                 exportedJStackService = (JStackService) UnicastRemoteObject.exportObject(this, 0);
             }

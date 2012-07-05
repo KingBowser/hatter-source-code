@@ -117,7 +117,7 @@ public class StringUtil {
     }
 
     public static String notNull(final String str) {
-        return (str == null) ? "" : str;
+        return (str == null) ? EMPTY : str;
     }
 
     public static String upper(final String str) {
@@ -136,6 +136,9 @@ public class StringUtil {
     }
 
     public static String repeat(String s, int count) {
+        if (count <= 0) {
+            return EMPTY;
+        }
         StringBuilder sb = new StringBuilder(notNull(s).length() * count + 1);
         for (int i = 0; i < count; i++) {
             sb.append(s);

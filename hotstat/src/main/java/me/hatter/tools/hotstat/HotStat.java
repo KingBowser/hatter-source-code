@@ -54,7 +54,7 @@ public class HotStat {
                     } else {
                         for (String k : diffMap.keySet()) {
                             System.out.println(StringUtil.paddingSpaceRight(k, 40) + " = " + "[" + lastMap.get(k)
-                                               + " >>>> " + diffMap.get(k) + "]");
+                                               + " >>>> " + diffMap.get(k) + diff(lastMap.get(k), diffMap.get(k)) + "]");
                         }
                     }
                 }
@@ -85,6 +85,16 @@ public class HotStat {
             System.out.println(StringUtil.paddingSpaceRight(String.valueOf(vm.getPid()), 10)
                                + StringUtil.paddingSpaceRight(String.valueOf(vm.isAttachAble()), 13)
                                + vm.getFullClassName());
+        }
+    }
+
+    public static String diff(String ol, String ne) {
+        try {
+            long vo = Long.parseLong(ol);
+            long vn = Long.parseLong(ne);
+            return " (DIFF " + (vn - vo) + ")";
+        } catch (Exception e) {
+            return StringUtil.EMPTY;
         }
     }
 }

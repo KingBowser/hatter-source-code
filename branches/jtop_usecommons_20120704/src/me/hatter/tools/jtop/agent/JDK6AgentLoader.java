@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 import me.hatter.tools.commons.jvm.HotSpotAttachTool;
+import me.hatter.tools.commons.log.LogUtil;
 import me.hatter.tools.jtop.util.EnvUtil;
 
 import com.sun.tools.attach.AgentInitializationException;
@@ -50,6 +51,7 @@ public class JDK6AgentLoader {
     private void loadAgentAndDetachFromThisVM(VirtualMachine vm) {
         try {
             String port = String.valueOf(EnvUtil.getPort());
+            LogUtil.info("PPPPPPP "+port);
             vm.loadAgent(jarFilePath, "port=" + port);
         } catch (AgentLoadException e) {
             throw new RuntimeException(e);

@@ -1,0 +1,1 @@
+java -cp hostsmanager.jar hostsmanager >> run.log 2>&1 &

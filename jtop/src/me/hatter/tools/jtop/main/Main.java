@@ -10,7 +10,12 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import me.hatter.tools.jtop.agent.AgentInitialization;
+import me.hatter.tools.commons.bytes.ByteUtil;
+import me.hatter.tools.commons.bytes.ByteUtil.ByteFormat;
+import me.hatter.tools.commons.classloader.ClassLoaderUtil;
+import me.hatter.tools.commons.jvm.HotSpotVMUtil;
+import me.hatter.tools.commons.jvm.HotSpotVMUtil.JDKLib;
+import me.hatter.tools.commons.jvm.HotSpotVMUtil.JDKTarget;
 import me.hatter.tools.jtop.agent.JDK6AgentLoader;
 import me.hatter.tools.jtop.main.objects.MainOutput;
 import me.hatter.tools.jtop.rmi.RmiClient;
@@ -30,6 +35,7 @@ public class Main {
 
     public static void main(String[] args) {
         try {
+            HotSpotVMUtil.autoAddToolsJarDependency(JDKTarget.SYSTEM_CLASSLOADER, JDKLib.TOOLS);
             UnixArgsutil.parseGlobalArgs(args);
             // args = ArgsUtil.processArgs(args);
 
@@ -41,7 +47,14 @@ public class Main {
             RmiClient rc = new RmiClient("127.0.0.1", EnvUtil.getPort());
             if (!tryConnect(rc)) {
                 int pid = Integer.valueOf(EnvUtil.getPid());
-                attachAgent(pid);
+                String port = attachAgent(pid);
+                if ((port != null) && (!String.valueOf(EnvUtil.getPort()).equals(port))) {
+                    System.out.println("[ERROR] Remote server's pid not match, PORT=" + rc.getPort() //
+                                       + "  REQUIRE_PID=" + EnvUtil.getPid() //
+                                       + "  ACTURE_PID=" + pid);
+                    System.out.println("[ERROR] The target VM PORT=" + port);
+                    System.exit(0);
+                }
             }
 
             JStackService jStackService = rc.getJStackService();
@@ -52,9 +65,9 @@ public class Main {
             String pid = jStackService.getProcessId();
             if (!pid.equals(EnvUtil.getPid())) {
                 System.out.println("[ERROR] Remote server's pid not match, PORT=" + rc.getPort() //
-                                   + "  REQUIRE_PID=" + EnvUtil.getPort() //
+                                   + "  REQUIRE_PID=" + EnvUtil.getPid() //
                                    + "  ACTURE_PID=" + pid);
-                String jarFilePath = (new AgentInitialization()).findPathToJarFileFromClasspath();
+                String jarFilePath = ClassLoaderUtil.findClassJarPath(Main.class);
                 System.out.println("[ERROR] The target VM PORT="
                                    + (new JDK6AgentLoader(jarFilePath, String.valueOf(EnvUtil.getPort()))).getVMProperty("jtop.port"));
                 System.exit(0);
@@ -259,38 +272,15 @@ public class Main {
         }
     }
 
-    static void attachAgent(int pid) {
-        String jarFilePath = (new AgentInitialization()).findPathToJarFileFromClasspath();
+    static String attachAgent(int pid) {
+        String jarFilePath = ClassLoaderUtil.findClassJarPath(Main.class);
         System.out.println("[INFO] jar file: " + jarFilePath);
         JDK6AgentLoader agentLoader = new JDK6AgentLoader(jarFilePath, String.valueOf(pid));
-        agentLoader.loadAgent();
+        return agentLoader.loadAgent();
     }
 
     static String toSize(long b, String s) {
-        if (s == null) {
-            return String.valueOf(b);
-        }
-        DecimalFormat nf = new DecimalFormat("0.00");
-        char c = s.toLowerCase().trim().charAt(0);
-        if (c == 'h') {
-            if (b > 1024 * 1024 * 1024) {
-                c = 'g';
-            } else if (b > 1024 * 1024) {
-                c = 'm';
-            } else if (b > 1024) {
-                c = 'k';
-            }
-        }
-        switch (c) {
-            case 'k':
-                return nf.format(((double) b) / 1024) + "K";
-            case 'm':
-                return nf.format(((double) b) / 1024 / 1024) + "M";
-            case 'g':
-                return nf.format(((double) b) / 1024 / 1024 / 1024) + "G";
-            default:
-                return String.valueOf(b);
-        }
+        return ByteUtil.formatBytes(ByteFormat.fromString(s), b);
     }
 
     static void usage() {

@@ -4,6 +4,7 @@ import java.text.DecimalFormat;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import me.hatter.tools.commons.args.UnixArgsutil;
 import me.hatter.tools.commons.jvm.HotSpotProcessUtil;
@@ -34,6 +35,10 @@ public class HotStat {
                 count = Integer.parseInt(UnixArgsutil.ARGS.args()[2]);
             }
         }
+        Pattern filterPattern = null;
+        if (UnixArgsutil.ARGS.kvalue("filter") != null) {
+            filterPattern = Pattern.compile(UnixArgsutil.ARGS.kvalue("filter"));
+        }
         int loopCount = (interval <= 0) ? 1 : count;
         Map<String, String> lastMap = null;
         for (int i = 0; i < loopCount; i++) {
@@ -45,7 +50,9 @@ public class HotStat {
                 Map<String, String> map = HotSpotProcessUtil.listVMMonitor(pid);
                 if (lastMap == null) {
                     for (String k : map.keySet()) {
-                        System.out.println(StringUtil.paddingSpaceRight(k, 40) + " = " + map.get(k));
+                        if (accept(filterPattern, k)) {
+                            System.out.println(StringUtil.paddingSpaceRight(k, 40) + " = " + map.get(k));
+                        }
                     }
                 } else {
                     Map<String, String> diffMap = new LinkedHashMap<String, String>();
@@ -58,8 +65,11 @@ public class HotStat {
                         System.out.println("== no diff found ==");
                     } else {
                         for (String k : diffMap.keySet()) {
-                            System.out.println(StringUtil.paddingSpaceRight(k, 40) + " = " + "[" + lastMap.get(k)
-                                               + " >>>> " + diffMap.get(k) + diff(lastMap.get(k), diffMap.get(k)) + "]");
+                            if (accept(filterPattern, k)) {
+                                System.out.println(StringUtil.paddingSpaceRight(k, 40) + " = " + "[" + lastMap.get(k)
+                                                   + " >>>> " + diffMap.get(k) + diff(lastMap.get(k), diffMap.get(k))
+                                                   + "]");
+                            }
                         }
                     }
                 }
@@ -75,6 +85,14 @@ public class HotStat {
     public static void usage() {
         System.out.println("Usage:");
         System.out.println("  java -jar hotstatall.jar [options] [<PID> [<interval> [<count>]]]");
+        System.out.println("    -filter <regex filter expression>    regex filter expression");
+    }
+
+    public static boolean accept(Pattern p, String k) {
+        if (p == null) {
+            return true;
+        }
+        return p.matcher(k).matches();
     }
 
     public static void printJps() {

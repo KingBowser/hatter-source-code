@@ -2,6 +2,8 @@ package me.hatter.tools.commons.bytes;
 
 import java.text.DecimalFormat;
 
+import me.hatter.tools.commons.string.StringUtil;
+
 public class ByteUtil {
 
     public static final long N1024 = 1024L;
@@ -59,6 +61,8 @@ public class ByteUtil {
         if (format == null) {
             return String.valueOf(size);
         }
+        boolean isMinus = (size < 0);
+        size = Math.abs(size);
         DecimalFormat nf = new DecimalFormat("0.00");
         if (format == ByteFormat.HUMAN) {
             if (size > ByteFormat.GB.getSize()) {
@@ -71,15 +75,16 @@ public class ByteUtil {
                 format = ByteFormat.BYTE;
             }
         }
+        String prefix = isMinus ? "-" : StringUtil.EMPTY;
         switch (format) {
             case KB:
-                return nf.format(((double) size) / ByteFormat.KB.getSize()) + ByteFormat.KB.getSuffix();
+                return prefix + nf.format(((double) size) / ByteFormat.KB.getSize()) + ByteFormat.KB.getSuffix();
             case MB:
-                return nf.format(((double) size) / ByteFormat.MB.getSize()) + ByteFormat.MB.getSuffix();
+                return prefix + nf.format(((double) size) / ByteFormat.MB.getSize()) + ByteFormat.MB.getSuffix();
             case GB:
-                return nf.format(((double) size) / ByteFormat.GB.getSize()) + ByteFormat.GB.getSuffix();
+                return prefix + nf.format(((double) size) / ByteFormat.GB.getSize()) + ByteFormat.GB.getSuffix();
             default:
-                return String.valueOf(size);
+                return prefix + String.valueOf(size);
         }
     }
 }

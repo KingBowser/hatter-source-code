@@ -2,6 +2,10 @@ package me.hatter.tools.commons.number;
 
 public class IntegerUtil {
 
+    public static int nullAsZero(Integer integer) {
+        return (integer == null) ? 0 : integer.intValue();
+    }
+
     public static Integer tryParse(String str) {
         try {
             return Integer.valueOf(Integer.parseInt(str));

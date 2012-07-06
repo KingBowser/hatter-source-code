@@ -8,6 +8,9 @@ import java.util.Map;
 import me.hatter.tools.commons.args.UnixArgsutil;
 import me.hatter.tools.commons.jvm.HotSpotProcessUtil;
 import me.hatter.tools.commons.jvm.HotSpotProcessVM;
+import me.hatter.tools.commons.jvm.HotSpotVMUtil;
+import me.hatter.tools.commons.jvm.HotSpotVMUtil.JDKLib;
+import me.hatter.tools.commons.jvm.HotSpotVMUtil.JDKTarget;
 import me.hatter.tools.commons.log.LogUtil;
 import me.hatter.tools.commons.management.ManagementUtil;
 import me.hatter.tools.commons.string.StringUtil;
@@ -15,6 +18,7 @@ import me.hatter.tools.commons.string.StringUtil;
 public class HotStat {
 
     public static void main(String[] args) {
+        HotSpotVMUtil.autoAddToolsJarDependency(JDKTarget.SYSTEM_CLASSLOADER, JDKLib.TOOLS);
         UnixArgsutil.parseGlobalArgs(args);
         if (UnixArgsutil.ARGS.args().length == 0) {
             usage();

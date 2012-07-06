@@ -11,7 +11,7 @@ We can use `jmap -histo` get object count in heap, but we don't know the increas
 
 Usage:
 {{{
-wget http://hatter-source-code.googlecode.com/svn/trunk/histoana/histodiffall.jar
+wget https://hatter-source-code.googlecode.com/svn/trunk/histoana/histodiffall.jar
 }}}
 {{{
 Usage:

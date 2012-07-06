@@ -63,7 +63,7 @@ public class HotSpotVMUtil {
                 LogUtil.info("Add " + ((target == JDKTarget.SYSTEM_CLASSLOADER) ? "system" : "bootstrp")
                              + " classloader jar url: " + toolsJar);
                 if (target == JDKTarget.SYSTEM_CLASSLOADER) {
-                    ClassLoaderUtil.addURLs(ClassLoaderUtil.getSystemURLClassLoader(), toolsJar.toURI().toURL());
+                    ClassLoaderUtil.addURLs(ClassLoaderUtil.getSystemClassLoader(), toolsJar.toURI().toURL());
                 } else {
                     sun.misc.Launcher.getBootstrapClassPath().addURL(toolsJar.toURI().toURL());
                 }

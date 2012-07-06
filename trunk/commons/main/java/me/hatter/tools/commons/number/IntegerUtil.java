@@ -2,6 +2,14 @@ package me.hatter.tools.commons.number;
 
 public class IntegerUtil {
 
+    public static boolean isNull(Integer integer) {
+        return (integer == null);
+    }
+
+    public static boolean isNotNull(Integer integer) {
+        return (integer != null);
+    }
+
     public static int nullAsZero(Integer integer) {
         return (integer == null) ? 0 : integer.intValue();
     }

@@ -2,6 +2,14 @@ package me.hatter.tools.commons.number;
 
 public class LongUtil {
 
+    public static boolean isNull(Long longv) {
+        return (longv == null);
+    }
+
+    public static boolean isNotNull(Long longv) {
+        return (longv != null);
+    }
+
     public static long nullAsZero(Long longv) {
         return (longv == null) ? 0L : longv.longValue();
     }

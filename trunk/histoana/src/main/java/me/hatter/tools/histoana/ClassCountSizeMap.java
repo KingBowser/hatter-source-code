@@ -16,7 +16,7 @@ public class ClassCountSizeMap extends HashMap<String, ClassCountSize> {
             if (c0 == null) {
                 result.add(c1);
             } else {
-                if (c1.size > c0.size) {
+                if (c1.count > c0.count) {
                     ClassCountSize nc = new ClassCountSize();
                     nc.name = c1.name;
                     nc.count = c1.count - c0.count;

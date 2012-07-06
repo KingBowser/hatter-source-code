@@ -1,5 +1,6 @@
 package me.hatter.tools.hotstat;
 
+import java.text.DecimalFormat;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -92,7 +93,9 @@ public class HotStat {
         try {
             long vo = Long.parseLong(ol);
             long vn = Long.parseLong(ne);
-            return " (DIFF " + (vn - vo) + ")";
+            long di = vn - vo;
+            DecimalFormat format = new DecimalFormat("#,###,###,##0");
+            return " (" + ((di >= 0) ? "+" : StringUtil.EMPTY) + format.format(di) + ")";
         } catch (Exception e) {
             return StringUtil.EMPTY;
         }

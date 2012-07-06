@@ -17,7 +17,11 @@ public class ClassCountSizeMap extends HashMap<String, ClassCountSize> {
                 result.add(c1);
             } else {
                 if (c1.size > c0.size) {
-                    result.add(c1);
+                    ClassCountSize nc = new ClassCountSize();
+                    nc.name = c1.name;
+                    nc.count = c1.count - c0.count;
+                    nc.size = c1.size - c0.size;
+                    result.add(nc);
                 }
             }
         }

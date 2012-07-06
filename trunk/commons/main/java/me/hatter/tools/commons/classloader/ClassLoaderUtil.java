@@ -12,7 +12,7 @@ import me.hatter.tools.commons.exception.ExceptionUtil;
 
 public class ClassLoaderUtil {
 
-    public static URLClassLoader getSystemURLClassLoader() {
+    public static URLClassLoader getSystemClassLoader() {
         ClassLoader cl = ClassLoader.getSystemClassLoader();
         if (cl == null) {
             throw new Error("System classloader is null.");
@@ -47,6 +47,10 @@ public class ClassLoaderUtil {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static URLClassLoader getExtClassLoader() {
+        return (URLClassLoader) getAppClassLoader().getParent();
     }
 
     public static ClassLoader getContextClassLoader() {

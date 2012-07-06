@@ -20,6 +20,7 @@ import java.io.PrintStream;
 import me.hatter.tools.commons.args.UnixArgsutil;
 import me.hatter.tools.commons.bytes.ByteUtil;
 import me.hatter.tools.commons.bytes.ByteUtil.ByteFormat;
+import me.hatter.tools.commons.jvm.HotSpotProcessUtil;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil.JDKLib;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil.JDKTarget;
@@ -77,6 +78,8 @@ public class PermStat {
         System.out.println("Usage:");
         System.out.println("  java -jar permstatall.jar [options] <PID> [<interval> [<count>]]");
         System.out.println("    -size B|K|M|G|H              Byte/KB/MB/GB/Humarn(default B)");
+        System.out.println();
+        HotSpotProcessUtil.printVMs(System.out, true);
         System.exit(0);
     }
 

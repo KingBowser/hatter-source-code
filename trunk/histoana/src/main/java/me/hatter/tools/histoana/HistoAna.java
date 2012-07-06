@@ -12,6 +12,7 @@ import me.hatter.tools.commons.bytes.ByteUtil.ByteFormat;
 import me.hatter.tools.commons.exception.ExceptionUtil;
 import me.hatter.tools.commons.io.IOUtil;
 import me.hatter.tools.commons.jvm.HotSpotAttachTool;
+import me.hatter.tools.commons.jvm.HotSpotProcessUtil;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil.JDKLib;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil.JDKTarget;
@@ -146,5 +147,7 @@ public class HistoAna {
         System.out.println("Sample:");
         System.out.println("  histodiff          -- display this message");
         System.out.println("  histodiff 12345    -- print jpid 12345's histo info");
+        System.out.println();
+        HotSpotProcessUtil.printVMs(System.out, true);
     }
 }

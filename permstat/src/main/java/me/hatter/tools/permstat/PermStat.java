@@ -136,12 +136,15 @@ public class PermStat {
 
                     String diffCount = (lastCount == 0) ? "-" : String.valueOf(count - lastCount);
                     String diffSize = (lastSize == 0L) ? "-" : ByteUtil.formatBytes(format, size - lastSize);
+                    String diffSizeH = (lastSize == 0L) ? "-" : ByteUtil.formatBytes(format, size - lastSize);
 
                     System.out.println(StringUtil.paddingSpaceRight(String.valueOf(count), 12)
-                                       + StringUtil.paddingSpaceRight(ByteUtil.formatBytes(format, size), 20)
-                                       + StringUtil.paddingSpaceRight(String.valueOf(size / count), 20)
+                                       + StringUtil.paddingSpaceRight(ByteUtil.formatBytes(format, size), 18)
+                                       + StringUtil.paddingSpaceRight(ByteUtil.formatBytes(ByteFormat.HUMAN, size), 14)
+                                       + StringUtil.paddingSpaceRight(String.valueOf(size / count), 12)
                                        + StringUtil.paddingSpaceRight(diffCount, 12)
-                                       + StringUtil.paddingSpaceRight(diffSize, 20));
+                                       + StringUtil.paddingSpaceRight(diffSize, 18)
+                                       + StringUtil.paddingSpaceRight(diffSizeH, 18));
                     lastCount = count;
                     lastSize = size;
                 }
@@ -149,10 +152,12 @@ public class PermStat {
 
             if (firstTime) {
                 firstTime = false;
-                System.out.println(StringUtil.paddingSpaceRight("COUNT", 12) + StringUtil.paddingSpaceRight("SIZE", 20)
-                                   + StringUtil.paddingSpaceRight("AVERAGE(byte)", 20)
+                System.out.println(StringUtil.paddingSpaceRight("COUNT", 12) + StringUtil.paddingSpaceRight("SIZE", 18)
+                                   + StringUtil.paddingSpaceRight("SIZE(H)", 14)
+                                   + StringUtil.paddingSpaceRight("AVERAGE(B)", 12)
                                    + StringUtil.paddingSpaceRight("DIFF COUNT", 12)
-                                   + StringUtil.paddingSpaceRight("DIFF SIZE", 20));
+                                   + StringUtil.paddingSpaceRight("DIFF SIZE", 18)
+                                   + StringUtil.paddingSpaceRight("DIFF SIZE(H)", 18));
             }
 
             StringStat stat = new StringStat();

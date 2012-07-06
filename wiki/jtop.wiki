@@ -9,12 +9,7 @@ The java edition command of top.
 
 Get jtop:
 {{{
-wget http://hatter-source-code.googlecode.com/svn/trunk/jtop/jtop.jar
-}}}
-
-SVN:
-{{{
-svn co http://hatter-source-code.googlecode.com/svn/trunk/jtop/ jtop
+wget https://hatter-source-code.googlecode.com/svn/trunk/jtop/jtop.jar
 }}}
 
 Usage: 

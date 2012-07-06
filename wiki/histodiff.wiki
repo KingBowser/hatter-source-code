@@ -30,32 +30,27 @@ Sample:
 
 Command: 
 {{{
-java -jar histodiffall.jar -top 5 428 1000 3
+java -jar histodiffall.jar  388 5000 3
 }}}
 Outputs:
 {{{
-[INFO] Attach to vm: 428
+[INFO] Attach to vm: 388
 ---- histo diff ----
-     num     #instances         #bytes  class name
-      0:         707278       97731808  [C
-      1:         216929        7940568  [I
-      2:             37           1480  sun.security.pkcs11.wrapper.CK_SLOT_INFO
-      3:             74           1184  sun.security.pkcs11.wrapper.CK_VERSION
+   num  #instances      #bytes    #human  #aver  class name
+    0:      101693     3254176     3.10M     32  java.lang.String
+    1:       90722     2727568     2.60M     30  [C
 
 ---- histo diff ----
-     num     #instances         #bytes  class name
-      0:         707288       97732544  [C
-      1:        1420729       45463328  java.lang.String
-      2:         438497       14031904  java.util.HashMap$Entry
-      3:         216932        8212528  [I
-      4:          50536        4981376  [Ljava.lang.Object;
+   num  #instances      #bytes    #human  #aver  class name
+    0:      298821    11155984    10.64M     37  [C
+    1:      199214     6374848     6.08M     32  java.lang.String
+    2:       99607     2390568     2.28M     24  java.lang.StringBuilder
+    3:          41       41600    40.62K   1014  [I
 
 ---- histo diff ----
-     num     #instances         #bytes  class name
-      0:         707290       97732768  [C
-      1:         216933        8214320  [I
-      2:             39           1560  sun.security.pkcs11.wrapper.CK_SLOT_INFO
-      3:             78           1248  sun.security.pkcs11.wrapper.CK_VERSION
+   num  #instances      #bytes    #human  #aver  class name
+    0:       56016     1792512     1.71M     32  java.lang.String
+    1:       21179      120336   117.52K      5  [C
 
 [INFO] Detach from vm.
 }}}

@@ -140,7 +140,7 @@ public class PermStat {
 
                     String diffCount = (lastCount == 0) ? "-" : String.valueOf(count - lastCount);
                     String diffSize = (lastSize == 0L) ? "-" : ByteUtil.formatBytes(format, size - lastSize);
-                    String diffSizeH = (lastSize == 0L) ? "-" : ByteUtil.formatBytes(format, size - lastSize);
+                    String diffSizeH = (lastSize == 0L) ? "-" : ByteUtil.formatBytes(ByteFormat.HUMAN, size - lastSize);
 
                     System.out.println(StringUtil.paddingSpaceRight(String.valueOf(count), 12)
                                        + StringUtil.paddingSpaceRight(ByteUtil.formatBytes(format, size), 18)

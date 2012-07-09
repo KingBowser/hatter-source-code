@@ -2,7 +2,7 @@
 
 = Introduction =
 
-HotStat
+HotStat, Display the diff of `jstat -J-Djstat.showUnsupported=true -snap [pid]`
 
 = Details =
 

@@ -1,4 +1,4 @@
-#HotSpot profiler
+#hotspot profiler
 
 = Introduction =
 

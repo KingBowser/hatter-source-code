@@ -43,6 +43,7 @@ public class PermStat {
     private static int  count    = Integer.MAX_VALUE;
 
     public static void main(String[] args) {
+        HotSpotVMUtil.autoAddToolsJarDependency(JDKTarget.SYSTEM_CLASSLOADER, JDKLib.TOOLS);
         HotSpotVMUtil.autoAddToolsJarDependency(JDKTarget.SYSTEM_CLASSLOADER, JDKLib.SA_JDI);
         UnixArgsutil.parseGlobalArgs(args);
 

@@ -7,7 +7,7 @@ HotSpot profiler tools.
 = Details =
 
 || URL || Description ||
-|| http://openjdk.java.net/groups/hotspot/docs/Serviceability.html || `-` ||
+|| http://openjdk.java.net/groups/hotspot/docs/Serviceability.html || Serviceability in HotSpot. ||
 || http://java.sun.com/performance/reference/whitepapers/6_performance.html || Java™ Platform Performance Engineering. ||
 || http://docs.oracle.com/javase/6/docs/technotes/guides/jvmti/ || `-` ||
 || http://docs.oracle.com/javase/6/docs/technotes/guides/attach/index.html || `-` ||

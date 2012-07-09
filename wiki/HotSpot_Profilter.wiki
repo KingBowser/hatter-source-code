@@ -1,6 +1,6 @@
 #summary HotSpot Profiler
 
-== Guide to JavaSE 6 ==
+= Guide to JavaSE 6 =
 
 || URL || Description ||
 || http://openjdk.java.net/groups/hotspot/docs/Serviceability.html || Serviceability in HotSpot. ||

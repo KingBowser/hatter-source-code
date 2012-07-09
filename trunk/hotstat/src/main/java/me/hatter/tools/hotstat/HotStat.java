@@ -2,18 +2,15 @@ package me.hatter.tools.hotstat;
 
 import java.text.DecimalFormat;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
 import me.hatter.tools.commons.args.UnixArgsutil;
 import me.hatter.tools.commons.jvm.HotSpotProcessUtil;
-import me.hatter.tools.commons.jvm.HotSpotProcessVM;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil.JDKLib;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil.JDKTarget;
 import me.hatter.tools.commons.log.LogUtil;
-import me.hatter.tools.commons.management.ManagementUtil;
 import me.hatter.tools.commons.string.StringUtil;
 
 public class HotStat {
@@ -97,18 +94,7 @@ public class HotStat {
 
     public static void printJps() {
         System.out.println();
-        List<HotSpotProcessVM> vms = HotSpotProcessUtil.listVMs();
-        System.out.println(StringUtil.paddingSpaceRight("PID", 10) + StringUtil.paddingSpaceRight("ATTACH ABLE", 13)
-                           + "CLASS");
-        String currentPid = ManagementUtil.getCurrentVMPid();
-        for (HotSpotProcessVM vm : vms) {
-            if (currentPid.equals(String.valueOf(vm.getPid()))) {
-                continue;
-            }
-            System.out.println(StringUtil.paddingSpaceRight(String.valueOf(vm.getPid()), 10)
-                               + StringUtil.paddingSpaceRight(String.valueOf(vm.isAttachAble()), 13)
-                               + vm.getFullClassName());
-        }
+        HotSpotProcessUtil.printVMs(System.out, true);
     }
 
     public static String diff(String ol, String ne) {

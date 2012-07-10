@@ -20,6 +20,9 @@ public class HotSpotVMUtil {
 
         TOOLS("tools.jar", Arrays.asList(OS.Linux, OS.Unix)),
 
+        // Use for load agent
+        MANAGEMENT_AGENT("management-agent.jar", Arrays.asList(OS.Linux, OS.Unix, OS.MacOS, OS.Windows)),
+
         SA_JDI("sa-jdi.jar", Arrays.asList(OS.Linux, OS.Unix, OS.MacOS));
 
         private String  name;

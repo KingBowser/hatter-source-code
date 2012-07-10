@@ -10,3 +10,6 @@
 || http://docs.oracle.com/javase/6/docs/technotes/guides/attach/index.html || Attach API. ||
 || http://docs.oracle.com/javase/6/docs/technotes/guides/instrumentation/index.html || Java™ java.lang.instrument Package. ||
 || http://docs.oracle.com/javase/6/docs/technotes/guides/management/preface.html || The Java™ SE Monitoring and Management Guide describes those monitoring and management utilities. ||
+|| `-` || `-` ||
+|| http://docs.oracle.com/javase/tutorial/index.html || The Java™ Tutorials. ||
+|| http://docs.oracle.com/javase/7/docs/index.html || Java™ Platform Standard Edition 7 Documentation ||

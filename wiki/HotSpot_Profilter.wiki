@@ -9,4 +9,4 @@
 || http://docs.oracle.com/javase/6/docs/technotes/guides/jvmti/ || Java™ Virtual Machine Tool Interface (JVM TI). ||
 || http://docs.oracle.com/javase/6/docs/technotes/guides/attach/index.html || Attach API. ||
 || http://docs.oracle.com/javase/6/docs/technotes/guides/instrumentation/index.html || Java™ java.lang.instrument Package. ||
-|| http://docs.oracle.com/javase/6/docs/technotes/guides/management/preface.html || The Java SE Monitoring and Management Guide describes those monitoring and management utilities. ||
+|| http://docs.oracle.com/javase/6/docs/technotes/guides/management/preface.html || The Java™ SE Monitoring and Management Guide describes those monitoring and management utilities. ||

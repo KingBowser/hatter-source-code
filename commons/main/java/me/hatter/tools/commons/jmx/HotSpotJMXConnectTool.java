@@ -37,6 +37,7 @@ public class HotSpotJMXConnectTool {
 
     public String getConnectorAddress() {
         HotSpotAttachTool attach = new HotSpotAttachTool(pid);
+        attach.attach();
         try {
             VirtualMachine vm = attach.getVM();
             String connectorAddress = vm.getAgentProperties().getProperty(CONNECTOR_ADDRESS);

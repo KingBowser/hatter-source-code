@@ -3,13 +3,21 @@ package me.hatter.tools.commons.jmx;
 import java.io.IOException;
 import java.lang.management.ClassLoadingMXBean;
 import java.lang.management.CompilationMXBean;
+import java.lang.management.GarbageCollectorMXBean;
 import java.lang.management.ManagementFactory;
 import java.lang.management.MemoryMXBean;
+import java.lang.management.MemoryManagerMXBean;
+import java.lang.management.MemoryPoolMXBean;
 import java.lang.management.OperatingSystemMXBean;
 import java.lang.management.RuntimeMXBean;
 import java.lang.management.ThreadMXBean;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
+import javax.management.JMX;
 import javax.management.MBeanServerConnection;
+import javax.management.ObjectName;
 
 public class RemoteManagementFactory {
 
@@ -43,18 +51,34 @@ public class RemoteManagementFactory {
         return newPlatformMXBeanProxy(ManagementFactory.OPERATING_SYSTEM_MXBEAN_NAME, OperatingSystemMXBean.class);
     }
 
-    // How to create proxy for below mxbean?
-    // public static List<MemoryPoolMXBean> getMemoryPoolMXBeans() {
-    // return sun.management.ManagementFactory.getMemoryPoolMXBeans();
-    // }
-    //
-    // public static List<MemoryManagerMXBean> getMemoryManagerMXBeans() {
-    // return sun.management.ManagementFactory.getMemoryManagerMXBeans();
-    // }
-    //
-    // public static List<GarbageCollectorMXBean> getGarbageCollectorMXBeans() {
-    // return sun.management.ManagementFactory.getGarbageCollectorMXBeans();
-    // }
+    public List<MemoryPoolMXBean> getMemoryPoolMXBeans() {
+        return newPlatformMXBeanListProxy(ManagementFactory.MEMORY_POOL_MXBEAN_DOMAIN_TYPE, MemoryPoolMXBean.class);
+    }
+
+    public List<MemoryManagerMXBean> getMemoryManagerMXBeans() {
+        return newPlatformMXBeanListProxy(ManagementFactory.MEMORY_MANAGER_MXBEAN_DOMAIN_TYPE,
+                                          MemoryManagerMXBean.class);
+    }
+
+    public List<GarbageCollectorMXBean> getGarbageCollectorMXBeans() {
+        return newPlatformMXBeanListProxy(ManagementFactory.GARBAGE_COLLECTOR_MXBEAN_DOMAIN_TYPE,
+                                          GarbageCollectorMXBean.class);
+    }
+
+    public <T> List<T> newPlatformMXBeanListProxy(String mxbeanName, Class<T> mxbeanInterface) {
+        try {
+            List<T> list = new ArrayList<T>();
+            Set<ObjectName> objectNames = connection.queryNames(new ObjectName(mxbeanName + ",*"), null);
+            for (ObjectName objName : objectNames) {
+                boolean emitter = connection.isInstanceOf(objName, NOTIF_EMITTER);
+                T mxBean = JMX.newMXBeanProxy(connection, objName, mxbeanInterface, emitter);
+                list.add(mxBean);
+            }
+            return list;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public <T> T newPlatformMXBeanProxy(String mxbeanName, Class<T> mxbeanInterface) {
         try {
@@ -63,4 +87,6 @@ public class RemoteManagementFactory {
             throw new RuntimeException(e);
         }
     }
+
+    private static final String NOTIF_EMITTER = "javax.management.NotificationEmitter";
 }

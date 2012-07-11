@@ -20,9 +20,7 @@ public class Main {
 
     public static void main(String[] args) {
         HotSpotVMUtil.autoAddToolsJarDependency(JDKTarget.SYSTEM_CLASSLOADER, JDKLib.TOOLS);
-        UnixArgsutil.parseGlobalArgs(args);
-        PICArgs picArgs = new PICArgs();
-        picArgs.parseArgs(UnixArgsutil.ARGS.args());
+        PICArgs picArgs = UnixArgsutil.parseGlobalPICArgs(args);
         if (!picArgs.isPidSetted()) {
             usage();
         }

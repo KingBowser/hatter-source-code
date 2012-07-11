@@ -7,13 +7,10 @@ import java.lang.management.MemoryPoolMXBean;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.management.MBeanServerConnection;
-import javax.management.remote.JMXConnector;
-
 import me.hatter.tools.commons.args.PICArgs;
 import me.hatter.tools.commons.args.UnixArgsutil;
-import me.hatter.tools.commons.jmx.HotSpotJMXConnectTool;
 import me.hatter.tools.commons.jmx.RemoteManagementFactory;
+import me.hatter.tools.commons.jmx.RemoteManagementTool;
 import me.hatter.tools.commons.jvm.HotSpotProcessUtil;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil.JDKLib;
@@ -30,12 +27,10 @@ public class Main {
             usage();
         }
 
-        HotSpotJMXConnectTool jmxConnect = new HotSpotJMXConnectTool(String.valueOf(picArgs.getPid()));
-        JMXConnector jmxConnector = jmxConnect.connect();
+        RemoteManagementTool tool = new RemoteManagementTool(String.valueOf(picArgs.getPid()));
         try {
-            MBeanServerConnection conn = jmxConnector.getMBeanServerConnection();
 
-            RemoteManagementFactory factory = new RemoteManagementFactory(conn);
+            RemoteManagementFactory factory = tool.getManagementFactory();
 
             List<MemoryPoolMXBean> poolList = factory.getMemoryPoolMXBeans();
             for (MemoryPoolMXBean pool : poolList) {
@@ -44,9 +39,6 @@ public class Main {
                 System.out.println("    " + pool.getUsage());
                 System.out.println("    " + pool.getPeakUsage());
                 System.out.println("    " + pool.getCollectionUsage());
-                // System.out.println("    " + pool.getUsageThreshold() + " - " + pool.getUsageThresholdCount());
-                // System.out.println("    " + pool.getCollectionUsageThreshold() + " - "
-                // + pool.getCollectionUsageThresholdCount());
             }
 
             System.out.println("=============================================================================");
@@ -72,7 +64,7 @@ public class Main {
             // System.out.println("Loaded class: " + classLoader.getLoadedClassCount());
             // System.out.println("Total loaded class: " + classLoader.getTotalLoadedClassCount());
             // System.out.println("Is verbose: " + classLoader.isVerbose());
-            jmxConnector.close();
+            tool.close();
         } catch (Exception e) {
             e.printStackTrace();
         }

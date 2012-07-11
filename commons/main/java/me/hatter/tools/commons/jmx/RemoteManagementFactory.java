@@ -65,10 +65,10 @@ public class RemoteManagementFactory {
                                           GarbageCollectorMXBean.class);
     }
 
-    private <T> List<T> newPlatformMXBeanListProxy(String mxbeanName, Class<T> mxbeanInterface) {
+    public <T> List<T> newPlatformMXBeanListProxy(String mxbeanDomainType, Class<T> mxbeanInterface) {
         try {
             List<T> list = new ArrayList<T>();
-            Set<ObjectName> objectNames = connection.queryNames(new ObjectName(mxbeanName + ",*"), null);
+            Set<ObjectName> objectNames = connection.queryNames(new ObjectName(mxbeanDomainType + ",*"), null);
             for (ObjectName objName : objectNames) {
                 boolean emitter = connection.isInstanceOf(objName, NOTIF_EMITTER);
                 T mxBean = JMX.newMXBeanProxy(connection, objName, mxbeanInterface, emitter);
@@ -80,7 +80,7 @@ public class RemoteManagementFactory {
         }
     }
 
-    private <T> T newPlatformMXBeanProxy(String mxbeanName, Class<T> mxbeanInterface) {
+    public <T> T newPlatformMXBeanProxy(String mxbeanName, Class<T> mxbeanInterface) {
         try {
             return ManagementFactory.newPlatformMXBeanProxy(connection, mxbeanName, mxbeanInterface);
         } catch (IOException e) {

@@ -112,6 +112,20 @@ public class UnixArgsutil {
         private static final long serialVersionUID = -156830291036307953L;
     }
 
+    public static PICArgs parseGlobalPICArgs(String[] args, long defInterval, int defcount) {
+        parseGlobalArgs(args);
+        PICArgs picArgs = new PICArgs(defInterval, defcount);
+        picArgs.parseArgs(UnixArgsutil.ARGS.args());
+        return picArgs;
+    }
+
+    public static PICArgs parseGlobalPICArgs(String[] args) {
+        parseGlobalArgs(args);
+        PICArgs picArgs = new PICArgs();
+        picArgs.parseArgs(UnixArgsutil.ARGS.args());
+        return picArgs;
+    }
+
     public static void parseGlobalArgs(String[] args) {
         processArgs(ARGS, args);
     }

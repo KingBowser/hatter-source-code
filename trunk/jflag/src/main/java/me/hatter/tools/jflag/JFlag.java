@@ -18,6 +18,8 @@ import me.hatter.tools.commons.log.LogUtil;
 import me.hatter.tools.commons.string.StringUtil;
 import sun.tools.attach.HotSpotVirtualMachine;
 
+import com.sun.management.VMOption;
+
 public class JFlag {
 
     public static void main(String[] args) {
@@ -29,6 +31,9 @@ public class JFlag {
 
         if (UnixArgsutil.ARGS.flags().contains("show-cust-flags") && (UnixArgsutil.ARGS.args().length == 0)) {
             cutsFlags();
+        }
+        if (UnixArgsutil.ARGS.flags().contains("show-remote-flags") && (UnixArgsutil.ARGS.args().length == 1)) {
+            remoteFlags();
         }
         if ((UnixArgsutil.ARGS.kvalue("show") != null) && (UnixArgsutil.ARGS.args().length == 0)) {
             flags(flagList);
@@ -125,14 +130,24 @@ public class JFlag {
         }
     }
 
+    private static boolean filterName(String name) {
+        if (name == null) {
+            return false;
+        }
+        String show = UnixArgsutil.ARGS.kvalue("show");
+        boolean showAll = ("ALL".equals(show) || (show == null));
+        if (!(showAll || name.toLowerCase().contains(show.toLowerCase()))) {
+            return false;
+        }
+        return true;
+    }
+
     private static boolean filterFlag(Flag flag) {
         if (flag == null) {
             return false;
         }
         {
-            String show = UnixArgsutil.ARGS.kvalue("show");
-            boolean showAll = ("ALL".equals(show) || (show == null));
-            if (!(showAll || flag.getName().toLowerCase().contains(show.toLowerCase()))) {
+            if (!filterName(flag.getName())) {
                 return false;
             }
         }
@@ -181,6 +196,23 @@ public class JFlag {
         System.exit(0);
     }
 
+    private static void remoteFlags() {
+        List<VMOption> optionList = new RemoteFlagTool(UnixArgsutil.ARGS.args()[0]).getHotSpotFlagMXBean().getVMOptionList();
+        System.out.println(StringUtil.paddingSpaceRight("FlagName", 40) + " "
+                           + StringUtil.paddingSpaceRight("Type", 20) + StringUtil.paddingSpaceRight("Writable", 10)
+                           + "Value");
+        System.out.println(StringUtil.repeat("-", 76));
+        for (VMOption option : optionList) {
+            if (filterName(option.getName())) {
+                System.out.println(StringUtil.paddingSpaceRight(option.getName(), 40) + " "
+                                   + StringUtil.paddingSpaceRight(option.getOrigin().name(), 20)
+                                   + StringUtil.paddingSpaceRight(Boolean.toString(option.isWriteable()), 10)
+                                   + option.getValue());
+            }
+        }
+        System.exit(0);
+    }
+
     private static void flags(List<Flag> flagList) {
         System.out.println(StringUtil.paddingSpaceRight("FlagName", 40) + " "
                            + StringUtil.paddingSpaceRight("Type", 20) + "Runtime");
@@ -206,6 +238,7 @@ public class JFlag {
         System.out.println("          options           " + Arrays.asList(FlagValueType.values()));
         System.out.println("    --show-not-exists       show not exists flag(s)");
         System.out.println("    --show-cust-flags       show custom flags");
+        System.out.println("    --show-remote-flags     show remote flags");
         System.out.println();
         HotSpotProcessUtil.printVMs(System.out, true);
         System.exit(0);

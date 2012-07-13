@@ -22,7 +22,6 @@ task packall << {
   def packtempclasses = "packtempclasses"
   def packtempmanifest = "packtempmanifest"
   def libs = ant.path {
-    fileset(dir: 'lib', includes: '*.jar')
     fileset(dir: 'build/libs', includes: '*.jar')
   }
   libs.list().each {
@@ -32,6 +31,7 @@ task packall << {
   }
   ant.jar(destfile: "${baseProjectName}.jar", manifest: packtempmanifest) {
     fileset(dir: packtempclasses, includes: '**/*.*')
+    fileset(dir: 'lib', includes: 'flagmanagement.jar')
   }
   ant.delete(dir: packtempclasses)
   ant.delete(file: packtempmanifest)

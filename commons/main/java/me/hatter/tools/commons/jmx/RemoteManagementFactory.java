@@ -1,6 +1,5 @@
 package me.hatter.tools.commons.jmx;
 
-import java.io.IOException;
 import java.lang.management.ClassLoadingMXBean;
 import java.lang.management.CompilationMXBean;
 import java.lang.management.GarbageCollectorMXBean;
@@ -20,8 +19,7 @@ import javax.management.MBeanServerConnection;
 import javax.management.ObjectName;
 
 import com.sun.management.HotSpotDiagnosticMXBean;
-
-@SuppressWarnings("restriction")
+ion")
 public class RemoteManagementFactory {
 
     public static final String    HOT_SPOT_DIAGNOSTIC = "com.sun.management:type=HotSpotDiagnostic";
@@ -91,8 +89,10 @@ public class RemoteManagementFactory {
 
     public <T> T newPlatformMXBeanProxy(String mxbeanName, Class<T> mxbeanInterface) {
         try {
-            return ManagementFactory.newPlatformMXBeanProxy(connection, mxbeanName, mxbeanInterface);
-        } catch (IOException e) {
+            ObjectName objName = new ObjectName(mxbeanName);
+            boolean emitter = connection.isInstanceOf(objName, NOTIF_EMITTER);
+            return JMX.newMXBeanProxy(connection, objName, mxbeanInterface, emitter);
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }

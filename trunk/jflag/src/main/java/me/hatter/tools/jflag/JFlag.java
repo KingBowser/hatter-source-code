@@ -1,6 +1,7 @@
 package me.hatter.tools.jflag;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -16,8 +17,6 @@ import me.hatter.tools.commons.jvm.HotSpotVMUtil.JDKTarget;
 import me.hatter.tools.commons.log.LogUtil;
 import me.hatter.tools.commons.string.StringUtil;
 import sun.tools.attach.HotSpotVirtualMachine;
-
-import com.sun.tools.attach.VirtualMachine;
 
 public class JFlag {
 
@@ -61,11 +60,27 @@ public class JFlag {
                         _flagArgs = StringUtil.substringAfter(_flagValue, "=");
                     }
                     LogUtil.info("Set " + _flagName + " -> " + _isOn + " @ " + _flagArgs);
+                    String result = null;
                     try {
                         JFlagCommand cmd = JFlagCommand.valueOf(_flagName);
-                        cmd.getHandler().handle(cmd, _isOn, _flagArgs);
+                        result = cmd.getHandler().handle(cmd, _isOn, _flagArgs);
                     } catch (Exception e) {
-                        // TODO
+                        String value = (isAt) ? _flagValue : (isOn ? "1" : "0");
+                        HotSpotAttachTool attach = new HotSpotAttachTool(pid);
+                        attach.attach();
+                        try {
+                            HotSpotVirtualMachine hvm = (HotSpotVirtualMachine) attach.getVM();
+                            InputStream isVal = hvm.setFlag(_flagName, value);
+                            result = IOUtil.readToStringAndClose(isVal, "UTF-8");
+                        } catch (IOException ex) {
+                            LogUtil.error("", ex);
+                        } finally {
+                            attach.detach();
+                        }
+
+                    }
+                    if ((result != null) && (!result.isEmpty())) {
+                        LogUtil.info("Return with result: " + result);
                     }
                 }
             }
@@ -75,8 +90,6 @@ public class JFlag {
     }
 
     private static void getFlags(List<Flag> flagList, String pid) {
-        HotSpotAttachTool attach = new HotSpotAttachTool(pid);
-        attach.attach();
         Set<String> ignoreSet = new HashSet<String>();
         ignoreSet.add("FLSLargestBlockCoalesceProximity");
         ignoreSet.add("CMSSmallCoalSurplusPercent");
@@ -84,9 +97,11 @@ public class JFlag {
         ignoreSet.add("CMSSmallSplitSurplusPercent");
         ignoreSet.add("CMSLargeSplitSurplusPercent");
         System.out.println("Default ignore: " + ignoreSet);
+
+        HotSpotAttachTool attach = new HotSpotAttachTool(pid);
+        attach.attach();
         try {
-            VirtualMachine vm = attach.getVM();
-            HotSpotVirtualMachine hvm = (HotSpotVirtualMachine) vm;
+            HotSpotVirtualMachine hvm = (HotSpotVirtualMachine) attach.getVM();
             try {
                 for (Flag flag : flagList) {
                     if (ignoreSet.contains(flag.getName())) continue;
@@ -129,7 +144,7 @@ public class JFlag {
             if (!showAll) {
                 String[] runts = runt.split(",");
                 for (String rt : runts) {
-                    runtSet.add(FlagRuntimeType.valueOf("_" + rt));
+                    runtSet.add(FlagRuntimeType.valueOf("_" + rt.trim()));
                 }
             }
             if (!(showAll || runtSet.contains(flag.getRuntime()))) {
@@ -143,7 +158,7 @@ public class JFlag {
             if (!showAll) {
                 String[] types = type.split(",");
                 for (String ty : types) {
-                    typeSet.add(FlagValueType.valueOf("_" + ty));
+                    typeSet.add(FlagValueType.valueOf("_" + ty.trim()));
                 }
             }
             if (!(showAll || typeSet.contains(flag.getType()))) {

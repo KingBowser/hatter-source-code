@@ -36,6 +36,7 @@ task packall << {
   }
   ant.jar(destfile: "${baseProjectName}all.jar", manifest: packtempmanifest) {
     fileset(dir: packtempclasses, includes: '**/*.*')
+    fileset(dir: "lib", includes: 'flagagent.jar')
   }
   ant.delete(dir: packtempclasses)
   ant.delete(file: packtempmanifest)

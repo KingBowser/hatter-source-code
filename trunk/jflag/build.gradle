@@ -23,7 +23,7 @@ task packall << {
   def packtempclasses = "packtempclasses"
   def packtempmanifest = "packtempmanifest"
   def libs = ant.path {
-    fileset(dir: 'lib', includes: '*.jar')
+    fileset(dir: 'lib', includes: '*.jar', excludes: 'flagagent.jar')
     fileset(dir: 'build/libs', includes: '*.jar')
   }
   libs.list().each {

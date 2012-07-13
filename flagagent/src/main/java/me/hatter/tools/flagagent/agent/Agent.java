@@ -37,13 +37,13 @@ public class Agent {
         instrumentation = inst;
         System.out.println("void invokemain(String, Instrumentation), with: " + agentArgs);
         if (System.getProperty(HOTSPOT_FLAG_MXBEAN_PROPERTY_KEY) == null) {
-            final File tempFlagAgent = File.createTempFile("flagagent", ".jar");
-            tempFlagAgent.deleteOnExit();
-            FileOutputStream fos = new FileOutputStream(tempFlagAgent);
+            final File tempFlagManagement = File.createTempFile("flagmanagement", ".jar");
+            tempFlagManagement.deleteOnExit();
+            FileOutputStream fos = new FileOutputStream(tempFlagManagement);
             copy(Agent.class.getResourceAsStream("/flagmanagement.jar"), fos);
             fos.close();
-            System.out.println("[INFO] Append to bootstrap class loader search: " + tempFlagAgent);
-            instrumentation.appendToBootstrapClassLoaderSearch(new JarFile(tempFlagAgent));
+            System.out.println("[INFO] Append to bootstrap class loader search: " + tempFlagManagement);
+            instrumentation.appendToBootstrapClassLoaderSearch(new JarFile(tempFlagManagement));
             callRegisterMXBean();
             System.setProperty(HOTSPOT_FLAG_MXBEAN_PROPERTY_KEY, Boolean.TRUE.toString());
         }

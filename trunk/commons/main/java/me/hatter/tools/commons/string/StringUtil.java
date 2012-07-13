@@ -159,4 +159,32 @@ public class StringUtil {
         String rc = repeat(new String(new char[] { c }), (len - s.length()));
         return (isLeft ? rc + s : s + rc);
     }
+
+    public static String substringBefore(String str, String split) {
+        if ((split == null) || (split.length() == 0) || (str == null) || (str.length() == 0)) {
+            return str;
+        }
+        if (str.length() < split.length()) {
+            return null;
+        }
+        int indexOfSplit = str.indexOf(split);
+        if (indexOfSplit < 0) {
+            return null;
+        }
+        return str.substring(indexOfSplit);
+    }
+
+    public static String substringAfter(String str, String split) {
+        if ((split == null) || (split.length() == 0) || (str == null) || (str.length() == 0)) {
+            return str;
+        }
+        if (str.length() < split.length()) {
+            return null;
+        }
+        int indexOfSplit = str.indexOf(split);
+        if (indexOfSplit < 0) {
+            return null;
+        }
+        return str.substring(indexOfSplit + split.length());
+    }
 }

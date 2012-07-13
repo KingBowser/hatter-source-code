@@ -1,0 +1,1017 @@
+  // Returns false if name is not a command line flag.
+  lp64_product(bool, UseCompressedOops, false,                              \
+  notproduct(bool, CheckCompressedOops, true,                               \
+  product_pd(uintx, HeapBaseMinAddress,                                     \
+  diagnostic(bool, PrintCompressedOopsMode, false,                          \
+  /* UseMembar is theoretically a temp flag used for memory barrier         \
+  product(bool, UseMembar, false,                                           \
+  diagnostic(bool, UnlockDiagnosticVMOptions, trueInDebug,                  \
+  experimental(bool, UnlockExperimentalVMOptions, false,                    \
+  product(bool, JavaMonitorsInStackTrace, true,                             \
+  product_pd(bool, UseLargePages,                                           \
+  product_pd(bool, UseLargePagesIndividualAllocation,                       \
+  develop(bool, LargePagesIndividualAllocationInjectError, false,           \
+  develop(bool, TracePageSizes, false,                                      \
+  product(bool, UseNUMA, false,                                             \
+  product(bool, ForceNUMA, false,                                           \
+  product(intx, NUMAChunkResizeWeight, 20,                                  \
+  product(intx, NUMASpaceResizeRate, 1*G,                                   \
+  product(bool, UseAdaptiveNUMAChunkSizing, true,                           \
+  product(bool, NUMAStats, false,                                           \
+  product(intx, NUMAPageScanRate, 256,                                      \
+  product_pd(bool, NeedsDeoptSuspend,                                       \
+  product(intx, UseSSE, 99,                                                 \
+  product(uintx, LargePageSizeInBytes, 0,                                   \
+  product(uintx, LargePageHeapSizeThreshold, 128*M,                         \
+  product(bool, ForceTimeHighResolution, false,                             \
+  develop(bool, TraceItables, false,                                        \
+  develop(bool, TracePcPatching, false,                                     \
+  develop(bool, TraceJumps, false,                                          \
+  develop(bool, TraceRelocator, false,                                      \
+  develop(bool, TraceLongCompiles, false,                                   \
+  develop(bool, SafepointALot, false,                                       \
+  product_pd(bool, BackgroundCompilation,                                   \
+  product(bool, PrintVMQWaitTime, false,                                    \
+  develop(bool, BailoutToInterpreterForThrows, false,                       \
+  develop(bool, NoYieldsInMicrolock, false,                                 \
+  develop(bool, TraceOopMapGeneration, false,                               \
+  product(bool, MethodFlushing, true,                                       \
+  develop(bool, VerifyStack, false,                                         \
+  develop(bool, ForceUnreachable, false,                                    \
+  notproduct(bool, StressDerivedPointers, false,                            \
+  develop(bool, TraceDerivedPointers, false,                                \
+  notproduct(bool, TraceCodeBlobStacks, false,                              \
+  product(bool, PrintJNIResolving, false,                                   \
+  notproduct(bool, PrintRewrites, false,                                    \
+  product(bool, UseInlineCaches, true,                                      \
+  develop(bool, InlineArrayCopy, true,                                      \
+  develop(bool, InlineObjectHash, true,                                     \
+  develop(bool, InlineObjectCopy, true,                                     \
+  develop(bool, InlineNatives, true,                                        \
+  develop(bool, InlineMathNatives, true,                                    \
+  develop(bool, InlineClassNatives, true,                                   \
+  develop(bool, InlineAtomicLong, true,                                     \
+  develop(bool, InlineThreadNatives, true,                                  \
+  develop(bool, InlineReflectionGetCallerClass, true,                       \
+  develop(bool, InlineUnsafeOps, true,                                      \
+  develop(bool, ConvertCmpD2CmpF, true,                                     \
+  develop(bool, ConvertFloat2IntClipping, true,                             \
+  develop(bool, SpecialStringCompareTo, true,                               \
+  develop(bool, SpecialStringIndexOf, true,                                 \
+  develop(bool, SpecialStringEquals, true,                                  \
+  develop(bool, SpecialArraysEquals, true,                                  \
+  product(bool, UseSSE42Intrinsics, false,                                  \
+  develop(bool, TraceCallFixup, false,                                      \
+  develop(bool, DeoptimizeALot, false,                                      \
+  notproduct(ccstrlist, DeoptimizeOnlyAt, "",                               \
+  product(bool, DeoptimizeRandom, false,                                    \
+  notproduct(bool, ZombieALot, false,                                       \
+  notproduct(bool, WalkStackALot, false,                                    \
+  develop(bool, Debugging, false,                                           \
+  notproduct(bool, StrictSafepointChecks, trueInDebug,                      \
+  notproduct(bool, VerifyLastFrame, false,                                  \
+  develop(bool, TraceHandleAllocation, false,                               \
+  product(bool, UseCompilerSafepoints, true,                                \
+  product(bool, UseSplitVerifier, true,                                     \
+  product(bool, FailOverToOldVerifier, true,                                \
+  develop(bool, ShowSafepointMsgs, false,                                   \
+  product(bool, SafepointTimeout, false,                                    \
+  develop(bool, DieOnSafepointTimeout, false,                               \
+  /* 50 retries * (5 * current_retry_count) millis = ~6.375 seconds */      \
+  /* typically, at most a few retries are needed */                         \
+  product(intx, SuspendRetryCount, 50,                                      \
+  product(intx, SuspendRetryDelay, 5,                                       \
+  product(bool, AssertOnSuspendWaitFailure, false,                          \
+  product(bool, TraceSuspendWaitFailures, false,                            \
+  product(bool, MaxFDLimit, true,                                           \
+  notproduct(bool, LogEvents, trueInDebug,                                  \
+  product(bool, BytecodeVerificationRemote, true,                           \
+  product(bool, BytecodeVerificationLocal, false,                           \
+  develop(bool, ForceFloatExceptions, trueInDebug,                          \
+  develop(bool, SoftMatchFailure, trueInProduct,                            \
+  develop(bool, VerifyStackAtCalls, false,                                  \
+  develop(bool, TraceJavaAssertions, false,                                 \
+  notproduct(bool, CheckAssertionStatusDirectives, false,                   \
+  notproduct(bool, PrintMallocFree, false,                                  \
+  notproduct(bool, PrintOopAddress, false,                                  \
+  notproduct(bool, VerifyCodeCacheOften, false,                             \
+  develop(bool, ZapDeadCompiledLocals, false,                               \
+  notproduct(bool, ZapDeadLocalsOld, false,                                 \
+  notproduct(bool, CheckOopishValues, false,                                \
+  develop(bool, UseMallocOnly, false,                                       \
+  develop(bool, PrintMalloc, false,                                         \
+  develop(bool, ZapResourceArea, trueInDebug,                               \
+  notproduct(bool, ZapVMHandleArea, trueInDebug,                            \
+  develop(bool, ZapJNIHandleArea, trueInDebug,                              \
+  notproduct(bool, ZapStackSegments, trueInDebug,                           \
+  develop(bool, ZapUnusedHeapArea, trueInDebug,                             \
+  develop(bool, TraceZapUnusedHeapArea, false,                              \
+  develop(bool, CheckZapUnusedHeapArea, false,                              \
+  develop(bool, ZapFillerObjects, trueInDebug,                              \
+  develop(bool, PrintVMMessages, true,                                      \
+  product(bool, PrintGCApplicationConcurrentTime, false,                    \
+  product(bool, PrintGCApplicationStoppedTime, false,                       \
+  develop(bool, Verbose, false,                                             \
+  develop(bool, PrintMiscellaneous, false,                                  \
+  develop(bool, WizardMode, false,                                          \
+  product(bool, ShowMessageBoxOnError, false,                               \
+  product_pd(bool, UseOSErrorReporting,                                     \
+  product(bool, SuppressFatalErrorMessage, false,                           \
+  product(ccstrlist, OnError, "",                                           \
+  product(ccstrlist, OnOutOfMemoryError, "",                                \
+  manageable(bool, HeapDumpBeforeFullGC, false,                             \
+  manageable(bool, HeapDumpAfterFullGC, false,                              \
+  manageable(bool, HeapDumpOnOutOfMemoryError, false,                       \
+  manageable(ccstr, HeapDumpPath, NULL,                                     \
+  develop(uintx, SegmentedHeapDumpThreshold, 2*G,                           \
+  develop(uintx, HeapDumpSegmentSize, 1*G,                                  \
+  develop(bool, BreakAtWarning, false,                                      \
+  product_pd(bool, UseVectoredExceptions,                                   \
+  develop(bool, TraceVMOperation, false,                                    \
+  develop(bool, UseFakeTimers, false,                                       \
+  diagnostic(bool, LogCompilation, false,                                   \
+  product(bool, PrintCompilation, false,                                    \
+  diagnostic(bool, TraceNMethodInstalls, false,                             \
+  diagnostic(intx, ScavengeRootsInCode, 0,                                  \
+  diagnostic(bool, TraceOSRBreakpoint, false,                               \
+  diagnostic(bool, TraceCompileTriggered, false,                            \
+  diagnostic(bool, TraceTriggers, false,                                    \
+  product(bool, AlwaysRestoreFPU, false,                                    \
+  notproduct(bool, PrintCompilation2, false,                                \
+  diagnostic(bool, PrintAdapterHandlers, false,                             \
+  develop(bool, VerifyAdapterSharing, false,                                \
+  diagnostic(bool, PrintAssembly, false,                                    \
+  diagnostic(ccstr, PrintAssemblyOptions, NULL,                             \
+  diagnostic(bool, PrintNMethods, false,                                    \
+  diagnostic(bool, PrintNativeNMethods, false,                              \
+  develop(bool, PrintDebugInfo, false,                                      \
+  develop(bool, PrintRelocations, false,                                    \
+  develop(bool, PrintDependencies, false,                                   \
+  develop(bool, PrintExceptionHandlers, false,                              \
+  develop(bool, InterceptOSException, false,                                \
+  notproduct(bool, PrintCodeCache, false,                                   \
+  develop(bool, PrintCodeCache2, false,                                     \
+  diagnostic(bool, PrintStubCode, false,                                    \
+  product(bool, StackTraceInThrowable, true,                                \
+  product(bool, OmitStackTraceInFastThrow, true,                            \
+  product(bool, ProfilerPrintByteCodeStatistics, false,                     \
+  product(bool, ProfilerRecordPC, false,                                    \
+  product(bool, ProfileVM, false,                                           \
+  product(bool, ProfileIntervals, false,                                    \
+  notproduct(bool, ProfilerCheckIntervals, false,                           \
+  develop(bool, PrintJVMWarnings, false,                                    \
+  notproduct(uintx, WarnOnStalledSpinLock, 0,                               \
+  develop(bool, InitializeJavaLangSystem, true,                             \
+  develop(bool, InitializeJavaLangString, true,                             \
+  develop(bool, InitializeJavaLangExceptionsErrors, true,                   \
+  product(bool, RegisterFinalizersAtInit, true,                             \
+  develop(bool, RegisterReferences, true,                                   \
+  develop(bool, IgnoreRewrites, false,                                      \
+  develop(bool, PrintCodeCacheExtension, false,                             \
+  develop(bool, UsePrivilegedStack, true,                                   \
+  develop(bool, IEEEPrecision, true,                                        \
+  develop(bool, ProtectionDomainVerification, true,                         \
+  product(bool, ClassUnloading, true,                                       \
+  diagnostic(bool, LinkWellKnownClasses, false,                             \
+  develop(bool, DisableStartThread, false,                                  \
+  develop(bool, MemProfiling, false,                                        \
+  notproduct(bool, PrintSystemDictionaryAtExit, false,                      \
+  diagnostic(bool, UnsyncloadClass, false,                                  \
+  product(bool, AlwaysLockClassLoader, false,                               \
+  product(bool, AllowParallelDefineClass, false,                            \
+  product(bool, MustCallLoadClassInternal, false,                           \
+  product_pd(bool, DontYieldALot,                                           \
+  product_pd(bool, ConvertSleepToYield,                                     \
+  product(bool, ConvertYieldToSleep, false,                                 \
+  product(bool, UseBoundThreads, true,                                      \
+  develop(bool, UseDetachedThreads, true,                                   \
+  product(bool, UseLWPSynchronization, true,                                \
+  product(ccstr, SyncKnobs, NULL,                                           \
+  product(intx, EmitSync, 0,                                                \
+  product(intx, AlwaysInflate, 0, "(Unstable) Force inflation")             \
+  product(intx, MonitorBound, 0, "Bound Monitor population")                \
+  product(bool, MonitorInUseLists, false, "Track Monitors for Deflation")   \
+  product(intx, Atomics, 0,                                                 \
+  product(intx, FenceInstruction, 0,                                        \
+  product(intx, SyncFlags, 0, "(Unsafe,Unstable) Experimental Sync flags" ) \
+  product(intx, SyncVerbose, 0, "(Unstable)" )                              \
+  product(intx, ClearFPUAtPark, 0, "(Unsafe,Unstable)" )                    \
+  product(intx, hashCode, 0,                                                \
+  product(intx, WorkAroundNPTLTimedWaitHang, 1,                             \
+  product(bool, FilterSpuriousWakeups, true,                                \
+  product(intx, NativeMonitorTimeout, -1, "(Unstable)" )                    \
+  product(intx, NativeMonitorFlags, 0, "(Unstable)" )                       \
+  product(intx, NativeMonitorSpinLimit, 20, "(Unstable)" )                  \
+  develop(bool, UsePthreads, false,                                         \
+  product(bool, AdjustConcurrency, false,                                   \
+  develop(bool, UpdateHotSpotCompilerFileOnError, true,                     \
+  product(bool, ReduceSignalUsage, false,                                   \
+  notproduct(bool, ValidateMarkSweep, false,                                \
+  notproduct(bool, RecordMarkSweepCompaction, false,                        \
+  develop_pd(bool, ShareVtableStubs,                                        \
+  develop(bool, LoadLineNumberTables, true,                                 \
+  develop(bool, LoadLocalVariableTables, true,                              \
+  develop(bool, LoadLocalVariableTypeTables, true,                          \
+  product(bool, AllowUserSignalHandlers, false,                             \
+  product(bool, UseSignalChaining, true,                                    \
+  product(bool, UseAltSigs, false,                                          \
+  product(bool, UseSpinning, false,                                         \
+  product(bool, PreSpinYield, false,                                        \
+  product(bool, PostSpinYield, true,                                        \
+  product(bool, AllowJNIEnvProxy, false,                                    \
+  product(bool, JNIDetachReleasesMonitors, true,                            \
+  product(bool, RestoreMXCSROnJNICalls, false,                              \
+  product(bool, CheckJNICalls, false,                                       \
+  product(bool, UseFastJNIAccessors, true,                                  \
+  product(bool, EagerXrunInit, false,                                       \
+  product(bool, PreserveAllAnnotations, false,                              \
+  develop(uintx, PreallocatedOutOfMemoryErrorCount, 4,                      \
+  product(bool, LazyBootClassLoader, true,                                  \
+  diagnostic(bool, UseIncDec, true,                                         \
+  product(bool, UseNewLongLShift, false,                                    \
+  product(bool, UseStoreImmI16, true,                                       \
+  product(bool, UseAddressNop, false,                                       \
+  product(bool, UseXmmLoadAndClearUpper, true,                              \
+  product(bool, UseXmmRegToRegMoveAll, false,                               \
+  product(bool, UseXmmI2D, false,                                           \
+  product(bool, UseXmmI2F, false,                                           \
+  product(bool, UseXMMForArrayCopy, false,                                  \
+  product(bool, UseUnalignedLoadStores, false,                              \
+  product(intx, FieldsAllocationStyle, 1,                                   \
+  product(bool, CompactFields, true,                                        \
+  notproduct(bool, PrintCompactFieldsSavings, false,                        \
+  product(bool, UseBiasedLocking, true,                                     \
+  product(intx, BiasedLockingStartupDelay, 4000,                            \
+  diagnostic(bool, PrintBiasedLockingStatistics, false,                     \
+  product(intx, BiasedLockingBulkRebiasThreshold, 20,                       \
+  product(intx, BiasedLockingBulkRevokeThreshold, 40,                       \
+  product(intx, BiasedLockingDecayTime, 25000,                              \
+  /* tracing */                                                             \
+  notproduct(bool, TraceRuntimeCalls, false,                                \
+  develop(bool, TraceJNICalls, false,                                       \
+  notproduct(bool, TraceJVMCalls, false,                                    \
+  product(ccstr, TraceJVMTI, NULL,                                          \
+  product(bool, ForceFullGCJVMTIEpilogues, false,                           \
+  /* This option can change an EMCP method into an obsolete method. */      \
+  /* This can affect tests that except specific methods to be EMCP. */      \
+  /* This option should be used with caution. */                            \
+  product(bool, StressLdcRewrite, false,                                    \
+  product(intx, TraceRedefineClasses, 0,                                    \
+  /* change to false by default sometime after Mustang */                   \
+  product(bool, VerifyMergedCPBytecodes, true,                              \
+  develop(bool, TraceJNIHandleAllocation, false,                            \
+  develop(bool, TraceThreadEvents, false,                                   \
+  develop(bool, TraceBytecodes, false,                                      \
+  develop(bool, TraceClassInitialization, false,                            \
+  develop(bool, TraceExceptions, false,                                     \
+  develop(bool, TraceICs, false,                                            \
+  notproduct(bool, TraceInvocationCounterOverflow, false,                   \
+  develop(bool, TraceInlineCacheClearing, false,                            \
+  develop(bool, TraceDependencies, false,                                   \
+  develop(bool, VerifyDependencies, trueInDebug,                            \
+  develop(bool, TraceNewOopMapGeneration, false,                            \
+  develop(bool, TraceNewOopMapGenerationDetailed, false,                    \
+  develop(bool, TimeOopMap, false,                                          \
+  develop(bool, TimeOopMap2, false,                                         \
+  develop(bool, TraceMonitorMismatch, false,                                \
+  develop(bool, TraceOopMapRewrites, false,                                 \
+  develop(bool, TraceSafepoint, false,                                      \
+  develop(bool, TraceICBuffer, false,                                       \
+  develop(bool, TraceCompiledIC, false,                                     \
+  notproduct(bool, TraceZapDeadLocals, false,                               \
+  develop(bool, TraceStartupTime, false,                                    \
+  develop(bool, TraceHPI, false,                                            \
+  product(ccstr, HPILibPath, NULL,                                          \
+  develop(bool, TraceProtectionDomainVerification, false,                   \
+  develop(bool, TraceClearedExceptions, false,                              \
+  product(bool, TraceClassResolution, false,                                \
+  product(bool, TraceBiasedLocking, false,                                  \
+  product(bool, TraceMonitorInflation, false,                               \
+  /* assembler */                                                           \
+  product(bool, Use486InstrsOnly, false,                                    \
+  /* gc */                                                                  \
+  product(bool, UseSerialGC, false,                                         \
+  product(bool, UseG1GC, false,                                             \
+  product(bool, UseParallelGC, false,                                       \
+  product(bool, UseParallelOldGC, false,                                    \
+  product(bool, UseParallelOldGCCompacting, true,                           \
+  product(bool, UseParallelDensePrefixUpdate, true,                         \
+  product(uintx, HeapMaximumCompactionInterval, 20,                         \
+  product(uintx, HeapFirstMaximumCompactionCount, 3,                        \
+  product(bool, UseMaximumCompactionOnSystemGC, true,                       \
+  product(uintx, ParallelOldDeadWoodLimiterMean, 50,                        \
+  product(uintx, ParallelOldDeadWoodLimiterStdDev, 80,                      \
+  product(bool, UseParallelOldGCDensePrefix, true,                          \
+  product(uintx, ParallelGCThreads, 0,                                      \
+  develop(bool, ParallelOldGCSplitALot, false,                              \
+  develop(uintx, ParallelOldGCSplitInterval, 3,                             \
+  develop(bool, TraceRegionTasksQueuing, false,                             \
+  product(uintx, ConcGCThreads, 0,                                          \
+  product(uintx, YoungPLABSize, 4096,                                       \
+  product(uintx, OldPLABSize, 1024,                                         \
+  product(uintx, GCTaskTimeStampEntries, 200,                               \
+  product(bool, AlwaysTenure, false,                                        \
+  product(bool, NeverTenure, false,                                         \
+  product(bool, ScavengeBeforeFullGC, true,                                 \
+  develop(bool, ScavengeWithObjectsInToSpace, false,                        \
+  product(bool, UseConcMarkSweepGC, false,                                  \
+  product(bool, ExplicitGCInvokesConcurrent, false,                         \
+  product(bool, ExplicitGCInvokesConcurrentAndUnloadsClasses, false,        \
+  develop(bool, UseCMSAdaptiveFreeLists, true,                              \
+  develop(bool, UseAsyncConcMarkSweepGC, true,                              \
+  develop(bool, RotateCMSCollectionTypes, false,                            \
+  product(bool, UseCMSBestFit, true,                                        \
+  product(bool, UseCMSCollectionPassing, true,                              \
+  product(bool, UseParNewGC, false,                                         \
+  product(bool, ParallelGCVerbose, false,                                   \
+  product(intx, ParallelGCBufferWastePct, 10,                               \
+  product(bool, ParallelGCRetainPLAB, true,                                 \
+  product(intx, TargetPLABWastePct, 10,                                     \
+  product(uintx, PLABWeight, 75,                                            \
+  product(bool, ResizePLAB, true,                                           \
+  product(bool, PrintPLAB, false,                                           \
+  product(intx, ParGCArrayScanChunk, 50,                                    \
+  product(bool, ParGCUseLocalOverflow, false,                               \
+  product(bool, ParGCTrimOverflow, true,                                    \
+  notproduct(bool, ParGCWorkQueueOverflowALot, false,                       \
+  notproduct(uintx, ParGCWorkQueueOverflowInterval, 1000,                   \
+  product(uintx, ParGCDesiredObjsFromOverflowList, 20,                      \
+  product(uintx, CMSParPromoteBlocksToClaim, 16,                             \
+  product(uintx, OldPLABWeight, 50,                                         \
+  product(bool, ResizeOldPLAB, true,                                        \
+  product(bool, PrintOldPLAB, false,                                        \
+  product(uintx, CMSOldPLABMin, 16,                                         \
+  product(uintx, CMSOldPLABMax, 1024,                                       \
+  product(uintx, CMSOldPLABNumRefills, 4,                                   \
+  product(bool, CMSOldPLABResizeQuicker, false,                             \
+  product(uintx, CMSOldPLABToleranceFactor, 4,                              \
+  product(uintx, CMSOldPLABReactivityFactor, 2,                             \
+  product(uintx, CMSOldPLABReactivityCeiling, 10,                           \
+  product(bool, AlwaysPreTouch, false,                                      \
+  product(bool, CMSUseOldDefaults, false,                                   \
+  product(intx, CMSYoungGenPerWorker, 16*M,                                 \
+  product(bool, GCOverheadReporting, false,                                 \
+  product(intx, GCOverheadReportingPeriodMS, 100,                           \
+  product(bool, CMSIncrementalMode, false,                                  \
+  product(uintx, CMSIncrementalDutyCycle, 10,                               \
+  product(bool, CMSIncrementalPacing, true,                                 \
+  product(uintx, CMSIncrementalDutyCycleMin, 0,                             \
+  product(uintx, CMSIncrementalSafetyFactor, 10,                            \
+  product(uintx, CMSIncrementalOffset, 0,                                   \
+  product(uintx, CMSExpAvgFactor, 50,                                       \
+  product(uintx, CMS_FLSWeight, 75,                                         \
+  product(uintx, CMS_FLSPadding, 1,                                         \
+  product(uintx, FLSCoalescePolicy, 2,                                      \
+  product(bool, FLSAlwaysCoalesceLarge, false,                              \
+  product(double, FLSLargestBlockCoalesceProximity, 0.99,                   \
+  product(double, CMSSmallCoalSurplusPercent, 1.05,                         \
+  product(double, CMSLargeCoalSurplusPercent, 0.95,                         \
+  product(double, CMSSmallSplitSurplusPercent, 1.10,                        \
+  product(double, CMSLargeSplitSurplusPercent, 1.00,                        \
+  product(bool, CMSExtrapolateSweep, false,                                 \
+  product(uintx, CMS_SweepWeight, 75,                                       \
+  product(uintx, CMS_SweepPadding, 1,                                       \
+  product(uintx, CMS_SweepTimerThresholdMillis, 10,                         \
+  develop(bool, CMSTraceIncrementalMode, false,                             \
+  develop(bool, CMSTraceIncrementalPacing, false,                           \
+  develop(bool, CMSTraceThreadState, false,                                 \
+  product(bool, CMSClassUnloadingEnabled, false,                            \
+  product(uintx, CMSClassUnloadingMaxInterval, 0,                           \
+  product(bool, CMSCompactWhenClearAllSoftRefs, true,                       \
+  product(bool, UseCMSCompactAtFullCollection, true,                        \
+  product(uintx, CMSFullGCsBeforeCompaction, 0,                             \
+  develop(intx, CMSDictionaryChoice, 0,                                     \
+  product(uintx, CMSIndexedFreeListReplenish, 4,                            \
+  product(bool, CMSReplenishIntermediate, true,                             \
+  product(bool, CMSSplitIndexedFreeListBlocks, true,                        \
+  product(bool, CMSLoopWarn, false,                                         \
+  develop(bool, CMSOverflowEarlyRestoration, false,                         \
+  product(uintx, MarkStackSize, NOT_LP64(32*K) LP64_ONLY(4*M),              \
+  product(uintx, MarkStackSizeMax, NOT_LP64(4*M) LP64_ONLY(512*M),          \
+  notproduct(bool, CMSMarkStackOverflowALot, false,                         \
+  notproduct(uintx, CMSMarkStackOverflowInterval, 1000,                     \
+  product(uintx, CMSMaxAbortablePrecleanLoops, 0,                           \
+  product(intx, CMSMaxAbortablePrecleanTime, 5000,                          \
+  product(uintx, CMSAbortablePrecleanMinWorkPerIteration, 100,              \
+  product(intx, CMSAbortablePrecleanWaitMillis, 100,                        \
+  product(uintx, CMSRescanMultiple, 32,                                     \
+  product(uintx, CMSConcMarkMultiple, 32,                                   \
+  product(uintx, CMSRevisitStackSize, 1*M,                                  \
+  product(bool, CMSAbortSemantics, false,                                   \
+  product(bool, CMSParallelRemarkEnabled, true,                             \
+  product(bool, CMSParallelSurvivorRemarkEnabled, true,                     \
+  product(bool, CMSPLABRecordAlways, true,                                  \
+  product(bool, CMSConcurrentMTEnabled, true,                               \
+  product(bool, CMSPermGenPrecleaningEnabled, true,                         \
+  product(bool, CMSPrecleaningEnabled, true,                                \
+  product(uintx, CMSPrecleanIter, 3,                                        \
+  product(uintx, CMSPrecleanNumerator, 2,                                   \
+  product(uintx, CMSPrecleanDenominator, 3,                                 \
+  product(bool, CMSPrecleanRefLists1, true,                                \
+  product(bool, CMSPrecleanRefLists2, false,                                \
+  product(bool, CMSPrecleanSurvivors1, false,                               \
+  product(bool, CMSPrecleanSurvivors2, true,                                \
+  product(uintx, CMSPrecleanThreshold, 1000,                                \
+  product(bool, CMSCleanOnEnter, true,                                      \
+  product(uintx, CMSRemarkVerifyVariant, 1,                                 \
+  product(uintx, CMSScheduleRemarkEdenSizeThreshold, 2*M,                   \
+  product(uintx, CMSScheduleRemarkEdenPenetration, 50,                      \
+  product(uintx, CMSScheduleRemarkSamplingRatio, 5,                         \
+  product(uintx, CMSSamplingGrain, 16*K,                                    \
+  product(bool, CMSScavengeBeforeRemark, false,                             \
+  develop(bool, CMSTraceSweeper, false,                                     \
+  product(uintx, CMSWorkQueueDrainThreshold, 10,                            \
+  product(intx, CMSWaitDuration, 2000,                                      \
+  product(bool, CMSYield, true,                                             \
+  product(uintx, CMSBitMapYieldQuantum, 10*M,                               \
+  product(bool, CMSDumpAtPromotionFailure, false,                           \
+  product(bool, CMSPrintChunksInDump, false,                                \
+  product(bool, CMSPrintObjectsInDump, false,                               \
+  diagnostic(bool, FLSVerifyAllHeapReferences, false,                       \
+  diagnostic(bool, FLSVerifyLists, false,                                   \
+  diagnostic(bool, FLSVerifyIndexTable, false,                              \
+  develop(bool, FLSVerifyDictionary, false,                                 \
+  develop(bool, VerifyBlockOffsetArray, false,                              \
+  product(bool, BlockOffsetArrayUseUnallocatedBlock, trueInDebug,           \
+  develop(bool, TraceCMSState, false,                                       \
+  product(intx, RefDiscoveryPolicy, 0,                                      \
+  product(bool, ParallelRefProcEnabled, false,                              \
+  product(bool, ParallelRefProcBalancingEnabled, true,                      \
+  product(intx, CMSTriggerRatio, 80,                                        \
+  product(intx, CMSTriggerPermRatio, 80,                                    \
+  product(uintx, CMSBootstrapOccupancy, 50,                                 \
+  product(intx, CMSInitiatingOccupancyFraction, -1,                         \
+  product(uintx, InitiatingHeapOccupancyPercent, 45,                        \
+  product(intx, CMSInitiatingPermOccupancyFraction, -1,                     \
+  product(bool, UseCMSInitiatingOccupancyOnly, false,                       \
+  product(intx, CMSIsTooFullPercentage, 98,                                 \
+  develop(bool, CMSTestInFreeList, false,                                   \
+  notproduct(bool, CMSVerifyReturnedBytes, false,                           \
+  notproduct(bool, ScavengeALot, false,                                     \
+  develop(bool, FullGCALot, false,                                          \
+  notproduct(bool, GCALotAtAllSafepoints, false,                            \
+  product(bool, HandlePromotionFailure, true,                               \
+  product(bool, PrintPromotionFailure, false,                               \
+  notproduct(bool, PromotionFailureALot, false,                             \
+  develop(uintx, PromotionFailureALotCount, 1000,                           \
+  develop(uintx, PromotionFailureALotInterval, 5,                           \
+  develop(intx, WorkStealingSleepMillis, 1,                                 \
+  develop(uintx, WorkStealingYieldsBeforeSleep, 1000,                       \
+  develop(uintx, WorkStealingHardSpins, 4096,                               \
+  develop(uintx, WorkStealingSpinToYieldRatio, 10,                          \
+  product(uintx, PreserveMarkStackSize, 1024,                               \
+  product_pd(bool, UseTLAB, "Use thread-local object allocation")           \
+  product_pd(bool, ResizeTLAB,                                              \
+  product(bool, ZeroTLAB, false,                                            \
+  product(bool, FastTLABRefill, true,                                       \
+  product(bool, PrintTLAB, false,                                           \
+  product(bool, TLABStats, true,                                            \
+  product(bool, PrintRevisitStats, false,                                   \
+  product_pd(bool, NeverActAsServerClassMachine,                            \
+  product(bool, AlwaysActAsServerClassMachine, false,                       \
+  product_pd(uint64_t, MaxRAM,                                              \
+  product(uintx, ErgoHeapSizeLimit, 0,                                      \
+  product(uintx, MaxRAMFraction, 4,                                         \
+  product(uintx, DefaultMaxRAMFraction, 4,                                  \
+  product(uintx, MinRAMFraction, 2,                                         \
+  product(uintx, InitialRAMFraction, 64,                                    \
+  product(bool, UseAutoGCSelectPolicy, false,                               \
+  product(uintx, AutoGCSelectPauseMillis, 5000,                             \
+  product(bool, UseAdaptiveSizePolicy, true,                                \
+  product(bool, UsePSAdaptiveSurvivorSizePolicy, true,                      \
+  product(bool, UseAdaptiveGenerationSizePolicyAtMinorCollection, true,     \
+  product(bool, UseAdaptiveGenerationSizePolicyAtMajorCollection, true,     \
+  product(bool, UseAdaptiveSizePolicyWithSystemGC, false,                   \
+  product(bool, UseAdaptiveGCBoundary, false,                               \
+  develop(bool, TraceAdaptiveGCBoundary, false,                             \
+  develop(intx, PSAdaptiveSizePolicyResizeVirtualSpaceAlot, -1,             \
+  product(uintx, AdaptiveSizeThroughPutPolicy, 0,                           \
+  product(uintx, AdaptiveSizePausePolicy, 0,                                \
+  develop(bool, PSAdjustTenuredGenForMinorPause, false,                     \
+  develop(bool, PSAdjustYoungGenForMajorPause, false,                       \
+  product(uintx, AdaptiveSizePolicyInitializingSteps, 20,                   \
+  develop(uintx, AdaptiveSizePolicyReadyThreshold, 5,                       \
+  product(uintx, AdaptiveSizePolicyOutputInterval, 0,                       \
+  product(bool, UseAdaptiveSizePolicyFootprintGoal, true,                   \
+  product(uintx, AdaptiveSizePolicyWeight, 10,                              \
+  product(uintx, AdaptiveTimeWeight,       25,                              \
+  product(uintx, PausePadding, 1,                                           \
+  product(uintx, PromotedPadding, 3,                                        \
+  product(uintx, SurvivorPadding, 3,                                        \
+  product(uintx, AdaptivePermSizeWeight, 20,                                \
+  product(uintx, PermGenPadding, 3,                                         \
+  product(uintx, ThresholdTolerance, 10,                                    \
+  product(uintx, AdaptiveSizePolicyCollectionCostMargin, 50,                \
+  product(uintx, YoungGenerationSizeIncrement, 20,                          \
+  product(uintx, YoungGenerationSizeSupplement, 80,                         \
+  product(uintx, YoungGenerationSizeSupplementDecay, 8,                     \
+  product(uintx, TenuredGenerationSizeIncrement, 20,                        \
+  product(uintx, TenuredGenerationSizeSupplement, 80,                       \
+  product(uintx, TenuredGenerationSizeSupplementDecay, 2,                   \
+  product(uintx, MaxGCPauseMillis, max_uintx,                               \
+  product(intx, GCPauseIntervalMillis, 500,                                 \
+  product(uintx, MaxGCMinorPauseMillis, max_uintx,                          \
+  product(uintx, GCTimeRatio, 99,                                           \
+  product(uintx, AdaptiveSizeDecrementScaleFactor, 4,                       \
+  product(bool, UseAdaptiveSizeDecayMajorGCCost, true,                      \
+  product(uintx, AdaptiveSizeMajorGCDecayTimeScale, 10,                     \
+  product(uintx, MinSurvivorRatio, 3,                                       \
+  product(uintx, InitialSurvivorRatio, 8,                                   \
+  product(uintx, BaseFootPrintEstimate, 256*M,                              \
+  product(bool, UseGCOverheadLimit, true,                                   \
+  product(uintx, GCTimeLimit, 98,                                           \
+  product(uintx, GCHeapFreeLimit, 2,                                        \
+  develop(uintx, AdaptiveSizePolicyGCTimeLimitThreshold, 5,                 \
+  product(bool, PrintAdaptiveSizePolicy, false,                             \
+  product(intx, PrefetchCopyIntervalInBytes, -1,                            \
+  product(intx, PrefetchScanIntervalInBytes, -1,                            \
+  product(intx, PrefetchFieldsAhead, -1,                                    \
+  develop(bool, UsePrefetchQueue, true,                                     \
+  diagnostic(bool, VerifyBeforeExit, trueInDebug,                           \
+  diagnostic(bool, VerifyBeforeGC, false,                                   \
+  diagnostic(bool, VerifyAfterGC, false,                                    \
+  diagnostic(bool, VerifyDuringGC, false,                                   \
+  diagnostic(bool, GCParallelVerificationEnabled, true,                     \
+  diagnostic(bool, DeferInitialCardMark, false,                             \
+  diagnostic(bool, VerifyRememberedSets, false,                             \
+  diagnostic(bool, VerifyObjectStartArray, true,                            \
+  product(bool, DisableExplicitGC, false,                                   \
+  notproduct(bool, CheckMemoryInitialization, false,                        \
+  product(bool, CollectGen0First, false,                                    \
+  diagnostic(bool, BindCMSThreadToCPU, false,                               \
+  diagnostic(uintx, CPUForCMSThread, 0,                                     \
+  product(bool, BindGCTaskThreadsToCPUs, false,                             \
+  product(bool, UseGCTaskAffinity, false,                                   \
+  product(uintx, ProcessDistributionStride, 4,                              \
+  product(uintx, CMSCoordinatorYieldSleepCount, 10,                         \
+  product(uintx, CMSYieldSleepCount, 0,                                     \
+  /* gc tracing */                                                          \
+  manageable(bool, PrintGC, false,                                          \
+  manageable(bool, PrintGCDetails, false,                                   \
+  manageable(bool, PrintGCDateStamps, false,                                \
+  manageable(bool, PrintGCTimeStamps, false,                                \
+  product(bool, PrintGCTaskTimeStamps, false,                               \
+  develop(intx, ConcGCYieldTimeout, 0,                                      \
+  notproduct(bool, TraceMarkSweep, false,                                   \
+  product(bool, PrintReferenceGC, false,                                    \
+  develop(bool, TraceReferenceGC, false,                                    \
+  develop(bool, TraceFinalizerRegistration, false,                          \
+  notproduct(bool, TraceScavenge, false,                                    \
+  product_rw(bool, TraceClassLoading, false,                                \
+  product(bool, TraceClassLoadingPreorder, false,                           \
+  product_rw(bool, TraceClassUnloading, false,                              \
+  product_rw(bool, TraceLoaderConstraints, false,                           \
+  product(bool, TraceGen0Time, false,                                       \
+  product(bool, TraceGen1Time, false,                                       \
+  product(bool, PrintTenuringDistribution, false,                           \
+  product_rw(bool, PrintHeapAtGC, false,                                    \
+  product_rw(bool, PrintHeapAtGCExtended, false,                            \
+  product(bool, PrintHeapAtSIGBREAK, true,                                  \
+  manageable(bool, PrintClassHistogramBeforeFullGC, false,                  \
+  manageable(bool, PrintClassHistogramAfterFullGC, false,                   \
+  manageable(bool, PrintClassHistogram, false,                              \
+  develop(bool, TraceWorkGang, false,                                       \
+  product(bool, TraceParallelOldGCTasks, false,                             \
+  develop(bool, TraceBlockOffsetTable, false,                               \
+  develop(bool, TraceCardTableModRefBS, false,                              \
+  develop(bool, TraceGCTaskManager, false,                                  \
+  develop(bool, TraceGCTaskQueue, false,                                    \
+  develop(bool, TraceGCTaskThread, false,                                   \
+  product(bool, PrintParallelOldGCPhaseTimes, false,                        \
+  develop(bool, TraceParallelOldGCMarkingPhase, false,                      \
+  develop(bool, TraceParallelOldGCSummaryPhase, false,                      \
+  develop(bool, TraceParallelOldGCCompactionPhase, false,                   \
+  develop(bool, TraceParallelOldGCDensePrefix, false,                       \
+  develop(bool, IgnoreLibthreadGPFault, false,                              \
+  product(bool, PrintJNIGCStalls, false,                                    \
+  /* JVMTI heap profiling */                                                \
+  diagnostic(bool, TraceJVMTIObjectTagging, false,                          \
+  diagnostic(bool, VerifyBeforeIteration, false,                            \
+  /* compiler interface */                                                  \
+  develop(bool, CIPrintCompilerName, false,                                 \
+  develop(bool, CIPrintCompileQueue, false,                                 \
+  develop(bool, CIPrintRequests, false,                                     \
+  product(bool, CITime, false,                                              \
+  develop(bool, CITimeEach, false,                                          \
+  develop(bool, CICountOSR, true,                                           \
+  develop(bool, CICompileNatives, true,                                     \
+  develop_pd(bool, CICompileOSR,                                            \
+  develop(bool, CIPrintMethodCodes, false,                                  \
+  develop(bool, CIPrintTypeFlow, false,                                     \
+  develop(bool, CITraceTypeFlow, false,                                     \
+  develop(intx, CICloneLoopTestLimit, 100,                                  \
+  /* temp diagnostics */                                                    \
+  diagnostic(bool, TraceRedundantCompiles, false,                           \
+  diagnostic(bool, InitialCompileFast, false,                               \
+  diagnostic(bool, InitialCompileReallyFast, false,                         \
+  diagnostic(bool, FullProfileOnReInterpret, true,                          \
+  /* compiler */                                                            \
+  product(intx, CICompilerCount, CI_COMPILER_COUNT,                         \
+  product(intx, CompilationPolicyChoice, 0,                                 \
+  develop(bool, UseStackBanging, true,                                      \
+  develop(bool, Use24BitFPMode, true,                                       \
+  develop(bool, Use24BitFP, true,                                           \
+  develop(bool, UseStrictFP, true,                                          \
+  develop(bool, GenerateSynchronizationCode, true,                          \
+  develop(bool, GenerateCompilerNullChecks, true,                           \
+  develop(bool, GenerateRangeChecks, true,                                  \
+  develop_pd(bool, ImplicitNullChecks,                                      \
+  product(bool, PrintSafepointStatistics, false,                            \
+  product(intx, PrintSafepointStatisticsCount, 300,                         \
+  product(intx, PrintSafepointStatisticsTimeout,  -1,                       \
+  product(bool, TraceSafepointCleanupTime, false,                           \
+  develop(bool, InlineAccessors, true,                                      \
+  product(bool, Inline, true,                                               \
+  product(bool, ClipInlining, true,                                         \
+  develop(bool, UseCHA, true,                                               \
+  product(bool, UseTypeProfile, true,                                       \
+  product(intx, TypeProfileMajorReceiverPercent, 90,                        \
+  notproduct(bool, TimeCompiler, false,                                     \
+  notproduct(bool, TimeCompiler2, false,                                    \
+  diagnostic(bool, PrintInlining, false,                                    \
+  diagnostic(bool, PrintIntrinsics, false,                                  \
+  product(bool, UseCountLeadingZerosInstruction, false,                     \
+  product(bool, UsePopCountInstruction, false,                              \
+  diagnostic(ccstrlist, DisableIntrinsic, "",                               \
+  develop(bool, StressReflectiveCode, false,                                \
+  develop(bool, EagerInitialization, false,                                 \
+  product(bool, Tier1UpdateMethodData, trueInTiered,                        \
+  develop(bool, TraceMethodReplacement, false,                              \
+  develop(bool, PrintMethodFlushing, false,                                 \
+  notproduct(bool, LogMultipleMutexLocking, false,                          \
+  develop(bool, UseRelocIndex, false,                                       \
+  develop(bool, StressCodeBuffers, false,                                   \
+  diagnostic(bool, DebugNonSafepoints, trueInDebug,                         \
+  diagnostic(bool, DebugInlinedCalls, true,                                 \
+  product(bool, PrintVMOptions, trueInDebug,                                \
+  product(bool, IgnoreUnrecognizedVMOptions, false,                         \
+  product(bool, PrintCommandLineFlags, false,                               \
+  product(bool, PrintFlagsInitial, false,                                   \
+  product(bool, PrintFlagsFinal, false,                                     \
+  diagnostic(bool, SerializeVMOutput, true,                                 \
+  diagnostic(bool, DisplayVMOutput, true,                                   \
+  diagnostic(bool, LogVMOutput, trueInDebug,                                \
+  diagnostic(ccstr, LogFile, NULL,                                          \
+  product(ccstr, ErrorFile, NULL,                                           \
+  product(bool, DisplayVMOutputToStderr, false,                             \
+  product(bool, DisplayVMOutputToStdout, false,                             \
+  product(bool, UseHeavyMonitors, false,                                    \
+  notproduct(bool, PrintSymbolTableSizeHistogram, false,                    \
+  notproduct(bool, ExitVMOnVerifyError, false,                              \
+  notproduct(ccstr, AbortVMOnException, NULL,                               \
+  develop(bool, DebugVtables, false,                                        \
+  develop(bool, PrintVtables, false,                                        \
+  notproduct(bool, PrintVtableStats, false,                                 \
+  develop(bool, TraceCreateZombies, false,                                  \
+  notproduct(bool, IgnoreLockingAssertions, false,                          \
+  notproduct(bool, VerifyLoopOptimizations, false,                          \
+  product(bool, RangeCheckElimination, true,                                \
+  develop_pd(bool, UncommonNullCast,                                        \
+  develop(bool, TypeProfileCasts,  true,                                    \
+  develop(bool, MonomorphicArrayCheck, true,                                \
+  develop(bool, DelayCompilationDuringStartup, true,                        \
+  develop(bool, CompileTheWorld, false,                                     \
+  develop(bool, CompileTheWorldPreloadClasses, true,                        \
+  notproduct(bool, CompileTheWorldIgnoreInitErrors, false,                  \
+  notproduct(intx, CompileTheWorldSafepointInterval, 100,                   \
+  develop(bool, TraceIterativeGVN, false,                                   \
+  develop(bool, FillDelaySlots, true,                                       \
+  develop(bool, VerifyIterativeGVN, false,                                  \
+  notproduct(bool, TracePhaseCCP, false,                                    \
+  develop(bool, TimeLivenessAnalysis, false,                                \
+  develop(bool, TraceLivenessGen, false,                                    \
+  notproduct(bool, TraceLivenessQuery, false,                               \
+  notproduct(bool, CollectIndexSetStatistics, false,                        \
+  develop(bool, PrintDominators, false,                                     \
+  develop(bool, UseLoopSafepoints, true,                                    \
+  notproduct(bool, TraceCISCSpill, false,                                   \
+  notproduct(bool, TraceSpilling, false,                                    \
+  develop(bool, DeutschShiffmanExceptions, true,                            \
+  product(bool, SplitIfBlocks, true,                                        \
+  develop(intx, FastAllocateSizeLimit, 128*K,                               \
+  product(bool, AggressiveOpts, false,                                      \
+  product(bool, UseStringCache, false,                                      \
+  /* statistics */                                                          \
+  develop(bool, UseVTune, false,                                            \
+  develop(bool, CountCompiledCalls, false,                                  \
+  notproduct(bool, CountRuntimeCalls, false,                                \
+  develop(bool, CountJNICalls, false,                                       \
+  notproduct(bool, CountJVMCalls, false,                                    \
+  notproduct(bool, CountRemovableExceptions, false,                         \
+  notproduct(bool, ICMissHistogram, false,                                  \
+  notproduct(bool, PrintClassStatistics, false,                             \
+  notproduct(bool, PrintMethodStatistics, false,                            \
+  /* interpreter */                                                         \
+  develop(bool, ClearInterpreterLocals, false,                              \
+  product_pd(bool, RewriteBytecodes,                                        \
+  product_pd(bool, RewriteFrequentPairs,                                    \
+  diagnostic(bool, PrintInterpreter, false,                                 \
+  product(bool, UseInterpreter, true,                                       \
+  develop(bool, UseFastSignatureHandlers, true,                             \
+  develop(bool, UseV8InstrsOnly, false,                                     \
+  product(bool, UseNiagaraInstrs, false,                                    \
+  develop(bool, UseCASForSwap, false,                                       \
+  product(bool, UseLoopCounter, true,                                       \
+  product(bool, UseFastEmptyMethods, true,                                  \
+  product(bool, UseFastAccessorMethods, true,                               \
+  product_pd(bool, UseOnStackReplacement,                                   \
+  notproduct(bool, TraceOnStackReplacement, false,                          \
+  develop(bool, PoisonOSREntry, true,                                       \
+  product_pd(bool, PreferInterpreterNativeStubs,                            \
+  develop(bool, CountBytecodes, false,                                      \
+  develop(bool, PrintBytecodeHistogram, false,                              \
+  develop(bool, PrintBytecodePairHistogram, false,                          \
+  diagnostic(bool, PrintSignatureHandlers, false,                           \
+  develop(bool, VerifyOops, false,                                          \
+  develop(bool, CheckUnhandledOops, false,                                  \
+  develop(bool, VerifyJNIFields, trueInDebug,                               \
+  notproduct(bool, VerifyJNIEnvThread, false,                               \
+  develop(bool, VerifyFPU, false,                                           \
+  develop(bool, VerifyThread, false,                                        \
+  develop(bool, VerifyActivationFrameSize, false,                           \
+  develop(bool, TraceFrequencyInlining, false,                              \
+  notproduct(bool, TraceTypeProfile, false,                                 \
+  develop_pd(bool, InlineIntrinsics,                                        \
+  product_pd(bool, ProfileInterpreter,                                      \
+  develop_pd(bool, ProfileTraps,                                            \
+  product(intx, ProfileMaturityPercentage, 20,                              \
+  develop(bool, PrintMethodData, false,                                     \
+  develop(bool, VerifyDataPointer, trueInDebug,                             \
+  develop(bool, VerifyCompiledCode, false,                                  \
+  notproduct(bool, CrashGCForDumpingJavaThread, false,                      \
+  /* compilation */                                                         \
+  product(bool, UseCompiler, true,                                          \
+  develop(bool, TraceCompilationPolicy, false,                              \
+  develop(bool, TimeCompilationPolicy, false,                               \
+  product(bool, UseCounterDecay, true,                                      \
+  develop(intx, CounterHalfLifeTime,    30,                                 \
+  develop(intx, CounterDecayMinIntervalLength,   500,                       \
+  product(bool, AlwaysCompileLoopMethods, false,                            \
+  product(bool, DontCompileHugeMethods, true,                               \
+  /* Bytecode escape analysis estimation. */                                \
+  product(bool, EstimateArgEscape, true,                                    \
+  product(intx, BCEATraceLevel, 0,                                          \
+  product(intx, MaxBCEAEstimateLevel, 5,                                    \
+  product(intx, MaxBCEAEstimateSize, 150,                                   \
+  product(intx,  AllocatePrefetchStyle, 1,                                  \
+  product(intx,  AllocatePrefetchDistance, -1,                              \
+  product(intx,  AllocatePrefetchLines, 1,                                  \
+  product(intx,  AllocatePrefetchStepSize, 16,                              \
+  product(intx,  AllocatePrefetchInstr, 0,                                  \
+  product(intx,  ReadPrefetchInstr, 0,                                      \
+  /* deoptimization */                                                      \
+  develop(bool, TraceDeoptimization, false,                                 \
+  develop(bool, DebugDeoptimization, false,                                 \
+  product(intx, SelfDestructTimer, 0,                                       \
+  product(intx, MaxJavaStackTraceDepth, 1024,                               \
+  develop(intx, GuaranteedSafepointInterval, 1000,                          \
+  product(intx, SafepointTimeoutDelay, 10000,                               \
+  product(intx, NmethodSweepFraction, 4,                                    \
+  notproduct(intx, MemProfilingInterval, 500,                               \
+  develop(intx, MallocCatchPtr, -1,                                         \
+  notproduct(intx, AssertRepeat, 1,                                         \
+  notproduct(ccstrlist, SuppressErrorAt, "",                                \
+  notproduct(uintx, HandleAllocationLimit, 1024,                            \
+  develop(uintx, TotalHandleAllocationLimit, 1024,                          \
+  develop(intx, StackPrintLimit, 100,                                       \
+  notproduct(intx, MaxElementPrintSize, 256,                                \
+  notproduct(intx, MaxSubklassPrintSize, 4,                                 \
+  product(intx, MaxInlineLevel, 9,                                          \
+  product(intx, MaxRecursiveInlineLevel, 1,                                 \
+  product_pd(intx, InlineSmallCode,                                         \
+  product(intx, MaxInlineSize, 35,                                          \
+  product_pd(intx, FreqInlineSize,                                          \
+  product(intx, MaxTrivialSize, 6,                                          \
+  product(intx, MinInliningThreshold, 250,                                  \
+  develop(intx, AlignEntryCode, 4,                                          \
+  develop(intx, MethodHistogramCutoff, 100,                                 \
+  develop(intx, ProfilerNumberOfInterpretedMethods, 25,                     \
+  develop(intx, ProfilerNumberOfCompiledMethods, 25,                        \
+  develop(intx, ProfilerNumberOfStubMethods, 25,                            \
+  develop(intx, ProfilerNumberOfRuntimeStubNodes, 25,                       \
+  product(intx, ProfileIntervalsTicks, 100,                                 \
+  notproduct(intx, ScavengeALotInterval,     1,                             \
+  notproduct(intx, FullGCALotInterval,     1,                               \
+  notproduct(intx, FullGCALotStart,     0,                                  \
+  notproduct(intx, FullGCALotDummies,  32*K,                                \
+  develop(intx, DontYieldALotInterval,    10,                               \
+  develop(intx, MinSleepInterval,     1,                                    \
+  product(intx, EventLogLength,  2000,                                      \
+  develop(intx, ProfilerPCTickThreshold,    15,                             \
+  notproduct(intx, DeoptimizeALotInterval,     5,                           \
+  notproduct(intx, ZombieALotInterval,     5,                               \
+  develop(bool, StressNonEntrant, false,                                    \
+  diagnostic(intx, MallocVerifyInterval,     0,                             \
+  diagnostic(intx, MallocVerifyStart,     0,                                \
+  product(intx, TypeProfileWidth,      2,                                   \
+  develop(intx, BciProfileWidth,      2,                                    \
+  product(intx, PerMethodRecompilationCutoff, 400,                          \
+  product(intx, PerBytecodeRecompilationCutoff, 200,                        \
+  product(intx, PerMethodTrapLimit,  100,                                   \
+  product(intx, PerBytecodeTrapLimit,  4,                                   \
+  develop(intx, FreqCountInvocations,  1,                                   \
+  develop(intx, InlineFrequencyRatio,    20,                                \
+  develop_pd(intx, InlineFrequencyCount,                                    \
+  develop(intx, InlineThrowCount,    50,                                    \
+  develop(intx, InlineThrowMaxSize,   200,                                  \
+  product(intx, AliasLevel,     3,                                          \
+  develop(bool, VerifyAliases, false,                                       \
+  develop(intx, ProfilerNodeSize,  1024,                                    \
+  develop(intx, V8AtomicOperationUnderLockSpinCount,    50,                 \
+  product(intx, ReadSpinIterations,   100,                                  \
+  product_pd(intx, PreInflateSpin,                                          \
+  product(intx, PreBlockSpin,    10,                                        \
+  /* gc parameters */                                                       \
+  product(uintx, InitialHeapSize, 0,                                        \
+  product(uintx, MaxHeapSize, ScaleForWordSize(96*M),                       \
+  product(uintx, OldSize, ScaleForWordSize(4*M),                            \
+  product(uintx, NewSize, ScaleForWordSize(1*M),                            \
+  product(uintx, MaxNewSize, max_uintx,                                     \
+  product(uintx, PretenureSizeThreshold, 0,                                 \
+  product(uintx, TLABSize, 0,                                               \
+  product(uintx, MinTLABSize, 2*K,                                          \
+  product(uintx, TLABAllocationWeight, 35,                                  \
+  product(uintx, TLABWasteTargetPercent, 1,                                 \
+  product(uintx, TLABRefillWasteFraction,    64,                            \
+  product(uintx, TLABWasteIncrement,    4,                                  \
+  product(intx, SurvivorRatio, 8,                                           \
+  product(intx, NewRatio, 2,                                                \
+  product(uintx, MaxLiveObjectEvacuationRatio, 100,                         \
+  product_pd(uintx, NewSizeThreadIncrease,                                  \
+  product_pd(uintx, PermSize,                                               \
+  product_pd(uintx, MaxPermSize,                                            \
+  product(uintx, MinHeapFreeRatio,    40,                                   \
+  product(uintx, MaxHeapFreeRatio,    70,                                   \
+  product(intx, SoftRefLRUPolicyMSPerMB, 1000,                              \
+  product(uintx, MinHeapDeltaBytes, ScaleForWordSize(128*K),                \
+  product(uintx, MinPermHeapExpansion, ScaleForWordSize(256*K),             \
+  product(uintx, MaxPermHeapExpansion, ScaleForWordSize(4*M),               \
+  product(intx, QueuedAllocationWarningCount, 0,                            \
+  diagnostic(uintx, VerifyGCStartAt,   0,                                   \
+  diagnostic(intx, VerifyGCLevel,     0,                                    \
+  develop(uintx, ExitAfterGCNum,   0,                                       \
+  product(intx, MaxTenuringThreshold,    15,                                \
+  product(intx, InitialTenuringThreshold,     7,                            \
+  product(intx, TargetSurvivorRatio,    50,                                 \
+  product(uintx, MarkSweepDeadRatio,     5,                                 \
+  product(uintx, PermMarkSweepDeadRatio,    20,                             \
+  product(intx, MarkSweepAlwaysCompactCount,     4,                         \
+  product(intx, PrintCMSStatistics, 0,                                      \
+  product(bool, PrintCMSInitiationStatistics, false,                        \
+  product(intx, PrintFLSStatistics, 0,                                      \
+  product(intx, PrintFLSCensus, 0,                                          \
+  develop(uintx, GCExpandToAllocateDelayMillis, 0,                          \
+  product(intx, DeferThrSuspendLoopCount,     4000,                         \
+  product(intx, DeferPollingPageLoopCount,     -1,                          \
+  product(intx, SafepointSpinBeforeYield, 2000,  "(Unstable)")              \
+  product(bool, UseDepthFirstScavengeOrder, true,                           \
+  product(bool, PSChunkLargeArrays, true,                                   \
+  product(uintx, GCDrainStackTargetSize, 64,                                \
+  /* stack parameters */                                                    \
+  product_pd(intx, StackYellowPages,                                        \
+  product_pd(intx, StackRedPages,                                           \
+  product_pd(intx, StackShadowPages,                                        \
+  product_pd(intx, ThreadStackSize,                                         \
+  product_pd(intx, VMThreadStackSize,                                       \
+  product_pd(intx, CompilerThreadStackSize,                                 \
+  develop_pd(uintx, JVMInvokeMethodSlack,                                   \
+  product(uintx, ThreadSafetyMargin, 50*M,                                  \
+  /* code cache parameters */                                               \
+  develop(uintx, CodeCacheSegmentSize, 64,                                  \
+  develop_pd(intx, CodeEntryAlignment,                                      \
+  product_pd(uintx, InitialCodeCacheSize,                                   \
+  product_pd(uintx, ReservedCodeCacheSize,                                  \
+  product(uintx, CodeCacheMinimumFreeSpace, 500*K,                          \
+  product_pd(uintx, CodeCacheExpansionSize,                                 \
+  develop_pd(uintx, CodeCacheMinBlockLength,                                \
+  notproduct(bool, ExitOnFullCodeCache, false,                              \
+  product(bool, UseCodeCacheFlushing, false,                                \
+  product(intx,  MinCodeCacheFlushingInterval, 30,                          \
+  product(uintx,  CodeCacheFlushingMinimumFreeSpace, 1500*K,                \
+  /* interpreter debugging */                                               \
+  develop(intx, BinarySwitchThreshold, 5,                                   \
+  develop(intx, StopInterpreterAt, 0,                                       \
+  develop(intx, TraceBytecodesAt, 0,                                        \
+  /* compiler interface */                                                  \
+  develop(intx, CIStart, 0,                                                 \
+  develop(intx, CIStop,    -1,                                              \
+  develop(intx, CIStartOSR,     0,                                          \
+  develop(intx, CIStopOSR,    -1,                                           \
+  develop(intx, CIBreakAtOSR,    -1,                                        \
+  develop(intx, CIBreakAt,    -1,                                           \
+  product(ccstrlist, CompileOnly, "",                                       \
+  product(ccstr, CompileCommandFile, NULL,                                  \
+  product(ccstrlist, CompileCommand, "",                                    \
+  product(bool, CICompilerCountPerCPU, false,                               \
+  develop(intx, CIFireOOMAt,    -1,                                         \
+  develop(intx, CIFireOOMAtDelay, -1,                                       \
+  notproduct(bool, CIObjectFactoryVerify, false,                            \
+  /* Priorities */                                                          \
+  product_pd(bool, UseThreadPriorities,  "Use native thread priorities")    \
+  product(intx, ThreadPriorityPolicy, 0,                                    \
+  product(bool, ThreadPriorityVerbose, false,                               \
+  product(intx, DefaultThreadPriority, -1,                                  \
+  product(intx, CompilerThreadPriority, -1,                                 \
+  product(intx, VMThreadPriority, -1,                                       \
+  product(bool, CompilerThreadHintNoPreempt, true,                          \
+  product(bool, VMThreadHintNoPreempt, false,                               \
+  product(intx, JavaPriority1_To_OSPriority, -1, "Map Java priorities to OS priorities") \
+  product(intx, JavaPriority2_To_OSPriority, -1, "Map Java priorities to OS priorities") \
+  product(intx, JavaPriority3_To_OSPriority, -1, "Map Java priorities to OS priorities") \
+  product(intx, JavaPriority4_To_OSPriority, -1, "Map Java priorities to OS priorities") \
+  product(intx, JavaPriority5_To_OSPriority, -1, "Map Java priorities to OS priorities") \
+  product(intx, JavaPriority6_To_OSPriority, -1, "Map Java priorities to OS priorities") \
+  product(intx, JavaPriority7_To_OSPriority, -1, "Map Java priorities to OS priorities") \
+  product(intx, JavaPriority8_To_OSPriority, -1, "Map Java priorities to OS priorities") \
+  product(intx, JavaPriority9_To_OSPriority, -1, "Map Java priorities to OS priorities") \
+  product(intx, JavaPriority10_To_OSPriority,-1, "Map Java priorities to OS priorities") \
+  /* compiler debugging */                                                  \
+  notproduct(intx, CompileTheWorldStartAt,     1,                           \
+  notproduct(intx, CompileTheWorldStopAt, max_jint,                         \
+  develop(intx, NewCodeParameter,      0,                                   \
+  /* new oopmap storage allocation */                                       \
+  develop(intx, MinOopMapAllocation,     8,                                 \
+  /* Background Compilation */                                              \
+  develop(intx, LongCompileThreshold,     50,                               \
+  product(intx, StarvationMonitorInterval,    200,                          \
+  /* recompilation */                                                       \
+  product_pd(intx, CompileThreshold,                                        \
+  product_pd(intx, BackEdgeThreshold,                                       \
+  product(intx, Tier1BytecodeLimit,      10,                                \
+  product_pd(intx, Tier2CompileThreshold,                                   \
+  product_pd(intx, Tier2BackEdgeThreshold,                                  \
+  product_pd(intx, Tier3CompileThreshold,                                   \
+  product_pd(intx, Tier3BackEdgeThreshold,                                  \
+  product_pd(intx, Tier4CompileThreshold,                                   \
+  product_pd(intx, Tier4BackEdgeThreshold,                                  \
+  product_pd(bool, TieredCompilation,                                       \
+  product(bool, StressTieredRuntime, false,                                 \
+  product_pd(intx, OnStackReplacePercentage,                                \
+  product(intx, InterpreterProfilePercentage, 33,                           \
+  develop(intx, MaxRecompilationSearchLength,    10,                        \
+  develop(intx, MaxInterpretedSearchLength,     3,                          \
+  develop(intx, DesiredMethodLimit,  8000,                                  \
+  develop(intx, HugeMethodLimit,  8000,                                     \
+  /* New JDK 1.4 reflection implementation */                               \
+  develop(bool, UseNewReflection, true,                                     \
+  develop(bool, VerifyReflectionBytecodes, false,                           \
+  product(bool, ReflectionWrapResolutionErrors, true,                       \
+  develop(intx, FastSuperclassLimit, 8,                                     \
+  /* Properties for Java libraries  */                                      \
+  product(intx, MaxDirectMemorySize, -1,                                    \
+  /* temporary developer defined flags  */                                  \
+  diagnostic(bool, UseNewCode, false,                                       \
+  diagnostic(bool, UseNewCode2, false,                                      \
+  diagnostic(bool, UseNewCode3, false,                                      \
+  /* flags for performance data collection */                               \
+  product(bool, UsePerfData, true,                                          \
+  product(bool, PerfDataSaveToFile, false,                                  \
+  product(ccstr, PerfDataSaveFile, NULL,                                    \
+  product(intx, PerfDataSamplingInterval, 50 /*ms*/,                        \
+  develop(bool, PerfTraceDataCreation, false,                               \
+  develop(bool, PerfTraceMemOps, false,                                     \
+  product(bool, PerfDisableSharedMem, false,                                \
+  product(intx, PerfDataMemorySize, 32*K,                                   \
+  product(intx, PerfMaxStringConstLength, 1024,                             \
+  product(bool, PerfAllowAtExitRegistration, false,                         \
+  product(bool, PerfBypassFileSystemCheck, false,                           \
+  product(intx, UnguardOnExecutionViolation, 0,                             \
+  /* Serviceability Support */                                              \
+  product(bool, ManagementServer, false,                                    \
+  product(bool, DisableAttachMechanism, false,                              \
+  product(bool, StartAttachListener, false,                                 \
+  manageable(bool, PrintConcurrentLocks, false,                             \
+  /* Shared spaces */                                                       \
+  product(bool, UseSharedSpaces, true,                                      \
+  product(bool, RequireSharedSpaces, false,                                 \
+  product(bool, ForceSharedSpaces, false,                                   \
+  product(bool, DumpSharedSpaces, false,                                    \
+  product(bool, PrintSharedSpaces, false,                                   \
+  product(uintx, SharedDummyBlockSize, 512*M,                               \
+  product(uintx, SharedReadWriteSize,  12*M,                                \
+  product(uintx, SharedReadOnlySize,   10*M,                                \
+  product(uintx, SharedMiscDataSize,    4*M,                                \
+  product(uintx, SharedMiscCodeSize,    4*M,                                \
+  diagnostic(bool, SharedOptimizeColdStart, true,                           \
+  develop(intx, SharedOptimizeColdStartPolicy, 2,                           \
+  diagnostic(bool, SharedSkipVerify, false,                                 \
+  product(bool, AnonymousClasses, false,                                    \
+  experimental(bool, EnableMethodHandles, false,                            \
+  diagnostic(intx, MethodHandlePushLimit, 3,                                \
+  develop(bool, TraceMethodHandles, false,                                  \
+  diagnostic(bool, VerifyMethodHandles, trueInDebug,                        \
+  diagnostic(bool, OptimizeMethodHandles, true,                             \
+  experimental(bool, TrustFinalNonStaticFields, false,                      \
+  experimental(bool, EnableInvokeDynamic, false,                            \
+  develop(bool, TraceInvokeDynamic, false,                                  \
+  product(bool, TaggedStackInterpreter, false,                              \
+  diagnostic(bool, PauseAtStartup,      false,                              \
+  diagnostic(ccstr, PauseAtStartupFile, NULL,                               \
+  product(bool, ExtendedDTraceProbes,    false,                             \
+  product(bool, DTraceMethodProbes, false,                                  \
+  product(bool, DTraceAllocProbes, false,                                   \
+  product(bool, DTraceMonitorProbes, false,                                 \
+  product(bool, RelaxAccessControlCheck, false,                             \
+  diagnostic(bool, PrintDTraceDOF, false,                                   \
+  product(bool, UseVMInterruptibleIO, false,                                \
+

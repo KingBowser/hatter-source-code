@@ -1,19 +1,19 @@
 package me.hatter.tools.jflag;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import me.hatter.tools.commons.args.UnixArgsutil;
 import me.hatter.tools.commons.io.IOUtil;
-import me.hatter.tools.commons.jmx.RemoteManagementFactory;
-import me.hatter.tools.commons.jmx.RemoteManagementTool;
 import me.hatter.tools.commons.jvm.HotSpotAttachTool;
 import me.hatter.tools.commons.jvm.HotSpotProcessUtil;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil.JDKLib;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil.JDKTarget;
+import me.hatter.tools.commons.log.LogUtil;
 import me.hatter.tools.commons.string.StringUtil;
 import sun.tools.attach.HotSpotVirtualMachine;
 
@@ -28,6 +28,9 @@ public class JFlag {
         String flags = IOUtil.readResourceToString(JFlag.class, "flags.txt");
         List<Flag> flagList = FlagParserUtil.parseFlagList(flags);
 
+        if (UnixArgsutil.ARGS.flags().contains("show-cust-flags") && (UnixArgsutil.ARGS.args().length == 0)) {
+            cutsFlags();
+        }
         if ((UnixArgsutil.ARGS.kvalue("show") != null) && (UnixArgsutil.ARGS.args().length == 0)) {
             flags(flagList);
         }
@@ -36,6 +39,31 @@ public class JFlag {
         }
         String pid = UnixArgsutil.ARGS.args()[0];
 
+        if (UnixArgsutil.ARGS.kvalue("flag") != null) {
+            List<String> _flagList = UnixArgsutil.ARGS.kvalues("flag");
+            for (String _flag : _flagList) {
+                boolean isOn = _flag.startsWith("+");
+                boolean isOff = _flag.startsWith("-");
+                if (!(isOn || isOff)) {
+                    LogUtil.error("Invalid flag args: " + _flag);
+                } else {
+                    String _flagName = _flag.substring(1);
+                    try {
+                        JFlagCommand cmd = JFlagCommand.valueOf(_flagName);
+                        LogUtil.info("Set " + _flagName + " -> " + isOn + " @ " + null);
+                        cmd.getHandler().handle(cmd, isOn, null);
+                    } catch (Exception e) {
+                        // TODO
+                        LogUtil.info("DO " + _flagName + " -> " + isOn);
+                    }
+                }
+            }
+        } else {
+            getFlags(flagList, pid);
+        }
+    }
+
+    private static void getFlags(List<Flag> flagList, String pid) {
         HotSpotAttachTool attach = new HotSpotAttachTool(pid);
         attach.attach();
         Set<String> ignoreSet = new HashSet<String>();
@@ -64,20 +92,10 @@ public class JFlag {
                     }
                 }
             } catch (IOException e) {
-                e.printStackTrace();
+                LogUtil.error("", e);
             }
         } finally {
             attach.detach();
-        }
-    }
-
-    private static void setTraceClassLoading(String pid, boolean isOn) {
-        RemoteManagementTool tool = new RemoteManagementTool(pid);
-        try {
-            RemoteManagementFactory factory = tool.getManagementFactory();
-            factory.getClassLoadingMXBean().setVerbose(isOn);
-        } finally {
-            tool.close();
         }
     }
 
@@ -85,18 +103,62 @@ public class JFlag {
         if (flag == null) {
             return false;
         }
-        String show = UnixArgsutil.ARGS.kvalue("show");
-        boolean showAll = ("ALL".equals(show) || (show == null));
-        if (showAll || flag.getName().toLowerCase().contains(show.toLowerCase())) {
-            return true;
+        {
+            String show = UnixArgsutil.ARGS.kvalue("show");
+            boolean showAll = ("ALL".equals(show) || (show == null));
+            if (!(showAll || flag.getName().toLowerCase().contains(show.toLowerCase()))) {
+                return false;
+            }
         }
-        return false;
+
+        {
+            String runt = UnixArgsutil.ARGS.kvalue("runt");
+            boolean showAll = ("ALL".equals(runt) || (runt == null));
+            Set<FlagRuntimeType> runtSet = new HashSet<FlagRuntimeType>();
+            if (!showAll) {
+                String[] runts = runt.split(",");
+                for (String rt : runts) {
+                    runtSet.add(FlagRuntimeType.valueOf("_" + rt));
+                }
+            }
+            if (!(showAll || runtSet.contains(flag.getRuntime()))) {
+                return false;
+            }
+        }
+        {
+            String type = UnixArgsutil.ARGS.kvalue("type");
+            boolean showAll = ("ALL".equals(type) || (type == null));
+            Set<FlagValueType> typeSet = new HashSet<FlagValueType>();
+            if (!showAll) {
+                String[] types = type.split(",");
+                for (String ty : types) {
+                    typeSet.add(FlagValueType.valueOf("_" + ty));
+                }
+            }
+            if (!(showAll || typeSet.contains(flag.getType()))) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private static void cutsFlags() {
+        System.out.println(StringUtil.paddingSpaceRight("FlagName", 40) + " "
+                           + StringUtil.paddingSpaceRight("Type", 20) + "Handler");
+        System.out.println(StringUtil.repeat("-", 71));
+        for (JFlagCommand flag : JFlagCommand.values()) {
+            System.out.println(StringUtil.paddingSpaceRight(flag.name(), 40) + " "
+                               + StringUtil.paddingSpaceRight(flag.getType().getName(), 20)
+                               + flag.getHandler().getClass().getName());
+        }
+        System.exit(0);
     }
 
     private static void flags(List<Flag> flagList) {
         System.out.println(StringUtil.paddingSpaceRight("FlagName", 40) + " "
                            + StringUtil.paddingSpaceRight("Type", 20) + "Runtime");
-        System.out.println(StringUtil.repeat("-", 70));
+        System.out.println(StringUtil.repeat("-", 71));
         for (Flag flag : flagList) {
             if (filterFlag(flag)) {
                 System.out.println(StringUtil.paddingSpaceRight(flag.getName(), 40) + " "
@@ -111,10 +173,13 @@ public class JFlag {
         System.out.println("Usage:");
         System.out.println("  java -jar jflagall.jar [options] <pid>");
         System.out.println("    -show <flags>           show flags('ALL' show all)");
-        System.out.println("    -runt <option>          collection(default product)");
-        System.out.println("          product           runtime product");
-        System.out.println("          develop           runtime develop");
+        System.out.println("    -flag <+/-flag>         set flag");
+        System.out.println("    -runt <option>          runtime(default all)");
+        System.out.println("          options           " + Arrays.asList(FlagRuntimeType.values()));
+        System.out.println("    -type <option>          type(default all)");
+        System.out.println("          options           " + Arrays.asList(FlagValueType.values()));
         System.out.println("    --show-not-exists       show not exists flag(s)");
+        System.out.println("    --show-cust-flags       show custom flags");
         System.out.println();
         HotSpotProcessUtil.printVMs(System.out, true);
         System.exit(0);

@@ -8,10 +8,11 @@ import me.hatter.tools.jflag.JFlagCommandHandler;
 
 public class ClassVerboseHandler implements JFlagCommandHandler {
 
-    public void handle(JFlagCommand command, Boolean isOn, String args) {
+    public String handle(JFlagCommand command, Boolean isOn, String args) {
         String pid = UnixArgsutil.ARGS.args()[0];
         boolean isOnB = isOn.booleanValue();
         setTraceClassLoading(pid, isOnB);
+        return null;
     }
 
     private static void setTraceClassLoading(String pid, boolean isOn) {

@@ -19,7 +19,12 @@ import javax.management.JMX;
 import javax.management.MBeanServerConnection;
 import javax.management.ObjectName;
 
+import com.sun.management.HotSpotDiagnosticMXBean;
+
+@SuppressWarnings("restriction")
 public class RemoteManagementFactory {
+
+    public static final String    HOT_SPOT_DIAGNOSTIC = "com.sun.management:type=HotSpotDiagnostic";
 
     private MBeanServerConnection connection;
 
@@ -49,6 +54,10 @@ public class RemoteManagementFactory {
 
     public OperatingSystemMXBean getOperatingSystemMXBean() {
         return newPlatformMXBeanProxy(ManagementFactory.OPERATING_SYSTEM_MXBEAN_NAME, OperatingSystemMXBean.class);
+    }
+
+    public HotSpotDiagnosticMXBean getHotSpotDiagnosticMXBean() {
+        return newPlatformMXBeanProxy(HOT_SPOT_DIAGNOSTIC, HotSpotDiagnosticMXBean.class);
     }
 
     public List<MemoryPoolMXBean> getMemoryPoolMXBeans() {

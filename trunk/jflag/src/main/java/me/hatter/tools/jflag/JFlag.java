@@ -96,7 +96,7 @@ public class JFlag {
             return false;
         }
         String show = UnixArgsutil.ARGS.kvalue("show");
-        boolean showAll = "ALL".equals(show);
+        boolean showAll = ("ALL".equals(show) || (show == null));
         if (showAll || flag.getName().toLowerCase().contains(show.toLowerCase())) {
             return true;
         }

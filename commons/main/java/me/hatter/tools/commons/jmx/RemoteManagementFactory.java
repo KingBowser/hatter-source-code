@@ -19,7 +19,8 @@ import javax.management.MBeanServerConnection;
 import javax.management.ObjectName;
 
 import com.sun.management.HotSpotDiagnosticMXBean;
-ion")
+
+@SuppressWarnings("restriction")
 public class RemoteManagementFactory {
 
     public static final String    HOT_SPOT_DIAGNOSTIC = "com.sun.management:type=HotSpotDiagnostic";

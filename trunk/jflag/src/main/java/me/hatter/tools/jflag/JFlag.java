@@ -197,6 +197,7 @@ public class JFlag {
     }
 
     private static void remoteFlags() {
+        boolean writeable = UnixArgsutil.ARGS.flags().contains("show-remote-writable");
         List<VMOption> optionList = new RemoteFlagTool(UnixArgsutil.ARGS.args()[0]).getHotSpotFlagMXBean().getVMOptionList();
         System.out.println(StringUtil.paddingSpaceRight("FlagName", 40) + " "
                            + StringUtil.paddingSpaceRight("Type", 20) + StringUtil.paddingSpaceRight("Writable", 10)
@@ -204,6 +205,9 @@ public class JFlag {
         System.out.println(StringUtil.repeat("-", 76));
         for (VMOption option : optionList) {
             if (filterName(option.getName())) {
+                if (writeable && (!option.isWriteable())) {
+                    continue;
+                }
                 System.out.println(StringUtil.paddingSpaceRight(option.getName(), 40) + " "
                                    + StringUtil.paddingSpaceRight(option.getOrigin().name(), 20)
                                    + StringUtil.paddingSpaceRight(Boolean.toString(option.isWriteable()), 10)
@@ -230,15 +234,16 @@ public class JFlag {
     private static void usage() {
         System.out.println("Usage:");
         System.out.println("  java -jar jflagall.jar [options] <pid>");
-        System.out.println("    -show <flags>           show flags('ALL' show all)");
-        System.out.println("    -flag <+/-flag>         set flag");
-        System.out.println("    -runt <option>          runtime(default all)");
-        System.out.println("          options           " + Arrays.asList(FlagRuntimeType.values()));
-        System.out.println("    -type <option>          type(default all)");
-        System.out.println("          options           " + Arrays.asList(FlagValueType.values()));
-        System.out.println("    --show-not-exists       show not exists flag(s)");
-        System.out.println("    --show-cust-flags       show custom flags");
-        System.out.println("    --show-remote-flags     show remote flags");
+        System.out.println("    -show <flags>             show flags('ALL' show all)");
+        System.out.println("    -flag <+/-flag>           set flag");
+        System.out.println("    -runt <option>            runtime(default all)");
+        System.out.println("          options             " + Arrays.asList(FlagRuntimeType.values()));
+        System.out.println("    -type <option>            type(default all)");
+        System.out.println("          options             " + Arrays.asList(FlagValueType.values()));
+        System.out.println("    --show-not-exists         show not exists flag(s)");
+        System.out.println("    --show-cust-flags         show custom flags");
+        System.out.println("    --show-remote-flags       show remote flags");
+        System.out.println("    --show-remote-writable    show remote flags");
         System.out.println();
         HotSpotProcessUtil.printVMs(System.out, true);
         System.exit(0);

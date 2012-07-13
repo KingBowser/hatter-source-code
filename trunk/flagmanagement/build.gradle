@@ -1,0 +1,58 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+def baseProjectName = 'flagmanagement'
+def eclipseProjectName = baseProjectName
+def eclipseProjectComment = 'flagmanagement'
+
+archivesBaseName = baseProjectName
+sourceCompatibility = 1.5
+targetCompatibility = 1.5
+
+task initapp << {
+  file('lib').mkdirs()
+  file('src/main/java').mkdirs()
+  file('src/main/resources').mkdirs()
+  file('src/test/java').mkdirs()
+  file('src/test/resources').mkdirs()
+  println 'Init app finished [lib, src/main/java|resources, src/test/java|resources].'
+}
+
+task packall << {
+  def packtempclasses = "packtempclasses"
+  def packtempmanifest = "packtempmanifest"
+  def libs = ant.path {
+    fileset(dir: 'lib', includes: '*.jar')
+    fileset(dir: 'build/libs', includes: '*.jar')
+  }
+  libs.list().each {
+    ant.unzip(dest: packtempclasses, src: it) 
+  }
+  def antmanifest = ant.manifest(file: packtempmanifest) {
+  }
+  ant.jar(destfile: "${baseProjectName}.jar", manifest: packtempmanifest) {
+    fileset(dir: packtempclasses, includes: '**/*.*')
+  }
+  ant.delete(dir: packtempclasses)
+  ant.delete(file: packtempmanifest)
+}
+
+dependencies {
+    compile files(fileTree(dir: 'lib', includes: ['*.jar']))
+}
+
+eclipse {
+  project {
+    name = eclipseProjectName
+    comment = eclipseProjectComment
+  }
+  classpath {
+    defaultOutputDir = file('classes')
+  }
+}
+
+jar {
+  manifest {
+  }
+}
+

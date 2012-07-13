@@ -28,6 +28,8 @@ task packall << {
     ant.unzip(dest: packtempclasses, src: it) 
   }
   def antmanifest = ant.manifest(file: packtempmanifest) {
+    attribute(name: 'Premain-Class', value: 'me.hatter.tools.flagagent.agent.Agent')
+    attribute(name: 'Agent-Class', value: 'me.hatter.tools.flagagent.agent.Agent')
   }
   ant.jar(destfile: "${baseProjectName}.jar", manifest: packtempmanifest) {
     fileset(dir: packtempclasses, includes: '**/*.*')

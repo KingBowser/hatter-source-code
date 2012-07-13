@@ -9,6 +9,11 @@ import com.sun.management.VMOption.Origin;
 
 public class FlagAgent {
 
+    static {
+        // INIT sun.management.Flag
+        ManagementFactory.getDiagnosticMXBean().getDiagnosticOptions();
+    }
+
     private String       name;
     private Object       value;
     private Origin       origin;

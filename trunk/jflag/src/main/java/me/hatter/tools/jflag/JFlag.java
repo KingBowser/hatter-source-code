@@ -44,17 +44,28 @@ public class JFlag {
             for (String _flag : _flagList) {
                 boolean isOn = _flag.startsWith("+");
                 boolean isOff = _flag.startsWith("-");
-                if (!(isOn || isOff)) {
+                boolean isAt = _flag.startsWith("@");
+                if (!(isOn || isOff || isAt)) {
                     LogUtil.error("Invalid flag args: " + _flag);
                 } else {
-                    String _flagName = _flag.substring(1);
+                    String _flagValue = _flag.substring(1);
+                    String _flagName = _flagValue;
+                    Boolean _isOn = null;
+                    if (isOn || isOff) {
+                        _isOn = Boolean.valueOf(isOn);
+                    }
+                    String _flagArgs = null;
+                    boolean hasValue = (_flagName.contains("="));
+                    if (hasValue) {
+                        _flagName = StringUtil.substringBefore(_flagValue, "=");
+                        _flagArgs = StringUtil.substringAfter(_flagValue, "=");
+                    }
+                    LogUtil.info("Set " + _flagName + " -> " + _isOn + " @ " + _flagArgs);
                     try {
                         JFlagCommand cmd = JFlagCommand.valueOf(_flagName);
-                        LogUtil.info("Set " + _flagName + " -> " + isOn + " @ " + null);
-                        cmd.getHandler().handle(cmd, isOn, null);
+                        cmd.getHandler().handle(cmd, _isOn, _flagArgs);
                     } catch (Exception e) {
                         // TODO
-                        LogUtil.info("DO " + _flagName + " -> " + isOn);
                     }
                 }
             }

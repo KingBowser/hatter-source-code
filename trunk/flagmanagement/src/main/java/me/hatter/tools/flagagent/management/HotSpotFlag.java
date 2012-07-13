@@ -12,10 +12,14 @@ import com.sun.management.VMOption;
 
 public class HotSpotFlag implements HotSpotFlagMXBean {
 
-    public static final HotSpotFlag HOT_SPOT_FLAG_MXBEAN = new HotSpotFlag();
+    private static HotSpotFlag HOT_SPOT_FLAG_MXBEAN = null;
 
-    public static void registerMXBean() {
+    synchronized public static void registerMXBean() {
+        if (HOT_SPOT_FLAG_MXBEAN != null) {
+            return;
+        }
         try {
+            HOT_SPOT_FLAG_MXBEAN = new HotSpotFlag();
             ManagementFactory.getPlatformMBeanServer().registerMBean(HOT_SPOT_FLAG_MXBEAN,
                                                                      new ObjectName(HOTSPOT_FLAG_MXBEAN_NAME));
         } catch (Exception e) {

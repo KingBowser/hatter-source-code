@@ -29,17 +29,7 @@ public class JFlag {
         List<Flag> flagList = FlagParserUtil.parseFlagList(flags);
 
         if ((UnixArgsutil.ARGS.kvalue("show") != null) && (UnixArgsutil.ARGS.args().length == 0)) {
-            System.out.println(StringUtil.paddingSpaceRight("FlagName", 80) + StringUtil.paddingSpaceRight("Type", 20)
-                               + "Runtime");
-            System.out.println(StringUtil.repeat("-", 110));
-            for (Flag flag : flagList) {
-                if (filterFlag(flag)) {
-                    System.out.println(StringUtil.paddingSpaceRight(flag.getName(), 80)
-                                       + StringUtil.paddingSpaceRight(flag.getType().getName(), 20)
-                                       + flag.getRuntime().getName());
-                }
-            }
-            System.exit(0);
+            flags(flagList);
         }
         if (UnixArgsutil.ARGS.args().length == 0) {
             usage();
@@ -103,6 +93,20 @@ public class JFlag {
         return false;
     }
 
+    private static void flags(List<Flag> flagList) {
+        System.out.println(StringUtil.paddingSpaceRight("FlagName", 40) + " "
+                           + StringUtil.paddingSpaceRight("Type", 20) + "Runtime");
+        System.out.println(StringUtil.repeat("-", 70));
+        for (Flag flag : flagList) {
+            if (filterFlag(flag)) {
+                System.out.println(StringUtil.paddingSpaceRight(flag.getName(), 40) + " "
+                                   + StringUtil.paddingSpaceRight(flag.getType().getName(), 20)
+                                   + flag.getRuntime().getName());
+            }
+        }
+        System.exit(0);
+    }
+
     private static void usage() {
         System.out.println("Usage:");
         System.out.println("  java -jar jflagall.jar [options] <pid>");
@@ -110,10 +114,6 @@ public class JFlag {
         System.out.println("    -runt <option>          collection(default product)");
         System.out.println("          product           runtime product");
         System.out.println("          develop           runtime develop");
-        System.out.println("    -list <option>          list flag(s) (default all)");
-        System.out.println("          all               list all flag(s)");
-        System.out.println("          on                list on flag(s)");
-        System.out.println("          off               list off flag(s)");
         System.out.println("    --show-not-exists       show not exists flag(s)");
         System.out.println();
         HotSpotProcessUtil.printVMs(System.out, true);

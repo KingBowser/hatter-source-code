@@ -48,19 +48,18 @@ public class JFlag {
             for (String _flag : _flagList) {
                 boolean isOn = _flag.startsWith("+");
                 boolean isOff = _flag.startsWith("-");
-                boolean isAt = _flag.startsWith("@");
-                if (!(isOn || isOff || isAt)) {
+                boolean isEq = _flag.contains("=");
+                if (!(isOn || isOff || isEq)) {
                     LogUtil.error("Invalid flag args: " + _flag);
                 } else {
-                    String _flagValue = _flag.substring(1);
+                    String _flagValue = isEq ? _flag : _flag.substring(1);
                     String _flagName = _flagValue;
                     Boolean _isOn = null;
                     if (isOn || isOff) {
                         _isOn = Boolean.valueOf(isOn);
                     }
                     String _flagArgs = null;
-                    boolean hasValue = (_flagName.contains("="));
-                    if (hasValue) {
+                    if (isEq) {
                         _flagName = StringUtil.substringBefore(_flagValue, "=");
                         _flagArgs = StringUtil.substringAfter(_flagValue, "=");
                     }
@@ -70,7 +69,7 @@ public class JFlag {
                         JFlagCommand cmd = JFlagCommand.valueOf(_flagName);
                         result = cmd.getHandler().handle(cmd, _isOn, _flagArgs);
                     } catch (Exception e) {
-                        String value = (isAt) ? _flagValue : (isOn ? "1" : "0");
+                        String value = (isEq) ? _flagArgs : (isOn ? "1" : "0");
                         HotSpotAttachTool attach = new HotSpotAttachTool(pid);
                         attach.attach();
                         try {

@@ -20,5 +20,7 @@
 || https://wikis.oracle.com/display/HotSpotInternals/Home || HotSpot Internals. ||
 || http://ssw.jku.at/Research/Projects/JVM/ || Compiler and JVM Research at JKU. ||
 
+http://www.ibm.com/developerworks/java/
+
 
 `java  -agentlib:hprof=help`

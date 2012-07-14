@@ -20,6 +20,7 @@
 || https://wikis.oracle.com/display/HotSpotInternals/Home || HotSpot Internals. ||
 || http://ssw.jku.at/Research/Projects/JVM/ || Compiler and JVM Research at JKU. ||
 
+ * https://wikis.oracle.com/display/OpenJdkBuilds/JDK+Glossary+of+Terms
  * http://www.oracle.com/technetwork/java/hotspotfaq-138619.html
  * http://www.ibm.com/developerworks/java/
 

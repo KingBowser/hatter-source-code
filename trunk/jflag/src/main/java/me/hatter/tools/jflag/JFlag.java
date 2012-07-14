@@ -254,6 +254,7 @@ public class JFlag {
         System.out.println();
         System.out.println("Sample:");
         System.out.println("  java -jar jflagall.jar --show-remote-flags --show-remote-writable <PID>  show remote JVM all writeable flags");
+        System.out.println("  java -jar jflagall.jar --show-cust-flags                                 show supported custome flags");
         System.out.println("  java -jar jflagall.jar -flag +PrintGCDetails <PID>                       open JVM's PrintGCDetails flag");
         System.out.println("  java -jar jflagall.jar -flag +~TraceClassLoading <PID>                   open JVM's TraceClassLoading flag using JMX");
         System.out.println();

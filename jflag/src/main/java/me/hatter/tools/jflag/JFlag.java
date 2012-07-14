@@ -16,6 +16,7 @@ import me.hatter.tools.commons.jvm.HotSpotVMUtil.JDKLib;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil.JDKTarget;
 import me.hatter.tools.commons.log.LogUtil;
 import me.hatter.tools.commons.string.StringUtil;
+import me.hatter.tools.flagagent.management.HotSpotFlagMXBean;
 import sun.tools.attach.HotSpotVirtualMachine;
 
 import com.sun.management.VMOption;
@@ -63,25 +64,31 @@ public class JFlag {
                         _flagName = StringUtil.substringBefore(_flagValue, "=");
                         _flagArgs = StringUtil.substringAfter(_flagValue, "=");
                     }
-                    LogUtil.info("Set " + _flagName + " -> " + _isOn + " @ " + _flagArgs);
-                    String result = null;
-                    try {
-                        JFlagCommand cmd = JFlagCommand.valueOf(_flagName);
-                        result = cmd.getHandler().handle(cmd, _isOn, _flagArgs);
-                    } catch (Exception e) {
-                        String value = (isEq) ? _flagArgs : (isOn ? "1" : "0");
-                        HotSpotAttachTool attach = new HotSpotAttachTool(pid);
-                        attach.attach();
-                        try {
-                            HotSpotVirtualMachine hvm = (HotSpotVirtualMachine) attach.getVM();
-                            InputStream isVal = hvm.setFlag(_flagName, value);
-                            result = IOUtil.readToStringAndClose(isVal, "UTF-8");
-                        } catch (IOException ex) {
-                            LogUtil.error("", ex);
-                        } finally {
-                            attach.detach();
-                        }
+                    LogUtil.info("Set flag " + _flagName + " -> " + _isOn + " @ " + _flagArgs);
 
+                    String result = null;
+                    if (_flagName.startsWith("~")) {
+                        String value = (isEq) ? _flagArgs : (isOn ? "true" : "false");
+                        HotSpotFlagMXBean flagMXBean = new RemoteFlagTool(UnixArgsutil.ARGS.args()[0]).getHotSpotFlagMXBean();
+                        flagMXBean.setVMOption(_flagName.substring(1), value);
+                    } else {
+                        try {
+                            JFlagCommand cmd = JFlagCommand.valueOf(_flagName);
+                            result = cmd.getHandler().handle(cmd, _isOn, _flagArgs);
+                        } catch (Exception e) {
+                            String value = (isEq) ? _flagArgs : (isOn ? "1" : "0");
+                            HotSpotAttachTool attach = new HotSpotAttachTool(pid);
+                            attach.attach();
+                            try {
+                                HotSpotVirtualMachine hvm = (HotSpotVirtualMachine) attach.getVM();
+                                InputStream isVal = hvm.setFlag(_flagName, value);
+                                result = IOUtil.readToStringAndClose(isVal, "UTF-8");
+                            } catch (IOException ex) {
+                                LogUtil.error("", ex);
+                            } finally {
+                                attach.detach();
+                            }
+                        }
                     }
                     if ((result != null) && (!result.isEmpty())) {
                         LogUtil.info("Return with result: " + result);
@@ -235,6 +242,7 @@ public class JFlag {
         System.out.println("  java -jar jflagall.jar [options] <pid>");
         System.out.println("    -show <flags>             show flags('ALL' show all)");
         System.out.println("    -flag <+/-flag>           set flag");
+        System.out.println("          <+/-~flag>          set flag by JMX");
         System.out.println("    -runt <option>            runtime(default all)");
         System.out.println("          options             " + Arrays.asList(FlagRuntimeType.values()));
         System.out.println("    -type <option>            type(default all)");
@@ -242,7 +250,12 @@ public class JFlag {
         System.out.println("    --show-not-exists         show not exists flag(s)");
         System.out.println("    --show-cust-flags         show custom flags");
         System.out.println("    --show-remote-flags       show remote flags");
-        System.out.println("    --show-remote-writable    show remote flags");
+        System.out.println("    --show-remote-writable    show writable remote flags");
+        System.out.println();
+        System.out.println("Sample:");
+        System.out.println("  java -jar jflagall.jar --show-remote-flags --show-remote-writable <PID>  show remote JVM all writeable flags");
+        System.out.println("  java -jar jflagall.jar -flag +PrintGCDetails <PID>                       open JVM's PrintGCDetails flag");
+        System.out.println("  java -jar jflagall.jar -flag +~TraceClassLoading <PID>                   open JVM's TraceClassLoading flag using JMX");
         System.out.println();
         HotSpotProcessUtil.printVMs(System.out, true);
         System.exit(0);

@@ -16,3 +16,6 @@
 || `-` || `-` ||
 || http://docs.oracle.com/javase/tutorial/index.html || The Java™ Tutorials. ||
 || http://docs.oracle.com/javase/7/docs/index.html || Java™ Platform Standard Edition 7 Documentation ||
+|| `-` || `-` ||
+|| https://wikis.oracle.com/display/HotSpotInternals/Home || HotSpot Internals. ||
+|| http://ssw.jku.at/Research/Projects/JVM/ || Compiler and JVM Research at JKU. ||

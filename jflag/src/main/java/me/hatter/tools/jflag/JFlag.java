@@ -130,14 +130,13 @@ public class JFlag {
                         }
                     } else {
                         try {
-                            // TODO
                             String[] nameValue = parseFlag(result);
                             Flag f = getFlag(flagList, nameValue[0]);
                             System.out.println(StringUtil.paddingSpaceRight(nameValue[0], 40)
                                                + " "
-                                               + StringUtil.paddingSpaceRight(((f == null) ? "null" : f.getType().getName()),
+                                               + StringUtil.paddingSpaceRight(((f == null) ? "unknow" : f.getType().getName()),
                                                                               20)
-                                               + StringUtil.paddingSpaceRight(((f == null) ? "null" : f.getRuntime().getName()),
+                                               + StringUtil.paddingSpaceRight(((f == null) ? "unknow" : f.getRuntime().getName()),
                                                                               20) + nameValue[1]);
                         } catch (Exception e) {
                             System.out.println(result + " (parse failed: " + e.getMessage() + ")");
@@ -165,7 +164,7 @@ public class JFlag {
         if ((_xxflag == null) || (_xxflag.length() == 0)) {
             return null;
         }
-        _xxflag = (_xxflag.startsWith("-XX")) ? _xxflag.substring("-XX".length()) : _xxflag;
+        _xxflag = (_xxflag.startsWith("-XX:")) ? _xxflag.substring("-XX:".length()) : _xxflag;
         boolean isOn = _xxflag.startsWith("+");
         boolean isOff = _xxflag.startsWith("-");
         boolean isEq = _xxflag.contains("=");

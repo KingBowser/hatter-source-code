@@ -12,20 +12,6 @@ import me.hatter.tools.flagagent.management.HotSpotFlagMXBean;
 
 public class RemoteFlagTool {
 
-    private static File              tempFlagAgent;
-    static {
-        try {
-            tempFlagAgent = File.createTempFile("flagagent", ".jar");
-            tempFlagAgent.deleteOnExit();
-            FileOutputStream fos = new FileOutputStream(tempFlagAgent);
-            copy(RemoteFlagTool.class.getResourceAsStream("/flagagent.jar"), fos);
-            fos.close();
-            System.out.println("[INFO] Load agent: " + tempFlagAgent);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     private String                   pid;
 
     private static HotSpotFlagMXBean hotSpotFlagMXBean = null;
@@ -40,7 +26,7 @@ public class RemoteFlagTool {
             attach.attach();
             try {
                 if (attach.getVM().getSystemProperties().get("me.hatter.management.init.HotSpotFlag") == null) {
-                    attach.getVM().loadAgent(tempFlagAgent.getAbsolutePath());
+                    attach.getVM().loadAgent(getTempFlagAgent().getAbsolutePath());
                 }
             } catch (Exception e) {
                 throw new RuntimeException(e);
@@ -52,6 +38,24 @@ public class RemoteFlagTool {
                                                                                    HotSpotFlagMXBean.class);
         }
         return hotSpotFlagMXBean;
+    }
+
+    private static File tempFlagAgent;
+
+    synchronized private static File getTempFlagAgent() {
+        if (tempFlagAgent == null) {
+            try {
+                tempFlagAgent = File.createTempFile("flagagent", ".jar");
+                tempFlagAgent.deleteOnExit();
+                FileOutputStream fos = new FileOutputStream(tempFlagAgent);
+                copy(RemoteFlagTool.class.getResourceAsStream("/flagagent.jar"), fos);
+                fos.close();
+                System.out.println("[INFO] Load agent: " + tempFlagAgent);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return tempFlagAgent;
     }
 
     private static long copy(InputStream is, OutputStream os) throws IOException {

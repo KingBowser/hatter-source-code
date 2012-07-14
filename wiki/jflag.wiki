@@ -1,0 +1,38 @@
+#summary Show/Set HotSpot JVM flags
+
+= Introduction =
+
+You can use jflg show or set HotSpot JVM flags
+
+
+= Details =
+
+Usage, use command `java -jar jflagall.jar` (no arguments):
+{{{
+wget https://hatter-source-code.googlecode.com/svn/trunk/jflag/jflagall.jar
+}}}
+{{{
+Usage:
+  java -jar jflagall.jar [options] <pid>
+    -show <flags>             show flags('ALL' show all)
+    -flag <+/-flag>           set flag
+          <+/-~flag>          set flag by JMX
+    -runt <option>            runtime(default all)
+          options             [product, lp64_product, product_pd, product_rw, manageable, diagnostic, develop, develop_pd, notproduct, experimental]
+    -type <option>            type(default all)
+          options             [ccstr, ccstrlist, intx, uint64_t, uintx, bool, double]
+    --show-not-exists         show not exists flag(s)
+    --show-cust-flags         show custom flags
+    --show-remote-flags       show remote flags
+    --show-remote-writable    show writable remote flags
+
+Sample:
+  java -jar jflagall.jar --show-remote-flags --show-remote-writable <PID>  show remote JVM all writeable flags
+  java -jar jflagall.jar --show-cust-flags                                 show supported custome flags
+  java -jar jflagall.jar -flag +PrintGCDetails <PID>                       open JVM's PrintGCDetails flag
+  java -jar jflagall.jar -flag +~TraceClassLoading <PID>                   open JVM's TraceClassLoading flag using JMX
+
+jvmid     attachable   classname
+1338      true         sun.tools.jconsole.JConsole
+278       true         
+}}}

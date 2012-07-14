@@ -298,6 +298,9 @@ public class JFlag {
         System.out.println("    --show-remote-flags       show remote flags");
         System.out.println("    --show-remote-writable    show writable remote flags");
         System.out.println();
+        System.out.println("Related read:");
+        System.out.println("  http://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html");
+        System.out.println();
         System.out.println("Sample:");
         System.out.println("  java -jar jflagall.jar --show-remote-flags --show-remote-writable <PID>  show remote JVM all writeable flags");
         System.out.println("  java -jar jflagall.jar --show-cust-flags                                 show supported custome flags");

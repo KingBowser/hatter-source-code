@@ -7,9 +7,12 @@ You can use jflg show or set HotSpot JVM flags
 
 = Details =
 
-Usage, use command `java -jar jflagall.jar` (no arguments):
+Usage:
 {{{
 wget https://hatter-source-code.googlecode.com/svn/trunk/jflag/jflagall.jar
+}}}
+{{{
+java -jar jflagall.jar
 }}}
 {{{
 Usage:

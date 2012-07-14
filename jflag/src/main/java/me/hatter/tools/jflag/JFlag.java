@@ -114,6 +114,10 @@ public class JFlag {
         try {
             HotSpotVirtualMachine hvm = (HotSpotVirtualMachine) attach.getVM();
             try {
+                System.out.println(StringUtil.paddingSpaceRight("FlagName", 40) + " "
+                                   + StringUtil.paddingSpaceRight("Type", 20)
+                                   + StringUtil.paddingSpaceRight("Runtime", 20) + "Value");
+                System.out.println(StringUtil.repeat("-", 91));
                 for (Flag flag : flagList) {
                     if (ignoreSet.contains(flag.getName())) continue;
                     if (!filterFlag(flag)) continue;
@@ -125,7 +129,19 @@ public class JFlag {
                             System.out.println(result);
                         }
                     } else {
-                        System.out.println(result);
+                        try {
+                            // TODO
+                            String[] nameValue = parseFlag(result);
+                            Flag f = getFlag(flagList, nameValue[0]);
+                            System.out.println(StringUtil.paddingSpaceRight(nameValue[0], 40)
+                                               + " "
+                                               + StringUtil.paddingSpaceRight(((f == null) ? "null" : f.getType().getName()),
+                                                                              20)
+                                               + StringUtil.paddingSpaceRight(((f == null) ? "null" : f.getRuntime().getName()),
+                                                                              20) + nameValue[1]);
+                        } catch (Exception e) {
+                            System.out.println(result + " (parse failed: " + e.getMessage() + ")");
+                        }
                     }
                 }
             } catch (IOException e) {
@@ -134,6 +150,37 @@ public class JFlag {
         } finally {
             attach.detach();
         }
+    }
+
+    private static Flag getFlag(List<Flag> flagList, String name) {
+        for (Flag flag : flagList) {
+            if (name.equals(flag.getName())) {
+                return flag;
+            }
+        }
+        return null;
+    }
+
+    private static String[] parseFlag(String _xxflag) {
+        if ((_xxflag == null) || (_xxflag.length() == 0)) {
+            return null;
+        }
+        _xxflag = (_xxflag.startsWith("-XX")) ? _xxflag.substring("-XX".length()) : _xxflag;
+        boolean isOn = _xxflag.startsWith("+");
+        boolean isOff = _xxflag.startsWith("-");
+        boolean isEq = _xxflag.contains("=");
+
+        String name = _xxflag;
+        String value = null;
+        if (isOn || isOff) {
+            name = _xxflag.substring(1);
+            value = isOn ? "true" : "false";
+        } else if (isEq) {
+            name = StringUtil.substringBefore(_xxflag, "=");
+            value = StringUtil.substringAfter(_xxflag, "=");
+        }
+
+        return new String[] { name, value };
     }
 
     private static boolean filterName(String name) {

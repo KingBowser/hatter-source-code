@@ -171,7 +171,7 @@ public class StringUtil {
         if (indexOfSplit < 0) {
             return null;
         }
-        return str.substring(indexOfSplit);
+        return str.substring(0, indexOfSplit);
     }
 
     public static String substringAfter(String str, String split) {

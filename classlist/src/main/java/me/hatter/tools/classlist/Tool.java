@@ -11,7 +11,7 @@
  */
 
 // package sun.jvm.hotspot.tools;
-package me.hatter.tools.permstat;
+package me.hatter.tools.classlist;
 
 import java.io.PrintStream;
 

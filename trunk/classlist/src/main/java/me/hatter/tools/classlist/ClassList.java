@@ -2,6 +2,8 @@ package me.hatter.tools.classlist;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -100,6 +102,12 @@ public class ClassList {
                         }
                     }
 
+                    if (!detail) {
+                        if (totalCount.get() % 100 == 0) {
+                            System.out.print(".");
+                        }
+                    }
+
                     if (isMatch) {
                         filterCount.incrementAndGet();
                         filterSize.addAndGet(_objectSize);
@@ -127,6 +135,8 @@ public class ClassList {
             });
             if (detail) {
                 System.out.println(StringUtil.repeat("-", 70));
+            } else {
+                System.out.println();
             }
             System.out.println("Total class count: " + totalCount.get());
             System.out.println("Total class size: " + totalSize.get() + " (H: "
@@ -149,17 +159,24 @@ public class ClassList {
                                    + StringUtil.paddingSpaceRight("Count", 10)
                                    + StringUtil.paddingSpaceRight("Size", 12) + " Human(size)");
                 System.out.println(StringUtil.repeat("-", 70));
+                List<PackageNameCountSize> pnList = new ArrayList<PackageNameCountSize>();
                 for (String npackageName : packageCountMap.keySet()) {
-                    System.out.println(StringUtil.paddingSpaceRight(npackageName, 35)
-                                       + " "
-                                       + StringUtil.paddingSpaceRight(String.valueOf(packageCountMap.get(npackageName).longValue()),
-                                                                      10)
-                                       + " "
-                                       + StringUtil.paddingSpaceRight(String.valueOf(packageSizeMap.get(npackageName).longValue()),
-                                                                      12)
-                                       + " "
-                                       + ByteUtil.formatBytes(ByteFormat.HUMAN,
-                                                              packageSizeMap.get(npackageName).longValue()));
+                    pnList.add(new PackageNameCountSize(npackageName, packageCountMap.get(npackageName).longValue(),
+                                                        packageSizeMap.get(npackageName).longValue()));
+                }
+
+                Collections.sort(pnList, new Comparator<PackageNameCountSize>() {
+
+                    public int compare(PackageNameCountSize o1, PackageNameCountSize o2) {
+                        return -((o1.size > o2.size) ? 1 : ((o1.size == o2.size) ? 0 : -1));
+                    }
+                });
+
+                for (PackageNameCountSize pncs : pnList) {
+                    System.out.println(StringUtil.paddingSpaceRight(pncs.packagename, 35) + " "
+                                       + StringUtil.paddingSpaceRight(String.valueOf(pncs.count), 10) + " "
+                                       + StringUtil.paddingSpaceRight(String.valueOf(pncs.size), 12) + " "
+                                       + ByteUtil.formatBytes(ByteFormat.HUMAN, pncs.size));
                 }
             }
         }

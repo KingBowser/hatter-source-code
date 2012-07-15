@@ -206,6 +206,9 @@ public class JFlag {
 
         {
             String runt = UnixArgsutil.ARGS.kvalue("runt");
+            if ((runt == null) && (UnixArgsutil.ARGS.flags().contains("writable"))) {
+                runt = FlagRuntimeType._product_rw.getName() + "," + FlagRuntimeType._manageable.getName();
+            }
             boolean showAll = ("ALL".equals(runt) || (runt == null));
             Set<FlagRuntimeType> runtSet = new HashSet<FlagRuntimeType>();
             if (!showAll) {
@@ -249,7 +252,7 @@ public class JFlag {
     }
 
     private static void remoteFlags() {
-        boolean writeable = UnixArgsutil.ARGS.flags().contains("show-remote-writable");
+        boolean writeable = UnixArgsutil.ARGS.flags().contains("writable");
         List<VMOption> optionList = new RemoteFlagTool(UnixArgsutil.ARGS.args()[0]).getHotSpotFlagMXBean().getVMOptionList();
         System.out.println(StringUtil.paddingSpaceRight("FlagName", 40) + " "
                            + StringUtil.paddingSpaceRight("Type", 20) + StringUtil.paddingSpaceRight("Writable", 10)
@@ -293,16 +296,16 @@ public class JFlag {
         System.out.println("          options             " + Arrays.asList(FlagRuntimeType.values()));
         System.out.println("    -type <option>            type(default all)");
         System.out.println("          options             " + Arrays.asList(FlagValueType.values()));
+        System.out.println("    --writable                show writable flag(s)");
         System.out.println("    --show-not-exists         show not exists flag(s)");
         System.out.println("    --show-cust-flags         show custom flags");
         System.out.println("    --show-remote-flags       show remote flags");
-        System.out.println("    --show-remote-writable    show writable remote flags");
         System.out.println();
         System.out.println("Related read:");
         System.out.println("  http://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html");
         System.out.println();
         System.out.println("Sample:");
-        System.out.println("  java -jar jflagall.jar --show-remote-flags --show-remote-writable <PID>  show remote JVM all writeable flags");
+        System.out.println("  java -jar jflagall.jar --show-remote-flags --writable <PID>  show remote JVM all writeable flags");
         System.out.println("  java -jar jflagall.jar --show-cust-flags                                 show supported custome flags");
         System.out.println("  java -jar jflagall.jar -flag +PrintGCDetails <PID>                       open JVM's PrintGCDetails flag");
         System.out.println("  java -jar jflagall.jar -flag +~TraceClassLoading <PID>                   open JVM's TraceClassLoading flag using JMX");

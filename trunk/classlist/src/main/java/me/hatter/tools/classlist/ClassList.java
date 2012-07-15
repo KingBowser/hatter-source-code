@@ -65,7 +65,7 @@ public class ClassList {
             final ConcurrentMap<String, AtomicLong> packageSizeMap = new ConcurrentHashMap<String, AtomicLong>();
 
             final boolean detail = UnixArgsutil.ARGS.flags().contains("detail");
-            final int npackage = Integer.parseInt(UnixArgsutil.ARGS.kvalue("grouping"));
+            final int npackage = (UnixArgsutil.ARGS.keys().contains("grouping") ? Integer.parseInt(UnixArgsutil.ARGS.kvalue("grouping")) : 0);
 
             SystemDictionary sysDict = new SystemDictionary();
 
@@ -115,7 +115,7 @@ public class ClassList {
                             System.out.println(StringUtil.paddingSpaceRight(className, 60) + " " + _objectSize);
                         }
                         // ---------------------------------------------------------------------
-                        if (!isPrimary.get()) {
+                        if ((npackage > 0) && !isPrimary.get()) {
                             String npackageName = getNPackageName(fullClassName, npackage);
                             AtomicLong count = packageCountMap.get(npackageName);
                             if (count == null) {

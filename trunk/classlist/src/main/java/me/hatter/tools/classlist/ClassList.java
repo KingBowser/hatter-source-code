@@ -28,6 +28,7 @@ import sun.jvm.hotspot.oops.Klass;
 import sun.jvm.hotspot.oops.Method;
 import sun.jvm.hotspot.oops.ObjArray;
 import sun.jvm.hotspot.oops.Oop;
+import sun.jvm.hotspot.runtime.VM;
 
 public class ClassList {
 
@@ -67,7 +68,7 @@ public class ClassList {
             final boolean detail = UnixArgsutil.ARGS.flags().contains("detail");
             final int npackage = (UnixArgsutil.ARGS.keys().contains("grouping") ? Integer.parseInt(UnixArgsutil.ARGS.kvalue("grouping")) : 0);
 
-            SystemDictionary sysDict = new SystemDictionary();
+            SystemDictionary sysDict = VM.getVM().getSystemDictionary();
 
             if (detail) {
                 System.out.println(StringUtil.paddingSpaceRight("Class Name", 60) + " Size");

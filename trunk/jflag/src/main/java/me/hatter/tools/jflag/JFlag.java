@@ -205,7 +205,7 @@ public class JFlag {
         }
 
         {
-            String runt = UnixArgsutil.ARGS.kvalue("runt");
+            String runt = UnixArgsutil.ARGS.kvalue("runtime");
             if ((runt == null) && (UnixArgsutil.ARGS.flags().contains("writable"))) {
                 runt = FlagRuntimeType._product_rw.getName() + "," + FlagRuntimeType._manageable.getName();
             }
@@ -291,9 +291,11 @@ public class JFlag {
         System.out.println("  java -jar jflagall.jar [options] <pid>");
         System.out.println("    -show <flags>             show flags('ALL' show all)");
         System.out.println("    -flag <+/-flag>           set flag");
+        System.out.println("          <flag=value>        set flag to value");
         System.out.println("          <+/-~flag>          set flag by JMX");
-        System.out.println("    -runt <option>            runtime(default all)");
-        System.out.println("          options             " + Arrays.asList(FlagRuntimeType.values()));
+        System.out.println("          <~flag=value>       set flag to value by JMX");
+        System.out.println("    -runtime <option>         runtime(default all)");
+        System.out.println("             options          " + Arrays.asList(FlagRuntimeType.values()));
         System.out.println("    -type <option>            type(default all)");
         System.out.println("          options             " + Arrays.asList(FlagValueType.values()));
         System.out.println("    --writable                show writable flag(s)");

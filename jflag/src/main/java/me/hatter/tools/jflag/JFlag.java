@@ -307,7 +307,8 @@ public class JFlag {
         System.out.println("  http://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html");
         System.out.println();
         System.out.println("Sample:");
-        System.out.println("  java -jar jflagall.jar --show-remote-flags --writable <PID>  show remote JVM all writeable flags");
+        System.out.println("  java -jar jflagall.jar -show ALL --writable                              show all writable flags");
+        System.out.println("  java -jar jflagall.jar --show-remote-flags --writable <PID>              show remote JVM all writeable flags");
         System.out.println("  java -jar jflagall.jar --show-cust-flags                                 show supported custome flags");
         System.out.println("  java -jar jflagall.jar -flag +PrintGCDetails <PID>                       open JVM's PrintGCDetails flag");
         System.out.println("  java -jar jflagall.jar -flag +~TraceClassLoading <PID>                   open JVM's TraceClassLoading flag using JMX");

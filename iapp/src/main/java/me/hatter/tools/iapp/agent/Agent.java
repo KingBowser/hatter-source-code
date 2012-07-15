@@ -30,7 +30,8 @@ public class Agent {
     public static void invokemain(String agentArgs, Instrumentation inst) throws Exception {
         instrumentation = inst;
         Agent.agentArgs = new AgentArgs(agentArgs);
-        LogUtil.info("void invokemain(String, Instrumentation), with: " + Agent.agentArgs.getOriArgs());
+        LogUtil.info("void " + Agent.class.getName() + ".invokemain(String, Instrumentation), with: "
+                     + Agent.agentArgs.getOriArgs());
         // TODO ...
     }
 }

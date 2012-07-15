@@ -35,7 +35,7 @@ public class Agent {
 
     public static void invokemain(String agentArgs, Instrumentation inst) throws Exception {
         instrumentation = inst;
-        System.out.println("void invokemain(String, Instrumentation), with: " + agentArgs);
+        System.out.println("void " + Agent.class.getName() + "#invokemain(String, Instrumentation), with: " + agentArgs);
         if (System.getProperty(HOTSPOT_FLAG_MXBEAN_PROPERTY_KEY) == null) {
             final File tempFlagManagement = File.createTempFile("flagmanagement", ".jar");
             tempFlagManagement.deleteOnExit();

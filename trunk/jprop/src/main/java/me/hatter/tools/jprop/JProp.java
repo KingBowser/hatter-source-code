@@ -1,5 +1,6 @@
 package me.hatter.tools.jprop;
 
+import java.util.List;
 import java.util.Map;
 
 import me.hatter.tools.commons.args.UnixArgsutil;
@@ -10,6 +11,7 @@ import me.hatter.tools.commons.jvm.HotSpotProcessUtil;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil.JDKLib;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil.JDKTarget;
+import me.hatter.tools.commons.log.LogUtil;
 import me.hatter.tools.commons.string.StringUtil;
 import me.hatter.tools.jprop.agent.Agent;
 import me.hatter.tools.jprop.management.PropertyMXBean;
@@ -27,11 +29,40 @@ public class JProp {
         boolean isProperty = (!UnixArgsutil.ARGS.flags().contains("agent"));
         PropertyMXBean property = getPropertyMXBean(isProperty);
 
-        Map<String, String> pmap = property.getPropertyMap();
-        for (String key : pmap.keySet()) {
-            String value = pmap.get(key);
-            if (!filterKV(key, value)) continue;
-            System.out.println(StringUtil.paddingSpaceRight(key, 30) + " = " + pmap.get(key));
+        if (UnixArgsutil.ARGS.keys().contains("set") || UnixArgsutil.ARGS.keys().contains("remove")) {
+            {
+                List<String> setList = UnixArgsutil.ARGS.kvalues("set");
+                if ((setList != null) && (!setList.isEmpty())) {
+                    for (String set : setList) {
+                        if (!set.contains("=")) {
+                            LogUtil.error("Format error: " + set);
+                        } else {
+                            String key = StringUtil.substringBefore(set, "=");
+                            String value = StringUtil.substringAfter(set, "=");
+                            LogUtil.info("Set property: " + key + " = " + value + " @"
+                                         + (isProperty ? "system" : "agent"));
+                            property.setPropery(key, value);
+                        }
+                    }
+                }
+            }
+
+            {
+                List<String> removeList = UnixArgsutil.ARGS.kvalues("remove");
+                if ((removeList != null) && (!removeList.isEmpty())) {
+                    for (String remove : removeList) {
+                        LogUtil.info("Remove property: " + remove + " @" + (isProperty ? "system" : "agent"));
+                        property.clearPropery(remove);
+                    }
+                }
+            }
+        } else {
+            Map<String, String> pmap = property.getPropertyMap();
+            for (String key : pmap.keySet()) {
+                String value = pmap.get(key);
+                if (!filterKV(key, value)) continue;
+                System.out.println(StringUtil.paddingSpaceRight(key, 30) + " = " + pmap.get(key));
+            }
         }
     }
 
@@ -69,6 +100,8 @@ public class JProp {
         System.out.println("  java -jar jpropall.jar [options] <PID>");
         System.out.println("    <PID>                 target JVM pid");
         System.out.println("    -show <key name>      filter by key name");
+        System.out.println("    -set <key>=<vlue>     set key & value");
+        System.out.println("    -remove <key>         remove key");
         System.out.println("    --agent               show agent properties");
         System.out.println();
         HotSpotProcessUtil.printVMs(System.out, true);

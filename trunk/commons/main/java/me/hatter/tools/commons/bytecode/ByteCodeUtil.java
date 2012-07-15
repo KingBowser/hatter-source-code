@@ -1,12 +1,17 @@
 package me.hatter.tools.commons.bytecode;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 import me.hatter.tools.commons.string.StringUtil;
 
 public class ByteCodeUtil {
 
-    public static String resolveClassName(String className, boolean isShort) {
+    public static String resolveClassName(String className, boolean isShort, AtomicBoolean isPrimary) {
         if (className == null) {
             return null;
+        }
+        if (isPrimary != null) {
+            isPrimary.set(false);
         }
         className = className.replace('/', '.');
         int arr = 0;
@@ -18,6 +23,9 @@ public class ByteCodeUtil {
             className = className.substring(1, className.length() - 1);
         } else if (className.length() == 1) {
             String pn = getPrimaryTypeName(className.charAt(0));
+            if ((pn != null) && (isPrimary != null)) {
+                isPrimary.set(true);
+            }
             className = (pn == null) ? className : pn;
         }
         if (arr > 0) {

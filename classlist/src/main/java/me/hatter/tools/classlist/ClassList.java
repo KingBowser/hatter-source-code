@@ -19,7 +19,13 @@ import me.hatter.tools.commons.jvm.HotSpotVMUtil.JDKTarget;
 import me.hatter.tools.commons.string.StringUtil;
 import sun.jvm.hotspot.memory.SystemDictionary;
 import sun.jvm.hotspot.memory.SystemDictionary.ClassVisitor;
+import sun.jvm.hotspot.oops.Array;
+import sun.jvm.hotspot.oops.ConstantPool;
+import sun.jvm.hotspot.oops.InstanceKlass;
 import sun.jvm.hotspot.oops.Klass;
+import sun.jvm.hotspot.oops.Method;
+import sun.jvm.hotspot.oops.ObjArray;
+import sun.jvm.hotspot.oops.Oop;
 
 public class ClassList {
 
@@ -69,8 +75,15 @@ public class ClassList {
             sysDict.allClassesDo(new ClassVisitor() {
 
                 public void visit(Klass klass) {
+                    long _objectSize;
+                    if (klass instanceof InstanceKlass) {
+                        _objectSize = computeSize((InstanceKlass) klass);
+                    } else {
+                        _objectSize = klass.getObjectSize();
+                    }
+
                     totalCount.incrementAndGet();
-                    totalSize.addAndGet(klass.getObjectSize());
+                    totalSize.addAndGet(_objectSize);
 
                     AtomicBoolean isPrimary = new AtomicBoolean(false);
                     String fullClassName = ByteCodeUtil.resolveClassName(klass.getName().asString(), false, isPrimary);
@@ -89,10 +102,9 @@ public class ClassList {
 
                     if (isMatch) {
                         filterCount.incrementAndGet();
-                        filterSize.addAndGet(klass.getObjectSize());
+                        filterSize.addAndGet(_objectSize);
                         if (detail) {
-                            System.out.println(StringUtil.paddingSpaceRight(className, 60) + " "
-                                               + klass.getObjectSize());
+                            System.out.println(StringUtil.paddingSpaceRight(className, 60) + " " + _objectSize);
                         }
                         // ---------------------------------------------------------------------
                         if (!isPrimary.get()) {
@@ -108,7 +120,7 @@ public class ClassList {
                                 packageSizeMap.putIfAbsent(npackageName, new AtomicLong(0));
                                 size = packageSizeMap.get(npackageName);
                             }
-                            size.addAndGet(klass.getObjectSize());
+                            size.addAndGet(_objectSize);
                         }
                     }
                 }
@@ -162,6 +174,55 @@ public class ClassList {
                 cnl.add(cns[i]);
             }
             return StringUtil.join(cnl, ".");
+        }
+
+        private static long objectSize(Oop oop) {
+            return oop == null ? 0L : oop.getObjectSize();
+        }
+
+        // Don't count the shared empty arrays
+        private static long arraySize(Array arr) {
+            return arr.getLength() != 0L ? arr.getObjectSize() : 0L;
+        }
+
+        private static long computeSize(InstanceKlass k) {
+            long size = 0L;
+            // the InstanceKlass object itself
+            size += k.getObjectSize();
+
+            // Constant pool
+            ConstantPool cp = k.getConstants();
+            size += cp.getObjectSize();
+            size += objectSize(cp.getCache());
+            size += objectSize(cp.getTags());
+
+            // Interfaces
+            size += arraySize(k.getLocalInterfaces());
+            size += arraySize(k.getTransitiveInterfaces());
+
+            // Inner classes
+            size += objectSize(k.getInnerClasses());
+
+            // Fields
+            size += objectSize(k.getFields());
+
+            // Methods
+            ObjArray methods = k.getMethods();
+            int nmethods = (int) methods.getLength();
+            if (nmethods != 0L) {
+                size += methods.getObjectSize();
+                for (int i = 0; i < nmethods; ++i) {
+                    Method m = (Method) methods.getObjAt(i);
+                    size += m.getObjectSize();
+                    size += objectSize(m.getConstMethod());
+                }
+            }
+
+            // MethodOrdering - an int array that records the original
+            // ordering of methods in the class file
+            size += arraySize(k.getMethodOrdering());
+
+            return size;
         }
 
         protected void stop() {

@@ -6,10 +6,15 @@ import java.util.Map;
 import java.util.Properties;
 
 import javax.management.ObjectName;
+import javax.management.StandardMBean;
 
-public class PropertyImpl implements PropertyMXBean {
+public class PropertyImpl extends StandardMBean implements PropertyMXBean {
 
     private static PropertyImpl PROPERTYIMPL_MXBEAN = null;
+
+    public PropertyImpl() {
+        super(PropertyMXBean.class, true);
+    }
 
     synchronized public static void registerMXBean() {
         if (PROPERTYIMPL_MXBEAN != null) {

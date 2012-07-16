@@ -1,5 +1,7 @@
 package me.hatter.tools.commons.file;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FileInputStream;
@@ -30,7 +32,7 @@ public class FileUtil {
 
     public static String readFileToString(File file, String charset) {
         try {
-            return IOUtil.readToString(new FileInputStream(file), charset);
+            return IOUtil.readToStringAndClose(new BufferedInputStream(new FileInputStream(file)), charset);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -38,7 +40,7 @@ public class FileUtil {
 
     public static void writeBytesToFile(File file, byte[] bytes) {
         try {
-            IOUtil.writeBytesAndClose(new FileOutputStream(file), bytes);
+            IOUtil.writeBytesAndClose(new BufferedOutputStream(new FileOutputStream(file)), bytes);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

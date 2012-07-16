@@ -68,7 +68,7 @@ public class Finding {
                         } else if (is_s) {
                             fn = file.getName();
                         } else {
-                            fn = file.getAbsolutePath().replace(Environment.USER_DIR, StringUtil.EMPTY);
+                            fn = "." + file.getAbsolutePath().replace(Environment.USER_DIR, StringUtil.EMPTY);
                         }
                         if (is_N) {
                             if (mcount == 0) {

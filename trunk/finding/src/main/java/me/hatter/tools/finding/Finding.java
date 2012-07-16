@@ -77,13 +77,14 @@ public class Finding {
                             fn = "." + file.getAbsolutePath().replace(Environment.USER_DIR, StringUtil.EMPTY);
                         }
                         fn = fileColorSt + fn + colorEd;
+                        String ln = line.trim();
                         if (is_N) {
                             if (mcount == 0) {
                                 System.out.println(fn);
                             }
-                            System.out.println("\t: " + line);
+                            System.out.println("\t: " + ln);
                         } else {
-                            System.out.println(fn + ": " + line);
+                            System.out.println(fn + ": " + ln);
                         }
                         mcount++;
                     }

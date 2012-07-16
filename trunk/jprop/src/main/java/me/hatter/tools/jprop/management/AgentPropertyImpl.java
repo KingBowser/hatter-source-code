@@ -6,12 +6,17 @@ import java.util.Map;
 import java.util.Properties;
 
 import javax.management.ObjectName;
+import javax.management.StandardMBean;
 
 import sun.misc.VMSupport;
 
-public class AgentPropertyImpl implements PropertyMXBean {
+public class AgentPropertyImpl extends StandardMBean implements PropertyMXBean {
 
     private static AgentPropertyImpl PROPERTYIMPL_MXBEAN = null;
+
+    public AgentPropertyImpl() {
+        super(PropertyMXBean.class, true);
+    }
 
     synchronized public static void registerMXBean() {
         if (PROPERTYIMPL_MXBEAN != null) {

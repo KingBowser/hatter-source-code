@@ -5,14 +5,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.management.ObjectName;
+import javax.management.StandardMBean;
 
 import sun.management.FlagAgent;
 
 import com.sun.management.VMOption;
 
-public class HotSpotFlag implements HotSpotFlagMXBean {
+public class HotSpotFlag extends StandardMBean implements HotSpotFlagMXBean {
 
     private static HotSpotFlag HOT_SPOT_FLAG_MXBEAN = null;
+
+    public HotSpotFlag() {
+        super(HotSpotFlagMXBean.class, true);
+    }
 
     synchronized public static void registerMXBean() {
         if (HOT_SPOT_FLAG_MXBEAN != null) {

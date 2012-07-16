@@ -76,9 +76,10 @@ public class Finding {
                         } else {
                             fn = "." + file.getAbsolutePath().replace(Environment.USER_DIR, StringUtil.EMPTY);
                         }
+                        fn = fileColorSt + fn + colorEd;
                         if (is_N) {
                             if (mcount == 0) {
-                                System.out.println(fileColorSt + fn + colorEd);
+                                System.out.println(fn);
                             }
                             System.out.println("\t: " + line);
                         } else {

@@ -27,6 +27,8 @@ public class Finding {
         final Matcher matcher = getMatcher(search);
         final boolean is_1 = UnixArgsutil.ARGS.flags().contains("1");
         final boolean is_s = UnixArgsutil.ARGS.flags().contains("s");
+        final boolean is_F = UnixArgsutil.ARGS.flags().contains("F");
+        final boolean is_N = UnixArgsutil.ARGS.flags().contains("N");
         final long startMillis = System.currentTimeMillis();
         final AtomicLong totalCount = new AtomicLong(0);
         final AtomicLong matchCount = new AtomicLong(0);
@@ -61,8 +63,19 @@ public class Finding {
                             matchCount.incrementAndGet();
                         }
                         mcount++;
-                        String fn = is_s ? file.getName() : file.getAbsolutePath();
-                        System.out.println(fn + ": " + line);
+                        String fn;
+                        if (is_F) {
+                            fn = file.getAbsolutePath();
+                        } else if (is_s) {
+                            fn = file.getName();
+                        } else {
+                            fn = file.getAbsolutePath().replace(Environment.USER_DIR, StringUtil.EMPTY);
+                        }
+                        if (is_N) {
+                            System.out.println(fn + "\n\t: " + line);
+                        } else {
+                            System.out.println(fn + ": " + line);
+                        }
                     }
                 }
                 return false;
@@ -170,6 +183,8 @@ public class Finding {
         System.out.println("    --e                          ignore case regex");
         System.out.println("    --1                          one file matches only one time");
         System.out.println("    --s                          print simple file name");
+        System.out.println("    --F                          print full file name");
+        System.out.println("    --N                          print match at new line");
         System.exit(0);
     }
 }

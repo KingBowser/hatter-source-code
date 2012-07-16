@@ -150,7 +150,12 @@ public class UnixArgsutil {
                     vs.add(arg);
                     lastk = null;
                 } else {
-                    if (arg.startsWith("--")) {
+                    if (arg.startsWith("---")) {
+                        String ar = arg.substring(3);
+                        for (char c : ar.toCharArray()) {
+                            unixArgs.flags.add(new String(new char[] { c }));
+                        }
+                    } else if (arg.startsWith("--")) {
                         String ar = arg.substring(2);
                         int indexOfEq = ar.indexOf('=');
                         if (indexOfEq > 0) {

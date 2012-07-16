@@ -16,6 +16,9 @@ import me.hatter.tools.commons.string.StringUtil;
 
 public class Finding {
 
+    public static final char   CHAR_27 = (char) 27;
+    public static final String RESET   = CHAR_27 + "[0m";
+
     public static void main(String[] args) {
         UnixArgsutil.parseGlobalArgs(args);
         if (UnixArgsutil.ARGS.args().length == 0) {
@@ -29,6 +32,7 @@ public class Finding {
         final boolean is_s = UnixArgsutil.ARGS.flags().contains("s");
         final boolean is_F = UnixArgsutil.ARGS.flags().contains("F");
         final boolean is_N = UnixArgsutil.ARGS.flags().contains("N");
+        final boolean is_C = UnixArgsutil.ARGS.flags().contains("C");
         final long startMillis = System.currentTimeMillis();
         final AtomicLong totalCount = new AtomicLong(0);
         final AtomicLong matchCount = new AtomicLong(0);
@@ -62,6 +66,8 @@ public class Finding {
                         if (mcount == 0) {
                             matchCount.incrementAndGet();
                         }
+                        String fileColorSt = is_C ? (CHAR_27 + "[;32m") : "";
+                        String colorEd = is_C ? RESET : "";
                         String fn;
                         if (is_F) {
                             fn = file.getAbsolutePath();
@@ -72,7 +78,7 @@ public class Finding {
                         }
                         if (is_N) {
                             if (mcount == 0) {
-                                System.out.println(fn);
+                                System.out.println(fileColorSt + fn + colorEd);
                             }
                             System.out.println("\t: " + line);
                         } else {
@@ -188,6 +194,7 @@ public class Finding {
         System.out.println("    --s                          print simple file name");
         System.out.println("    --F                          print full file name");
         System.out.println("    --N                          print match at new line");
+        System.out.println("    --C                          color print");
         System.exit(0);
     }
 }

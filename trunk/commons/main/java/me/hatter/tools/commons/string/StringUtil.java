@@ -187,4 +187,32 @@ public class StringUtil {
         }
         return str.substring(indexOfSplit + split.length());
     }
+
+    public static String substringBeforeLast(String str, String split) {
+        if ((split == null) || (split.length() == 0) || (str == null) || (str.length() == 0)) {
+            return str;
+        }
+        if (str.length() < split.length()) {
+            return null;
+        }
+        int indexOfSplit = str.lastIndexOf(split);
+        if (indexOfSplit < 0) {
+            return null;
+        }
+        return str.substring(0, indexOfSplit);
+    }
+
+    public static String substringAfterLast(String str, String split) {
+        if ((split == null) || (split.length() == 0) || (str == null) || (str.length() == 0)) {
+            return str;
+        }
+        if (str.length() < split.length()) {
+            return null;
+        }
+        int indexOfSplit = str.lastIndexOf(split);
+        if (indexOfSplit < 0) {
+            return null;
+        }
+        return str.substring(indexOfSplit + split.length());
+    }
 }

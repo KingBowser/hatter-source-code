@@ -60,7 +60,9 @@ public class FileUtil {
                     if (refFiles != null) {
                         refFiles.add(f);
                     }
-                    listFiles(f, fileFilter, refFiles);
+                    if (f.isDirectory()) {
+                        listFiles(f, fileFilter, refFiles);
+                    }
                 }
             }
         }

@@ -62,7 +62,6 @@ public class Finding {
                         if (mcount == 0) {
                             matchCount.incrementAndGet();
                         }
-                        mcount++;
                         String fn;
                         if (is_F) {
                             fn = file.getAbsolutePath();
@@ -72,10 +71,14 @@ public class Finding {
                             fn = file.getAbsolutePath().replace(Environment.USER_DIR, StringUtil.EMPTY);
                         }
                         if (is_N) {
-                            System.out.println(fn + "\n\t: " + line);
+                            if (mcount == 0) {
+                                System.out.println(fn);
+                            }
+                            System.out.println("\t: " + line);
                         } else {
                             System.out.println(fn + ": " + line);
                         }
+                        mcount++;
                     }
                 }
                 return false;

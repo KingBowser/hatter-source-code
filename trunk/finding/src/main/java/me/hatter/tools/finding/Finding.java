@@ -66,7 +66,7 @@ public class Finding {
                         if (mcount == 0) {
                             matchCount.incrementAndGet();
                         }
-                        String fileColorSt = is_C ? (CHAR_27 + "[;31;37m") : "";
+                        String fileColorSt = is_C ? (CHAR_27 + "[;31m") : "";
                         String colorEd = is_C ? RESET : "";
                         String fn;
                         if (is_F) {

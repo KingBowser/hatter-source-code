@@ -83,13 +83,17 @@ public class HotStat {
         System.out.println("Usage:");
         System.out.println("  java -jar hotstatall.jar [options] [<PID> [<interval> [<count>]]]");
         System.out.println("    -filter <regex filter expression>    regex filter expression");
+        System.out.println("    -show <key name>                     contains filter expression");
     }
 
     public static boolean accept(Pattern p, String k) {
-        if (p == null) {
-            return true;
+        if (p != null) {
+            return p.matcher(k).matches();
         }
-        return p.matcher(k).matches();
+        if (UnixArgsutil.ARGS.keys().contains("show")) {
+            return k.toLowerCase().contains(UnixArgsutil.ARGS.kvalue("show").toLowerCase());
+        }
+        return true;
     }
 
     public static void printJps() {

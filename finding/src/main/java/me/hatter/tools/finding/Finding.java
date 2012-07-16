@@ -33,11 +33,12 @@ public class Finding {
         final boolean is_F = UnixArgsutil.ARGS.flags().contains("F");
         final boolean is_N = UnixArgsutil.ARGS.flags().contains("N");
         final boolean is_C = UnixArgsutil.ARGS.flags().contains("C");
+        final boolean is_L = UnixArgsutil.ARGS.flags().contains("L");
         final long startMillis = System.currentTimeMillis();
         final AtomicLong totalCount = new AtomicLong(0);
         final AtomicLong matchCount = new AtomicLong(0);
-        final File dir = new File(Environment.USER_DIR);
-        FileUtil.listFiles(dir, new FileFilter() {
+
+        FileFilter fileFilter = new FileFilter() {
 
             public boolean accept(File file) {
 
@@ -54,11 +55,13 @@ public class Finding {
                     }
                 }
                 int mcount = 0;
-                String text = FileUtil.readFileToString(file, "UTF-8");
+                int linenumber = 0;
+                String text = FileUtil.readFileToString(file);
                 StringBufferedReader reader = new StringBufferedReader(text);
                 for (String line; ((line = reader.readOneLine()) != null);) {
+                    String ln = line.trim();
                     totalCount.incrementAndGet();
-                    boolean is_match = matcher.match(line);
+                    boolean is_match = matcher.match(ln);
                     if (is_match) {
                         if (is_1) {
                             return false;
@@ -67,6 +70,7 @@ public class Finding {
                             matchCount.incrementAndGet();
                         }
                         String fileColorSt = is_C ? (CHAR_27 + "[;32m") : "";
+                        String matchColorSt = is_C ? (CHAR_27 + "[;101m") : "";
                         String colorEd = is_C ? RESET : "";
                         String fn;
                         if (is_F) {
@@ -75,23 +79,58 @@ public class Finding {
                             fn = file.getName();
                         } else {
                             fn = "." + file.getAbsolutePath().replace(Environment.USER_DIR, StringUtil.EMPTY);
+                            fn = (fn.startsWith("././")) ? fn.substring(2) : fn;
                         }
                         fn = fileColorSt + fn + colorEd;
-                        String ln = line.trim();
+
+                        String outln = ln;
+                        if (is_C && (matcher instanceof ContainsMatcher)) {
+                            outln = StringUtil.EMPTY;
+                            boolean _is_i = UnixArgsutil.ARGS.flags().contains("i");
+                            String mln = _is_i ? ln.toLowerCase() : ln;
+                            String oln = ln;
+                            String mse = _is_i ? search : search;
+                            int matchIndex;
+                            while ((matchIndex = mln.indexOf(mse)) >= 0) {
+                                outln += oln.substring(0, matchIndex);
+                                outln += matchColorSt;
+                                outln += oln.substring(matchIndex, (matchIndex + mse.length()));
+                                outln += colorEd;
+                                mln = mln.substring(matchIndex + mse.length());
+                                oln = oln.substring(matchIndex + mse.length());
+                            }
+                        }
+
+                        String _linenum = is_L ? "(" + StringUtil.paddingSpaceLeft(String.valueOf(linenumber), 5) + ")" : StringUtil.EMPTY;
                         if (is_N) {
                             if (mcount == 0) {
                                 System.out.println(fn);
                             }
-                            System.out.println("\t: " + ln);
+                            System.out.println("\t" + _linenum + ": " + outln);
                         } else {
-                            System.out.println(fn + ": " + ln);
+                            System.out.println(fn + "" + _linenum + ": " + outln);
                         }
                         mcount++;
                     }
+                    linenumber++;
                 }
                 return false;
             }
-        }, null);
+        };
+
+        final File dir = new File(Environment.USER_DIR);
+
+        if (UnixArgsutil.ARGS.keys().contains("I")) {
+            File inf = new File(UnixArgsutil.ARGS.kvalue("I"));
+            String files = FileUtil.readFileToString(inf);
+            StringBufferedReader reader = new StringBufferedReader(files);
+            for (String file; ((file = reader.readOneLine()) != null);) {
+                fileFilter.accept(new File(file));
+            }
+        } else {
+            FileUtil.listFiles(dir, fileFilter, null);
+        }
+
         final long endMillis = System.currentTimeMillis();
         DecimalFormat format = new DecimalFormat("#,###,###");
         System.out.println("Finish, Total: " + format.format(totalCount.get()) + ", Match: "
@@ -102,19 +141,12 @@ public class Finding {
     private static Matcher getMatcher(String search) {
         boolean is_i = UnixArgsutil.ARGS.flags().contains("i");
         boolean is_E = UnixArgsutil.ARGS.flags().contains("E");
-        boolean is_e = UnixArgsutil.ARGS.flags().contains("e");
 
-        if (is_i) {
-            return new ContainsMatcher(search, true);
-        }
         if (is_E) {
-            return new RegexMatcher(search, false);
-        }
-        if (is_e) {
-            return new RegexMatcher(search, true);
+            return new RegexMatcher(search, is_i);
         }
 
-        return new ContainsMatcher(search, false);
+        return new ContainsMatcher(search, is_i);
     }
 
     public static interface Matcher {
@@ -143,6 +175,8 @@ public class Finding {
         private Pattern search;
 
         public RegexMatcher(String regex, boolean ignoreCase) {
+            regex = (regex.startsWith("^")) ? regex : (".*" + regex);
+            regex = (regex.endsWith("$")) ? regex : (regex + ".*");
             if (ignoreCase) {
                 this.search = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
             } else {
@@ -189,6 +223,7 @@ public class Finding {
         System.out.println("       hpp                       .hpp file(s)");
         System.out.println("       chpp                      .cpp, .hpp file(s)");
         System.out.println("       java                      .java file(s)");
+        System.out.println("    -I                           file name(s) from input file");
         System.out.println("    --i                          ignore case contains");
         System.out.println("    --E                          regex");
         System.out.println("    --e                          ignore case regex");
@@ -197,6 +232,7 @@ public class Finding {
         System.out.println("    --F                          print full file name");
         System.out.println("    --N                          print match at new line");
         System.out.println("    --C                          color print");
+        System.out.println("    --L                          line number print");
         System.exit(0);
     }
 }

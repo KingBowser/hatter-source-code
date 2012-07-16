@@ -2,8 +2,10 @@ package me.hatter.tools.finding;
 
 import java.io.File;
 import java.io.FileFilter;
+import java.text.DecimalFormat;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.regex.Pattern;
 
 import me.hatter.tools.commons.args.UnixArgsutil;
@@ -25,7 +27,10 @@ public class Finding {
         final Matcher matcher = getMatcher(search);
         final boolean is_1 = UnixArgsutil.ARGS.flags().contains("1");
         final boolean is_s = UnixArgsutil.ARGS.flags().contains("s");
-        File dir = new File(Environment.USER_DIR);
+        final long startMillis = System.currentTimeMillis();
+        final AtomicLong totalCount = new AtomicLong(0);
+        final AtomicLong matchCount = new AtomicLong(0);
+        final File dir = new File(Environment.USER_DIR);
         FileUtil.listFiles(dir, new FileFilter() {
 
             public boolean accept(File file) {
@@ -42,14 +47,20 @@ public class Finding {
                         return false;
                     }
                 }
+                int mcount = 0;
                 String text = FileUtil.readFileToString(file, "UTF-8");
                 StringBufferedReader reader = new StringBufferedReader(text);
                 for (String line; ((line = reader.readOneLine()) != null);) {
+                    totalCount.incrementAndGet();
                     boolean is_match = matcher.match(line);
                     if (is_match) {
                         if (is_1) {
                             return false;
                         }
+                        if (mcount == 0) {
+                            matchCount.incrementAndGet();
+                        }
+                        mcount++;
                         String fn = is_s ? file.getName() : file.getAbsolutePath();
                         System.out.println(fn + ": " + line);
                     }
@@ -57,6 +68,11 @@ public class Finding {
                 return false;
             }
         }, null);
+        final long endMillis = System.currentTimeMillis();
+        DecimalFormat format = new DecimalFormat("#,###,###");
+        System.out.println("Finish, Total: " + format.format(totalCount.get()) + ", Match: "
+                           + format.format(matchCount.get()) + ", Cost: " + format.format(endMillis - startMillis)
+                           + " ms");
     }
 
     private static Matcher getMatcher(String search) {
@@ -129,9 +145,12 @@ public class Finding {
         Set<String> extSet = new HashSet<String>();
         String[] fs = f.split(",");
         for (String ff : fs) {
-            extSet.add(ff.trim().toLowerCase());
+            ff = ff.trim().toLowerCase();
+            if (!ff.isEmpty()) {
+                extSet.add(ff);
+            }
         }
-        return null;
+        return extSet;
     }
 
     private static void usage() {

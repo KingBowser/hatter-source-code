@@ -198,8 +198,6 @@ public class Finding {
         }
 
         f = ((f == null) || f.trim().isEmpty()) ? "c,h,hpp,cpp,java" : f;
-        f = ("ch".equals(f)) ? "c,h" : f;
-        f = ("chpp".equals(f)) ? "cpp,hpp" : f;
 
         Set<String> extSet = new HashSet<String>();
         String[] fs = f.split(",");
@@ -215,14 +213,12 @@ public class Finding {
     private static void usage() {
         System.out.println("Usage:");
         System.out.println("  java -jar findingall.jar [options] <text>");
-        System.out.println("    -f <option>                  option(default [c, h, cpp, hpp, java])");
+        System.out.println("    -f <option>                  option(default [c,h,cpp,hpp,java])");
         System.out.println("       ALL                       all file(s)");
         System.out.println("       c                         .c file(s)");
         System.out.println("       h                         .h file(s)");
-        System.out.println("       ch                        .c, .h file(s)");
         System.out.println("       cpp                       .cpp file(s)");
         System.out.println("       hpp                       .hpp file(s)");
-        System.out.println("       chpp                      .cpp, .hpp file(s)");
         System.out.println("       java                      .java file(s)");
         System.out.println("    -I                           file name(s) from input file");
         System.out.println("    --i                          ignore case contains");

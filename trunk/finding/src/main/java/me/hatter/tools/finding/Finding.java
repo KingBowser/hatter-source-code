@@ -259,6 +259,7 @@ public class Finding {
         System.out.println("       hpp                       .hpp file(s)");
         System.out.println("       java                      .java file(s)");
         System.out.println("    -I                           file name(s) from input file");
+        System.out.println("    -count                       concurrent thread(s) count");
         System.out.println("    --i                          ignore case contains");
         System.out.println("    --E                          regex");
         System.out.println("    --e                          ignore case regex");

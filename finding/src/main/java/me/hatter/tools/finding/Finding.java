@@ -99,6 +99,7 @@ public class Finding {
                                 mln = mln.substring(matchIndex + mse.length());
                                 oln = oln.substring(matchIndex + mse.length());
                             }
+                            outln += oln;
                         }
 
                         String _linenum = is_L ? "(" + StringUtil.paddingSpaceLeft(String.valueOf(linenumber), 5) + ")" : StringUtil.EMPTY;

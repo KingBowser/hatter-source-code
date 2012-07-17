@@ -2,9 +2,16 @@ package me.hatter.tools.finding;
 
 import java.io.File;
 import java.io.FileFilter;
+import java.lang.management.ManagementFactory;
 import java.text.DecimalFormat;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.ThreadPoolExecutor.CallerRunsPolicy;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.regex.Pattern;
 
@@ -12,6 +19,7 @@ import me.hatter.tools.commons.args.UnixArgsutil;
 import me.hatter.tools.commons.environment.Environment;
 import me.hatter.tools.commons.file.FileUtil;
 import me.hatter.tools.commons.io.StringBufferedReader;
+import me.hatter.tools.commons.io.StringPrintWriter;
 import me.hatter.tools.commons.string.StringUtil;
 
 public class Finding {
@@ -38,7 +46,7 @@ public class Finding {
         final AtomicLong totalCount = new AtomicLong(0);
         final AtomicLong matchCount = new AtomicLong(0);
 
-        FileFilter fileFilter = new FileFilter() {
+        final FileFilter fileFilter = new FileFilter() {
 
             public boolean accept(File file) {
 
@@ -102,15 +110,17 @@ public class Finding {
                             outln += oln;
                         }
 
+                        StringPrintWriter printWriter = new StringPrintWriter();
                         String _linenum = is_L ? "(" + StringUtil.paddingSpaceLeft(String.valueOf(linenumber), 5) + ")" : StringUtil.EMPTY;
                         if (is_N) {
                             if (mcount == 0) {
-                                System.out.println(fn);
+                                printWriter.println(fn);
                             }
-                            System.out.println("\t" + _linenum + ": " + outln);
+                            printWriter.println("\t" + _linenum + ": " + outln);
                         } else {
-                            System.out.println(fn + "" + _linenum + ": " + outln);
+                            printWriter.println(fn + "" + _linenum + ": " + outln);
                         }
+                        System.out.print(printWriter.toString());
                         mcount++;
                     }
                     linenumber++;
@@ -124,9 +134,25 @@ public class Finding {
         if (UnixArgsutil.ARGS.keys().contains("I")) {
             File inf = new File(UnixArgsutil.ARGS.kvalue("I"));
             String files = FileUtil.readFileToString(inf);
+            int processorCount = ManagementFactory.getOperatingSystemMXBean().getAvailableProcessors();
+            ExecutorService executor = new ThreadPoolExecutor(processorCount - 1, processorCount - 1, 0L,
+                                                              TimeUnit.MILLISECONDS,
+                                                              new LinkedBlockingQueue<Runnable>(processorCount - 1),
+                                                              Executors.defaultThreadFactory(), new CallerRunsPolicy());
+
             StringBufferedReader reader = new StringBufferedReader(files);
             for (String file; ((file = reader.readOneLine()) != null);) {
-                fileFilter.accept(new File(file));
+                if (processorCount <= 1) {
+                    fileFilter.accept(new File(file));
+                } else {
+                    final File f_file = new File(file);
+                    executor.submit(new Runnable() {
+
+                        public void run() {
+                            fileFilter.accept(f_file);
+                        }
+                    });
+                }
             }
         } else {
             FileUtil.listFiles(dir, fileFilter, null);

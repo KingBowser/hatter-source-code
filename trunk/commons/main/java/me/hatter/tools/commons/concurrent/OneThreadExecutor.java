@@ -36,7 +36,7 @@ public class OneThreadExecutor extends AbstractExecutorService {
 
     @Override
     public void execute(Runnable command) {
-        if (!isShutDown) {
+        if (isShutDown) {
             throw new IllegalStateException("Executor is shutdown.");
         }
         command.run();

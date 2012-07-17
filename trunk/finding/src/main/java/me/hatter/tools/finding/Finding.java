@@ -47,9 +47,6 @@ public class Finding {
 
             public boolean accept(File file) {
 
-                if (file.isDirectory()) {
-                    return (!file.toString().contains(".svn"));
-                }
                 if (extSet != null) {
                     String ext = StringUtil.substringAfterLast(file.getAbsolutePath(), ".");
                     if (ext == null) {
@@ -58,6 +55,9 @@ public class Finding {
                     if (!extSet.contains(ext.toLowerCase())) {
                         return false;
                     }
+                }
+                if (file.isDirectory()) {
+                    return (!file.toString().contains(".svn"));
                 }
                 fileCount.incrementAndGet();
                 int mcount = 0;

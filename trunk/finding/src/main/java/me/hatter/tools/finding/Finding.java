@@ -23,6 +23,11 @@ public class Finding {
     public static final char   CHAR_27 = (char) 27;
     public static final String RESET   = CHAR_27 + "[0m";
 
+    public interface MatchFileFilter extends FileFilter {
+
+        void matchFile(File file);
+    }
+
     public static void main(String[] args) {
         UnixArgsutil.parseGlobalArgs(args);
         if (UnixArgsutil.ARGS.args().length == 0) {
@@ -43,20 +48,22 @@ public class Finding {
         final AtomicLong fileCount = new AtomicLong(0);
         final AtomicLong matchCount = new AtomicLong(0);
 
-        final FileFilter fileFilter = new FileFilter() {
+        final ExecutorService executor = ExecutorUtil.getCPULikeExecutor(IntegerUtil.tryParse(UnixArgsutil.ARGS.kvalue("count")));
 
-            public boolean accept(File file) {
+        final MatchFileFilter matchFileFilter = new MatchFileFilter() {
+
+            public void matchFile(File file) {
 
                 if (file.isDirectory()) {
-                    return (!file.toString().contains(".svn"));
+                    return; // only match file
                 }
                 if (extSet != null) {
                     String ext = StringUtil.substringAfterLast(file.getAbsolutePath(), ".");
                     if (ext == null) {
-                        return false;
+                        return;
                     }
                     if (!extSet.contains(ext.toLowerCase())) {
-                        return false;
+                        return;
                     }
                 }
 
@@ -71,7 +78,7 @@ public class Finding {
                     boolean is_match = matcher.match(ln);
                     if (is_match) {
                         if (is_1) {
-                            return false;
+                            return;
                         }
                         if (mcount == 0) {
                             matchCount.incrementAndGet();
@@ -124,6 +131,19 @@ public class Finding {
                     }
                     linenumber++;
                 }
+            }
+
+            public boolean accept(final File file) {
+
+                if (file.isDirectory()) {
+                    return (!file.toString().contains(".svn"));
+                }
+                executor.submit(new Runnable() {
+
+                    public void run() {
+                        matchFile(file);
+                    }
+                });
                 return false;
             }
         };
@@ -133,7 +153,6 @@ public class Finding {
         if (UnixArgsutil.ARGS.keys().contains("I")) {
             File inf = new File(UnixArgsutil.ARGS.kvalue("I"));
             String files = FileUtil.readFileToString(inf);
-            ExecutorService executor = ExecutorUtil.getCPULikeExecutor(IntegerUtil.tryParse(UnixArgsutil.ARGS.kvalue("count")));
 
             StringBufferedReader reader = new StringBufferedReader(files);
             for (String file; ((file = reader.readOneLine()) != null);) {
@@ -141,14 +160,15 @@ public class Finding {
                 executor.submit(new Runnable() {
 
                     public void run() {
-                        fileFilter.accept(f_file);
+                        matchFileFilter.matchFile(f_file);
                     }
                 });
             }
-            executor.shutdown();
         } else {
-            FileUtil.listFiles(dir, fileFilter, null);
+            FileUtil.listFiles(dir, matchFileFilter, null);
         }
+
+        executor.shutdown();
 
         final long endMillis = System.currentTimeMillis();
         DecimalFormat format = new DecimalFormat("#,###,###");

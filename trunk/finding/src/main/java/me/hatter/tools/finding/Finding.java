@@ -77,12 +77,6 @@ public class Finding {
                     totalCount.incrementAndGet();
                     boolean is_match = matcher.match(ln);
                     if (is_match) {
-                        if (is_1) {
-                            return;
-                        }
-                        if (mcount == 0) {
-                            matchCount.incrementAndGet();
-                        }
                         String fileColorSt = is_C ? (CHAR_27 + "[;102m") : "";
                         String matchColorSt = is_C ? (CHAR_27 + "[;101m") : "";
                         String colorEd = is_C ? RESET : "";
@@ -127,6 +121,13 @@ public class Finding {
                             printWriter.println(fn + "" + _linenum + ": " + outln);
                         }
                         System.out.print(printWriter.toString());
+
+                        if (is_1) {
+                            return;
+                        }
+                        if (mcount == 0) {
+                            matchCount.incrementAndGet();
+                        }
                         mcount++;
                     }
                     linenumber++;

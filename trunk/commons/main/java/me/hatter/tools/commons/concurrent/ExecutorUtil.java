@@ -17,7 +17,7 @@ public class ExecutorUtil {
             executor = new OneThreadExecutor();
         } else {
             executor = new ThreadPoolExecutor(processorCount - 1, processorCount - 1, 0L, TimeUnit.MILLISECONDS,
-                                              new LinkedBlockingQueue<Runnable>(processorCount - 1),
+                                              new LinkedBlockingQueue<Runnable>(processorCount),
                                               Executors.defaultThreadFactory(), new CallerRunsPolicy());
         }
         return executor;

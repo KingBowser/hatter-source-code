@@ -154,6 +154,7 @@ public class Finding {
                     });
                 }
             }
+            executor.shutdown();
         } else {
             FileUtil.listFiles(dir, fileFilter, null);
         }

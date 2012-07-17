@@ -37,6 +37,7 @@ public class Finding {
         final Set<String> extSet = getExtSet();
         final String search = UnixArgsutil.ARGS.args()[0];
         final Matcher matcher = getMatcher(search);
+        final boolean is_0 = UnixArgsutil.ARGS.flags().contains("0");
         final boolean is_1 = UnixArgsutil.ARGS.flags().contains("1");
         final boolean is_s = UnixArgsutil.ARGS.flags().contains("s");
         final boolean is_F = UnixArgsutil.ARGS.flags().contains("F");
@@ -116,13 +117,19 @@ public class Finding {
                             if (mcount == 0) {
                                 printWriter.println(fn);
                             }
-                            printWriter.println("\t" + _linenum + ": " + outln);
+                            if (!is_0) {
+                                printWriter.println("\t" + _linenum + ": " + outln);
+                            }
                         } else {
-                            printWriter.println(fn + "" + _linenum + ": " + outln);
+                            printWriter.print(fn);
+                            if (!is_0) {
+                                printWriter.print(_linenum + ": " + outln);
+                            }
+                            printWriter.println();
                         }
                         System.out.print(printWriter.toString());
 
-                        if (is_1) {
+                        if (is_0 || is_1) {
                             return;
                         }
                         if (mcount == 0) {
@@ -264,6 +271,7 @@ public class Finding {
         System.out.println("    --i                          ignore case contains");
         System.out.println("    --E                          regex");
         System.out.println("    --e                          ignore case regex");
+        System.out.println("    --0                          only print file name");
         System.out.println("    --1                          one file matches only one time");
         System.out.println("    --s                          print simple file name");
         System.out.println("    --F                          print full file name");

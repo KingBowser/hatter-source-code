@@ -70,7 +70,7 @@ public class Finding {
                 fileCount.incrementAndGet();
                 int mcount = 0;
                 int linenumber = 0;
-                String text = FileUtil.readFileToString(file);
+                String text; synchronized(Finding.class){ text = FileUtil.readFileToString(file);}
                 StringBufferedReader reader = new StringBufferedReader(text);
                 for (String line; ((line = reader.readOneLine()) != null);) {
                     String ln = line.trim();

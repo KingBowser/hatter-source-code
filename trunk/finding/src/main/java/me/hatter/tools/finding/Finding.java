@@ -48,7 +48,7 @@ public class Finding {
         final AtomicLong fileCount = new AtomicLong(0);
         final AtomicLong matchCount = new AtomicLong(0);
 
-        final ExecutorService executor = ExecutorUtil.getCPULikeExecutor(IntegerUtil.tryParse(UnixArgsutil.ARGS.kvalue("count")));
+        final ExecutorService executor = ExecutorUtil.getCPULikeExecutor(IntegerUtil.tryParse(UnixArgsutil.ARGS.kvalue("CC")));
 
         final MatchFileFilter matchFileFilter = new MatchFileFilter() {
 
@@ -259,7 +259,7 @@ public class Finding {
         System.out.println("       hpp                       .hpp file(s)");
         System.out.println("       java                      .java file(s)");
         System.out.println("    -I                           file name(s) from input file");
-        System.out.println("    -count                       concurrent thread(s) count");
+        System.out.println("    -CC                          concurrent thread(s) count");
         System.out.println("    --i                          ignore case contains");
         System.out.println("    --E                          regex");
         System.out.println("    --e                          ignore case regex");

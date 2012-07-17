@@ -172,8 +172,8 @@ public class Finding {
 
         final long endMillis = System.currentTimeMillis();
         DecimalFormat format = new DecimalFormat("#,###,###");
-        System.out.println("Finish, Total: " + format.format(totalCount.get()) + ", File: "
-                           + format.format(fileCount.get()) + ", Match: " + format.format(matchCount.get())
+        System.out.println("Finish, Total: " + format.format(totalCount.get()) + ", Ext Match: "
+                           + format.format(fileCount.get()) + ", Txt Match: " + format.format(matchCount.get())
                            + ", Cost: " + format.format(endMillis - startMillis) + " ms");
     }
 

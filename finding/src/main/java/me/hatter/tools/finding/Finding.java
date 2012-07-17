@@ -2,24 +2,20 @@ package me.hatter.tools.finding;
 
 import java.io.File;
 import java.io.FileFilter;
-import java.lang.management.ManagementFactory;
 import java.text.DecimalFormat;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.ThreadPoolExecutor.CallerRunsPolicy;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.regex.Pattern;
 
 import me.hatter.tools.commons.args.UnixArgsutil;
+import me.hatter.tools.commons.concurrent.ExecutorUtil;
 import me.hatter.tools.commons.environment.Environment;
 import me.hatter.tools.commons.file.FileUtil;
 import me.hatter.tools.commons.io.StringBufferedReader;
 import me.hatter.tools.commons.io.StringPrintWriter;
+import me.hatter.tools.commons.number.IntegerUtil;
 import me.hatter.tools.commons.string.StringUtil;
 
 public class Finding {
@@ -134,25 +130,17 @@ public class Finding {
         if (UnixArgsutil.ARGS.keys().contains("I")) {
             File inf = new File(UnixArgsutil.ARGS.kvalue("I"));
             String files = FileUtil.readFileToString(inf);
-            int processorCount = ManagementFactory.getOperatingSystemMXBean().getAvailableProcessors();
-            ExecutorService executor = new ThreadPoolExecutor(processorCount - 1, processorCount - 1, 0L,
-                                                              TimeUnit.MILLISECONDS,
-                                                              new LinkedBlockingQueue<Runnable>(processorCount - 1),
-                                                              Executors.defaultThreadFactory(), new CallerRunsPolicy());
+            ExecutorService executor = ExecutorUtil.getCPULikeExecutor(IntegerUtil.tryParse(UnixArgsutil.ARGS.kvalue("count")));
 
             StringBufferedReader reader = new StringBufferedReader(files);
             for (String file; ((file = reader.readOneLine()) != null);) {
-                if (processorCount <= 1) {
-                    fileFilter.accept(new File(file));
-                } else {
-                    final File f_file = new File(file);
-                    executor.submit(new Runnable() {
+                final File f_file = new File(file);
+                executor.submit(new Runnable() {
 
-                        public void run() {
-                            fileFilter.accept(f_file);
-                        }
-                    });
-                }
+                    public void run() {
+                        fileFilter.accept(f_file);
+                    }
+                });
             }
             executor.shutdown();
         } else {

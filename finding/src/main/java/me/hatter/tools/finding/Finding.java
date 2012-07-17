@@ -40,6 +40,7 @@ public class Finding {
         final boolean is_L = UnixArgsutil.ARGS.flags().contains("L");
         final long startMillis = System.currentTimeMillis();
         final AtomicLong totalCount = new AtomicLong(0);
+        final AtomicLong fileCount = new AtomicLong(0);
         final AtomicLong matchCount = new AtomicLong(0);
 
         final FileFilter fileFilter = new FileFilter() {
@@ -58,6 +59,7 @@ public class Finding {
                         return false;
                     }
                 }
+                fileCount.incrementAndGet();
                 int mcount = 0;
                 int linenumber = 0;
                 String text = FileUtil.readFileToString(file);
@@ -149,9 +151,9 @@ public class Finding {
 
         final long endMillis = System.currentTimeMillis();
         DecimalFormat format = new DecimalFormat("#,###,###");
-        System.out.println("Finish, Total: " + format.format(totalCount.get()) + ", Match: "
-                           + format.format(matchCount.get()) + ", Cost: " + format.format(endMillis - startMillis)
-                           + " ms");
+        System.out.println("Finish, Total: " + format.format(totalCount.get()) + ", File: "
+                           + format.format(fileCount.get()) + ", Match: " + format.format(matchCount.get())
+                           + ", Cost: " + format.format(endMillis - startMillis) + " ms");
     }
 
     private static Matcher getMatcher(String search) {

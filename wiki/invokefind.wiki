@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#summary Find invoke in class file or class file in jar.
 #labels java,bytecode,jdk,jvm,Featured
 
 = Introduction =

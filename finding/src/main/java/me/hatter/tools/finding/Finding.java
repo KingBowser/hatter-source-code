@@ -189,11 +189,32 @@ public class Finding {
         boolean is_i = UnixArgsutil.ARGS.flags().contains("i");
         boolean is_E = UnixArgsutil.ARGS.flags().contains("E");
 
-        if (is_E) {
-            return new RegexMatcher(search, is_i);
+        boolean has_is_i = false;
+        String has = null;
+        if (UnixArgsutil.ARGS.keys().contains("HAS")) {
+            has = UnixArgsutil.ARGS.kvalue("HAS");
+        } else if (UnixArgsutil.ARGS.keys().contains("has")) {
+            has_is_i = true;
+            has = UnixArgsutil.ARGS.kvalue("has");
         }
 
-        return new ContainsMatcher(search, is_i);
+        Matcher matcher = (is_E) ? new RegexMatcher(search, is_i) : new ContainsMatcher(search, is_i);
+        if (has != null) {
+            final Matcher _matcher = matcher;
+            final String _has = has_is_i ? has.toLowerCase() : has;
+            final boolean _has_is_i = has_is_i;
+            matcher = new Matcher() {
+
+                public boolean match(String line) {
+                    String ln = _has_is_i ? line.toLowerCase() : line;
+                    if (!ln.contains(_has)) {
+                        return false;
+                    }
+                    return _matcher.match(line);
+                }
+            };
+        }
+        return matcher;
     }
 
     public static interface Matcher {
@@ -266,7 +287,9 @@ public class Finding {
         System.out.println("       cpp                       .cpp file(s)");
         System.out.println("       hpp                       .hpp file(s)");
         System.out.println("       java                      .java file(s)");
-        System.out.println("    -I                           file name(s) from input file");
+        System.out.println("    -I <file>                    file name(s) from input file");
+        System.out.println("    -has <symbol>                only the line has symbol(case insensitive)");
+        System.out.println("    -HAS <symbol>                only the line has symbol(case sensitive)");
         System.out.println("    -CC                          concurrent thread(s) count");
         System.out.println("    --i                          ignore case contains");
         System.out.println("    --E                          regex");

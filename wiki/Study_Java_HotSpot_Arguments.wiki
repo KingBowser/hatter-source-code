@@ -112,678 +112,678 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 
 ==参数详细说明==
 || *参数名* || *参数类型* || *运行时类型* || *说明* ||
-|| UseCompressedOops || || || ||
-|| HeapBaseMinAddress || || || ||
-|| ObjectAlignmentInBytes || || || ||
-|| UseMembar || || || ||
-|| UsePPCLWSYNC || || || ||
-|| UnlockDiagnosticVMOptions || || || ||
-|| ForceSync || || || ||
-|| ProtectJavaHeap || || || ||
-|| BeParanoid || || || ||
-|| UnlockExperimentalVMOptions || || || ||
-|| JavaMonitorsInStackTrace || || || ||
-|| UseLargePages || || || ||
-|| UseLargePagesIndividualAllocation || || || ||
-|| UseNUMA || || || ||
-|| ForceNUMA || || || ||
-|| NUMAChunkResizeWeight || || || ||
-|| NUMASpaceResizeRate || || || ||
-|| UseAdaptiveNUMAChunkSizing || || || ||
-|| NUMAStats || || || ||
-|| NUMAPageScanRate || || || ||
-|| NeedsDeoptSuspend || || || ||
-|| UseSSE || || || ||
-|| LargePageSizeInBytes || || || ||
-|| LargePageHeapSizeThreshold || || || ||
-|| ForceTimeHighResolution || || || ||
-|| BackgroundCompilation || || || ||
-|| PrintVMQWaitTime || || || ||
-|| MethodFlushing || || || ||
-|| PrintJNIResolving || || || ||
-|| UseInlineCaches || || || ||
-|| SystemMathNatives || || || ||
-|| UseSSE42Intrinsics || || || ||
-|| DeoptimizeRandom || || || ||
-|| UseCompilerSafepoints || || || ||
-|| UseSplitVerifier || || || ||
-|| FailOverToOldVerifier || || || ||
-|| SafepointTimeout || || || ||
-|| SuspendRetryCount || || || ||
-|| SuspendRetryDelay || || || ||
-|| AssertOnSuspendWaitFailure || || || ||
-|| TraceSuspendWaitFailures || || || ||
-|| MaxFDLimit || || || ||
-|| BytecodeVerificationRemote || || || ||
-|| BytecodeVerificationLocal || || || ||
-|| PrintOopAddress || || || ||
-|| PrintGCApplicationConcurrentTime || || || ||
-|| PrintGCApplicationStoppedTime || || || ||
-|| ShowMessageBoxOnError || || || ||
-|| UseOSErrorReporting || || || ||
-|| SuppressFatalErrorMessage || || || ||
-|| OnError || || || ||
-|| OnOutOfMemoryError || || || ||
-|| HeapDumpBeforeFullGC || || || ||
-|| HeapDumpAfterFullGC || || || ||
-|| HeapDumpOnOutOfMemoryError || || || ||
-|| HeapDumpPath || || || ||
-|| UseVectoredExceptions || || || ||
-|| PrintCompilation || || || ||
-|| AlwaysRestoreFPU || || || ||
-|| StackTraceInThrowable || || || ||
-|| OmitStackTraceInFastThrow || || || ||
-|| ProfilerPrintByteCodeStatistics || || || ||
-|| ProfilerRecordPC || || || ||
-|| ProfileVM || || || ||
-|| ProfileIntervals || || || ||
-|| PrintWarnings || || || ||
-|| RegisterFinalizersAtInit || || || ||
-|| ClassUnloading || || || ||
-|| AlwaysLockClassLoader || || || ||
-|| AllowParallelDefineClass || || || ||
-|| MustCallLoadClassInternal || || || ||
-|| DontYieldALot || || || ||
-|| UseBoundThreads || || || ||
-|| UseLWPSynchronization || || || ||
-|| SyncKnobs || || || ||
-|| EmitSync || || || ||
-|| AlwaysInflate || || || ||
-|| MonitorBound || || || ||
-|| MonitorInUseLists || || || ||
-|| Atomics || || || ||
-|| FenceInstruction || || || ||
-|| SyncFlags || || || ||
-|| SyncVerbose || || || ||
-|| ClearFPUAtPark || || || ||
-|| hashCode || || || ||
-|| WorkAroundNPTLTimedWaitHang || || || ||
-|| FilterSpuriousWakeups || || || ||
-|| NativeMonitorTimeout || || || ||
-|| NativeMonitorFlags || || || ||
-|| NativeMonitorSpinLimit || || || ||
-|| AdjustConcurrency || || || ||
-|| ReduceSignalUsage || || || ||
-|| AllowUserSignalHandlers || || || ||
-|| UseSignalChaining || || || ||
-|| UseAltSigs || || || ||
-|| UseSpinning || || || ||
-|| PreSpinYield || || || ||
-|| PostSpinYield || || || ||
-|| AllowJNIEnvProxy || || || ||
-|| JNIDetachReleasesMonitors || || || ||
-|| RestoreMXCSROnJNICalls || || || ||
-|| CheckJNICalls || || || ||
-|| UseFastJNIAccessors || || || ||
-|| EagerXrunInit || || || ||
-|| PreserveAllAnnotations || || || ||
-|| LazyBootClassLoader || || || ||
-|| UseNewLongLShift || || || ||
-|| UseStoreImmI16 || || || ||
-|| UseAddressNop || || || ||
-|| UseXmmLoadAndClearUpper || || || ||
-|| UseXmmRegToRegMoveAll || || || ||
-|| UseXmmI2D || || || ||
-|| UseXmmI2F || || || ||
-|| UseXMMForArrayCopy || || || ||
-|| UseUnalignedLoadStores || || || ||
-|| FieldsAllocationStyle || || || ||
-|| CompactFields || || || ||
-|| UseBiasedLocking || || || ||
-|| BiasedLockingStartupDelay || || || ||
-|| BiasedLockingBulkRebiasThreshold || || || ||
-|| BiasedLockingBulkRevokeThreshold || || || ||
-|| BiasedLockingDecayTime || || || ||
-|| TraceJVMTI || || || ||
-|| StressLdcRewrite || || || ||
-|| TraceRedefineClasses || || || ||
-|| VerifyMergedCPBytecodes || || || ||
-|| HPILibPath || || || ||
-|| TraceClassResolution || || || ||
-|| TraceBiasedLocking || || || ||
-|| TraceMonitorInflation || || || ||
-|| Use486InstrsOnly || || || ||
-|| UseSerialGC || || || ||
-|| UseG1GC || || || ||
-|| UseParallelGC || || || ||
-|| UseParallelOldGC || || || ||
-|| UseParallelOldGCCompacting || || || ||
-|| UseParallelDensePrefixUpdate || || || ||
-|| HeapMaximumCompactionInterval || || || ||
-|| HeapFirstMaximumCompactionCount || || || ||
-|| UseMaximumCompactionOnSystemGC || || || ||
-|| ParallelOldDeadWoodLimiterMean || || || ||
-|| ParallelOldDeadWoodLimiterStdDev || || || ||
-|| UseParallelOldGCDensePrefix || || || ||
-|| ParallelGCThreads || || || ||
-|| ConcGCThreads || || || ||
-|| YoungPLABSize || || || ||
-|| OldPLABSize || || || ||
-|| GCTaskTimeStampEntries || || || ||
-|| AlwaysTenure || || || ||
-|| NeverTenure || || || ||
-|| ScavengeBeforeFullGC || || || ||
-|| UseConcMarkSweepGC || || || ||
-|| ExplicitGCInvokesConcurrent || || || ||
-|| ExplicitGCInvokesConcurrentAndUnloadsClasses || || || ||
-|| GCLockerInvokesConcurrent || || || ||
-|| GCLockerEdenExpansionPercent || || || ||
-|| UseCMSBestFit || || || ||
-|| UseCMSCollectionPassing || || || ||
-|| UseParNewGC || || || ||
-|| ParallelGCVerbose || || || ||
-|| ParallelGCBufferWastePct || || || ||
-|| ParallelGCRetainPLAB || || || ||
-|| TargetPLABWastePct || || || ||
-|| PLABWeight || || || ||
-|| ResizePLAB || || || ||
-|| PrintPLAB || || || ||
-|| ParGCArrayScanChunk || || || ||
-|| ParGCUseLocalOverflow || || || ||
-|| ParGCTrimOverflow || || || ||
-|| ParGCDesiredObjsFromOverflowList || || || ||
-|| CMSParPromoteBlocksToClaim || || || ||
-|| OldPLABWeight || || || ||
-|| ResizeOldPLAB || || || ||
-|| PrintOldPLAB || || || ||
-|| CMSOldPLABMin || || || ||
-|| CMSOldPLABMax || || || ||
-|| CMSOldPLABNumRefills || || || ||
-|| CMSOldPLABResizeQuicker || || || ||
-|| CMSOldPLABToleranceFactor || || || ||
-|| CMSOldPLABReactivityFactor || || || ||
-|| CMSOldPLABReactivityCeiling || || || ||
-|| AlwaysPreTouch || || || ||
-|| CMSUseOldDefaults || || || ||
-|| CMSYoungGenPerWorker || || || ||
-|| GCOverheadReporting || || || ||
-|| GCOverheadReportingPeriodMS || || || ||
-|| CMSIncrementalMode || || || ||
-|| CMSIncrementalDutyCycle || || || ||
-|| CMSIncrementalPacing || || || ||
-|| CMSIncrementalDutyCycleMin || || || ||
-|| CMSIncrementalSafetyFactor || || || ||
-|| CMSIncrementalOffset || || || ||
-|| CMSExpAvgFactor || || || ||
-|| CMS_FLSWeight || || || ||
-|| CMS_FLSPadding || || || ||
-|| FLSCoalescePolicy || || || ||
-|| FLSAlwaysCoalesceLarge || || || ||
-|| CMSExtrapolateSweep || || || ||
-|| CMS_SweepWeight || || || ||
-|| CMS_SweepPadding || || || ||
-|| CMS_SweepTimerThresholdMillis || || || ||
-|| CMSClassUnloadingEnabled || || || ||
-|| CMSClassUnloadingMaxInterval || || || ||
-|| CMSCompactWhenClearAllSoftRefs || || || ||
-|| UseCMSCompactAtFullCollection || || || ||
-|| CMSFullGCsBeforeCompaction || || || ||
-|| CMSIndexedFreeListReplenish || || || ||
-|| CMSReplenishIntermediate || || || ||
-|| CMSSplitIndexedFreeListBlocks || || || ||
-|| CMSLoopWarn || || || ||
-|| MarkStackSize || || || ||
-|| MarkStackSizeMax || || || ||
-|| CMSMaxAbortablePrecleanLoops || || || ||
-|| CMSMaxAbortablePrecleanTime || || || ||
-|| CMSAbortablePrecleanMinWorkPerIteration || || || ||
-|| CMSAbortablePrecleanWaitMillis || || || ||
-|| CMSRescanMultiple || || || ||
-|| CMSConcMarkMultiple || || || ||
-|| CMSRevisitStackSize || || || ||
-|| CMSAbortSemantics || || || ||
-|| CMSParallelRemarkEnabled || || || ||
-|| CMSParallelSurvivorRemarkEnabled || || || ||
-|| CMSPLABRecordAlways || || || ||
-|| CMSConcurrentMTEnabled || || || ||
-|| CMSPermGenPrecleaningEnabled || || || ||
-|| CMSPrecleaningEnabled || || || ||
-|| CMSPrecleanIter || || || ||
-|| CMSPrecleanNumerator || || || ||
-|| CMSPrecleanDenominator || || || ||
-|| CMSPrecleanRefLists1 || || || ||
-|| CMSPrecleanRefLists2 || || || ||
-|| CMSPrecleanSurvivors1 || || || ||
-|| CMSPrecleanSurvivors2 || || || ||
-|| CMSPrecleanThreshold || || || ||
-|| CMSCleanOnEnter || || || ||
-|| CMSRemarkVerifyVariant || || || ||
-|| CMSScheduleRemarkEdenSizeThreshold || || || ||
-|| CMSScheduleRemarkEdenPenetration || || || ||
-|| CMSScheduleRemarkSamplingRatio || || || ||
-|| CMSSamplingGrain || || || ||
-|| CMSScavengeBeforeRemark || || || ||
-|| CMSWorkQueueDrainThreshold || || || ||
-|| CMSWaitDuration || || || ||
-|| CMSYield || || || ||
-|| CMSBitMapYieldQuantum || || || ||
-|| CMSDumpAtPromotionFailure || || || ||
-|| CMSPrintChunksInDump || || || ||
-|| CMSPrintObjectsInDump || || || ||
-|| BlockOffsetArrayUseUnallocatedBlock || || || ||
-|| RefDiscoveryPolicy || || || ||
-|| ParallelRefProcEnabled || || || ||
-|| ParallelRefProcBalancingEnabled || || || ||
-|| CMSTriggerRatio || || || ||
-|| CMSTriggerPermRatio || || || ||
-|| CMSBootstrapOccupancy || || || ||
-|| CMSInitiatingOccupancyFraction || || || ||
-|| InitiatingHeapOccupancyPercent || || || ||
-|| CMSInitiatingPermOccupancyFraction || || || ||
-|| UseCMSInitiatingOccupancyOnly || || || ||
-|| CMSIsTooFullPercentage || || || ||
-|| PrintPromotionFailure || || || ||
-|| PreserveMarkStackSize || || || ||
-|| UseTLAB || || || ||
-|| ResizeTLAB || || || ||
-|| ZeroTLAB || || || ||
-|| FastTLABRefill || || || ||
-|| PrintTLAB || || || ||
-|| TLABStats || || || ||
-|| PrintRevisitStats || || || ||
-|| NeverActAsServerClassMachine || || || ||
-|| AlwaysActAsServerClassMachine || || || ||
-|| MaxRAM || || || ||
-|| ErgoHeapSizeLimit || || || ||
-|| MaxRAMFraction || || || ||
-|| DefaultMaxRAMFraction || || || ||
-|| MinRAMFraction || || || ||
-|| InitialRAMFraction || || || ||
-|| UseAutoGCSelectPolicy || || || ||
-|| AutoGCSelectPauseMillis || || || ||
-|| UseAdaptiveSizePolicy || || || ||
-|| UsePSAdaptiveSurvivorSizePolicy || || || ||
-|| UseAdaptiveGenerationSizePolicyAtMinorCollection || || || ||
-|| UseAdaptiveGenerationSizePolicyAtMajorCollection || || || ||
-|| UseAdaptiveSizePolicyWithSystemGC || || || ||
-|| UseAdaptiveGCBoundary || || || ||
-|| AdaptiveSizeThroughPutPolicy || || || ||
-|| AdaptiveSizePausePolicy || || || ||
-|| AdaptiveSizePolicyInitializingSteps || || || ||
-|| AdaptiveSizePolicyOutputInterval || || || ||
-|| UseAdaptiveSizePolicyFootprintGoal || || || ||
-|| AdaptiveSizePolicyWeight || || || ||
-|| AdaptiveTimeWeight || || || ||
-|| PausePadding || || || ||
-|| PromotedPadding || || || ||
-|| SurvivorPadding || || || ||
-|| AdaptivePermSizeWeight || || || ||
-|| PermGenPadding || || || ||
-|| ThresholdTolerance || || || ||
-|| AdaptiveSizePolicyCollectionCostMargin || || || ||
-|| YoungGenerationSizeIncrement || || || ||
-|| YoungGenerationSizeSupplement || || || ||
-|| YoungGenerationSizeSupplementDecay || || || ||
-|| TenuredGenerationSizeIncrement || || || ||
-|| TenuredGenerationSizeSupplement || || || ||
-|| TenuredGenerationSizeSupplementDecay || || || ||
-|| MaxGCPauseMillis || || || ||
-|| GCPauseIntervalMillis || || || ||
-|| MaxGCMinorPauseMillis || || || ||
-|| GCTimeRatio || || || ||
-|| AdaptiveSizeDecrementScaleFactor || || || ||
-|| UseAdaptiveSizeDecayMajorGCCost || || || ||
-|| AdaptiveSizeMajorGCDecayTimeScale || || || ||
-|| MinSurvivorRatio || || || ||
-|| InitialSurvivorRatio || || || ||
-|| BaseFootPrintEstimate || || || ||
-|| UseGCOverheadLimit || || || ||
-|| GCTimeLimit || || || ||
-|| GCHeapFreeLimit || || || ||
-|| PrintAdaptiveSizePolicy || || || ||
-|| PrefetchCopyIntervalInBytes || || || ||
-|| PrefetchScanIntervalInBytes || || || ||
-|| PrefetchFieldsAhead || || || ||
-|| DisableExplicitGC || || || ||
-|| PreZeroEden || || || ||
-|| CollectGen0First || || || ||
-|| BindGCTaskThreadsToCPUs || || || ||
-|| UseGCTaskAffinity || || || ||
-|| ProcessDistributionStride || || || ||
-|| CMSCoordinatorYieldSleepCount || || || ||
-|| CMSYieldSleepCount || || || ||
-|| PrintGC || || || ||
-|| PrintGCDetails || || || ||
-|| PrintGCDateStamps || || || ||
-|| PrintGCTimeStamps || || || ||
-|| PrintGCTaskTimeStamps || || || ||
-|| PrintReferenceGC || || || ||
-|| TraceClassLoading || || || ||
-|| TraceClassLoadingPreorder || || || ||
-|| TraceClassUnloading || || || ||
-|| TraceLoaderConstraints || || || ||
-|| TraceGen0Time || || || ||
-|| TraceGen1Time || || || ||
-|| PrintTenuringDistribution || || || ||
-|| PrintHeapAtGC || || || ||
-|| PrintHeapAtGCExtended || || || ||
-|| PrintHeapAtSIGBREAK || || || ||
-|| PrintClassHistogramBeforeFullGC || || || ||
-|| PrintClassHistogramAfterFullGC || || || ||
-|| PrintClassHistogram || || || ||
-|| TraceParallelOldGCTasks || || || ||
-|| PrintParallelOldGCPhaseTimes || || || ||
-|| PrintJNIGCStalls || || || ||
-|| CITime || || || ||
-|| CICompilerCount || || || ||
-|| CompilationPolicyChoice || || || ||
-|| PrintSafepointStatistics || || || ||
-|| PrintSafepointStatisticsCount || || || ||
-|| PrintSafepointStatisticsTimeout || || || ||
-|| TraceSafepointCleanupTime || || || ||
-|| Inline || || || ||
-|| ClipInlining || || || ||
-|| UseTypeProfile || || || ||
-|| TypeProfileMajorReceiverPercent || || || ||
-|| UseCountLeadingZerosInstruction || || || ||
-|| UsePopCountInstruction || || || ||
-|| PrintVMOptions || || || ||
-|| IgnoreUnrecognizedVMOptions || || || ||
-|| PrintCommandLineFlags || || || ||
-|| PrintFlagsInitial || || || ||
-|| PrintFlagsFinal || || || ||
-|| ErrorFile || || || ||
-|| DisplayVMOutputToStderr || || || ||
-|| DisplayVMOutputToStdout || || || ||
-|| UseHeavyMonitors || || || ||
-|| RangeCheckElimination || || || ||
-|| SplitIfBlocks || || || ||
-|| AggressiveOpts || || || ||
-|| UseStringCache || || || ||
-|| UseCompressedStrings || || || ||
-|| SpecialStringCompress || || || ||
-|| SpecialStringInflate || || || ||
-|| SpecialStringCompareToCC || || || ||
-|| SpecialStringIndexOfCC || || || ||
-|| SpecialStringEqualsCC || || || ||
-|| RewriteBytecodes || || || ||
-|| RewriteFrequentPairs || || || ||
-|| UseInterpreter || || || ||
-|| UseNiagaraInstrs || || || ||
-|| UseLoopCounter || || || ||
-|| UseFastEmptyMethods || || || ||
-|| UseFastAccessorMethods || || || ||
-|| UseOnStackReplacement || || || ||
-|| PreferInterpreterNativeStubs || || || ||
-|| ProfileInterpreter || || || ||
-|| ProfileMaturityPercentage || || || ||
-|| UseCompiler || || || ||
-|| UseCounterDecay || || || ||
-|| AlwaysCompileLoopMethods || || || ||
-|| DontCompileHugeMethods || || || ||
-|| EstimateArgEscape || || || ||
-|| BCEATraceLevel || || || ||
-|| MaxBCEAEstimateLevel || || || ||
-|| MaxBCEAEstimateSize || || || ||
-|| AllocatePrefetchStyle || || || ||
-|| AllocatePrefetchDistance || || || ||
-|| AllocatePrefetchLines || || || ||
-|| AllocatePrefetchStepSize || || || ||
-|| AllocatePrefetchInstr || || || ||
-|| ReadPrefetchInstr || || || ||
-|| PrintJavaStackAtFatalState || || || ||
-|| SelfDestructTimer || || || ||
-|| MaxJavaStackTraceDepth || || || ||
-|| SafepointTimeoutDelay || || || ||
-|| NmethodSweepFraction || || || ||
-|| NmethodSweepCheckInterval || || || ||
-|| MaxInlineLevel || || || ||
-|| MaxRecursiveInlineLevel || || || ||
-|| InlineSmallCode || || || ||
-|| MaxInlineSize || || || ||
-|| FreqInlineSize || || || ||
-|| MaxTrivialSize || || || ||
-|| MinInliningThreshold || || || ||
-|| ProfileIntervalsTicks || || || ||
-|| EventLogLength || || || ||
-|| TypeProfileWidth || || || ||
-|| PerMethodRecompilationCutoff || || || ||
-|| PerBytecodeRecompilationCutoff || || || ||
-|| PerMethodTrapLimit || || || ||
-|| PerBytecodeTrapLimit || || || ||
-|| AliasLevel || || || ||
-|| ReadSpinIterations || || || ||
-|| PreInflateSpin || || || ||
-|| PreBlockSpin || || || ||
-|| InitialHeapSize || || || ||
-|| MaxHeapSize || || || ||
-|| OldSize || || || ||
-|| NewSize || || || ||
-|| MaxNewSize || || || ||
-|| PretenureSizeThreshold || || || ||
-|| TLABSize || || || ||
-|| MinTLABSize || || || ||
-|| TLABAllocationWeight || || || ||
-|| TLABWasteTargetPercent || || || ||
-|| TLABRefillWasteFraction || || || ||
-|| TLABWasteIncrement || || || ||
-|| SurvivorRatio || || || ||
-|| NewRatio || || || ||
-|| NewSizeThreadIncrease || || || ||
-|| PermSize || || || ||
-|| MaxPermSize || || || ||
-|| MinHeapFreeRatio || || || ||
-|| MaxHeapFreeRatio || || || ||
-|| SoftRefLRUPolicyMSPerMB || || || ||
-|| MinHeapDeltaBytes || || || ||
-|| MinPermHeapExpansion || || || ||
-|| MaxPermHeapExpansion || || || ||
-|| QueuedAllocationWarningCount || || || ||
-|| MaxTenuringThreshold || || || ||
-|| InitialTenuringThreshold || || || ||
-|| TargetSurvivorRatio || || || ||
-|| MarkSweepDeadRatio || || || ||
-|| PermMarkSweepDeadRatio || || || ||
-|| MarkSweepAlwaysCompactCount || || || ||
-|| PrintCMSStatistics || || || ||
-|| PrintCMSInitiationStatistics || || || ||
-|| PrintFLSStatistics || || || ||
-|| PrintFLSCensus || || || ||
-|| DeferThrSuspendLoopCount || || || ||
-|| DeferPollingPageLoopCount || || || ||
-|| SafepointSpinBeforeYield || || || ||
-|| PSChunkLargeArrays || || || ||
-|| GCDrainStackTargetSize || || || ||
-|| StackYellowPages || || || ||
-|| StackRedPages || || || ||
-|| StackShadowPages || || || ||
-|| ThreadStackSize || || || ||
-|| VMThreadStackSize || || || ||
-|| CompilerThreadStackSize || || || ||
-|| ThreadSafetyMargin || || || ||
-|| OptoLoopAlignment || || || ||
-|| InitialCodeCacheSize || || || ||
-|| ReservedCodeCacheSize || || || ||
-|| CodeCacheMinimumFreeSpace || || || ||
-|| CodeCacheExpansionSize || || || ||
-|| UseCodeCacheFlushing || || || ||
-|| MinCodeCacheFlushingInterval || || || ||
-|| CodeCacheFlushingMinimumFreeSpace || || || ||
-|| CompileOnly || || || ||
-|| CompileCommandFile || || || ||
-|| CompileCommand || || || ||
-|| CICompilerCountPerCPU || || || ||
-|| UseThreadPriorities || || || ||
-|| ThreadPriorityPolicy || || || ||
-|| ThreadPriorityVerbose || || || ||
-|| DefaultThreadPriority || || || ||
-|| CompilerThreadPriority || || || ||
-|| VMThreadPriority || || || ||
-|| CompilerThreadHintNoPreempt || || || ||
-|| VMThreadHintNoPreempt || || || ||
-|| JavaPriority1_To_OSPriority || || || ||
-|| JavaPriority2_To_OSPriority || || || ||
-|| JavaPriority3_To_OSPriority || || || ||
-|| JavaPriority4_To_OSPriority || || || ||
-|| JavaPriority5_To_OSPriority || || || ||
-|| JavaPriority6_To_OSPriority || || || ||
-|| JavaPriority7_To_OSPriority || || || ||
-|| JavaPriority8_To_OSPriority || || || ||
-|| JavaPriority9_To_OSPriority || || || ||
-|| JavaPriority10_To_OSPriority || || || ||
-|| StarvationMonitorInterval || || || ||
-|| CompileThreshold || || || ||
-|| BackEdgeThreshold || || || ||
-|| Tier0InvokeNotifyFreqLog || || || ||
-|| Tier2InvokeNotifyFreqLog || || || ||
-|| Tier3InvokeNotifyFreqLog || || || ||
-|| Tier0BackedgeNotifyFreqLog || || || ||
-|| Tier2BackedgeNotifyFreqLog || || || ||
-|| Tier3BackedgeNotifyFreqLog || || || ||
-|| Tier2CompileThreshold || || || ||
-|| Tier2BackEdgeThreshold || || || ||
-|| Tier3InvocationThreshold || || || ||
-|| Tier3MinInvocationThreshold || || || ||
-|| Tier3CompileThreshold || || || ||
-|| Tier3BackEdgeThreshold || || || ||
-|| Tier4InvocationThreshold || || || ||
-|| Tier4MinInvocationThreshold || || || ||
-|| Tier4CompileThreshold || || || ||
-|| Tier4BackEdgeThreshold || || || ||
-|| Tier3DelayOn || || || ||
-|| Tier3DelayOff || || || ||
-|| Tier3LoadFeedback || || || ||
-|| Tier4LoadFeedback || || || ||
-|| TieredCompileTaskTimeout || || || ||
-|| TieredStopAtLevel || || || ||
-|| Tier0ProfilingStartPercentage || || || ||
-|| TieredRateUpdateMinTime || || || ||
-|| TieredRateUpdateMaxTime || || || ||
-|| TieredCompilation || || || ||
-|| PrintTieredEvents || || || ||
-|| StressTieredRuntime || || || ||
-|| OnStackReplacePercentage || || || ||
-|| InterpreterProfilePercentage || || || ||
-|| DesiredMethodLimit || || || ||
-|| ReflectionWrapResolutionErrors || || || ||
-|| MaxDirectMemorySize || || || ||
-|| UsePerfData || || || ||
-|| PerfDataSaveToFile || || || ||
-|| PerfDataSaveFile || || || ||
-|| PerfDataSamplingInterval || || || ||
-|| PerfDisableSharedMem || || || ||
-|| PerfDataMemorySize || || || ||
-|| PerfMaxStringConstLength || || || ||
-|| PerfAllowAtExitRegistration || || || ||
-|| PerfBypassFileSystemCheck || || || ||
-|| UnguardOnExecutionViolation || || || ||
-|| ManagementServer || || || ||
-|| DisableAttachMechanism || || || ||
-|| StartAttachListener || || || ||
-|| PrintConcurrentLocks || || || ||
-|| UseSharedSpaces || || || ||
-|| RequireSharedSpaces || || || ||
-|| DumpSharedSpaces || || || ||
-|| PrintSharedSpaces || || || ||
-|| SharedDummyBlockSize || || || ||
-|| SharedReadWriteSize || || || ||
-|| SharedReadOnlySize || || || ||
-|| SharedMiscDataSize || || || ||
-|| SharedMiscCodeSize || || || ||
-|| AnonymousClasses || || || ||
-|| ExtendedDTraceProbes || || || ||
-|| DTraceMethodProbes || || || ||
-|| DTraceAllocProbes || || || ||
-|| DTraceMonitorProbes || || || ||
-|| RelaxAccessControlCheck || || || ||
-|| WaitForDebugger || || || ||
-|| UseFileLocking || || || ||
-|| UncommitYoungGenOnGC || || || ||
-|| UncommitOldGenOnGC || || || ||
-|| TraceUncommitMemory || || || ||
-|| UncommitUsesMadvise || || || ||
-|| ExitOnLargePageFailure || || || ||
-|| UseVMInterruptibleIO || || || ||
-|| G1ConfidencePercent || || || ||
-|| G1MarkRegionStackSize || || || ||
-|| G1SATBBufferSize || || || ||
-|| G1SATBBufferEnqueueingThresholdPercent || || || ||
-|| G1UpdateBufferSize || || || ||
-|| G1ConcRefinementYellowZone || || || ||
-|| G1ConcRefinementRedZone || || || ||
-|| G1ConcRefinementGreenZone || || || ||
-|| G1ConcRefinementServiceIntervalMillis || || || ||
-|| G1ConcRefinementThresholdStep || || || ||
-|| G1RSetUpdatingPauseTimePercent || || || ||
-|| G1UseAdaptiveConcRefinement || || || ||
-|| G1RSetRegionEntries || || || ||
-|| G1RSetSparseRegionEntries || || || ||
-|| G1ReservePercent || || || ||
-|| G1HeapRegionSize || || || ||
-|| G1ConcRefinementThreads || || || ||
-|| G1RSetScanBlockSize || || || ||
-|| CacheGlobally || || || ||
-|| CacheCount || || || ||
-|| ValueMapInitialSize || || || ||
-|| ValueMapMaxLoopSize || || || ||
-|| LIRFillDelaySlots || || || ||
-|| TimeLinearScan || || || ||
-|| CompilationRepeat || || || ||
-|| LIRSchedule || || || ||
-|| SafepointPollOffset || || || ||
-|| C1ProfileCalls || || || ||
-|| C1ProfileVirtualCalls || || || ||
-|| C1ProfileInlinedCalls || || || ||
-|| C1ProfileBranches || || || ||
-|| C1ProfileCheckcasts || || || ||
-|| C1OptimizeVirtualCallProfiling || || || ||
-|| C1UpdateMethodData || || || ||
-|| InteriorEntryAlignment || || || ||
-|| MaxLoopPad || || || ||
-|| NumberOfLoopInstrToAlign || || || ||
-|| LoopUnrollLimit || || || ||
-|| LoopUnrollMin || || || ||
-|| MultiArrayExpandLimit || || || ||
-|| UseLoopPredicate || || || ||
-|| OptimizeFill || || || ||
-|| TrackedInitializationLimit || || || ||
-|| ReduceFieldZeroing || || || ||
-|| ReduceInitialCardMarks || || || ||
-|| ReduceBulkZeroing || || || ||
-|| UseFPUForSpilling || || || ||
-|| OptoScheduling || || || ||
-|| PartialPeelLoop || || || ||
-|| PartialPeelNewPhiDelta || || || ||
-|| PartialPeelAtUnsignedTests || || || ||
-|| ReassociateInvariants || || || ||
-|| LoopUnswitching || || || ||
-|| UseSuperWord || || || ||
-|| TraceSuperWord || || || ||
-|| OptoBundling || || || ||
-|| ConditionalMoveLimit || || || ||
-|| BranchOnRegister || || || ||
-|| UseRDPCForConstantTableBase || || || ||
-|| UseOldInlining || || || ||
-|| UseBimorphicInlining || || || ||
-|| UseOnlyInlinedBimorphic || || || ||
-|| InsertMemBarAfterArraycopy || || || ||
-|| Tier1Inline || || || ||
-|| Tier1MaxInlineSize || || || ||
-|| Tier1FreqInlineSize || || || ||
-|| Tier1LoopOptsCount || || || ||
-|| LoopOptsCount || || || ||
-|| MaxNodeLimit || || || ||
-|| NodeLimitFudgeFactor || || || ||
-|| UseJumpTables || || || ||
-|| UseDivMod || || || ||
-|| MinJumpTableSize || || || ||
-|| MaxJumpTableSize || || || ||
-|| MaxJumpTableSparseness || || || ||
-|| EliminateLocks || || || ||
-|| PrintPreciseBiasedLockingStatistics || || || ||
-|| EliminateAutoBox || || || ||
-|| AutoBoxCacheMax || || || ||
-|| DoEscapeAnalysis || || || ||
-|| EliminateAllocations || || || ||
-|| EliminateAllocationArraySizeLimit || || || ||
-|| UseOptoBiasInlining || || || ||
-|| OptimizeStringConcat || || || ||
-|| ValueSearchLimit || || || ||
-|| MaxLabelRootDepth || || || ||
-|| DominatorSearchLimit || || || ||
-|| BlockLayoutByFrequency || || || ||
-|| BlockLayoutMinDiamondPercentage || || || ||
-|| BlockLayoutRotateLoops || || || ||
+|| `UseCompressedOops` || `` || `` || ||
+|| `HeapBaseMinAddress` || `` || `` || ||
+|| `ObjectAlignmentInBytes` || `` || `` || ||
+|| `UseMembar` || `` || `` || ||
+|| `UsePPCLWSYNC` || `` || `` || ||
+|| `UnlockDiagnosticVMOptions` || `` || `` || ||
+|| `ForceSync` || `` || `` || ||
+|| `ProtectJavaHeap` || `` || `` || ||
+|| `BeParanoid` || `` || `` || ||
+|| `UnlockExperimentalVMOptions` || `` || `` || ||
+|| `JavaMonitorsInStackTrace` || `` || `` || ||
+|| `UseLargePages` || `` || `` || ||
+|| `UseLargePagesIndividualAllocation` || `` || `` || ||
+|| `UseNUMA` || `` || `` || ||
+|| `ForceNUMA` || `` || `` || ||
+|| `NUMAChunkResizeWeight` || `` || `` || ||
+|| `NUMASpaceResizeRate` || `` || `` || ||
+|| `UseAdaptiveNUMAChunkSizing` || `` || `` || ||
+|| `NUMAStats` || `` || `` || ||
+|| `NUMAPageScanRate` || `` || `` || ||
+|| `NeedsDeoptSuspend` || `` || `` || ||
+|| `UseSSE` || `` || `` || ||
+|| `LargePageSizeInBytes` || `` || `` || ||
+|| `LargePageHeapSizeThreshold` || `` || `` || ||
+|| `ForceTimeHighResolution` || `` || `` || ||
+|| `BackgroundCompilation` || `` || `` || ||
+|| `PrintVMQWaitTime` || `` || `` || ||
+|| `MethodFlushing` || `` || `` || ||
+|| `PrintJNIResolving` || `` || `` || ||
+|| `UseInlineCaches` || `` || `` || ||
+|| `SystemMathNatives` || `` || `` || ||
+|| `UseSSE42Intrinsics` || `` || `` || ||
+|| `DeoptimizeRandom` || `` || `` || ||
+|| `UseCompilerSafepoints` || `` || `` || ||
+|| `UseSplitVerifier` || `` || `` || ||
+|| `FailOverToOldVerifier` || `` || `` || ||
+|| `SafepointTimeout` || `` || `` || ||
+|| `SuspendRetryCount` || `` || `` || ||
+|| `SuspendRetryDelay` || `` || `` || ||
+|| `AssertOnSuspendWaitFailure` || `` || `` || ||
+|| `TraceSuspendWaitFailures` || `` || `` || ||
+|| `MaxFDLimit` || `` || `` || ||
+|| `BytecodeVerificationRemote` || `` || `` || ||
+|| `BytecodeVerificationLocal` || `` || `` || ||
+|| `PrintOopAddress` || `` || `` || ||
+|| `PrintGCApplicationConcurrentTime` || `` || `` || ||
+|| `PrintGCApplicationStoppedTime` || `` || `` || ||
+|| `ShowMessageBoxOnError` || `` || `` || ||
+|| `UseOSErrorReporting` || `` || `` || ||
+|| `SuppressFatalErrorMessage` || `` || `` || ||
+|| `OnError` || `` || `` || ||
+|| `OnOutOfMemoryError` || `` || `` || ||
+|| `HeapDumpBeforeFullGC` || `` || `` || ||
+|| `HeapDumpAfterFullGC` || `` || `` || ||
+|| `HeapDumpOnOutOfMemoryError` || `` || `` || ||
+|| `HeapDumpPath` || `` || `` || ||
+|| `UseVectoredExceptions` || `` || `` || ||
+|| `PrintCompilation` || `` || `` || ||
+|| `AlwaysRestoreFPU` || `` || `` || ||
+|| `StackTraceInThrowable` || `` || `` || ||
+|| `OmitStackTraceInFastThrow` || `` || `` || ||
+|| `ProfilerPrintByteCodeStatistics` || `` || `` || ||
+|| `ProfilerRecordPC` || `` || `` || ||
+|| `ProfileVM` || `` || `` || ||
+|| `ProfileIntervals` || `` || `` || ||
+|| `PrintWarnings` || `` || `` || ||
+|| `RegisterFinalizersAtInit` || `` || `` || ||
+|| `ClassUnloading` || `` || `` || ||
+|| `AlwaysLockClassLoader` || `` || `` || ||
+|| `AllowParallelDefineClass` || `` || `` || ||
+|| `MustCallLoadClassInternal` || `` || `` || ||
+|| `DontYieldALot` || `` || `` || ||
+|| `UseBoundThreads` || `` || `` || ||
+|| `UseLWPSynchronization` || `` || `` || ||
+|| `SyncKnobs` || `` || `` || ||
+|| `EmitSync` || `` || `` || ||
+|| `AlwaysInflate` || `` || `` || ||
+|| `MonitorBound` || `` || `` || ||
+|| `MonitorInUseLists` || `` || `` || ||
+|| `Atomics` || `` || `` || ||
+|| `FenceInstruction` || `` || `` || ||
+|| `SyncFlags` || `` || `` || ||
+|| `SyncVerbose` || `` || `` || ||
+|| `ClearFPUAtPark` || `` || `` || ||
+|| `hashCode` || `` || `` || ||
+|| `WorkAroundNPTLTimedWaitHang` || `` || `` || ||
+|| `FilterSpuriousWakeups` || `` || `` || ||
+|| `NativeMonitorTimeout` || `` || `` || ||
+|| `NativeMonitorFlags` || `` || `` || ||
+|| `NativeMonitorSpinLimit` || `` || `` || ||
+|| `AdjustConcurrency` || `` || `` || ||
+|| `ReduceSignalUsage` || `` || `` || ||
+|| `AllowUserSignalHandlers` || `` || `` || ||
+|| `UseSignalChaining` || `` || `` || ||
+|| `UseAltSigs` || `` || `` || ||
+|| `UseSpinning` || `` || `` || ||
+|| `PreSpinYield` || `` || `` || ||
+|| `PostSpinYield` || `` || `` || ||
+|| `AllowJNIEnvProxy` || `` || `` || ||
+|| `JNIDetachReleasesMonitors` || `` || `` || ||
+|| `RestoreMXCSROnJNICalls` || `` || `` || ||
+|| `CheckJNICalls` || `` || `` || ||
+|| `UseFastJNIAccessors` || `` || `` || ||
+|| `EagerXrunInit` || `` || `` || ||
+|| `PreserveAllAnnotations` || `` || `` || ||
+|| `LazyBootClassLoader` || `` || `` || ||
+|| `UseNewLongLShift` || `` || `` || ||
+|| `UseStoreImmI16` || `` || `` || ||
+|| `UseAddressNop` || `` || `` || ||
+|| `UseXmmLoadAndClearUpper` || `` || `` || ||
+|| `UseXmmRegToRegMoveAll` || `` || `` || ||
+|| `UseXmmI2D` || `` || `` || ||
+|| `UseXmmI2F` || `` || `` || ||
+|| `UseXMMForArrayCopy` || `` || `` || ||
+|| `UseUnalignedLoadStores` || `` || `` || ||
+|| `FieldsAllocationStyle` || `` || `` || ||
+|| `CompactFields` || `` || `` || ||
+|| `UseBiasedLocking` || `` || `` || ||
+|| `BiasedLockingStartupDelay` || `` || `` || ||
+|| `BiasedLockingBulkRebiasThreshold` || `` || `` || ||
+|| `BiasedLockingBulkRevokeThreshold` || `` || `` || ||
+|| `BiasedLockingDecayTime` || `` || `` || ||
+|| `TraceJVMTI` || `` || `` || ||
+|| `StressLdcRewrite` || `` || `` || ||
+|| `TraceRedefineClasses` || `` || `` || ||
+|| `VerifyMergedCPBytecodes` || `` || `` || ||
+|| `HPILibPath` || `` || `` || ||
+|| `TraceClassResolution` || `` || `` || ||
+|| `TraceBiasedLocking` || `` || `` || ||
+|| `TraceMonitorInflation` || `` || `` || ||
+|| `Use486InstrsOnly` || `` || `` || ||
+|| `UseSerialGC` || `` || `` || ||
+|| `UseG1GC` || `` || `` || ||
+|| `UseParallelGC` || `` || `` || ||
+|| `UseParallelOldGC` || `` || `` || ||
+|| `UseParallelOldGCCompacting` || `` || `` || ||
+|| `UseParallelDensePrefixUpdate` || `` || `` || ||
+|| `HeapMaximumCompactionInterval` || `` || `` || ||
+|| `HeapFirstMaximumCompactionCount` || `` || `` || ||
+|| `UseMaximumCompactionOnSystemGC` || `` || `` || ||
+|| `ParallelOldDeadWoodLimiterMean` || `` || `` || ||
+|| `ParallelOldDeadWoodLimiterStdDev` || `` || `` || ||
+|| `UseParallelOldGCDensePrefix` || `` || `` || ||
+|| `ParallelGCThreads` || `` || `` || ||
+|| `ConcGCThreads` || `` || `` || ||
+|| `YoungPLABSize` || `` || `` || ||
+|| `OldPLABSize` || `` || `` || ||
+|| `GCTaskTimeStampEntries` || `` || `` || ||
+|| `AlwaysTenure` || `` || `` || ||
+|| `NeverTenure` || `` || `` || ||
+|| `ScavengeBeforeFullGC` || `` || `` || ||
+|| `UseConcMarkSweepGC` || `` || `` || ||
+|| `ExplicitGCInvokesConcurrent` || `` || `` || ||
+|| `ExplicitGCInvokesConcurrentAndUnloadsClasses` || `` || `` || ||
+|| `GCLockerInvokesConcurrent` || `` || `` || ||
+|| `GCLockerEdenExpansionPercent` || `` || `` || ||
+|| `UseCMSBestFit` || `` || `` || ||
+|| `UseCMSCollectionPassing` || `` || `` || ||
+|| `UseParNewGC` || `` || `` || ||
+|| `ParallelGCVerbose` || `` || `` || ||
+|| `ParallelGCBufferWastePct` || `` || `` || ||
+|| `ParallelGCRetainPLAB` || `` || `` || ||
+|| `TargetPLABWastePct` || `` || `` || ||
+|| `PLABWeight` || `` || `` || ||
+|| `ResizePLAB` || `` || `` || ||
+|| `PrintPLAB` || `` || `` || ||
+|| `ParGCArrayScanChunk` || `` || `` || ||
+|| `ParGCUseLocalOverflow` || `` || `` || ||
+|| `ParGCTrimOverflow` || `` || `` || ||
+|| `ParGCDesiredObjsFromOverflowList` || `` || `` || ||
+|| `CMSParPromoteBlocksToClaim` || `` || `` || ||
+|| `OldPLABWeight` || `` || `` || ||
+|| `ResizeOldPLAB` || `` || `` || ||
+|| `PrintOldPLAB` || `` || `` || ||
+|| `CMSOldPLABMin` || `` || `` || ||
+|| `CMSOldPLABMax` || `` || `` || ||
+|| `CMSOldPLABNumRefills` || `` || `` || ||
+|| `CMSOldPLABResizeQuicker` || `` || `` || ||
+|| `CMSOldPLABToleranceFactor` || `` || `` || ||
+|| `CMSOldPLABReactivityFactor` || `` || `` || ||
+|| `CMSOldPLABReactivityCeiling` || `` || `` || ||
+|| `AlwaysPreTouch` || `` || `` || ||
+|| `CMSUseOldDefaults` || `` || `` || ||
+|| `CMSYoungGenPerWorker` || `` || `` || ||
+|| `GCOverheadReporting` || `` || `` || ||
+|| `GCOverheadReportingPeriodMS` || `` || `` || ||
+|| `CMSIncrementalMode` || `` || `` || ||
+|| `CMSIncrementalDutyCycle` || `` || `` || ||
+|| `CMSIncrementalPacing` || `` || `` || ||
+|| `CMSIncrementalDutyCycleMin` || `` || `` || ||
+|| `CMSIncrementalSafetyFactor` || `` || `` || ||
+|| `CMSIncrementalOffset` || `` || `` || ||
+|| `CMSExpAvgFactor` || `` || `` || ||
+|| `CMS_FLSWeight` || `` || `` || ||
+|| `CMS_FLSPadding` || `` || `` || ||
+|| `FLSCoalescePolicy` || `` || `` || ||
+|| `FLSAlwaysCoalesceLarge` || `` || `` || ||
+|| `CMSExtrapolateSweep` || `` || `` || ||
+|| `CMS_SweepWeight` || `` || `` || ||
+|| `CMS_SweepPadding` || `` || `` || ||
+|| `CMS_SweepTimerThresholdMillis` || `` || `` || ||
+|| `CMSClassUnloadingEnabled` || `` || `` || ||
+|| `CMSClassUnloadingMaxInterval` || `` || `` || ||
+|| `CMSCompactWhenClearAllSoftRefs` || `` || `` || ||
+|| `UseCMSCompactAtFullCollection` || `` || `` || ||
+|| `CMSFullGCsBeforeCompaction` || `` || `` || ||
+|| `CMSIndexedFreeListReplenish` || `` || `` || ||
+|| `CMSReplenishIntermediate` || `` || `` || ||
+|| `CMSSplitIndexedFreeListBlocks` || `` || `` || ||
+|| `CMSLoopWarn` || `` || `` || ||
+|| `MarkStackSize` || `` || `` || ||
+|| `MarkStackSizeMax` || `` || `` || ||
+|| `CMSMaxAbortablePrecleanLoops` || `` || `` || ||
+|| `CMSMaxAbortablePrecleanTime` || `` || `` || ||
+|| `CMSAbortablePrecleanMinWorkPerIteration` || `` || `` || ||
+|| `CMSAbortablePrecleanWaitMillis` || `` || `` || ||
+|| `CMSRescanMultiple` || `` || `` || ||
+|| `CMSConcMarkMultiple` || `` || `` || ||
+|| `CMSRevisitStackSize` || `` || `` || ||
+|| `CMSAbortSemantics` || `` || `` || ||
+|| `CMSParallelRemarkEnabled` || `` || `` || ||
+|| `CMSParallelSurvivorRemarkEnabled` || `` || `` || ||
+|| `CMSPLABRecordAlways` || `` || `` || ||
+|| `CMSConcurrentMTEnabled` || `` || `` || ||
+|| `CMSPermGenPrecleaningEnabled` || `` || `` || ||
+|| `CMSPrecleaningEnabled` || `` || `` || ||
+|| `CMSPrecleanIter` || `` || `` || ||
+|| `CMSPrecleanNumerator` || `` || `` || ||
+|| `CMSPrecleanDenominator` || `` || `` || ||
+|| `CMSPrecleanRefLists1` || `` || `` || ||
+|| `CMSPrecleanRefLists2` || `` || `` || ||
+|| `CMSPrecleanSurvivors1` || `` || `` || ||
+|| `CMSPrecleanSurvivors2` || `` || `` || ||
+|| `CMSPrecleanThreshold` || `` || `` || ||
+|| `CMSCleanOnEnter` || `` || `` || ||
+|| `CMSRemarkVerifyVariant` || `` || `` || ||
+|| `CMSScheduleRemarkEdenSizeThreshold` || `` || `` || ||
+|| `CMSScheduleRemarkEdenPenetration` || `` || `` || ||
+|| `CMSScheduleRemarkSamplingRatio` || `` || `` || ||
+|| `CMSSamplingGrain` || `` || `` || ||
+|| `CMSScavengeBeforeRemark` || `` || `` || ||
+|| `CMSWorkQueueDrainThreshold` || `` || `` || ||
+|| `CMSWaitDuration` || `` || `` || ||
+|| `CMSYield` || `` || `` || ||
+|| `CMSBitMapYieldQuantum` || `` || `` || ||
+|| `CMSDumpAtPromotionFailure` || `` || `` || ||
+|| `CMSPrintChunksInDump` || `` || `` || ||
+|| `CMSPrintObjectsInDump` || `` || `` || ||
+|| `BlockOffsetArrayUseUnallocatedBlock` || `` || `` || ||
+|| `RefDiscoveryPolicy` || `` || `` || ||
+|| `ParallelRefProcEnabled` || `` || `` || ||
+|| `ParallelRefProcBalancingEnabled` || `` || `` || ||
+|| `CMSTriggerRatio` || `` || `` || ||
+|| `CMSTriggerPermRatio` || `` || `` || ||
+|| `CMSBootstrapOccupancy` || `` || `` || ||
+|| `CMSInitiatingOccupancyFraction` || `` || `` || ||
+|| `InitiatingHeapOccupancyPercent` || `` || `` || ||
+|| `CMSInitiatingPermOccupancyFraction` || `` || `` || ||
+|| `UseCMSInitiatingOccupancyOnly` || `` || `` || ||
+|| `CMSIsTooFullPercentage` || `` || `` || ||
+|| `PrintPromotionFailure` || `` || `` || ||
+|| `PreserveMarkStackSize` || `` || `` || ||
+|| `UseTLAB` || `` || `` || ||
+|| `ResizeTLAB` || `` || `` || ||
+|| `ZeroTLAB` || `` || `` || ||
+|| `FastTLABRefill` || `` || `` || ||
+|| `PrintTLAB` || `` || `` || ||
+|| `TLABStats` || `` || `` || ||
+|| `PrintRevisitStats` || `` || `` || ||
+|| `NeverActAsServerClassMachine` || `` || `` || ||
+|| `AlwaysActAsServerClassMachine` || `` || `` || ||
+|| `MaxRAM` || `` || `` || ||
+|| `ErgoHeapSizeLimit` || `` || `` || ||
+|| `MaxRAMFraction` || `` || `` || ||
+|| `DefaultMaxRAMFraction` || `` || `` || ||
+|| `MinRAMFraction` || `` || `` || ||
+|| `InitialRAMFraction` || `` || `` || ||
+|| `UseAutoGCSelectPolicy` || `` || `` || ||
+|| `AutoGCSelectPauseMillis` || `` || `` || ||
+|| `UseAdaptiveSizePolicy` || `` || `` || ||
+|| `UsePSAdaptiveSurvivorSizePolicy` || `` || `` || ||
+|| `UseAdaptiveGenerationSizePolicyAtMinorCollection` || `` || `` || ||
+|| `UseAdaptiveGenerationSizePolicyAtMajorCollection` || `` || `` || ||
+|| `UseAdaptiveSizePolicyWithSystemGC` || `` || `` || ||
+|| `UseAdaptiveGCBoundary` || `` || `` || ||
+|| `AdaptiveSizeThroughPutPolicy` || `` || `` || ||
+|| `AdaptiveSizePausePolicy` || `` || `` || ||
+|| `AdaptiveSizePolicyInitializingSteps` || `` || `` || ||
+|| `AdaptiveSizePolicyOutputInterval` || `` || `` || ||
+|| `UseAdaptiveSizePolicyFootprintGoal` || `` || `` || ||
+|| `AdaptiveSizePolicyWeight` || `` || `` || ||
+|| `AdaptiveTimeWeight` || `` || `` || ||
+|| `PausePadding` || `` || `` || ||
+|| `PromotedPadding` || `` || `` || ||
+|| `SurvivorPadding` || `` || `` || ||
+|| `AdaptivePermSizeWeight` || `` || `` || ||
+|| `PermGenPadding` || `` || `` || ||
+|| `ThresholdTolerance` || `` || `` || ||
+|| `AdaptiveSizePolicyCollectionCostMargin` || `` || `` || ||
+|| `YoungGenerationSizeIncrement` || `` || `` || ||
+|| `YoungGenerationSizeSupplement` || `` || `` || ||
+|| `YoungGenerationSizeSupplementDecay` || `` || `` || ||
+|| `TenuredGenerationSizeIncrement` || `` || `` || ||
+|| `TenuredGenerationSizeSupplement` || `` || `` || ||
+|| `TenuredGenerationSizeSupplementDecay` || `` || `` || ||
+|| `MaxGCPauseMillis` || `` || `` || ||
+|| `GCPauseIntervalMillis` || `` || `` || ||
+|| `MaxGCMinorPauseMillis` || `` || `` || ||
+|| `GCTimeRatio` || `` || `` || ||
+|| `AdaptiveSizeDecrementScaleFactor` || `` || `` || ||
+|| `UseAdaptiveSizeDecayMajorGCCost` || `` || `` || ||
+|| `AdaptiveSizeMajorGCDecayTimeScale` || `` || `` || ||
+|| `MinSurvivorRatio` || `` || `` || ||
+|| `InitialSurvivorRatio` || `` || `` || ||
+|| `BaseFootPrintEstimate` || `` || `` || ||
+|| `UseGCOverheadLimit` || `` || `` || ||
+|| `GCTimeLimit` || `` || `` || ||
+|| `GCHeapFreeLimit` || `` || `` || ||
+|| `PrintAdaptiveSizePolicy` || `` || `` || ||
+|| `PrefetchCopyIntervalInBytes` || `` || `` || ||
+|| `PrefetchScanIntervalInBytes` || `` || `` || ||
+|| `PrefetchFieldsAhead` || `` || `` || ||
+|| `DisableExplicitGC` || `` || `` || ||
+|| `PreZeroEden` || `` || `` || ||
+|| `CollectGen0First` || `` || `` || ||
+|| `BindGCTaskThreadsToCPUs` || `` || `` || ||
+|| `UseGCTaskAffinity` || `` || `` || ||
+|| `ProcessDistributionStride` || `` || `` || ||
+|| `CMSCoordinatorYieldSleepCount` || `` || `` || ||
+|| `CMSYieldSleepCount` || `` || `` || ||
+|| `PrintGC` || `` || `` || ||
+|| `PrintGCDetails` || `` || `` || ||
+|| `PrintGCDateStamps` || `` || `` || ||
+|| `PrintGCTimeStamps` || `` || `` || ||
+|| `PrintGCTaskTimeStamps` || `` || `` || ||
+|| `PrintReferenceGC` || `` || `` || ||
+|| `TraceClassLoading` || `` || `` || ||
+|| `TraceClassLoadingPreorder` || `` || `` || ||
+|| `TraceClassUnloading` || `` || `` || ||
+|| `TraceLoaderConstraints` || `` || `` || ||
+|| `TraceGen0Time` || `` || `` || ||
+|| `TraceGen1Time` || `` || `` || ||
+|| `PrintTenuringDistribution` || `` || `` || ||
+|| `PrintHeapAtGC` || `` || `` || ||
+|| `PrintHeapAtGCExtended` || `` || `` || ||
+|| `PrintHeapAtSIGBREAK` || `` || `` || ||
+|| `PrintClassHistogramBeforeFullGC` || `` || `` || ||
+|| `PrintClassHistogramAfterFullGC` || `` || `` || ||
+|| `PrintClassHistogram` || `` || `` || ||
+|| `TraceParallelOldGCTasks` || `` || `` || ||
+|| `PrintParallelOldGCPhaseTimes` || `` || `` || ||
+|| `PrintJNIGCStalls` || `` || `` || ||
+|| `CITime` || `` || `` || ||
+|| `CICompilerCount` || `` || `` || ||
+|| `CompilationPolicyChoice` || `` || `` || ||
+|| `PrintSafepointStatistics` || `` || `` || ||
+|| `PrintSafepointStatisticsCount` || `` || `` || ||
+|| `PrintSafepointStatisticsTimeout` || `` || `` || ||
+|| `TraceSafepointCleanupTime` || `` || `` || ||
+|| `Inline` || `` || `` || ||
+|| `ClipInlining` || `` || `` || ||
+|| `UseTypeProfile` || `` || `` || ||
+|| `TypeProfileMajorReceiverPercent` || `` || `` || ||
+|| `UseCountLeadingZerosInstruction` || `` || `` || ||
+|| `UsePopCountInstruction` || `` || `` || ||
+|| `PrintVMOptions` || `` || `` || ||
+|| `IgnoreUnrecognizedVMOptions` || `` || `` || ||
+|| `PrintCommandLineFlags` || `` || `` || ||
+|| `PrintFlagsInitial` || `` || `` || ||
+|| `PrintFlagsFinal` || `` || `` || ||
+|| `ErrorFile` || `` || `` || ||
+|| `DisplayVMOutputToStderr` || `` || `` || ||
+|| `DisplayVMOutputToStdout` || `` || `` || ||
+|| `UseHeavyMonitors` || `` || `` || ||
+|| `RangeCheckElimination` || `` || `` || ||
+|| `SplitIfBlocks` || `` || `` || ||
+|| `AggressiveOpts` || `` || `` || ||
+|| `UseStringCache` || `` || `` || ||
+|| `UseCompressedStrings` || `` || `` || ||
+|| `SpecialStringCompress` || `` || `` || ||
+|| `SpecialStringInflate` || `` || `` || ||
+|| `SpecialStringCompareToCC` || `` || `` || ||
+|| `SpecialStringIndexOfCC` || `` || `` || ||
+|| `SpecialStringEqualsCC` || `` || `` || ||
+|| `RewriteBytecodes` || `` || `` || ||
+|| `RewriteFrequentPairs` || `` || `` || ||
+|| `UseInterpreter` || `` || `` || ||
+|| `UseNiagaraInstrs` || `` || `` || ||
+|| `UseLoopCounter` || `` || `` || ||
+|| `UseFastEmptyMethods` || `` || `` || ||
+|| `UseFastAccessorMethods` || `` || `` || ||
+|| `UseOnStackReplacement` || `` || `` || ||
+|| `PreferInterpreterNativeStubs` || `` || `` || ||
+|| `ProfileInterpreter` || `` || `` || ||
+|| `ProfileMaturityPercentage` || `` || `` || ||
+|| `UseCompiler` || `` || `` || ||
+|| `UseCounterDecay` || `` || `` || ||
+|| `AlwaysCompileLoopMethods` || `` || `` || ||
+|| `DontCompileHugeMethods` || `` || `` || ||
+|| `EstimateArgEscape` || `` || `` || ||
+|| `BCEATraceLevel` || `` || `` || ||
+|| `MaxBCEAEstimateLevel` || `` || `` || ||
+|| `MaxBCEAEstimateSize` || `` || `` || ||
+|| `AllocatePrefetchStyle` || `` || `` || ||
+|| `AllocatePrefetchDistance` || `` || `` || ||
+|| `AllocatePrefetchLines` || `` || `` || ||
+|| `AllocatePrefetchStepSize` || `` || `` || ||
+|| `AllocatePrefetchInstr` || `` || `` || ||
+|| `ReadPrefetchInstr` || `` || `` || ||
+|| `PrintJavaStackAtFatalState` || `` || `` || ||
+|| `SelfDestructTimer` || `` || `` || ||
+|| `MaxJavaStackTraceDepth` || `` || `` || ||
+|| `SafepointTimeoutDelay` || `` || `` || ||
+|| `NmethodSweepFraction` || `` || `` || ||
+|| `NmethodSweepCheckInterval` || `` || `` || ||
+|| `MaxInlineLevel` || `` || `` || ||
+|| `MaxRecursiveInlineLevel` || `` || `` || ||
+|| `InlineSmallCode` || `` || `` || ||
+|| `MaxInlineSize` || `` || `` || ||
+|| `FreqInlineSize` || `` || `` || ||
+|| `MaxTrivialSize` || `` || `` || ||
+|| `MinInliningThreshold` || `` || `` || ||
+|| `ProfileIntervalsTicks` || `` || `` || ||
+|| `EventLogLength` || `` || `` || ||
+|| `TypeProfileWidth` || `` || `` || ||
+|| `PerMethodRecompilationCutoff` || `` || `` || ||
+|| `PerBytecodeRecompilationCutoff` || `` || `` || ||
+|| `PerMethodTrapLimit` || `` || `` || ||
+|| `PerBytecodeTrapLimit` || `` || `` || ||
+|| `AliasLevel` || `` || `` || ||
+|| `ReadSpinIterations` || `` || `` || ||
+|| `PreInflateSpin` || `` || `` || ||
+|| `PreBlockSpin` || `` || `` || ||
+|| `InitialHeapSize` || `` || `` || ||
+|| `MaxHeapSize` || `` || `` || ||
+|| `OldSize` || `` || `` || ||
+|| `NewSize` || `` || `` || ||
+|| `MaxNewSize` || `` || `` || ||
+|| `PretenureSizeThreshold` || `` || `` || ||
+|| `TLABSize` || `` || `` || ||
+|| `MinTLABSize` || `` || `` || ||
+|| `TLABAllocationWeight` || `` || `` || ||
+|| `TLABWasteTargetPercent` || `` || `` || ||
+|| `TLABRefillWasteFraction` || `` || `` || ||
+|| `TLABWasteIncrement` || `` || `` || ||
+|| `SurvivorRatio` || `` || `` || ||
+|| `NewRatio` || `` || `` || ||
+|| `NewSizeThreadIncrease` || `` || `` || ||
+|| `PermSize` || `` || `` || ||
+|| `MaxPermSize` || `` || `` || ||
+|| `MinHeapFreeRatio` || `` || `` || ||
+|| `MaxHeapFreeRatio` || `` || `` || ||
+|| `SoftRefLRUPolicyMSPerMB` || `` || `` || ||
+|| `MinHeapDeltaBytes` || `` || `` || ||
+|| `MinPermHeapExpansion` || `` || `` || ||
+|| `MaxPermHeapExpansion` || `` || `` || ||
+|| `QueuedAllocationWarningCount` || `` || `` || ||
+|| `MaxTenuringThreshold` || `` || `` || ||
+|| `InitialTenuringThreshold` || `` || `` || ||
+|| `TargetSurvivorRatio` || `` || `` || ||
+|| `MarkSweepDeadRatio` || `` || `` || ||
+|| `PermMarkSweepDeadRatio` || `` || `` || ||
+|| `MarkSweepAlwaysCompactCount` || `` || `` || ||
+|| `PrintCMSStatistics` || `` || `` || ||
+|| `PrintCMSInitiationStatistics` || `` || `` || ||
+|| `PrintFLSStatistics` || `` || `` || ||
+|| `PrintFLSCensus` || `` || `` || ||
+|| `DeferThrSuspendLoopCount` || `` || `` || ||
+|| `DeferPollingPageLoopCount` || `` || `` || ||
+|| `SafepointSpinBeforeYield` || `` || `` || ||
+|| `PSChunkLargeArrays` || `` || `` || ||
+|| `GCDrainStackTargetSize` || `` || `` || ||
+|| `StackYellowPages` || `` || `` || ||
+|| `StackRedPages` || `` || `` || ||
+|| `StackShadowPages` || `` || `` || ||
+|| `ThreadStackSize` || `` || `` || ||
+|| `VMThreadStackSize` || `` || `` || ||
+|| `CompilerThreadStackSize` || `` || `` || ||
+|| `ThreadSafetyMargin` || `` || `` || ||
+|| `OptoLoopAlignment` || `` || `` || ||
+|| `InitialCodeCacheSize` || `` || `` || ||
+|| `ReservedCodeCacheSize` || `` || `` || ||
+|| `CodeCacheMinimumFreeSpace` || `` || `` || ||
+|| `CodeCacheExpansionSize` || `` || `` || ||
+|| `UseCodeCacheFlushing` || `` || `` || ||
+|| `MinCodeCacheFlushingInterval` || `` || `` || ||
+|| `CodeCacheFlushingMinimumFreeSpace` || `` || `` || ||
+|| `CompileOnly` || `` || `` || ||
+|| `CompileCommandFile` || `` || `` || ||
+|| `CompileCommand` || `` || `` || ||
+|| `CICompilerCountPerCPU` || `` || `` || ||
+|| `UseThreadPriorities` || `` || `` || ||
+|| `ThreadPriorityPolicy` || `` || `` || ||
+|| `ThreadPriorityVerbose` || `` || `` || ||
+|| `DefaultThreadPriority` || `` || `` || ||
+|| `CompilerThreadPriority` || `` || `` || ||
+|| `VMThreadPriority` || `` || `` || ||
+|| `CompilerThreadHintNoPreempt` || `` || `` || ||
+|| `VMThreadHintNoPreempt` || `` || `` || ||
+|| `JavaPriority1_To_OSPriority` || `` || `` || ||
+|| `JavaPriority2_To_OSPriority` || `` || `` || ||
+|| `JavaPriority3_To_OSPriority` || `` || `` || ||
+|| `JavaPriority4_To_OSPriority` || `` || `` || ||
+|| `JavaPriority5_To_OSPriority` || `` || `` || ||
+|| `JavaPriority6_To_OSPriority` || `` || `` || ||
+|| `JavaPriority7_To_OSPriority` || `` || `` || ||
+|| `JavaPriority8_To_OSPriority` || `` || `` || ||
+|| `JavaPriority9_To_OSPriority` || `` || `` || ||
+|| `JavaPriority10_To_OSPriority` || `` || `` || ||
+|| `StarvationMonitorInterval` || `` || `` || ||
+|| `CompileThreshold` || `` || `` || ||
+|| `BackEdgeThreshold` || `` || `` || ||
+|| `Tier0InvokeNotifyFreqLog` || `` || `` || ||
+|| `Tier2InvokeNotifyFreqLog` || `` || `` || ||
+|| `Tier3InvokeNotifyFreqLog` || `` || `` || ||
+|| `Tier0BackedgeNotifyFreqLog` || `` || `` || ||
+|| `Tier2BackedgeNotifyFreqLog` || `` || `` || ||
+|| `Tier3BackedgeNotifyFreqLog` || `` || `` || ||
+|| `Tier2CompileThreshold` || `` || `` || ||
+|| `Tier2BackEdgeThreshold` || `` || `` || ||
+|| `Tier3InvocationThreshold` || `` || `` || ||
+|| `Tier3MinInvocationThreshold` || `` || `` || ||
+|| `Tier3CompileThreshold` || `` || `` || ||
+|| `Tier3BackEdgeThreshold` || `` || `` || ||
+|| `Tier4InvocationThreshold` || `` || `` || ||
+|| `Tier4MinInvocationThreshold` || `` || `` || ||
+|| `Tier4CompileThreshold` || `` || `` || ||
+|| `Tier4BackEdgeThreshold` || `` || `` || ||
+|| `Tier3DelayOn` || `` || `` || ||
+|| `Tier3DelayOff` || `` || `` || ||
+|| `Tier3LoadFeedback` || `` || `` || ||
+|| `Tier4LoadFeedback` || `` || `` || ||
+|| `TieredCompileTaskTimeout` || `` || `` || ||
+|| `TieredStopAtLevel` || `` || `` || ||
+|| `Tier0ProfilingStartPercentage` || `` || `` || ||
+|| `TieredRateUpdateMinTime` || `` || `` || ||
+|| `TieredRateUpdateMaxTime` || `` || `` || ||
+|| `TieredCompilation` || `` || `` || ||
+|| `PrintTieredEvents` || `` || `` || ||
+|| `StressTieredRuntime` || `` || `` || ||
+|| `OnStackReplacePercentage` || `` || `` || ||
+|| `InterpreterProfilePercentage` || `` || `` || ||
+|| `DesiredMethodLimit` || `` || `` || ||
+|| `ReflectionWrapResolutionErrors` || `` || `` || ||
+|| `MaxDirectMemorySize` || `` || `` || ||
+|| `UsePerfData` || `` || `` || ||
+|| `PerfDataSaveToFile` || `` || `` || ||
+|| `PerfDataSaveFile` || `` || `` || ||
+|| `PerfDataSamplingInterval` || `` || `` || ||
+|| `PerfDisableSharedMem` || `` || `` || ||
+|| `PerfDataMemorySize` || `` || `` || ||
+|| `PerfMaxStringConstLength` || `` || `` || ||
+|| `PerfAllowAtExitRegistration` || `` || `` || ||
+|| `PerfBypassFileSystemCheck` || `` || `` || ||
+|| `UnguardOnExecutionViolation` || `` || `` || ||
+|| `ManagementServer` || `` || `` || ||
+|| `DisableAttachMechanism` || `` || `` || ||
+|| `StartAttachListener` || `` || `` || ||
+|| `PrintConcurrentLocks` || `` || `` || ||
+|| `UseSharedSpaces` || `` || `` || ||
+|| `RequireSharedSpaces` || `` || `` || ||
+|| `DumpSharedSpaces` || `` || `` || ||
+|| `PrintSharedSpaces` || `` || `` || ||
+|| `SharedDummyBlockSize` || `` || `` || ||
+|| `SharedReadWriteSize` || `` || `` || ||
+|| `SharedReadOnlySize` || `` || `` || ||
+|| `SharedMiscDataSize` || `` || `` || ||
+|| `SharedMiscCodeSize` || `` || `` || ||
+|| `AnonymousClasses` || `` || `` || ||
+|| `ExtendedDTraceProbes` || `` || `` || ||
+|| `DTraceMethodProbes` || `` || `` || ||
+|| `DTraceAllocProbes` || `` || `` || ||
+|| `DTraceMonitorProbes` || `` || `` || ||
+|| `RelaxAccessControlCheck` || `` || `` || ||
+|| `WaitForDebugger` || `` || `` || ||
+|| `UseFileLocking` || `` || `` || ||
+|| `UncommitYoungGenOnGC` || `` || `` || ||
+|| `UncommitOldGenOnGC` || `` || `` || ||
+|| `TraceUncommitMemory` || `` || `` || ||
+|| `UncommitUsesMadvise` || `` || `` || ||
+|| `ExitOnLargePageFailure` || `` || `` || ||
+|| `UseVMInterruptibleIO` || `` || `` || ||
+|| `G1ConfidencePercent` || `` || `` || ||
+|| `G1MarkRegionStackSize` || `` || `` || ||
+|| `G1SATBBufferSize` || `` || `` || ||
+|| `G1SATBBufferEnqueueingThresholdPercent` || `` || `` || ||
+|| `G1UpdateBufferSize` || `` || `` || ||
+|| `G1ConcRefinementYellowZone` || `` || `` || ||
+|| `G1ConcRefinementRedZone` || `` || `` || ||
+|| `G1ConcRefinementGreenZone` || `` || `` || ||
+|| `G1ConcRefinementServiceIntervalMillis` || `` || `` || ||
+|| `G1ConcRefinementThresholdStep` || `` || `` || ||
+|| `G1RSetUpdatingPauseTimePercent` || `` || `` || ||
+|| `G1UseAdaptiveConcRefinement` || `` || `` || ||
+|| `G1RSetRegionEntries` || `` || `` || ||
+|| `G1RSetSparseRegionEntries` || `` || `` || ||
+|| `G1ReservePercent` || `` || `` || ||
+|| `G1HeapRegionSize` || `` || `` || ||
+|| `G1ConcRefinementThreads` || `` || `` || ||
+|| `G1RSetScanBlockSize` || `` || `` || ||
+|| `CacheGlobally` || `` || `` || ||
+|| `CacheCount` || `` || `` || ||
+|| `ValueMapInitialSize` || `` || `` || ||
+|| `ValueMapMaxLoopSize` || `` || `` || ||
+|| `LIRFillDelaySlots` || `` || `` || ||
+|| `TimeLinearScan` || `` || `` || ||
+|| `CompilationRepeat` || `` || `` || ||
+|| `LIRSchedule` || `` || `` || ||
+|| `SafepointPollOffset` || `` || `` || ||
+|| `C1ProfileCalls` || `` || `` || ||
+|| `C1ProfileVirtualCalls` || `` || `` || ||
+|| `C1ProfileInlinedCalls` || `` || `` || ||
+|| `C1ProfileBranches` || `` || `` || ||
+|| `C1ProfileCheckcasts` || `` || `` || ||
+|| `C1OptimizeVirtualCallProfiling` || `` || `` || ||
+|| `C1UpdateMethodData` || `` || `` || ||
+|| `InteriorEntryAlignment` || `` || `` || ||
+|| `MaxLoopPad` || `` || `` || ||
+|| `NumberOfLoopInstrToAlign` || `` || `` || ||
+|| `LoopUnrollLimit` || `` || `` || ||
+|| `LoopUnrollMin` || `` || `` || ||
+|| `MultiArrayExpandLimit` || `` || `` || ||
+|| `UseLoopPredicate` || `` || `` || ||
+|| `OptimizeFill` || `` || `` || ||
+|| `TrackedInitializationLimit` || `` || `` || ||
+|| `ReduceFieldZeroing` || `` || `` || ||
+|| `ReduceInitialCardMarks` || `` || `` || ||
+|| `ReduceBulkZeroing` || `` || `` || ||
+|| `UseFPUForSpilling` || `` || `` || ||
+|| `OptoScheduling` || `` || `` || ||
+|| `PartialPeelLoop` || `` || `` || ||
+|| `PartialPeelNewPhiDelta` || `` || `` || ||
+|| `PartialPeelAtUnsignedTests` || `` || `` || ||
+|| `ReassociateInvariants` || `` || `` || ||
+|| `LoopUnswitching` || `` || `` || ||
+|| `UseSuperWord` || `` || `` || ||
+|| `TraceSuperWord` || `` || `` || ||
+|| `OptoBundling` || `` || `` || ||
+|| `ConditionalMoveLimit` || `` || `` || ||
+|| `BranchOnRegister` || `` || `` || ||
+|| `UseRDPCForConstantTableBase` || `` || `` || ||
+|| `UseOldInlining` || `` || `` || ||
+|| `UseBimorphicInlining` || `` || `` || ||
+|| `UseOnlyInlinedBimorphic` || `` || `` || ||
+|| `InsertMemBarAfterArraycopy` || `` || `` || ||
+|| `Tier1Inline` || `` || `` || ||
+|| `Tier1MaxInlineSize` || `` || `` || ||
+|| `Tier1FreqInlineSize` || `` || `` || ||
+|| `Tier1LoopOptsCount` || `` || `` || ||
+|| `LoopOptsCount` || `` || `` || ||
+|| `MaxNodeLimit` || `` || `` || ||
+|| `NodeLimitFudgeFactor` || `` || `` || ||
+|| `UseJumpTables` || `` || `` || ||
+|| `UseDivMod` || `` || `` || ||
+|| `MinJumpTableSize` || `` || `` || ||
+|| `MaxJumpTableSize` || `` || `` || ||
+|| `MaxJumpTableSparseness` || `` || `` || ||
+|| `EliminateLocks` || `` || `` || ||
+|| `PrintPreciseBiasedLockingStatistics` || `` || `` || ||
+|| `EliminateAutoBox` || `` || `` || ||
+|| `AutoBoxCacheMax` || `` || `` || ||
+|| `DoEscapeAnalysis` || `` || `` || ||
+|| `EliminateAllocations` || `` || `` || ||
+|| `EliminateAllocationArraySizeLimit` || `` || `` || ||
+|| `UseOptoBiasInlining` || `` || `` || ||
+|| `OptimizeStringConcat` || `` || `` || ||
+|| `ValueSearchLimit` || `` || `` || ||
+|| `MaxLabelRootDepth` || `` || `` || ||
+|| `DominatorSearchLimit` || `` || `` || ||
+|| `BlockLayoutByFrequency` || `` || `` || ||
+|| `BlockLayoutMinDiamondPercentage` || `` || `` || ||
+|| `BlockLayoutRotateLoops` || `` || `` || ||
 
 ==System.Properties参数==
 || *参数Key* || *说明* ||

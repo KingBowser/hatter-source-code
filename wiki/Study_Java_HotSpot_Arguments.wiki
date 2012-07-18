@@ -74,7 +74,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `-Xloggc:` || `-` || `+PrintGC,+PrintGCTimeStamps,+TraceClassUnloading`<br>打印GC信息到指定文件 ||
 || `-Xcheck:jni` || `-` || ||
 
-^注1.^ 分隔符在Linux/Unix操作系统和Winodws操作系统不一样，在Linux/Unix下为`:`（冒号），在Windows下为`;`（分号）
+^注1.^ 分隔符在Linux/Unix操作系统和Winodws操作系统不一样，在Linux/Unix下为`":"`（冒号），在Windows下为`";"`（分号）
 
 ==参数的类型==
 {{{

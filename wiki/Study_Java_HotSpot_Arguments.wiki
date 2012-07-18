@@ -1,5 +1,11 @@
 #summary HotSpot虚拟机的参数
 
+与参数相关的源代码文件：
+ * `./hotspot/src/share/vm/runtime/globals.hpp`
+ * `./hotspot/src/share/vm/runtime/globals.cpp`
+ * `./hotspot/src/share/vm/runtime/arguments.hpp`
+ * `./hotspot/src/share/vm/runtime/arguments.cpp`
+
 运行模式：
 || `-client`  || 即C1编译器 ||
 || `-server`  || 即C2编译器 ||
@@ -9,11 +15,6 @@
 || `-Xcomp` || 编译模式，先编译再运行 ||
 || `-Xmixed` || 混合模式，也是默认模式 ||
 
-与参数相关的源代码文件：
- * `./hotspot/src/share/vm/runtime/globals.hpp`
- * `./hotspot/src/share/vm/runtime/globals.cpp`
- * `./hotspot/src/share/vm/runtime/arguments.hpp`
- * `./hotspot/src/share/vm/runtime/arguments.cpp`
 
 参数的类型：
 {{{
@@ -34,15 +35,22 @@
 || `manageable` || ||
 || `product_rw` || ||
 
-
-
- * develop
  * develop_pd
- * product
- * lp64_product
  * product_pd
- * product_rw
- * diagnostic
- * experimental
- * notproduct
- * manageable
+
+参数设置来源：
+|| `DEFAULT` || ||
+|| `COMMAND_LINE` || ||
+|| `ENVIRON_VAR` || ||
+|| `CONFIG_FILE` || ||
+|| `MANAGEMENT` || ||
+|| `ERGONOMIC` || ||
+|| `ATTACH_ON_DEMAND` || ||
+|| `INTERNAL` || ||
+
+
+
+
+
+
+

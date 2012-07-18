@@ -3,3 +3,8 @@
 {{{
 python -m SimpleHTTPServer
 }}}
+
+
+{{{
+rsync -vrlHpgtSe ssh --exclude=.svn --delete /localdir/ name@host:/remotedir/
+}}}

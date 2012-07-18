@@ -28,6 +28,23 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `-Xbootclasspath[/a/p]:` || `-Xbootclasspath:` || ||
 || `-` || `-Xbootclasspath/a:` || ||
 || `-` || `-Xbootclasspath/p:` || ||
+|| `-Xrun` || `-` || ||
+|| `-agentlib:` || `-` || ||
+|| `-agentpath:` || `-` || ||
+|| `-javaagent:` || `-` || ||
+|| `-Xnoclassgc` || `-` || `=ClassUnloading` ||
+|| `-Xincgc` || `-` || `=UseConcMarkSweepGC,CMSIncrementalMode` ||
+|| `-Xnoincgc` || `-` || `=UseConcMarkSweepGC,CMSIncrementalMode` ||
+|| `-Xconcgc` || `-` || `=UseConcMarkSweepGC` ||
+|| `-Xnoconcgc` || `-` || `=UseConcMarkSweepGC` ||
+|| `-Xbatch` || `-` || `=BackgroundCompilation` ||
+|| `` || `-` || ||
+|| `` || `-` || ||
+|| `` || `-` || ||
+|| `` || `-` || ||
+|| `` || `-` || ||
+|| `` || `-` || ||
+|| `` || `-` || ||
 
 ==参数的类型==
 {{{

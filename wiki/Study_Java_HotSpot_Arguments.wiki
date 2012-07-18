@@ -1,22 +1,22 @@
 #summary HotSpot虚拟机的参数
 
-与参数相关的源代码文件：
+==与参数相关的源代码文件：==
  * `./hotspot/src/share/vm/runtime/globals.hpp`
  * `./hotspot/src/share/vm/runtime/globals.cpp`
  * `./hotspot/src/share/vm/runtime/arguments.hpp`
  * `./hotspot/src/share/vm/runtime/arguments.cpp`
 
-运行模式：
+==运行模式：==
 || `-client`  || 即C1编译器 ||
 || `-server`  || 即C2编译器 ||
 
-编译模式：
+==编译模式：==
 || `-Xint` || 解释模式，仅解释运行 ||
 || `-Xcomp` || 编译模式，先编译再运行 ||
 || `-Xmixed` || 混合模式，也是默认模式 ||
 
 
-参数的类型：
+==参数的类型：==
 {{{
  bool, intx, uintx, ccstr
 }}}
@@ -24,7 +24,7 @@
 ^注^：`ccstr` 是 `const char*` 的别名 
 
 
-参数运行时类型：
+==参数运行时类型：==
 || *类型* || *说明* ||
 || `develop` || 开发参数，仅在开发版中可修改，在产品版则为常量，不可修改 ||
 || `product` || 产品参数，在各个编译版本中始终可修改 ||
@@ -38,7 +38,7 @@
  * develop_pd
  * product_pd
 
-参数设置来源：
+==参数设置来源：==
 || `DEFAULT` || ||
 || `COMMAND_LINE` || ||
 || `ENVIRON_VAR` || ||
@@ -47,4 +47,3 @@
 || `ERGONOMIC` || ||
 || `ATTACH_ON_DEMAND` || ||
 || `INTERNAL` || ||
-

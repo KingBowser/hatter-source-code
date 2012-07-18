@@ -56,12 +56,22 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `-Xaprof` || `-` || ||
 || `-Xconcurrentio` || `-` || `+UseLWPSynchronization,-BackgroundCompilation,`<br>`DeferThrSuspendLoopCount=1,-UseTLAB,NewSizeThreadIncrease=16K` ||
 || `-Xinternalversion` || `-` || 打印内部版本并退出 ||
-|| `` || `-` || ||
-|| `` || `-` || ||
-|| `` || `-` || ||
-|| `` || `-` || ||
-|| `` || `-` || ||
-|| `` || `-` || ||
+|| `-Dcom.sun.management` || `-` || 设置`System.Property`参数的同时`+ManagementServer` ||
+|| `-X[int/comp/mixed]` || `-Xint` || ||
+|| `-` || `-Xcomp` || ||
+|| `-` || `-Xmixed` || ||
+|| `-Xshare:[dump/on/auto/off]` || `-Xshare:dump` || `+DumpSharedSpaces` ||
+|| `-` || `-Xshare:on` || `+UseSharedSpaces,+RequireSharedSpaces,+ForceSharedSpaces` ||
+|| `-` || `-Xshare:auto` || `+UseSharedSpaces,-RequireSharedSpaces` ||
+|| `-` || `-Xshare:off` || `-UseSharedSpaces,RequireSharedSpaces` ||
+|| `-Xverify:[all/remote/none]` || `-Xverify:all` || `+BytecodeVerificationLocal,+BytecodeVerificationRemote` ||
+|| `-` || `-Xverify:remote` || `-BytecodeVerificationLocal,+BytecodeVerificationRemote` ||
+|| `-` || `-Xverify:none` || `-BytecodeVerificationLocal,-BytecodeVerificationRemote` ||
+|| `-Xdebug` || `-` || ||
+|| `-Xnoagent` || `-` || _该参数被忽略，为向前兼容保留_ ||
+|| `-Xboundthreads` || `-` || `+UseBoundThreads` ||
+|| `-Xloggc:` || `-` || `+PrintGC,+PrintGCTimeStamps,+TraceClassUnloading`<br>打印GC信息到指定文件 ||
+|| `-Xcheck:jni` || `-` || ||
 
 ==参数的类型==
 {{{

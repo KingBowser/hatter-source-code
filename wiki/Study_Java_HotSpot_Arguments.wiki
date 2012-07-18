@@ -1,0 +1,19 @@
+#summary HotSpot arguments(flag).
+
+Relate source code file:
+ * `./hotspot/src/share/vm/runtime/globals.hpp`
+ * `./hotspot/src/share/vm/runtime/globals.cpp`
+ * `./hotspot/src/share/vm/runtime/arguments.hpp`
+ * `./hotspot/src/share/vm/runtime/arguments.cpp`
+
+Runime flag type:
+ * develop
+ * develop_pd
+ * product
+ * lp64_product
+ * product_pd
+ * product_rw
+ * diagnostic
+ * experimental
+ * notproduct
+ * manageable

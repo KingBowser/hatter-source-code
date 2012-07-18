@@ -154,12 +154,12 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 
 <wiki:comment> 不要在参考资料中插入或删除引用 </wiki:comment>
 ===参考资料===
- `[1].` openjdk-6-src-b20-21_jun_2010.tar.gz<br>
- `[2].` http://docs.oracle.com/javase/1.5.0/docs/guide/jvmti/jvmti.html#tooloptions<br>
- `[3].` http://www.cnblogs.com/z-zw/archive/2010/09/30/1839394.html<br>
- `[4].` http://www.oracle.com/technetwork/java/gc1-4-2-135950.html<br>
- `[5].` http://blog.csdn.net/flyingstarwb/article/details/7018085<br>
- `[6].` http://docs.oracle.com/javase/1.4.2/docs/guide/extensions/spec.html<br>
- `[7].` http://docs.oracle.com/javase/6/docs/technotes/guides/standards/index.html<br>
+`[1].` openjdk-6-src-b20-21_jun_2010.tar.gz<br>
+`[2].` http://docs.oracle.com/javase/1.5.0/docs/guide/jvmti/jvmti.html#tooloptions<br>
+`[3].` http://www.cnblogs.com/z-zw/archive/2010/09/30/1839394.html<br>
+`[4].` http://www.oracle.com/technetwork/java/gc1-4-2-135950.html<br>
+`[5].` http://blog.csdn.net/flyingstarwb/article/details/7018085<br>
+`[6].` http://docs.oracle.com/javase/1.4.2/docs/guide/extensions/spec.html<br>
+`[7].` http://docs.oracle.com/javase/6/docs/technotes/guides/standards/index.html<br>
 
 

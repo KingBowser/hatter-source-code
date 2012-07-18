@@ -26,7 +26,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `-verbose:[class/gc/jni]` || `-verbose:class` || `+TraceClassLoading,+TraceClassUnloading` ||
 || `-` || `-verbose:gc` || `+PrintGC` ||
 || `-` || `-verbose:jni` || `+PrintJNIResolving` ||
-|| `-Xbootclasspath[/a/p]:` || `-Xbootclasspath:` || ||
+|| `-Xbootclasspath[/a/p]:` || `-Xbootclasspath:` || 指定系统基本的需要的类库（包括rt.jar等），指定以分隔符分隔^注1^的文件夹，Jar包或Zip包 ^[8][9]^ ||
 || `-` || `-Xbootclasspath/a:` || ||
 || `-` || `-Xbootclasspath/p:` || ||
 || `-Xrun` || `-` || ||
@@ -73,13 +73,14 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `-Xboundthreads` || `-` || `+UseBoundThreads` ||
 || `-Xloggc:` || `-` || `+PrintGC,+PrintGCTimeStamps,+TraceClassUnloading`<br>打印GC信息到指定文件 ||
 || `-Xcheck:jni` || `-` || ||
+^注1.^ 分隔符在Linux/Unix操作系统和Winodws操作系统不一样，在Linux/Unix下为`:`（冒号），在Windows下为`;`（分号）
 
 ==参数的类型==
 {{{
  bool, intx, uintx, ccstr
 }}}
 在代码中其实还可以看到一种为 `double` 型，但使用并不广泛，而且在HotSpot中很多场景未判断该类型，使用时可能导致JVM异常退回，详见 [http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=7183920 Bug ID 7183920].<br>
-^注^：`ccstr` 是 `const char*` 的别名 
+^注.^ `ccstr` 是 `const char*` 的别名 
 
 ==参数运行时类型==
 || *类型* || *说明* ||
@@ -161,5 +162,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 `[5].` http://blog.csdn.net/flyingstarwb/article/details/7018085<br>
 `[6].` http://docs.oracle.com/javase/1.4.2/docs/guide/extensions/spec.html<br>
 `[7].` http://docs.oracle.com/javase/6/docs/technotes/guides/standards/index.html<br>
+`[8].` http://docs.oracle.com/javase/6/docs/technotes/tools/solaris/java.html<br>
+`[9].` http://docs.oracle.com/javase/6/docs/technotes/tools/findingclasses.html<br>
 
 

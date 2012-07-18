@@ -8,3 +8,22 @@ python -m SimpleHTTPServer
 {{{
 rsync -vrlHpgtSe ssh --exclude=.svn --delete /localdir/ name@host:/remotedir/
 }}}
+
+
+
+Alias commands:
+{{{
+alias ll='ls -l'
+
+alias j='java -jar'
+
+alias vir='vi -R'
+
+alias svnaddall='svn st | grep ? | awk '\''{print $2}'\'' | xargs svn add'
+alias svnrmall='svn st | grep ! | awk '\''{print $2}'\'' | xargs svn rm'
+
+alias mci='mvn clean install -Dmaven.test.skip'
+alias mcp='mvn clean package -Dmaven.test.skip'
+alias mct='mvn clean test'
+alias mee='mvn eclipse:clean eclipse:eclipse'
+}}}

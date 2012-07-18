@@ -1,5 +1,14 @@
 #summary HotSpot虚拟机的参数
 
+运行模式：
+|| `-client`  || 即C1编译器 ||
+|| `-server`  || 即C2编译器 ||
+
+编译模式：
+|| `-Xint` || 解释模式，仅解释运行 ||
+|| `-Xcomp` || 编译模式，先编译再运行 ||
+|| `-Xmixed` || 混合模式，也是默认模式 ||
+
 与参数相关的源代码文件：
  * `./hotspot/src/share/vm/runtime/globals.hpp`
  * `./hotspot/src/share/vm/runtime/globals.cpp`

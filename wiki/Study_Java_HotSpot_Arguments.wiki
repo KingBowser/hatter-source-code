@@ -1,12 +1,15 @@
 #summary HotSpot arguments(flag).
 
-Relate source code file:
+Relate source code files:
  * `./hotspot/src/share/vm/runtime/globals.hpp`
  * `./hotspot/src/share/vm/runtime/globals.cpp`
  * `./hotspot/src/share/vm/runtime/arguments.hpp`
  * `./hotspot/src/share/vm/runtime/arguments.cpp`
 
-Runime flag type:
+参数的类型：
+ * `develop`
+  ＊ 开发的参数仅在开发版中可修改，在产品版则为常量，不可修改
+
  * develop
  * develop_pd
  * product

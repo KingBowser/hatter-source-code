@@ -39,12 +39,34 @@
 || `external` || `manageable` 为属性为外部属性，其它属性都为内部属性 ||
 || `writeable` || `manageable` 及 `product_rw` 属性为运行时可写属性，即在JVM运行时动态可设置<br>对于`manageable`属性可以通过 [http://docs.oracle.com/javase/6/docs/technotes/tools/share/jinfo.html jinfo -flag] 命令设置，对于 `product_rw` 属性可以通`HotSpotDiagnosticMXBean` JMX来设置 ||
 
-==参数设置来源：==
+==参数设置来源==
 || `DEFAULT` || 系统默认值 ||
 || `COMMAND_LINE` || JVM创建时通过命令行指定，也称为`VM_CREATION` ||
 || `ENVIRON_VAR` || 根据系统环境指定，即在环境变量`_JAVA_OPTIONS`(Classic VM)或`JAVA_TOOL_OPTIONS`指定 ||
 || `CONFIG_FILE` || 通过配置文件指定，通过参数`-XX:Flags=`指定，如果未指定则加载`.hotspotrc`配置文件 ||
 || `MANAGEMENT` || 通过`HotSpotDiagnosticMXBean`设置 ||
-|| `ERGONOMIC` || ||
+|| `ERGONOMIC` || 根据系统，或关联条件判断指定，如在未指定GC方式时JVM会根据`should_auto_select_low_pause_collector()`的结果，选择`UseConcMarkSweepGC`或`UseParallelGC` ||
 || `ATTACH_ON_DEMAND` || 通过`HotSpotVirtualMachine#setFlag(String name, String value)`设置 ||
 || `INTERNAL` || 通过`JVM_AccessVM{0}Flag`指定 (`{0}`取值为`Boolean`或`Int`)，但在源代码中未找到调用点，估计是给JNI或JVMTI使用 ||
+
+==废弃的参数==
+|| *参数* || *开始弃用版本* || *禁止使用版本* || *说明* ||
+|| `UseTrainGC` || 1.5 || 7 || ||
+|| `UseSpecialLargeObjectHandling` || 1.5 || 1.7 || ||
+|| `UseOversizedCarHandling` || 1.5 || 1.7 || ||
+|| `TraceCarAllocation` || 1.5 || 1.7 || ||
+|| `PrintTrainGCProcessingStats` || 1.5 || 1.7 || ||
+|| `LogOfCarSpaceSize` || 1.5 || 1.7 || ||
+|| `OversizedCarThreshold` || 1.5 || 1.7 || ||
+|| `MinTickInterval` || 1.5 || 1.7 || ||
+|| `DefaultTickInterval` || 1.5 || 1.7 || ||
+|| `MaxTickInterval` || 1.5 || 1.7 || ||
+|| `DelayTickAdjustment` || 1.5 || 1.7 || ||
+|| `ProcessingToTenuringRatio` || 1.5 || 1.7 || ||
+|| `MinTrainLength` || 1.5 || 1.7 || ||
+|| `AppendRatio` || 1.6u10 || 1.7 || ||
+|| `DefaultMaxRAM` || 1.6u18 || 1.7 || ||
+|| `DefaultInitialRAMFraction` || 1.6u18 || 1.7 || ||
+
+
+

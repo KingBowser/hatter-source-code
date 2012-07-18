@@ -198,23 +198,22 @@ public class Finding {
             has = UnixArgsutil.ARGS.kvalue("has");
         }
 
-        Matcher matcher = (is_E) ? new RegexMatcher(search, is_i) : new ContainsMatcher(search, is_i);
+        Matcher parent = null;
         if (has != null) {
-            final Matcher _matcher = matcher;
             final String _has = has_is_i ? has.toLowerCase() : has;
             final boolean _has_is_i = has_is_i;
-            matcher = new Matcher() {
+            parent = new Matcher() {
 
                 public boolean match(String line) {
                     String ln = _has_is_i ? line.toLowerCase() : line;
                     if (!ln.contains(_has)) {
                         return false;
                     }
-                    return _matcher.match(line);
+                    return true;
                 }
             };
         }
-        return matcher;
+        return (is_E) ? new RegexMatcher(parent, search, is_i) : new ContainsMatcher(parent, search, is_i);
     }
 
     public static interface Matcher {
@@ -224,25 +223,30 @@ public class Finding {
 
     public static class ContainsMatcher implements Matcher {
 
+        private Matcher parent;
         private String  search;
         private boolean ignoreCase;
 
-        public ContainsMatcher(String search, boolean ignoreCase) {
+        public ContainsMatcher(Matcher parent, String search, boolean ignoreCase) {
+            this.parent = parent;
             this.search = ignoreCase ? search.toLowerCase() : search;
             this.ignoreCase = ignoreCase;
         }
 
         public boolean match(String line) {
             if (line == null) return false;
+            if ((parent != null) && (!parent.match(line))) return false;
             return (ignoreCase) ? line.toLowerCase().contains(search) : line.contains(search);
         }
     }
 
     public static class RegexMatcher implements Matcher {
 
+        private Matcher parent;
         private Pattern search;
 
-        public RegexMatcher(String regex, boolean ignoreCase) {
+        public RegexMatcher(Matcher parent, String regex, boolean ignoreCase) {
+            this.parent = parent;
             regex = (regex.startsWith("^")) ? regex : (".*" + regex);
             regex = (regex.endsWith("$")) ? regex : (regex + ".*");
             if (ignoreCase) {
@@ -254,6 +258,7 @@ public class Finding {
 
         public boolean match(String line) {
             if (line == null) return false;
+            if ((parent != null) && (!parent.match(line))) return false;
             return search.matcher(line).matches();
         }
     }

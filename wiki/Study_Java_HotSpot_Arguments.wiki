@@ -112,7 +112,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 
 ==参数详细说明==
 || *参数名* || *参数类型* || *运行时类型* || *说明* ||
-|| `UseCompressedOops` || `` || `` || ||
+|| `UseCompressedOops` || `bool` || `lp64_product` || 在64位平台开启压缩指针，通常一个oop^注1^的位宽和机器的位宽一致，但当Heap小于`2^32`时仅需要32位地址即可，所以可把指针转换为32位减少内存占用 ^[10][11]^ ||
 || `HeapBaseMinAddress` || `` || `` || ||
 || `ObjectAlignmentInBytes` || `` || `` || ||
 || `UseMembar` || `` || `` || ||
@@ -785,6 +785,8 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `BlockLayoutMinDiamondPercentage` || `` || `` || ||
 || `BlockLayoutRotateLoops` || `` || `` || ||
 
+^注1.^ `oop` 即 `ordinary object pointer`，普通对象指针，在HotSpot中管理指向对象的指针，详见`[参考资料 11]`
+
 ==System.Properties参数==
 || *参数Key* || *说明* ||
 || `java.vm.specification.version` || `1.0` ||
@@ -831,14 +833,16 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 
 <wiki:comment> 不要在参考资料中插入或删除引用 </wiki:comment>
 ===参考资料===
-`[1].` openjdk-6-src-b20-21_jun_2010.tar.gz<br>
-`[2].` http://docs.oracle.com/javase/1.5.0/docs/guide/jvmti/jvmti.html#tooloptions<br>
-`[3].` http://www.cnblogs.com/z-zw/archive/2010/09/30/1839394.html<br>
-`[4].` http://www.oracle.com/technetwork/java/gc1-4-2-135950.html<br>
-`[5].` http://blog.csdn.net/flyingstarwb/article/details/7018085<br>
-`[6].` http://docs.oracle.com/javase/1.4.2/docs/guide/extensions/spec.html<br>
-`[7].` http://docs.oracle.com/javase/6/docs/technotes/guides/standards/index.html<br>
-`[8].` http://docs.oracle.com/javase/6/docs/technotes/tools/solaris/java.html<br>
-`[9].` http://docs.oracle.com/javase/6/docs/technotes/tools/findingclasses.html<br>
+`[  1].` openjdk-6-src-b20-21_jun_2010.tar.gz<br>
+`[  2].` http://docs.oracle.com/javase/1.5.0/docs/guide/jvmti/jvmti.html#tooloptions<br>
+`[  3].` http://www.cnblogs.com/z-zw/archive/2010/09/30/1839394.html<br>
+`[  4].` http://www.oracle.com/technetwork/java/gc1-4-2-135950.html<br>
+`[  5].` http://blog.csdn.net/flyingstarwb/article/details/7018085<br>
+`[  6].` http://docs.oracle.com/javase/1.4.2/docs/guide/extensions/spec.html<br>
+`[  7].` http://docs.oracle.com/javase/6/docs/technotes/guides/standards/index.html<br>
+`[  8].` http://docs.oracle.com/javase/6/docs/technotes/tools/solaris/java.html<br>
+`[  9].` http://docs.oracle.com/javase/6/docs/technotes/tools/findingclasses.html<br>
+`[ 10].` http://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html<br>
+`[ 11].` https://wikis.oracle.com/display/HotSpotInternals/CompressedOops<br>
 
 

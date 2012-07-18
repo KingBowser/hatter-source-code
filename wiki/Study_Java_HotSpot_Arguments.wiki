@@ -22,7 +22,12 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `-esa, -enablesystemassertions` || ||
 
 ==标准参数？==
-|| `-verbose:[class/gc/jni]` || `class == TraceClassLoading,TraceClassUnloading`<br>`gc == PrintGC`<br>`jni == PrintJNIResolving` ||
+|| `-verbose:[class/gc/jni]` || `-verbose:class` || `=TraceClassLoading,TraceClassUnloading ||
+|| `-` || `-verbose:gc` || `=PrintGC` ||
+|| `-` || `-verbose:jni` || `=PrintJNIResolving` ||
+|| `-Xbootclasspath[/a/p]:` || `-Xbootclasspath:` || ||
+|| `-` || `-Xbootclasspath/a:` || ||
+|| `-` || `-Xbootclasspath/p:` || ||
 
 ==参数的类型==
 {{{

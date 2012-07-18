@@ -85,7 +85,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 
 ==参数属性==
 || `external` || `manageable` 为属性为外部属性，其它属性都为内部属性 ||
-|| `writeable` || `manageable` 及 `product_rw` 属性为运行时可写属性，即在JVM运行时动态可设置<br>对于`manageable`属性可以通过 [http://docs.oracle.com/javase/6/docs/technotes/tools/share/jinfo.html jinfo -flag] 命令设置，对于 `product_rw` 属性可以通`HotSpotDiagnosticMXBean` JMX来设置 ||
+|| `writeable` || `manageable` 及 `product_rw` 属性为运行时可写属性，即在JVM运行时动态可设置<br>对于`manageable`属性可以通过 [http://docs.oracle.com/javase/6/docs/technotes/tools/share/jinfo.html jinfo -flag] 命令设置，对于 `product_rw` 属性可以通`HotSpotDiagnosticMXBean` JMX来设置，也可以通过[https://code.google.com/p/hatter-source-code/wiki/jflag jflag]设置 ||
 
 ==参数设置来源==
 || `DEFAULT` || 系统默认值 ||

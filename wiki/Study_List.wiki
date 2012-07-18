@@ -1,4 +1,5 @@
 #summary List of my study.
+#labels Featured
 
 = List of my study =
 

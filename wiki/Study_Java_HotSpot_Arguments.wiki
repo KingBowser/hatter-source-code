@@ -7,15 +7,23 @@
  * `./hotspot/src/share/vm/runtime/arguments.cpp`
 
 参数的类型：
-` bool, intx, uintx, ccstr `
-在代码中其实还有一种 `double` 型，但使用并不广泛，而且在HotSpot中很多场景未判断该类型，使用时可能导致JVM异常退回，详见 [http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=7183920 Bug ID 7183920].
+{{{
+ bool, intx, uintx, ccstr
+}}}
+在代码中其实还可以看到一种为 `double` 型，但使用并不广泛，而且在HotSpot中很多场景未判断该类型，使用时可能导致JVM异常退回，详见 [http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=7183920 Bug ID 7183920].
 
 
 参数运行时类型：
 || *类型* || *说明* ||
 || `develop` || 开发参数，仅在开发版中可修改，在产品版则为常量，不可修改 ||
 || `product` || 产品参数，在各个编译版本中始终可修改 ||
+|| `lp64_product` || 64位产品参数，基本同产品参数，但仅在64位系统下可修改，在非64位系统下则为常量 ||
 || `notproduct` || 非产品参数，公在开发版中可修改，在产品版则未申明该参数 ||
+|| `diagnostic` || `-XX:+UnlockDiagnosticVMOptions` ||
+|| `experimental` || `-XX:+UnlockExperimentalVMOptions` ||
+|| `manageable` || ||
+|| `product_rw` || ||
+
 
 
  * develop

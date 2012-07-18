@@ -8,7 +8,7 @@ Relate source code files:
 
 参数的类型：
  * `develop`
-  ＊ 开发的参数仅在开发版中可修改，在产品版则为常量，不可修改
+ 开发的参数仅在开发版中可修改，在产品版则为常量，不可修改
 
  * develop
  * develop_pd

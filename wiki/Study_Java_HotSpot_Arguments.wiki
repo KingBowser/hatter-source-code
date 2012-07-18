@@ -22,9 +22,9 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `-esa, -enablesystemassertions` || ||
 
 ==标准参数？==
-|| `-verbose:[class/gc/jni]` || `-verbose:class` || `=TraceClassLoading,TraceClassUnloading ||
-|| `-` || `-verbose:gc` || `=PrintGC` ||
-|| `-` || `-verbose:jni` || `=PrintJNIResolving` ||
+|| `-verbose:[class/gc/jni]` || `-verbose:class` || `+TraceClassLoading,+TraceClassUnloading` ||
+|| `-` || `-verbose:gc` || `+PrintGC` ||
+|| `-` || `-verbose:jni` || `+PrintJNIResolving` ||
 || `-Xbootclasspath[/a/p]:` || `-Xbootclasspath:` || ||
 || `-` || `-Xbootclasspath/a:` || ||
 || `-` || `-Xbootclasspath/p:` || ||
@@ -32,12 +32,12 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `-agentlib:` || `-` || ||
 || `-agentpath:` || `-` || ||
 || `-javaagent:` || `-` || ||
-|| `-Xnoclassgc` || `-` || `=ClassUnloading` ||
-|| `-Xincgc` || `-` || `=UseConcMarkSweepGC,CMSIncrementalMode` ||
-|| `-Xnoincgc` || `-` || `=UseConcMarkSweepGC,CMSIncrementalMode` ||
-|| `-Xconcgc` || `-` || `=UseConcMarkSweepGC` ||
-|| `-Xnoconcgc` || `-` || `=UseConcMarkSweepGC` ||
-|| `-Xbatch` || `-` || `=BackgroundCompilation` ||
+|| `-Xnoclassgc` || `-` || `+ClassUnloading` ||
+|| `-Xincgc` || `-` || `+UseConcMarkSweepGC,+CMSIncrementalMode` ||
+|| `-Xnoincgc` || `-` || `+UseConcMarkSweepGC,+CMSIncrementalMode` ||
+|| `-Xconcgc` || `-` || `+UseConcMarkSweepGC` ||
+|| `-Xnoconcgc` || `-` || `+UseConcMarkSweepGC` ||
+|| `-Xbatch` || `-` || `+BackgroundCompilation` ||
 || `-Xmn` || `-` || `MaxNewSize,NewSize` ||
 || `-Xms` || `-` || `InitialHeapSize` ||
 || `-Xmx` || `-` || `MaxHeapSize` ||
@@ -54,7 +54,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `-Xoptimize` || `-` || *该参数被忽略，同`-Xsqnopause`* ||
 || `-Xprof` || `-` || ||
 || `-Xaprof` || `-` || ||
-|| `-Xconcurrentio` || `-` || `+UseLWPSynchronization,-BackgroundCompilation,DeferThrSuspendLoopCount=1,-UseTLAB,NewSizeThreadIncrease=16K` ||
+|| `-Xconcurrentio` || `-` || `+UseLWPSynchronization,-BackgroundCompilation,'<br>'DeferThrSuspendLoopCount=1,-UseTLAB,NewSizeThreadIncrease=16K` ||
 || `` || `-` || ||
 || `` || `-` || ||
 || `` || `-` || ||

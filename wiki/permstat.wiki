@@ -1,3 +1,5 @@
+#summary Print string instance count and size in perm.
+
 Print string instance count and size in perm.
 
 Code copied from OpenJDK's `jmap -permstat`, and remove the other codes, so published under LGPL.

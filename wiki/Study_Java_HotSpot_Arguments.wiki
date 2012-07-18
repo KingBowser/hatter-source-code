@@ -1,10 +1,5 @@
 #summary HotSpot虚拟机的参数
 
-==与参数相关的源代码文件：==
- * `./hotspot/src/share/vm/runtime/globals.hpp`
- * `./hotspot/src/share/vm/runtime/globals.cpp`
- * `./hotspot/src/share/vm/runtime/arguments.hpp`
- * `./hotspot/src/share/vm/runtime/arguments.cpp`
 
 ==运行模式：==
 || `-client`  || 即C1编译器 ||
@@ -51,7 +46,7 @@
 
 ==废弃的参数==
 || *参数* || *开始弃用版本* || *禁止使用版本* || *说明* ||
-|| `UseTrainGC` || 1.5 || 7 || ||
+|| `UseTrainGC` || 1.5 || 1.7 || ||
 || `UseSpecialLargeObjectHandling` || 1.5 || 1.7 || ||
 || `UseOversizedCarHandling` || 1.5 || 1.7 || ||
 || `TraceCarAllocation` || 1.5 || 1.7 || ||
@@ -68,5 +63,8 @@
 || `DefaultMaxRAM` || 1.6u18 || 1.7 || ||
 || `DefaultInitialRAMFraction` || 1.6u18 || 1.7 || ||
 
+==参考列表==
+ # openjdk-6-src-b20-21_jun_2010.tar.gz
+ # http://docs.oracle.com/javase/1.5.0/docs/guide/jvmti/jvmti.html#tooloptions
 
 

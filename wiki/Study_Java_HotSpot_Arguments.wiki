@@ -1,23 +1,37 @@
 #summary HotSpot虚拟机的参数
 
+==属性定义==
+属性名由以下字符组成：
+{{{
+abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
+}}}
 
-==运行模式：==
+==运行模式==
 || `-client`  || 即C1编译器 ||
 || `-server`  || 即C2编译器 ||
 
-==编译模式：==
+==编译模式==
 || `-Xint` || 解释模式，仅解释运行 ||
 || `-Xcomp` || 编译模式，先编译再运行 ||
 || `-Xmixed` || 混合模式，也是默认模式 ||
 
-==参数的类型：==
+==Assertion Option==
+|| `-da, -disableassertions` || ||
+|| `-ea, -enableassertions` || ||
+|| `-dsa, -disablesystemassertions` || ||
+|| `-esa, -enablesystemassertions` || ||
+
+==标准参数？==
+|| `-verbose:[class/gc/jni]` || `class == TraceClassLoading,TraceClassUnloading`<br>`gc == PrintGC`<br>`jni == PrintJNIResolving` ||
+
+==参数的类型==
 {{{
  bool, intx, uintx, ccstr
 }}}
 在代码中其实还可以看到一种为 `double` 型，但使用并不广泛，而且在HotSpot中很多场景未判断该类型，使用时可能导致JVM异常退回，详见 [http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=7183920 Bug ID 7183920].<br>
 ^注^：`ccstr` 是 `const char*` 的别名 
 
-==参数运行时类型：==
+==参数运行时类型==
 || *类型* || *说明* ||
 || `develop` || 开发参数，仅在开发版中可修改，在产品版则为常量，不可修改 ||
 || `develop_pd` || *_应该是平台相关的开发属性，但未确认，求确认_* ||
@@ -43,6 +57,31 @@
 || `ERGONOMIC` || 根据系统，或关联条件判断指定，如在未指定GC方式时JVM会根据`should_auto_select_low_pause_collector()`的结果，选择`UseConcMarkSweepGC`或`UseParallelGC` ||
 || `ATTACH_ON_DEMAND` || 通过`HotSpotVirtualMachine#setFlag(String name, String value)`设置 ||
 || `INTERNAL` || 通过`JVM_AccessVM{0}Flag`指定 (`{0}`取值为`Boolean`或`Int`)，但在源代码中未找到调用点，估计是给JNI或JVMTI使用 ||
+
+==System.Properties参数==
+|| *参数Key* || *说明* ||
+|| `java.vm.specification.version` || `1.0` ||
+|| `java.vm.specification.name` || `Java Virtual Machine Specification` ||
+|| `java.vm.specification.vendor` || `Sun Microsystems Inc.` ||
+|| `java.vm.version` || `VM_Version::vm_release()` ||
+|| `java.vm.name` || `VM_Version::vm_name()` ||
+|| `java.vm.vendor` || `VM_Version::vm_vendor()` ||
+|| `java.vm.info` || `VM_Version::vm_info_string()` ||
+|| `java.ext.dirs` || ||
+|| `java.endorsed.dirs` || ||
+|| `sun.boot.library.path` || ||
+|| `java.library.path` || ||
+|| `java.home` || ||
+|| `sun.boot.class.path` || ||
+|| `java.class.path` || *不通过`jvm_args`设置* ||
+
+|| *参数Key* || *说明* ||
+|| `java.compiler` || ||
+|| `sun.java.command` || *不通过`jvm_args`设置* ||
+|| `sun.java.launcher` || *不通过`jvm_args`设置* ||
+|| `sun.java.launcher.pid` || ||
+|| `java.vendor.url.bug` || ||
+|| `sun.boot.library.path` || ||
 
 ==废弃的参数==
 || *参数* || *开始弃用版本* || *禁止使用版本* || *说明* ||

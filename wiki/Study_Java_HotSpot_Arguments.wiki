@@ -38,6 +38,23 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `-Xconcgc` || `-` || `=UseConcMarkSweepGC` ||
 || `-Xnoconcgc` || `-` || `=UseConcMarkSweepGC` ||
 || `-Xbatch` || `-` || `=BackgroundCompilation` ||
+|| `-Xmn` || `-` || `MaxNewSize,NewSize` ||
+|| `-Xms` || `-` || `InitialHeapSize` ||
+|| `-Xmx` || `-` || `MaxHeapSize` ||
+|| `-Xmaxf` || `-` || `MaxHeapFreeRatio` ||
+|| `-Xminf` || `-` || `MinHeapFreeRatio` ||
+|| `-Xss` || `-` || `ThreadStackSize` ||
+|| `-Xoss` || `-` || *该参数被忽略，HotSpot不使用区分的Native和Java栈* ||
+|| `-Xmaxjitcodesize` || `-` || `ReservedCodeCacheSize` ||
+|| `-green` || `-` || *HotSpot不支持Green线程，使用此参数无法启动JVM* ||
+|| `-native` || `-` || *该参数被忽略，HotSpot始终使用Native线路* ||
+|| `-Xsqnopause` || `-` || *该参数被忽略，注释为`EVM option`，但不知道是什么意思* ||
+|| `-Xrs` || `-` || `ReduceSignalUsage` ||
+|| `-Xusealtsigs` || `-` || *该参数被忽略，为向前兼容保留* ||
+|| `-Xoptimize` || `-` || *该参数被忽略，同`-Xsqnopause`* ||
+|| `-Xprof` || `-` || ||
+|| `-Xaprof` || `-` || ||
+|| `-Xconcurrentio` || `-` || `+UseLWPSynchronization,-BackgroundCompilation,DeferThrSuspendLoopCount=1,-UseTLAB,NewSizeThreadIncrease=16K` ||
 || `` || `-` || ||
 || `` || `-` || ||
 || `` || `-` || ||

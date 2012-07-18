@@ -134,7 +134,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 
 ==废弃的参数==
 || *参数* || *开始弃用版本* || *禁止使用版本* || *说明* ||
-|| `UseTrainGC` || 1.5 || 1.7 || incremental (有时也称为train) low pause collector：如果要使用它，则可通过命令行-XX:+UseTrainGC来激活。这个collector从J2SE Platform 1.4.2版本之后就不再改变了，同时也停止了开发活动 ||
+|| `UseTrainGC` || 1.5 || 1.7 || incremental (有时也称为train) low pause collector：如果要使用它，则可通过命令行-XX:+UseTrainGC来激活。这个collector从J2SE Platform 1.4.2版本之后就不再改变了，同时也停止了开发活动。 ||
 || `UseSpecialLargeObjectHandling` || 1.5 || 1.7 || ||
 || `UseOversizedCarHandling` || 1.5 || 1.7 || ||
 || `TraceCarAllocation` || 1.5 || 1.7 || ||

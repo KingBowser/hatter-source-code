@@ -7,8 +7,11 @@ Relate source code files:
  * `./hotspot/src/share/vm/runtime/arguments.cpp`
 
 参数的类型：
- * `develop`
- 开发的参数仅在开发版中可修改，在产品版则为常量，不可修改
+|| *类型* || *说明* ||
+|| `develop` || 开发的参数仅在开发版中可修改，在产品版则为常量，不可修改 ||
+|| `product` || ||
+|| `notproduct` || ||
+
 
  * develop
  * develop_pd

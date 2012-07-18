@@ -22,6 +22,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `-esa, -enablesystemassertions` || ||
 
 ==标准参数？==
+|| *参数* || *具体参数* || *说明* ||
 || `-verbose:[class/gc/jni]` || `-verbose:class` || `+TraceClassLoading,+TraceClassUnloading` ||
 || `-` || `-verbose:gc` || `+PrintGC` ||
 || `-` || `-verbose:jni` || `+PrintJNIResolving` ||
@@ -100,7 +101,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 ==参数设置来源==
 || `DEFAULT` || 系统默认值 ||
 || `COMMAND_LINE` || JVM创建时通过命令行指定，也称为`VM_CREATION` ||
-|| `ENVIRON_VAR` || 根据系统环境指定，即在环境变量`_JAVA_OPTIONS`(Classic VM)或`JAVA_TOOL_OPTIONS`指定^[2]^ ||
+|| `ENVIRON_VAR` || 根据系统环境指定，即在环境变量`_JAVA_OPTIONS`(Classic VM)或`JAVA_TOOL_OPTIONS`指定 ^[2]^ ||
 || `CONFIG_FILE` || 通过配置文件指定，通过参数`-XX:Flags=`指定，如果未指定则加载`.hotspotrc`配置文件 ||
 || `MANAGEMENT` || 通过`HotSpotDiagnosticMXBean`设置 ||
 || `ERGONOMIC` || 根据系统，或关联条件判断指定，如在未指定GC方式时JVM会根据`should_auto_select_low_pause_collector()`的结果，选择`UseConcMarkSweepGC`或`UseParallelGC` ||
@@ -116,25 +117,25 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `java.vm.name` || `VM_Version::vm_name()` ||
 || `java.vm.vendor` || `VM_Version::vm_vendor()` ||
 || `java.vm.info` || `VM_Version::vm_info_string()` ||
-|| `java.ext.dirs` || ||
-|| `java.endorsed.dirs` || ||
+|| `java.ext.dirs` || 可选包扩展机制，可通过`jvm_args`参数设置，可指定一个或多个文件夹，默认设置则为标准可选包安装目录 ^[5][6]^ ||
+|| `java.endorsed.dirs` || 包升级替换机制，可通过`jvm_args`参数设置，可指定一个或多个文件夹，默认设置为`<java-home>/lib/endorsed` ^[5][7]^ ||
 || `sun.boot.library.path` || ||
 || `java.library.path` || ||
 || `java.home` || ||
 || `sun.boot.class.path` || ||
-|| `java.class.path` || *不通过`jvm_args`设置* ||
+|| `java.class.path` || *不可通过`jvm_args`设置* ||
 
 || *参数Key* || *说明* ||
 || `java.compiler` || ||
-|| `sun.java.command` || *不通过`jvm_args`设置* ||
-|| `sun.java.launcher` || *不通过`jvm_args`设置* ||
+|| `sun.java.command` || *不可通过`jvm_args`设置* ||
+|| `sun.java.launcher` || *不可通过`jvm_args`设置* ||
 || `sun.java.launcher.pid` || ||
 || `java.vendor.url.bug` || ||
 || `sun.boot.library.path` || ||
 
 ==废弃的参数==
 || *参数* || *开始弃用版本* || *禁止使用版本* || *说明* ||
-|| `UseTrainGC` || 1.5 || 1.7 || incremental (有时也称为train) low pause collector：如果要使用它，则可通过命令行-XX:+UseTrainGC来激活。这个collector从J2SE Platform 1.4.2版本之后就不再改变了，同时也停止了开发活动。^[3][4]^ ||
+|| `UseTrainGC` || 1.5 || 1.7 || incremental (有时也称为train) low pause collector：如果要使用它，则可通过命令行-XX:+UseTrainGC来激活。这个collector从J2SE Platform 1.4.2版本之后就不再改变了，同时也停止了开发活动。 ^[3][4]^ ||
 || `UseSpecialLargeObjectHandling` || 1.5 || 1.7 || ||
 || `UseOversizedCarHandling` || 1.5 || 1.7 || ||
 || `TraceCarAllocation` || 1.5 || 1.7 || ||
@@ -153,9 +154,12 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 
 <wiki:comment> 不要在参考资料中插入或删除引用 </wiki:comment>
 ===参考资料===
- # openjdk-6-src-b20-21_jun_2010.tar.gz
- # http://docs.oracle.com/javase/1.5.0/docs/guide/jvmti/jvmti.html#tooloptions
- # http://www.cnblogs.com/z-zw/archive/2010/09/30/1839394.html
- # http://www.oracle.com/technetwork/java/gc1-4-2-135950.html
+ [1]. openjdk-6-src-b20-21_jun_2010.tar.gz<br>
+ [2]. http://docs.oracle.com/javase/1.5.0/docs/guide/jvmti/jvmti.html#tooloptions<br>
+ [3]. http://www.cnblogs.com/z-zw/archive/2010/09/30/1839394.html<br>
+ [4]. http://www.oracle.com/technetwork/java/gc1-4-2-135950.html<br>
+ [5]. http://blog.csdn.net/flyingstarwb/article/details/7018085<br>
+ [6]. http://docs.oracle.com/javase/1.4.2/docs/guide/extensions/spec.html<br>
+ [7]. http://docs.oracle.com/javase/6/docs/technotes/guides/standards/index.html<br>
 
 

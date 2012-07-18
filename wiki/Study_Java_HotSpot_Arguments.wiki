@@ -30,7 +30,7 @@
 || `product` || 产品参数，在各个编译版本中始终可修改 ||
 || `lp64_product` || 64位产品参数，基本同产品参数，但仅在64位系统下可修改，在非64位系统下则为常量 ||
 || `notproduct` || 非产品参数，公在开发版中可修改，在产品版则未申明该参数 ||
-|| `diagnostic` || 需要通过参数 `-XX:+UnlockDiagnosticVMOptions` 解锁，用于保障JVM质量及排查JVM Bug使用，但这些参数默认不可见，且不推荐使用，当需要使用时通过Unlock打开参数 ||
+|| `diagnostic` || 需要通过参数 `-XX:+UnlockDiagnosticVMOptions` 解锁<br>用于保障JVM质量及排查JVM Bug使用，但这些参数默认不可见，且不推荐使用，当需要使用时通过Unlock打开参数 ||
 || `experimental` || 需要通过参数 `-XX:+UnlockExperimentalVMOptions` 解锁。 ||
 || `manageable` || ||
 || `product_rw` || ||
@@ -47,8 +47,6 @@
 || `ERGONOMIC` || ||
 || `ATTACH_ON_DEMAND` || ||
 || `INTERNAL` || ||
-
-
 
 
 

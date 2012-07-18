@@ -151,7 +151,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `DefaultMaxRAM` || 1.6u18 || 1.7 || ||
 || `DefaultInitialRAMFraction` || 1.6u18 || 1.7 || ||
 
-# 不要在参考资料中插入或删除引用
+<wiki:comment> 不要在参考资料中插入或删除引用 </wiki:comment>
 ===参考资料===
  # openjdk-6-src-b20-21_jun_2010.tar.gz
  # http://docs.oracle.com/javase/1.5.0/docs/guide/jvmti/jvmti.html#tooloptions

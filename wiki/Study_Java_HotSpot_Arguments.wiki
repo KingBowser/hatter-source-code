@@ -22,7 +22,6 @@
 在代码中其实还可以看到一种为 `double` 型，但使用并不广泛，而且在HotSpot中很多场景未判断该类型，使用时可能导致JVM异常退回，详见 [http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=7183920 Bug ID 7183920].<br>
 ^注^：`ccstr` 是 `const char*` 的别名 
 
-
 ==参数运行时类型：==
 || *类型* || *说明* ||
 || `develop` || 开发参数，仅在开发版中可修改，在产品版则为常量，不可修改 ||
@@ -30,7 +29,7 @@
 || `lp64_product` || 64位产品参数，基本同产品参数，但仅在64位系统下可修改，在非64位系统下则为常量 ||
 || `notproduct` || 非产品参数，公在开发版中可修改，在产品版则未申明该参数 ||
 || `diagnostic` || 需要通过参数 `-XX:+UnlockDiagnosticVMOptions` 解锁<br>用于保障JVM质量及排查JVM Bug使用，但这些参数默认不可见，且不推荐使用，当需要使用时通过Unlock打开参数 ||
-|| `experimental` || 需要通过参数 `-XX:+UnlockExperimentalVMOptions` 解锁<br>用于实验的参数，这些参数可能能够提升性能，但这些参数未经严格测试 ||
+|| `experimental` || 需要通过参数 `-XX:+UnlockExperimentalVMOptions` 解锁<br>用于实验的参数，这些参数可能能够提升性能，但这些参数未经严格测试，这些参数也可以通过 [https://code.google.com/p/hatter-source-code/wiki/jflag jflag] 打开 ||
 || `manageable` || ||
 || `product_rw` || ||
 
@@ -42,11 +41,11 @@
  * product_pd
 
 ==参数设置来源：==
-|| `DEFAULT` || ||
+|| `DEFAULT` || 系统默认值 ||
 || `COMMAND_LINE` || ||
 || `ENVIRON_VAR` || ||
 || `CONFIG_FILE` || ||
-|| `MANAGEMENT` || ||
+|| `MANAGEMENT` || 通过`HotSpotDiagnosticMXBean`设置 ||
 || `ERGONOMIC` || ||
 || `ATTACH_ON_DEMAND` || ||
 || `INTERNAL` || ||

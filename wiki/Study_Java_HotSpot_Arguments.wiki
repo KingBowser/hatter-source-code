@@ -25,7 +25,9 @@
 ==参数运行时类型：==
 || *类型* || *说明* ||
 || `develop` || 开发参数，仅在开发版中可修改，在产品版则为常量，不可修改 ||
+|| `develop_pd` || ||
 || `product` || 产品参数，在各个编译版本中始终可修改 ||
+|| `product_pd` || ||
 || `lp64_product` || 64位产品参数，基本同产品参数，但仅在64位系统下可修改，在非64位系统下则为常量 ||
 || `notproduct` || 非产品参数，公在开发版中可修改，在产品版则未申明该参数 ||
 || `diagnostic` || 需要通过参数 `-XX:+UnlockDiagnosticVMOptions` 解锁<br>用于保障JVM质量及排查JVM Bug使用，但这些参数默认不可见，且不推荐使用，当需要使用时通过Unlock打开参数 ||
@@ -37,15 +39,12 @@
 || `external` || `manageable` 为属性为外部属性，其它属性都为内部属性 ||
 || `writeable` || `manageable` 及 `product_rw` 属性为运行时可写属性，即在JVM运行时动态可设置<br>对于`manageable`属性可以通过 [http://docs.oracle.com/javase/6/docs/technotes/tools/share/jinfo.html jinfo -flag] 命令设置，对于 `product_rw` 属性可以通`HotSpotDiagnosticMXBean` JMX来设置 ||
 
- * develop_pd
- * product_pd
-
 ==参数设置来源：==
 || `DEFAULT` || 系统默认值 ||
 || `COMMAND_LINE` || JVM创建时通过命令行指定，也称为`VM_CREATION` ||
 || `ENVIRON_VAR` || 根据系统环境指定，即在环境变量`_JAVA_OPTIONS`(Classic VM)或`JAVA_TOOL_OPTIONS`指定 ||
-|| `CONFIG_FILE` || ||
+|| `CONFIG_FILE` || 通过配置文件指定，通过参数`-XX:Flags=`指定，如果未指定则加载`.hotspotrc`配置文件 ||
 || `MANAGEMENT` || 通过`HotSpotDiagnosticMXBean`设置 ||
 || `ERGONOMIC` || ||
 || `ATTACH_ON_DEMAND` || 通过`HotSpotVirtualMachine#setFlag(String name, String value)`设置 ||
-|| `INTERNAL` || ||
+|| `INTERNAL` || 通过`JVM_AccessVM{0}Flag`指定 (`{0}`取值为`Boolean`或`Int`)，但在源代码中未找到调用点，估计是给JNI或JVMTI使用 ||

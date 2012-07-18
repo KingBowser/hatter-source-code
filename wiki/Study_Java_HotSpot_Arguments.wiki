@@ -54,7 +54,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `-Xoptimize` || `-` || *该参数被忽略，同`-Xsqnopause`* ||
 || `-Xprof` || `-` || ||
 || `-Xaprof` || `-` || ||
-|| `-Xconcurrentio` || `-` || `+UseLWPSynchronization,-BackgroundCompilation,'<br>'DeferThrSuspendLoopCount=1,-UseTLAB,NewSizeThreadIncrease=16K` ||
+|| `-Xconcurrentio` || `-` || `+UseLWPSynchronization,-BackgroundCompilation,`<br>`DeferThrSuspendLoopCount=1,-UseTLAB,NewSizeThreadIncrease=16K` ||
 || `` || `-` || ||
 || `` || `-` || ||
 || `` || `-` || ||

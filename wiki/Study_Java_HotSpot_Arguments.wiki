@@ -15,7 +15,6 @@
 || `-Xcomp` || 编译模式，先编译再运行 ||
 || `-Xmixed` || 混合模式，也是默认模式 ||
 
-
 ==参数的类型：==
 {{{
  bool, intx, uintx, ccstr
@@ -34,6 +33,10 @@
 || `experimental` || 需要通过参数 `-XX:+UnlockExperimentalVMOptions` 解锁<br>用于实验的参数，这些参数可能能够提升性能，但这些参数未经严格测试 ||
 || `manageable` || ||
 || `product_rw` || ||
+
+==参数属性==
+|| `external` || `manageable` 为属性为外部属性，其它属性都为内部属性 ||
+|| `writeable` || `manageable` 及 `product_rw` 属性为运行时可写属性，即在JVM运行时动态可设置<br>对于`manageable`属性可以通过 [http://docs.oracle.com/javase/6/docs/technotes/tools/share/jinfo.html `jinfo -flag`] 命令设置，对于 `product_rw` 属性可以通`HotSpotDiagnosticMXBean` JMX来设置 ||
 
  * develop_pd
  * product_pd

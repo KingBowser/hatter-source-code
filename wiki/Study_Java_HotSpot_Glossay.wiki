@@ -10,6 +10,7 @@
 
 <br><br>
 ----
+<br>
 ^注1.^ `JDK`即`Java Development Kit`的缩写，即Java开发套件，JDK中包含 `java, javac, jps, jstat`等工具 ^[4]^<br>
 ^注2.^ `JIT`即`just-in-time compilation`的缩写，即即时编译之意 ^[5]^<br>
 ^注3.^ 轻量级锁（`Lightweight Locking`）本意是为了减少多线程进入互斥的几率，并不是要替代互斥。它利用了CPU原语`Compare-And-Swap`(`CAS`，汇编指令`CMPXCHG`)，尝试在进入互斥前，进行补救 ^[8]^<br>

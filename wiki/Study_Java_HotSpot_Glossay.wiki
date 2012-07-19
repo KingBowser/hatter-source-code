@@ -3,6 +3,7 @@
 * `HotSpot`
 
 
+<br><br><br><br>
 
-
+===参考资料===
 `[1].` http://openjdk.java.net/groups/hotspot/docs/HotSpotGlossary.html<br>

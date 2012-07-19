@@ -209,7 +209,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `AllowUserSignalHandlers` || `` || `` || ||
 || `UseSignalChaining` || `` || `` || ||
 || `UseAltSigs` || `` || `` || ||
-|| `UseSpinning` || `` || `` || ||
+|| `UseSpinning` || `bool` || `product` || 启用多线程自旋锁优化。详见[Study_Java_HotSpot_Glossay *HotSpot词汇表-自适应自旋*] ^[19]^ ||
 || `PreSpinYield` || `` || `` || ||
 || `PostSpinYield` || `` || `` || ||
 || `AllowJNIEnvProxy` || `` || `` || ||
@@ -436,7 +436,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `PrefetchCopyIntervalInBytes` || `` || `` || ||
 || `PrefetchScanIntervalInBytes` || `` || `` || ||
 || `PrefetchFieldsAhead` || `` || `` || ||
-|| `DisableExplicitGC` || `` || `` || ||
+|| `DisableExplicitGC` || `bool` || `product` || 禁止在运行期显式地调用`System.gc()`。<br>开启该选项后，GC的触发时机将由Garbage Collector全权掌控。<br>注意：你熟悉的代码里没调用System.gc()，不代表你依赖的框架工具没在使用。<br>例如RMI就在多数用户毫不知情的情况下，显示地调用GC来防止自身OOM。^[19]^ ||
 || `PreZeroEden` || `` || `` || ||
 || `CollectGen0First` || `` || `` || ||
 || `BindGCTaskThreadsToCPUs` || `` || `` || ||
@@ -853,5 +853,6 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 `[16].` http://kenwublog.com/jvm-optimization-escape-analysis<br>
 `[17].` http://rednaxelafx.iteye.com/blog/659108<br>
 `[18].` http://kenwublog.com/compressedoops<br>
+`[19].` http://kenwublog.com/docs/java6-jvm-options-chinese-edition.htm<br>
 
 

@@ -114,8 +114,18 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 
 ==参数详细说明==
 || *参数名* || *参数类型* || *运行时类型* || *说明* ||
-|| `UseCompressedOops` || `bool` || `lp64_product` || 在64位平台开启普通对象指针（oop^注1^）压缩，通常64位JVM消耗的内存会比32位的大1.5倍，这是因为对象指针在64位架构下，长度会翻倍（更宽的寻址）。对于那些将要从32位平台移植到64位的应用来说，平白无辜多了1/2的内存占用，这是开发者不愿意看到的。<br>启用CompressOops后，会压缩的对象：<br>1. 每个Class的属性指针（静态成员变量）<br>2. 每个对象的属性指针<br>3. 普通对象数组的每个元素指针<br>当然，压缩也不是万能的，针对一些特殊类型的指针，JVM是不会优化的。<br>比如指向PermGen的Class对象指针，本地变量，堆栈元素，入参，返回值，NULL指针不会被压缩。 ^[10][11][18]^ ||
-|| `HeapBaseMinAddress` || `unitx` || `product_pd` || 在64位平台及使用了压缩指针时有效，`OS specific low limit for heap base address` ||
+|| `UseCompressedOops` || `bool` || `lp64_product` || 在64位平台开启普通对象指针（oop^注1^）压缩，通常64位JVM消耗的内存会比32位的大1.5倍，这是因为对象指针在64位架构下，长度会翻倍（更宽的寻址）。对于那些将要从32位平台移植到64位的应用来说，平白无辜多了1/2的内存占用，这是开发者不愿意看到的。<br>启用CompressOops后，会压缩的对象：<br>1. 每个Class的属性指针（静态成员变量）<br>2. 每个对象的属性指针<br>3. 普通对象数组的每个元素指针<br>当然，压缩也不是万能的，针对一些特殊类型的指针，JVM是不会优化的。<br>比如指向PermGen的Class对象指针，本地变量，堆栈元素，入参，返回值，NULL指针不会被压缩。<br>3段式，根据-Xmx/-XX:MaxHeapSize、-XX: HeapBaseMinAddress以及迕程环境自动选择：<br>{{{
+// Narrow Oop encoding mode:
+// 0 - UnscaledNarrowOop
+//     - Use 32-bits oops without encoding when
+//       HeapBaseMinAddress + heap_size < 4Gb
+// 1 - ZeroBasedNarrowOop
+//     - Use zero based compressed oops with encoding when
+//       HeapBaseMinAddress + heap_size < 32Gb
+// 2 - HeapBasedNarrowOop
+//     - Use compressed oops with heap base + encoding.
+}}} ^[10][11][18][20]^ ||
+|| `HeapBaseMinAddress` || `unitx` || `product_pd` || 在64位平台及使用了压缩指针时有效，参见 `UseCompressedOops` ||
 || `ObjectAlignmentInBytes` || `` || `` || ||
 || `UseMembar` || `` || `` || ||
 || `UsePPCLWSYNC` || `` || `` || ||
@@ -854,5 +864,6 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 `[17].` http://rednaxelafx.iteye.com/blog/659108<br>
 `[18].` http://kenwublog.com/compressedoops<br>
 `[19].` http://kenwublog.com/docs/java6-jvm-options-chinese-edition.htm<br>
+`[20].` http://www.tektalk.org/tektalk.org/wp-content/uploads/2011/05/Java_Program_in_Action_20110727.pdf<br>
 
 

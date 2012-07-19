@@ -775,7 +775,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `PrintPreciseBiasedLockingStatistics` || `` || `` || ||
 || `EliminateAutoBox` || `` || `` || ||
 || `AutoBoxCacheMax` || `` || `` || ||
-|| `DoEscapeAnalysis` || `` || `` || ||
+|| `DoEscapeAnalysis` || `bool` || `product` || 逃逸分析，在C2中定义，在编程语言的编译优化原理中，分析指针动态范围的方法称之为逃逸分析。通俗一点讲，就是当一个对象的指针被多个方法或线程引用时，我们称这个指针发生了逃逸。而用来分析这种逃逸现象的方法，就称之为逃逸分析。 ^[15][16][17]^ ||
 || `EliminateAllocations` || `` || `` || ||
 || `EliminateAllocationArraySizeLimit` || `` || `` || ||
 || `UseOptoBiasInlining` || `` || `` || ||
@@ -849,5 +849,8 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 `[12].` http://www.slideshare.net/RednaxelaFX/usenuma-on-jdk6linux<br>
 `[13].` http://zh.wikipedia.org/wiki/%E9%9D%9E%E5%9D%87%E5%8C%80%E8%AE%BF%E5%AD%98%E6%A8%A1%E5%9E%8B<br>
 `[14].` http://www.oracle.com/technetwork/java/hotspotfaq-138619.html<br>
+`[15].` http://en.wikipedia.org/wiki/Escape_analysis<br>
+`[16].` http://kenwublog.com/jvm-optimization-escape-analysis<br>
+`[17].` http://rednaxelafx.iteye.com/blog/659108<br>
 
 

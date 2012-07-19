@@ -1,5 +1,6 @@
 #summary HotSpot词汇表
 
+==HotSpot虚拟机相关的记录列表==
  * `HotSpot`
 
 

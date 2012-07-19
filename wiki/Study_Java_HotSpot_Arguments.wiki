@@ -380,7 +380,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `ResizeTLAB` || `bool` || `product_pd` || 为线程动态改变TLAB的大小 ^[29]^ ||
 || `ZeroTLAB` || `` || `` || ||
 || `FastTLABRefill` || `` || `` || ||
-|| `PrintTLAB` || `` || `` || ||
+|| `PrintTLAB` || `bool` || `product` || 打印和TLAB各种相关的信息到控制台，通过参数`-XX:+PrintTLAB -XX:+Verbose`可打印每个线程动态改变TLAB的大小，大小变化都在`GC scavenges`时 ^[29]^ ||
 || `TLABStats` || `` || `` || ||
 || `PrintRevisitStats` || `` || `` || ||
 || `NeverActAsServerClassMachine` || `` || `` || ||

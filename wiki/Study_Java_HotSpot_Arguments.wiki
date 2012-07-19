@@ -125,8 +125,8 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `JavaMonitorsInStackTrace` || `` || `` || ||
 || `UseLargePages` || `` || `` || ||
 || `UseLargePagesIndividualAllocation` || `` || `` || ||
-|| `UseNUMA` || `` || `` || ||
-|| `ForceNUMA` || `` || `` || ||
+|| `UseNUMA` || `bool` || `product` || 使用非均匀访存模型，非均匀访存模型（NUMA）的特点是：被共享的存储器物理上是分布式的，所有这些存储器的集合就是全局地址空间。所以处理器访问这些存储器的时间是不一样的，显然访问本地存储器的速度要比访问全局共享存储器或远程访问外地存储器要快些。另外，NUMA中存储器可能是分层的：本地存储器，群内共享存储器，全局共享存储器，在HotSpot@Linux中开启需要<br>1. 硬件是NUMA架构的；BIOS打开了NUMA选项<br>2. Xen等虚拟层的NUMA选项打开（如有）<br>3. 操作系统的NUMA选项打开<br>4. libnuma.so.1存在并且可加载<br>5. -XX:+UseParallelGC/-XX:+UseParallelOldGC ^[12][13]^ ||
+|| `ForceNUMA` || `bool` || `product` || 强制打开`UseNUMA` ||
 || `NUMAChunkResizeWeight` || `` || `` || ||
 || `NUMASpaceResizeRate` || `` || `` || ||
 || `UseAdaptiveNUMAChunkSizing` || `` || `` || ||
@@ -844,5 +844,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 `[9].` http://docs.oracle.com/javase/6/docs/technotes/tools/findingclasses.html<br>
 `[10].` http://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html<br>
 `[11].` https://wikis.oracle.com/display/HotSpotInternals/CompressedOops<br>
+`[12].` http://www.slideshare.net/RednaxelaFX/usenuma-on-jdk6linux<br>
+`[13].` http://zh.wikipedia.org/wiki/%E9%9D%9E%E5%9D%87%E5%8C%80%E8%AE%BF%E5%AD%98%E6%A8%A1%E5%9E%8B<br>
 
 

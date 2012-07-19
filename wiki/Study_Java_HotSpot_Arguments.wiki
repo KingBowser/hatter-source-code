@@ -113,7 +113,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 ==参数详细说明==
 || *参数名* || *参数类型* || *运行时类型* || *说明* ||
 || `UseCompressedOops` || `bool` || `lp64_product` || 在64位平台开启压缩指针，通常一个oop^注1^的位宽和机器的位宽一致，但当Heap小于`2^32`时仅需要32位地址即可，所以可把指针转换为32位减少内存占用 ^[10][11]^ ||
-|| `HeapBaseMinAddress` || `` || `` || ||
+|| `HeapBaseMinAddress` || `unitx` || `product_pd` || 在64位平台及使用了压缩指针时有效，`OS specific low limit for heap base address` ||
 || `ObjectAlignmentInBytes` || `` || `` || ||
 || `UseMembar` || `` || `` || ||
 || `UsePPCLWSYNC` || `` || `` || ||

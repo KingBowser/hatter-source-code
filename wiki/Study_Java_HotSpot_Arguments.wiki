@@ -380,7 +380,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `ResizeTLAB` || `bool` || `product_pd` || 为线程动态改变TLAB的大小 ^[29]^ ||
 || `ZeroTLAB` || `` || `` || ||
 || `FastTLABRefill` || `` || `` || ||
-|| `PrintTLAB` || `bool` || `product` || 打印和TLAB各种相关的信息到控制台，通过参数`-XX:+PrintTLAB -XX:+Verbose`可打印每个线程动态改变TLAB的大小，大小变化都在`GC scavenges`时 ^[29]^ ||
+|| `PrintTLAB` || `bool` || `product` || 打印和TLAB各种相关的信息到控制台，通过参数`-XX:+PrintTLAB -XX:+Verbose`可打印每个线程动态改变TLAB的大小，大小变化都在Scavenge GC^注3^时 ^[29]^ ||
 || `TLABStats` || `` || `` || ||
 || `PrintRevisitStats` || `` || `` || ||
 || `NeverActAsServerClassMachine` || `` || `` || ||
@@ -789,6 +789,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 
 ^注1.^ `oop` 即 `ordinary object pointer`，普通对象指针，在HotSpot中管理指向对象的指针 ^[11]^<br>
 ^注2.^ 页表缓存（英文：Translation Lookaside Buffer，缩写为：TLB），也译为转址旁路缓存或转译后备缓冲区，为CPU的一种缓存，由内存管理单元用于改进虚拟地址到物理地址的转译速度。目前所有的桌面电脑和服务器（如X86）都使用TLB。TLB有固定数量的空间区域，用于存放将虚拟地址映射到物理地址的分页表项。 ^[23]^<br>
+^注3.^ GC有两种类型：Scavenge GC和Full GC。一般情况下，当新对象生成，并且在Eden申请空间失败时，就好触发Scavenge GC，堆Eden区域进行GC，清除非存活对象，并且把尚且存活的对象移动到Survivor区。然后整理Survivor的两个区。Full GC对整个堆进行整理，包括Young、Tenured和Perm。Full GC比Scavenge GC要慢，因此应该尽可能减少Full GC。有如下原因可能导致Full GC：Tenured被写满、Perm域被写满、System.gc()被显示调用（HotSpot的行为是FullGC）^30^<br>
 
 ==System.Properties参数==
 || *参数Key* || *说明* ||
@@ -865,4 +866,5 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 `[27].` http://nothingcosmos.github.com/OpenJDKOverview/src/cpu.html<br>
 `[28].` http://home.scarlet.be/bernard.jorion5/prgs/books/mem-management.pdf<br>
 `[29].` https://blogs.oracle.com/jonthecollector/entry/the_real_thing<br>
+`[30].` http://hi.baidu.com/7636553/item/80f9bd144536e5cb39cb300a<br>
 

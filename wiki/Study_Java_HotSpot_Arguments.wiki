@@ -209,7 +209,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `AllowUserSignalHandlers` || `` || `` || ||
 || `UseSignalChaining` || `` || `` || ||
 || `UseAltSigs` || `` || `` || ||
-|| `UseSpinning` || `bool` || `product` || 启用多线程自旋锁优化。详见[Study_Java_HotSpot_Glossay *HotSpot词汇表-自适应自旋*] ^[19]^ ||
+|| `UseSpinning` || `bool` || `product` || 启用多线程自旋锁优化。详见 *[Study_Java_HotSpot_Glossay HotSpot词汇表-自适应自旋]* ^[19]^ ||
 || `PreSpinYield` || `` || `` || ||
 || `PostSpinYield` || `` || `` || ||
 || `AllowJNIEnvProxy` || `` || `` || ||

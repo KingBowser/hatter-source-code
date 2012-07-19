@@ -376,8 +376,8 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `CMSIsTooFullPercentage` || `` || `` || ||
 || `PrintPromotionFailure` || `` || `` || ||
 || `PreserveMarkStackSize` || `` || `` || ||
-|| `UseTLAB` || `bool` || `product_pd` || `Thread-Local Allocation Buffers(TLAB)`线程本地分配缓存，是一种在多线程程序中的技术，每个线程拥有一小块内存区域，在内存分配时避免锁，加速内存分配速度。 ^[28]^ ||
-|| `ResizeTLAB` || `` || `` || ||
+|| `UseTLAB` || `bool` || `product_pd` || `Thread-Local Allocation Buffers(TLAB)`线程本地分配缓存，是一种在多线程程序中的技术，每个线程拥有一小块Eden中的内存区域，在内存分配时避免锁，加速内存分配速度。 ^[28][29]^ ||
+|| `ResizeTLAB` || `bool` || `product_pd` || 为线程动态改变TLAB的大小 ^[29]^ ||
 || `ZeroTLAB` || `` || `` || ||
 || `FastTLABRefill` || `` || `` || ||
 || `PrintTLAB` || `` || `` || ||
@@ -864,4 +864,5 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 `[26].` http://zh.wikipedia.org/wiki/SSE<br>
 `[27].` http://nothingcosmos.github.com/OpenJDKOverview/src/cpu.html<br>
 `[28].` http://home.scarlet.be/bernard.jorion5/prgs/books/mem-management.pdf<br>
+`[29].` https://blogs.oracle.com/jonthecollector/entry/the_real_thing<br>
 

@@ -125,7 +125,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `BeParanoid` || `` || `` || ||
 || `UnlockExperimentalVMOptions` || `` || `` || ||
 || `JavaMonitorsInStackTrace` || `` || `` || ||
-|| `UseLargePages` || `bool` || `product_pd` || <br>不同的CPU支持不同的页大小：<br>`i386: 4K and 4M (2M in PAE mode)`<br>`ia64: 4K, 8K, 64K, 256K, 1M, 4M, 16M, 256M`<br>`PPC64: 4K and 16M`<br>`POWER5+: 4K, 64K, 16MB, 16GB (!!)`<br>`UltraSparc III: 8K, 64K, 512K, 4M`<br>`UltraSparc T2: 8K, 64K, 4M, 256M`<br> ^[21][22]^ ||
+|| `UseLargePages` || `bool` || `product_pd` || 使用大页内存，该特性用于优化页表缓存^注2^，页表缓存在计算机中稀少的资源，使用大页可以使用页表缓存可转译更大地址空间的物理内存。<br>不同的CPU支持不同的页大小：<br>`i386: 4K and 4M (2M in PAE mode)`<br>`ia64: 4K, 8K, 64K, 256K, 1M, 4M, 16M, 256M`<br>`PPC64: 4K and 16M`<br>`POWER5+: 4K, 64K, 16MB, 16GB (!!)`<br>`UltraSparc III: 8K, 64K, 512K, 4M`<br>`UltraSparc T2: 8K, 64K, 4M, 256M`<br>Linux在内核2.6版本以后支持大页，可以通过`cat /proc/meminfo | grep Huge`判断是否支持大页。 ^[21][22]^ ||
 || `UseLargePagesIndividualAllocation` || `` || `` || ||
 || `UseNUMA` || `bool` || `product` || 使用非均匀访存模型，非均匀访存模型（NUMA）的特点是：被共享的存储器物理上是分布式的，所有这些存储器的集合就是全局地址空间。所以处理器访问这些存储器的时间是不一样的，显然访问本地存储器的速度要比访问全局共享存储器或远程访问外地存储器要快些。另外，NUMA中存储器可能是分层的：本地存储器，群内共享存储器，全局共享存储器，在HotSpot@Linux中开启需要<br>1. 硬件是NUMA架构的；BIOS打开了NUMA选项<br>2. Xen等虚拟层的NUMA选项打开（如有）<br>3. 操作系统的NUMA选项打开<br>4. libnuma.so.1存在并且可加载<br>5. -XX:+UseParallelGC/-XX:+UseParallelOldGC ^[12][13]^ ||
 || `ForceNUMA` || `bool` || `product` || 强制打开`UseNUMA` ||
@@ -787,7 +787,8 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `BlockLayoutMinDiamondPercentage` || `` || `` || ||
 || `BlockLayoutRotateLoops` || `` || `` || ||
 
-^注1.^ `oop` 即 `ordinary object pointer`，普通对象指针，在HotSpot中管理指向对象的指针，详见`[参考资料 11]`
+^注1.^ `oop` 即 `ordinary object pointer`，普通对象指针，在HotSpot中管理指向对象的指针，详见`[参考资料 11]`<br>
+^注2.^ 页表缓存（英文：Translation Lookaside Buffer，缩写为：TLB），也译为转址旁路缓存或转译后备缓冲区，为CPU的一种缓存，由内存管理单元用于改进虚拟地址到物理地址的转译速度。目前所有的桌面电脑和服务器（如X86）都使用TLB。TLB有固定数量的空间区域，用于存放将虚拟地址映射到物理地址的分页表项。 ^[23]^<br>
 
 ==System.Properties参数==
 || *参数Key* || *说明* ||
@@ -857,5 +858,6 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 `[20].` http://www.tektalk.org/tektalk.org/wp-content/uploads/2011/05/Java_Program_in_Action_20110727.pdf<br>
 `[21].` http://zzzoot.blogspot.com/2009/02/java-mysql-increased-performance-with.html<br>
 `[22].` http://www.oracle.com/technetwork/java/javase/tech/largememory-jsp-137182.html<br>
+`[23].` http://zh.wikipedia.org/wiki/%E8%BD%89%E8%AD%AF%E5%BE%8C%E5%82%99%E7%B7%A9%E8%A1%9D%E5%8D%80<br>
 
 

@@ -135,8 +135,8 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `NUMAStats` || `` || `` || ||
 || `NUMAPageScanRate` || `` || `` || ||
 || `NeedsDeoptSuspend` || `` || `` || ||
-|| `UseSSE` || `intx` || `product` || `SSE`(`Streaming SIMD Extensions`)是英特尔在AMD的`3D Now!`发布一年之后，在其计算机芯片`Pentium III`中引入的指令集，是繼MMX的擴充指令集。SSE 指令集提供了 70 條新指令。AMD后来在`Athlon XP`中加入了对这个新指令集的支持。<br>其后续版本有：<br>`SSE2`<br>`SSE3`<br>`SSSE3`<br>`SSE4`现在更新至`SSE4.2`<br>`SSE5`<br>`AVX`<br>`FMA` ^[25][26]^ ||
-|| `UseSSE42Intrinsics` || `bool` || `product` || ||
+|| `UseSSE` || `intx` || `product` || `SSE`(`Streaming SIMD Extensions`)是英特尔在AMD的`3D Now!`发布一年之后，在其计算机芯片`Pentium III`中引入的指令集，是繼MMX的擴充指令集。SSE 指令集提供了 70 條新指令。AMD后来在`Athlon XP`中加入了对这个新指令集的支持。<br>其后续版本有：<br>`SSE2`<br>`SSE3`<br>`SSSE3`<br>`SSE4` 现在更新至`SSE4.2`<br>`SSE5`<br>`AVX`<br>`FMA` ^[25][26]^ ||
+|| `UseSSE42Intrinsics` || `bool` || `product` || 使用`SSE4.2`优化Java程序运行，打开此参数将对以下函数使用`SSE4.2`优化：<br>`MacroAssembler::string_compare`<br>`MacroAssembler::char_arrays_equals`<br>`MacroAssembler::string_indexof` ^[27]^ ||
 || `LargePageSizeInBytes` || `` || `` || ||
 || `LargePageHeapSizeThreshold` || `` || `` || ||
 || `ForceTimeHighResolution` || `` || `` || ||
@@ -862,4 +862,5 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 `[24].` http://kenwublog.com/tune-large-page-for-jvm-optimization<br>
 `[25].` http://en.wikipedia.org/wiki/Streaming_SIMD_Extensions<br>
 `[26].` http://zh.wikipedia.org/wiki/SSE<br>
+`[27].` http://nothingcosmos.github.com/OpenJDKOverview/src/cpu.html<br>
 

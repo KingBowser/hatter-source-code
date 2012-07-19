@@ -10,6 +10,8 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `-client`  || 即C1编译器 ||
 || `-server`  || 即C2编译器 ||
 
+^注^ C1和C2是两个不同的二进制代码系统。它们是一个系统下不同的编译(JIT)接口,C1系统优化的目的是最快的启动时间和小内存占用，C2系统优化目的是最佳总体运行性能。一般C1系统更适合交互的应用程序，如GUI程序。它们的不同步包括但不仅限于：编译策略，默认堆大小，内联策略。 ^[14]^
+
 ==编译模式==
 || `-Xint` || 解释模式，仅解释运行 ||
 || `-Xcomp` || 编译模式，先编译再运行 ||
@@ -846,5 +848,6 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 `[11].` https://wikis.oracle.com/display/HotSpotInternals/CompressedOops<br>
 `[12].` http://www.slideshare.net/RednaxelaFX/usenuma-on-jdk6linux<br>
 `[13].` http://zh.wikipedia.org/wiki/%E9%9D%9E%E5%9D%87%E5%8C%80%E8%AE%BF%E5%AD%98%E6%A8%A1%E5%9E%8B<br>
+`[14].` http://www.oracle.com/technetwork/java/hotspotfaq-138619.html<br>
 
 

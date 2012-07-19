@@ -1,6 +1,6 @@
 #summary HotSpot词汇表
 
-* `HotSpot`
+ * `HotSpot`
 
 
 <br><br><br><br>

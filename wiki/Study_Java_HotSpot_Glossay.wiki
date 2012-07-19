@@ -2,9 +2,12 @@
 
 ==HotSpot虚拟机相关的记录列表==
  * `HotSpot`
+ HotSpot是较新的Java虚拟机技术，也是官方JDK自带的Java虚拟机，用来代替JIT技术，可以大大提高Java运行的性能。 其官方网站为：http://openjdk.java.net/groups/hotspot/。 ^[2][3]^
 
 
 <br><br><br><br>
 
 ===参考资料===
 `[1].` http://openjdk.java.net/groups/hotspot/docs/HotSpotGlossary.html<br>
+`[2].` http://zh.wikipedia.org/wiki/HotSpot_(java)<br>
+`[3].` http://en.wikipedia.org/wiki/HotSpot<br>

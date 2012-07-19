@@ -35,7 +35,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `-agentlib:` || `-` || ||
 || `-agentpath:` || `-` || ||
 || `-javaagent:` || `-` || ||
-|| `-Xnoclassgc` || `-` || `+ClassUnloading` ||
+|| `-Xnoclassgc` || `-` || `-ClassUnloading` ||
 || `-Xincgc` || `-` || `+UseConcMarkSweepGC,+CMSIncrementalMode` ||
 || `-Xnoincgc` || `-` || `+UseConcMarkSweepGC,+CMSIncrementalMode` ||
 || `-Xconcgc` || `-` || `+UseConcMarkSweepGC` ||

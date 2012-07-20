@@ -14,6 +14,10 @@ import me.hatter.tools.commons.exception.ExceptionUtil;
 
 public class IOUtil {
 
+    public static final int    KB           = 1024;
+    public static final int    MB           = KB * KB;
+    public static final int    GB           = MB * KB;
+    public static final int    TB           = GB * KB;
     public static final String CHARSET_UTF8 = "UTF-8";
 
     public static String readResourceToString(Class<?> clazz, String resourceName) {
@@ -137,6 +141,16 @@ public class IOUtil {
 
     public static long copy(InputStream is, OutputStream os) throws IOException {
         long total = 0;
+        byte[] b = new byte[8 * KB];
+        for (int len; ((len = is.read(b)) != -1);) {
+            os.write(b, 0, len);
+            total += len;
+        }
+        return total;
+    }
+
+    public static long copyOneByOne(InputStream is, OutputStream os) throws IOException {
+        long total = 0;
         for (int b = 0; ((b = is.read()) != -1);) {
             os.write(b);
             total++;
@@ -145,6 +159,16 @@ public class IOUtil {
     }
 
     public static long copy(Reader reader, Writer writer) throws IOException {
+        long total = 0;
+        char[] c = new char[8 * KB];
+        for (int len; ((len = reader.read(c)) != -1);) {
+            writer.write(c, 0, len);
+            total += len;
+        }
+        return total;
+    }
+
+    public static long copyOneByOne(Reader reader, Writer writer) throws IOException {
         long total = 0;
         for (int c; ((c = reader.read()) != -1);) {
             writer.write(c);

@@ -14,6 +14,8 @@ import java.util.concurrent.atomic.AtomicLong;
 import java.util.regex.Pattern;
 
 import me.hatter.tools.commons.args.UnixArgsutil;
+import me.hatter.tools.commons.color.Color;
+import me.hatter.tools.commons.color.Font;
 import me.hatter.tools.commons.environment.Environment;
 import me.hatter.tools.commons.file.JavaWalkTool;
 import me.hatter.tools.commons.file.JavaWalkTool.AbstractClassJarJavaWalker;
@@ -21,16 +23,12 @@ import me.hatter.tools.commons.file.JavaWalkTool.AcceptType;
 import me.hatter.tools.commons.io.IOUtil;
 import me.hatter.tools.commons.io.StringPrintWriter;
 import me.hatter.tools.commons.regex.RegexUtil;
-import me.hatter.tools.commons.string.StringUtil;
 
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.MethodNode;
 
 public class LibAna {
-
-    public static final char   CHAR_27 = (char) 27;
-    public static final String RESET   = CHAR_27 + "[0m";
 
     abstract public static class AbstractClassReaderJarWalker extends AbstractClassJarJavaWalker {
 
@@ -126,26 +124,29 @@ public class LibAna {
         Map<String, MethodNode> methodNodeMap1 = methodNodeListToMap(classNode1.methods);
         Map<String, MethodNode> methodNodeMap2 = methodNodeListToMap(classNode2.methods);
 
-        String clsColorSt = isColor() ? (CHAR_27 + "[;103m") : StringUtil.EMPTY;
-        String mnsColorSt = isColor() ? (CHAR_27 + "[;101m") : StringUtil.EMPTY;
-        String addColorSt = isColor() ? (CHAR_27 + "[;102m") : StringUtil.EMPTY;
-        String colorEd = isColor() ? RESET : StringUtil.EMPTY;
+        // String clsColorSt = isColor() ? (CHAR_27 + "[;103m") : StringUtil.EMPTY;
+        // String mnsColorSt = isColor() ? (CHAR_27 + "[;101m") : StringUtil.EMPTY;
+        // String addColorSt = isColor() ? (CHAR_27 + "[;102m") : StringUtil.EMPTY;
+        // String colorEd = isColor() ? RESET : StringUtil.EMPTY;
+        Font clsFont = Font.createFont(isColor() ? Color.getColor(103) : null);
+        Font mnsFont = Font.createFont(isColor() ? Color.getColor(101) : null);
+        Font addFont = Font.createFont(isColor() ? Color.getColor(102) : null);
 
         StringPrintWriter writer = new StringPrintWriter();
         for (String methodName : methodNodeMap1.keySet()) {
             MethodNode methodNode1 = methodNodeMap1.get(methodName);
             MethodNode methodNode2 = methodNodeMap2.remove(methodName);
             if (methodNode2 == null) {
-                writer.println("  " + mnsColorSt + "-- " + methodNode1.name + methodNode1.desc + colorEd);
+                writer.println("  " + mnsFont.wrap("-- " + methodNode1.name + methodNode1.desc));
             } else {
                 // writer.println("  == " + methodNode1.name + methodNode1.desc);
             }
         }
         for (MethodNode methodNode2 : methodNodeMap2.values()) {
-            writer.println("  " + addColorSt + "++ " + methodNode2.name + methodNode2.desc + colorEd);
+            writer.println("  " + addFont.wrap("++ " + methodNode2.name + methodNode2.desc));
         }
         if (writer.getWriter().getBuffer().length() > 0) {
-            out.println(clsColorSt + "Class: " + className + colorEd);
+            out.println(clsFont.wrap("Class: " + className));
             out.println(writer.toString());
         }
     }

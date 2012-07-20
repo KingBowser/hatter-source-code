@@ -22,7 +22,7 @@ public class Font {
         return new Font(color, isBold);
     }
 
-    public String wrap(String text) {
+    public String display(String text) {
         if (Color.getColorValue(color) == null) {
             return text;
         }

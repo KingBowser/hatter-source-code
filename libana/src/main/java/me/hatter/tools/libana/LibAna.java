@@ -143,7 +143,7 @@ public class LibAna {
             boolean isMethodPublic1 = (methodNode1.access & Opcodes.ACC_PUBLIC) > 0;
 
             if ((methodNode2 == null) && (isPublic() ? isMethodPublic1 : true)) {
-                writer.println("  " + mnsFont.wrap("-- " + methodNode1.name + methodNode1.desc));
+                writer.println("  " + mnsFont.display("-- " + methodNode1.name + methodNode1.desc));
             } else {
                 // writer.println("  == " + methodNode1.name + methodNode1.desc);
             }
@@ -151,11 +151,11 @@ public class LibAna {
         for (MethodNode methodNode2 : methodNodeMap2.values()) {
             boolean isMethodPublic2 = (methodNode2.access & Opcodes.ACC_PUBLIC) > 0;
             if (isPublic() ? isMethodPublic2 : true) {
-                writer.println("  " + addFont.wrap("++ " + methodNode2.name + methodNode2.desc));
+                writer.println("  " + addFont.display("++ " + methodNode2.name + methodNode2.desc));
             }
         }
         if (writer.getWriter().getBuffer().length() > 0) {
-            out.println(clsFont.wrap("Class: " + className));
+            out.println(clsFont.display("Class: " + className));
             out.println("Jar file1: " + jarFile1);
             out.println("Jar file2: " + jarFile2);
             out.println(writer.toString());

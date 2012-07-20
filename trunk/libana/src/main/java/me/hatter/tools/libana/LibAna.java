@@ -1,10 +1,13 @@
 package me.hatter.tools.libana;
 
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicLong;
@@ -19,6 +22,7 @@ import me.hatter.tools.commons.io.StringPrintWriter;
 
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.tree.ClassNode;
+import org.objectweb.asm.tree.MethodNode;
 
 public class LibAna {
 
@@ -38,7 +42,7 @@ public class LibAna {
             } else if (isTrace() && ((processedCount.get() % 100) == 0)) {
                 System.out.print(".");
             }
-            byte[] bytes = IOUtil.readToBytesAndClose(is);
+            byte[] bytes = IOUtil.readToBytesAndClose(new BufferedInputStream(is));
             ClassReader cr = new ClassReader(bytes);
             ClassNode cn = new ClassNode();
             cr.accept(cn, ClassReader.SKIP_DEBUG);
@@ -93,12 +97,12 @@ public class LibAna {
                 @Override
                 protected void dealClassNode(ClassNode classNode, String className) {
                     if (duplicatClassNameSet.contains(className)) {
-                        if (!classNodeMap.containsKey(classNode)) {
+                        if (!classNodeMap.containsKey(className)) {
                             classNodeMap.put(className, classNode);
                         } else {
                             ClassNode classNode1 = classNodeMap.get(className);
                             ClassNode classNode2 = classNode;
-                            diff(classNode1, classNode2, out);
+                            diff(className, classNode1, classNode2, out);
                         }
                     }
                 }
@@ -110,7 +114,38 @@ public class LibAna {
         System.out.println("Analysis finish.");
     }
 
-    private static void diff(ClassNode classNode1, ClassNode classNode2, PrintWriter out) {
+    private static void diff(String className, ClassNode classNode1, ClassNode classNode2, PrintWriter out) {
+        Map<String, MethodNode> methodNodeMap1 = methodNodeListToMap(classNode1.methods);
+        Map<String, MethodNode> methodNodeMap2 = methodNodeListToMap(classNode2.methods);
+
+        StringPrintWriter writer = new StringPrintWriter();
+        for (String methodName : methodNodeMap1.keySet()) {
+            MethodNode methodNode1 = methodNodeMap1.get(methodName);
+            MethodNode methodNode2 = methodNodeMap2.remove(methodName);
+            if (methodNode2 == null) {
+                writer.println("  -- " + methodNode1.name + methodNode1.desc);
+            } else {
+                // writer.println("  == " + methodNode1.name + methodNode1.desc);
+            }
+        }
+        for (MethodNode methodNode2 : methodNodeMap2.values()) {
+            writer.println("  ++ " + methodNode2.name + methodNode2.desc);
+        }
+        if (writer.getWriter().getBuffer().length() > 0) {
+            out.println("Class: " + className);
+            out.println(writer.toString());
+        }
+    }
+
+    private static Map<String, MethodNode> methodNodeListToMap(List<MethodNode> methodNodeList) {
+        Map<String, MethodNode> methodNodeMap = new LinkedHashMap<String, MethodNode>();
+        if (methodNodeList != null) {
+            for (MethodNode methodNode : methodNodeList) {
+                String methodNameAndDesc = methodNode.name + methodNode.desc;
+                methodNodeMap.put(methodNameAndDesc, methodNode);
+            }
+        }
+        return methodNodeMap;
     }
 
     private static boolean isTrace() {

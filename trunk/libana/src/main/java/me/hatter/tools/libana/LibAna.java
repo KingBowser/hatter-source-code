@@ -132,13 +132,13 @@ public class LibAna {
             MethodNode methodNode1 = methodNodeMap1.get(methodName);
             MethodNode methodNode2 = methodNodeMap2.remove(methodName);
             if (methodNode2 == null) {
-                writer.println(mnsColorSt + "  -- " + methodNode1.name + methodNode1.desc + colorEd);
+                writer.println("  " + mnsColorSt + "-- " + methodNode1.name + methodNode1.desc + colorEd);
             } else {
                 // writer.println("  == " + methodNode1.name + methodNode1.desc);
             }
         }
         for (MethodNode methodNode2 : methodNodeMap2.values()) {
-            writer.println(addColorSt + "  ++ " + methodNode2.name + methodNode2.desc + colorEd);
+            writer.println("  " + addColorSt + "++ " + methodNode2.name + methodNode2.desc + colorEd);
         }
         if (writer.getWriter().getBuffer().length() > 0) {
             out.println(clsColorSt + "Class: " + className + colorEd);

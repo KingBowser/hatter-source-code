@@ -42,6 +42,14 @@ public class CollectionUtil {
         }
     }
 
+    public static boolean isEmpty(Collection<?> collection) {
+        return ((collection == null) || collection.isEmpty());
+    }
+
+    public static boolean isNotEmpty(Collection<?> collection) {
+        return !isEmpty(collection);
+    }
+
     public static List<String> toUpperCase(Collection<String> list) {
         return transform(list, new CollectionUtil.StringToUpperCase());
     }

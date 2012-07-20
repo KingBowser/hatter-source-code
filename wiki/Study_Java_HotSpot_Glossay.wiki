@@ -35,9 +35,10 @@
  * *`hot lock`* ^[1]^
  * *`interpreter`* ^[1]^
  * *`JIT compilers`* ^[1]^
- * *`JNI`* ^[1][15][16]^
- Java Native Interface(JNI)允许Java程序和其它编程语言（如C/C++）写的程序集成。允许程序在不放弃遗留代码的情况下使用Java所有特性。但在使用JNI中一些细微的错误都有可能引起整个JVM带来问题，但这种问题很难调度和再现；仅应用和签名过的Applet可以调用JNI。
- * *`JVM TI`* ^[1]^
+ * *`JNI` Java本地调用* ^[1][15][16]^
+ Java Native Interface(JNI)允许Java程序和其它编程语言（如C/C++）写的程序集成（Java程序和Native程序可以相互调用）。允许程序在不放弃遗留代码的情况下使用Java所有特性。但在使用JNI中一些细微的错误都有可能引起整个JVM带来问题，但这种问题很难调度和再现；仅应用和签名过的Applet可以调用JNI。
+ * *`JVM TI`* ^[1][17][18]^
+ Java Virtual Machine Tools Interface是用于开发和调试Java程序的API标准。 JVM通过JVM TI为外部访问JVM内部状态定义了标准的服务，基本上各种性能剖析工具都是基于JVM TI及其前身JVM DI/JVM PI开发的，包括Visual VM、Eclipse TPTP(Test and Performance Tools Platform)的CPU Profiler和Memory Profiler，JVM TI的前身是JVM PI(JVM Profile Interface)和JVM DI(JVM Debug Interface)，其中JVM PI在JDK6中已经被废弃，但仍然有不少剖析工具是基于JVM PI开发的，譬如JProfiler、TPTP都支持JVM PI。
  * *`klass pointer`* ^[1]^
  * *`mark word`* ^[1]^
  * *`nmethod`* ^[1]^
@@ -94,4 +95,6 @@
 `[14].` http://rednaxelafx.iteye.com/blog/1044951<br>
 `[15].` http://java.sun.com/docs/books/jni/<br>
 `[16].` http://en.wikipedia.org/wiki/Java_Native_Interface<br>
+`[17].` http://ayufox.iteye.com/blog/654650<br>
+`[18].` http://docs.oracle.com/javase/6/docs/platform/jvmti/jvmti.html<br>
 

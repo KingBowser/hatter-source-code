@@ -6,4 +6,9 @@ List of about HotSpot:
  * [Study_Java_HotSpot_Glossay]
  * [Study_Java_HotSpot_Arguments]
 
+打开JavaLauncher的Verbose信息：
+{{{
+export _JAVA_LAUNCHER_DEBUG=1
+}}}
+
 [https://code.google.com/p/hatter-source-code/wiki/HotSpot_Profilter HotSpot Collections]

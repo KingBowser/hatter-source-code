@@ -55,7 +55,8 @@
  用于记录分代之前引用指针的数据结构，如年老代对象引用新生代对象时，即使在新生代已经没有对象引用该对象，通过查询该数据结构，不在新生代GC时释放该对象。
  * *`safepoint`* ^[1][14]^
  * *`sea-of-nodes`* ^[1]^
- * *`Serviceability Agent (SA)`* ^[1]^
+ * *`Serviceability Agent(SA)`* ^[1][19][20]^
+ Serviceablity Agent是一组Sun（现在Oracle）内部的代码，用于调试HotSpot的问题。也被部分JDK工具所使用，如 jstack, jmap, jinfo 和 jdb等。其相关Java代码位于`$JAVA_HOME/lib/sa-jdi.jar`。借助SA我们可以枚举Heap和Perm区的对象，甚至可以利用其代码反汇编。
  * *`stackmap`* ^[1]^
  * *`StackMapTable`* ^[1]^
  * *`survivor space`* ^[1]^
@@ -97,4 +98,6 @@
 `[16].` http://en.wikipedia.org/wiki/Java_Native_Interface<br>
 `[17].` http://ayufox.iteye.com/blog/654650<br>
 `[18].` http://docs.oracle.com/javase/6/docs/platform/jvmti/jvmti.html<br>
+`[19].` http://rednaxelafx.iteye.com/blog/730461<br>
+`[20].` http://rednaxelafx.iteye.com/blog/729214<br>
 

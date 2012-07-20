@@ -25,6 +25,7 @@ import me.hatter.tools.commons.io.StringPrintWriter;
 import me.hatter.tools.commons.regex.RegexUtil;
 
 import org.objectweb.asm.ClassReader;
+import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.MethodNode;
 
@@ -52,10 +53,10 @@ public class LibAna {
             cr.accept(cn, ClassReader.SKIP_DEBUG);
 
             String className = cn.name.replace('/', '.');
-            dealClassNode(cn, className);
+            dealClassNode(((type == AcceptType.Entry) ? file : null), cn, className);
         }
 
-        abstract protected void dealClassNode(ClassNode classNode, String className);
+        abstract protected void dealClassNode(File jarFile, ClassNode classNode, String className);
     }
 
     public static void main(String[] args) {
@@ -79,7 +80,7 @@ public class LibAna {
         tool.walk(new AbstractClassReaderJarWalker() {
 
             @Override
-            protected void dealClassNode(ClassNode classNode, String className) {
+            protected void dealClassNode(File jarFile, ClassNode classNode, String className) {
                 if ((filter != null) && !filter.matcher(className).matches()) return;
                 if (classNameSet.contains(className)) {
                     duplicatClassNameSet.add(className);
@@ -98,17 +99,22 @@ public class LibAna {
 
             final PrintWriter out = new StringPrintWriter();
             final Map<String, ClassNode> classNodeMap = new HashMap<String, ClassNode>();
+            final Map<String, File> classJarFileMap = new HashMap<String, File>();
             tool.walk(new AbstractClassReaderJarWalker() {
 
                 @Override
-                protected void dealClassNode(ClassNode classNode, String className) {
+                protected void dealClassNode(File jarFile, ClassNode classNode, String className) {
                     if (duplicatClassNameSet.contains(className)) {
                         if (!classNodeMap.containsKey(className)) {
                             classNodeMap.put(className, classNode);
+                            classJarFileMap.put(className, jarFile);
                         } else {
                             ClassNode classNode1 = classNodeMap.get(className);
                             ClassNode classNode2 = classNode;
-                            diff(className, classNode1, classNode2, out);
+                            File jarFile1 = classJarFileMap.get(className);
+                            File jarFile2 = jarFile;
+
+                            diff(className, jarFile1, jarFile2, classNode1, classNode2, out);
                         }
                     }
                 }
@@ -120,7 +126,8 @@ public class LibAna {
         System.out.println("Analysis finish.");
     }
 
-    private static void diff(String className, ClassNode classNode1, ClassNode classNode2, PrintWriter out) {
+    private static void diff(String className, File jarFile1, File jarFile2, ClassNode classNode1,
+                             ClassNode classNode2, PrintWriter out) {
         Map<String, MethodNode> methodNodeMap1 = methodNodeListToMap(classNode1.methods);
         Map<String, MethodNode> methodNodeMap2 = methodNodeListToMap(classNode2.methods);
 
@@ -132,17 +139,25 @@ public class LibAna {
         for (String methodName : methodNodeMap1.keySet()) {
             MethodNode methodNode1 = methodNodeMap1.get(methodName);
             MethodNode methodNode2 = methodNodeMap2.remove(methodName);
-            if (methodNode2 == null) {
+
+            boolean isMethodPublic1 = (methodNode1.access & Opcodes.ACC_PUBLIC) > 0;
+
+            if ((methodNode2 == null) && (isPublic() ? isMethodPublic1 : true)) {
                 writer.println("  " + mnsFont.wrap("-- " + methodNode1.name + methodNode1.desc));
             } else {
                 // writer.println("  == " + methodNode1.name + methodNode1.desc);
             }
         }
         for (MethodNode methodNode2 : methodNodeMap2.values()) {
-            writer.println("  " + addFont.wrap("++ " + methodNode2.name + methodNode2.desc));
+            boolean isMethodPublic2 = (methodNode2.access & Opcodes.ACC_PUBLIC) > 0;
+            if (isPublic() ? isMethodPublic2 : true) {
+                writer.println("  " + addFont.wrap("++ " + methodNode2.name + methodNode2.desc));
+            }
         }
         if (writer.getWriter().getBuffer().length() > 0) {
             out.println(clsFont.wrap("Class: " + className));
+            out.println("Jar file1: " + jarFile1);
+            out.println("Jar file2: " + jarFile2);
             out.println(writer.toString());
         }
     }
@@ -174,6 +189,10 @@ public class LibAna {
         return UnixArgsutil.ARGS.flags().contains("color");
     }
 
+    private static boolean isPublic() {
+        return UnixArgsutil.ARGS.flags().contains("public");
+    }
+
     private static void usage() {
         System.out.println("Usage:");
         System.out.println("  java -jar libanaall.jar");
@@ -183,6 +202,7 @@ public class LibAna {
         System.out.println("    --verbose           Display verbose message");
         System.out.println("    --notrace           Do not display '.' character per 100 files (when verbose not set)");
         System.out.println("    --color             Color display output");
+        System.out.println("    --public            Only compare public methods");
         System.exit(0);
     }
 }

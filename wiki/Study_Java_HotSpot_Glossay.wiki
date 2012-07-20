@@ -35,7 +35,8 @@
  * *`hot lock`* ^[1]^
  * *`interpreter`* ^[1]^
  * *`JIT compilers`* ^[1]^
- * *`JNI`* ^[1]^
+ * *`JNI`* ^[1][15][16]^
+ Java Native Interface(JNI)允许Java程序和其它编程语言（如C/C++）写的程序集成。允许程序在不放弃遗留代码的情况下使用Java所有特性。但在使用JNI中一些细微的错误都有可能引起整个JVM带来问题，但这种问题很难调度和再现；仅应用和签名过的Applet可以调用JNI。
  * *`JVM TI`* ^[1]^
  * *`klass pointer`* ^[1]^
  * *`mark word`* ^[1]^
@@ -91,4 +92,6 @@
 `[12].` http://zh.wikipedia.org/wiki/JDK<br>
 `[13].` https://wikis.oracle.com/display/HotSpotInternals/CompressedOops<br>
 `[14].` http://rednaxelafx.iteye.com/blog/1044951<br>
+`[15].` http://java.sun.com/docs/books/jni/<br>
+`[16].` http://en.wikipedia.org/wiki/Java_Native_Interface<br>
 

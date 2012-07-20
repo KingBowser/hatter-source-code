@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.regex.Pattern;
 
 import me.hatter.tools.commons.args.UnixArgsutil;
 import me.hatter.tools.commons.environment.Environment;
@@ -19,6 +20,7 @@ import me.hatter.tools.commons.file.JavaWalkTool.AbstractClassJarJavaWalker;
 import me.hatter.tools.commons.file.JavaWalkTool.AcceptType;
 import me.hatter.tools.commons.io.IOUtil;
 import me.hatter.tools.commons.io.StringPrintWriter;
+import me.hatter.tools.commons.regex.RegexUtil;
 import me.hatter.tools.commons.string.StringUtil;
 
 import org.objectweb.asm.ClassReader;
@@ -73,12 +75,14 @@ public class LibAna {
         final Set<String> classNameSet = new HashSet<String>();
         final Set<String> duplicatClassNameSet = new HashSet<String>();
 
+        final Pattern filter = getFilter();
         JavaWalkTool tool = new JavaWalkTool(new File(dir));
         System.out.println("Step 1: Analysis duplicate classname list.");
         tool.walk(new AbstractClassReaderJarWalker() {
 
             @Override
             protected void dealClassNode(ClassNode classNode, String className) {
+                if (!filter.matcher(className).matches()) return;
                 if (classNameSet.contains(className)) {
                     duplicatClassNameSet.add(className);
                 } else {
@@ -157,6 +161,10 @@ public class LibAna {
         return methodNodeMap;
     }
 
+    private static Pattern getFilter() {
+        return RegexUtil.createPattern(UnixArgsutil.ARGS.kvalue("filter"), UnixArgsutil.ARGS.flags().contains("i"));
+    }
+
     private static boolean isTrace() {
         return !UnixArgsutil.ARGS.flags().contains("notrace");
     }
@@ -172,6 +180,8 @@ public class LibAna {
     private static void usage() {
         System.out.println("Usage:");
         System.out.println("  java -jar libanaall.jar");
+        System.out.println("    -filter             Regex fileter");
+        System.out.println("    --i                 Regex ignore case");
         System.out.println("    --h[elp]            Display this message");
         System.out.println("    --verbose           Display verbose message");
         System.out.println("    --notrace           Do not display '.' character per 100 files (when verbose not set)");

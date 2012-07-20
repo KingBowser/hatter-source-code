@@ -3,7 +3,7 @@
 ==HotSpot虚拟机相关的记录列表==
  * *`HotSpot`* ^[2][3]^
  HotSpot是较新的Java虚拟机技术，也是官方JDK^注1^自带的Java虚拟机，用来代替JIT^注2^技术，可以大大提高Java运行的性能。 其官方网站为：[http://openjdk.java.net/groups/hotspot/]。
- * *`JDK`* ^[2]^
+ * *`JDK`* ^[12]^
  Java Development Kit (JDK) 是Sun公司针对Java开发人员发布的免费软件开发工具包(SDK，Software development kit)。自从Java推出以来，JDK已经成为使用最广泛的Java SDK。由于JDK的一部分特性采用商业许可证，而非开源[1]。因此，2006年Sun公司宣布将发布基于GPL协议的开源JDK，使JDK成为自由软件。在去掉了少量闭源特性之后，Sun公司最终促成了GPL协议的OpenJDK的发布。
 ----
  * *`adaptive spinning` 自适应自旋* ^[1][9]^

@@ -1,11 +1,11 @@
 package me.hatter.tools.commons.args;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 
 public class UnixArgsutil {
 
@@ -13,23 +13,33 @@ public class UnixArgsutil {
 
     public static class UnixArgs {
 
-        private KList args      = new KList();
-        private KSet  flags     = new KSet();
-        private KMap  keyvalues = new KMap();
+        private KList    args      = new KList();
+        private KSet     flags     = new KSet();
+        private KMap     keyvalues = new KMap();
 
-        // private Map<String, Set<String>> aliasMap = new LinkedHashMap<String, Set<String>>();
-        // private Set<Set<String>> allaliases = new HashSet<Set<String>>();
+        private String[] _args     = null;
+        private KSet     _keys     = null;
 
         public String[] args() {
-            return args.toArray(new String[0]);
+            synchronized (this) {
+                if (_args == null) {
+                    _args = args.toArray(new String[0]);
+                }
+            }
+            return _args;
         }
 
-        public Set<String> flags() {
-            return Collections.unmodifiableSet(flags);
+        public KSet flags() {
+            return flags;
         }
 
-        public Set<String> keys() {
-            return Collections.unmodifiableSet(keyvalues.keySet());
+        public KSet keys() {
+            synchronized (this) {
+                if (_keys == null) {
+                    _keys = new KSet(keyvalues.keySet());
+                }
+            }
+            return _keys;
         }
 
         public String kvalue(String key) {
@@ -51,36 +61,6 @@ public class UnixArgsutil {
             List<String> vs = keyvalues.get(key);
             return (vs == null) ? defval : Collections.unmodifiableList(vs);
         }
-        //
-        // public void addAlias(String alias) {
-        // if ((alias != null) && (alias.length() > 0)) {
-        // addAlias(new HashSet<String>(Arrays.asList(alias.split(","))));
-        // }
-        // }
-        //
-        // public void addAlias(Set<String> alias) {
-        // if ((alias != null) && (alias.size() > 0)) {
-        // allaliases.add(alias);
-        // }
-        // }
-        //
-        // public void updateAliases() {
-        // Set<String> theallaliases = new HashSet<String>();
-        // for (Set<String> aliases : allaliases) {
-        // Set<String> tas = new HashSet<String>();
-        // for (String alias : aliases) {
-        // String a = alias.trim();
-        // if (theallaliases.contains(a)) {
-        // throw new RuntimeException("Alias: " + a + " duplicate.");
-        // }
-        // theallaliases.add(a);
-        // tas.add(a);
-        // }
-        // for (String alias : tas) {
-        // aliasMap.put(alias, tas);
-        // }
-        // }
-        // }
     }
 
     public static class KList extends ArrayList<String> {
@@ -91,6 +71,13 @@ public class UnixArgsutil {
     public static class KSet extends LinkedHashSet<String> {
 
         private static final long serialVersionUID = 178791470286450518L;
+
+        public KSet() {
+        }
+
+        public KSet(Collection<? extends String> c) {
+            super(c);
+        }
 
         public boolean containsAny(String key, String... keys) {
             if (this.contains(key)) {

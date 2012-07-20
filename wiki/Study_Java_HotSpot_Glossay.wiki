@@ -81,7 +81,7 @@
 ----
 ===参考资料===
 `[1].` http://openjdk.java.net/groups/hotspot/docs/HotSpotGlossary.html<br>
-`[2].` http://zh.wikipedia.org/wiki/HotSpot_(java)<br>
+`[2].` [http://zh.wikipedia.org/wiki/HotSpot_(java)]<br>
 `[3].` http://en.wikipedia.org/wiki/HotSpot<br>
 `[4].` http://en.wikipedia.org/wiki/Java_Development_Kit<br>
 `[5].` http://en.wikipedia.org/wiki/Just-in-time_compilation<br>

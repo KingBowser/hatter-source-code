@@ -19,12 +19,16 @@ import me.hatter.tools.commons.file.JavaWalkTool.AbstractClassJarJavaWalker;
 import me.hatter.tools.commons.file.JavaWalkTool.AcceptType;
 import me.hatter.tools.commons.io.IOUtil;
 import me.hatter.tools.commons.io.StringPrintWriter;
+import me.hatter.tools.commons.string.StringUtil;
 
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.MethodNode;
 
 public class LibAna {
+
+    public static final char   CHAR_27 = (char) 27;
+    public static final String RESET   = CHAR_27 + "[0m";
 
     abstract public static class AbstractClassReaderJarWalker extends AbstractClassJarJavaWalker {
 
@@ -118,21 +122,26 @@ public class LibAna {
         Map<String, MethodNode> methodNodeMap1 = methodNodeListToMap(classNode1.methods);
         Map<String, MethodNode> methodNodeMap2 = methodNodeListToMap(classNode2.methods);
 
+        String clsColorSt = isColor() ? (CHAR_27 + "[;103m") : StringUtil.EMPTY;
+        String mnsColorSt = isColor() ? (CHAR_27 + "[;101m") : StringUtil.EMPTY;
+        String addColorSt = isColor() ? (CHAR_27 + "[;102m") : StringUtil.EMPTY;
+        String colorEd = isColor() ? RESET : StringUtil.EMPTY;
+
         StringPrintWriter writer = new StringPrintWriter();
         for (String methodName : methodNodeMap1.keySet()) {
             MethodNode methodNode1 = methodNodeMap1.get(methodName);
             MethodNode methodNode2 = methodNodeMap2.remove(methodName);
             if (methodNode2 == null) {
-                writer.println("  -- " + methodNode1.name + methodNode1.desc);
+                writer.println(mnsColorSt + "  -- " + methodNode1.name + methodNode1.desc + colorEd);
             } else {
                 // writer.println("  == " + methodNode1.name + methodNode1.desc);
             }
         }
         for (MethodNode methodNode2 : methodNodeMap2.values()) {
-            writer.println("  ++ " + methodNode2.name + methodNode2.desc);
+            writer.println(addColorSt + "  ++ " + methodNode2.name + methodNode2.desc + colorEd);
         }
         if (writer.getWriter().getBuffer().length() > 0) {
-            out.println("Class: " + className);
+            out.println(clsColorSt + "Class: " + className + colorEd);
             out.println(writer.toString());
         }
     }
@@ -156,12 +165,17 @@ public class LibAna {
         return UnixArgsutil.ARGS.flags().contains("verbose");
     }
 
+    private static boolean isColor() {
+        return UnixArgsutil.ARGS.flags().contains("color");
+    }
+
     private static void usage() {
         System.out.println("Usage:");
         System.out.println("  java -jar libanaall.jar");
         System.out.println("    --h[elp]            Display this message");
         System.out.println("    --verbose           Display verbose message");
         System.out.println("    --notrace           Do not display '.' character per 100 files (when verbose not set)");
+        System.out.println("    --color             Color display output");
         System.exit(0);
     }
 }

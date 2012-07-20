@@ -79,7 +79,7 @@ public class JavaWalkTool {
                         JarEntry jarEntry = entries.nextElement();
                         if (walker.accept(null, jarEntry.getName(), AcceptType.Entry)) {
                             InputStream is = jarFile.getInputStream(jarEntry);
-                            walker.readInputStream(is, file, jarFile.getName(), AcceptType.Entry);
+                            walker.readInputStream(is, file, jarEntry.getName(), AcceptType.Entry);
                         }
                     }
                 } catch (Exception e) {

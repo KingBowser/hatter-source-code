@@ -65,7 +65,7 @@ task packall << {
 }
 
 dependencies {
-    compile files(fileTree(dir: 'lib', includes: ['*.jar']))
+    compile files(fileTree(dir: 'lib', includes: ['*.jar'], excludes: ['*-sources.jar']))
 }
 
 eclipse {

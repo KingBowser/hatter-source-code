@@ -2,6 +2,11 @@ package me.hatter.tools.libana;
 
 import java.io.File;
 import java.io.InputStream;
+import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicLong;
 
 import me.hatter.tools.commons.args.UnixArgsutil;
@@ -9,8 +14,41 @@ import me.hatter.tools.commons.environment.Environment;
 import me.hatter.tools.commons.file.JavaWalkTool;
 import me.hatter.tools.commons.file.JavaWalkTool.AbstractClassJarJavaWalker;
 import me.hatter.tools.commons.file.JavaWalkTool.AcceptType;
+import me.hatter.tools.commons.io.IOUtil;
+import me.hatter.tools.commons.io.StringPrintWriter;
+
+import org.objectweb.asm.ClassReader;
+import org.objectweb.asm.tree.ClassNode;
 
 public class LibAna {
+
+    abstract public static class AbstractClassReaderJarWalker extends AbstractClassJarJavaWalker {
+
+        private AtomicLong processedCount = new AtomicLong(0);
+
+        public void readInputStream(InputStream is, File file, String name, AcceptType type) {
+            processedCount.incrementAndGet();
+            if (isVerbose()) {
+                if (type == AcceptType.File) {
+                    System.out.println("Read file: " + file.getPath());
+                }
+                if (type == AcceptType.Entry) {
+                    System.out.println("Read entry: " + file.getPath() + "!" + name);
+                }
+            } else if (isTrace() && ((processedCount.get() % 100) == 0)) {
+                System.out.print(".");
+            }
+            byte[] bytes = IOUtil.readToBytesAndClose(is);
+            ClassReader cr = new ClassReader(bytes);
+            ClassNode cn = new ClassNode();
+            cr.accept(cn, ClassReader.SKIP_DEBUG);
+
+            String className = cn.name.replace('/', '.');
+            dealClassNode(cn, className);
+        }
+
+        abstract protected void dealClassNode(ClassNode classNode, String className);
+    }
 
     public static void main(String[] args) {
         UnixArgsutil.parseGlobalArgs(args);
@@ -24,32 +62,71 @@ public class LibAna {
             dir = UnixArgsutil.ARGS.args()[0];
         }
 
-        final boolean isTrace = !UnixArgsutil.ARGS.flags().contains("notrace");
-        final boolean isVerbose = !UnixArgsutil.ARGS.flags().contains("verbose");
-        final AtomicLong processedCount = new AtomicLong(0);
+        final Set<String> classNameSet = new HashSet<String>();
+        final Set<String> duplicatClassNameSet = new HashSet<String>();
 
         JavaWalkTool tool = new JavaWalkTool(new File(dir));
-        tool.walk(new AbstractClassJarJavaWalker() {
+        System.out.println("Step 1: Analysis duplicate classname list.");
+        tool.walk(new AbstractClassReaderJarWalker() {
 
-            public void readInputStream(InputStream is, File file, String name, AcceptType type) {
-                processedCount.incrementAndGet();
-                if (isVerbose) {
-                    if (type == AcceptType.File) {
-                        System.out.println("Read file: " + file.getPath());
-                    }
-                    if (type == AcceptType.Entry) {
-                        System.out.println("Read entry: " + file.getPath() + "!" + name);
-                    }
-                } else if (isTrace && ((processedCount.get() % 100) == 0)) {
-                    System.out.print(".");
+            @Override
+            protected void dealClassNode(ClassNode classNode, String className) {
+                if (classNameSet.contains(className)) {
+                    duplicatClassNameSet.add(className);
+                } else {
+                    classNameSet.add(className);
                 }
-                // TODO Auto-generated method stub
             }
         });
+
+        if (!isVerbose() && isTrace()) System.out.println();
+        System.out.println("Find total class count: " + classNameSet.size() + " ,  duplicate class count: "
+                           + duplicatClassNameSet.size());
+
+        if (duplicatClassNameSet.size() > 0) {
+            System.out.println("Step 2: Analysis diff duplicate classname.");
+
+            final PrintWriter out = new StringPrintWriter();
+            final Map<String, ClassNode> classNodeMap = new HashMap<String, ClassNode>();
+            tool.walk(new AbstractClassReaderJarWalker() {
+
+                @Override
+                protected void dealClassNode(ClassNode classNode, String className) {
+                    if (duplicatClassNameSet.contains(className)) {
+                        if (!classNodeMap.containsKey(classNode)) {
+                            classNodeMap.put(className, classNode);
+                        } else {
+                            ClassNode classNode1 = classNodeMap.get(className);
+                            ClassNode classNode2 = classNode;
+                            diff(classNode1, classNode2, out);
+                        }
+                    }
+                }
+            });
+            if (!isVerbose() && isTrace()) System.out.println();
+            System.out.println("Analysis result:");
+            System.out.print(out.toString());
+        }
+        System.out.println("Analysis finish.");
+    }
+
+    private static void diff(ClassNode classNode1, ClassNode classNode2, PrintWriter out) {
+    }
+
+    private static boolean isTrace() {
+        return !UnixArgsutil.ARGS.flags().contains("notrace");
+    }
+
+    private static boolean isVerbose() {
+        return UnixArgsutil.ARGS.flags().contains("verbose");
     }
 
     private static void usage() {
         System.out.println("Usage:");
+        System.out.println("  java -jar libanaall.jar");
+        System.out.println("    --h[elp]            Display this message");
+        System.out.println("    --verbose           Display verbose message");
+        System.out.println("    --notrace           Do not display '.' character per 100 files (when verbose not set)");
         System.exit(0);
     }
 }

@@ -80,7 +80,7 @@ public class LibAna {
 
             @Override
             protected void dealClassNode(ClassNode classNode, String className) {
-                if (!filter.matcher(className).matches()) return;
+                if ((filter != null) && !filter.matcher(className).matches()) return;
                 if (classNameSet.contains(className)) {
                     duplicatClassNameSet.add(className);
                 } else {

@@ -116,6 +116,14 @@ public class StringUtil {
         return !isEmpty(str);
     }
 
+    public static boolean isBlank(final String str) {
+        return ((str == null) || (str.trim().length() == 0));
+    }
+
+    public static boolean isNotBlank(final String str) {
+        return !isBlank(str);
+    }
+
     public static String notNull(final String str) {
         return (str == null) ? EMPTY : str;
     }

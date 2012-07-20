@@ -51,7 +51,7 @@
  * *`permanent generation`* ^[1]^
  * *`remembered set`* ^[1]^
  用于记录分代之前引用指针的数据结构，如年老代对象引用新生代对象时，即使在新生代已经没有对象引用该对象，通过查询该数据结构，不在新生代GC时释放该对象。
- * *`safepoint`* ^[1]^
+ * *`safepoint`* ^[1][14]^
  * *`sea-of-nodes`* ^[1]^
  * *`Serviceability Agent (SA)`* ^[1]^
  * *`stackmap`* ^[1]^
@@ -90,4 +90,5 @@
 `[11].` http://zh.wikipedia.org/wiki/%E5%86%85%E6%A0%B8%E7%A9%BA%E9%97%B4<br>
 `[12].` http://zh.wikipedia.org/wiki/JDK<br>
 `[13].` https://wikis.oracle.com/display/HotSpotInternals/CompressedOops<br>
+`[14].` http://rednaxelafx.iteye.com/blog/1044951<br>
 

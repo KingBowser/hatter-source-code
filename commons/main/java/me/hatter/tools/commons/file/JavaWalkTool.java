@@ -60,7 +60,7 @@ public class JavaWalkTool {
         walk(dir, walker);
     }
 
-    public void walk(File file, JavaWalker walker) {
+    protected void walk(File file, JavaWalker walker) {
         if (file.isDirectory()) {
             if (walker.accept(file, file.getName(), AcceptType.Directory)) {
                 File[] files = file.listFiles();

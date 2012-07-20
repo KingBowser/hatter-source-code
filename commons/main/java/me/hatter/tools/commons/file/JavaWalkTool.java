@@ -11,8 +11,6 @@ import java.util.jar.JarFile;
 
 public class JavaWalkTool {
 
-    private File dir;
-
     public static enum AcceptType {
         File,
 
@@ -50,6 +48,12 @@ public class JavaWalkTool {
             }
             return name.endsWith(".class");
         }
+    }
+
+    private File dir;
+
+    public JavaWalkTool(File dir) {
+        this.dir = dir;
     }
 
     public void walk(JavaWalker walker) {

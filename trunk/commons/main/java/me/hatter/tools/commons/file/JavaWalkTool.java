@@ -27,7 +27,7 @@ public class JavaWalkTool {
 
         boolean accept(File file, String name, AcceptType type);
 
-        void readInputStream(InputStream is, File file, String name);
+        void readInputStream(InputStream is, File file, String name, AcceptType type);
     }
 
     abstract public static class AbstractClassJarJavaWalker implements JavaWalker {
@@ -79,7 +79,7 @@ public class JavaWalkTool {
                         JarEntry jarEntry = entries.nextElement();
                         if (walker.accept(null, jarEntry.getName(), AcceptType.Entry)) {
                             InputStream is = jarFile.getInputStream(jarEntry);
-                            walker.readInputStream(is, null, jarFile.getName());
+                            walker.readInputStream(is, file, jarFile.getName(), AcceptType.Entry);
                         }
                     }
                 } catch (Exception e) {
@@ -87,7 +87,8 @@ public class JavaWalkTool {
                 }
             } else if (walker.accept(file, file.getName(), AcceptType.File)) {
                 try {
-                    walker.readInputStream(new BufferedInputStream(new FileInputStream(file)), file, file.getName());
+                    walker.readInputStream(new BufferedInputStream(new FileInputStream(file)), file, file.getName(),
+                                           AcceptType.File);
                 } catch (FileNotFoundException e) {
                     throw new RuntimeException(e);
                 }

@@ -124,10 +124,6 @@ public class LibAna {
         Map<String, MethodNode> methodNodeMap1 = methodNodeListToMap(classNode1.methods);
         Map<String, MethodNode> methodNodeMap2 = methodNodeListToMap(classNode2.methods);
 
-        // String clsColorSt = isColor() ? (CHAR_27 + "[;103m") : StringUtil.EMPTY;
-        // String mnsColorSt = isColor() ? (CHAR_27 + "[;101m") : StringUtil.EMPTY;
-        // String addColorSt = isColor() ? (CHAR_27 + "[;102m") : StringUtil.EMPTY;
-        // String colorEd = isColor() ? RESET : StringUtil.EMPTY;
         Font clsFont = Font.createFont(isColor() ? Color.getColor(103) : null);
         Font mnsFont = Font.createFont(isColor() ? Color.getColor(101) : null);
         Font addFont = Font.createFont(isColor() ? Color.getColor(102) : null);

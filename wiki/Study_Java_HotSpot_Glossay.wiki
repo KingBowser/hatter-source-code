@@ -19,6 +19,49 @@
  * *`class data sharing`* ^[1]^
  * *`class hierachy analysis`* ^[1]^
  * *`code cache`* ^[1]^
+ * *`compaction`* ^[1]^
+ * *`concurrency`* ^[1]^
+ * *`concurrent garbage collection`* ^[1]^
+ * *`copying garbage collection`* ^[1]^
+ * *`deoptimization`* ^[1]^
+ * *`dependency`* ^[1]^
+ * *`eden`* ^[1]^
+ * *`free list`* ^[1]^
+ * *`garbage collection`* ^[1]^
+ * *`garbage collection root`* ^[1]^
+ * *`GC map`* ^[1]^
+ * *`generational garbage collection`* ^[1]^
+ * *`handle`* ^[1]^
+ * *`hot lock`* ^[1]^
+ * *`interpreter`* ^[1]^
+ * *`JIT compilers`* ^[1]^
+ * *`JNI`* ^[1]^
+ * *`JVM TI`* ^[1]^
+ * *`klass pointer`* ^[1]^
+ * *`mark word`* ^[1]^
+ * *`nmethod`* ^[1]^
+ * *`object header`* ^[1]^
+ * *`object promotion`* ^[1]^
+ * *`old generation`* ^[1]^
+ * *`on-stack replacement`* ^[1]^
+ * *`oop`* ^[1]^
+ * *`parallel classloading`* ^[1]^
+ * *`parallel garbage collection`* ^[1]^
+ * *`permanent generation`* ^[1]^
+ * *`remembered set`* ^[1]^
+ * *`safepoint`* ^[1]^
+ * *`sea-of-nodes`* ^[1]^
+ * *`Serviceability Agent (SA)`* ^[1]^
+ * *`stackmap`* ^[1]^
+ * *`StackMapTable`* ^[1]^
+ * *`survivor space`* ^[1]^
+ * *`synchronization`* ^[1]^
+ * *`TLAB`* ^[1]^
+ * *`uncommon trap`* ^[1]^
+ * *`verifier`* ^[1]^
+ * *`VM Operations`* ^[1]^
+ * *`write barrier`* ^[1]^
+ * *`young generation`* ^[1]^
 
 <br><br>
 ----

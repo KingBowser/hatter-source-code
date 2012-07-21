@@ -10,3 +10,10 @@ Find ind source code
 {{{
 wget https://hatter-source-code.googlecode.com/svn/trunk/finding/findingall.jar
 }}}
+
+Sample:
+{{{
+$ java -jar findingall.jar ---NCL Pattern
+}}}
+Outputs:
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/finding/finding.png]

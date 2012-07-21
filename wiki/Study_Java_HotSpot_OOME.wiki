@@ -20,6 +20,7 @@
  <code language="Java">List<String> list = new ArrayList<String>();
 while(true) list.add(new String("Consume more memory!"));</code>
  2. *`java.lang.OutOfMemoryError: PermGen space`*
+ `PermGen space`即永久代，是非堆内存的一个区域。主要存放的数据是类结构及调用了`intern()`的字符串。
  <code language="Java">List<Class<?>> classes = new ArrayList<Class<?>>();
 while(true){
     MyClassLoader cl = new MyClassLoader();

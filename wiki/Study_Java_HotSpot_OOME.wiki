@@ -13,7 +13,7 @@
 
 当Java进度无法分配足够内存运行时将会抛出OutOfMemoryError：
  1. *`java.lang.OutOfMemoryError: Java heap space`*
- 堆内存溢出时，首先判断当前最大内存是多少（参数：`-Xmx` 或 `-XX:MaxHeapSize=`），如果该值已经较大则应通过 mat ^[5]^ 之类的工具查找问题，或 `jmap -histo` ^[8]^查找哪个或哪些类占用了比较多的内存。
+ 堆内存溢出时，首先判断当前最大内存是多少（参数：`-Xmx` 或 `-XX:MaxHeapSize=`），可以通过命令 `jinfo -flag MaxHeapSize` ^[9]^查看运行中的JVM的配置，如果该值已经较大则应通过 mat ^[5]^ 之类的工具查找问题，或 `jmap -histo` ^[8]^查找哪个或哪些类占用了比较多的内存。
  下面代码可再现该异常：
  <code language="Java">List<String> list = new ArrayList<String>();
 while(true) list.add(new String("Consume more memory!"));</code>
@@ -51,9 +51,10 @@ while(true) list.add(ByteBuffer.allocateDirect(10000000)); </code>
 `[1].` http://java.sun.com/developer/technicalArticles/J2SE/monitoring/<br>
 `[2].` http://eyalsch.wordpress.com/2009/06/17/oome/<br>
 `[3].` http://docs.oracle.com/javase/6/docs/api/java/lang/management/MemoryType.html<br>
-`[4].` http://java.sun.com/javase/6/docs/technotes/tools/share/jhat.html<br>
+`[4].` http://docs.oracle.com/javase/6/docs/technotes/tools/share/jhat.html<br>
 `[5].` http://www.eclipse.org/mat/<br>
 `[6].` http://docs.oracle.com/javase/6/docs/technotes/tools/share/jconsole.html<br>
 `[7].` http://docs.oracle.com/javase/6/docs/technotes/tools/share/jstat.html<br>
-`[8].` http://java.sun.com/javase/6/docs/technotes/tools/share/jmap.html<br>
+`[8].` http://docs.oracle.com/javase/6/docs/technotes/tools/share/jmap.html<br>
+`[9].` http://docs.oracle.com/javase/6/docs/technotes/tools/share/jinfo.html<br>
 

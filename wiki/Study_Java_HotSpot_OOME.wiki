@@ -15,7 +15,7 @@ while(true){
         }    
     }).start();
 }
-<code>
+</code>
  # `java.lang.OutOfMemoryError: Direct buffer memory`
  # `java.lang.OutOfMemoryError: request <size> bytes for <reason>.`
  

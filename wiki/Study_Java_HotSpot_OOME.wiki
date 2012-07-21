@@ -54,7 +54,9 @@ while(true) list.add(("Consume more memory!"+(i++)).intern());
 while(true) list.add(ByteBuffer.allocateDirect(10000000)); </code>
 
 ====5. *`java.lang.OutOfMemoryError: request <size> bytes for <reason>.`*====
- 
+ 本地内存分配失败。一个应用的Java Native Interface(JNI)代码或是本地库及Java虚拟机都从本地堆分配内存分配空间。当从本地堆分配内存失败时抛出OutOfMemoryError异常。例如：当物理内存及交换分区都用完后，再次尝试从本地分配内存时也会抛出OufOfMemoryError异常。
+
+
 ===参考资料===
 `[1].` http://java.sun.com/developer/technicalArticles/J2SE/monitoring/<br>
 `[2].` http://eyalsch.wordpress.com/2009/06/17/oome/<br>

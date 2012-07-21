@@ -16,7 +16,7 @@
 当Java进程无法分配足够内存运行时将会抛出OutOfMemoryError：
 
 ====1. *`java.lang.OutOfMemoryError: Java heap space`*====
- 堆内存溢出时，首先判断当前最大内存是多少（参数：`-Xmx` 或 `-XX:MaxHeapSize=`），可以通过命令 `jinfo -flag MaxHeapSize` ^[9]^查看运行中的JVM的配置，如果该值已经较大则应通过 mat ^[5]^ 之类的工具查找问题，或 `jmap -histo` ^[8]^查找哪个或哪些类占用了比较多的内存。参数`-verbose:gc(-XX:+PrintGC) -XX:+PrintGCDetails`可以打印GC相关的一些数据。如果问题比较难排查也可以通过参数`-XX:+HeapDumpOnOutOfMemoryError`在OOM之前Dump内存数据再进行分析。<br>
+ 堆内存溢出时，首先判断当前最大内存是多少（参数：`-Xmx` 或 `-XX:MaxHeapSize=`），可以通过命令 `jinfo -flag MaxHeapSize` ^[9]^查看运行中的JVM的配置，如果该值已经较大则应通过 mat ^[5]^ 之类的工具查找问题，或 `jmap -histo` ^[8]^查找哪个或哪些类占用了比较多的内存。参数`-verbose:gc(-XX:+PrintGC) -XX:+PrintGCDetails`可以打印GC相关的一些数据。如果问题比较难排查也可以通过参数`-XX:+HeapDumpOnOutOfMemoryError`在OOM之前Dump内存数据再进行分析。此问题也可以通过[histodiff]打印多次内存histogram之前的差值，有助于查看哪些类过多被实例化，如果过多被实例化的类被定位到后可以通过btrace再跟踪。<br>
  下面代码可再现该异常：
  {{{
 List<String> list = new ArrayList<String>();

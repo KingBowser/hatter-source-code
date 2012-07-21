@@ -1,5 +1,15 @@
 #summary HotSpot OutOfMemoryError解析
 
+在JVM中内存一共有3种：Heap，Non-Heap ^[3]^和Native。
+
+Heap memory is the runtime data area from which memory for all class instances and arrays is allocated. Non-heap memory includes the method area and memory required for the internal processing or optimization of the JVM. It stores per-class structures such as a runtime constant pool, field and method data, and the code for methods and constructors. Native memory is the virtual memory managed by the operating system. When the memory is insufficient for an application to allocate, a java.lang.OutOfMemoryError will be thrown.
+
+
+|| *问题* || *表象* || *诊断工具* ||
+|| 内存不足 || `OutOfMemoryError` || `Java Heap Analysis Tool(jhat)` ^[4]^<br>`Eclipse Memory Analyzer` ^[5]^ ||
+|| 内存泄漏 || 使用内存增长，频繁GC || `Java Monitoring and Management Console(jconsole)` ^[6]^<br>`JVM Statistical Monitoring Tool(jstat)` ^[7]^ ||
+|| ` ` || 一个类有大量的实例 || `Memory Map(jmap) - "jmap -histo"` ^[8]^ ||
+
 当Java进度无法分配足够内存运行时将会抛出OutOfMemoryError：
  1. *`java.lang.OutOfMemoryError: Java heap space`*
  <code language="Java">List<String> list = new ArrayList<String>();
@@ -36,4 +46,11 @@ while(true) list.add(ByteBuffer.allocateDirect(10000000)); </code>
  
 ===参考资料===
 `[1].` http://java.sun.com/developer/technicalArticles/J2SE/monitoring/<br>
-`[1].` http://eyalsch.wordpress.com/2009/06/17/oome/<br>
+`[2].` http://eyalsch.wordpress.com/2009/06/17/oome/<br>
+`[3].` http://docs.oracle.com/javase/6/docs/api/java/lang/management/MemoryType.html<br>
+`[4].` http://java.sun.com/javase/6/docs/technotes/tools/share/jhat.html<br>
+`[5].` http://www.eclipse.org/mat/<br>
+`[6].` http://docs.oracle.com/javase/6/docs/technotes/tools/share/jconsole.html<br>
+`[7].` http://docs.oracle.com/javase/6/docs/technotes/tools/share/jstat.html<br>
+`[8].` http://java.sun.com/javase/6/docs/technotes/tools/share/jmap.html<br>
+

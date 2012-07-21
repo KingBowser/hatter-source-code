@@ -1,0 +1,12 @@
+#summary Show class stat in perm
+
+= Introduction =
+
+Show class stat in perm
+
+
+= Details =
+
+{{{
+wget https://hatter-source-code.googlecode.com/svn/trunk/classlist/classlistall.jar
+}}}

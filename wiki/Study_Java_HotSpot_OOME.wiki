@@ -36,6 +36,25 @@ while(true){
     }
 }
 }}}
+ 类加载的日志可以通过btrace跟踪类的加载情况：
+ {{{
+import com.sun.btrace.annotations.*;
+import static com.sun.btrace.BTraceUtils.*;
+
+@BTrace
+public class ClassLoaderDefine {
+
+    @SuppressWarnings("rawtypes")
+    @OnMethod(clazz = "+java.lang.ClassLoader", method = "defineClass", location = @Location(Kind.RETURN))
+    public static void onClassLoaderDefine(@Return Class cl) {
+        println("=== java.lang.ClassLoader#defineClass ===");
+        println(Strings.strcat("Loaded class: ", Reflective.name(cl)));
+        jstack(10);
+    }
+}
+}}}
+ 除了btrace也可以打开日志加载的参数来查看加载了哪些类，可以把参数`-XX:+TraceClassLoading`打开，或使用参数`-class:verbose`（`-XX:+TraceClassLoading, -XX:+TraceClassUnloading`），在日志输出中即可看到哪些类被加载到Java虚拟机中。该参数也可以通过[jflag]的命令`java -jar jflagall.jar -flag +ClassVerbose`动态打开`-class:verbose`。
+
  下面是一个使用了`String.intern()`的例子：
  {{{
 List<String> list = new ArrayList<String>();

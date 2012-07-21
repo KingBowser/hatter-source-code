@@ -8,4 +8,5 @@
   * [Study_Java_HotSpot]
    * [Study_Java_HotSpot_Glossay]
    * [Study_Java_HotSpot_Arguments]
+   * [Study_Java_HotSpot_OOME]
  * [Study_SVN]

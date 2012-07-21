@@ -1,0 +1,12 @@
+#summary Find ind source code
+
+= Introduction =
+
+Find ind source code
+
+
+= Details =
+
+{{{
+wget https://hatter-source-code.googlecode.com/svn/trunk/finding/findingall.jar
+}}}

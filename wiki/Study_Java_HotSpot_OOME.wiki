@@ -2,9 +2,9 @@
 
 ==HotSpot中OutOfMemoryError解析==
 
-在JVM中内存一共有3种：Heap（堆内存），Non-Heap（非堆内存） ^[3]^和Native（本地内存）。
+在JVM中内存一共有3种：Heap（堆内存），Non-Heap（非堆内存） ^[3]^和Native（本地内存）。 ^[1]^
 
-堆内存是运行时分配所有类实例和数组的一块内存区域。非堆内存包含方法区和JVM内部处理或优化所需的内存，存放有类结构（如运行时常量池、字段及方法结构，以及方法和构造函数代码）。本地内存是由操作系统管理的虚拟内存。当一个应用内存不足时就会抛出 `java.lang.OutOfMemoryError` 异常。
+堆内存是运行时分配所有类实例和数组的一块内存区域。非堆内存包含方法区和JVM内部处理或优化所需的内存，存放有类结构（如运行时常量池、字段及方法结构，以及方法和构造函数代码）。本地内存是由操作系统管理的虚拟内存。当一个应用内存不足时就会抛出 `java.lang.OutOfMemoryError` 异常。 ^[1]^
 
 || *问题* || *表象* || *诊断工具* ||
 || 内存不足 || `OutOfMemoryError` || `Java Heap Analysis Tool(jhat)` ^[4]^<br>`Eclipse Memory Analyzer(mat)` ^[5]^ ||
@@ -16,15 +16,15 @@
 当Java进程无法分配足够内存运行时将会抛出OutOfMemoryError：
 
 ====1. *`java.lang.OutOfMemoryError: Java heap space`*====
- 堆内存溢出时，首先判断当前最大内存是多少（参数：`-Xmx` 或 `-XX:MaxHeapSize=`），可以通过命令 `jinfo -flag MaxHeapSize` ^[9]^查看运行中的JVM的配置，如果该值已经较大则应通过 mat ^[5]^ 之类的工具查找问题，或 `jmap -histo` ^[8]^查找哪个或哪些类占用了比较多的内存。参数`-verbose:gc(-XX:+PrintGC) -XX:+PrintGCDetails`可以打印GC相关的一些数据。如果问题比较难排查也可以通过参数`-XX:+HeapDumpOnOutOfMemoryError`在OOM之前Dump内存数据再进行分析。此问题也可以通过[histodiff]打印多次内存histogram之前的差值，有助于查看哪些类过多被实例化，如果过多被实例化的类被定位到后可以通过btrace再跟踪。<br>
- 下面代码可再现该异常：
+ 堆内存溢出时，首先判断当前最大内存是多少（参数：`-Xmx` 或 `-XX:MaxHeapSize=`），可以通过命令 `jinfo -flag MaxHeapSize` ^[9]^查看运行中的JVM的配置，如果该值已经较大则应通过 mat ^[5]^ 之类的工具查找问题，或 `jmap -histo` ^[8]^查找哪个或哪些类占用了比较多的内存。参数`-verbose:gc(-XX:+PrintGC) -XX:+PrintGCDetails`可以打印GC相关的一些数据。如果问题比较难排查也可以通过参数`-XX:+HeapDumpOnOutOfMemoryError`在OOM之前Dump内存数据再进行分析。此问题也可以通过[histodiff]打印多次内存histogram之前的差值，有助于查看哪些类过多被实例化，如果过多被实例化的类被定位到后可以通过btrace再跟踪。 ^[1][2]^<br>
+ 下面代码可再现该异常： ^[2]^
  {{{
 List<String> list = new ArrayList<String>();
 while(true) list.add(new String("Consume more memory!"));
 }}}
 
 ====2. *`java.lang.OutOfMemoryError: PermGen space`*====
- `PermGen space`即永久代，是非堆内存的一个区域。主要存放的数据是类结构及调用了`intern()`的字符串。
+ `PermGen space`即永久代，是非堆内存的一个区域。主要存放的数据是类结构及调用了`intern()`的字符串。 ^[2]^
  {{{
 List<Class<?>> classes = new ArrayList<Class<?>>();
 while(true){
@@ -55,7 +55,7 @@ public class ClassLoaderDefine {
 }}}
  除了btrace也可以打开日志加载的参数来查看加载了哪些类，可以把参数`-XX:+TraceClassLoading`打开，或使用参数`-class:verbose`（`-XX:+TraceClassLoading, -XX:+TraceClassUnloading`），在日志输出中即可看到哪些类被加载到Java虚拟机中。该参数也可以通过[jflag]的命令`java -jar jflagall.jar -flag +ClassVerbose`动态打开`-class:verbose`。
 
- 下面是一个使用了`String.intern()`的例子：
+ 下面是一个使用了`String.intern()`的例子： ^[2]^
  {{{
 List<String> list = new ArrayList<String>();
 int i=0;
@@ -80,7 +80,7 @@ public class StringInternTrace {
 }}}
 
 ====3. *`java.lang.OutOfMemoryError: unable to create new native thread`*====
- 在JVM中每启动一个线程都会分配一块本地内存，用于存放线程的调用栈，该空间仅在线程结束时释放。当没有足够本地内存创建线程时就会出现该错误。通过以下代码可以很容易再现该问题：
+ 在JVM中每启动一个线程都会分配一块本地内存，用于存放线程的调用栈，该空间仅在线程结束时释放。当没有足够本地内存创建线程时就会出现该错误。通过以下代码可以很容易再现该问题： ^[2]^
  {{{
  while(true){
     new Thread(new Runnable(){
@@ -94,7 +94,7 @@ public class StringInternTrace {
 }}}
 
 ====4. *`java.lang.OutOfMemoryError: Direct buffer memory`*====
- 即从Direct Memory分配内存失败，Direct Buffer对象不是分配在堆上，是在Direct Memory分配，且不被GC直接管理的空间（但Direct Buffer的Java对象是归GC管理的，只要GC回收了它的Java对象，操作系统才会释放Direct Buffer所申请的空间）。通过`-XX:MaxDirectMemorySize=`可以设置Direct内存的大小。 ^[10]^
+ 即从Direct Memory分配内存失败，Direct Buffer对象不是分配在堆上，是在Direct Memory分配，且不被GC直接管理的空间（但Direct Buffer的Java对象是归GC管理的，只要GC回收了它的Java对象，操作系统才会释放Direct Buffer所申请的空间）。通过`-XX:MaxDirectMemorySize=`可以设置Direct内存的大小。 ^[2][10]^
  {{{
 List<ByteBuffer> list = new ArrayList<ByteBuffer>();
 while(true) list.add(ByteBuffer.allocateDirect(10000000)); 

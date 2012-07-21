@@ -15,5 +15,5 @@ Sample:
 {{{
 $ java -jar findingall.jar ---NCL Pattern
 }}}
-Outputs:
+Outputs:<br>
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/finding/finding.png]

@@ -14,6 +14,11 @@ jar cf my.jar @classes.list
 jstat -J-Djstat.showUnsupported=true -snap [pid]
 }}}
 
+{{{
+-XX:+UnlockDiagnosticVMOptions -XX:+LogCompilation
+>>> hotspot.log
+}}}
+
 
 == HotSpot SA ==
 {{{

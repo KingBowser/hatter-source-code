@@ -45,9 +45,11 @@ while(true) list.add(("Consume more memory!"+(i++)).intern());
         }    
     }).start();
 }</code>
+
 ====4. *`java.lang.OutOfMemoryError: Direct buffer memory`*====
  <code language="Java">List<ByteBuffer> list = new ArrayList<ByteBuffer>();
 while(true) list.add(ByteBuffer.allocateDirect(10000000)); </code>
+
 ====5. *`java.lang.OutOfMemoryError: request <size> bytes for <reason>.`*====
  
 ===参考资料===

@@ -1,15 +1,12 @@
 #summary HotSpot OutOfMemoryError解析
 
 当Java进度无法分配足够内存运行时将会抛出OutOfMemoryError：
- * *`java.lang.OutOfMemoryError: Java heap space`*
- <code language="Java">
-List<String> list = new ArrayList<String>();
+ # *`java.lang.OutOfMemoryError: Java heap space`*
+ <code language="Java">List<String> list = new ArrayList<String>();
 while(true)
-    list.add(new String("Consume more memory!"));
- </code>
- * *`java.lang.OutOfMemoryError: PermGen space`*
- <code language="Java">
-List<Class<?>> classes = new ArrayList<Class<?>>();
+    list.add(new String("Consume more memory!"));</code>
+ # *`java.lang.OutOfMemoryError: PermGen space`*
+ <code language="Java">List<Class<?>> classes = new ArrayList<Class<?>>();
 while(true){
     MyClassLoader cl = new MyClassLoader();
     try{
@@ -17,8 +14,7 @@ while(true){
     }catch (ClassNotFoundException e) {
         e.printStackTrace();
     }
-}
- </code>
+}</code>
  <code language="Java">
 List<String> list = new ArrayList<String>();
 int i=0;

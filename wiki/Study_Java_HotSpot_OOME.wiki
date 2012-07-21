@@ -50,11 +50,12 @@ while(true) list.add(("Consume more memory!"+(i++)).intern());
 }</code>
 
 ====4. *`java.lang.OutOfMemoryError: Direct buffer memory`*====
+ 即从Direct Memory分配内存失败，Direct Buffer对象不是分配在堆上，是在Direct Memory分配，且不被GC直接管理的空间（但Direct Buffer的JAVA对象是归GC管理的，只要GC回收了它的JAVA对象，操作系统才会释放Direct Buffer所申请的空间）。通过`-XX:MaxDirectMemorySize=`可以设置Direct内存的大小。 ^[10]^
  <code language="Java">List<ByteBuffer> list = new ArrayList<ByteBuffer>();
 while(true) list.add(ByteBuffer.allocateDirect(10000000)); </code>
 
 ====5. *`java.lang.OutOfMemoryError: request <size> bytes for <reason>.`*====
- 本地内存分配失败。一个应用的Java Native Interface(JNI)代码或是本地库及Java虚拟机都从本地堆分配内存分配空间。当从本地堆分配内存失败时抛出OutOfMemoryError异常。例如：当物理内存及交换分区都用完后，再次尝试从本地分配内存时也会抛出OufOfMemoryError异常。
+ 本地内存分配失败。一个应用的Java Native Interface(JNI)代码、本地库及Java虚拟机都从本地堆分配内存分配空间。当从本地堆分配内存失败时抛出OutOfMemoryError异常。例如：当物理内存及交换分区都用完后，再次尝试从本地分配内存时也会抛出OufOfMemoryError异常。
 
 
 ===参考资料===
@@ -67,4 +68,5 @@ while(true) list.add(ByteBuffer.allocateDirect(10000000)); </code>
 `[7].` http://docs.oracle.com/javase/6/docs/technotes/tools/share/jstat.html<br>
 `[8].` http://docs.oracle.com/javase/6/docs/technotes/tools/share/jmap.html<br>
 `[9].` http://docs.oracle.com/javase/6/docs/technotes/tools/share/jinfo.html<br>
+`[10].` http://eyesmore.iteye.com/blog/1133335<br>
 

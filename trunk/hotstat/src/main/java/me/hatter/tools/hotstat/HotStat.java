@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.regex.Pattern;
 
 import me.hatter.tools.commons.args.UnixArgsutil;
+import me.hatter.tools.commons.color.Color;
+import me.hatter.tools.commons.color.Font;
 import me.hatter.tools.commons.jvm.HotSpotProcessUtil;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil.JDKLib;
@@ -36,6 +38,11 @@ public class HotStat {
         if (UnixArgsutil.ARGS.kvalue("filter") != null) {
             filterPattern = Pattern.compile(UnixArgsutil.ARGS.kvalue("filter"));
         }
+
+        boolean isColor = UnixArgsutil.ARGS.flags().contains("color");
+        Font upFont = Font.createFont(isColor ? Color.getColor(101) : null);
+        Font dnFont = Font.createFont(isColor ? Color.getColor(102) : null);
+
         int loopCount = (interval <= 0) ? 1 : count;
         Map<String, String> lastMap = null;
         for (int i = 0; i < loopCount; i++) {
@@ -64,8 +71,8 @@ public class HotStat {
                         for (String k : diffMap.keySet()) {
                             if (accept(filterPattern, k)) {
                                 System.out.println(StringUtil.paddingSpaceRight(k, 40) + " = " + "[" + lastMap.get(k)
-                                                   + " >>>> " + diffMap.get(k) + diff(lastMap.get(k), diffMap.get(k))
-                                                   + "]");
+                                                   + " >>>> " + diffMap.get(k)
+                                                   + diff(lastMap.get(k), diffMap.get(k), upFont, dnFont) + "]");
                             }
                         }
                     }
@@ -84,6 +91,7 @@ public class HotStat {
         System.out.println("  java -jar hotstatall.jar [options] [<PID> [<interval> [<count>]]]");
         System.out.println("    -filter <regex filter expression>    regex filter expression");
         System.out.println("    -show <key name>                     contains filter expression");
+        System.out.println("    --color                              show color");
     }
 
     public static boolean accept(Pattern p, String k) {
@@ -101,13 +109,19 @@ public class HotStat {
         HotSpotProcessUtil.printVMs(System.out, true);
     }
 
-    public static String diff(String ol, String ne) {
+    public static String diff(String ol, String ne, Font upFont, Font dnFont) {
         try {
             long vo = Long.parseLong(ol);
             long vn = Long.parseLong(ne);
             long di = vn - vo;
+            Font font = Font.createFont(null);
+            if (di > 0) {
+                font = upFont;
+            } else {
+                font = dnFont;
+            }
             DecimalFormat format = new DecimalFormat("#,###,###,##0");
-            return " (" + ((di >= 0) ? "+" : StringUtil.EMPTY) + format.format(di) + ")";
+            return " " + font.display("(" + ((di >= 0) ? "+" : StringUtil.EMPTY) + format.format(di) + ")");
         } catch (Exception e) {
             return StringUtil.EMPTY;
         }

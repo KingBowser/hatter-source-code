@@ -57,7 +57,8 @@ public class StringInternTrace {
 
 ====3. *`java.lang.OutOfMemoryError: unable to create new native thread`*====
  在JVM中每启动一个线程都会分配一块本地内存，用于存放线程的调用栈，该空间仅在线程结束时释放。当没有足够本地内存创建线程时就会出现该错误。通过以下代码可以很容易再现该问题：
- <code language="Java">while(true){
+ {{{
+ while(true){
     new Thread(new Runnable(){
         public void run() {
             try {
@@ -65,7 +66,8 @@ public class StringInternTrace {
             } catch(InterruptedException e) { }        
         }    
     }).start();
-}</code>
+}
+}}}
 
 ====4. *`java.lang.OutOfMemoryError: Direct buffer memory`*====
  即从Direct Memory分配内存失败，Direct Buffer对象不是分配在堆上，是在Direct Memory分配，且不被GC直接管理的空间（但Direct Buffer的Java对象是归GC管理的，只要GC回收了它的Java对象，操作系统才会释放Direct Buffer所申请的空间）。通过`-XX:MaxDirectMemorySize=`可以设置Direct内存的大小。 ^[10]^

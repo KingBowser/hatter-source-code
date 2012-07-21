@@ -100,8 +100,17 @@ List<ByteBuffer> list = new ArrayList<ByteBuffer>();
 while(true) list.add(ByteBuffer.allocateDirect(10000000)); 
  }}}
 
-====5. *`java.lang.OutOfMemoryError: request <size> bytes for <reason>.`*====
+====5. *`java.lang.OutOfMemoryError: GC overhead limit exceeded`*====
+ JDK6新增错误类型。当GC为释放很小空间占用大量时间时抛出。一般是因为堆太小。导致异常的原因：没有足够的内存。可以通过参数`-XX:-UseGCOverheadLimit`关闭这个特性。 ^[13]^
+
+====6. *`java.lang.OutOfMemoryError: Requested array size exceeds VM limit`*====
+ 详细信息表示应用申请的数组大小已经超过堆大小。如应用程序申请512M大小的数组，但堆大小只有256M，这里会抛出`OutOfMemoryError`，因为此时无法突破虚拟机限制分配新的数组。在大多少情况下是堆内存分配的过小，或是应用尝试分配一个超大的数组，如应用使用的算法计算了错误的大小。 ^[12]^
+
+====7. *`java.lang.OutOfMemoryError: request <size> bytes for <reason>. Out of swap space?`*====
  本地内存分配失败。一个应用的Java Native Interface(JNI)代码、本地库及Java虚拟机都从本地堆分配内存分配空间。当从本地堆分配内存失败时抛出OutOfMemoryError异常。例如：当物理内存及交换分区都用完后，再次尝试从本地分配内存时也会抛出OufOfMemoryError异常。
+
+====8. *`java.lang.OutOfMemoryError: <reason> <stack trace> (Native method)`*====
+ 如果异常的详细信息是 `<reason> <stack trace> (Native method)` 且一个线程堆栈被打印，同时最顶端的桢是本地方法，该异常表明本地方法遇到了一个内存分配问题。与前面一种异常相比，他们的差异是内存分配失败是JNI或本地方法发现或是Java虚拟机发现。 ^[12]^
 
 
 ===参考资料===
@@ -115,4 +124,7 @@ while(true) list.add(ByteBuffer.allocateDirect(10000000));
 `[8].` http://docs.oracle.com/javase/6/docs/technotes/tools/share/jmap.html<br>
 `[9].` http://docs.oracle.com/javase/6/docs/technotes/tools/share/jinfo.html<br>
 `[10].` http://eyesmore.iteye.com/blog/1133335<br>
+`[11].` http://www.oracle.com/technetwork/java/javase/index-137495.html<br>
+`[12].` http://www.oracle.com/technetwork/java/javase/memleaks-137499.html<br>
+`[13].` http://blog.csdn.net/forandever/article/details/5717890<br>
 

@@ -1,11 +1,11 @@
 #summary HotSpot OutOfMemoryError解析
 
 当Java进度无法分配足够内存运行时将会抛出OutOfMemoryError：
- # *`java.lang.OutOfMemoryError: Java heap space`*
- # *`java.lang.OutOfMemoryError: PermGen space`*
- # *`java.lang.OutOfMemoryError: unable to create new native thread`*
+ * *`java.lang.OutOfMemoryError: Java heap space`*
+ * *`java.lang.OutOfMemoryError: PermGen space`*
+ * *`java.lang.OutOfMemoryError: unable to create new native thread`*
  在JVM中每启动一个线程都会分配一块本地内存，用于存放线程的调用栈，该空间仅在线程结束时释放。当没有足够本地内存创建线程时就会出现该错误。通过以下代码可以很容易再现该问题：
- <code language="Java">
+<code language="Java">
 while(true){
     new Thread(new Runnable(){
         public void run() {
@@ -16,13 +16,13 @@ while(true){
     }).start();
 }
  </code>
- # *`java.lang.OutOfMemoryError: Direct buffer memory`*
+ * *`java.lang.OutOfMemoryError: Direct buffer memory`*
  <code language="Java">
 List<ByteBuffer> list = new ArrayList<ByteBuffer>();
 while(true)    
     list.add(ByteBuffer.allocateDirect(10000000)); 
  </code>
- # *`java.lang.OutOfMemoryError: request <size> bytes for <reason>.`*
+ * *`java.lang.OutOfMemoryError: request <size> bytes for <reason>.`*
  
 ===参考资料===
 `[1].` http://java.sun.com/developer/technicalArticles/J2SE/monitoring/<br>

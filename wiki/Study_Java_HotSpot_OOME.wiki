@@ -37,7 +37,8 @@ while(true){
 int i=0;
 while(true) list.add(("Consume more memory!"+(i++)).intern());
  </code>
- 你可以通过以下btrace脚本查找该类调用：{{{
+ 你可以通过以下btrace脚本查找该类调用：
+ {{{
 import com.sun.btrace.annotations.*;
 import static com.sun.btrace.BTraceUtils.*;
 

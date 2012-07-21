@@ -32,9 +32,26 @@ while(true){
         e.printStackTrace();
     }
 }</code>
+ 下面是一个使用了`String.intern()`的例子：
  <code language="Java">List<String> list = new ArrayList<String>();
 int i=0;
 while(true) list.add(("Consume more memory!"+(i++)).intern());
+ </code>
+ 你可以通过以下btrace脚本查找该类问题：<code language="Java">
+import com.sun.btrace.annotations.*;
+import static com.sun.btrace.BTraceUtils.*;
+
+@BTrace
+public class StringInternTrace {
+
+    @OnMethod(clazz = "/.*/", method = "/.*/",
+              location = @Location(value = Kind.CALL, clazz = "java.lang.String", method = "intern"))
+    public static void m(@ProbeClassName String pcm, @ProbeMethodName String probeMethod,
+                         @TargetInstance Object instance) {
+        println(strcat(pcm, strcat("#", probeMethod)));
+        println(strcat(">>>> ", str(instance)));
+    }
+}
  </code>
 
 ====3. *`java.lang.OutOfMemoryError: unable to create new native thread`*====
@@ -50,7 +67,7 @@ while(true) list.add(("Consume more memory!"+(i++)).intern());
 }</code>
 
 ====4. *`java.lang.OutOfMemoryError: Direct buffer memory`*====
- 即从Direct Memory分配内存失败，Direct Buffer对象不是分配在堆上，是在Direct Memory分配，且不被GC直接管理的空间（但Direct Buffer的JAVA对象是归GC管理的，只要GC回收了它的JAVA对象，操作系统才会释放Direct Buffer所申请的空间）。通过`-XX:MaxDirectMemorySize=`可以设置Direct内存的大小。 ^[10]^
+ 即从Direct Memory分配内存失败，Direct Buffer对象不是分配在堆上，是在Direct Memory分配，且不被GC直接管理的空间（但Direct Buffer的Java对象是归GC管理的，只要GC回收了它的Java对象，操作系统才会释放Direct Buffer所申请的空间）。通过`-XX:MaxDirectMemorySize=`可以设置Direct内存的大小。 ^[10]^
  <code language="Java">List<ByteBuffer> list = new ArrayList<ByteBuffer>();
 while(true) list.add(ByteBuffer.allocateDirect(10000000)); </code>
 

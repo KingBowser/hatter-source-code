@@ -1,5 +1,7 @@
 #summary HotSpot OutOfMemoryError解析
 
+==HotSpot中OutOfMemoryError解析==
+
 在JVM中内存一共有3种：Heap（堆内存），Non-Heap（非堆内存） ^[3]^和Native（本地内存）。
 
 堆内存是运行时分配所有类实例和数组的一块内存区域。非堆内存包含方法区和JVM内部处理或优化所需的内存，存放有类结构（如运行时常量池、字段及方法结构，以及方法和构造函数代码）。本地内存是由操作系统管理的虚拟内存。当一个应用内存不足时就会抛出 `java.lang.OutOfMemoryError` 异常。

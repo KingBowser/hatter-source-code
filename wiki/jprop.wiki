@@ -1,0 +1,12 @@
+#summary Show/Set HotSpot system/agent properties
+
+= Introduction =
+
+Show/Set HotSpot system/agent properties.
+
+
+= Details =
+
+{{{
+wget https://hatter-source-code.googlecode.com/svn/trunk/jprop/jpropall.jar
+}}}

@@ -14,11 +14,13 @@
 || `Finalizers` || 对象等待结束 || `jconsole` ^[6]^ 或 `jmap -dump + jhat` ^[8][4]^ ||
 
 当Java进程无法分配足够内存运行时将会抛出OutOfMemoryError：
+
 ====1. *`java.lang.OutOfMemoryError: Java heap space`*====
  堆内存溢出时，首先判断当前最大内存是多少（参数：`-Xmx` 或 `-XX:MaxHeapSize=`），可以通过命令 `jinfo -flag MaxHeapSize` ^[9]^查看运行中的JVM的配置，如果该值已经较大则应通过 mat ^[5]^ 之类的工具查找问题，或 `jmap -histo` ^[8]^查找哪个或哪些类占用了比较多的内存。参数`-verbose:gc(-XX:+PrintGC) -XX:+PrintGCDetails`可以打印GC相关的一些数据。如果问题比较难排查也可以通过参数`-XX:+HeapDumpOnOutOfMemoryError`在OOM之前Dump内存数据再进行分析。<br>
  下面代码可再现该异常：
  <code language="Java">List<String> list = new ArrayList<String>();
 while(true) list.add(new String("Consume more memory!"));</code>
+
 ====2. *`java.lang.OutOfMemoryError: PermGen space`*====
  `PermGen space`即永久代，是非堆内存的一个区域。主要存放的数据是类结构及调用了`intern()`的字符串。
  <code language="Java">List<Class<?>> classes = new ArrayList<Class<?>>();
@@ -34,6 +36,7 @@ while(true){
 int i=0;
 while(true) list.add(("Consume more memory!"+(i++)).intern());
  </code>
+
 ====3. *`java.lang.OutOfMemoryError: unable to create new native thread`*====
  在JVM中每启动一个线程都会分配一块本地内存，用于存放线程的调用栈，该空间仅在线程结束时释放。当没有足够本地内存创建线程时就会出现该错误。通过以下代码可以很容易再现该问题：
  <code language="Java">while(true){

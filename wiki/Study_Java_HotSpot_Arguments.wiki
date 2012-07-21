@@ -670,7 +670,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `PerfBypassFileSystemCheck` || `` || `` || ||
 || `UnguardOnExecutionViolation` || `` || `` || ||
 || `ManagementServer` || `` || `` || ||
-|| `DisableAttachMechanism` || `` || `` || ||
+|| `DisableAttachMechanism` || `bool` || `product` || 禁止JVM被Attach ||
 || `StartAttachListener` || `` || `` || ||
 || `PrintConcurrentLocks` || `` || `` || ||
 || `UseSharedSpaces` || `` || `` || ||

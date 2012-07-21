@@ -2,11 +2,10 @@
 
 在JVM中内存一共有3种：Heap（堆内存），Non-Heap（非堆内存） ^[3]^和Native（本地内存）。
 
-Heap memory is the runtime data area from which memory for all class instances and arrays is allocated. Non-heap memory includes the method area and memory required for the internal processing or optimization of the JVM. It stores per-class structures such as a runtime constant pool, field and method data, and the code for methods and constructors. Native memory is the virtual memory managed by the operating system. When the memory is insufficient for an application to allocate, a java.lang.OutOfMemoryError will be thrown.
-
+堆内存是运行时分配所有类实例和数组的一块内存区域。非堆内存包含方法区和JVM内部处理或优化所需的内存，存放有类结构（如运行时常量池、字段及方法结构，以及方法和构造函数代码）。本地内存是由操作系统管理的虚拟内存。当一个应用内存不足时就会抛出 `java.lang.OutOfMemoryError` 异常。
 
 || *问题* || *表象* || *诊断工具* ||
-|| 内存不足 || `OutOfMemoryError` || `Java Heap Analysis Tool(jhat)` ^[4]^<br>`Eclipse Memory Analyzer` ^[5]^ ||
+|| 内存不足 || `OutOfMemoryError` || `Java Heap Analysis Tool(jhat)` ^[4]^<br>`Eclipse Memory Analyzer(mat)` ^[5]^ ||
 || 内存泄漏 || 使用内存增长，频繁GC || `Java Monitoring and Management Console(jconsole)` ^[6]^<br>`JVM Statistical Monitoring Tool(jstat)` ^[7]^ ||
 || ` ` || 一个类有大量的实例 || `Memory Map(jmap) - "jmap -histo"` ^[8]^ ||
 || ` ` || 对象被误引用 || `jconsole` ^[6]^ 或 `jmap -dump + jhat` ^[8][4]^ ||

@@ -17,6 +17,7 @@ import me.hatter.tools.commons.log.LogUtil;
 import me.hatter.tools.commons.map.CountingMap;
 import me.hatter.tools.commons.regex.RegexUtil;
 import sun.jvm.hotspot.memory.SystemDictionary;
+import sun.jvm.hotspot.oops.Instance;
 import sun.jvm.hotspot.oops.InstanceKlass;
 import sun.jvm.hotspot.oops.Klass;
 import sun.jvm.hotspot.runtime.VM;
@@ -78,7 +79,7 @@ public class ClassDump {
             if ((pattern != null) && !pattern.matcher(className).matches()) {
                 return;
             }
-            LogUtil.info("Dump class: " + className);
+            LogUtil.info("Dump class: " + className + "  @ " + getClassLoaderName(kls));
 
             klassName = klassName.replace('/', File.separatorChar);
             int index = klassName.lastIndexOf(File.separatorChar);
@@ -110,6 +111,14 @@ public class ClassDump {
                 LogUtil.error(null, exp);
             }
         }
+    }
+
+    public static String getClassLoaderName(InstanceKlass kls) {
+        if ((kls.getClassLoader() != null) && (kls.getClassLoader() instanceof Instance)) {
+            Instance cli = (Instance) kls.getClassLoader();
+            return cli.getKlass().getName().asString();
+        }
+        return null; // should be bootstrap classloader
     }
 
     private static void usage() {

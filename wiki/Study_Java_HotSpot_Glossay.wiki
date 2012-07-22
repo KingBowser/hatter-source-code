@@ -15,7 +15,8 @@
  * *`bytecode verification`* ^[1]^
  * *`C1 compiler`* ^[1]^
  * *`C2 compiler`* ^[1]^
- * *`card table`* ^[1]^
+ * *`card table` 卡片表* ^[1][22]^
+ remember set的一种，用于记录代中变化过的普通对象指针（oop），跟踪old-to-yong引用。card table是一个数组，每一个条目对应JVM堆的一块称作card的区域。当工作线程对对象的引用字段的每次更新，执行一次write barrier，把含有引用字段的内存卡片对应的卡片表的条目设置为dirty。
  * *`class data sharing`* ^[1]^
  * *`class hierachy analysis`* ^[1]^
  * *`code cache`* ^[1]^
@@ -101,4 +102,5 @@
 `[19].` http://rednaxelafx.iteye.com/blog/730461<br>
 `[20].` http://rednaxelafx.iteye.com/blog/729214<br>
 `[21].` http://rednaxelafx.iteye.com/blog/727938<br>
+`[22].` http://blog.csdn.net/arkblue/article/details/6154488<br>
 

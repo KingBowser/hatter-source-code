@@ -116,7 +116,7 @@ public class ClassDump {
     public static String getClassLoaderName(InstanceKlass kls) {
         if ((kls.getClassLoader() != null) && (kls.getClassLoader() instanceof Instance)) {
             Instance cli = (Instance) kls.getClassLoader();
-            return cli.getKlass().getName().asString();
+            return cli.getKlass().getName().asString().replace('/', '.');
         }
         return null; // should be bootstrap classloader
     }

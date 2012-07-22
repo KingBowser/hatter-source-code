@@ -14,6 +14,7 @@ import me.hatter.tools.commons.jvm.HotSpotVMUtil;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil.JDKLib;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil.JDKTarget;
 import me.hatter.tools.commons.log.LogUtil;
+import me.hatter.tools.commons.map.CountingMap;
 import me.hatter.tools.commons.regex.RegexUtil;
 import sun.jvm.hotspot.memory.SystemDictionary;
 import sun.jvm.hotspot.oops.InstanceKlass;
@@ -41,9 +42,10 @@ public class ClassDump {
 
     public static class ClassDumpTool extends Tool {
 
-        private static Pattern pattern         = RegexUtil.createPattern(UnixArgsutil.ARGS.kvalue("filter"),
-                                                                         UnixArgsutil.ARGS.flags().contains("i"));
-        private static String  outputDirectory = UnixArgsutil.ARGS.kvalue("output", ".");
+        private Pattern     pattern         = RegexUtil.createPattern(UnixArgsutil.ARGS.kvalue("filter"),
+                                                                      UnixArgsutil.ARGS.flags().contains("i"));
+        private String      outputDirectory = UnixArgsutil.ARGS.kvalue("output", ".");
+        private CountingMap countingMap     = new CountingMap();
 
         public static void main(String[] args, PrintStream err) {
             ClassDumpTool ps = new ClassDumpTool();
@@ -54,6 +56,7 @@ public class ClassDump {
         public void run() {
             // walk through the system dictionary
             SystemDictionary dict = VM.getVM().getSystemDictionary();
+            LogUtil.info("Output directory: " + outputDirectory);
             dict.classesDo(new SystemDictionary.ClassVisitor() {
 
                 public void visit(Klass k) {
@@ -86,9 +89,14 @@ public class ClassDump {
             } else {
                 dir = new File(outputDirectory);
             }
+            long countIdx = countingMap.getAndCount(className, 1L);
+            if (countIdx > 0) {
+                LogUtil.warn("Have duplicate class in your JVM: " + className);
+            }
 
             dir.mkdirs();
-            File f = new File(dir, klassName.substring(klassName.lastIndexOf(File.separatorChar) + 1) + ".class");
+            File f = new File(dir, klassName.substring(klassName.lastIndexOf(File.separatorChar) + 1) + ".class"
+                                   + ((countIdx == 0) ? "" : "_" + countIdx));
             try {
                 f.createNewFile();
                 OutputStream os = new BufferedOutputStream(new FileOutputStream(f));

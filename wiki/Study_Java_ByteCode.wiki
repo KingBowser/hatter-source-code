@@ -18,8 +18,12 @@
  JClassLib不但是一个字节码阅读器而且还包含一个类库允许开发者读取,修改,写入Java Class文件与字节码。 ^[1]^
 
 反编译软件：
- * [http://java.decompiler.free.fr/ jd-gui]
+ * [http://java.decompiler.free.fr/ jd]
+ JD分为JD-GUI、JD-Eclipse两种运行方式，JD-GUI是以单独的程序的方式运行，JD-Eclipse则是以一个Eclipse插件的方式运行。 ^[2]^
  * [http://www.varaneckas.com/jad/ jad]
+ jad 是一个使用非常广泛的 Java 反编译工具。 ^[3]^ 
 
 ===参考资料====
 `[1].` http://www.open-open.com/54.htm<br>
+`[2].` http://baike.baidu.com/view/1872199.htm<br>
+`[3].` http://www.oschina.net/p/jad<br>

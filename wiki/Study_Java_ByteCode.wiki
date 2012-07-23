@@ -1,12 +1,12 @@
 #summary Java ByteCode Study
 #labels Java,JVM,ByteCode
 
-==Class格式及字节码介绍==
+==1. Class格式及字节码介绍==
 [http://en.wikipedia.org/wiki/Java_class_file Class格式]
 
 [http://en.wikipedia.org/wiki/Java_bytecode_instruction_listings 字节码介绍]
 
-==字节码操纵框架==
+==2. 字节码操纵框架==
  * [http://asm.ow2.org/ ASM]
  ObjectWeb ASM轻量级的Java字节码处理框架。它可以动态生成二进制格式的stub类或其他代理类，或者在类被JAVA虚拟机装入内存之前，动态修改类。ASM 提供了与 BCEL和SERP相似的功能，只有22K的大小，比起350K的BCEL和150K的SERP来说，是相当小巧的，并且它有更高的执行效率，是BCEL的7倍，SERP的11倍以上。 ^[1]^
  * [http://commons.apache.org/bcel/ BCEL]
@@ -18,7 +18,7 @@
  * [http://www.ej-technologies.com/products/jclasslib/overview.html jclasslib]
  JClassLib不但是一个字节码阅读器而且还包含一个类库允许开发者读取,修改,写入Java Class文件与字节码。 ^[1]^
 
-==反编译软件==
+==3. 反编译软件==
  * [http://java.decompiler.free.fr/ jd]
  JD分为JD-GUI、JD-Eclipse两种运行方式，JD-GUI是以单独的程序的方式运行，JD-Eclipse则是以一个Eclipse插件的方式运行。 ^[2]^
  * [http://www.varaneckas.com/jad/ jad]

@@ -60,7 +60,7 @@ b6  invokevirtual [ constant pool index = index1 << 8 + index2, here is "3" ]
 b1  return
 }}}
 
-[//hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/bytecode_interpreter.png]
+[https://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/bytecode_interpreter.png]
 
 ==2. 字节码操纵框架==
  * [http://asm.ow2.org/ ASM]

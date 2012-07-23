@@ -60,6 +60,7 @@ b6  invokevirtual [ constant pool index = index1 << 8 + index2, here is "3" ]
 b1  return
 }}}
 
+JVM中执行bytecode是在栈上执行的，以上字节码是这样运行的：
 [https://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/bytecode_interpreter.png]
 
 ==2. 字节码操纵框架==

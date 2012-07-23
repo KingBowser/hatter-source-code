@@ -4,7 +4,63 @@
 ==1. Class格式及字节码介绍==
 [http://en.wikipedia.org/wiki/Java_class_file Class格式]
 
-[http://en.wikipedia.org/wiki/Java_bytecode_instruction_listings 字节码介绍]
+[http://en.wikipedia.org/wiki/Java_bytecode_instruction_listings 字节码指令介绍]
+
+字节码是如何执行的？
+{{{
+int i = 1;
+int j = 3;
+int sum = i + j;
+System.out.println(sum);
+}}}
+
+{{{
+Code:
+   Stack=2, Locals=4, Args_size=1
+   0:     iconst_1
+   1:     istore_1
+   2:     iconst_3
+   3:     istore_2
+   4:     iload_1
+   5:     iload_2
+   6:     iadd
+   7:     istore_3
+   8:     getstatic     #2; //Field java/lang/System.out:Ljava/io/PrintStream;
+   11:     iload_3
+   12:     invokevirtual     #3; //Method java/io/PrintStream.println:(I)V
+   15:     return
+  LineNumberTable:
+   line 4: 0
+   line 5: 2
+   line 6: 4
+   line 7: 8
+   line 8: 15
+}}}
+
+{{{
+04 3c 06 3d 1b 1c 60 3e b2 00 02 1d b6 00 03 b1
+}}}
+
+{{{
+04  iconst_1
+3c  istore_1
+06  iconst_3
+3d  istore_2
+1b  iload_1
+1c  iload_2
+60  iadd
+3e  istore_3
+b2  getstatic [ constant pool index = index1 << 8 + index2, here is "2" ]
+00      index1
+02      index2
+1d  iload_3
+b6  invokevirtual [ constant pool index = index1 << 8 + index2, here is "3" ]
+00      index1
+03      index2
+b1  return
+}}}
+
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/bytecode_interpreter.png]
 
 ==2. 字节码操纵框架==
  * [http://asm.ow2.org/ ASM]
@@ -28,3 +84,4 @@
 `[1].` http://www.open-open.com/54.htm<br>
 `[2].` http://baike.baidu.com/view/1872199.htm<br>
 `[3].` http://www.oschina.net/p/jad<br>
+`[4].` http://aprilsoft.cn/blog/post/308.html<br>

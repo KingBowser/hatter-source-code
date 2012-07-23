@@ -1,4 +1,5 @@
 #summary Java ByteCode Study
+#labels Java,JVM,ByteCode
 
 [http://en.wikipedia.org/wiki/Java_class_file Class格式]
 

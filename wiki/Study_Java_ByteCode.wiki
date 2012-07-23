@@ -6,7 +6,8 @@
 
 [http://en.wikipedia.org/wiki/Java_bytecode_instruction_listings 字节码指令介绍]
 
-字节码是如何执行的？
+那么，字节码是如何执行的？<br>
+先看一下下面一段Java代码：
 {{{
 int i = 1;
 int j = 3;
@@ -14,6 +15,7 @@ int sum = i + j;
 System.out.println(sum);
 }}}
 
+通过`javac`编译，并`javap -v`反编译以上代码：
 {{{
 Code:
    Stack=2, Locals=4, Args_size=1

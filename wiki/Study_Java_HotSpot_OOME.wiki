@@ -53,7 +53,7 @@ public class ClassLoaderDefine {
     }
 }
 }}}
- 除了btrace也可以打开日志加载的参数来查看加载了哪些类，可以把参数`-XX:+TraceClassLoading`打开，或使用参数`-class:verbose`（`-XX:+TraceClassLoading, -XX:+TraceClassUnloading`），在日志输出中即可看到哪些类被加载到Java虚拟机中。该参数也可以通过[jflag]的命令`java -jar jflagall.jar -flag +ClassVerbose`动态打开`-class:verbose`。
+ 除了btrace也可以打开日志加载的参数来查看加载了哪些类，可以把参数`-XX:+TraceClassLoading`打开，或使用参数`-verbose:class`（`-XX:+TraceClassLoading, -XX:+TraceClassUnloading`），在日志输出中即可看到哪些类被加载到Java虚拟机中。该参数也可以通过[jflag]的命令`java -jar jflagall.jar -flag +ClassVerbose`动态打开`-verbose:class`。
 
  下面是一个使用了`String.intern()`的例子： ^[2]^
  {{{

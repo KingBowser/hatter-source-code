@@ -1,0 +1,25 @@
+#summary My books list
+
+ # 《超越Java》
+ # 《Imperfect C++（中文版）》
+ # 《深入理解Java7核心技术与最佳实践》
+ # 《Ruby元编程》
+ # 《虚拟机 系统与进程的通用平台》
+ # 《七周七语言 理解多种编程范型》
+ # 《Scala程序设计》
+ # 《实践Nginx：取代Apache的高性能Web服务器》
+ # 《C++深思录》
+ # 《C陷阱与缺陷》
+ # 《Groovy入门经典》
+ # 《深入浅出CoffeeScript》
+ # 《松本行弘的程序世界》
+ # 《编写可读代码的艺术》
+ # 《链接器与加载器》
+ # 《MongoDB权威指南》
+ # 《MySQL技术内幕 SQL编程》
+ # 《白帽子讲Web安全》
+ # 《Cassandra权威指南》
+ # 《Java并发编程实践》
+ # 
+ # 
+ # 

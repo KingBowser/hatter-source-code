@@ -1,3 +1,14 @@
 #summary Java ByteCode Study
 
-Java byte code: [http://en.wikipedia.org/wiki/Java_bytecode_instruction_listings]
+[http://en.wikipedia.org/wiki/Java_class_file Class格式]
+
+[http://en.wikipedia.org/wiki/Java_bytecode_instruction_listings 字节码介绍]
+
+字节码操纵框架：
+ * [http://asm.ow2.org/ ASM]
+ * [http://commons.apache.org/bcel/ BCEL]
+ * [http://www.javassist.org/ Javassist]
+
+反编译软件：
+ * [http://java.decompiler.free.fr/ jd-gui]
+ * [http://www.varaneckas.com/jad/ jad]

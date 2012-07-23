@@ -7,9 +7,15 @@
 
 字节码操纵框架：
  * [http://asm.ow2.org/ ASM]
+ ObjectWeb ASM轻量级的Java字节码处理框架。它可以动态生成二进制格式的stub类或其他代理类，或者在类被JAVA虚拟机装入内存之前，动态修改类。ASM 提供了与 BCEL和SERP相似的功能，只有22K的大小，比起350K的BCEL和150K的SERP来说，是相当小巧的，并且它有更高的执行效率，是BCEL的7倍，SERP的11倍以上。 ^[1]^
  * [http://commons.apache.org/bcel/ BCEL]
+ Byte Code Engineering Library (BCEL)，这是Apache Software Foundation 的Jakarta 项目的一部分。BCEL是 Java classworking 最广泛使用的一种框架,它可以让您深入 JVM 汇编语言进行类操作的细节。BCEL与Javassist 有不同的处理字节码方法，BCEL在实际的JVM 指令层次上进行操作(BCEL拥有丰富的JVM 指令级支持)而Javassist 所强调的源代码级别的工作。 ^[1]^
  * [http://www.javassist.org/ Javassist]
+ Javassist是一个开源的分析、编辑和创建Java字节码的类库。是由东京技术学院的数学和计算机科学系的 Shigeru Chiba 所创建的。它已加入了开放源代码JBoss 应用服务器项目,通过使用Javassist对字节码操作为JBoss实现动态AOP框架。 ^[1]^
 
 反编译软件：
  * [http://java.decompiler.free.fr/ jd-gui]
  * [http://www.varaneckas.com/jad/ jad]
+
+===参考资料====
+`[1].` http://www.open-open.com/54.htm<br>

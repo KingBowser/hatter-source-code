@@ -2,7 +2,38 @@
 #labels Java,JVM,ByteCode
 
 ==1. Class格式及字节码介绍==
-[http://en.wikipedia.org/wiki/Java_class_file Class格式]
+Class文件的格式如下 ^[6]^：
+{{{
+struct Class_File_Format {
+   u4 magic_number;   // HEX:CAFEBABE
+ 
+   u2 minor_version;   
+   u2 major_version;   
+ 
+   u2 constant_pool_count;   
+ 
+   cp_info constant_pool[constant_pool_count - 1];
+ 
+   u2 access_flags;
+ 
+   u2 this_class;
+   u2 super_class;
+ 
+   u2 interfaces_count;   
+ 
+   u2 interfaces[interfaces_count];
+ 
+   u2 fields_count;   
+   field_info fields[fields_count];
+ 
+   u2 methods_count;
+   method_info methods[methods_count];
+ 
+   u2 attributes_count;   
+   attribute_info attributes[attributes_count];
+}
+}}}
+详细说明请参看：[http://en.wikipedia.org/wiki/Java_class_file Class格式]
 
 [http://en.wikipedia.org/wiki/Java_bytecode_instruction_listings 字节码指令介绍]
 
@@ -91,3 +122,4 @@ JVM中执行bytecode是在栈上执行的，以上字节码是这样运行的：
 `[3].` http://www.oschina.net/p/jad<br>
 `[4].` http://aprilsoft.cn/blog/post/308.html<br>
 `[5].` http://en.wikipedia.org/wiki/Java_bytecode_instruction_listings<br>
+`[6].` http://en.wikipedia.org/wiki/Java_class_file<br>

@@ -34,7 +34,8 @@ $ export DISPLAY=<ip>0.0
 
 $ xhost +
 $ xhost +myremote.myothernet.uidaho.edu
-}}} ^[1]^
+}}}
+ ^[1]^
 
 ===参考资料===
 `[1].` http://www.hungry.com/~jamie/xexport.html<br>

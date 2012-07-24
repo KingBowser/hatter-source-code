@@ -55,9 +55,9 @@
  * *`remembered set`* ^[1]^
  用于记录分代之前引用指针的数据结构，如年老代对象引用新生代对象时，即使在新生代已经没有对象引用该对象，通过查询该数据结构，不在新生代GC时释放该对象。
  * *`safepoint`* ^[1][14][23]^
- * *`sea-of-nodes`* ^[1]^
- safe point 顾明思意，就是安全点，当需要jvm做一些操作的时候，需要把当前正在运行的线程进入一个安全点的状态（也可以说停止状态），这样才能做一些安全的操作，比如线程的dump，堆栈的信息。
+ safe point 顾明思意，就是安全点，当需要jvm做一些操作的时候，需要把当前正在运行的线程进入一个安全点的状态（也可以说停止状态），这样才能做一些安全的操作，比如线程的dump，堆栈的信息。<br>
  在jvm里面通常vm_thread（我们一直在谈论的做一些属于vm 份内事情的线程） 和cms_thread（内存回收的线程）做的操作，是需要将其他的线程通过调用SafepointSynchronize::begin 和 SafepointSynchronize:end来实现让其他的线程进入或者退出safe point 的状态。
+ * *`sea-of-nodes`* ^[1]^
  * *`Serviceability Agent(SA)`* ^[1][19][20][21]^
  Serviceablity Agent是一组Sun（现在是Oracle）内部的代码，用于调试HotSpot的问题。也被部分JDK工具所使用，如 jstack, jmap, jinfo 和 jdb等。其相关Java代码位于`$JAVA_HOME/lib/sa-jdi.jar`。借助SA我们可以枚举Heap和Perm区的对象，Dump JVM中动态增强过的Class类，甚至可以利用其代码制作反汇编程序。
  * *`stackmap`* ^[1]^

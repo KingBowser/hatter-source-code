@@ -31,7 +31,7 @@ alias mee='mvn eclipse:clean eclipse:eclipse'
 
 X11 DISPLAY ^[1]^
 {{{
-$ export DISPLAY=<ip>0.0
+$ export DISPLAY=<ip>:0.0
 
 $ xhost +
 $ xhost +<ip>

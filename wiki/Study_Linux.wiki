@@ -27,3 +27,14 @@ alias mcp='mvn clean package -Dmaven.test.skip'
 alias mct='mvn clean test'
 alias mee='mvn eclipse:clean eclipse:eclipse'
 }}}
+
+
+{{{
+$ export DISPLAY=<ip>0.0
+
+$ xhost +
+$ xhost +myremote.myothernet.uidaho.edu
+}}} ^[1]^
+
+===参考资料===
+`[1].` http://www.hungry.com/~jamie/xexport.html<br>

@@ -1,6 +1,8 @@
 package me.hatter.tools.commons.jmx;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.management.remote.JMXConnector;
 import javax.management.remote.JMXConnectorFactory;
@@ -14,9 +16,10 @@ import com.sun.tools.attach.VirtualMachine;
 @SuppressWarnings("restriction")
 public class HotSpotJMXConnectTool {
 
-    public static final String CONNECTOR_ADDRESS = "com.sun.management.jmxremote.localConnectorAddress";
+    public static final String               CONNECTOR_ADDRESS   = "com.sun.management.jmxremote.localConnectorAddress";
 
-    private String             pid;
+    private String                           pid;
+    private static final Map<String, String> connectorAddressMap = new HashMap<String, String>();
 
     public HotSpotJMXConnectTool(String pid) {
         this.pid = pid;
@@ -35,7 +38,11 @@ public class HotSpotJMXConnectTool {
         }
     }
 
-    public String getConnectorAddress() {
+    synchronized public String getConnectorAddress() {
+        if (connectorAddressMap.get(pid) != null) {
+            return connectorAddressMap.get(pid);
+        }
+
         HotSpotAttachTool attach = new HotSpotAttachTool(pid);
         attach.attach();
         try {
@@ -47,6 +54,7 @@ public class HotSpotJMXConnectTool {
                 vm.loadAgent(agent);
                 connectorAddress = vm.getAgentProperties().getProperty(CONNECTOR_ADDRESS);
             }
+            connectorAddressMap.put(pid, connectorAddress);
             return connectorAddress;
         } catch (Exception e) {
             throw new RuntimeException(e);

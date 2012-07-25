@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 import me.hatter.tools.commons.args.UnixArgsutil;
 import me.hatter.tools.commons.io.IOUtil;
@@ -15,6 +16,7 @@ import me.hatter.tools.commons.jvm.HotSpotVMUtil;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil.JDKLib;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil.JDKTarget;
 import me.hatter.tools.commons.log.LogUtil;
+import me.hatter.tools.commons.regex.RegexUtil;
 import me.hatter.tools.commons.string.StringUtil;
 import me.hatter.tools.flagagent.management.HotSpotFlagMXBean;
 import sun.tools.attach.HotSpotVirtualMachine;
@@ -36,7 +38,8 @@ public class JFlag {
         if (UnixArgsutil.ARGS.flags().contains("show-remote-flags") && (UnixArgsutil.ARGS.args().length == 1)) {
             remoteFlags();
         }
-        if ((UnixArgsutil.ARGS.kvalue("show") != null) && (UnixArgsutil.ARGS.args().length == 0)) {
+        if (((UnixArgsutil.ARGS.kvalue("show") != null) || (UnixArgsutil.ARGS.kvalue("filter") != null))
+            && (UnixArgsutil.ARGS.args().length == 0)) {
             flags(flagList);
         }
         if (UnixArgsutil.ARGS.args().length == 0) {
@@ -191,6 +194,10 @@ public class JFlag {
         if (!(showAll || name.toLowerCase().contains(show.toLowerCase()))) {
             return false;
         }
+        Pattern pattern = RegexUtil.createPattern(UnixArgsutil.ARGS.kvalue("filter"), true);
+        if (pattern != null) {
+            return pattern.matcher(name).matches();
+        }
         return true;
     }
 
@@ -290,6 +297,7 @@ public class JFlag {
         System.out.println("Usage:");
         System.out.println("  java -jar jflagall.jar [options] <pid>");
         System.out.println("    -show <flags>             show flags('ALL' show all)");
+        System.out.println("    -filter <regex>           regex filter flag name");
         System.out.println("    -flag <+/-flag>           set flag");
         System.out.println("          <flag=value>        set flag to value");
         System.out.println("          <+/-~flag>          set flag by JMX");

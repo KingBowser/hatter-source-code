@@ -4,9 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import me.hatter.tools.commons.args.UnixArgsutil;
-import me.hatter.tools.commons.classloader.ClassLoaderUtil;
-import me.hatter.tools.commons.jmx.RemoteManagementTool;
-import me.hatter.tools.commons.jvm.HotSpotAttachTool;
+import me.hatter.tools.commons.jmx.CustomJMXConnectTool;
 import me.hatter.tools.commons.jvm.HotSpotProcessUtil;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil.JDKLib;
@@ -68,20 +66,9 @@ public class JProp {
 
     private static PropertyMXBean getPropertyMXBean(boolean isProperty) {
         String pid = UnixArgsutil.ARGS.args()[0];
-        HotSpotAttachTool attach = new HotSpotAttachTool(pid);
-        attach.attach();
-        try {
-            if (attach.getVM().getAgentProperties().get(Agent.PROPERTY_MXBEAN_PROPERTY_KEY) == null) {
-                attach.getVM().loadAgent(ClassLoaderUtil.findClassJarPath(Agent.class));
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        } finally {
-            attach.detach();
-        }
-        RemoteManagementTool tool = new RemoteManagementTool(pid);
+        CustomJMXConnectTool tool = new CustomJMXConnectTool(pid, Agent.PROPERTY_MXBEAN_PROPERTY_KEY, Agent.class);
         String objectName = isProperty ? PropertyMXBean.SYSTEM_PROPERTY_MXBEAN_NAME : PropertyMXBean.AGENT_PROPERTY_MXBEAN_NAME;
-        return tool.getManagementFactory().newPlatformMXBeanProxy(objectName, PropertyMXBean.class);
+        return tool.getCustomMXBean(PropertyMXBean.class, objectName);
     }
 
     private static boolean filterKV(String key, String value) {

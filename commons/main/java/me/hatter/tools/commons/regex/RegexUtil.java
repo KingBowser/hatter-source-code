@@ -10,6 +10,6 @@ public class RegexUtil {
         }
         pattern = pattern.startsWith("^") ? pattern : (".*" + pattern);
         pattern = pattern.endsWith("$") ? pattern : (pattern + ".*");
-        return ignoreCase ? Pattern.compile(pattern) : Pattern.compile(pattern, Pattern.CASE_INSENSITIVE);
+        return ignoreCase ? Pattern.compile(pattern, Pattern.CASE_INSENSITIVE) : Pattern.compile(pattern);
     }
 }

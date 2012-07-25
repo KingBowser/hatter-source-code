@@ -48,7 +48,7 @@
  * *`old generation`* ^[1]^
  * *`on-stack replacement`* ^[1]^
  * *`oop` 普通对象指针* ^[1][13]^
- oop 即 ordinary object pointer，普通对象指针，在HotSpot中管理指向对象的指针，特别的指向GC管理的内存空间中的对象指针。实现方式是机器物理地址，而不是句柄。普通对象指针可以被编译或解释的Java字节码直接操纵，因为在这些代码中GC知道对象是否仍然存活和物理位置。普通对象指针也可以在短时间内被C/C++代码操纵，但指针必须通过在安全点(safepoint)中使用句柄访问。
+ oop 即 ordinary object pointer，普通对象指针，在HotSpot中管理指向对象的指针，特别的指向GC管理的内存空间中的对象指针。实现方式是机器物理地址，而不是句柄。oop可以被编译或解释的Java字节码直接操纵，因为在这些代码中GC知道对象是否仍然存活和物理位置。oop也能被c/c++代码操作，但是当经历safepoints，这些代码必须通过handle来操作oop。
  * *`parallel classloading`* ^[1]^
  * *`parallel garbage collection`* ^[1]^
  * *`permanent generation`* ^[1]^

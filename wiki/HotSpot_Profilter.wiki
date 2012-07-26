@@ -9,6 +9,7 @@
 || http://openjdk.java.net/groups/hotspot/docs/StorageManagement.html || Storage Management. ||
 || http://java.sun.com/performance/reference/whitepapers/6_performance.html || Java™ Platform Performance Engineering. ||
 || http://docs.oracle.com/javase/6/docs/technotes/guides/ || Java™ Platform, Standard Edition 6. ||
+|| http://docs.oracle.com/javase/6/docs/technotes/guides/rmi/ || Java™ Remote Method Invocation(Java™ RMI) ||
 || http://docs.oracle.com/javase/6/docs/technotes/guides/jvmti/ || Java™ Virtual Machine Tool Interface (JVM TI). ||
 || http://docs.oracle.com/javase/6/docs/technotes/guides/attach/index.html || Attach API. ||
 || http://docs.oracle.com/javase/6/docs/technotes/guides/instrumentation/index.html || Java™ java.lang.instrument Package. ||

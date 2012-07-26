@@ -1,0 +1,13 @@
+#summary Concurrent in Java, HotSpot
+
+
+
+
+===参数资料===
+`[1].` http://lxy2330.iteye.com/blog/1481664<br>
+`[2].` http://blog.csdn.net/fw0124/article/details/6672522<br>
+`[3].` http://kenwublog.com/illustrate-memory-reordering-in-cpu<br>
+`[4].` http://hi.baidu.com/ajf8/blog/item/05889719727b691934fa4178.html<br>
+`[5].` http://www.langyuweb.com/a/wangluozhishi/2012/0326/14674.html<br>
+`[6].` http://www.infoq.com/cn/articles/cf-java-thread<br>
+`[7].` http://www.goldendoc.org/2011/05/juc/<br>

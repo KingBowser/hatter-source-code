@@ -1,0 +1,4 @@
+#summary GC Cause
+
+|| *KEY* || *Readable* || *Description* ||
+|| `_java_lang_system_gc` || `System.gc()` || ||

@@ -1,12 +1,12 @@
 #summary GC Cause
 
 || *Enum* || *Readable* || *Description* ||
+|| `_no_gc` || `No GC` || ||
 || `_java_lang_system_gc` || `System.gc()` || ||
 || `_full_gc_alot` || `FullGCAlot` || ||
 || `_scavenge_alot` || `ScavengeAlot` || ||
 || `_allocation_profiler` || `Allocation Profiler` || ||
 || `_jvmti_force_gc` || `JvmtiEnv ForceGarbageCollection` || ||
-|| `_no_gc` || `No GC` || ||
 || `_allocation_failure` || `Allocation Failure` || ||
 || `_gc_locker` || `GCLocker Initiated GC` || ||
 || `_heap_inspection` || `Heap Inspection Initiated GC` || ||

@@ -1,45 +1,23 @@
 package me.hatter.tools.jtop.rmi;
 
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
-
-import me.hatter.tools.jtop.rmi.exception.ServiceNotStartedException;
-import me.hatter.tools.jtop.rmi.interfaces.JStackService;
+import me.hatter.tools.commons.jmx.CustomJMXConnectTool;
+import me.hatter.tools.jtop.agent.Agent;
+import me.hatter.tools.jtop.management.JTopMXBean;
 
 public class RmiClient {
 
-    private String        server;
-    private int           port;
-    private JStackService jStackService;
+    private String     pid;
+    private JTopMXBean jtopMXBean;
 
-    public RmiClient(String server, int port) {
-        this.server = server;
-        this.port = port;
+    public RmiClient(String pid) {
+        this.pid = pid;
     }
 
-    public String getServer() {
-        return server;
-    }
-
-    public int getPort() {
-        return port;
-    }
-
-    synchronized public JStackService getJStackService() {
-        try {
-            if (jStackService != null) {
-                return jStackService;
-            }
-            Registry registry = LocateRegistry.getRegistry(server, Integer.valueOf(port));
-            jStackService = (JStackService) (registry.lookup("jStackService"));
-            return jStackService;
-        } catch (Exception e) {
-            if (e.getMessage().toLowerCase().contains("connection refused")) {
-                throw new ServiceNotStartedException();
-            }
-            System.err.println("[ERROR] RMI register error: " + e.getMessage());
-            e.printStackTrace();
-            return null;
+    synchronized public JTopMXBean getJTopMXBean() {
+        if (jtopMXBean == null) {
+            CustomJMXConnectTool tool = new CustomJMXConnectTool(pid, Agent.AGENT_INIT_KEY, Agent.class);
+            jtopMXBean = tool.getCustomMXBean(JTopMXBean.class, JTopMXBean.JTOP_MXBEAN_NAME);
         }
+        return jtopMXBean;
     }
 }

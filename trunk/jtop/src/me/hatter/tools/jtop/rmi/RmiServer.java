@@ -5,94 +5,37 @@ import java.lang.management.GarbageCollectorMXBean;
 import java.lang.management.ManagementFactory;
 import java.lang.management.MemoryMXBean;
 import java.lang.management.ThreadInfo;
-import java.net.InetAddress;
-import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.hatter.tools.commons.management.ManagementUtil;
 import me.hatter.tools.jtop.rmi.interfaces.JClassLoadingInfo;
 import me.hatter.tools.jtop.rmi.interfaces.JGCInfo;
 import me.hatter.tools.jtop.rmi.interfaces.JMemoryInfo;
 import me.hatter.tools.jtop.rmi.interfaces.JMemoryUsage;
-import me.hatter.tools.jtop.rmi.interfaces.JStackService;
 import me.hatter.tools.jtop.rmi.interfaces.JThreadInfo;
 
-public class RmiServer implements JStackService {
+public class RmiServer {
 
-    private static final long serialVersionUID = -6161020091463825016L;
-
-    private static RmiServer  RMI_SERVER       = null;
-
-    private Integer           thisPort;
-    private String            thisAddress;
-    private Registry          registry;
-    private JStackService     exportedJStackService;
-
-    public void receiveMessage(String x) throws RemoteException {
+    public void receiveMessage(String x) {
         System.out.println(x);
     }
 
-    public RmiServer() throws RemoteException {
-        try {
-            thisAddress = (InetAddress.getLocalHost()).toString();
-        } catch (Exception e) {
-            throw new RemoteException("can't get inet address.");
-        }
+    public RmiServer() {
     }
 
-    public void bind(int port) throws RemoteException {
-        System.out.println("[INFO] this address=" + thisAddress + ",port=" + port);
-        try {
-            registry = LocateRegistry.createRegistry(port);
-            if (exportedJStackService == null) {
-                exportedJStackService = (JStackService) UnicastRemoteObject.exportObject(this, 0);
-            }
-            registry.rebind("jStackService", exportedJStackService);
-            this.thisPort = port; // recored port, mark as success
-        } catch (RemoteException e) {
-            throw e;
-        }
-    }
-
-    synchronized public static void startup(int port) {
-        try {
-            if (RMI_SERVER == null) {
-                RMI_SERVER = new RmiServer();
-            }
-            if (RMI_SERVER.thisPort != null) {
-                System.out.println("[WARN] Areadly inited, port=" + RMI_SERVER.thisPort);
-                return;
-            }
-            RMI_SERVER.bind(port);
-            System.setProperty("jtop.port", String.valueOf(port));
-        } catch (RemoteException e) {
-            System.err.println("[ERROR] error in startup rmi server: " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
-
-    // implemention
-    public String getProcessId() throws RemoteException {
-        return ManagementUtil.getCurrentVMPid();
-    }
-
-    public JMemoryInfo getMemoryInfo() throws RemoteException {
+    public JMemoryInfo getMemoryInfo() {
         MemoryMXBean memoryMXBean = ManagementFactory.getMemoryMXBean();
         return new JMemoryInfo(new JMemoryUsage(memoryMXBean.getHeapMemoryUsage()),
                                new JMemoryUsage(memoryMXBean.getNonHeapMemoryUsage()));
     }
 
-    public JGCInfo[] getGCInfos() throws RemoteException {
+    public JGCInfo[] getGCInfos() {
         List<JGCInfo> jgcInfos = new ArrayList<JGCInfo>();
         List<GarbageCollectorMXBean> garbageCollectorMXBeans = ManagementFactory.getGarbageCollectorMXBeans();
         for (GarbageCollectorMXBean garbageCollectorMXBean : garbageCollectorMXBeans) {
             JGCInfo jgcInfo = new JGCInfo();
             jgcInfo.setName(garbageCollectorMXBean.getName());
-            jgcInfo.setValid(garbageCollectorMXBean.isValid());
+            jgcInfo.setIsValid(garbageCollectorMXBean.isValid());
             jgcInfo.setMemoryPoolNames(garbageCollectorMXBean.getMemoryPoolNames());
             jgcInfo.setCollectionCount(garbageCollectorMXBean.getCollectionCount());
             jgcInfo.setCollectionTime(garbageCollectorMXBean.getCollectionTime());
@@ -101,14 +44,14 @@ public class RmiServer implements JStackService {
         return jgcInfos.toArray(new JGCInfo[0]);
     }
 
-    public JClassLoadingInfo getClassLoadingInfo() throws RemoteException {
+    public JClassLoadingInfo getClassLoadingInfo() {
         ClassLoadingMXBean classLoadingMXBean = ManagementFactory.getClassLoadingMXBean();
         return new JClassLoadingInfo(classLoadingMXBean.getTotalLoadedClassCount(),
                                      classLoadingMXBean.getLoadedClassCount(),
                                      classLoadingMXBean.getUnloadedClassCount());
     }
 
-    public JThreadInfo[] listThreadInfos() throws RemoteException {
+    public JThreadInfo[] listThreadInfos() {
         ThreadInfo[] tis = ManagementFactory.getThreadMXBean().dumpAllThreads(false, false);
         JThreadInfo[] jtis = new JThreadInfo[tis.length];
         for (int i = 0; i < tis.length; i++) {

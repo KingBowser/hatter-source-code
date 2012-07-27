@@ -1,17 +1,25 @@
 package me.hatter.tools.jtop.util;
 
+import me.hatter.tools.commons.args.UnixArgsutil;
+
 public class EnvUtil {
 
     public static String getPid() {
-        return getStr("pid", null);
+        return UnixArgsutil.ARGS.args()[0];
     }
 
-    public static int getPort() {
-        return getInt("port", 1127);
+    public static long getSleepMillis() {
+        if (UnixArgsutil.ARGS.args().length > 1) {
+            return Long.parseLong(UnixArgsutil.ARGS.args()[1]);
+        }
+        return 2000L;
     }
 
     public static int getDumpCount() {
-        return getInt("count", 1);
+        if (UnixArgsutil.ARGS.args().length > 2) {
+            return Integer.parseInt(UnixArgsutil.ARGS.args()[2]);
+        }
+        return 1;
     }
 
     public static int getThreadTopN() {
@@ -24,10 +32,6 @@ public class EnvUtil {
 
     public static String getSize() {
         return getStr("size", "b");
-    }
-
-    public static long getSleepMillis() {
-        return getLong("sleep", 2000L);
     }
 
     public static boolean getColor() {

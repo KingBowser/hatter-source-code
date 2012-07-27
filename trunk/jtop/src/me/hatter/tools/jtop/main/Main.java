@@ -10,23 +10,21 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import me.hatter.tools.commons.args.UnixArgsutil;
 import me.hatter.tools.commons.bytes.ByteUtil;
 import me.hatter.tools.commons.bytes.ByteUtil.ByteFormat;
-import me.hatter.tools.commons.classloader.ClassLoaderUtil;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil.JDKLib;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil.JDKTarget;
-import me.hatter.tools.jtop.agent.JDK6AgentLoader;
 import me.hatter.tools.jtop.main.objects.MainOutput;
+import me.hatter.tools.jtop.management.JTopMXBean;
 import me.hatter.tools.jtop.rmi.RmiClient;
-import me.hatter.tools.jtop.rmi.exception.ServiceNotStartedException;
 import me.hatter.tools.jtop.rmi.interfaces.JClassLoadingInfo;
 import me.hatter.tools.jtop.rmi.interfaces.JGCInfo;
 import me.hatter.tools.jtop.rmi.interfaces.JMemoryInfo;
-import me.hatter.tools.jtop.rmi.interfaces.JStackService;
 import me.hatter.tools.jtop.rmi.interfaces.JThreadInfo;
+import me.hatter.tools.jtop.rmi.interfaces.StackTraceElement;
 import me.hatter.tools.jtop.util.EnvUtil;
-import me.hatter.tools.jtop.util.UnixArgsutil;
 import me.hatter.tools.jtop.util.console.Color;
 import me.hatter.tools.jtop.util.console.Font;
 import me.hatter.tools.jtop.util.console.Text;
@@ -37,41 +35,16 @@ public class Main {
         try {
             HotSpotVMUtil.autoAddToolsJarDependency(JDKTarget.SYSTEM_CLASSLOADER, JDKLib.TOOLS);
             UnixArgsutil.parseGlobalArgs(args);
-            // args = ArgsUtil.processArgs(args);
 
-            if (EnvUtil.getPid() == null) {
+            if (UnixArgsutil.ARGS.args().length == 0) {
                 System.out.println("[ERROR] pid is not assigned.");
                 usage();
                 System.exit(0);
             }
-            RmiClient rc = new RmiClient("127.0.0.1", EnvUtil.getPort());
-            if (!tryConnect(rc)) {
-                int pid = Integer.valueOf(EnvUtil.getPid());
-                String port = attachAgent(pid);
-                if ((port != null) && (!String.valueOf(EnvUtil.getPort()).equals(port))) {
-                    System.out.println("[ERROR] Remote server's pid not match, PORT=" + rc.getPort() //
-                                       + "  REQUIRE_PID=" + EnvUtil.getPid() //
-                                       + "  ACTURE_PID=" + pid);
-                    System.out.println("[ERROR] The target VM PORT=" + port);
-                    System.exit(0);
-                }
-            }
+            String pid = UnixArgsutil.ARGS.args()[0];
 
-            JStackService jStackService = rc.getJStackService();
-            if (jStackService == null) {
-                System.err.println("[ERROR] connect to server failed.");
-                System.exit(0);
-            }
-            String pid = jStackService.getProcessId();
-            if (!pid.equals(EnvUtil.getPid())) {
-                System.out.println("[ERROR] Remote server's pid not match, PORT=" + rc.getPort() //
-                                   + "  REQUIRE_PID=" + EnvUtil.getPid() //
-                                   + "  ACTURE_PID=" + pid);
-                String jarFilePath = ClassLoaderUtil.findClassJarPath(Main.class);
-                System.out.println("[ERROR] The target VM PORT="
-                                   + (new JDK6AgentLoader(jarFilePath, String.valueOf(EnvUtil.getPort()))).getVMProperty("jtop.port"));
-                System.exit(0);
-            }
+            RmiClient rc = new RmiClient(pid);
+            JTopMXBean jTopMXBean = rc.getJTopMXBean();
 
             long lastNano = System.nanoTime();
             MainOutput lastMainOutput = null;
@@ -80,7 +53,7 @@ public class Main {
             for (int c = -1; c < dumpcount; c++) {
                 long nano = System.nanoTime();
                 MainOutput mainOutput = new MainOutput(c + 1);
-                JThreadInfo[] jThreadInfos = jStackService.listThreadInfos();
+                JThreadInfo[] jThreadInfos = jTopMXBean.listThreadInfos();
                 Map<Long, JThreadInfo> jThreadInfoMap = jThreadInfoToMap(jThreadInfos);
                 if (lastMainOutput == null) {
                     System.out.println("[INFO] First Round");
@@ -132,7 +105,7 @@ public class Main {
                     }
 
                     String size = EnvUtil.getSize();
-                    JMemoryInfo jMemoryInfo = jStackService.getMemoryInfo();
+                    JMemoryInfo jMemoryInfo = jTopMXBean.getMemoryInfo();
                     mainOutput.setjMemoryInfo(jMemoryInfo);
                     System.out.println("Heap Memory:" //
                                        + " INIT=" + toSize(jMemoryInfo.getHeap().getInit(), size) //
@@ -147,17 +120,17 @@ public class Main {
                                        + "  MAX=" + toSize(jMemoryInfo.getNonHeap().getMax(), size) //
                     );
 
-                    JGCInfo[] jgcInfos = jStackService.getGCInfos();
+                    JGCInfo[] jgcInfos = jTopMXBean.getGCInfos();
                     for (JGCInfo jgcInfo : jgcInfos) {
                         System.out.println("GC " + jgcInfo.getName() //
-                                           + "  " + (jgcInfo.isValid() ? "VALID" : "NOT_VALID") //
+                                           + "  " + (jgcInfo.getIsValid() ? "VALID" : "NOT_VALID") //
                                            + "  " + Arrays.asList(jgcInfo.getMemoryPoolNames()) //
                                            + "  GC=" + jgcInfo.getCollectionCount() //
                                            + "  GCT=" + jgcInfo.getCollectionTime() //
                         );
                     }
 
-                    JClassLoadingInfo jClassLoadingInfo = jStackService.getClassLoadingInfo();
+                    JClassLoadingInfo jClassLoadingInfo = jTopMXBean.getClassLoadingInfo();
                     System.out.println("ClassLoading" //
                                        + " LOADED=" + jClassLoadingInfo.getLoadedClassCount() //
                                        + "  TOTAL_LOADED=" + jClassLoadingInfo.getTotalLoadedClassCount() //
@@ -261,22 +234,6 @@ public class Main {
             jThreadInfoMap.put(Long.valueOf(jThreadInfo.getThreadId()), jThreadInfo);
         }
         return jThreadInfoMap;
-    }
-
-    static boolean tryConnect(RmiClient rc) {
-        try {
-            rc.getJStackService();
-            return true;
-        } catch (ServiceNotStartedException snse) {
-            return false;
-        }
-    }
-
-    static String attachAgent(int pid) {
-        String jarFilePath = ClassLoaderUtil.findClassJarPath(Main.class);
-        System.out.println("[INFO] jar file: " + jarFilePath);
-        JDK6AgentLoader agentLoader = new JDK6AgentLoader(jarFilePath, String.valueOf(pid));
-        return agentLoader.loadAgent();
     }
 
     static String toSize(long b, String s) {

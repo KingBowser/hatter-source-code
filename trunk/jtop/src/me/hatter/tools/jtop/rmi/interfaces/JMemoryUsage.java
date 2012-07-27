@@ -1,5 +1,6 @@
 package me.hatter.tools.jtop.rmi.interfaces;
 
+import java.beans.ConstructorProperties;
 import java.io.Serializable;
 import java.lang.management.MemoryUsage;
 
@@ -18,6 +19,7 @@ public class JMemoryUsage implements Serializable {
         this.max = memoryUsage.getMax();
     }
 
+    @ConstructorProperties({ "init", "used", "committed", "max" })
     public JMemoryUsage(long init, long used, long committed, long max) {
         this.init = init;
         this.used = used;

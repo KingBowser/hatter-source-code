@@ -10,7 +10,7 @@
 || `_allocation_failure` || `Allocation Failure` || ||
 || `_gc_locker` || `GCLocker Initiated GC` || ||
 || `_heap_inspection` || `Heap Inspection Initiated GC` || 在使用命令`jmap -histo:live`时触发的GC ||
-|| `_heap_dump` || `Heap Dump Initiated GC` || ||
+|| `_heap_dump` || `Heap Dump Initiated GC` || 在使用命令`jmap -dump:live,`时触发的GC ||
 || `_tenured_generation_full` || `Tenured Generation Full` || ||
 || `_permanent_generation_full` || `Permanent Generation Full` || ||
 || `_cms_generation_full` || `CMS Generation Full` || ||

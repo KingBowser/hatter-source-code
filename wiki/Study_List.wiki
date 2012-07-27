@@ -10,6 +10,8 @@
    * [Study_Java_HotSpot_Glossay]
    * [Study_Java_HotSpot_Arguments]
    * [Study_Java_HotSpot_OOME]
+   * [Study_Java_HotSpot_GCCause]
+   * [Study_Java_HotSpot_Conncurrent]
  * [Study_SVN]
 
  My Book list: [Study_List_Books]

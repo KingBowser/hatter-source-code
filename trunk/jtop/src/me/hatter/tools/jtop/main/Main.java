@@ -242,14 +242,10 @@ public class Main {
 
     static void usage() {
         System.out.println("Usage:");
-        System.out.println("java -jar jtop.jar [args]");
+        System.out.println("java -jar jtop.jar [options] <pid> [<interval> [<count>]]");
         System.out.println("-OR-");
-        System.out.println("java -cp jtop.jar jtop [args]");
-        System.out.println("    -pid <PID>                    Process ID");
-        System.out.println("    -port <PORT>                  Port (default: 1127)");
+        System.out.println("java -cp jtop.jar jtop [options] <pid> [<interval> [<count>]]");
         System.out.println("    -size <B|K|M|G|H>             Size, case insensitive (default: B, H for human)");
-        System.out.println("    -count <COUNT>                Dump Count (default: 1)");
-        System.out.println("    -sleep <MILLIS>               Sleep Mills (default: 2000)");
         System.out.println("    -thread <N>                   Thread Top N (default: 5)");
         System.out.println("    -stack <N>                    Stacktrace Top N (default: 8)");
         System.out.println("    --color                       Display color (default: off)");

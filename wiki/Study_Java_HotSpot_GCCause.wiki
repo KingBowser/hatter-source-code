@@ -1,7 +1,7 @@
 #summary GC Cause
 
 || *Enum* || *Readable* || *Description* ||
-|| `_no_gc` || `No GC` || ||
+|| `_no_gc` || `No GC` || 未发生过GC ||
 || `_java_lang_system_gc` || `System.gc()` || 通过`System.gc()`触发的GC，在HotSpot虚拟机中该操作触发FullGC，通过`-XX:-DisableExplicitGC`可以禁止该操作触发FullGC ||
 || `_full_gc_alot` || `FullGCAlot` || ||
 || `_scavenge_alot` || `ScavengeAlot` || ||

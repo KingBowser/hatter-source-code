@@ -35,5 +35,5 @@ http://rednaxelafx.iteye.com/blog/730461
 https://gist.github.com/956694
 }}}
 
-==java Performance==
+==Java Performance==
 [http://www.javaperformancetuning.com/]

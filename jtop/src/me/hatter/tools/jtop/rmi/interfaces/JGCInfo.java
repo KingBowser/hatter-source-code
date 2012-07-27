@@ -1,5 +1,6 @@
 package me.hatter.tools.jtop.rmi.interfaces;
 
+import java.beans.ConstructorProperties;
 import java.io.Serializable;
 
 public class JGCInfo implements Serializable {
@@ -11,6 +12,18 @@ public class JGCInfo implements Serializable {
     private long              collectionCount;
     private long              collectionTime;
 
+    public JGCInfo() {
+    }
+
+    @ConstructorProperties({ "name", "isValid", "memoryPoolNames", "collectionCount", "collectionTime" })
+    public JGCInfo(String name, boolean isValid, String[] memoryPoolNames, long collectionCount, long collectionTime) {
+        this.name = name;
+        this.isValid = isValid;
+        this.memoryPoolNames = memoryPoolNames;
+        this.collectionCount = collectionCount;
+        this.collectionTime = collectionTime;
+    }
+
     public String getName() {
         return name;
     }
@@ -19,11 +32,11 @@ public class JGCInfo implements Serializable {
         this.name = name;
     }
 
-    public boolean isValid() {
+    public boolean getIsValid() {
         return isValid;
     }
 
-    public void setValid(boolean isValid) {
+    public void setIsValid(boolean isValid) {
         this.isValid = isValid;
     }
 

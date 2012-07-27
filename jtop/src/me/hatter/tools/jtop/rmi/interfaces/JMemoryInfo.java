@@ -1,5 +1,6 @@
 package me.hatter.tools.jtop.rmi.interfaces;
 
+import java.beans.ConstructorProperties;
 import java.io.Serializable;
 
 public class JMemoryInfo implements Serializable {
@@ -8,6 +9,7 @@ public class JMemoryInfo implements Serializable {
     private JMemoryUsage      heap;
     private JMemoryUsage      nonHeap;
 
+    @ConstructorProperties({ "heap", "nonHeap" })
     public JMemoryInfo(JMemoryUsage heap, JMemoryUsage nonHeap) {
         this.heap = heap;
         this.nonHeap = nonHeap;

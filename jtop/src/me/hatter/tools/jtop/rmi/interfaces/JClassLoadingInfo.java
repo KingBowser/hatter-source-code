@@ -1,5 +1,6 @@
 package me.hatter.tools.jtop.rmi.interfaces;
 
+import java.beans.ConstructorProperties;
 import java.io.Serializable;
 
 public class JClassLoadingInfo implements Serializable {
@@ -9,6 +10,7 @@ public class JClassLoadingInfo implements Serializable {
     private int               loadedClassCount;
     private long              unloadedClassCount;
 
+    @ConstructorProperties({ "totalLoadedClassCount", "loadedClassCount", "unloadedClassCount" })
     public JClassLoadingInfo(long totalLoadedClassCount, int loadedClassCount, long unloadedClassCount) {
         this.totalLoadedClassCount = totalLoadedClassCount;
         this.loadedClassCount = loadedClassCount;

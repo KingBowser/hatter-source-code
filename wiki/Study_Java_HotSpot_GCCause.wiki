@@ -6,7 +6,7 @@
 || `_full_gc_alot` || `FullGCAlot` || ||
 || `_scavenge_alot` || `ScavengeAlot` || ||
 || `_allocation_profiler` || `Allocation Profiler` || ||
-|| `_jvmti_force_gc` || `JvmtiEnv ForceGarbageCollection` || ||
+|| `_jvmti_force_gc` || `JvmtiEnv ForceGarbageCollection` || 通过jvmti调用`JvmtiEnv::ForceGarbageCollection()`触发的强制GC ||
 || `_allocation_failure` || `Allocation Failure` || ||
 || `_gc_locker` || `GCLocker Initiated GC` || ||
 || `_heap_inspection` || `Heap Inspection Initiated GC` || ||

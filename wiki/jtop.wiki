@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#summary Java edition TOP.
 #labels java,jtop,top,jdk,jvm,agent,RMI,profiler,Featured
 
 = Introduction <g:plusone size="medium"></g:plusone> =

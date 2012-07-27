@@ -34,3 +34,6 @@ http://javasourcecode.org/html/open-source/jdk/jdk-6u23/sun/jvm/hotspot/CLHSDB.j
 http://rednaxelafx.iteye.com/blog/730461
 https://gist.github.com/956694
 }}}
+
+==java Performance==
+[http://www.javaperformancetuning.com/]

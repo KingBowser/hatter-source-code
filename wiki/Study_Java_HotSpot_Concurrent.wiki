@@ -1,6 +1,6 @@
 #summary Concurrent in Java, HotSpot
 
-
+现在的计算机的频率已经很难提升，但现在/将来的趋势是多核，如Nvidia的强大的GPU ^[8]^，Intel，ARM也在努力提升核心的数量。
 
 
 ===参数资料===
@@ -11,3 +11,7 @@
 `[5].` http://www.langyuweb.com/a/wangluozhishi/2012/0326/14674.html<br>
 `[6].` http://www.infoq.com/cn/articles/cf-java-thread<br>
 `[7].` http://www.goldendoc.org/2011/05/juc/<br>
+`[8].` http://cloud.csdn.net/a/20100926/279856.html<br>
+
+
+

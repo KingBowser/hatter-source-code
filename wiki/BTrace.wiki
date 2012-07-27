@@ -11,4 +11,5 @@ BTrace is a safe, dynamic tracing tool for the Java platform. BTrace can be used
  wget http://hatter-source-code.googlecode.com/svn/trunk/btracescripts/btrace/btrace-bin.tar.gz
 }}}
 
-Scripts: http://hatter-source-code.googlecode.com/svn/trunk/btracescripts/main/src/
+My btrace scripts: [http://hatter-source-code.googlecode.com/svn/trunk/btracescripts/main/src/]
+

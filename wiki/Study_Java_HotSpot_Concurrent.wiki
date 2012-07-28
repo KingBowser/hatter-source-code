@@ -16,8 +16,11 @@ CPU(Intel 4 core)结构Sample： ^[16]^<br>
 
 ==Java中对锁的优化==
 
+[TODO] ^[17]^<br>
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/synchronization.gif]<br>
+
 ===自旋锁与自适应自旋(Spinning Locking & Adaptive Spinning)===
-,
+[TODO]
 
 ===轻量级锁(Lightweight Locking)===
 轻量级锁本意是为了减少多线程进入互斥的几率，并不是要替代互斥。它利用了CPU原语Compare-And-Swap(CAS，汇编指令CMPXCHG)，尝试在进入互斥前，进行补救。 ^[13]^
@@ -106,5 +109,6 @@ TLAB 减少并发
 `[14].` http://icyfenix.iteye.com/blog/1018932<br>
 `[15].` http://en.wikipedia.org/wiki/Memory_barrier<br>
 `[16].` http://jakub.wartak.pl/dl/j2ee/sunJVM-on-intel-multicoreservers.pdf<br>
+`[17].` https://wikis.oracle.com/display/HotSpotInternals/Synchronization<br>
 
 

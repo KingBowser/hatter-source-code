@@ -2,6 +2,74 @@
 
 现在的计算机的频率已经很难提升，但现在/将来的趋势是多核，如Nvidia的强大的GPU ^[8]^，Intel，ARM也在努力提升核心的数量。
 
+在Java中通过锁来实现线程安全，Java通过monitorenter与monitorexit这两个控制多线程同步的bytecode原语实现锁，是JVM依赖操作系统互斥(mutex)来实现的，所以在JVM中锁的性能相对较大。互斥是一种会导致线程挂起，并在较短的时间内又需要重新调度回原线程的，是较为消耗资源的操作。 ^[13]^
+
+==Java中对锁的优化==
+
+===轻量级锁（Lightweight Locking）===
+轻量级锁本意是为了减少多线程进入互斥的几率，并不是要替代互斥。它利用了CPU原语Compare-And-Swap(CAS，汇编指令CMPXCHG)，尝试在进入互斥前，进行补救。
+
+>>>>>>>
+Java Object Header ^[10]^
+{{{
+ [Mark Word             ] 32/64 bits
+ [Class Metadata Address] 32/64 bits
+ [Array Length          ] 32/64 bits
+ 对象为两个字(Word)，数组为3个字
+ 
+ 对象的 Mark Word，同步相关的状态：
+ [ bitfields                      ][ tag bits ]  [ state              ]
+ ----------------------------------------------------------------------
+ [ hash              ][ age  ][ 0 ][ 01       ]  [ unlocked           ]
+ [ ptr to lock record             ][ 00       ]  [ lightweight locked ]
+ [ ptr to heavyweight record      ][ 00       ]  [ inflated           ]
+ [                                ][ 11       ]  [ marked for GC      ]
+ [ thread id ][ epoch ][ age ][ 0 ][ 01       ]  [biasable            ]
+}}}
+
+
+>>>>>>>
+Illusion: Locks are Fast ^11^
+Contended locks obviously block and must involve the OS
+ ● (Expect fairness from the OS)
+Uncontended locks are a dozen nano's or so
+ ● Biased locking: ~2-4 clocks (when it works)
+ ● Very fast user-mode locks otherwise
+Highly optimized because synchronized is so common
+
+Most lockings are not only uncontended, but performed repeatedly by the same thread ^[10]^
+>> Make it cheap for a single thread to reacquire a lock can be an optimization
+
+>>>>>>>
+Lock Coarsening example ^12^
+{{{
+public Point moveNW (Point p) {
+  synchronized (p) {
+    p.x += 10;
+  }
+  synchronized (p) {
+    p.y += 10;
+  }
+}
+
+public Point moveNW (Point p) {
+  synchronized (p) {
+    p.x += 10;
+    p.y += 10;
+  }
+}
+}}}
+
+
+>>>>>>>
+All modern JVMs incorporate light-weight locking
+ > Avoid associating an OS mutex / condition variable (heavy-weight lock) with each object
+Effective because most locking is uncontended – not competed by threads
+
+TLAB 减少并发
+
+Fasle Sharing ^[9]^
+内存在缓存系统中常以缓存行(cache line)为单位缓存。缓存行的大小则是2的指数，通常在 32~256 字节范围内，最常见的大小为 64 字节。
 
 ===参数资料===
 `[1].` http://www.infoq.com/cn/articles/zzm-java-hsdis-jvm<br>
@@ -12,6 +80,10 @@
 `[6].` http://www.infoq.com/cn/articles/cf-java-thread<br>
 `[7].` http://www.goldendoc.org/2011/05/juc/<br>
 `[8].` http://cloud.csdn.net/a/20100926/279856.html<br>
-
+`[9].` http://mechanical-sympathy.blogspot.com/2011/07/false-sharing.html<br>
+`[10].` http://edu.netbeans.org/contrib/slides/java-overview-and-java-se6.pdf<br>
+`[11].` http://www.azulsystems.com/blog/wp-content/uploads/2011/03/2011_WhatDoesJVMDo.pdf<br>
+`[12].` http://wiki.jvmlangsummit.com/pdf/10_Pampuch_vm_opts.pdf<br>
+`[13].` http://kenwublog.com/theory-of-lightweight-locking-upon-cas<br>
 
 

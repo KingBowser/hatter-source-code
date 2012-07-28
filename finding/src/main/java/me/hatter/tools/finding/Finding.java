@@ -98,7 +98,7 @@ public class Finding {
                             boolean _is_i = UnixArgsutil.ARGS.flags().contains("i");
                             String mln = _is_i ? ln.toLowerCase() : ln;
                             String oln = ln;
-                            String mse = _is_i ? search : search;
+                            String mse = _is_i ? search.toLowerCase() : search;
                             int matchIndex;
                             while ((matchIndex = mln.indexOf(mse)) >= 0) {
                                 outln += oln.substring(0, matchIndex);

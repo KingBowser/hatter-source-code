@@ -36,7 +36,7 @@ Java对象头结构(Java Object Header) ^[10]^
  [ thread id (23)][ epoch (2)][ age (4)][ 1 (1)][ 01    (2)]  [ biasable           ]
 }}}
 
-[TODO] ^[17]^<br>
+通过参数`-XX:+UseBiasedLocking`判断当前是否使用偏向锁（在JDK6，7中默认打开该参数），同步锁转换图如下： ^[17]^<br>
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/synchronization.gif]<br>
 
 ===自旋锁与自适应自旋(Spinning Locking & Adaptive Spinning)===

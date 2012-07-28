@@ -4,6 +4,8 @@
 
 =伪共享(False Sharing)=
 
+CPU(Intel 4 core)结构Sample： ^[16]^<br>
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/intel_4_core.png]<br><br>
 内存在缓存系统中常以缓存行(cache line)为单位缓存。缓存行的大小则是2的指数，通常在 32~256 字节范围内，最常见的大小为 64 字节。伪共享则是一个术语，在同时修改相关缓存行的独立变量时，在不知不觉的情况下影响不同线程的性能表现。 ^[9]^<br>
 详细图例如下：<br>
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/false_sharing.png]
@@ -103,5 +105,6 @@ TLAB 减少并发
 `[13].` http://kenwublog.com/theory-of-lightweight-locking-upon-cas<br>
 `[14].` http://icyfenix.iteye.com/blog/1018932<br>
 `[15].` http://en.wikipedia.org/wiki/Memory_barrier<br>
+`[16].` http://jakub.wartak.pl/dl/j2ee/sunJVM-on-intel-multicoreservers.pdf<br>
 
 

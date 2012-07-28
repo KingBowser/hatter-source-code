@@ -2,6 +2,9 @@
 
 现在的计算机的频率已经很难提升，但现在/将来的趋势是多核，如Nvidia的强大的GPU ^[8]^，Intel，ARM也在努力提升核心的数量。所以在现代计算机中，并发编程将成为趋势。
 
+=Java内存模型(JMM, Java Memory Model)=
+[TODO] ^[18]^
+
 =伪共享(False Sharing)=
 
 CPU(Intel 4 core)结构Sample： ^[16]^<br>
@@ -110,5 +113,6 @@ TLAB 减少并发
 `[15].` http://en.wikipedia.org/wiki/Memory_barrier<br>
 `[16].` http://jakub.wartak.pl/dl/j2ee/sunJVM-on-intel-multicoreservers.pdf<br>
 `[17].` https://wikis.oracle.com/display/HotSpotInternals/Synchronization<br>
+`[18].` http://en.wikipedia.org/wiki/Java_Memory_Model<br>
 
 

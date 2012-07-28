@@ -1,13 +1,15 @@
 #summary Concurrent in Java, HotSpot
 
-现在的计算机的频率已经很难提升，但现在/将来的趋势是多核，如Nvidia的强大的GPU ^[8]^，Intel，ARM也在努力提升核心的数量。
+现在的计算机的频率已经很难提升，但现在/将来的趋势是多核，如Nvidia的强大的GPU ^[8]^，Intel，ARM也在努力提升核心的数量。所以在现代计算机中，并发编程将成为趋势。
+
+=锁=
 
 在Java中通过锁来实现线程安全，Java通过monitorenter与monitorexit这两个控制多线程同步的bytecode原语实现锁，是JVM依赖操作系统互斥(mutex)来实现的，所以在JVM中锁的性能相对较大。互斥是一种会导致线程挂起，并在较短的时间内又需要重新调度回原线程的，是较为消耗资源的操作。 ^[13]^
 
 ==Java中对锁的优化==
 
-===轻量级锁（Lightweight Locking） ^[13]^===
-轻量级锁本意是为了减少多线程进入互斥的几率，并不是要替代互斥。它利用了CPU原语Compare-And-Swap(CAS，汇编指令CMPXCHG)，尝试在进入互斥前，进行补救。
+===轻量级锁（Lightweight Locking）===
+轻量级锁本意是为了减少多线程进入互斥的几率，并不是要替代互斥。它利用了CPU原语Compare-And-Swap(CAS，汇编指令CMPXCHG)，尝试在进入互斥前，进行补救。 ^[13]^
 
 >>>>>>>
 Java Object Header ^[10]^

@@ -7,7 +7,7 @@
 
 =伪共享(False Sharing)=
 
-CPU(Intel 4 core)结构Sample： ^[16]^<br>
+我更喜欢称之为“错误共享”，CPU(Intel 4 core)结构Sample： ^[16]^<br>
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/intel_4_core.png]<br><br>
 内存在缓存系统中常以缓存行(cache line)为单位缓存。缓存行的大小则是2的指数，通常在 32~256 字节范围内，最常见的大小为 64 字节。伪共享则是一个术语，在同时修改相关缓存行的独立变量时，在不知不觉的情况下影响不同线程的性能表现。 ^[9]^<br>
 详细图例如下：<br>
@@ -55,7 +55,7 @@ IBM位于东京的实验室发现，Java程序中的锁不但竞争很少，而�
 4. 更新对象头锁信息<br>
 
 ===锁膨胀(Lock Coarsening)==
-如果一系列的连续操作都对同一个对象反复加锁和解锁，甚至加锁操作是出现在循环体中的，那即使没有线程竞争，频繁地进行互斥同步操作也会导致不必要的性能损耗。如果虚拟机探测到有这样一串零碎的操作都对同一个对象加锁，将会把加锁同步的范围扩展（膨胀）到整个操作序列的外部，这样只需要加锁一次就可以了。 ^[14]^<br>
+如果一系列的连续操作都对同一个对象反复加锁和解锁，甚至加锁操作是出现在循环体中的，那即使没有线程竞争，频繁地进行互斥同步操作也会导致不必要的性能损耗。如果虚拟机探测到有这样一串零碎的操作都对同一个对象加锁，将会把加锁同步的范围扩展（膨胀）到整个操作序列的外部，这样只需要加锁一次就可以了。参数`-XX:+EliminateLocks`。 ^[14]^<br>
 锁膨胀的例子如下 ^[12]^:
 {{{
 public Point moveNW (Point p) {
@@ -76,12 +76,10 @@ public Point moveNW (Point p) {
 }}}
 
 ===锁削除(Lock Elision through Escape Analysis)===
-锁削除是指虚拟机即时编译器在运行时，对一些代码上要求同步，但是被检测到不可能存在共享数据竞争的锁进行削除。锁削除的主要判定依据来源于逃逸分析的数据支持，如果判断到一段代码中，在堆上的所有数据都不会逃逸出去被其他线程访问到，那就可以把它们当作栈上数据对待，认为它们是线程私有的，同步加锁自然就无须进行。 ^[14]^
+锁削除是指虚拟机即时编译器在运行时，对一些代码上要求同步，但是被检测到不可能存在共享数据竞争的锁进行削除。锁削除的主要判定依据来源于逃逸分析（参数：-XX:+DoEscapeAnalysis）的数据支持，如果判断到一段代码中，在堆上的所有数据都不会逃逸出去被其他线程访问到，那就可以把它们当作栈上数据对待，认为它们是线程私有的，同步加锁自然就无须进行。 ^[14]^
 
 >>>>>>>
 内存屏障(Memory barrier)，也被称为 membar 、 memory fence 或 fence instruction，是一类强制CPU或编译器使用对内存有序操作的指令。 ^[15]^
-
->>>>>>>
 
 
 >>>>>>>
@@ -95,13 +93,6 @@ Highly optimized because synchronized is so common
 
 Most lockings are not only uncontended, but performed repeatedly by the same thread ^[10]^
 >> Make it cheap for a single thread to reacquire a lock can be an optimization
-
->>>>>>>
-All modern JVMs incorporate light-weight locking
- > Avoid associating an OS mutex / condition variable (heavy-weight lock) with each object
-Effective because most locking is uncontended – not competed by threads
-
-TLAB 减少并发
 
 
 ===参数资料===

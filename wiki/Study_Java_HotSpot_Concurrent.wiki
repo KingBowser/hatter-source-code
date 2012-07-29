@@ -40,7 +40,8 @@ Java对象头结构(Java Object Header) ^[10]^
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/synchronization.gif]<br>
 
 ===自旋锁与自适应自旋(Spinning Locking & Adaptive Spinning)===
-[TODO]
+互斥同步对性能最大的影响是阻塞的实现，挂起线程和恢复线程的操作都需要转入内核态中完成，这些操作给系统的并发性能带来了很大的压力。同时，虚拟机的开发团队也注意到在许多应用上，共享数据的锁定状态只会持续很短的一段时间，为了这段时间去挂起和恢复线程并不值得。如果物理机器有一个以上的处理器，能让两个或以上的线程同时并行执行，我们就可以让后面请求锁的那个线程“稍等一会”，但不放弃处理器的执行时 间，看看持有锁的线程是否很快就会释放锁。为了让线程等待，我们只须让线程执行一个忙循环（自旋），这项技术就是所谓的自旋锁。 <br>
+在JDK 1.6中引入了自适应的自旋锁。自适应意味着自旋的时间不再固定了，而是由前一次在同一个锁上的自旋时间及锁的拥有者的状态来决定。如果在同一个锁对象上，自旋等待刚刚成功获得过锁，并且持有锁的线程正在运行中，那么虚拟机就会认为这次自旋也很有可能再次成功，进而它将允许自旋等待持续相对更长的时间， 比如100个循环。另一方面，如果对于某个锁，自旋很少成功获得过，那在以后要获取这个锁时将可能省略掉自旋过程，以避免浪费处理器资源。有了自适应自旋，随着程序运行和性能监控信息的不断完善，虚拟机对程序锁的状况预测就会越来越准确，虚拟机就会变得越来越“聪明”了。 ^[20]^
 
 ===轻量级锁(Lightweight Locking)===
 早期的研究表明，在Java中的大部分锁是不存在竞争的，基于这个研究结果发明了轻量级锁（当发生竞争时则膨胀到重量组锁） ^[19]^。轻量级锁本意是为了减少多线程进入互斥的几率，并不是要替代互斥。它利用了CPU原语Compare-And-Swap(CAS，汇编指令CMPXCHG)，尝试在进入互斥前，进行补救。 ^[13]^
@@ -123,5 +124,6 @@ TLAB 减少并发
 `[17].` https://wikis.oracle.com/display/HotSpotInternals/Synchronization<br>
 `[18].` http://en.wikipedia.org/wiki/Java_Memory_Model<br>
 `[19].` http://www.oracle.com/technetwork/java/javase/tech/biasedlocking-oopsla2006-preso-150106.pdf<br>
+`[20].` https://code.google.com/p/hatter-source-code/wiki/Study_Java_HotSpot_Glossay<br>
 
 

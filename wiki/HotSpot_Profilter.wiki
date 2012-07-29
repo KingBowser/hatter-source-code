@@ -24,6 +24,7 @@
  * https://wikis.oracle.com/display/OpenJdkBuilds/JDK+Glossary+of+Terms
  * http://www.oracle.com/technetwork/java/hotspotfaq-138619.html
  * http://www.ibm.com/developerworks/java/
+ * http://www.cs.umd.edu/~pugh/java/memoryModel/index.html
 
 
 `java  -agentlib:hprof=help`

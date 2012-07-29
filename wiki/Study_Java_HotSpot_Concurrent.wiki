@@ -18,7 +18,7 @@ Java内存模型如图：　^[22]^<br>
 详细图例如下：<br>
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/false_sharing.png]
 
-=锁(Locking)=
+=锁(Locking	)=
 
 在Java中通过锁来实现线程安全，Java通过monitorenter与monitorexit这两个控制多线程同步的bytecode原语实现锁，是JVM依赖操作系统互斥(mutex)来实现的，所以在JVM中锁的性能相对较大。互斥是一种会导致线程挂起，并在较短的时间内又需要重新调度回原线程的，是较为消耗资源的操作。 ^[13]^
 
@@ -83,11 +83,14 @@ public Point moveNW (Point p) {
 ===锁削除(Lock Elision through Escape Analysis)===
 锁削除是指虚拟机即时编译器在运行时，对一些代码上要求同步，但是被检测到不可能存在共享数据竞争的锁进行削除。锁削除的主要判定依据来源于逃逸分析（参数：-XX:+DoEscapeAnalysis）的数据支持，如果判断到一段代码中，在堆上的所有数据都不会逃逸出去被其他线程访问到，那就可以把它们当作栈上数据对待，认为它们是线程私有的，同步加锁自然就无须进行。 ^[14][21]^
 
+===可重入锁(ReentrantLock)===
+java.util.concurrent.lock 中的 Lock 框架是锁定的一个抽象，它允许把锁定的实现作为 Java 类，而不是作为语言的特性来实现。这就为 Lock 的多种实现留下了空间，各种实现可能有不同的调度算法、性能特性或者锁定语义。 ReentrantLock 类实现了 Lock ，它拥有与 synchronized 相同的并发性和内存语义，但是添加了类似锁投票、定时锁等候和可中断锁等候的一些特性。此外，它还提供了在激烈争用情况下更佳的性能。（换句话说，当许多线程都想访问共享资源时，JVM 可以花更少的时候来调度线程，把更多时间用在执行线程上。） ^[2]^
+
 <br><br><br>
 
 ===参数资料===
 `[1].` http://www.infoq.com/cn/articles/zzm-java-hsdis-jvm<br>
-`[2].` http://blog.csdn.net/fw0124/article/details/6672522<br>
+`[2].` http://www.ibm.com/developerworks/cn/java/j-jtp10264/index.html<br>
 `[3].` http://kenwublog.com/illustrate-memory-reordering-in-cpu<br>
 `[4].` http://hi.baidu.com/ajf8/blog/item/05889719727b691934fa4178.html<br>
 `[5].` http://www.langyuweb.com/a/wangluozhishi/2012/0326/14674.html<br>

@@ -3,7 +3,11 @@
 现在的计算机的频率已经很难提升，但现在/将来的趋势是多核，如Nvidia的强大的GPU ^[8]^，Intel，ARM也在努力提升核心的数量。所以在现代计算机中，并发编程将成为趋势。
 
 =Java内存模型(JMM, Java Memory Model)=
-[TODO] ^[18]^
+
+Java内存模型如图：　^[22]^<br>
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/java_memory_model.png]<br>
+
+[TODO] ^[18][22]^
 
 =伪共享(False Sharing)=
 
@@ -117,4 +121,5 @@ Most lockings are not only uncontended, but performed repeatedly by the same thr
 `[19].` http://www.oracle.com/technetwork/java/javase/tech/biasedlocking-oopsla2006-preso-150106.pdf<br>
 `[20].` https://code.google.com/p/hatter-source-code/wiki/Study_Java_HotSpot_Glossay<br>
 `[21].` http://home.comcast.net/~pjbishop/Dave/MustangSync.pdf<br>
+`[22].` http://www.javaol.net/2010/10/java-memory-model/<br>
 

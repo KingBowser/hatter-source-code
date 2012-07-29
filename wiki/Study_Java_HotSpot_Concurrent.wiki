@@ -7,7 +7,7 @@
 Java内存模型如图：　^[22]^<br>
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/java_memory_model.png]<br>
 
-[TODO] ^[18][22]^
+根据Java Language Specification中的说明, jvm系统中存在一个主内存(Main Memory或Java Heap Memory)，Java中所有变量都储存在主存中，对于所有线程都是共享的。每条线程都有自己的工作内存(Working Memory)，工作内存中保存的是主存中某些变量的拷贝，线程对所有变量的操作都是在工作内存中进行，线程之间无法相互直接访问，变量传递均需要通过主存完成。 ^[18][22]^
 
 =伪共享(False Sharing)=
 
@@ -117,7 +117,7 @@ Most lockings are not only uncontended, but performed repeatedly by the same thr
 `[15].` http://en.wikipedia.org/wiki/Memory_barrier<br>
 `[16].` http://jakub.wartak.pl/dl/j2ee/sunJVM-on-intel-multicoreservers.pdf<br>
 `[17].` https://wikis.oracle.com/display/HotSpotInternals/Synchronization<br>
-`[18].` http://en.wikipedia.org/wiki/Java_Memory_Model<br>
+`[18].` http://kenwublog.com/explain-java-memory-model-in-detail<br>
 `[19].` http://www.oracle.com/technetwork/java/javase/tech/biasedlocking-oopsla2006-preso-150106.pdf<br>
 `[20].` https://code.google.com/p/hatter-source-code/wiki/Study_Java_HotSpot_Glossay<br>
 `[21].` http://home.comcast.net/~pjbishop/Dave/MustangSync.pdf<br>

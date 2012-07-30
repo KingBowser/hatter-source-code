@@ -127,7 +127,8 @@ new long[3]
 [[2]:      8 bytes] 40
 }}}
 
-`MemoryLayoutSpecification`:
+<br><br>
+`MemoryLayoutSpecification` ^[2]^:
 {{{
   /**
    * Describes constant memory overheads for various constructs in a JVM implementation.

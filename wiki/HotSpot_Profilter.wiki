@@ -26,6 +26,7 @@
  * http://www.oracle.com/technetwork/java/hotspotfaq-138619.html
  * http://www.ibm.com/developerworks/java/
  * http://www.cs.umd.edu/~pugh/java/memoryModel/index.html
+ * http://www.oracle.com/technetwork/java/whitepaper-135217.html
 
 
 `java  -agentlib:hprof=help`

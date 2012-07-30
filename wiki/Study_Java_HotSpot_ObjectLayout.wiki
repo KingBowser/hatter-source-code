@@ -16,10 +16,7 @@
 
 <br><br>
 
-<table>
- <tbody>
-  <tr>
-   <td>
+===示例1：===
 {{{
 class MyClass {
     byte a;
@@ -29,8 +26,7 @@ class MyClass {
     Object f;        
 }
 }}}
-   </td>
-   <td>
+`>>>>`
 {{{
 [HEADER:  8 bytes]  8
 [e:       8 bytes] 16
@@ -41,13 +37,6 @@ class MyClass {
 [f:       4 bytes] 28
 [padding: 4 bytes] 32
 }}}
-   </td>
-  </tr>
- </tbody>
-</table>
-
-===示例1：===
-`>>>>`
 
 ===示例2：===
 {{{

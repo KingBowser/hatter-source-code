@@ -14,6 +14,93 @@
 ====规则4：父类的最后一个属性和子类的第一个属性按4字节对齐====
 ====规则5：如果子类的第一个属性是long或double，和父类无法按8字节对齐，那么JVM会按int，short，byte和reference的顺序将一个属性放到子类前直到空隙被填满====
 
+示例1：
+{{{
+class MyClass {
+    byte a;
+    int c;
+    boolean d;
+    long e;
+    Object f;        
+}
+}}}
+`>>>>`
+{{{
+[HEADER:  8 bytes]  8
+[e:       8 bytes] 16
+[c:       4 bytes] 20
+[a:       1 byte ] 21
+[d:       1 byte ] 22
+[padding: 2 bytes] 24
+[f:       4 bytes] 28
+[padding: 4 bytes] 32
+}}}
+
+示例2：
+{{{
+class A {
+   long a;
+   int b;
+   int c;
+}
+
+class B extends A {
+   long d;
+}
+}}}
+`>>>>`
+{{{
+[HEADER:  8 bytes]  8
+[a:       8 bytes] 16
+[b:       4 bytes] 20
+[c:       4 bytes] 24
+[d:       8 bytes] 32
+}}}
+
+示例3：
+{{{
+class A {
+   byte a;
+}
+
+class B {
+   byte b;
+}
+}}}
+`>>>>`
+{{{
+[HEADER:  8 bytes]  8
+[a:       1 byte ]  9
+[padding: 3 bytes] 12
+[b:       1 byte ] 13
+[padding: 3 bytes] 16
+}}}
+
+示例4：
+{{{
+class A {
+  byte a;
+}
+
+class B {
+  long b;
+  short c;  
+  byte d;
+}
+}}}
+`>>>>`
+{{{
+[HEADER:  8 bytes]  8
+[a:       1 byte ]  9
+[padding: 3 bytes] 12
+[c:       2 bytes] 14
+[d:       1 byte ] 15
+[padding: 1 byte ] 16
+[b:       8 bytes] 24
+}}}
+
+
+<br><br>
 
 ===参数资料===
 `[1].` http://www.codeinstructions.com/2008/12/java-objects-memory-structure.html<br>

@@ -127,8 +127,72 @@ new long[3]
 [[2]:      8 bytes] 40
 }}}
 
+32位：
+{{{
+new MemoryLayoutSpecification() {
+    @Override public int getArrayHeaderSize() {
+        return 12;
+    }
+    @Override public int getObjectHeaderSize() {
+        return 8;
+    }
+    @Override public int getObjectPadding() {
+        return 8;
+    }
+    @Override public int getReferenceSize() {
+        return 4;
+    }
+    @Override public int getSuperclassFieldPadding() {
+        return 4;
+    }
+}
+}}}
+
+64位压缩指针：
+{{{
+new MemoryLayoutSpecification() {
+          @Override public int getArrayHeaderSize() {
+            return 16;
+          }
+          @Override public int getObjectHeaderSize() {
+            return 12;
+          }
+          @Override public int getObjectPadding() {
+            return 8;
+          }
+          @Override public int getReferenceSize() {
+            return 4;
+          }
+          @Override public int getSuperclassFieldPadding() {
+            return 4;
+          }
+}
+}}}
+
+64位：
+{{{
+new MemoryLayoutSpecification() {
+      @Override public int getArrayHeaderSize() {
+        return 24;
+      }
+      @Override public int getObjectHeaderSize() {
+        return 16;
+      }
+      @Override public int getObjectPadding() {
+        return 8;
+      }
+      @Override public int getReferenceSize() {
+        return 8;
+      }
+      @Override public int getSuperclassFieldPadding() {
+        return 8;
+      }
+}
+}}}
+
 
 <br><br>
 
 ===参数资料===
 `[1].` http://www.codeinstructions.com/2008/12/java-objects-memory-structure.html<br>
+`[2].` https://github.com/twitter/commons/blob/master/src/java/com/twitter/common/objectsize/ObjectSizeCalculator.java<br>

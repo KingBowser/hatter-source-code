@@ -15,7 +15,11 @@
 ====规则5：如果子类的第一个属性是long或double，和父类无法按8字节对齐，那么JVM会按int，short，byte和reference的顺序将一个属性放到子类前直到空隙被填满====
 
 <br><br>
-===示例1：===
+
+<table>
+ <tbody>
+  <tr>
+   <td>
 {{{
 class MyClass {
     byte a;
@@ -25,7 +29,8 @@ class MyClass {
     Object f;        
 }
 }}}
-`>>>>`
+   </td>
+   <td>
 {{{
 [HEADER:  8 bytes]  8
 [e:       8 bytes] 16
@@ -36,6 +41,13 @@ class MyClass {
 [f:       4 bytes] 28
 [padding: 4 bytes] 32
 }}}
+   </td>
+  </tr>
+ </tbody>
+</table>
+
+===示例1：===
+`>>>>`
 
 ===示例2：===
 {{{
@@ -104,7 +116,7 @@ class B {
 {{{
 new boolean[3]
 }}}
- `>>>>`
+`>>>>`
 {{{
 [HEADER:  12 bytes] 12
 [[0]:      1 byte ] 13
@@ -117,7 +129,7 @@ new boolean[3]
  {{{
 new long[3]
 }}}
- `>>>>`<br>
+`>>>>`
 {{{
 [HEADER:  12 bytes] 12
 [padding:  4 bytes] 16

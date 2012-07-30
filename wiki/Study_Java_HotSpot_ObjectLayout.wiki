@@ -14,7 +14,7 @@
 ====规则4：父类的最后一个属性和子类的第一个属性按4字节对齐====
 ====规则5：如果子类的第一个属性是long或double，和父类无法按8字节对齐，那么JVM会按int，short，byte和reference的顺序将一个属性放到子类前直到空隙被填满====
 
-示例1：
+===示例1：===
 {{{
 class MyClass {
     byte a;
@@ -36,7 +36,7 @@ class MyClass {
 [padding: 4 bytes] 32
 }}}
 
-示例2：
+===示例2：===
 {{{
 class A {
    long a;

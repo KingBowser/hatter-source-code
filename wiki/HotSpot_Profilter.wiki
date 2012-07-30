@@ -3,6 +3,7 @@
 = Guide to JavaSE 6 =
 
 || *URL* || *Description* ||
+|| http://java.sun.com/products/hotspot/whitepaper.html || White Paper: The Java HotSpot Performance Engine Architecture ||
 || http://openjdk.java.net/groups/hotspot/docs/HotSpotGlossary.html || HotSpot Glossary of Terms. ||
 || http://openjdk.java.net/groups/hotspot/docs/RuntimeOverview.html || HotSpot Runtime Overview. ||
 || http://openjdk.java.net/groups/hotspot/docs/Serviceability.html || Serviceability in HotSpot. ||

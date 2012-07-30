@@ -6,38 +6,37 @@ Time in ZooKeeper
 ZooKeeper tracks time multiple ways:
 
  * Zxid
-Every change to the ZooKeeper state receives a stamp in the form of a zxid (ZooKeeper Transaction Id). This exposes the total ordering of all changes to ZooKeeper. Each change will have a unique zxid and if zxid1 is smaller than zxid2 then zxid1 happened before zxid2.
+ Every change to the ZooKeeper state receives a stamp in the form of a zxid (ZooKeeper Transaction Id). This exposes the total ordering of all changes to ZooKeeper. Each change will have a unique zxid and if zxid1 is smaller than zxid2 then zxid1 happened before zxid2.
  * Version numbers
-Every change to a a node will cause an increase to one of the version numbers of that node. The three version numbers are version (number of changes to the data of a znode), cversion (number of changes to the children of a znode), and aversion (number of changes to the ACL of a znode).
+ Every change to a a node will cause an increase to one of the version numbers of that node. The three version numbers are version (number of changes to the data of a znode), cversion (number of changes to the children of a znode), and aversion (number of changes to the ACL of a znode).
  * Ticks
-When using multi-server ZooKeeper, servers use ticks to define timing of events such as status uploads, session timeouts, connection timeouts between peers, etc. The tick time is only indirectly exposed through the minimum session timeout (2 times the tick time); if a client requests a session timeout less than the minimum session timeout, the server will tell the client that the session timeout is actually the minimum session timeout.
+ When using multi-server ZooKeeper, servers use ticks to define timing of events such as status uploads, session timeouts, connection timeouts between peers, etc. The tick time is only indirectly exposed through the minimum session timeout (2 times the tick time); if a client requests a session timeout less than the minimum session timeout, the server will tell the client that the session timeout is actually the minimum session timeout.
  * Real time
-ZooKeeper doesn't use real time, or clock time, at all except to put timestamps into the stat structure on znode creation and znode modification.
+ ZooKeeper doesn't use real time, or clock time, at all except to put timestamps into the stat structure on znode creation and znode modification.
 
 ZooKeeper Stat Structure
 The Stat structure for each znode in ZooKeeper is made up of the following fields:
 
  * czxid
-The zxid of the change that caused this znode to be created.
+ The zxid of the change that caused this znode to be created.
  * mzxid
-The zxid of the change that last modified this znode.
+ The zxid of the change that last modified this znode.
  * ctime
-The time in milliseconds from epoch when this znode was created.
+ The time in milliseconds from epoch when this znode was created.
  * mtime
-The time in milliseconds from epoch when this znode was last modified.
+ The time in milliseconds from epoch when this znode was last modified.
  * version
-The number of changes to the data of this znode.
+ The number of changes to the data of this znode.
  * cversion
-The number of changes to the children of this znode.
+ The number of changes to the children of this znode.
  * aversion
-The number of changes to the ACL of this znode.
+ The number of changes to the ACL of this znode.
  * ephemeralOwner
-The session id of the owner of this znode if the znode is an ephemeral node. If it is not an ephemeral node, it will be zero.
+ The session id of the owner of this znode if the znode is an ephemeral node. If it is not an ephemeral node, it will be zero.
  * dataLength
-The length of the data field of this znode.
+ The length of the data field of this znode.
  * numChildren
-The number of children of this znode.
+ The number of children of this znode.
 
 ===参考资料===
 `[1].` http://zookeeper.apache.org/doc/r3.3.3/zookeeperProgrammers.html<br>
-

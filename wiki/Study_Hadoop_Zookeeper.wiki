@@ -13,29 +13,28 @@ When using multi-server ZooKeeper, servers use ticks to define timing of events 
 *Real time*<br>
 ZooKeeper doesn't use real time, or clock time, at all except to put timestamps into the stat structure on znode creation and znode modification.<br>
 
-ZooKeeper Stat Structure
-The Stat structure for each znode in ZooKeeper is made up of the following fields:
-
- * czxid
- The zxid of the change that caused this znode to be created.
- * mzxid
- The zxid of the change that last modified this znode.
- * ctime
- The time in milliseconds from epoch when this znode was created.
- * mtime
- The time in milliseconds from epoch when this znode was last modified.
- * version
- The number of changes to the data of this znode.
- * cversion
- The number of changes to the children of this znode.
- * aversion
- The number of changes to the ACL of this znode.
- * ephemeralOwner
- The session id of the owner of this znode if the znode is an ephemeral node. If it is not an ephemeral node, it will be zero.
- * dataLength
- The length of the data field of this znode.
- * numChildren
- The number of children of this znode.
+ZooKeeper Stat Structure<br>
+The Stat structure for each znode in ZooKeeper is made up of the following fields:<br>
+*czxid*<br>
+The zxid of the change that caused this znode to be created.<br>
+*mzxid*<br>
+The zxid of the change that last modified this znode.<br>
+*ctime*<br>
+The time in milliseconds from epoch when this znode was created.<br>
+*mtime*<br>
+The time in milliseconds from epoch when this znode was last modified.<br>
+*version*<br>
+The number of changes to the data of this znode.<br>
+*cversion*<br>
+The number of changes to the children of this znode.<br>
+*aversion*<br>
+The number of changes to the ACL of this znode.<br>
+*ephemeralOwner*<br>
+The session id of the owner of this znode if the znode is an ephemeral node. If it is not an ephemeral node, it will be zero.<br>
+*dataLength*<br>
+The length of the data field of this znode.<br>
+*numChildren*<br>
+The number of children of this znode.<br>
 
 ===参考资料===
 `[1].` http://zookeeper.apache.org/doc/r3.3.3/zookeeperProgrammers.html<br>

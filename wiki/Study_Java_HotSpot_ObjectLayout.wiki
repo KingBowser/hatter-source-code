@@ -10,7 +10,7 @@
   对象属性按各自间隙对齐，即按4字节对齐，通常情况下如果按4字节对象，那么读入4个字节到寄存器时性能要高的多
 ====规则3：属于不同类的类属性不会混合在一起，顺序是先父类（按规则2排序），接下来是子类===
 ====规则4：父类的最后一个属性和子类的第一个属性按4字节对齐====
- * Rule 5: When the first field of a subclass is a double or long and the superclass doesn't align to an 8 bytes boundary, JVM will break rule 2 and try to put an int, then shorts, then bytes, and then references at the beginning of the space reserved to the subclass until it fills the gap.
+====规则5：如果子类的第一个属性是long或double，和父类无法按8字节对齐，那么JVM会按int，short，byte和reference的顺序将一个属性放到子类前直到空隙被填满====
 
 
 ===参数资料===

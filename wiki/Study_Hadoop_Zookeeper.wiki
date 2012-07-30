@@ -4,7 +4,7 @@
 
 ZooKeeper中的时间<br>
 ZooKeeper中通过多种方式来表达时间：<br>
-*Zxid*
+*Zxid*<br>
 Every change to the ZooKeeper state receives a stamp in the form of a zxid (ZooKeeper Transaction Id). This exposes the total ordering of all changes to ZooKeeper. Each change will have a unique zxid and if zxid1 is smaller than zxid2 then zxid1 happened before zxid2.
  *Version numbers*
  Every change to a a node will cause an increase to one of the version numbers of that node. The three version numbers are version (number of changes to the data of a znode), cversion (number of changes to the children of a znode), and aversion (number of changes to the ACL of a znode).

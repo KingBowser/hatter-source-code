@@ -1,10 +1,10 @@
 #summary Java Object Layout
 
- Rule 1: every object is aligned to an 8 bytes granularity.
- Rule 2: class attributes are ordered like this: first longs and doubles; then ints and floats; then chars and shorts; then bytes and booleans, and last the references. The attributes are aligned to their own granularity.
- Rule 3: Fields that belong to different classes of the hierarchy are NEVER mixed up together. Fields of the superclass come first, obeying rule 2, followed by the fields of the subclass.
- Rule 4: Between the last field of the superclass and the first field of the subclass there must be padding to align to a 4 bytes boundary.
- Rule 5: When the first field of a subclass is a double or long and the superclass doesn't align to an 8 bytes boundary, JVM will break rule 2 and try to put an int, then shorts, then bytes, and then references at the beginning of the space reserved to the subclass until it fills the gap.
+ * Rule 1: every object is aligned to an 8 bytes granularity.
+ * Rule 2: class attributes are ordered like this: first longs and doubles; then ints and floats; then chars and shorts; then bytes and booleans, and last the references. The attributes are aligned to their own granularity.
+ * Rule 3: Fields that belong to different classes of the hierarchy are NEVER mixed up together. Fields of the superclass come first, obeying rule 2, followed by the fields of the subclass.
+ * Rule 4: Between the last field of the superclass and the first field of the subclass there must be padding to align to a 4 bytes boundary.
+ * Rule 5: When the first field of a subclass is a double or long and the superclass doesn't align to an 8 bytes boundary, JVM will break rule 2 and try to put an int, then shorts, then bytes, and then references at the beginning of the space reserved to the subclass until it fills the gap.
 
 
 ===参数资料===

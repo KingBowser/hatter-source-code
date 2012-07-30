@@ -12,6 +12,8 @@
    * [Study_Java_HotSpot_OOME]
    * [Study_Java_HotSpot_GCCause]
    * [Study_Java_HotSpot_Concurrent]
+   * [Study_Java_HotSpot_ObjectLayout]
+   * [Study_Java_HotSpot_ClassLayout]
  * [Study_SVN]
 
  My Book list: [Study_List_Books]

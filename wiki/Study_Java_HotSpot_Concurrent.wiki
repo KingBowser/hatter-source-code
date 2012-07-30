@@ -8,7 +8,11 @@ Java内存模型如图：　^[22]^<br>
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/java_memory_model.png]<br>
 
 根据Java Language Specification中的说明, jvm系统中存在一个主内存(Main Memory或Java Heap Memory)，Java中所有变量都储存在主存中，对于所有线程都是共享的。每条线程都有自己的工作内存(Working Memory)，工作内存中保存的是主存中某些变量的拷贝，线程对所有变量的操作都是在工作内存中进行，线程之间无法相互直接访问，变量传递均需要通过主存完成。 ^[18][22]^<br>
+在JMM中，多线程间共享数据需要内存屏障
 内存屏障(Memory barrier)，也被称为 membar 、 memory fence 或 fence instruction，是一类强制CPU或编译器使用对内存有序操作的指令。 ^[15]^<br>
+鉴于CPU和编译器都可能对指令进行重排序，所以我将内存屏障分为两种：<br>
+`*` 编译器级别的：防止编译器对指令进行重排序，例如GCC的asm volatile("" ::: "memory")等等。<br>
+`*` 处理器级别的：防止处理器对指令进行重排序，例如X86的lock，lfence()，sfenec()等等 ^[24]^<br>
 对于在内存屏障的实现参看如下代码：<br>
 {{{
 public class Singleton {
@@ -151,4 +155,5 @@ java.util.concurrent.lock 中的 Lock 框架是锁定的一个抽象，它允许
 `[21].` http://home.comcast.net/~pjbishop/Dave/MustangSync.pdf<br>
 `[22].` http://www.javaol.net/2010/10/java-memory-model/<br>
 `[23].` http://www.ibm.com/developerworks/cn/linux/l-cn-spinlock/index.html<br>
+`[24].` http://www.khotyn.com/2011/12/15/memory_barrier/<br>
 

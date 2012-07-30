@@ -1,7 +1,7 @@
 #summary Java Object Layout
 
- 规则1：所有对象都按8字节对齐
- 规则2：类属性按如下规则排序：
+====规则1：所有对象都按8字节对齐====
+====规则2：类属性按如下规则排序：====
   `1. doubles and longs`<br>
   `2. ints and floats`<br>
   `3. shorts and chars`<br>

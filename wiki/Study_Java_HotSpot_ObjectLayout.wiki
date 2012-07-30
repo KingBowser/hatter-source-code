@@ -7,7 +7,7 @@
 `3. shorts and chars`<br>
 `4. booleans and bytes`<br>
 `5. references`<br>
-  对象按8字节对齐
+  对象属性按各自间隙对齐
  * Rule 2: class attributes are ordered like this: first longs and doubles; then ints and floats; then chars and shorts; then bytes and booleans, and last the references. The attributes are aligned to their own granularity.
  * Rule 3: Fields that belong to different classes of the hierarchy are NEVER mixed up together. Fields of the superclass come first, obeying rule 2, followed by the fields of the subclass.
  * Rule 4: Between the last field of the superclass and the first field of the subclass there must be padding to align to a 4 bytes boundary.

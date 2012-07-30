@@ -36,7 +36,7 @@ Java对象头结构(Java Object Header) ^[10]^
  -----------------------------------------------------------------------------------
  [ hash                  (25)][ age (4)][ 0 (1)][ 01    (2)]  [ unlocked           ]
  [ ptr to lock record                      (29)][ 00    (2)]  [ lightweight locked ]
- [ ptr to heavyweight record               (29)][ 00    (2)]  [ inflated           ]
+ [ ptr to heavyweight record               (29)][ 10    (2)]  [ inflated           ]
  [                                         (29)][ 11    (2)]  [ marked for GC      ]
  [ thread id (23)][ epoch (2)][ age (4)][ 1 (1)][ 01    (2)]  [ biasable           ]
 }}}

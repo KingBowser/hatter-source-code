@@ -1,12 +1,12 @@
 #summary Java Object Layout
 
- * 规则1：所有对象都按8字节对齐
- * 规则2：类属性按如下规则排序：
-  # long, double
-  # int, float
-  # char, short
-  # byte, boolean
-  # reference
+ 规则1：所有对象都按8字节对齐
+ 规则2：类属性按如下规则排序：
+`1. doubles and longs`
+`2. ints and floats`
+`3. shorts and chars`
+`4. booleans and bytes`
+`5. references`
   对象按8字节对齐
  * Rule 2: class attributes are ordered like this: first longs and doubles; then ints and floats; then chars and shorts; then bytes and booleans, and last the references. The attributes are aligned to their own granularity.
  * Rule 3: Fields that belong to different classes of the hierarchy are NEVER mixed up together. Fields of the superclass come first, obeying rule 2, followed by the fields of the subclass.

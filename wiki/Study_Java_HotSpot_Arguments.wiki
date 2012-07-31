@@ -10,6 +10,8 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `-client`  || 即C1编译器，启动快，适合GUI程序 ||
 || `-server`  || 即C2编译器，整体性能佳，适合服务器程序 ||
 
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/client_server_plug.gif]
+
 ^注^ C1和C2是两个不同的二进制代码系统。它们是一个系统下不同的编译(JIT)接口,C1系统优化的目的是最快的启动时间和小内存占用，C2系统优化目的是最佳总体运行性能。一般C1系统更适合交互的应用程序，如GUI程序。它们的不同步包括但不仅限于：编译策略，默认堆大小，内联策略。 ^[14]^
 
 ==编译模式==

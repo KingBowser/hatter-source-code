@@ -62,14 +62,15 @@ CPU访问缓存及内存的速度比较： ^[25]^<br>
 
 =缓存一致性协议(MESI)=
 
-在MESI协议中，每个Cache line有4个状态，可用2个bit表示，它们分别是 ^[26]^：
+在MESI协议中，每个Cache line有4个状态，可用2个bit表示，它们分别是 ^[26]^：<br>
 || *状态* || *描述* ||
 || M(Modified) || 这行数据有效，数据被修改了，和内存中的数据不一致，数据只存在于本Cache中。 ||
 || E(Exclusive) || 这行数据有效，数据和内存中的数据一致，数据只存在于本Cache中。 ||
 || S(Shared) || 这行数据有效，数据和内存中的数据一致，数据存在于很多Cache中。 ||
 || I(Invalid) || 这行数据无效 ||
+
 状态迁移图：<br>
-[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/mesi.jpeg]
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/mesi.jpeg]<br>
 
 =锁(Locking	)=
 

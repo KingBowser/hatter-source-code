@@ -132,7 +132,7 @@ java.util.concurrent.lock 中的 Lock 框架是锁定的一个抽象，它允许
 排队自旋锁(FIFO Ticket Spinlock)是 Linux 内核 2.6.25 版本引入的一种新型自旋锁，它通过保存执行线程申请锁的顺序信息解决了传统自旋锁的“不公平”问题。排队自旋锁的代码由 Linux 内核开发者 Nick Piggin 实现，目前只针对 x86 体系结构(包括 IA32 和 x86_64)。 ^[23]^
 
 
-<br><br><br>
+<br><br>
 
 ===参数资料===
 `[1].` http://www.infoq.com/cn/articles/zzm-java-hsdis-jvm<br>

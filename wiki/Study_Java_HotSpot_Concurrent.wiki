@@ -47,10 +47,7 @@ public class Singleton {
 }}}
 通过对比发现，关键变化在于有volatile修饰的变量，赋值后（前面mov %eax,0x150(%esi)这句便是赋值操作）多执行了一个“lock addl $0x0,(%esp)”操作，这个操作相当于一个内存屏障，只有一个CPU访问内存时，并不需要内存屏障；但如果有两个或更多CPU访问同一块内存，且其中有一个在观测另一个，就需要内存屏障来保证一致性了。<br>
 指令“addl $0x0,(%esp)”显然是一个空操作，关键在于lock前缀，查询IA32手册，它的作用是使得本CPU的Cache写入了内存，该写入动作也会引起别的CPU invalidate其Cache。所以通过这样一个空操作，可让前面volatile变量的修改对其他CPU立即可见。<br>
-那为何说它禁止指令重排序呢？从硬件架构上讲，指令重排序是指CPU采用了允许将多条指令不按程序规定的顺序分开发送给各相应电路单元处理。但并不是说指令任意重排，CPU需要能正确处理指令依赖情况保障程序能得出正确的执行结果。譬如指令1把地址A中的值加10，指令2把地址A中的值乘以2，指令3把地址B中的值减去3，这时指令1和指令2是有依赖的，它们之间的顺序不能重排——`(A+10）*2`与`A*2+10`显然不相等，但指令3可以重排到指令1、2之前或者中间，只要保证CPU执行后面依赖到A、B值的操作时能获取到正确的A和B值即可。所以在本内CPU中，重排序看起来依然是有序的。因此，lock addl $0x0,(%esp)指令把修改同步到内存时，所有之前的操作都已经执行完成，这样便形成了“指令重排序无法越过内存屏障”的效果。 ^[1]^<br>
-
-CPU访问缓存及内存的速度： ^[25]^
-[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/intel_nehalem.png]
+那为何说它禁止指令重排序呢？从硬件架构上讲，指令重排序是指CPU采用了允许将多条指令不按程序规定的顺序分开发送给各相应电路单元处理。但并不是说指令任意重排，CPU需要能正确处理指令依赖情况保障程序能得出正确的执行结果。譬如指令1把地址A中的值加10，指令2把地址A中的值乘以2，指令3把地址B中的值减去3，这时指令1和指令2是有依赖的，它们之间的顺序不能重排——`(A+10）*2`与`A*2+10`显然不相等，但指令3可以重排到指令1、2之前或者中间，只要保证CPU执行后面依赖到A、B值的操作时能获取到正确的A和B值即可。所以在本内CPU中，重排序看起来依然是有序的。因此，lock addl $0x0,(%esp)指令把修改同步到内存时，所有之前的操作都已经执行完成，这样便形成了“指令重排序无法越过内存屏障”的效果。 ^[1]^
 
 =伪共享(False Sharing)=
 
@@ -58,7 +55,10 @@ CPU访问缓存及内存的速度： ^[25]^
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/intel_4_core.png]<br><br>
 内存在缓存系统中常以缓存行(cache line)为单位缓存。缓存行的大小则是2的指数，通常在 32~256 字节范围内，最常见的大小为 64 字节。伪共享则是一个术语，在同时修改相关缓存行的独立变量时，在不知不觉的情况下影响不同线程的性能表现。 ^[9]^<br>
 详细图例如下：<br>
-[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/false_sharing.png]
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/false_sharing.png]<br>
+
+CPU访问缓存及内存的速度比较： ^[25]^<br>
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/intel_nehalem.png]<br>
 
 =锁(Locking	)=
 

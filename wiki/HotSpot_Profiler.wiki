@@ -29,6 +29,7 @@
  * http://www.oracle.com/technetwork/java/whitepaper-135217.html
  * http://www.oracle.com/technetwork/java/performance-138178.html
  * http://www.oracle.com/technetwork/java/javase/tech/publications-140132.html
+ * http://kenai.com/projects/base-hsdis
 
 
 `java  -agentlib:hprof=help`

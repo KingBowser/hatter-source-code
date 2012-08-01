@@ -60,6 +60,17 @@ public class Singleton {
 CPU访问缓存及内存的速度比较： ^[25]^<br>
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/intel_nehalem.png]<br>
 
+=缓存一致性协议(MESI)=
+
+在MESI协议中，每个Cache line有4个状态，可用2个bit表示，它们分别是 ^[26]^：
+|| *状态* || *描述* ||
+|| M(Modified) || 这行数据有效，数据被修改了，和内存中的数据不一致，数据只存在于本Cache中。 ||
+|| E(Exclusive) || 这行数据有效，数据和内存中的数据一致，数据只存在于本Cache中。 ||
+|| S(Shared) || 这行数据有效，数据和内存中的数据一致，数据存在于很多Cache中。 ||
+|| I(Invalid) || 这行数据无效 ||
+状态迁移图：<br>
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/mesi.jpeg]
+
 =锁(Locking	)=
 
 在Java中通过锁来实现线程安全，Java通过monitorenter与monitorexit这两个控制多线程同步的bytecode原语实现锁，是JVM依赖操作系统互斥(mutex)来实现的，所以在JVM中锁的性能相对较大。互斥是一种会导致线程挂起，并在较短的时间内又需要重新调度回原线程的，是较为消耗资源的操作。 ^[13]^
@@ -160,4 +171,5 @@ java.util.concurrent.lock 中的 Lock 框架是锁定的一个抽象，它允许
 `[23].` http://www.ibm.com/developerworks/cn/linux/l-cn-spinlock/index.html<br>
 `[24].` http://www.khotyn.com/2011/12/15/memory_barrier/<br>
 `[25].` http://qconlondon.com/dl/qcon-london-2012/slides/MartinThompson_and_MichaelBarker_LockFreeAlgorithmsForUltimatePerformance.pdf<br>
+`[26].` http://www.tektalk.org/2011/07/11/cache%E4%B8%80%E8%87%B4%E6%80%A7%E5%8D%8F%E8%AE%AE%E4%B8%8Emesi2/<br>
 

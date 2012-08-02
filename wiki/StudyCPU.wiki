@@ -1,0 +1,6 @@
+#summary CPU study
+
+=Intel=
+
+
+[http://ark.intel.com/ ARK | Your source for information on Intel products]

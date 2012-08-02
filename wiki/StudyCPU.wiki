@@ -3,4 +3,5 @@
 =Intel=
 
 
-[http://ark.intel.com/ ARK | Your source for information on Intel products]
+ * [http://ark.intel.com/ ARK | Your source for information on Intel products]
+  * [http://en.wikipedia.org/wiki/Xeon Xeon]

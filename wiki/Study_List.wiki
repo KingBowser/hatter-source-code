@@ -3,6 +3,7 @@
 
 = List of my study =
 
+ * [Study_CPU]
  * [Study_Linux]
  * [Study_Java]
   * [Study_Java_ByteCode]

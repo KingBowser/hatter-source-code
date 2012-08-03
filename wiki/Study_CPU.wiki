@@ -60,6 +60,8 @@ X86_32在Intel也称为IA32(Intel Architecture, 32-bit)
   <tr align="center"><td colspan="6">`--`</td><td colspan="2">`?P`</td></tr>
 </table>
 <br><br>
+Note: The `?PL` `?IL` registers are only available in 64-bit mode.
+<br><br>
 
 =Intel=
 

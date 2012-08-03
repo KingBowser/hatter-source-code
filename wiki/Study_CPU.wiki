@@ -5,8 +5,10 @@
 X86或80X86，X86架构使用可变长度指令CISC(复杂指令集计算机,Complex Instruction Set Computer)。<br>
 X86_32在Intel也称为IA32(Intel Architecture, 32-bit)
 
+General Purpose Registers (A, B, C and D)
+
 Segment Registers (`C, D, S, E, F and G`)
-<table border="1">
+<table border="1" title="XXX">
   <tr align="center"><td width="50">`16`</td><td width="50">`8`</td></tr>
   <tr align="center"><td colspan="2">`?S`</td></tr>
 </table>

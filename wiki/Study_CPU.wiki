@@ -38,7 +38,7 @@ X86_32在Intel也称为IA32(Intel Architecture, 32-bit)
   <tr align="center"><td colspan="8">`R?P`</td></tr>
   <tr align="center"><td colspan="4">`--`</td><td colspan="4">`E?P`</td></tr>
   <tr align="center"><td colspan="6">`--`</td><td colspan="2">`?P`</td></tr>
-  <tr align="center"><td colspan="7">`--`</td><td>`?PL`</td></tr>
+  <tr align="center"><td colspan="7">`--`</td><td>`?PL`^注1^</td></tr>
 </table>
 <br><br>
 
@@ -48,7 +48,7 @@ X86_32在Intel也称为IA32(Intel Architecture, 32-bit)
   <tr align="center"><td colspan="8">`R?I`</td></tr>
   <tr align="center"><td colspan="4">`--`</td><td colspan="4">`E?I`</td></tr>
   <tr align="center"><td colspan="6">`--`</td><td colspan="2">`?I`</td></tr>
-  <tr align="center"><td colspan="7">`--`</td><td>`?IL`</td></tr>
+  <tr align="center"><td colspan="7">`--`</td><td>`?IL`^注1^</td></tr>
 </table>
 <br><br>
 
@@ -60,7 +60,7 @@ X86_32在Intel也称为IA32(Intel Architecture, 32-bit)
   <tr align="center"><td colspan="6">`--`</td><td colspan="2">`?P`</td></tr>
 </table>
 <br><br>
-Note: The `?PL` `?IL` registers are only available in 64-bit mode.
+^注1^: The `?PL` `?IL` registers are only available in 64-bit mode.
 <br><br>
 
 =Intel=

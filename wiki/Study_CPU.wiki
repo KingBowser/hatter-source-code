@@ -5,7 +5,7 @@
 X86或80X86，X86架构使用可变长度指令CISC(复杂指令集计算机,Complex Instruction Set Computer)。<br>
 X86_32在Intel也称为IA32(Intel Architecture, 32-bit)
 
-<table border="1">
+<table border="1" align="center">
   <tr><td width="50">`16`</td><td width="50">`8`</td></tr>
   <tr><td colspan="2">`?S`</td></tr>
 </table>

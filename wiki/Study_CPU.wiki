@@ -6,6 +6,6 @@
  * [http://ark.intel.com/ ARK | Your source for information on Intel products]
   * [http://en.wikipedia.org/wiki/Xeon Xeon] 
   * [ftp://download.intel.com/design/ Intl Download]
-[http://en.wikipedia.org/wiki/List_of_Intel_Xeon_microprocessors List]
+ * [http://en.wikipedia.org/wiki/List_of_Intel_Xeon_microprocessors List]
  * [http://en.wikipedia.org/wiki/List_of_Intel_microprocessors List of Intel microprocessors]
  * [http://en.wikipedia.org/wiki/List_of_future_Intel_microprocessors List of future Intel microprocessors]

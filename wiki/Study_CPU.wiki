@@ -84,6 +84,16 @@ X86_32在Intel也称为IA32(Intel Architecture, 32-bit)，IA64
 ^注1^: The `?PL` `?IL` registers are only available in 64-bit mode.
 <br><br>
 
+
+Addressing modes for 16-bit x86 processors can be summarized by this formula:
+
+
+Addressing modes for 32-bit address size on 32-bit or 64-bit x86 processors can be summarized by this formula:
+
+
+Addressing modes for 64-bit code on 64-bit x86 processors can be summarized by this formula:
+
+
 =Intel=
 
 

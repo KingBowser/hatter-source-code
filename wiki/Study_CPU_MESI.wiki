@@ -8,7 +8,8 @@
 
 ===参考资料===
 `[1].` http://en.wikipedia.org/wiki/MESI_protocol<br>
-`[2].` <br>
-`[3].` <br>
-
+`[2].` http://en.wikipedia.org/wiki/MESIF_protocol<br>
+`[3].` http://en.wikipedia.org/wiki/MOESI_protocol<br>
+`[4].` http://en.wikipedia.org/wiki/MOSI_protocol<br>
+`[5].` http://en.wikipedia.org/wiki/MSI_protocol<br>
 

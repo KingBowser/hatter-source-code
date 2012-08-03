@@ -86,12 +86,15 @@ X86_32在Intel也称为IA32(Intel Architecture, 32-bit)，IA64
 
 
 Addressing modes for 16-bit x86 processors can be summarized by this formula:
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/x86/addressing_mode_16bit.png]
 
 
 Addressing modes for 32-bit address size on 32-bit or 64-bit x86 processors can be summarized by this formula:
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/x86/addressing_mode_32bit.png]
 
 
 Addressing modes for 64-bit code on 64-bit x86 processors can be summarized by this formula:
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/x86/addressing_mode_64bit.png]
 
 
 =Intel=

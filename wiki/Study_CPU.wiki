@@ -111,3 +111,5 @@ Addressing modes for 64-bit code on 64-bit x86 processors can be summarized by t
 ===参考资料===
 `[1].` http://zh.wikipedia.org/wiki/X86<br>
 `[2].` http://en.wikipedia.org/wiki/X86<br>
+`[3].` http://www.intel.com/content/www/us/en/processors/architectures-software-developer-manuals.html<br>
+`[4].` http://www.cs.virginia.edu/~evans/cs216/guides/x86.html<br>

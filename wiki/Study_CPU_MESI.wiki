@@ -3,6 +3,9 @@
 =MESI protocol=
 缓存一致性(MESI, Modified Exclusive Shared Invalid)协议，也称为伊利诺伊协议(Illinois protocol，由伊利诺伊大学香槟`[Urbana-Champaign]`分校开发)，被广泛用于缓存一致性和内存一致性。是支持缓存回写的最通用的一种协议。 ^[1]^
 
+==MESI-F==
+MESI-F，其中F即Forward，由Intel为NUMA的缓存一致性而开发 ^[6]^。
+
 
 <br><br>
 
@@ -12,4 +15,5 @@
 `[3].` http://en.wikipedia.org/wiki/MOESI_protocol<br>
 `[4].` http://en.wikipedia.org/wiki/MOSI_protocol<br>
 `[5].` http://en.wikipedia.org/wiki/MSI_protocol<br>
+`[6].` http://en.wikipedia.org/wiki/Non-Uniform_Memory_Access#Cache_coherent_NUMA_.28ccNUMA.29<br>
 

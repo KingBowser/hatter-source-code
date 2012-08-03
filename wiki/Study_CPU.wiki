@@ -10,6 +10,7 @@ General Purpose Registers (A, B, C and D)
   <tr align="center"><th width="50">`64`</th><th width="50">`56`</th><th width="50">`48`</th><th width="50">`40`</th><th width="50">`32`</th><th width="50">`24`</th><th width="50">`16`</th><th width="50">`8`</th></tr>
   <tr align="center"><td colspan="8">`R?X`</td></tr>
   <tr align="center"><td colspan="4">`--`</td><td colspan="4">`E?X`</td></tr>
+  <tr align="center"><td colspan="6">`--`</td><td colspan="2">`?X`</td></tr>
 </table>
 
 Segment Registers (`C, D, S, E, F and G`)

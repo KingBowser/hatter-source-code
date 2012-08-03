@@ -8,8 +8,8 @@ X86_32在Intel也称为IA32(Intel Architecture, 32-bit)
 General Purpose Registers (A, B, C and D)
 
 Segment Registers (`C, D, S, E, F and G`)
-<table border="1" title="XXX">
-  <tr align="center"><td width="50">`16`</td><td width="50">`8`</td></tr>
+<table border="1">
+  <tr align="center"><th width="50">`16`</th><th width="50">`8`</th></tr>
   <tr align="center"><td colspan="2">`?S`</td></tr>
 </table>
 

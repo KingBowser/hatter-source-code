@@ -14,6 +14,15 @@ X86_32在Intel也称为IA32(Intel Architecture, 32-bit)
   <tr align="center"><td colspan="6">`--`</td><td>`?H`</td><td>`?L`</td></tr>
 </table>
 
+====64-bit mode-only General Purpose Registers (R8, R9, R10, R11, R12, R13, R14, R15)====
+<table border="1">
+  <tr align="center"><th width="50">`64`</th><th width="50">`56`</th><th width="50">`48`</th><th width="50">`40`</th><th width="50">`32`</th><th width="50">`24`</th><th width="50">`16`</th><th width="50">`8`</th></tr>
+  <tr align="center"><td colspan="8">`?`</td></tr>
+  <tr align="center"><td colspan="4">`--`</td><td colspan="4">`?D`</td></tr>
+  <tr align="center"><td colspan="6">`--`</td><td colspan="2">`?W`</td></tr>
+  <tr align="center"><td colspan="6">`--`</td><td>`?H`</td><td>`?B`</td></tr>
+</table>
+
 ====Segment Registers (`C, D, S, E, F and G`)====
 <table border="1">
   <tr align="center"><th width="50">`16`</th><th width="50">`8`</th></tr>

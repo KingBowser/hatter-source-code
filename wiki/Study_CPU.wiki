@@ -20,7 +20,7 @@ X86_32在Intel也称为IA32(Intel Architecture, 32-bit)
   <tr align="center"><td colspan="8">`?`</td></tr>
   <tr align="center"><td colspan="4">`--`</td><td colspan="4">`?D`</td></tr>
   <tr align="center"><td colspan="6">`--`</td><td colspan="2">`?W`</td></tr>
-  <tr align="center"><td colspan="6">`--`</td><td>`?H`</td><td>`?B`</td></tr>
+  <tr align="center"><td colspan="7">`--`</td><td>`?B`</td></tr>
 </table>
 
 ====Segment Registers (`C, D, S, E, F and G`)====

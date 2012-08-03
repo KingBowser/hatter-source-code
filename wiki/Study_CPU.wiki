@@ -5,7 +5,18 @@
 X86或80X86，X86架构使用可变长度指令CISC(复杂指令集计算机,Complex Instruction Set Computer)。<br>
 X86_32在Intel也称为IA32(Intel Architecture, 32-bit)，IA64
 
-====Segment registers:====
+====Main registers====
+|| `AX/EAX/RAX` || Accumulator ||
+|| `BX/EBX/RBX` || Base index (for use with arrays) ||
+|| `CX/ECX/RCX` || Counter ||
+|| `DX/EDX/RDX` || Data/general ||
+|| `SI/ESI/RSI` || Source index for string operations. ||
+|| `DI/EDI/RDI` || Destination index for string operations. ||
+|| `SP/ESP/RSP` || Stack pointer for top address of the stack. ||
+|| `BP/EBP/RBP` || Stack base pointer for holding the address of the current stack frame. ||
+|| `IP/EIP/RIP` || Instruction pointer. Holds the program counter, the current instruction address. ||
+
+====Segment registers====
 || CS || Code ||
 || DS || Data ||
 || SS || Stack ||

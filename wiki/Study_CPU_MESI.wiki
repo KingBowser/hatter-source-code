@@ -1,15 +1,13 @@
 #summary MESI study
 
-=MESI是什么=
-
-
-
+=MESI protocol=
+缓存一致性协议(MESI, Modified Exclusive Shared Invalid)，也称为伊利诺伊大学(Illinois protocol，由伊利诺伊大学香槟[Urbana-Champaign]分校开发)，被广泛用于缓存一致性和内存一致性。是支持缓存回写的最通用的一种协议。
 
 
 
 
 ===参考资料===
-`[1].` <br>
+`[1].` http://en.wikipedia.org/wiki/MESI_protocol<br>
 `[2].` <br>
 `[3].` <br>
 

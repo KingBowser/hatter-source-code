@@ -6,6 +6,14 @@
 ==MESI-F==
 MESI-F，其中F即Forward，由Intel为NUMA的缓存一致性而开发 ^[6]^。<br>
 
+==MOSI==
+<br>
+
+==MOSI==
+<br>
+
+==MSI==
+<br>
 
 <br><br>
 

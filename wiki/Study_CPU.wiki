@@ -6,6 +6,7 @@ X86或80X86，X86架构使用可变长度指令CISC(复杂指令集计算机,Com
 X86_32在Intel也称为IA32(Intel Architecture, 32-bit)，IA64
 
 ====Main registers====
+|| *寄存器* || *描述* ||
 || `AX/EAX/RAX` || Accumulator ||
 || `BX/EBX/RBX` || Base index (for use with arrays) ||
 || `CX/ECX/RCX` || Counter ||
@@ -17,6 +18,7 @@ X86_32在Intel也称为IA32(Intel Architecture, 32-bit)，IA64
 || `IP/EIP/RIP` || Instruction pointer. Holds the program counter, the current instruction address. ||
 
 ====Segment registers====
+|| *寄存器* || *描述* ||
 || CS || Code ||
 || DS || Data ||
 || SS || Stack ||

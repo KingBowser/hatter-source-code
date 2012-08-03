@@ -36,6 +36,7 @@ X86_32在Intel也称为IA32(Intel Architecture, 32-bit)
   <tr align="center"><td colspan="4">`--`</td><td colspan="4">`E?P`</td></tr>
   <tr align="center"><td colspan="6">`--`</td><td colspan="2">`?P`</td></tr>
   <tr align="center"><td colspan="7">`--`</td><td>`?PL`</td></tr>
+</table>
 
 =Intel=
 

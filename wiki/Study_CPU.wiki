@@ -3,7 +3,7 @@
 
 =X86=
 X86或80X86，X86架构使用可变长度指令CISC(复杂指令集计算机,Complex Instruction Set Computer)。<br>
-X86_32在Intel也称为IA32(Intel Architecture, 32-bit)
+X86_32在Intel也称为IA32(Intel Architecture, 32-bit)，IA64
 
 ====General Purpose Registers (`A, B, C and D`)====
 <table border="1">

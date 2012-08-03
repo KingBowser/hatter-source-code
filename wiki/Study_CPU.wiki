@@ -29,6 +29,14 @@ X86_32在Intel也称为IA32(Intel Architecture, 32-bit)
   <tr align="center"><td colspan="2">`?S`</td></tr>
 </table>
 
+====Pointer Registers (`S and B`)====
+<table border="1">
+  <tr align="center"><th width="50">`64`</th><th width="50">`56`</th><th width="50">`48`</th><th width="50">`40`</th><th width="50">`32`</th><th width="50">`24`</th><th width="50">`16`</th><th width="50">`8`</th></tr>
+  <tr align="center"><td colspan="8">`R?P`</td></tr>
+  <tr align="center"><td colspan="4">`--`</td><td colspan="4">`E?P`</td></tr>
+  <tr align="center"><td colspan="6">`--`</td><td colspan="2">`?P`</td></tr>
+  <tr align="center"><td colspan="7">`--`</td><td>`?PL`</td></tr>
+
 =Intel=
 
 

@@ -133,3 +133,4 @@ Addressing modes for 64-bit code on 64-bit x86 processors can be summarized by t
 `[3].` http://www.intel.com/content/www/us/en/processors/architectures-software-developer-manuals.html<br>
 `[4].` http://www.cs.virginia.edu/~evans/cs216/guides/x86.html<br>
 `[5].` http://www.stanford.edu/class/cs107/other/IA32_Cheat_Sheet.pdf<br>
+`[6].` http://en.wikipedia.org/wiki/Assembly_language<br>

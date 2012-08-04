@@ -96,7 +96,7 @@ Addressing modes for 32-bit address size on 32-bit or 64-bit x86 processors can 
 Addressing modes for 64-bit code on 64-bit x86 processors can be summarized by this formula:
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/x86/addressing_mode_64bit.png]
 
-===IA32 Addressing modes===
+===IA32 Addressing modes ^[5]^===
 ====Immediate====
 || `$val Val` ||
 || val: constant integer value ||
@@ -126,3 +126,4 @@ Addressing modes for 64-bit code on 64-bit x86 processors can be summarized by t
 `[2].` http://en.wikipedia.org/wiki/X86<br>
 `[3].` http://www.intel.com/content/www/us/en/processors/architectures-software-developer-manuals.html<br>
 `[4].` http://www.cs.virginia.edu/~evans/cs216/guides/x86.html<br>
+`[5].` http://www.stanford.edu/class/cs107/other/IA32_Cheat_Sheet.pdf<br>

@@ -96,6 +96,9 @@ Addressing modes for 32-bit address size on 32-bit or 64-bit x86 processors can 
 Addressing modes for 64-bit code on 64-bit x86 processors can be summarized by this formula:
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/x86/addressing_mode_64bit.png]
 
+====Instruction suffixes====
+|| *b* || byte |||| *w* || word (2 bytes) |||| *l* || long (4 bytes) ||
+
 ===IA32 Addressing modes ^[5]^===
 ====Immediate====
 || `$val Val` ||

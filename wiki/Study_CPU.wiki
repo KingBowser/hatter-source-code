@@ -101,6 +101,7 @@ Addressing modes for 64-bit code on 64-bit x86 processors can be summarized by t
 || `$val Val` ||
 || val: constant integer value ||
 || `movl $17, %eax` ||
+
 ====Normal====
 || `(R) Mem[Reg[R]]` ||
 || R: register R specifies memory address |||| `movl (%ecx), %eax` ||

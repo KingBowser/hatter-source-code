@@ -5,26 +5,26 @@
 X86或80X86，X86架构使用可变长度指令CISC(复杂指令集计算机,Complex Instruction Set Computer)。<br>
 X86_32在Intel也称为IA32(Intel Architecture, 32-bit)，IA64
 
-====Main registers====
+====通用寄存器====
 || *寄存器* || *描述* ||
-|| `AX/EAX/RAX` || Accumulator ||
-|| `BX/EBX/RBX` || Base index (for use with arrays) ||
-|| `CX/ECX/RCX` || Counter ||
-|| `DX/EDX/RDX` || Data/general ||
-|| `SI/ESI/RSI` || Source index for string operations. ||
-|| `DI/EDI/RDI` || Destination index for string operations. ||
-|| `SP/ESP/RSP` || Stack pointer for top address of the stack. ||
-|| `BP/EBP/RBP` || Stack base pointer for holding the address of the current stack frame. ||
+|| `AX/EAX/RAX` || 一般用作累加器 ||
+|| `BX/EBX/RBX` || 一般用作基址寄存器（Base，用于数组） ||
+|| `CX/ECX/RCX` || 一般用来计数（Count） ||
+|| `DX/EDX/RDX` || 一般用来存放数据（Data） ||
+|| `SI/ESI/RSI` || 一般用作源变址（Source Index） ||
+|| `DI/EDI/RDI` || 一般用作目标变址（Destinatin Index） ||
+|| `SP/ESP/RSP` || 一般用作堆栈指针（Stack Pointer） ||
+|| `BP/EBP/RBP` || 一般用作基址指针（Base Pointer） ||
 || `IP/EIP/RIP` || Instruction pointer. Holds the program counter, the current instruction address. ||
 
-====Segment registers====
+====段寄存器(Segment registers)====
 || *寄存器* || *描述* ||
-|| CS || Code ||
-|| DS || Data ||
-|| SS || Stack ||
-|| ES || Extra ||
-|| FS ||  ||
-|| GS ||  ||
+|| CS || 代码段寄存器 ||
+|| DS || 数据段寄存器 ||
+|| SS || 堆栈段寄存器 ||
+|| ES || 附加数据段寄存器 ||
+|| FS || 附加数据段寄存器 ||
+|| GS || 附加数据段寄存器 ||
 
 ====General Purpose Registers (`A, B, C and D`)====
 <table border="1">

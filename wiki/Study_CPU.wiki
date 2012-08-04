@@ -106,6 +106,9 @@ Addressing modes for 64-bit code on 64-bit x86 processors can be summarized by t
 || `(R) Mem[Reg[R]]` ||
 || R: register R specifies memory address |||| `movl (%ecx), %eax` ||
 
+====Displacement====|| `D(R) Mem[Reg[R]+D]` |||| R: register specifies start of memory region |||| D: constant displacement D specifies offset |||| movl 8(%ebp), %edx ||
+
+====Indexed====|| `D(Rb,Ri,S) Mem[Reg[Rb]+S*Reg[Ri]+D]` |||| D: constant displacement 1, 2, or 4 bytes |||| Rb: base register: any of 8 integer registers |||| Ri: index register: any, except %esp |||| S: scale: 1, 2, 4, or 8 |||| `movl 0x100(%ecx,%eax,4), %edx` ||
 
 =Intel=
 

@@ -96,11 +96,14 @@ Addressing modes for 32-bit address size on 32-bit or 64-bit x86 processors can 
 Addressing modes for 64-bit code on 64-bit x86 processors can be summarized by this formula:
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/x86/addressing_mode_64bit.png]
 
-====IA32 Addressing modes====
-=====Immediate=====
+===IA32 Addressing modes===
+====Immediate====
 || `$val Val` ||
 || val: constant integer value ||
 || `movl $17, %eax` ||
+====Normal====
+|| `(R) Mem[Reg[R]]` ||
+|| R: register R specifies memory address |||| `movl (%ecx), %eax` ||
 
 
 =Intel=

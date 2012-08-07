@@ -25,7 +25,7 @@ enum VMOp_Type {
 || `VM_CMS_Final_Remark` ||  ||
 || `VM_CGC_Operation` ||  ||
 || `VM_GC_Operation` ||  ||
-|| `VM_HeapDumper` || Dump内存到文件<br>1. OOM + `-XX:+HeapDumpOnOutOfMemoryError`<br>2. Full GC + `-XX:+HeapDumpBeforeFullGC`<br>3. Full GC + `-XX:+HeapDumpAfterFullGC`<br>4. `HotSpotDiagnostic#dumpHeap`<br>5. `HotSpotVirtualMachine#dumpHeap`(如通过命令：`jmap -dump`) ||
+|| `VM_HeapDumper` || Dump内存到文件，以下情况会调用：<br>OutOfMemoryError && `-XX:+HeapDumpOnOutOfMemoryError`<br>Full GC && `-XX:+HeapDumpBeforeFullGC`<br>Full GC && `-XX:+HeapDumpAfterFullGC`<br>`HotSpotDiagnostic#dumpHeap`<br>`HotSpotVirtualMachine#dumpHeap`(如通过命令：`jmap -dump`) ||
 || `VM_GenCollectFullConcurrent` ||  ||
 || `VM_G1CollectFull` ||  ||
 || `VM_G1CollectForAllocation` ||  ||

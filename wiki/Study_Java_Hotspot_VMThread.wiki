@@ -23,6 +23,17 @@ enum VMOp_Type {
 || `VM_CGC_Operation` ||  ||
 || `VM_GC_Operation` ||  ||
 || `VM_HeapDumper` || Dump内存到文件，通过`-XX:+HeapDumpOnOutOfMemoryError`设置 ||
+|| `VM_GenCollectFullConcurrent` ||  ||
+|| `VM_G1CollectFull` ||  ||
+|| `VM_G1CollectForAllocation` ||  ||
+|| `VM_G1IncCollectionPause` ||  ||
+|| `VM_ParallelGCFailedAllocation` ||  ||
+|| `VM_ParallelGCFailedPermanentAllocation` ||  ||
+|| `VM_ParallelGCSystemGC` ||  ||
+|| `VM_GC_HeapInspection` ||  ||
+|| `VM_GenCollectForAllocation` ||  ||
+|| `VM_GenCollectFull` ||  ||
+|| `VM_GenCollectForPermanentAllocation` ||  ||
 || `VM_PopulateDumpSharedSpace` ||  ||
 || `VM_JNIFunctionTableCopier` ||  ||
 || `VM_GetOwnedMonitorInfo` ||  ||

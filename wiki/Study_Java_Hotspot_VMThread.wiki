@@ -33,7 +33,7 @@ enum VMOp_Type {
 || `VM_ParallelGCFailedAllocation` ||  ||
 || `VM_ParallelGCFailedPermanentAllocation` ||  ||
 || `VM_ParallelGCSystemGC` ||  ||
-|| `VM_GC_HeapInspection` || Dump内存Histogram到文件，以下情况会调用：<br>`* ` `kill -3`<br>`*` Full GC && `-XX:+PrintClassHistogramBeforeFullGC`<br>`*` Full GC && `-XX:+PrintClassHistogramAfterFullGC`<br>`*` `HotSpotDiagnostic#heapHisto`(如通过命令：`jmap -histo`) ||
+|| `VM_GC_HeapInspection` || Dump内存Histogram到文件，以下情况会调用：<br>`* ` `kill -3`<br>`*` Full GC && `-XX:+PrintClassHistogramBeforeFullGC`<br>`*` Full GC && `-XX:+PrintClassHistogramAfterFullGC`<br>`*` `HotSpotVirtualMachine#heapHisto`(如通过命令：`jmap -histo`) ||
 || `VM_GenCollectForAllocation` ||  ||
 || `VM_GenCollectFull` ||  ||
 || `VM_GenCollectForPermanentAllocation` ||  ||

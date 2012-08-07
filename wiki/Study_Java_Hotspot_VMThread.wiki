@@ -52,9 +52,11 @@ enum VMOp_Type {
 || `VM_Verify` ||  ||
 || `VM_PrintThreads` ||  ||
 || `VM_PrintJNI` ||  ||
-|| `VM_FindDeadlocks` ||  ||
+|| `VM_FindDeadlocks` ||  查找死锁线程 ||
 || `VM_ThreadDump` ||  ||
-|| `VM_Exit` ||  ||
+|| `VM_Exit` || 退出JVM  ||
 || `VM_Dummy` ||  ||
 || `VM_DeoptimizeTheWorld` ||  ||
-|| `VM_ReportJavaOutOfMemory` ||  ||
+|| `VM_ReportJavaOutOfMemory` || 在OOM时执行Shell命令，通过参数`-XX:OnOutOfMemoryError=`设置 ||
+
+

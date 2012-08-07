@@ -1,0 +1,19 @@
+#summary VM_Thread of hotspot
+
+{{{
+class VM_Operation: public CHeapObj
+}}}
+
+{{{
+   enum Mode {
+     _safepoint,       // blocking,        safepoint, vm_op C-heap allocated
+     _no_safepoint,    // blocking,     no safepoint, vm_op C-Heap allocated
+     _concurrent,      // non-blocking, no safepoint, vm_op C-Heap allocated
+     _async_safepoint  // non-blocking,    safepoint, vm_op C-Heap allocated
+   };
+
+   enum VMOp_Type {
+     VM_OPS_DO(VM_OP_ENUM)
+     VMOp_Terminating
+   };
+}}}

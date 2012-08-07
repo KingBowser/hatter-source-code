@@ -19,7 +19,10 @@ enum VMOp_Type {
 }}}
 
 || *VM_Operation* || *详细说明* ||
+|| `VM_Dummy` || 虚拟的VM operation，在循环双链表中作为第一个元素 ||
 || `VM_CMS_Operation` ||  ||
+|| `VM_CMS_Initial_Mark` ||  ||
+|| `VM_CMS_Final_Remark` ||  ||
 || `VM_CGC_Operation` ||  ||
 || `VM_GC_Operation` ||  ||
 || `VM_HeapDumper` || Dump内存到文件，通过`-XX:+HeapDumpOnOutOfMemoryError`设置 ||
@@ -67,6 +70,5 @@ enum VMOp_Type {
 || `VM_FindDeadlocks` ||  查找死锁线程 ||
 || `VM_ThreadDump` ||  ||
 || `VM_Exit` || 退出JVM  ||
-|| `VM_Dummy` ||  ||
 || `VM_DeoptimizeTheWorld` ||  ||
 || `VM_ReportJavaOutOfMemory` || 在OOM时执行Shell命令，通过参数`-XX:OnOutOfMemoryError=`设置 ||

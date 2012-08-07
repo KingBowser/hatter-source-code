@@ -5,15 +5,56 @@ class VM_Operation: public CHeapObj
 }}}
 
 {{{
-   enum Mode {
-     _safepoint,       // blocking,        safepoint, vm_op C-heap allocated
-     _no_safepoint,    // blocking,     no safepoint, vm_op C-Heap allocated
-     _concurrent,      // non-blocking, no safepoint, vm_op C-Heap allocated
-     _async_safepoint  // non-blocking,    safepoint, vm_op C-Heap allocated
-   };
+enum Mode {
+  _safepoint,       // blocking,        safepoint, vm_op C-heap allocated
+  _no_safepoint,    // blocking,     no safepoint, vm_op C-Heap allocated
+  _concurrent,      // non-blocking, no safepoint, vm_op C-Heap allocated
+  _async_safepoint  // non-blocking,    safepoint, vm_op C-Heap allocated
+};
 
-   enum VMOp_Type {
-     VM_OPS_DO(VM_OP_ENUM)
-     VMOp_Terminating
-   };
+enum VMOp_Type {
+  VM_OPS_DO(VM_OP_ENUM)
+  VMOp_Terminating
+};
 }}}
+
+|| *VM_Operation* || *详细说明* ||
+|| `VM_CMS_Operation` ||  ||
+|| `VM_CGC_Operation` ||  ||
+|| `VM_GC_Operation` ||  ||
+|| `VM_PopulateDumpSharedSpace` ||  ||
+|| `VM_JNIFunctionTableCopier` ||  ||
+|| `VM_GetOwnedMonitorInfo` ||  ||
+|| `VM_GetObjectMonitorUsage` ||  ||
+|| `VM_GetCurrentContendedMonitor` ||  ||
+|| `VM_GetStackTrace` ||  ||
+|| `VM_GetMultipleStackTraces` ||  ||
+|| `VM_GetFrameCount` ||  ||
+|| `VM_GetFrameLocation` ||  ||
+|| `VM_EnterInterpOnlyMode` ||  ||
+|| `VM_ChangeSingleStep` ||  ||
+|| `VM_GetCurrentLocation` ||  ||
+|| `VM_ChangeBreakpoints` ||  ||
+|| `VM_RedefineClasses` ||  ||
+|| `VM_GetOrSetLocal` ||  ||
+|| `VM_HeapIterateOperation` ||  ||
+|| `VM_HeapWalkOperation` ||  ||
+|| `VM_EnableBiasedLocking` ||  ||
+|| `VM_RevokeBias` ||  ||
+|| `VM_ThreadStop` ||  ||
+|| `VM_ForceSafepoint` ||  ||
+|| `VM_ForceAsyncSafepoint` ||  ||
+|| `VM_Deoptimize` ||  ||
+|| `VM_DeoptimizeFrame` ||  ||
+|| `VM_HandleFullCodeCache` ||  ||
+|| `VM_DeoptimizeAll` ||  ||
+|| `VM_ZombieAll` ||  ||
+|| `VM_Verify` ||  ||
+|| `VM_PrintThreads` ||  ||
+|| `VM_PrintJNI` ||  ||
+|| `VM_FindDeadlocks` ||  ||
+|| `VM_ThreadDump` ||  ||
+|| `VM_Exit` ||  ||
+|| `VM_Dummy` ||  ||
+|| `VM_DeoptimizeTheWorld` ||  ||
+|| `VM_ReportJavaOutOfMemory` ||  ||

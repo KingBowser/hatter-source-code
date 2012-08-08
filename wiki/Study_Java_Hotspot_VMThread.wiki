@@ -26,57 +26,59 @@ enum VMOp_Type {
 };
 }}}
 
-|| *VM_Operation* || *详细说明* ||
-|| `VM_Dummy` || 虚拟的VM operation，在循环双链表中作为第一个元素 ||
-|| `VM_CMS_Operation` ||  ||
-|| `VM_CMS_Initial_Mark` ||  ||
-|| `VM_CMS_Final_Remark` ||  ||
-|| `VM_CGC_Operation` ||  ||
-|| `VM_GC_Operation` ||  ||
-|| `VM_HeapDumper` || Dump内存到文件，以下情况会调用：<br>`*` OutOfMemoryError && `-XX:+HeapDumpOnOutOfMemoryError`<br>`*` Full GC && `-XX:+HeapDumpBeforeFullGC`<br>`*` Full GC && `-XX:+HeapDumpAfterFullGC`<br>`*` `HotSpotDiagnostic#dumpHeap`<br>`*` `HotSpotVirtualMachine#dumpHeap`(如通过命令：`jmap -dump`) ||
-|| `VM_GenCollectFullConcurrent` ||  ||
-|| `VM_G1CollectFull` ||  ||
-|| `VM_G1CollectForAllocation` ||  ||
-|| `VM_G1IncCollectionPause` ||  ||
-|| `VM_ParallelGCFailedAllocation` ||  ||
-|| `VM_ParallelGCFailedPermanentAllocation` ||  ||
-|| `VM_ParallelGCSystemGC` ||  ||
-|| `VM_GC_HeapInspection` || Dump内存Histogram到文件，以下情况会调用：<br>`* ` `kill -3`<br>`*` Full GC && `-XX:+PrintClassHistogramBeforeFullGC`<br>`*` Full GC && `-XX:+PrintClassHistogramAfterFullGC`<br>`*` `HotSpotVirtualMachine#heapHisto`(如通过命令：`jmap -histo`) ||
-|| `VM_GenCollectForAllocation` ||  ||
-|| `VM_GenCollectFull` ||  ||
-|| `VM_GenCollectForPermanentAllocation` ||  ||
-|| `VM_PopulateDumpSharedSpace` ||  ||
-|| `VM_JNIFunctionTableCopier` ||  ||
-|| `VM_GetOwnedMonitorInfo` ||  ||
-|| `VM_GetObjectMonitorUsage` ||  ||
-|| `VM_GetCurrentContendedMonitor` ||  ||
-|| `VM_GetStackTrace` ||  ||
-|| `VM_GetMultipleStackTraces` ||  ||
-|| `VM_GetFrameCount` ||  ||
-|| `VM_GetFrameLocation` ||  ||
-|| `VM_EnterInterpOnlyMode` ||  ||
-|| `VM_ChangeSingleStep` ||  ||
-|| `VM_GetCurrentLocation` ||  ||
-|| `VM_ChangeBreakpoints` ||  ||
-|| `VM_RedefineClasses` ||  ||
-|| `VM_GetOrSetLocal` ||  ||
-|| `VM_HeapIterateOperation` ||  ||
-|| `VM_HeapWalkOperation` ||  ||
-|| `VM_EnableBiasedLocking` ||  ||
-|| `VM_RevokeBias` ||  ||
-|| `VM_ThreadStop` ||  ||
-|| `VM_ForceSafepoint` ||  ||
-|| `VM_ForceAsyncSafepoint` ||  ||
-|| `VM_Deoptimize` ||  ||
-|| `VM_DeoptimizeFrame` ||  ||
-|| `VM_HandleFullCodeCache` ||  ||
-|| `VM_DeoptimizeAll` ||  ||
-|| `VM_ZombieAll` ||  ||
-|| `VM_Verify` ||  ||
-|| `VM_PrintThreads` ||  ||
-|| `VM_PrintJNI` ||  ||
-|| `VM_FindDeadlocks` ||  查找死锁线程 ||
-|| `VM_ThreadDump` ||  ||
-|| `VM_Exit` || 退出JVM  ||
-|| `VM_DeoptimizeTheWorld` ||  ||
-|| `VM_ReportJavaOutOfMemory` || 在OOM时执行Shell命令，通过参数`-XX:OnOutOfMemoryError=`设置 ||
+|| *VM_Operation* || *blocking* || *safepoint* || *详细说明* ||
+|| `VM_Dummy` ||  ||  || 虚拟的VM operation，在循环双链表中作为第一个元素 ||
+|| `VM_CMS_Operation` ||  ||  ||  ||
+|| `VM_CMS_Initial_Mark` ||  ||  ||  ||
+|| `VM_CMS_Final_Remark` ||  ||  ||  ||
+|| `VM_CGC_Operation` ||  ||  ||  ||
+|| `VM_GC_Operation` ||  ||  ||  ||
+|| `VM_HeapDumper` ||  ||  || Dump内存到文件，以下情况会调用：<br>`*` OutOfMemoryError && `-XX:+HeapDumpOnOutOfMemoryError`<br>`*` Full GC && `-XX:+HeapDumpBeforeFullGC`<br>`*` Full GC && `-XX:+HeapDumpAfterFullGC`<br>`*` `HotSpotDiagnostic#dumpHeap`<br>`*` `HotSpotVirtualMachine#dumpHeap`(如通过命令：`jmap -dump`) ||
+|| `VM_GenCollectFullConcurrent` ||  ||  ||  ||
+|| `VM_G1CollectFull` ||  ||  ||  ||
+|| `VM_G1CollectForAllocation` ||  ||  ||  ||
+|| `VM_G1IncCollectionPause` ||  ||  ||  ||
+|| `VM_ParallelGCFailedAllocation` ||  ||  ||  ||
+|| `VM_ParallelGCFailedPermanentAllocation` ||  ||  ||  ||
+|| `VM_ParallelGCSystemGC` ||  ||  ||  ||
+|| `VM_GC_HeapInspection` ||  ||  || Dump内存Histogram到文件，以下情况会调用：<br>`* ` `kill -3`<br>`*` Full GC && `-XX:+PrintClassHistogramBeforeFullGC`<br>`*` Full GC && `-XX:+PrintClassHistogramAfterFullGC`<br>`*` `HotSpotVirtualMachine#heapHisto`(如通过命令：`jmap -histo`) ||
+|| `VM_GenCollectForAllocation` ||  ||  ||  ||
+|| `VM_GenCollectFull` ||  ||  ||  ||
+|| `VM_GenCollectForPermanentAllocation` ||  ||  ||  ||
+|| `VM_PopulateDumpSharedSpace` ||  ||  ||  ||
+|| `VM_JNIFunctionTableCopier` ||  ||  ||  ||
+|| `VM_GetOwnedMonitorInfo` ||  ||  ||  ||
+|| `VM_GetObjectMonitorUsage` ||  ||  ||  ||
+|| `VM_GetCurrentContendedMonitor` ||  ||  ||  ||
+|| `VM_GetStackTrace` ||  ||  ||  ||
+|| `VM_GetMultipleStackTraces` ||  ||  ||  ||
+|| `VM_GetFrameCount` ||  ||  ||  ||
+|| `VM_GetFrameLocation` ||  ||  ||  ||
+|| `VM_EnterInterpOnlyMode` ||  ||  ||  ||
+|| `VM_ChangeSingleStep` ||  ||  ||  ||
+|| `VM_GetCurrentLocation` ||  ||  ||  ||
+|| `VM_ChangeBreakpoints` ||  ||  ||  ||
+|| `VM_RedefineClasses` ||  ||  ||  ||
+|| `VM_GetOrSetLocal` ||  ||  ||  ||
+|| `VM_HeapIterateOperation` ||  ||  ||  ||
+|| `VM_HeapWalkOperation` ||  ||  ||  ||
+|| `VM_EnableBiasedLocking` ||  ||  ||  ||
+|| `VM_RevokeBias` ||  ||  || 取消偏向锁，如计算HashCode，锁竞争等 ||
+|| `VM_BulkRevokeBias` ||  ||  ||  ||
+|| `VM_ThreadStop` ||  ||  ||  ||
+|| `VM_ForceSafepoint` ||  ||  ||  ||
+|| `VM_ForceAsyncSafepoint` ||  ||  ||  ||
+|| `VM_Deoptimize` ||  ||  ||  ||
+|| `VM_DeoptimizeFrame` ||  ||  ||  ||
+|| `VM_HandleFullCodeCache` ||  ||  ||  ||
+|| `VM_DeoptimizeAll` ||  ||  ||  ||
+|| `VM_ZombieAll` ||  ||  ||  ||
+|| `VM_Verify` ||  ||  ||  ||
+|| `VM_PrintThreads` ||  ||  ||  ||
+|| `VM_PrintJNI` ||  ||  ||  ||
+|| `VM_FindDeadlocks` ||  ||  ||  查找死锁线程 ||
+|| `VM_ThreadDump` ||  ||  ||  ||
+|| `VM_Exit` ||  ||  || 退出JVM  ||
+|| `VM_DeoptimizeTheWorld` ||  ||  ||  ||
+|| `VM_ReportJavaOutOfMemory` ||  ||  || 在OOM时执行Shell命令，通过参数`-XX:OnOutOfMemoryError=`设置 ||
+

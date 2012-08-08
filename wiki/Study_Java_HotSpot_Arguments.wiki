@@ -378,7 +378,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `ZeroTLAB` || `` || `` || ||
 || `FastTLABRefill` || `` || `` || ||
 || `PrintTLAB` || `bool` || `product` || 打印和TLAB各种相关的信息到控制台，通过参数`-XX:+PrintTLAB -XX:+Verbose`可打印每个线程动态改变TLAB的大小，大小变化都在Scavenge GC^注3^时 ^[29]^ ||
-|| `TLABStats` || `` || `` || ||
+|| `TLABStats` || `bool` || `product` || _记录TLAB相关信息_ ||
 || `PrintRevisitStats` || `` || `` || ||
 || `NeverActAsServerClassMachine` || `` || `` || ||
 || `AlwaysActAsServerClassMachine` || `` || `` || ||

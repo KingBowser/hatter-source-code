@@ -37,6 +37,13 @@ $ xhost +
 $ xhost +<ip>
 }}}
 
+gdb
+{{{
+gdb -p pid
+
+thread apply all bt
+}}}
+
 <br><br>
 ===参考资料===
 `[1].` http://www.hungry.com/~jamie/xexport.html<br>

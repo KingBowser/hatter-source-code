@@ -27,7 +27,7 @@ enum VMOp_Type {
 }}}
 
 || *VM_Operation* || *blocking* || *safepoint* || *详细说明* ||
-|| `VM_Dummy` ||  ||  || 虚拟的VM operation，在循环双链表中作为第一个元素 ||
+|| `VM_Dummy` || `-` || `-` || 虚拟的VM operation，在循环双链表中作为第一个元素 ||
 || `VM_CMS_Operation` ||  ||  ||  ||
 || `VM_CMS_Initial_Mark` ||  ||  ||  ||
 || `VM_CMS_Final_Remark` ||  ||  ||  ||

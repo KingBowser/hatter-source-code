@@ -4,7 +4,15 @@
 class VM_Operation: public CHeapObj
 }}}
 
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/vm_operation_queues.png]
+
 {{{
+enum Priorities {
+   SafepointPriority, // Highest priority (operation executed at a safepoint)
+   MediumPriority,    // Medium priority
+   nof_priorities
+};
+
 enum Mode {
   _safepoint,       // blocking,        safepoint, vm_op C-heap allocated
   _no_safepoint,    // blocking,     no safepoint, vm_op C-Heap allocated

@@ -62,7 +62,7 @@ enum VMOp_Type {
 || `VM_GetOrSetLocal` ||  ||  ||  ||
 || `VM_HeapIterateOperation` ||  ||  ||  ||
 || `VM_HeapWalkOperation` ||  ||  ||  ||
-|| `VM_EnableBiasedLocking` || `is_cheap_allocated?`<br>`  non-blocking`<br>`  blocking` || `safepoint` ||  ||
+|| `VM_EnableBiasedLocking` || `is_cheap_allocated?`<br>`non-blocking:`<br>`blocking` || `safepoint` ||  ||
 || `VM_RevokeBias` ||  ||  || 取消偏向锁，如计算HashCode，锁竞争等 ||
 || `VM_BulkRevokeBias` ||  ||  ||  ||
 || `VM_ThreadStop` ||  ||  ||  ||

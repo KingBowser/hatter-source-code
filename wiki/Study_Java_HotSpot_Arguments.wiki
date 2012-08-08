@@ -119,13 +119,9 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `UseCompressedOops` || `bool` || `lp64_product` || 在64位平台开启普通对象指针（oop^注1^）压缩，通常64位JVM消耗的内存会比32位的大1.5倍，这是因为对象指针在64位架构下，长度会翻倍（更宽的寻址）。对于那些将要从32位平台移植到64位的应用来说，平白无辜多了1/2的内存占用，这是开发者不愿意看到的。<br>启用CompressOops后，会压缩的对象：<br>1. 每个Class的属性指针（静态成员变量）<br>2. 每个对象的属性指针<br>3. 普通对象数组的每个元素指针<br>当然，压缩也不是万能的，针对一些特殊类型的指针，JVM是不会优化的。<br>比如指向PermGen的Class对象指针，本地变量，堆栈元素，入参，返回值，NULL指针不会被压缩。<br>3段式，根据`-Xmx/-XX:MaxHeapSize, -XX: HeapBaseMinAddress`以及进程环境自动选择：<br>`// Narrow Oop encoding mode:`<br>`// 0 - UnscaledNarrowOop`<br>`//     - Use 32-bits oops without encoding when`<br>`//       HeapBaseMinAddress + heap_size < 4Gb`<br>`// 1 - ZeroBasedNarrowOop`<br>`//     - Use zero based compressed oops with encoding when`<br>`//       HeapBaseMinAddress + heap_size < 32Gb`<br>`// 2 - HeapBasedNarrowOop`<br>`//     - Use compressed oops with heap base + encoding.` ^[10][11][18][20]^ ||
 || `HeapBaseMinAddress` || `unitx` || `product_pd` || 在64位平台及使用了压缩指针时有效，参见 `UseCompressedOops` ||
 || `UseMembar` || `bool` || `product` || Without UseMembar option, in Linux, Hotspot uses memory serialize page instead of memory barrier instruction. Whenever a thread state transition happens, the thread writes to a memory address in memory serialize page with volatile pointer. When the VM thread needs to look at up-to-date state of all the threads, VM changes the protection bits for the memory serialize page to read only and then recovers it to read/write to serialize state changes.The use of `-XX:+UseMembar` causes the VM to revert back to true memory barrier instructions. ^[31]^ ||
-|| `UsePPCLWSYNC` || `` || `` || ||
-|| `UnlockDiagnosticVMOptions` || `` || `` || ||
-|| `ForceSync` || `` || `` || ||
-|| `ProtectJavaHeap` || `` || `` || ||
-|| `BeParanoid` || `` || `` || ||
-|| `UnlockExperimentalVMOptions` || `` || `` || ||
-|| `JavaMonitorsInStackTrace` || `` || `` || ||
+|| `UnlockDiagnosticVMOptions` || `bool` || `diagnostic` || 解锁`diagnostic`类型的JVM参数，如`PrintInlining, PrintIntrinsics`等 ||
+|| `UnlockExperimentalVMOptions` || `bool` || `experimental` || 解锁`experimental`类型的JVM参数，如`EnableMethodHandles, EnableInvokeDynamic`等 ||
+|| `JavaMonitorsInStackTrace` || `bool` || `product` || 在打印Java线程堆栈信息时同时打印锁信息，如`- locked <7f30011d8> (a java.lang.ref.Reference$Lock)`，默认开启 ||
 || `UseLargePages` || `bool` || `product_pd` || 使用大页内存，该特性用于优化页表缓存^注2^，页表缓存在计算机中是稀少的资源，使用大页可以使用页表缓存可转译更大地址空间的物理内存。<br>不同的CPU支持不同的页大小：<br>`i386: 4K and 4M (2M in PAE mode)`<br>`ia64: 4K, 8K, 64K, 256K, 1M, 4M, 16M, 256M`<br>`PPC64: 4K and 16M`<br>`POWER5+: 4K, 64K, 16MB, 16GB (!!)`<br>`UltraSparc III: 8K, 64K, 512K, 4M`<br>`UltraSparc T2: 8K, 64K, 4M, 256M`<br>Linux在内核2.6版本以后支持大页，可以通过`cat /proc/meminfo | grep Huge`判断是否支持大页。<br>在某些应用系统中，开启使用大页有`25%~300%`不等的性能提升。 ^[21][22][23][24]^ ||
 || `UseLargePagesIndividualAllocation` || `` || `` || ||
 || `UseNUMA` || `bool` || `product` || 使用非均匀访存模型，非均匀访存模型（NUMA）的特点是：被共享的存储器物理上是分布式的，所有这些存储器的集合就是全局地址空间。所以处理器访问这些存储器的时间是不一样的，显然访问本地存储器的速度要比访问全局共享存储器或远程访问外地存储器要快些。另外，NUMA中存储器可能是分层的：本地存储器，群内共享存储器，全局共享存储器，在HotSpot@Linux中开启需要<br>1. 硬件是NUMA架构的；BIOS打开了NUMA选项<br>2. Xen等虚拟层的NUMA选项打开（如有）<br>3. 操作系统的NUMA选项打开<br>4. libnuma.so.1存在并且可加载<br>5. -XX:+UseParallelGC/-XX:+UseParallelOldGC ^[12][13]^ ||

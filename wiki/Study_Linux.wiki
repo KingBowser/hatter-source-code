@@ -7,8 +7,12 @@ python -m SimpleHTTPServer
 
 {{{
 rsync -vrlHpgtSe ssh --exclude=.svn --delete /localdir/ name@host:/remotedir/
+rsync -auvz --delete .. ..
 }}}
 
+{{{
+wget --mirror --directory-prefix=<your directory> http://www.example.com
+}}}
 
 
 Alias commands:

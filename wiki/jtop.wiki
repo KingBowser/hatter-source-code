@@ -1,5 +1,5 @@
 #summary Java edition TOP.
-#labels java,jtop,top,jdk,jvm,agent,RMI,profiler,Featured
+#labels java,jtop,top,jdk,jvm,agent,RMI,profiler
 
 = Introduction <g:plusone size="medium"></g:plusone> =
 

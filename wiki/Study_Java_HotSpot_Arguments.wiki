@@ -170,8 +170,8 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `UseVectoredExceptions` || `` || `` || ||
 || `PrintCompilation` || `` || `` || ||
 || `AlwaysRestoreFPU` || `` || `` || ||
-|| `StackTraceInThrowable` || `` || `` || ||
-|| `OmitStackTraceInFastThrow` || `` || `` || ||
+|| `StackTraceInThrowable` || `bool` || `product` || 当异常发生时收集异常堆栈 ||
+|| `OmitStackTraceInFastThrow` || `bool` || `product` || 在已经优化过(编译为本地代码)的代码中对经常抛出的异常不收集堆栈 ||
 || `ProfilerPrintByteCodeStatistics` || `` || `` || ||
 || `ProfilerRecordPC` || `` || `` || ||
 || `ProfileVM` || `` || `` || ||

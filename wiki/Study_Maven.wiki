@@ -1,0 +1,9 @@
+#summary Maven Study
+
+{{{
+mvn dependency:tree -Dverbose
+
+mvn help:effective-pom
+
+mvn dependency:copy-dependencies -DincludeScope=test|compile
+}}}

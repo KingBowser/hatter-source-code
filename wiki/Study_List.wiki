@@ -16,8 +16,8 @@
    * [Study_Java_HotSpot_ObjectLayout]
    * [Study_Java_HotSpot_OOME]
    * [Study_Java_HotSpot_VMThread]
- * [Study_Linux]
  * [Study_Maven]
+ * [Study_OS_Linux]
  * [Study_SVN]
 
  My Book list: [Study_List_Books]

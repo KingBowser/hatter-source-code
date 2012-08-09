@@ -5,7 +5,6 @@
 
  * [Study_CPU]
   * [Study_CPU_MESI]
- * [Study_Linux]
  * [Study_Java]
   * [Study_Java_ByteCode]
   * [Study_Java_HotSpot]
@@ -16,6 +15,9 @@
    * [Study_Java_HotSpot_Concurrent]
    * [Study_Java_HotSpot_ObjectLayout]
    * [Study_Java_HotSpot_ClassLayout]
+   * [Study_Java_HotSpot_VMThread]
+ * [Study_Linux]
+ * [Study_Maven]
  * [Study_SVN]
 
  My Book list: [Study_List_Books]

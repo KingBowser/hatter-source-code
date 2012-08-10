@@ -195,7 +195,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `SyncFlags` || `` || `` || ||
 || `SyncVerbose` || `` || `` || ||
 || `ClearFPUAtPark` || `` || `` || ||
-|| `hashCode` || `` || `` || ||
+|| `hashCode` || `intx` || `product` || 计算HashCode（即Object#hashCode，System#identityHashCode）的模式选择，参见：[http://hg.openjdk.java.net/jdk6/jdk6/hotspot/file/tip/src/share/vm/runtime/synchronizer.cpp synchronizer.cpp]#get_next_hash ||
 || `WorkAroundNPTLTimedWaitHang` || `` || `` || ||
 || `FilterSpuriousWakeups` || `` || `` || ||
 || `NativeMonitorTimeout` || `` || `` || ||

@@ -20,8 +20,9 @@ import me.hatter.tools.commons.string.StringUtil;
 
 public class Finding {
 
-    public static final char   CHAR_27 = (char) 27;
-    public static final String RESET   = CHAR_27 + "[0m";
+    public static final char    CHAR_27    = (char) 27;
+    public static final String  RESET      = CHAR_27 + "[0m";
+    private static final Object sysOutLock = new Object();
 
     public interface MatchFileFilter extends FileFilter {
 
@@ -127,7 +128,9 @@ public class Finding {
                             }
                             printWriter.println();
                         }
-                        System.out.print(printWriter.toString());
+                        synchronized (sysOutLock) {
+                            System.out.print(printWriter.toString());
+                        }
 
                         if (is_0 || is_1) {
                             return;
@@ -180,9 +183,11 @@ public class Finding {
 
         final long endMillis = System.currentTimeMillis();
         DecimalFormat format = new DecimalFormat("#,###,###");
-        System.out.println("Finish, Total: " + format.format(totalCount.get()) + ", Ext Match: "
-                           + format.format(fileCount.get()) + ", Txt Match: " + format.format(matchCount.get())
-                           + ", Cost: " + format.format(endMillis - startMillis) + " ms");
+        synchronized (sysOutLock) {
+            System.out.println("Finish, Total: " + format.format(totalCount.get()) + ", Ext Match: "
+                               + format.format(fileCount.get()) + ", Txt Match: " + format.format(matchCount.get())
+                               + ", Cost: " + format.format(endMillis - startMillis) + " ms");
+        }
     }
 
     private static Matcher getMatcher(String search) {

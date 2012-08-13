@@ -6,8 +6,11 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Enumeration;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
+
+import me.hatter.tools.commons.io.IOUtil;
 
 public class JavaWalkTool {
 
@@ -48,6 +51,38 @@ public class JavaWalkTool {
             }
             return name.endsWith(".class");
         }
+    }
+
+    abstract public static class AbstractClassReaderJarWalker<T> extends AbstractClassJarJavaWalker {
+
+        private boolean    isVerbose;
+        private boolean    isTrace;
+        private AtomicLong processedCount = new AtomicLong(0);
+
+        public AbstractClassReaderJarWalker(boolean isVerbose, boolean isTrace) {
+            this.isVerbose = isVerbose;
+            this.isTrace = isTrace;
+        }
+
+        public void readInputStream(InputStream is, File file, String name, AcceptType type) {
+            processedCount.incrementAndGet();
+            if (isVerbose) {
+                if (type == AcceptType.File) {
+                    System.out.println("Read file: " + file.getPath());
+                }
+                if (type == AcceptType.Entry) {
+                    System.out.println("Read entry: " + file.getPath() + "!" + name);
+                }
+            } else if (isTrace && ((processedCount.get() % 100) == 0)) {
+                System.out.print(".");
+            }
+            byte[] bytes = IOUtil.readToBytesAndClose(new BufferedInputStream(is));
+            dealClass(((type == AcceptType.Entry) ? file : null), readClass(bytes));
+        }
+
+        abstract protected T readClass(byte[] bytes);
+
+        abstract protected void dealClass(File jarFile, T t);
     }
 
     private File dir;

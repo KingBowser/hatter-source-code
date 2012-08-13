@@ -15,6 +15,7 @@ import me.hatter.tools.commons.io.IOUtil;
 public class JavaWalkTool {
 
     public static enum AcceptType {
+
         File,
 
         Entry,

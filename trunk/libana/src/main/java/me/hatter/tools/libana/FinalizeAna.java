@@ -8,7 +8,7 @@ import java.util.List;
 import me.hatter.tools.commons.args.UnixArgsutil;
 import me.hatter.tools.commons.environment.Environment;
 import me.hatter.tools.commons.file.JavaWalkTool;
-import me.hatter.tools.libana.LibAna.AbstractClassReaderJarWalker;
+import me.hatter.tools.libana.LibAna.AbstractClassNodeReaderJarWalker;
 
 import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.MethodNode;
@@ -25,7 +25,7 @@ public class FinalizeAna {
         StringWriter sw = new StringWriter();
         final PrintWriter pw = new PrintWriter(sw);
         JavaWalkTool tool = new JavaWalkTool(new File(dir));
-        tool.walk(new AbstractClassReaderJarWalker() {
+        tool.walk(new AbstractClassNodeReaderJarWalker() {
 
             @Override
             protected void dealClassNode(File jarFile, ClassNode classNode, String className) {

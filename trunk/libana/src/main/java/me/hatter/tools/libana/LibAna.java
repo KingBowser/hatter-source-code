@@ -1,8 +1,6 @@
 package me.hatter.tools.libana;
 
-import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -10,7 +8,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.atomic.AtomicLong;
 import java.util.regex.Pattern;
 
 import me.hatter.tools.commons.args.UnixArgsutil;
@@ -18,9 +15,7 @@ import me.hatter.tools.commons.color.Color;
 import me.hatter.tools.commons.color.Font;
 import me.hatter.tools.commons.environment.Environment;
 import me.hatter.tools.commons.file.JavaWalkTool;
-import me.hatter.tools.commons.file.JavaWalkTool.AbstractClassJarJavaWalker;
-import me.hatter.tools.commons.file.JavaWalkTool.AcceptType;
-import me.hatter.tools.commons.io.IOUtil;
+import me.hatter.tools.commons.file.JavaWalkTool.AbstractClassReaderJarWalker;
 import me.hatter.tools.commons.io.StringPrintWriter;
 import me.hatter.tools.commons.regex.RegexUtil;
 
@@ -31,29 +26,22 @@ import org.objectweb.asm.tree.MethodNode;
 
 public class LibAna {
 
-    abstract public static class AbstractClassReaderJarWalker extends AbstractClassJarJavaWalker {
+    abstract public static class AbstractClassNodeReaderJarWalker extends AbstractClassReaderJarWalker<ClassNode> {
 
-        private AtomicLong processedCount = new AtomicLong(0);
+        public AbstractClassNodeReaderJarWalker() {
+            super(isVerbose(), isTrace());
+        }
 
-        public void readInputStream(InputStream is, File file, String name, AcceptType type) {
-            processedCount.incrementAndGet();
-            if (isVerbose()) {
-                if (type == AcceptType.File) {
-                    System.out.println("Read file: " + file.getPath());
-                }
-                if (type == AcceptType.Entry) {
-                    System.out.println("Read entry: " + file.getPath() + "!" + name);
-                }
-            } else if (isTrace() && ((processedCount.get() % 100) == 0)) {
-                System.out.print(".");
-            }
-            byte[] bytes = IOUtil.readToBytesAndClose(new BufferedInputStream(is));
+        protected ClassNode readClass(byte[] bytes) {
             ClassReader cr = new ClassReader(bytes);
             ClassNode cn = new ClassNode();
             cr.accept(cn, ClassReader.SKIP_DEBUG);
+            return cn;
+        }
 
+        protected void dealClass(File jarFile, ClassNode cn) {
             String className = cn.name.replace('/', '.');
-            dealClassNode(((type == AcceptType.Entry) ? file : null), cn, className);
+            dealClassNode(jarFile, cn, className);
         }
 
         abstract protected void dealClassNode(File jarFile, ClassNode classNode, String className);
@@ -77,7 +65,7 @@ public class LibAna {
         final Pattern filter = getFilter();
         JavaWalkTool tool = new JavaWalkTool(new File(dir));
         System.out.println("Step 1: Analysis duplicate classname list.");
-        tool.walk(new AbstractClassReaderJarWalker() {
+        tool.walk(new AbstractClassNodeReaderJarWalker() {
 
             @Override
             protected void dealClassNode(File jarFile, ClassNode classNode, String className) {
@@ -100,7 +88,7 @@ public class LibAna {
             final PrintWriter out = new StringPrintWriter();
             final Map<String, ClassNode> classNodeMap = new HashMap<String, ClassNode>();
             final Map<String, File> classJarFileMap = new HashMap<String, File>();
-            tool.walk(new AbstractClassReaderJarWalker() {
+            tool.walk(new AbstractClassNodeReaderJarWalker() {
 
                 @Override
                 protected void dealClassNode(File jarFile, ClassNode classNode, String className) {

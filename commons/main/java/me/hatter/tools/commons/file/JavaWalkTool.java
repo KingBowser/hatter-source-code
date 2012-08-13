@@ -114,7 +114,11 @@ public class JavaWalkTool {
                         JarEntry jarEntry = entries.nextElement();
                         if (walker.accept(null, jarEntry.getName(), AcceptType.Entry)) {
                             InputStream is = jarFile.getInputStream(jarEntry);
-                            walker.readInputStream(is, file, jarEntry.getName(), AcceptType.Entry);
+                            try {
+                                walker.readInputStream(is, file, jarEntry.getName(), AcceptType.Entry);
+                            } finally {
+                                IOUtil.closeQuitely(is);
+                            }
                         }
                     }
                 } catch (Exception e) {
@@ -122,8 +126,12 @@ public class JavaWalkTool {
                 }
             } else if (walker.accept(file, file.getName(), AcceptType.File)) {
                 try {
-                    walker.readInputStream(new BufferedInputStream(new FileInputStream(file)), file, file.getName(),
-                                           AcceptType.File);
+                    InputStream is = new BufferedInputStream(new FileInputStream(file));
+                    try {
+                        walker.readInputStream(is, file, file.getName(), AcceptType.File);
+                    } finally {
+                        IOUtil.closeQuitely(is);
+                    }
                 } catch (FileNotFoundException e) {
                     throw new RuntimeException(e);
                 }

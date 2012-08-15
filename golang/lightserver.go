@@ -68,6 +68,7 @@ func (h HttpServerHandle) ServeHTTP (
 	if (lightHttpServerPrintVerbose) {
 		fmt.Println("Request url:", r.URL)
 	}
+	w.Header().Set("Server", "LightHttpServer/" + LIGHT_HTTP_SERVER_VERSION)
 	filePath := lightHttpServerPath + r.URL.Path
 	openFile, openFileError := os.Open(filePath)
 	if openFileError != nil {

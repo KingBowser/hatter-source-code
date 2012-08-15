@@ -16,10 +16,24 @@ const (
 	CONTENT_TYPE = "Content-Type"
 	TEXT_PLAIN = "text/plain"
 	TEXT_HTML = "text/html"
+	TEXT_CSS = "text/css"
 	IMAGE_JPEG = "image/jpeg"
 	IMAGE_PNG = "image/png"
+	IMAGE_GIF = "image/gif"
+	IMAGE_ICON = "image/vnd.microsoft.icon"
+	IMAGE_PSD = "image/vnd.adobe.photoshop"
+	AUDIO_WAV = "audio/wav"
+	VEDIO_MP4 = "video/mp4"
+	VEDIO_MPEG = "video/mpeg"
+	VEDIO_QUICKTIME = "video/quicktime"
+	VEDIO_ASF = "video/x-ms-asf"
+	VEDIO_WMV = "video/x-ms-wmv"
+	VEDIO_AVI = "video/x-msvideo"
+	VEDIO_MOVIE = "video/x-sgi-movie"
 	APPLICATION_PDF = "application/pdf"
 	APPLICATION_XML = "application/xml"
+	APPLICATION_JS = "application/javascript"
+	APPLICATION_RM = "application/vnd.rn-realmedia"
 	APPLICATION_OCTET_STREAM = "application/octet-stream"
 	
 	KB = 1024
@@ -37,12 +51,36 @@ var (
 						"txt": TEXT_PLAIN, 
 						"properties": TEXT_PLAIN,
 						"yaml": TEXT_PLAIN,
+						"css": TEXT_CSS,
 						"htm": TEXT_HTML,
 						"html": TEXT_HTML,
 						"jpg": IMAGE_JPEG,
+						"jpe": IMAGE_JPEG,
+						"jpeg": IMAGE_JPEG,
 						"png": IMAGE_PNG,
+						"gif": IMAGE_GIF,
+						"ico": IMAGE_ICON,
 						"pdf": APPLICATION_PDF,
+						"psd": IMAGE_PSD,
 						"xml": APPLICATION_XML,
+						"js": APPLICATION_JS,
+						"rm": APPLICATION_RM,
+						"wav": AUDIO_WAV,
+						"mp4": VEDIO_MP4,
+						"mp4v": VEDIO_MP4,
+						"mpg4": VEDIO_MP4,
+						"mpeg": VEDIO_MPEG,
+						"mpg": VEDIO_MPEG,
+						"mpe": VEDIO_MPEG,
+						"m1v": VEDIO_MPEG,
+						"m2v": VEDIO_MPEG,
+						"qt": VEDIO_QUICKTIME,
+						"mov": VEDIO_QUICKTIME,
+						"asf": VEDIO_ASF,
+						"asx": VEDIO_ASF,
+						"wmv": VEDIO_WMV,
+						"avi": VEDIO_AVI,
+						"movie": VEDIO_MOVIE,
 	}
 )
 
@@ -86,32 +124,18 @@ func (h HttpServerHandle) ServeHTTP (
 	openFileIsDir := openFileInfo.Mode().IsDir()
 	
 	if !openFileIsDir {
-		lastIndexOfDot := strings.LastIndex(openFileInfo.Name(), ".")
-		var openFileMimeType string = ""
-		if lastIndexOfDot > -1 {
-			openFileSuffix := openFileInfo.Name()[lastIndexOfDot + 1:]
-			openFileMimeType = mimeTypeMap[openFileSuffix]
-		}
+		openFileSuffix := GetSuffix(openFileInfo.Name())
+		openFileMimeType := mimeTypeMap[openFileSuffix]
 		if openFileMimeType == "" {
 			openFileMimeType = APPLICATION_OCTET_STREAM
 		}
+		w.WriteHeader(200)
 		w.Header().Set(CONTENT_TYPE, openFileMimeType)
-		//readFileContent, readFileContentError := ioutil.ReadFile(filePath)
-		//if readFileContentError != nil {
-		//	fmt.Println("[ERROR] Read file ", fmt.Sprintf("%T %v", readFileContentError))
-		//}
-		buffer := make([]byte, KB * 4)
-		for {
-			count, err := openFile.Read(buffer[0:])
-			w.Write(buffer[0:count])
-			if err != nil {
-				if err == io.EOF {
-					break;
-				}
-				fmt.Println("[ERROR] Error in write file to response: ", fmt.Sprintf("%T %v", err, err))
-			}
+		
+		err := CopyBytes(openFile, w);
+		if err != nil {
+			fmt.Println("[ERROR] Error in write file to response: ", fmt.Sprintf("%T %v", err, err))
 		}
-		//w.Write(readFileContent)
 		return
 	}
 	
@@ -140,7 +164,7 @@ func (h HttpServerHandle) ServeHTTP (
 		}
 		fileSize := ""
 		if !isDir {
-			fileSize = " (" + toSize(fileInfo.Size()) + ")"
+			fileSize = " (" + ToSize(fileInfo.Size()) + ")"
 		}
 		fmt.Fprint(w, "<li>", "<a href=\"", basePath, fileInfo.Name(), "\">", fName, "</a>", fileSize, "</li>");
 	}
@@ -149,7 +173,30 @@ func (h HttpServerHandle) ServeHTTP (
 	fmt.Fprint(w, "Powered by ", LIGHT_HTTP_SERVER_NAME, ", Version: ", LIGHT_HTTP_SERVER_VERSION, "<br/>")
 }
 
-func toSize(size int64) string {
+func GetSuffix(s string) string {
+	lastIndexOfDot := strings.LastIndex(s, ".")
+	if lastIndexOfDot > -1 {
+		return s[lastIndexOfDot + 1:]
+	}
+	return ""
+}
+
+func CopyBytes(file *os.File, writer http.ResponseWriter) error {
+	buffer := make([]byte, KB * 4)
+	for {
+		count, err := file.Read(buffer[0:])
+		writer.Write(buffer[0:count])
+		if err != nil {
+			if err == io.EOF {
+				break;
+			}
+			return err
+		}
+	}
+	return nil
+}
+
+func ToSize(size int64) string {
 	if size > GB {
 		return fmt.Sprintf("%vGB", size / GB)
 	} else if size > MB {

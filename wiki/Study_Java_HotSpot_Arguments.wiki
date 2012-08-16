@@ -22,7 +22,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `compiler_thread` || 编译线程 ||
 || `watcher_thread` || 观察线程 ||
 
-线程类型的结构图：
+线程类的结构图：
 {{{
 Thread
 |-- NamedThread

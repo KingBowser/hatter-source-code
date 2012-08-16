@@ -544,7 +544,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `ReadSpinIterations` || `` || `` || ||
 || `PreInflateSpin` || `` || `` || ||
 || `PreBlockSpin` || `` || `` || ||
-|| `InitialHeapSize` || `` || `` || ||
+|| `InitialHeapSize` || `uintx` || `product` || 为Heap区域的初始值 ^[32]^ ||
 || `MaxHeapSize` || `uintx` || `product` || 为Heap区域的最大值 ^[32]^ ||
 || `OldSize` || `` || `` || ||
 || `NewSize` || `` || `` || ||
@@ -586,9 +586,9 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `StackYellowPages` || `` || `` || ||
 || `StackRedPages` || `` || `` || ||
 || `StackShadowPages` || `` || `` || ||
-|| `ThreadStackSize` || `` || `` || ||
-|| `VMThreadStackSize` || `` || `` || ||
-|| `CompilerThreadStackSize` || `` || `` || ||
+|| `ThreadStackSize` || `intx` || `product_pd` || 线程的栈大小，如在OpenJDK中使用函数“JavaThread::set_stack_size_at_create”(Linux)来设置该参数 ||
+|| `VMThreadStackSize` || `intx` || `product_pd` || VMThread, PGCThread, CGCTHhread, WatcherThread线程的栈大小 ||
+|| `CompilerThreadStackSize` || `intx` || `product_pd` || 编译线程的栈大小，如果未设置则使用VMThreadStackSize的大小 ||
 || `ThreadSafetyMargin` || `` || `` || ||
 || `OptoLoopAlignment` || `` || `` || ||
 || `InitialCodeCacheSize` || `` || `` || ||

@@ -37,45 +37,45 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `-agentlib:` || `-` || ||
 || `-agentpath:` || `-` || ||
 || `-javaagent:` || `-` || ||
-|| `-Xnoclassgc` || `-` || `-ClassUnloading` ||
-|| `-Xincgc` || `-` || `+UseConcMarkSweepGC,+CMSIncrementalMode` ||
-|| `-Xnoincgc` || `-` || `+UseConcMarkSweepGC,+CMSIncrementalMode` ||
-|| `-Xconcgc` || `-` || `+UseConcMarkSweepGC` ||
-|| `-Xnoconcgc` || `-` || `+UseConcMarkSweepGC` ||
-|| `-Xbatch` || `-` || `+BackgroundCompilation` ||
-|| `-Xmn` || `-` || `MaxNewSize,NewSize` ||
-|| `-Xms` || `-` || `InitialHeapSize` ||
-|| `-Xmx` || `-` || `MaxHeapSize` ||
-|| `-Xmaxf` || `-` || `MaxHeapFreeRatio` ||
-|| `-Xminf` || `-` || `MinHeapFreeRatio` ||
-|| `-Xss` || `-` || `ThreadStackSize` ||
+|| `-Xnoclassgc` || `-` || `-XX:-ClassUnloading` ||
+|| `-Xincgc` || `-` || `-XX:+UseConcMarkSweepGC,-XX:+CMSIncrementalMode` ||
+|| `-Xnoincgc` || `-` || `-XX:+UseConcMarkSweepGC,-XX:+CMSIncrementalMode` ||
+|| `-Xconcgc` || `-` || `-XX:+UseConcMarkSweepGC` ||
+|| `-Xnoconcgc` || `-` || `-XX:+UseConcMarkSweepGC` ||
+|| `-Xbatch` || `-` || `-XX:+BackgroundCompilation` ||
+|| `-Xmn` || `-` || `-XX:MaxNewSize=,-XX:NewSize=` ||
+|| `-Xms` || `-` || `-XX:InitialHeapSize=` ||
+|| `-Xmx` || `-` || `-XX:MaxHeapSize=` ||
+|| `-Xmaxf` || `-` || `-XX:MaxHeapFreeRatio=` ||
+|| `-Xminf` || `-` || `-XX:MinHeapFreeRatio=` ||
+|| `-Xss` || `-` || `-XX:ThreadStackSize=` ||
 || `-Xoss` || `-` || _该参数被忽略，HotSpot不使用区分的Native和Java栈_ ||
-|| `-Xmaxjitcodesize` || `-` || `ReservedCodeCacheSize` ||
+|| `-Xmaxjitcodesize` || `-` || `-XX:ReservedCodeCacheSize=` ||
 || `-green` || `-` || _HotSpot不支持Green线程，使用此参数无法启动JVM_ ||
 || `-native` || `-` || _该参数被忽略，HotSpot始终使用Native线程_ ||
 || `-Xsqnopause` || `-` || _该参数被忽略，注释为`EVM option`，但不知道是什么意思_ ||
-|| `-Xrs` || `-` || `ReduceSignalUsage` ||
+|| `-Xrs` || `-` || `-XX:ReduceSignalUsage=` ||
 || `-Xusealtsigs` || `-` || _该参数被忽略，为向前兼容保留_ ||
 || `-Xoptimize` || `-` || _该参数被忽略，同`-Xsqnopause`_ ||
 || `-Xprof` || `-` || ||
 || `-Xaprof` || `-` || ||
-|| `-Xconcurrentio` || `-` || `+UseLWPSynchronization,-BackgroundCompilation,`<br>`DeferThrSuspendLoopCount=1,-UseTLAB,NewSizeThreadIncrease=16K` ||
+|| `-Xconcurrentio` || `-` || `-XX:+UseLWPSynchronization,-XX:-BackgroundCompilation,`<br>`DeferThrSuspendLoopCount=1,-UseTLAB,NewSizeThreadIncrease=16K` ||
 || `-Xinternalversion` || `-` || 打印内部版本并退出 ||
-|| `-Dcom.sun.management` || `-` || 设置`System.Property`参数的同时`+ManagementServer` ||
+|| `-Dcom.sun.management` || `-` || 设置`System.Property`参数的同时`-XX:+ManagementServer` ||
 || `-X[int/comp/mixed]` || `-Xint` || ||
 || `-` || `-Xcomp` || ||
 || `-` || `-Xmixed` || ||
-|| `-Xshare:[dump/on/auto/off]` || `-Xshare:dump` || `+DumpSharedSpaces` ||
-|| `-` || `-Xshare:on` || `+UseSharedSpaces,+RequireSharedSpaces,+ForceSharedSpaces` ||
-|| `-` || `-Xshare:auto` || `+UseSharedSpaces,-RequireSharedSpaces` ||
-|| `-` || `-Xshare:off` || `-UseSharedSpaces,RequireSharedSpaces` ||
-|| `-Xverify:[all/remote/none]` || `-Xverify:all` || `+BytecodeVerificationLocal,+BytecodeVerificationRemote` ||
-|| `-` || `-Xverify:remote` || `-BytecodeVerificationLocal,+BytecodeVerificationRemote` ||
-|| `-` || `-Xverify:none` || `-BytecodeVerificationLocal,-BytecodeVerificationRemote` ||
+|| `-Xshare:[dump/on/auto/off]` || `-Xshare:dump` || `-XX:+DumpSharedSpaces` ||
+|| `-` || `-Xshare:on` || `-XX:+UseSharedSpaces,-XX:+RequireSharedSpaces,-XX:+ForceSharedSpaces` ||
+|| `-` || `-Xshare:auto` || `-XX:+UseSharedSpaces,-XX:-RequireSharedSpaces` ||
+|| `-` || `-Xshare:off` || `-XX:-UseSharedSpaces,-XX:RequireSharedSpaces=` ||
+|| `-Xverify:[all/remote/none]` || `-Xverify:all` || `-XX:+BytecodeVerificationLocal,-XX:+BytecodeVerificationRemote` ||
+|| `-` || `-Xverify:remote` || `-XX:-BytecodeVerificationLocal,-XX:+BytecodeVerificationRemote` ||
+|| `-` || `-Xverify:none` || `-XX:-BytecodeVerificationLocal,-XX:-BytecodeVerificationRemote` ||
 || `-Xdebug` || `-` || ||
 || `-Xnoagent` || `-` || _该参数被忽略，为向前兼容保留_ ||
-|| `-Xboundthreads` || `-` || `+UseBoundThreads` ||
-|| `-Xloggc:` || `-` || `+PrintGC,+PrintGCTimeStamps,+TraceClassUnloading`<br>打印GC信息到指定文件 ||
+|| `-Xboundthreads` || `-` || `-XX:+UseBoundThreads` ||
+|| `-Xloggc:` || `-` || `-XX:+PrintGC,-XX:+PrintGCTimeStamps,-XX:+TraceClassUnloading`<br>打印GC信息到指定文件 ||
 || `-Xcheck:jni` || `-` || ||
 
 ^注1.^ 分隔符在Linux/Unix操作系统和Winodws操作系统不一样，在Linux/Unix下为`":"`（冒号），在Windows下为`";"`（分号）

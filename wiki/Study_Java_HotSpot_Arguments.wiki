@@ -390,7 +390,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `InitialRAMFraction` || `` || `` || ||
 || `UseAutoGCSelectPolicy` || `` || `` || ||
 || `AutoGCSelectPauseMillis` || `` || `` || ||
-|| `UseAdaptiveSizePolicy` || `` || `` || ||
+|| `UseAdaptiveSizePolicy` || `bool` || `product` || -XX:+UseAdaptiveSizePolicy 建议使用-XX:-UseAdaptiveSizePolicy关掉，为什么当你的参数设置了NewRatio、Survivor、MaxTenuringThreshold这几个参数如果在启动了动态更新情况下，是无效的，当然如果你设置-Xmn是有效的，但是如果设置的比例的话，初始化可能会按照你的参数去运行，不过运行过程中会通过一定的算法动态修改，监控中你可能会发现这些参数会发生改变，甚至于S0和S1的大小不一样，如果启动了这个参数，又想要跟踪变化，那么就使用参数：-XX:+PrintAdaptiveSizePolicy ^[32]^ ||
 || `UsePSAdaptiveSurvivorSizePolicy` || `` || `` || ||
 || `UseAdaptiveGenerationSizePolicyAtMinorCollection` || `` || `` || ||
 || `UseAdaptiveGenerationSizePolicyAtMajorCollection` || `` || `` || ||
@@ -557,7 +557,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `TLABRefillWasteFraction` || `` || `` || ||
 || `TLABWasteIncrement` || `` || `` || ||
 || `SurvivorRatio` || `intx` || `product` || 该参数为Eden与两个求助空间之一的比例，注意Yong的大小等价于Eden + S0 + S1，S0和S1的大小是等价的，这个参数为Eden与其中一个S区域的大小比例，如参数为8，那么Eden就占用Yong的80%，而S0和S1分别占用10% ^[32]^ ||
-|| `NewRatio` || `intx` || `product` || 为Old区域为Yong的多少倍，间接设置Yong的大小，1.6中如果使用此参数，则默认会在适当时候被动态调整，具体请看下面参数UseAdaptiveSizepollcy 的说明 ^[32]^||
+|| `NewRatio` || `intx` || `product` || 为Old区域为Yong的多少倍，间接设置Yong的大小，1.6中如果使用此参数，则默认会在适当时候被动态调整，具体请看下面参数UseAdaptiveSizePolicy 的说明 ^[32]^||
 || `NewSizeThreadIncrease` || `` || `` || ||
 || `PermSize` || `` || `` || ||
 || `MaxPermSize` || `` || `` || ||

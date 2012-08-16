@@ -5,6 +5,7 @@ import (
 	"os"
 	"io"
 	"fmt"
+	"flag"
 	"strings"
 	"io/ioutil"
 	"net/http"
@@ -42,7 +43,7 @@ const (
 )
 
 var (
-	lightHttpServerPort = 8888
+	lightHttpServerPort = flag.Int("port", 8888, "listen port")
 	lightHttpServerPath = ""
 	lightHttpServerPrintVerbose = true
 	mimeTypeMap = map[string]string {
@@ -85,17 +86,19 @@ var (
 )
 
 
-func display_version() {
+func DisplayUsage() {
 	fmt.Println(LIGHT_HTTP_SERVER_NAME, "(Version: ", LIGHT_HTTP_SERVER_VERSION, ")")
 	fmt.Println("Author: Hatter Jiang")
 	fmt.Println("URL: http://hatter.in")
 	fmt.Println("Usage:")
 	fmt.Println("  lightserver [options] [dir]")
+	fmt.Println("    -port               http listen port")
 	os.Exit(0);
 }
 
-func display_startmessage() {
-	fmt.Println(LIGHT_HTTP_SERVER_NAME, "start up at:", lightHttpServerPort)
+func DisplayStartmessage() {
+	fmt.Println("Server base path: ", lightHttpServerPath)
+	fmt.Println(LIGHT_HTTP_SERVER_NAME, "start up at:", *lightHttpServerPort)
 }
 
 type HttpServerHandle struct {}
@@ -209,12 +212,28 @@ func ToSize(size int64) string {
 
 func main() {
 	// init
+	flag.Usage = DisplayUsage
+	flag.Parse();
 	lightHttpServerPath, _ = os.Getwd()
 	
-	display_startmessage()
+	args := flag.Args()
+	if len(args) > 0 {
+		assignedPath := args[0]
+		assignedFileInfo, assignedFileInfoError := os.Stat(assignedPath)
+		if assignedFileInfoError != nil {
+			fmt.Println("Directory not exists: ", assignedPath)
+			os.Exit(0)
+		}
+		if !assignedFileInfo.IsDir() {
+			fmt.Println("Target is file: " + assignedPath)
+			os.Exit(0)
+		}
+		lightHttpServerPath = assignedPath
+	}
+	
+	DisplayStartmessage()
 	var h HttpServerHandle
-	listenStr := ":" + fmt.Sprintf("%v", lightHttpServerPort)
-	listenAndServeError := http.ListenAndServe(listenStr, h)
+	listenAndServeError := http.ListenAndServe(fmt.Sprintf(":%v", *lightHttpServerPort), h)
 	if (listenAndServeError != nil) {
 		fmt.Println(listenAndServeError)
 	}

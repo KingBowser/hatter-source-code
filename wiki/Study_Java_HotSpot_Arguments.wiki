@@ -476,11 +476,11 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `TypeProfileMajorReceiverPercent` || `` || `` || ||
 || `UseCountLeadingZerosInstruction` || `` || `` || ||
 || `UsePopCountInstruction` || `` || `` || ||
-|| `PrintVMOptions` || `` || `` || ||
-|| `IgnoreUnrecognizedVMOptions` || `` || `` || ||
-|| `PrintCommandLineFlags` || `` || `` || ||
-|| `PrintFlagsInitial` || `` || `` || ||
-|| `PrintFlagsFinal` || `` || `` || ||
+|| `PrintVMOptions` || `bool` || `product` || 打印命令行设置的参数(未做转换) ||
+|| `IgnoreUnrecognizedVMOptions` || `bool` || `product` || 忽略JVM不认识的参数设置 ||
+|| `PrintCommandLineFlags` || `bool` || `product` || 打印启动参数中设置的JVM参数 ||
+|| `PrintFlagsInitial` || `bool` || `product` || 打印JVM参数初始值并退出 ||
+|| `PrintFlagsFinal` || `bool` || `product` || 打印最终的JVM参数 ||
 || `ErrorFile` || `` || `` || ||
 || `DisplayVMOutputToStderr` || `` || `` || ||
 || `DisplayVMOutputToStdout` || `` || `` || ||

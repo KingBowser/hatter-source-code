@@ -137,7 +137,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `UseSSE` || `intx` || `product` || `SSE`(`Streaming SIMD Extensions`)是英特尔在AMD的`3D Now!`发布一年之后，在其计算机芯片`Pentium III`中引入的指令集，是继MMX的扩充指令集。SSE 指令集提供了 70 条新指令。AMD后来在`Athlon XP`中加入了对这个新指令集的支持。<br>其后续版本有：<br>`SSE2`<br>`SSE3`<br>`SSSE3`<br>`SSE4` 现在更新至`SSE4.2`<br>`SSE5`<br>`AVX`<br>`FMA` ^[25][26]^ ||
 || `UseSSE42Intrinsics` || `bool` || `product` || 使用`SSE4.2`优化Java程序运行，打开此参数将对以下函数使用`SSE4.2`优化：<br>`MacroAssembler::string_compare`<br>`MacroAssembler::char_arrays_equals`<br>`MacroAssembler::string_indexof` ^[27]^ ||
 || `ForceTimeHighResolution` || `bool` || `product` || _仅在Windows下有效，不清楚是干什么的_ ||
-|| `BackgroundCompilation` || `` || `` || ||
+|| `BackgroundCompilation` || `bool` || `product_pd` || 后台JIT编译优化启动 ^[32]^ ||
 || `PrintVMQWaitTime` || `` || `` || ||
 || `MethodFlushing` || `` || `` || ||
 || `PrintJNIResolving` || `` || `` || ||
@@ -545,7 +545,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `PreInflateSpin` || `` || `` || ||
 || `PreBlockSpin` || `` || `` || ||
 || `InitialHeapSize` || `` || `` || ||
-|| `MaxHeapSize` || `` || `` || ||
+|| `MaxHeapSize` || `uintx` || `product` || 为Heap区域的最大值 ^[32]^ ||
 || `OldSize` || `` || `` || ||
 || `NewSize` || `` || `` || ||
 || `MaxNewSize` || `` || `` || ||
@@ -556,8 +556,8 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `TLABWasteTargetPercent` || `` || `` || ||
 || `TLABRefillWasteFraction` || `` || `` || ||
 || `TLABWasteIncrement` || `` || `` || ||
-|| `SurvivorRatio` || `` || `` || ||
-|| `NewRatio` || `` || `` || ||
+|| `SurvivorRatio` || `intx` || `product` || 该参数为Eden与两个求助空间之一的比例，注意Yong的大小等价于Eden + S0 + S1，S0和S1的大小是等价的，这个参数为Eden与其中一个S区域的大小比例，如参数为8，那么Eden就占用Yong的80%，而S0和S1分别占用10% ^[32]^ ||
+|| `NewRatio` || `intx` || `product` || 为Old区域为Yong的多少倍，间接设置Yong的大小，1.6中如果使用此参数，则默认会在适当时候被动态调整，具体请看下面参数UseAdaptiveSizepollcy 的说明 ^[32]^||
 || `NewSizeThreadIncrease` || `` || `` || ||
 || `PermSize` || `` || `` || ||
 || `MaxPermSize` || `` || `` || ||
@@ -568,7 +568,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `MinPermHeapExpansion` || `` || `` || ||
 || `MaxPermHeapExpansion` || `` || `` || ||
 || `QueuedAllocationWarningCount` || `` || `` || ||
-|| `MaxTenuringThreshold` || `` || `` || ||
+|| `MaxTenuringThreshold` || `intx` || `product` || 在正常情况下，新申请的对象在Yong区域发生多少次GC后就会被移动到Old（非正常就是S0或S1放不下或者不太可能出现的Eden都放不下的对象），这个参数一般不会超过16（因为计数器从0开始计数，所以设置为15的时候相当于生命周期为16），要查看现在的这个值的具体情况，可以使用参数：-XX:+PrintTenuringDistribution ^[32]^ ||
 || `InitialTenuringThreshold` || `` || `` || ||
 || `TargetSurvivorRatio` || `` || `` || ||
 || `MarkSweepDeadRatio` || `` || `` || ||
@@ -864,4 +864,5 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 `[29].` https://blogs.oracle.com/jonthecollector/entry/the_real_thing<br>
 `[30].` http://hi.baidu.com/7636553/item/80f9bd144536e5cb39cb300a<br>
 `[31].` http://stackoverflow.com/questions/1120088/what-is-javas-xxusemembar-parameter<br>
+`[32].` http://www.open-open.com/home/space.php?uid=71669&do=blog&id=8891<br>
 

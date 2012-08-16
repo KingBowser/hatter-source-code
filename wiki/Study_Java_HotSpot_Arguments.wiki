@@ -14,6 +14,21 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 
 ^注^ C1和C2是两个不同的二进制代码系统。它们是一个系统下不同的编译(JIT)接口,C1系统优化的目的是最快的启动时间和小内存占用，C2系统优化目的是最佳总体运行性能。一般C1系统更适合交互的应用程序，如GUI程序。它们的不同步包括但不仅限于：编译策略，默认堆大小，内联策略。 ^[14]^
 
+==线程类型==
+线程类型的结构图：
+{{
+Thread
+|-- NamedThread
+|   |-- VMThread
+|   |-- ConcurrentGCThread
+|   `-- WorkerThread
+|       |-- GangWorker
+|       `-- GCTaskThread
+|-- JavaThread
+`-- WatcherThread
+
+}}
+
 ==编译模式==
 || `-Xint` || 解释模式，仅解释运行 ||
 || `-Xcomp` || 编译模式，先编译再运行 ||

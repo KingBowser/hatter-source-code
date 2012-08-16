@@ -59,7 +59,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `-Xoptimize` || `-` || _该参数被忽略，同`-Xsqnopause`_ ||
 || `-Xprof` || `-` || ||
 || `-Xaprof` || `-` || ||
-|| `-Xconcurrentio` || `-` || `-XX:+UseLWPSynchronization,-XX:-BackgroundCompilation,`<br>`DeferThrSuspendLoopCount=1,-UseTLAB,NewSizeThreadIncrease=16K` ||
+|| `-Xconcurrentio` || `-` || `-XX:+UseLWPSynchronization,-XX:-BackgroundCompilation,`<br>`-XX:DeferThrSuspendLoopCount=1,-XX:-UseTLAB,-XX:NewSizeThreadIncrease=16K` ||
 || `-Xinternalversion` || `-` || 打印内部版本并退出 ||
 || `-Dcom.sun.management` || `-` || 设置`System.Property`参数的同时`-XX:+ManagementServer` ||
 || `-X[int/comp/mixed]` || `-Xint` || ||

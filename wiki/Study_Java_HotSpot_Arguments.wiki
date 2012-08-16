@@ -16,7 +16,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 
 ==线程类型==
 线程类型的结构图：
-{{
+{{{
 Thread
 |-- NamedThread
 |   |-- VMThread
@@ -26,8 +26,7 @@ Thread
 |       `-- GCTaskThread
 |-- JavaThread
 `-- WatcherThread
-
-}}
+}}}
 
 ==编译模式==
 || `-Xint` || 解释模式，仅解释运行 ||

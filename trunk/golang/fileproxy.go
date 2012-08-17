@@ -43,19 +43,16 @@ func DownloadGet(url, basePath string) (int64, error) {
 	fmt.Println("Download file from: ", url, " -> " + newFileName)
 	resp, respError := http.Get(url)
 	if (respError != nil) {
-		fmt.Println("111111")
 		return 0, respError
 	}
 	defer resp.Body.Close()
 	newFile, newFileError := os.Create(newFileName)
 	if newFileError != nil {
-		fmt.Println("222222")
 		return 0, newFileError
 	}
 	defer newFile.Close()
 	copyCount, copyError := io.Copy(newFile, resp.Body)
 	if copyError != nil {
-		fmt.Println("333333")
 		return 0, copyError
 	}
 	atomic.AddInt64(&downloadSize, copyCount)

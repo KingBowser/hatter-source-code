@@ -2,11 +2,7 @@
 
 == [http://openjdk.java.net/ OpenJDK] ==
 
-List of about HotSpot:
- * [Study_Java_HotSpot_Glossay]
- * [Study_Java_HotSpot_Arguments]
-
-<br><br><br><br>
+<br><br>
 打开JavaLauncher的Verbose信息：
 {{{
 export _JAVA_LAUNCHER_DEBUG=1

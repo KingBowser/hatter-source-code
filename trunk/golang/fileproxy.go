@@ -26,6 +26,15 @@ var downloadedAllCount int64 = 0;
 var downloadedSuccCount int64 = 0;
 var downloadSize int64 = 0;
 
+func DoDownloadGet(url, basePath string) {
+	size, err := DownloadGet(url, basePath)
+	if err != nil {
+		fmt.Println(fmt.Sprintf("[ERROR] Download error: %T %v", err, err))
+		return
+	}
+	fmt.Println(fmt.Sprintf("Download url: %v success, bytes: %v", url, size))
+}
+
 func DownloadGet(url, basePath string) (int64, error) {
 	atomic.AddInt64(&downloadCount, 1)
 	atomic.AddInt64(&downloadedAllCount, 1)
@@ -115,7 +124,7 @@ func (h HttpServerHandle) ServeHTTP (
 		fmt.Fprint(w, "<br>", "<a href=\"/\">&lt;&lt;&lt;&lt;BACK&lt;&lt;&lt;&lt;</a>")
 		return
 	}
-	go DownloadGet(formUrl, appHttpServerPath)
+	go DoDownloadGet(formUrl, appHttpServerPath)
 	fmt.Fprint(w, "Download started: ", formUrl)
 	fmt.Fprint(w, "<br>", "<a href=\"/\">&lt;&lt;&lt;&lt;BACK&lt;&lt;&lt;&lt;</a>")
 }

@@ -30,7 +30,11 @@ func MaxInt(a, b int) int {
 	return b
 }
 
-var maxDirDepth = 0
+var (
+	maxDirDepth = 0
+	totalSize = 0
+	walkMap map[string]string = new(map[strig]string)
+)
 
 func ListDir(dir string, dirDepth *int) error {
 	*dirDepth += 1
@@ -40,7 +44,11 @@ func ListDir(dir string, dirDepth *int) error {
 	}
 	for _, fileInfo := range fileInfos {
 		isDir := fileInfo.Mode().IsDir()
+		totalSize += fileInfo.Size()
 		fmt.Println(fileInfo.Name(), isDir, fileInfo.Size(), fileInfo.Mode())
+		if isDir {
+			ListDir(path.Join(dir, fileInfo.Name()), dirDepth)
+		}
 	}
 	maxDirDepth = MaxInt(maxDirDepth, *dirDepth)
 	*dirDepth -= 1

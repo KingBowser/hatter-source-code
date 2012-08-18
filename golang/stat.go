@@ -3,6 +3,7 @@ package main
 import (
 	"os"
 	"fmt"
+	"path"
 	"io/ioutil"
 )
 
@@ -10,6 +11,14 @@ const (
 	KB = 1024
 	MB = KB * KB
 	GB = KB * KB * KB
+	WALKED = "W"
+)
+
+var (
+	maxDirDepth = 0
+	totalSize int64 = 0
+	walkedCount = 1
+	walkedMap = map[string]string { }
 )
 
 func ToSize(size int64) string {
@@ -30,12 +39,6 @@ func MaxInt(a, b int) int {
 	return b
 }
 
-var (
-	maxDirDepth = 0
-	totalSize = 0
-	walkMap map[string]string = new(map[strig]string)
-)
-
 func ListDir(dir string, dirDepth *int) error {
 	*dirDepth += 1
 	fileInfos, fileInfosError := ioutil.ReadDir(dir)
@@ -43,11 +46,21 @@ func ListDir(dir string, dirDepth *int) error {
 		return fileInfosError
 	}
 	for _, fileInfo := range fileInfos {
+		walkedCount += 1
+		if walkedCount % 1000 == 0 {
+			fmt.Print(".")
+		}
 		isDir := fileInfo.Mode().IsDir()
 		totalSize += fileInfo.Size()
-		fmt.Println(fileInfo.Name(), isDir, fileInfo.Size(), fileInfo.Mode())
-		if isDir {
-			ListDir(path.Join(dir, fileInfo.Name()), dirDepth)
+		// fmt.Println(fileInfo.Name(), isDir, fileInfo.Size(), fileInfo.Mode()) // LOG
+		fullDir := path.Join(dir, fileInfo.Name())
+		isWalked := true // detech if has loop link
+		if walkedMap[fullDir] != WALKED {
+			isWalked = false
+			walkedMap[fullDir] = WALKED
+		}
+		if isDir && (! isWalked) {
+			ListDir(fullDir, dirDepth)
 		}
 	}
 	maxDirDepth = MaxInt(maxDirDepth, *dirDepth)
@@ -62,5 +75,7 @@ func main() {
 	if err != nil {
 		fmt.Println(fmt.Sprintf("Error %T %v", err, err))
 	}
+	fmt.Println()
+	fmt.Println(fmt.Sprintf("file or dir count: %v", walkedCount) + ", " + "total size: " + fmt.Sprintf("%v bytes", totalSize) + ", " + ToSize(totalSize))
 }
 

@@ -1,0 +1,14 @@
+#summary Go Lang Study
+
+{{{
+func ToSize(size int64) string {
+	if size > GB {
+		return fmt.Sprintf("%vGB", size / GB)
+	} else if size > MB {
+		return fmt.Sprintf("%vMB", size / MB)
+	} else if size > KB {
+		return fmt.Sprintf("%vKB", size / KB)
+	}
+	return fmt.Sprintf("%v bytes", size)
+}
+}}}

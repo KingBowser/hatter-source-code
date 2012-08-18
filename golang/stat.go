@@ -76,6 +76,6 @@ func main() {
 		fmt.Println(fmt.Sprintf("Error %T %v", err, err))
 	}
 	fmt.Println()
-	fmt.Println(fmt.Sprintf("file or dir count: %v", walkedCount) + ", " + "total size: " + fmt.Sprintf("%v bytes", totalSize) + ", " + ToSize(totalSize))
+	fmt.Println(fmt.Sprintf("File or dir count: %v", walkedCount) + ", " + "total size: " + fmt.Sprintf("%v bytes", totalSize) + ", " + ToSize(totalSize))
 }
 

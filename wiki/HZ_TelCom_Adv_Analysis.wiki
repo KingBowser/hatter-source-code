@@ -12,6 +12,7 @@ java.lang.NumberFormatException: For input string: "20147x7"
      com.huawei.ipush.adserver.web.PushDoneServlet.doGet(PushDoneServlet.java:57)
      javax.servlet.http.HttpServlet.service(HttpServlet.java:617)
      javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+Apache Tomcat/6.0.18
 }}}
 
 {{{

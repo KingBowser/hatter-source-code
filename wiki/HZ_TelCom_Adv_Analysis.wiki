@@ -54,3 +54,274 @@ if (appd == 1) {
     adurl = appendParam(adurl, "param=" + encodeStr("account=" + realAct + "&url=" + g));
 }
 }}}
+
+===附JS===
+{{{
+var absp = getAds();var paraStr = document.location.search;
+var location;
+var adid = getParameter("adid", paraStr);
+var area = getParameter("area", paraStr);
+var account = getParameter("tcca", paraStr);
+var realAct = decodeStr(account);
+var urip = getParameter("urip", paraStr);
+var g = getParameter("orlu", paraStr);
+var adurl = getParameter("aorlu", paraStr);
+var hasFrame = getParameter("p6arm", paraStr);
+var spid = getParameter("spid", paraStr);
+var time = getParameter("p3arm", paraStr);
+var time = time * 1000;
+var appd = getParameter("appd", paraStr);
+var hasCount = getParameter("hasCount", paraStr);
+var hasWhiteUser = getParameter("hasWhiteUser", paraStr);
+var ts = getParameter("ts", paraStr);
+var beginTime = new Date().getTime();
+var sendStayTimeCnt = 1;
+var barHeight = 0;
+
+var pusd = getParameter("p5arm", paraStr);
+var he = getParameter("p1arm", paraStr);
+var wi = getParameter("p2arm", paraStr);
+
+g = decodeStr(g);
+adurl = decodeStr(adurl);
+if (navigator.userAgent.indexOf('Opera') > -1) {
+    g = appendParam(g, "t=" + new Date().getTime());
+}
+if (w == undefined) {
+    var w = '<html><head><meta http-equiv="Refresh" content="0;URL=' + g + '"/></head></html>';
+} else {
+    var w = '';
+}
+
+if (appd == 1) {
+    adurl = appendParam(adurl, "param=" + encodeStr("url=" + g));
+} else if (appd == 2) {
+    adurl = appendParam(adurl, "param=" + encodeStr("account=" + realAct));
+} else if (appd == 3) {
+    adurl = appendParam(adurl, "param=" + encodeStr("account=" + realAct + "&url=" + g));
+}
+
+function stop() {
+    return false;
+}
+
+document.oncontextmenu = stop;
+
+var objTimer = 0;
+
+function $(n) {
+    return document.getElementById(n);
+}
+
+function $i(i) {
+    try {
+        return parseInt(i);
+    } catch (ex) {
+        return 0;
+    }
+}
+
+function MessageTip(id, pusd) {
+    var body = $("b");
+
+    body.innerHTML = "<iframe id='pushDone' src='' style='display:none'></iframe>" + "<iframe name=cn src='javascript:parent.w' frameBorder=0 width=100% height=100%></iframe>" + "<div class='ad' id='" + id + "'></div>";
+
+    var url_unpush = absp + "/a/unpush?adid=" + adid + "&tcca=" + account + "&urip=" + urip + "&area=" + area;
+    var url_click = absp + "/a/adclick?spid=" + spid + "&adid=" + adid + "&tcca=" + account + "&urip=" + urip;
+    if (hasWhiteUser == 1) {
+        adurl = appendParam(adurl, "u=" + encodeURIComponent(url_unpush));
+    }
+    if (hasCount == 1) {
+        adurl = appendParam(adurl, "c=" + encodeURIComponent(url_click));
+    }
+
+    var temp = "<table id='content' width=" + wi + " border=0 cellSpacing=0 cellPadding=0 align='center' >";
+    if (hasFrame == 1) {
+        barHeight = 16;
+        temp = temp + "<tr><td id='title' height=" + barHeight + ">" + "<img id='close' onclick='mt1.close=true;mt1.hide();' alt='Close' src='./close.gif'/>" + "</td></tr>";
+    }
+    temp = temp + "<tr><td width=" + wi + " height=" + he + ">";
+    temp = temp + "<iframe name='ad' src='" + adurl + "' width='100%' height='100%' frameborder='0' scrolling='no'></iframe>";
+    temp = temp + "</td></tr>";
+    temp = temp + "</table>";
+
+    this.id = id;
+    this.obj = $(id);
+
+    (this.obj.style.visibility = "hidden");
+    (this.obj.style.position = "absolute");
+    (this.obj.style.left = "0px");
+    (this.obj.style.top = "0px");
+    (this.obj.style.zIndex = "99999");
+    (this.obj.style.width = wi);
+    (this.obj.style.height = parseInt(he) + barHeight);
+
+    this.divTop = $i(this.obj.style.top);
+    this.divLeft = $i(this.obj.style.left);
+    this.divHeight = this.obj.offsetHeight;
+    this.divWidth = this.obj.offsetWidth;
+    this.docWidth = document.body.clientWidth;
+    this.docHeight = document.body.clientHeight;
+    this.stepx = 0;
+
+    this.timeout = 30 * time;
+    this.speed = 20;
+
+    this.step = pusd;
+    this.timer = 0;
+    this.pause = false;
+    this.close = false;
+    this.autoClose = true;
+
+    this.add(this);
+
+    this.obj.innerHTML = temp;
+    sendStayTime();
+}
+
+MessageTip.prototype.tips = new Array();
+
+MessageTip.prototype.add = function (mt) {
+    this.tips.push(mt);
+};
+
+MessageTip.prototype.moveToPosition = function () {
+    var me = this;
+    var mess = this.obj;
+    me.docWidth = document.body.clientWidth;
+    me.docHeight = document.body.clientHeight;
+    mess.style.left = $i(document.body.scrollLeft) + document.body.clientWidth - $i(mess.style.width);
+    mess.style.top = $i(document.body.scrollTop) + document.body.clientHeight + 10 + me.stepx;
+};
+
+MessageTip.prototype.show = function () {
+    if (this.onload()) {
+        var me = this;
+        var mess = this.obj;
+        mess.onmouseover = function () {
+            me.pause = true;
+        };
+        mess.onmouseout = function () {
+            me.pause = false;
+        };
+        mess.style.top = $i(document.body.scrollTop) + this.docHeight + 10;
+        mess.style.left = $i(document.body.scrollLeft) + this.docWidth - this.divWidth;
+        mess.style.visibility = 'visible';
+        var moveUp = function () {
+                var tHeight = me.divHeight;
+                if (parseInt(mess.style.top, 10) <= (this.docHeight - this.divHeight + parseInt(document.body.scrollTop, 10))) {
+                    window.clearInterval(me.timer);
+                }
+                if ($i(mess.style.top) <= (me.docHeight - tHeight + $i(document.body.scrollTop))) {
+                    me.timeout--;
+                    if (me.timeout == 0) {
+                        window.clearInterval(me.timer);
+                        if (me.autoClose) {
+                            me.hide();
+                        }
+                    }
+                } else {
+                    me.stepx -= me.step;
+                    me.moveToPosition();
+                }
+            };
+        this.timer = window.setInterval(moveUp, this.speed);
+    }
+};
+
+MessageTip.prototype.hide = function () {
+    if (this.onload()) {
+        var me = this;
+        var mess = this.obj;
+
+        if (this.timer > 0) {
+            window.clearInterval(me.timer);
+        }
+        var moveDown = function () {
+                if (me.pause == false || me.close) {
+                    if ($i(mess.style.top) >= ($i(document.body.scrollTop) + me.docHeight + 10)) {
+                        window.clearInterval(me.timer);
+                        document.getElementById("MsnDialog").style.display = "none";
+                        document.getElementById("MsnDialog").style.height = 0;
+                        mess.style.height = 0;
+                        mess.style.visibility = 'hidden';
+                    } else {
+                        me.stepx = parseInt(me.stepx) + parseInt(me.step) * 2;
+                        me.moveToPosition();
+                    }
+                }
+            };
+        this.timer = window.setInterval(moveDown, this.speed);
+    }
+    sendStayTime();
+};
+
+function ReLocat(MsId) {
+    try {
+        divHeight = parseInt($(MsId).offsetHeight, 10);
+        divWidth = parseInt($(MsId).offsetWidth, 10);
+        docWidth = document.body.clientWidth;
+        docHeight = document.body.clientHeight;
+        $(MsId).style.top = docHeight - divHeight + parseInt(document.body.scrollTop, 10);
+        $(MsId).style.left = docWidth - divWidth + parseInt(document.body.scrollLeft, 10);
+    } catch (e) {}
+}
+
+MessageTip.prototype.onload = function () {
+    return true;
+};
+
+MessageTip.prototype.onunload = function () {
+    return true;
+};
+
+MessageTip.prototype.resizeDiv = function () {
+    i += 1;
+    if (i > 500) {
+        closeDiv();
+    }
+    try {
+        divHeight = parseInt($(this.id).offsetHeight, 10);
+        divWidth = parseInt($(this.id).offsetWidth, 10);
+        docWidth = document.body.clientWidth;
+        docHeight = document.body.clientHeight;
+        $(this.id).style.top = docHeight - divHeight + parseInt(document.body.scrollTop, 10);
+        $(this.id).style.left = docWidth - divWidth + parseInt(document.body.scrollLeft, 10);
+    } catch (e) {}
+};
+
+window.onresize = function () {
+    mt1.moveToPosition();
+};
+
+var mt1 = null;
+
+function loadAttribute() {
+    var body = document.getElementById("b");
+    var htmlStr = "";
+    if (document.referrer == null || document.referrer == '') {
+        return;
+    }
+    if (isDisplayed(ts) == 1) {
+        htmlStr = "<iframe name=cn src='javascript:parent.w' frameBorder=0 width=100% height=100% scrolling=auto></iframe>";
+        body.innerHTML = htmlStr;
+        return;
+    }
+
+    var MsId = "MsnDialog";
+    mt1 = new MessageTip(MsId, pusd);
+
+    mt1.show();
+
+    if (time > 0) {
+        setTimeout("mt1.hide()", time);
+    }
+    setDisplayed(ts);
+    setTimeout("sendStayTime();", 61000);
+}
+
+function closeAd() {
+    mt1.close = true;
+    mt1.hide();
+}
+}}}

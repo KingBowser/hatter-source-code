@@ -4,12 +4,13 @@
 http://220.191.158.69:10010/a/s?
 f=adstyle_msn.html
 &adid=201477
-&tcca=MTUzODEwNTEyOTU=
+&tcca=MTUzODEwNTEyOTU= // base64: 15381051295
 &urip=2062135343
-&orlu=aHR0cDovL3QuY24vYTBEV2dK
-&spid=1096691091&area=82
+&orlu=aHR0cDovL3QuY24vYTBEV2dK // base64: http://t.cn/a0DWgJ
+&spid=1096691091
+&area=82
 &ts=1345346067
-&aorlu=aHR0cDovL3BhZ2UuNzZtaS5jb20vZzUwL3pqL3pqX3B0NDNfNzIwLmh0bQ==
+&aorlu=aHR0cDovL3BhZ2UuNzZtaS5jb20vZzUwL3pqL3pqX3B0NDNfNzIwLmh0bQ== // base64: http://page.76mi.com/g50/zj/zj_pt43_720.htm
 &p1arm=300
 &p2arm=400
 &p3arm=0

@@ -1,6 +1,20 @@
 #summary 杭州电信广告推送分析
 
 {{{
+Server: Apache/2.2.21 (Unix) DAV/2 mod_jk/1.2.32
+}}}
+
+{{{
+java.lang.NumberFormatException: For input string: "20147x7"
+     java.lang.NumberFormatException.forInputString(NumberFormatException.java:48)
+     java.lang.Integer.parseInt(Integer.java:456)
+     java.lang.Integer.valueOf(Integer.java:553)
+     com.huawei.ipush.adserver.web.PushDoneServlet.doGet(PushDoneServlet.java:57)
+     javax.servlet.http.HttpServlet.service(HttpServlet.java:617)
+     javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+}}}
+
+{{{
 http://220.191.158.69:10010/a/s?
  f=adstyle_msn.html // 广告类型（风格），MSN弹出式
 &adid=201477 // 广告ID

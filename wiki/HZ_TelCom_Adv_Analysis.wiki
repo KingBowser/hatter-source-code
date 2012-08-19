@@ -4,7 +4,7 @@
 http://220.191.158.69:10010/a/s?
 f=adstyle_msn.html
 &adid=201477
-&tcca=MTUzODEwNTEyOTU= // base64: 15381051295（猜测是电话号码：[http://www.ip138.com:8080/search.asp?action=mobile&mobile=15381051295 浙江电信CDMA卡]）
+&tcca=MTUzODEwNTEyOTU= // base64: 15381051295（猜测是电话号码：浙江电信CDMA卡]）
 &urip=2062135343
 &orlu=aHR0cDovL3QuY24vYTBEV2dK // base64: http://t.cn/a0DWgJ
 &spid=1096691091

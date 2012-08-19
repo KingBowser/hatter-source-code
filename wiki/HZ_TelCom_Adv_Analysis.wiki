@@ -10,7 +10,8 @@ http://220.191.158.69:10010/a/s?
 &spid=1096691091
 &area=82
 &ts=1345346067
-&aorlu=aHR0cDovL3BhZ2UuNzZtaS5jb20vZzUwL3pqL3pqX3B0NDNfNzIwLmh0bQ== // base64: http://page.76mi.com/g50/zj/zj_pt43_720.htm 广告商URL
+&aorlu=aHR0cDovL3BhZ2UuNzZtaS5jb20vZzUwL3pqL3pqX3B0NDNfNzIwLmh0bQ==
+// base64: http://page.76mi.com/g50/zj/zj_pt43_720.htm 广告商URL
 &p1arm=300 // 弹出广告的高度
 &p2arm=400 // 弹出广告的宽度
 &p3arm=0

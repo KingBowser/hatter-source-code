@@ -20,7 +20,7 @@ http://220.191.158.69:10010/a/s?
  f=adstyle_msn.html // 广告类型（风格），MSN弹出式
 &adid=201477 // 广告ID
 &tcca=XXXXXXXXXXXXX // base64: ??????????? 账号即登陆者的电话号码（为了保密这里不给出）
-&urip=2062135343
+&urip=XXXXXXXX // 10进制的IP地址
 &orlu=aHR0cDovL3QuY24vYTBEV2dK // base64: http://t.cn/a0DWgJ 用户访问的URL
 &spid=1096691091
 &area=82

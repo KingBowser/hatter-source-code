@@ -24,3 +24,17 @@ http://220.191.158.69:10010/a/s?
 &hasCount=1
 &hasWhiteUser=0
 }}}
+
+
+{{{
+// adurl 广告商地址
+// g 用户访问的URL
+// realAct 用户的账号（即电话号码）
+if (appd == 1) {
+    adurl = appendParam(adurl, "param=" + encodeStr("url=" + g));
+} else if (appd == 2) {
+    adurl = appendParam(adurl, "param=" + encodeStr("account=" + realAct));
+} else if (appd == 3) {
+    adurl = appendParam(adurl, "param=" + encodeStr("account=" + realAct + "&url=" + g));
+}
+}}}

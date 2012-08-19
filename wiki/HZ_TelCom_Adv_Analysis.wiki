@@ -1,0 +1,22 @@
+#summary 杭州电信广告推送分析
+
+{{{
+http://220.191.158.69:10010/a/s?
+f=adstyle_msn.html
+&adid=201477
+&tcca=MTUzODEwNTEyOTU=
+&urip=2062135343
+&orlu=aHR0cDovL3QuY24vYTBEV2dK
+&spid=1096691091&area=82
+&ts=1345346067
+&aorlu=aHR0cDovL3BhZ2UuNzZtaS5jb20vZzUwL3pqL3pqX3B0NDNfNzIwLmh0bQ==
+&p1arm=300
+&p2arm=400
+&p3arm=0
+&p4arm=5
+&p5arm=3
+&p6arm=1
+&appd=0
+&hasCount=1
+&hasWhiteUser=0
+}}}

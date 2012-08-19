@@ -42,6 +42,11 @@ http://220.191.158.69:10010/a/s?
 
 
 {{{
+http://220.191.158.69:10010/a/p?adid=201477&amp;ts=1345346067&amp;tcca=MTUzODEwNTEyOTU=&amp;urip=2062135343&amp;stime=61&amp;spid=1096691091
+}}}
+
+
+{{{
 // adurl 广告商地址
 // g 用户访问的URL
 // realAct 用户的账号（即电话号码）

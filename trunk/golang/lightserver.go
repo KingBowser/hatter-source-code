@@ -2,6 +2,7 @@
 package main
 
 import (
+	"./lib"
 	"os"
 	"io"
 	"fmt"
@@ -36,10 +37,6 @@ const (
 	APPLICATION_JS = "application/javascript"
 	APPLICATION_RM = "application/vnd.rn-realmedia"
 	APPLICATION_OCTET_STREAM = "application/octet-stream"
-	
-	KB = 1024
-	MB = KB * KB
-	GB = KB * KB * KB
 )
 
 var (
@@ -167,7 +164,7 @@ func (h HttpServerHandle) ServeHTTP (
 		}
 		fileSize := ""
 		if !isDir {
-			fileSize = " (" + ToSize(fileInfo.Size()) + ")"
+			fileSize = " (" + lib.ToSize(fileInfo.Size()) + ")"
 		}
 		fmt.Fprint(w, "<li>", "<a href=\"", basePath, fileInfo.Name(), "\">", fName, "</a>", fileSize, "</li>");
 	}
@@ -185,7 +182,7 @@ func GetSuffix(s string) string {
 }
 
 func CopyBytes(file *os.File, writer http.ResponseWriter) error {
-	buffer := make([]byte, KB * 4)
+	buffer := make([]byte, lib.KB * 4)
 	for {
 		count, err := file.Read(buffer[0:])
 		writer.Write(buffer[0:count])
@@ -197,17 +194,6 @@ func CopyBytes(file *os.File, writer http.ResponseWriter) error {
 		}
 	}
 	return nil
-}
-
-func ToSize(size int64) string {
-	if size > GB {
-		return fmt.Sprintf("%0.2fGB", float64(size) / GB)
-	} else if size > MB {
-		return fmt.Sprintf("%0.2fMB", float64(size) / MB)
-	} else if size > KB {
-		return fmt.Sprintf("%0.2fKB", float64(size) / KB)
-	}
-	return fmt.Sprintf("%v bytes", size)
 }
 
 func main() {

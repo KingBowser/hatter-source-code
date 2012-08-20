@@ -35,7 +35,7 @@ type DomainSetting struct {
 
 var quickDomainSettingMap = map[string]DomainSetting {
 	"blog.hatter.me": DomainSetting {
-		true, "http://aprilsoft.cn/blog", "",
+		true, "http://aprilsoft.cn/blog/", "",
 	},
 }
 
@@ -52,6 +52,14 @@ func ParseHost(host string) (string, int, error) {
 	return host, 80, nil
 }
 
+func ToDomainAndPort(hostDomain string, hostPort int) string {
+	domainAndPort := hostDomain
+	if hostPort != 80 {
+		domainAndPort = hostDomain + ":" + strconv.Itoa(hostPort)
+	}
+	return domainAndPort
+}
+
 func HandleRequest(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Server", "HatterPrivateServer/0.0.1")
 	w.Header().Set("X-Powered-By", "GoLang")
@@ -60,18 +68,16 @@ func HandleRequest(w http.ResponseWriter, r *http.Request) {
 		log.Println(fmt.Sprintf("Parse host failed: %T %v", hostError, hostError))
 		return
 	}
-	domainAndPort := hostDomain
-	if hostPort != 80 {
-		domainAndPort = hostDomain + ":" + strconv.Itoa(hostPort)
-	}
+	domainAndPort := ToDomainAndPort(hostDomain, hostPort)
 	requestURL := fmt.Sprintf("http://%v%v", domainAndPort, r.RequestURI)
 	log.Println("Request url: ", requestURL)
 	setting := quickDomainSettingMap[domainAndPort]
 	if setting.IsRedirect {
-		log.Println("Redirect to url: ", setting.RedirectURL)
+		log.Println("Redirect to url:", setting.RedirectURL)
 		w.Header().Set("Location", setting.RedirectURL)
-		w.Header().Set("Location2", setting.RedirectURL)
+		w.Header().Set("X-X-URL", setting.RedirectURL)
 		w.WriteHeader(301)
+		fmt.Fprint(w, "hello world")
 		return
 	}
 	w.WriteHeader(404)
@@ -82,10 +88,10 @@ func HandleRequest(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	flag.Parse()
-	log.Println("Sarting server at port: ", *serverPort)
+	log.Println("Sarting server at port:", *serverPort)
 	http.HandleFunc("/", HandleRequest)
 	err := http.ListenAndServe(fmt.Sprintf(":%v", *serverPort), nil)
 	if err != nil {
-		log.Fatal("Listen and serve faled: ", err)
+		log.Fatal("Listen and serve faled:", err)
 	}
 }

@@ -51,6 +51,7 @@ public class RmiServer {
                                      classLoadingMXBean.getUnloadedClassCount());
     }
 
+    @SuppressWarnings("restriction")
     public JThreadInfo[] listThreadInfos() {
         ThreadInfo[] tis = ManagementFactory.getThreadMXBean().dumpAllThreads(false, false);
         JThreadInfo[] jtis = new JThreadInfo[tis.length];
@@ -58,7 +59,8 @@ public class RmiServer {
             long threadId = tis[i].getThreadId();
             long cpuTime = ManagementFactory.getThreadMXBean().getThreadCpuTime(threadId);
             long userTime = ManagementFactory.getThreadMXBean().getThreadUserTime(threadId);
-            jtis[i] = new JThreadInfo(tis[i], cpuTime, userTime);
+            long alloctedBytes = ((com.sun.management.ThreadMXBean) ManagementFactory.getThreadMXBean()).getThreadAllocatedBytes(threadId);
+            jtis[i] = new JThreadInfo(tis[i], cpuTime, userTime, alloctedBytes);
         }
         return jtis;
     }

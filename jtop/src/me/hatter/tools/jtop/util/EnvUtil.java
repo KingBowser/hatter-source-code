@@ -38,6 +38,10 @@ public class EnvUtil {
         return UnixArgsutil.ARGS.flags().contains("color");
     }
 
+    public static boolean getSortMem() {
+        return UnixArgsutil.ARGS.flags().contains("sortmem");
+    }
+
     public static String getStr(String key, String def) {
         String val = UnixArgsutil.ARGS.kvalue(key);
         return (val == null) ? def : val;

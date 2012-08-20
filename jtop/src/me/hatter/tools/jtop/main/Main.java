@@ -76,6 +76,8 @@ public class Main {
                     mainOutput.setTotalCpuTime(totalCpu);
                     mainOutput.setTotalUserTime(totalUser);
 
+                    String size = EnvUtil.getSize();
+
                     DecimalFormat nf = new DecimalFormat("0.00");
                     List<String> outputs = new ArrayList<String>();
                     for (int i = 0; ((i < cJThreadInfos.length) && (i < threadtopn)); i++) {
@@ -86,7 +88,8 @@ public class Main {
                                     + "  CPU_TIME=" + TimeUnit.NANOSECONDS.toMillis(jThreadInfo.getCpuTime())//
                                     + " (" + nf.format(((double) jThreadInfo.getCpuTime()) * 100 / cost) + "%)" //
                                     + "  USER_TIME=" + TimeUnit.NANOSECONDS.toMillis(jThreadInfo.getUserTime()) //
-                                    + " (" + nf.format(((double) jThreadInfo.getUserTime()) * 100 / cost) + "%)");
+                                    + " (" + nf.format(((double) jThreadInfo.getUserTime()) * 100 / cost) + "%)" //
+                                    + " Allocted: " + toSize(jThreadInfo.getAlloctedBytes(), size));
                         for (int j = 0; ((j < jThreadInfo.getStackTrace().length) && (j < stacktracetopn)); j++) {
                             StackTraceElement stackTrace = jThreadInfo.getStackTrace()[j];
                             outputs.add("\t" + stackTrace.toString());
@@ -104,7 +107,6 @@ public class Main {
                         }
                     }
 
-                    String size = EnvUtil.getSize();
                     JMemoryInfo jMemoryInfo = jTopMXBean.getMemoryInfo();
                     mainOutput.setjMemoryInfo(jMemoryInfo);
                     System.out.println("Heap Memory:" //
@@ -178,20 +180,34 @@ public class Main {
     }
 
     static JThreadInfo[] sortJThreadInfos(JThreadInfo[] cJThreadInfos) {
-        Arrays.sort(cJThreadInfos, new Comparator<JThreadInfo>() {
+        boolean isSortMem = EnvUtil.getSortMem();
+        if (isSortMem) {
+            Arrays.sort(cJThreadInfos, new Comparator<JThreadInfo>() {
 
-            public int compare(JThreadInfo o1, JThreadInfo o2) {
-                int rCpu = Long.valueOf(o2.getCpuTime()).compareTo(Long.valueOf(o1.getCpuTime()));
-                if (rCpu != 0) {
-                    return rCpu;
+                public int compare(JThreadInfo o1, JThreadInfo o2) {
+                    int rMem = Long.valueOf(o2.getAlloctedBytes()).compareTo(Long.valueOf(o1.getAlloctedBytes()));
+                    if (rMem != 0) {
+                        return rMem;
+                    }
+                    return o2.getThreadName().compareTo(o1.getThreadName());
                 }
-                int rUser = Long.valueOf(o2.getUserTime()).compareTo(Long.valueOf(o1.getUserTime()));
-                if (rUser != 0) {
-                    return rUser;
+            });
+        } else {
+            Arrays.sort(cJThreadInfos, new Comparator<JThreadInfo>() {
+
+                public int compare(JThreadInfo o1, JThreadInfo o2) {
+                    int rCpu = Long.valueOf(o2.getCpuTime()).compareTo(Long.valueOf(o1.getCpuTime()));
+                    if (rCpu != 0) {
+                        return rCpu;
+                    }
+                    int rUser = Long.valueOf(o2.getUserTime()).compareTo(Long.valueOf(o1.getUserTime()));
+                    if (rUser != 0) {
+                        return rUser;
+                    }
+                    return o2.getThreadName().compareTo(o1.getThreadName());
                 }
-                return o2.getThreadName().compareTo(o1.getThreadName());
-            }
-        });
+            });
+        }
         return cJThreadInfos;
     }
 
@@ -222,7 +238,8 @@ public class Main {
             } else {
                 cjThreadInfos[i] = new JThreadInfo(jThreadInfo,
                                                    jThreadInfo.getCpuTime() - lastJThreadInfo.getCpuTime(),
-                                                   jThreadInfo.getUserTime() - lastJThreadInfo.getUserTime());
+                                                   jThreadInfo.getUserTime() - lastJThreadInfo.getUserTime(),
+                                                   jThreadInfo.getAlloctedBytes() - lastJThreadInfo.getAlloctedBytes());
             }
         }
         return cjThreadInfos;
@@ -249,6 +266,7 @@ public class Main {
         System.out.println("    -thread <N>                   Thread Top N (default: 5)");
         System.out.println("    -stack <N>                    Stacktrace Top N (default: 8)");
         System.out.println("    --color                       Display color (default: off)");
+        System.out.println("    --sortmem                     Sort by memory allocted (default: off)");
         System.out.println();
     }
 }

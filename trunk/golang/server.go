@@ -68,8 +68,10 @@ func HandleRequest(w http.ResponseWriter, r *http.Request) {
 	log.Println("Request url: ", requestURL)
 	setting := quickDomainSettingMap[domainAndPort]
 	if setting.IsRedirect {
+		log.Println("Redirect to url: ", setting.RedirectURL)
 		w.WriteHeader(301)
 		w.Header().Set("Location", setting.RedirectURL)
+		w.Header().Set("Location2", setting.RedirectURL)
 		return
 	}
 	w.WriteHeader(404)

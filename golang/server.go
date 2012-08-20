@@ -23,28 +23,35 @@ const (
 	GB = KB * KB * KB
 )
 
-var (
-	serverPort = flag.Int("port", 8888, "listen port")
+const (
+	REDIRECT = 0
+	LOCATION = 1
 )
 
+type DomainSettingType int
+
 type DomainSetting struct {
-	IsRedirect bool
+	SettingType DomainSettingType
 	RedirectURL string
 	LocationPath string
 }
 
+var (
+	serverPort = flag.Int("port", 8888, "listen port")
+)
+
 var quickDomainSettingMap = map[string]*DomainSetting {
 	"hatter.me": &DomainSetting {
-		true, "http://aprilsoft.cn/blog/", "",
+		REDIRECT, "http://aprilsoft.cn/blog/", "",
 	},
 	"blog.hatter.me": &DomainSetting {
-		true, "http://aprilsoft.cn/blog/", "",
+		REDIRECT, "http://aprilsoft.cn/blog/", "",
 	},
 	"mail.hatter.me": &DomainSetting {
-		true, "https://www.google.com/a/hatterjiang.com", "",
+		REDIRECT, "https://www.google.com/a/hatterjiang.com", "",
 	},
 	"tinyencrypt.hatter.me": &DomainSetting {
-		true, "http://jshtaframework.googlecode.com/svn/trunk/jshtaframework/src/application/TinyEncrypt/EmtpyApplication.hta", "",
+		REDIRECT, "http://jshtaframework.googlecode.com/svn/trunk/jshtaframework/src/application/TinyEncrypt/EmtpyApplication.hta", "",
 	},
 }
 
@@ -83,10 +90,21 @@ func HandleDirFileDomainSetting(w http.ResponseWriter, r *http.Request, setting 
 }
 
 func HandleDomainSetting(w http.ResponseWriter, r *http.Request, setting *DomainSetting) bool {
-	if setting.IsRedirect {
+	if setting.SettingType == REDIRECT {
 		return HandleRedirectDomainSetting(w, r, setting)
 	}
-	return HandleDirFileDomainSetting(w, r, setting)
+	if setting.SettingType == LOCATION {
+		return HandleDirFileDomainSetting(w, r, setting)
+	}
+	return false
+}
+
+func HandleNotFound(w http.ResponseWriter, r *http.Request, requestURL string) bool {
+	w.WriteHeader(404)
+	fmt.Fprint(w, "Resource not found: ")
+	fmt.Fprint(w, requestURL)
+	log.Println("Unparsed URL: ", requestURL)
+	return false
 }
 
 func HandleRequest(w http.ResponseWriter, r *http.Request) {
@@ -107,11 +125,7 @@ func HandleRequest(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 	}
-	// cannot find resource
-	w.WriteHeader(404)
-	fmt.Fprint(w, "Resource not found: ")
-	fmt.Fprint(w, requestURL)
-	log.Println("Unparsed URL: ", r.RequestURI)
+	HandleNotFound(w, r, requestURL)
 }
 
 func main() {

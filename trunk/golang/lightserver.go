@@ -7,7 +7,6 @@ import (
 	"io"
 	"fmt"
 	"flag"
-	"strings"
 	"io/ioutil"
 	"net/http"
 )
@@ -82,7 +81,6 @@ var (
 	}
 )
 
-
 func DisplayUsage() {
 	fmt.Println(LIGHT_HTTP_SERVER_NAME, "(Version: ", LIGHT_HTTP_SERVER_VERSION, ")")
 	fmt.Println("Author: Hatter Jiang")
@@ -124,7 +122,7 @@ func (h HttpServerHandle) ServeHTTP (
 	openFileIsDir := openFileInfo.Mode().IsDir()
 	
 	if !openFileIsDir {
-		openFileSuffix := GetSuffix(openFileInfo.Name())
+		openFileSuffix := lib.GetSuffix(openFileInfo.Name())
 		openFileMimeType := mimeTypeMap[openFileSuffix]
 		if openFileMimeType == "" {
 			openFileMimeType = APPLICATION_OCTET_STREAM
@@ -171,14 +169,6 @@ func (h HttpServerHandle) ServeHTTP (
 	fmt.Fprint(w, "</ul>")
 	fmt.Fprint(w, "<br/>", "<br/>")
 	fmt.Fprint(w, "Powered by ", LIGHT_HTTP_SERVER_NAME, ", Version: ", LIGHT_HTTP_SERVER_VERSION, "<br/>")
-}
-
-func GetSuffix(s string) string {
-	lastIndexOfDot := strings.LastIndex(s, ".")
-	if lastIndexOfDot > -1 {
-		return s[lastIndexOfDot + 1:]
-	}
-	return ""
 }
 
 func CopyBytes(file *os.File, writer http.ResponseWriter) error {

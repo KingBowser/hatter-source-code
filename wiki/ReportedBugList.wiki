@@ -1,8 +1,8 @@
 #summary Hatter's Reported Bug List
 
-===Java===
+===1. Java===
 * http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=7183920
 
 
-===Go Lang===
+===2. Go Lang===
 * http://code.google.com/p/go/issues/detail?id=3979

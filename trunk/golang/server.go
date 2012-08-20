@@ -2,9 +2,12 @@ package main
 
 import (
 	"./lib"
+	"io"
+	"os"
 	"fmt"
 	"log"
 	"flag"
+	"path"
 	"net/http"
 )
 
@@ -16,6 +19,18 @@ const (
 	IMAGE_JPEG = "image/jpeg"
 	IMAGE_PNG = "image/png"
 	APPLICATION_JS = "application/javascript"
+)
+
+var (
+	serverSysPath, _ = os.Getwd()
+	serverPath = flag.String("path", serverSysPath, "server path")
+	serverPort = flag.Int("port", 8888, "listen port")
+	serverListDir = flag.Bool("listdir", true, "list dir")
+	
+	indexPages = []string {
+		"index.htm",
+		"index.html",
+	}
 )
 
 const (
@@ -31,9 +46,9 @@ type DomainSetting struct {
 	LocationPath string
 }
 
-var (
-	serverPort = flag.Int("port", 8888, "listen port")
-)
+var defaultDomainSetting = DomainSetting {
+	LOCATION, "", *serverPath,
+}
 
 var quickDomainSettingMap = map[string]*DomainSetting {
 	"hatter.me": &DomainSetting {
@@ -56,8 +71,45 @@ func HandleRedirectDomainSetting(w http.ResponseWriter, r *http.Request, setting
 	return true
 }
 
+
+func HandleDirDomainSetting(w http.ResponseWriter, r *http.Request, dirPath string) bool {
+	for _, indexPage := range indexPages {
+		filePath := path.Join(dirPath, indexPage)
+		_, statFileInfoError := os.Stat(filePath)
+		if statFileInfoError == nil {
+			return HandleFileDomainSetting(w, r, filePath)
+		}
+	}
+	if *serverListDir {
+		
+	} else {
+		fmt.Fprint(w, "List dir is forbiden.")
+	}
+	return true
+}
+
+
+func HandleFileDomainSetting(w http.ResponseWriter, r *http.Request, filePath string) bool {
+	openFile, openFileError := os.Open(filePath)
+	if openFileError != nil {
+		log.Println("Open file failed:", openFileError)
+	}
+	defer openFile.Close()
+	io.Copy(w, openFile)
+	return true
+}
+
 func HandleDirFileDomainSetting(w http.ResponseWriter, r *http.Request, setting *DomainSetting) bool {
-	return false
+	accessPath := path.Join(setting.LocationPath, r.URL.Path)
+	accessFileInfo, accessFileInfoError := os.Stat(accessPath)
+	if accessFileInfoError != nil {
+		log.Println("OS Stat file/path failed:", accessFileInfoError)
+		return false;
+	}
+	if accessFileInfo.IsDir() {
+		return HandleDirDomainSetting(w, r, accessPath)
+	}
+	return HandleFileDomainSetting(w, r, accessPath)
 }
 
 func HandleDomainSetting(w http.ResponseWriter, r *http.Request, setting *DomainSetting) bool {
@@ -74,7 +126,7 @@ func HandleNotFound(w http.ResponseWriter, r *http.Request, requestURL string) b
 	w.WriteHeader(404)
 	fmt.Fprint(w, "Resource not found: ")
 	fmt.Fprint(w, requestURL)
-	log.Println("Unparsed URL: ", requestURL)
+	log.Println("Resource not found: ", requestURL)
 	return false
 }
 
@@ -90,11 +142,16 @@ func HandleRequest(w http.ResponseWriter, r *http.Request) {
 	requestURL := fmt.Sprintf("http://%v%v", domainAndPort, r.RequestURI)
 	log.Println("Request url: ", requestURL)
 	setting := quickDomainSettingMap[domainAndPort]
+	handleResult := false
 	if setting != nil {
-		handleResult := HandleDomainSetting(w, r, setting)
+		handleResult = HandleDomainSetting(w, r, setting)
 		if handleResult {
 			return
 		}
+	}
+	handleResult = HandleDirFileDomainSetting(w, r, &defaultDomainSetting)
+	if handleResult {
+		return
 	}
 	HandleNotFound(w, r, requestURL)
 }

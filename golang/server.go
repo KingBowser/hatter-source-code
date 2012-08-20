@@ -34,11 +34,17 @@ type DomainSetting struct {
 }
 
 var quickDomainSettingMap = map[string]*DomainSetting {
+	"hatter.me": &DomainSetting {
+		true, "http://aprilsoft.cn/blog/", "",
+	},
 	"blog.hatter.me": &DomainSetting {
 		true, "http://aprilsoft.cn/blog/", "",
 	},
 	"mail.hatter.me": &DomainSetting {
 		true, "https://www.google.com/a/hatterjiang.com", "",
+	},
+	"tinyencrypt.hatter.me": &DomainSetting {
+		true, "http://jshtaframework.googlecode.com/svn/trunk/jshtaframework/src/application/TinyEncrypt/EmtpyApplication.hta", "",
 	},
 }
 

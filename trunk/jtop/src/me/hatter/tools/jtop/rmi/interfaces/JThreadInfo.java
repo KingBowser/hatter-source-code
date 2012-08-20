@@ -18,6 +18,7 @@ public class JThreadInfo implements Serializable {
     private long                blockedCount;
     private long                waitedTime;
     private long                waitedCount;
+    private long                alloctedBytes;
     private String              lockName;
     private long                lockOwnerId;
     private String              lockOwnerName;
@@ -27,11 +28,11 @@ public class JThreadInfo implements Serializable {
     private StackTraceElement[] stackTrace;
 
     @ConstructorProperties({ "cpuTime", "userTime", "threadName", "threadId", "blockedTime", "blockedCount",
-            "waitedTime", "waitedCount", "lockName", "lockOwnerId", "lockOwnerName", "inNative", "suspended",
-            "threadState", "stackTrace" })
+            "waitedTime", "waitedCount", "alloctedBytes", "lockName", "lockOwnerId", "lockOwnerName", "inNative",
+            "suspended", "threadState", "stackTrace" })
     public JThreadInfo(long cpuTime, long userTime, String threadName, long threadId, long blockedTime,
-                       long blockedCount, long waitedTime, long waitedCount, String lockName, long lockOwnerId,
-                       String lockOwnerName, boolean inNative, boolean suspended, State threadState,
+                       long blockedCount, long waitedTime, long waitedCount, long alloctedBytes, String lockName,
+                       long lockOwnerId, String lockOwnerName, boolean inNative, boolean suspended, State threadState,
                        StackTraceElement[] stackTrace) {
         this.cpuTime = cpuTime;
         this.userTime = userTime;
@@ -41,6 +42,7 @@ public class JThreadInfo implements Serializable {
         this.blockedCount = blockedCount;
         this.waitedTime = waitedTime;
         this.waitedCount = waitedCount;
+        this.alloctedBytes = alloctedBytes;
         this.lockName = lockName;
         this.lockOwnerId = lockOwnerId;
         this.lockOwnerName = lockOwnerName;
@@ -50,7 +52,7 @@ public class JThreadInfo implements Serializable {
         this.stackTrace = stackTrace;
     }
 
-    public JThreadInfo(ThreadInfo threadInfo, long cpuTime, long userTime) {
+    public JThreadInfo(ThreadInfo threadInfo, long cpuTime, long userTime, long alloctedBytes) {
         this.threadName = threadInfo.getThreadName();
         this.threadId = threadInfo.getThreadId();
         this.blockedTime = threadInfo.getBlockedTime();
@@ -66,9 +68,10 @@ public class JThreadInfo implements Serializable {
         this.stackTrace = StackTraceElement.convert(threadInfo.getStackTrace());
         this.cpuTime = cpuTime;
         this.userTime = userTime;
+        this.alloctedBytes = alloctedBytes;
     }
 
-    public JThreadInfo(JThreadInfo jThreadInfo, long cpuTime, long userTime) {
+    public JThreadInfo(JThreadInfo jThreadInfo, long cpuTime, long userTime, long alloctedBytes) {
         this.threadName = jThreadInfo.getThreadName();
         this.threadId = jThreadInfo.getThreadId();
         this.blockedTime = jThreadInfo.getBlockedTime();
@@ -84,6 +87,7 @@ public class JThreadInfo implements Serializable {
         this.stackTrace = jThreadInfo.getStackTrace();
         this.cpuTime = cpuTime;
         this.userTime = userTime;
+        this.alloctedBytes = alloctedBytes;
     }
 
     public long getCpuTime() {
@@ -148,6 +152,14 @@ public class JThreadInfo implements Serializable {
 
     public void setWaitedCount(long waitedCount) {
         this.waitedCount = waitedCount;
+    }
+
+    public long getAlloctedBytes() {
+        return alloctedBytes;
+    }
+
+    public void setAlloctedBytes(long alloctedBytes) {
+        this.alloctedBytes = alloctedBytes;
     }
 
     public String getLockName() {

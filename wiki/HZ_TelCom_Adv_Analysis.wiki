@@ -157,7 +157,8 @@ function Base64() {
 }
 }}}
 {{{
-var absp = getAds();var paraStr = document.location.search;
+var absp = getAds();
+var paraStr = document.location.search;
 var location;
 var adid = getParameter("adid", paraStr);
 var area = getParameter("area", paraStr);

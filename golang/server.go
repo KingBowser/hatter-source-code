@@ -34,7 +34,7 @@ type DomainSetting struct {
 }
 
 var quickDomainSettingMap = map[string]DomainSetting {
-	"blog.hatter.me:80": DomainSetting {
+	"blog.hatter.me": DomainSetting {
 		true, "http://aprilsoft.cn/blog", "",
 	},
 }
@@ -60,17 +60,17 @@ func HandleRequest(w http.ResponseWriter, r *http.Request) {
 		log.Println(fmt.Sprintf("Parse host failed: %T %v", hostError, hostError))
 		return
 	}
-	setting := quickDomainSettingMap[fmt.Sprintf("%v:%v", hostDomain, hostPort)]
+	domainAndPort := hostDomain
+	if hostPort != 80 {
+		domainAndPort = hostDomain + ":" + strconv.Itoa(hostPort)
+	}
+	setting := quickDomainSettingMap[domainAndPort]
 	if setting.IsRedirect {
 		w.WriteHeader(301)
 		w.Header().Set("Location", setting.RedirectURL)
 		return
 	}
 	w.WriteHeader(404)
-	domainAndPort := hostDomain
-	if hostPort != 80 {
-		domainAndPort = hostDomain + ":" + strconv.Itoa(hostPort)
-	}
 	fmt.Fprint(w, "Path cannot found: ")
 	fmt.Fprint(w, fmt.Sprintf("http://%v%v", domainAndPort, r.RequestURI))
 	log.Println("Unparsed URL: ", r.RequestURI)

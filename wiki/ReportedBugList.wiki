@@ -1,0 +1,8 @@
+#summary Hatter's Reported Bug List
+
+===Java===
+
+
+===Go Lang===
+* http://code.google.com/p/go/issues/detail?id=3979
+

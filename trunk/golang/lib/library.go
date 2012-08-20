@@ -2,6 +2,7 @@ package lib
 
 import (
 	"fmt"
+	"strconv"
 	"strings"
 )
 
@@ -43,4 +44,25 @@ func GetSuffix(s string) string {
 		return s[lastIndexOfDot + 1:]
 	}
 	return ""
+}
+
+func ParseHost(host string) (string, int, error) {
+	commaIndex := strings.Index(host, ":")
+	if commaIndex > -1 {
+		strPort := host[commaIndex + 1:]
+		intPort, err := strconv.Atoi(strPort)
+		if err != nil {
+			return "", 0, err
+		}
+		return host[:commaIndex], intPort, nil
+	}
+	return host, 80, nil
+}
+
+func ToDomainAndPort(hostDomain string, hostPort int) string {
+	domainAndPort := hostDomain
+	if hostPort != 80 {
+		domainAndPort = hostDomain + ":" + strconv.Itoa(hostPort)
+	}
+	return domainAndPort
 }

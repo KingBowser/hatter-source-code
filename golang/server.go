@@ -64,6 +64,8 @@ func HandleRequest(w http.ResponseWriter, r *http.Request) {
 	if hostPort != 80 {
 		domainAndPort = hostDomain + ":" + strconv.Itoa(hostPort)
 	}
+	requestURL := fmt.Sprintf("http://%v%v", domainAndPort, r.RequestURI)
+	log.Println("Request url: ", requestURL)
 	setting := quickDomainSettingMap[domainAndPort]
 	if setting.IsRedirect {
 		w.WriteHeader(301)
@@ -72,7 +74,7 @@ func HandleRequest(w http.ResponseWriter, r *http.Request) {
 	}
 	w.WriteHeader(404)
 	fmt.Fprint(w, "Path cannot found: ")
-	fmt.Fprint(w, fmt.Sprintf("http://%v%v", domainAndPort, r.RequestURI))
+	fmt.Fprint(w, requestURL)
 	log.Println("Unparsed URL: ", r.RequestURI)
 }
 

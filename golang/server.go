@@ -33,9 +33,12 @@ type DomainSetting struct {
 	LocationPath string
 }
 
-var quickDomainSettingMap = map[string]DomainSetting {
-	"blog.hatter.me": DomainSetting {
+var quickDomainSettingMap = map[string]*DomainSetting {
+	"blog.hatter.me": &DomainSetting {
 		true, "http://aprilsoft.cn/blog/", "",
+	},
+	"mail.hatter.me": &DomainSetting {
+		true, "https://www.google.com/a/hatterjiang.com", "",
 	},
 }
 
@@ -60,6 +63,26 @@ func ToDomainAndPort(hostDomain string, hostPort int) string {
 	return domainAndPort
 }
 
+func HandleRedirectDomainSetting(w http.ResponseWriter, r *http.Request, setting *DomainSetting) bool {
+	log.Println("Redirect to url:", setting.RedirectURL)
+	w.Header().Set("Location", setting.RedirectURL)
+	w.Header().Set(CONTENT_TYPE, TEXT_HTML)
+	w.WriteHeader(301)
+	fmt.Fprint(w, "Redirect to: <a href=\"" + setting.RedirectURL + "\">", setting.RedirectURL, "</a>")
+	return true
+}
+
+func HandleDirFileDomainSetting(w http.ResponseWriter, r *http.Request, setting *DomainSetting) bool {
+	return false
+}
+
+func HandleDomainSetting(w http.ResponseWriter, r *http.Request, setting *DomainSetting) bool {
+	if setting.IsRedirect {
+		return HandleRedirectDomainSetting(w, r, setting)
+	}
+	return HandleDirFileDomainSetting(w, r, setting)
+}
+
 func HandleRequest(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Server", "HatterPrivateServer/0.0.1")
 	w.Header().Set("X-Powered-By", "GoLang")
@@ -72,16 +95,15 @@ func HandleRequest(w http.ResponseWriter, r *http.Request) {
 	requestURL := fmt.Sprintf("http://%v%v", domainAndPort, r.RequestURI)
 	log.Println("Request url: ", requestURL)
 	setting := quickDomainSettingMap[domainAndPort]
-	if setting.IsRedirect {
-		log.Println("Redirect to url:", setting.RedirectURL)
-		w.Header().Set("Location", setting.RedirectURL)
-		w.Header().Set("X-X-URL", setting.RedirectURL)
-		w.WriteHeader(301)
-		fmt.Fprint(w, "hello world")
-		return
+	if setting != nil {
+		handleResult := HandleDomainSetting(w, r, setting)
+		if handleResult {
+			return
+		}
 	}
+	// cannot find resource
 	w.WriteHeader(404)
-	fmt.Fprint(w, "Path cannot found: ")
+	fmt.Fprint(w, "Resource not found: ")
 	fmt.Fprint(w, requestURL)
 	log.Println("Unparsed URL: ", r.RequestURI)
 }

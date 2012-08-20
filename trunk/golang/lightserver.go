@@ -201,11 +201,11 @@ func CopyBytes(file *os.File, writer http.ResponseWriter) error {
 
 func ToSize(size int64) string {
 	if size > GB {
-		return fmt.Sprintf("%vGB", size / GB)
+		return fmt.Sprintf("%0.2fGB", float64(size) / GB)
 	} else if size > MB {
-		return fmt.Sprintf("%vMB", size / MB)
+		return fmt.Sprintf("%0.2fMB", float64(size) / MB)
 	} else if size > KB {
-		return fmt.Sprintf("%vKB", size / KB)
+		return fmt.Sprintf("%0.2fKB", float64(size) / KB)
 	}
 	return fmt.Sprintf("%v bytes", size)
 }

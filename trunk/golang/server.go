@@ -52,10 +52,7 @@ var quickDomainSettingMap = map[string]*DomainSetting {
 
 func HandleRedirectDomainSetting(w http.ResponseWriter, r *http.Request, setting *DomainSetting) bool {
 	log.Println("Redirect to url:", setting.RedirectURL)
-	w.Header().Set("Location", setting.RedirectURL)
-	w.Header().Set(CONTENT_TYPE, TEXT_HTML)
-	w.WriteHeader(301)
-	fmt.Fprint(w, "Redirect to: <a href=\"" + setting.RedirectURL + "\">", setting.RedirectURL, "</a>")
+	lib.RedirectURL(w, setting.RedirectURL)
 	return true
 }
 

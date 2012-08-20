@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
+	"net/http"
 )
 
 const (
@@ -65,4 +66,11 @@ func ToDomainAndPort(hostDomain string, hostPort int) string {
 		domainAndPort = hostDomain + ":" + strconv.Itoa(hostPort)
 	}
 	return domainAndPort
+}
+
+func RedirectURL(w http.ResponseWriter, url string) {
+	w.Header().Set("Location", url)
+	w.Header().Set(CONTENT_TYPE, TEXT_HTML)
+	w.WriteHeader(301)
+	fmt.Fprint(w, "Redirect to: <a href=\"" + url + "\">", url, "</a>")
 }

@@ -8,6 +8,7 @@ import (
 	"log"
 	"flag"
 	"path"
+	"strings"
 	"io/ioutil"
 	"net/http"
 )
@@ -139,6 +140,10 @@ func HandleDirDomainSetting(w http.ResponseWriter, r *http.Request, dirPath stri
 		if statFileInfoError == nil {
 			return HandleFileDomainSetting(w, r, filePath)
 		}
+	}
+	if !strings.HasSuffix(r.URL.Path, "/") {
+		lib.RedirectURL(w, r.URL.Path + "/")
+		return true;
 	}
 	if *serverListDir {
 		return HandleListDirDomainSetting(w, r, dirPath)

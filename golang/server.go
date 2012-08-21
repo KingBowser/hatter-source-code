@@ -156,6 +156,7 @@ func HandleFileDomainSetting(w http.ResponseWriter, r *http.Request, filePath st
 		return false
 	}
 	defer openFile.Close()
+	w.Header().Set(lib.CONTENT_TYPE, lib.GetContentType(lib.GetSuffix(filePath)))
 	io.Copy(w, openFile)
 	return true
 }

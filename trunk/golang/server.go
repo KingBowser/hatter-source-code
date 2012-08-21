@@ -20,6 +20,8 @@ const (
 	IMAGE_JPEG = "image/jpeg"
 	IMAGE_PNG = "image/png"
 	APPLICATION_JS = "application/javascript"
+	
+	REDIRECT_URL = "redirect.url"
 )
 
 var (
@@ -54,16 +56,19 @@ var defaultDomainSetting = DomainSetting {
 
 var quickDomainSettingMap = map[string]*DomainSetting {
 	"hatter.me": &DomainSetting {
-		REDIRECT, "http://aprilsoft.cn/blog/", "",
+		REDIRECT, "http://blog.hatter.me/", "",
 	},
 	"blog.hatter.me": &DomainSetting {
 		REDIRECT, "http://aprilsoft.cn/blog/", "",
+	},
+	"code.hatter.me": &DomainSetting {
+		REDIRECT, "https://code.google.com/p/hatter-source-code/", "",
 	},
 	"mail.hatter.me": &DomainSetting {
 		REDIRECT, "https://www.google.com/a/hatterjiang.com", "",
 	},
 	"tinyencrypt.hatter.me": &DomainSetting {
-		REDIRECT, "http://jshtaframework.googlecode.com/svn/trunk/jshtaframework/src/application/TinyEncrypt/EmtpyApplication.hta", "",
+		REDIRECT, "https://jshtaframework.googlecode.com/svn/trunk/jshtaframework/src/application/TinyEncrypt/EmtpyApplication.hta", "",
 	},
 }
 
@@ -115,6 +120,18 @@ func HandleListDirDomainSetting(w http.ResponseWriter, r *http.Request, dirPath 
 }
 
 func HandleDirDomainSetting(w http.ResponseWriter, r *http.Request, dirPath string) bool {
+	indexRedirectPath := path.Join(dirPath, REDIRECT_URL)
+	indexRedirectPathFileInfo, indexRedirectPathFileInfoError := os.Stat(indexRedirectPath)
+	if indexRedirectPathFileInfoError == nil && (!indexRedirectPathFileInfo.IsDir()) {
+		indexRedirectPathFileBytes,indexRedirectPathFileBytesError := ioutil.ReadFile(indexRedirectPath)
+		if indexRedirectPathFileBytesError != nil {
+			log.Println("Read file failed:", indexRedirectPathFileBytesError)
+			return false
+		}
+		indexRedirectUrl := string(indexRedirectPathFileBytes)
+		lib.RedirectURL(w, indexRedirectUrl)
+		return true
+	}
 	for _, indexPage := range indexPages {
 		filePath := path.Join(dirPath, indexPage)
 		_, statFileInfoError := os.Stat(filePath)

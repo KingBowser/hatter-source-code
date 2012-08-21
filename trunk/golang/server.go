@@ -14,14 +14,6 @@ import (
 )
 
 const (
-	CONTENT_TYPE = "Content-Type"
-	TEXT_PLAIN = "text/plain"
-	TEXT_HTML = "text/html"
-	TEXT_CSS = "text/css"
-	IMAGE_JPEG = "image/jpeg"
-	IMAGE_PNG = "image/png"
-	APPLICATION_JS = "application/javascript"
-	
 	REDIRECT_URL = "redirect.url"
 )
 
@@ -86,7 +78,7 @@ func HandleListDirDomainSetting(w http.ResponseWriter, r *http.Request, dirPath 
 		log.Println("Read dir failed:", readDirError)
 		return false
 	}
-	w.Header().Set(CONTENT_TYPE, TEXT_HTML)
+	w.Header().Set(lib.CONTENT_TYPE, lib.TEXT_HTML)
 	fmt.Fprint(w, "<html>")
 	fmt.Fprint(w, "<head>")
 	fmt.Fprint(w, "<title>", "Listing dir: ", r.URL.Path, "</title>")

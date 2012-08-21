@@ -8,6 +8,7 @@ import (
 	"log"
 	"flag"
 	"path"
+	"io/ioutil"
 	"net/http"
 )
 
@@ -71,6 +72,46 @@ func HandleRedirectDomainSetting(w http.ResponseWriter, r *http.Request, setting
 	return true
 }
 
+func HandleListDirDomainSetting(w http.ResponseWriter, r *http.Request, dirPath string) bool {
+	readDirFileInfos, readDirError := ioutil.ReadDir(dirPath)
+	if readDirError != nil {
+		log.Println("Read dir failed:", readDirError)
+		return false
+	}
+	w.Header().Set(CONTENT_TYPE, TEXT_HTML)
+	fmt.Fprint(w, "<html>")
+	fmt.Fprint(w, "<head>")
+	fmt.Fprint(w, "<title>", "Listing dir: ", r.URL.Path, "</title>")
+	fmt.Fprint(w, "</head>")
+	fmt.Fprint(w, "<body>")
+	fmt.Fprint(w, "<h1>Listing dir:</h1>")
+	fmt.Fprint(w, "<ul>")
+	if (r.URL.Path != "/") {
+		fmt.Fprint(w, "<li>", "<a href=\"..\">[..]</a>", "</li>")
+	}
+	for _, fileInfo := range readDirFileInfos {
+		isDir := fileInfo.Mode().IsDir()
+		fName := fileInfo.Name()
+		if isDir {
+			fName = "[" + fName + "]"
+		}
+		basePath := r.URL.Path
+		if basePath != "/" {
+			basePath = basePath + "/"
+		}
+		fileSize := ""
+		if !isDir {
+			fileSize = " (" + lib.ToSize(fileInfo.Size()) + ")"
+		}
+		fmt.Fprint(w, "<li>", "<a href=\"", basePath, fileInfo.Name(), "\">", fName, "</a>", fileSize, "</li>");
+	}
+	fmt.Fprint(w, "</ul>")
+	fmt.Fprint(w, "<br/>", "<br/>")
+	fmt.Fprint(w, "Powered by Hatter's Private Server, Version: 0.0.1<br/>")
+	fmt.Fprint(w, "</body>")
+	fmt.Fprint(w, "</html>")
+	return true
+}
 
 func HandleDirDomainSetting(w http.ResponseWriter, r *http.Request, dirPath string) bool {
 	for _, indexPage := range indexPages {
@@ -81,10 +122,9 @@ func HandleDirDomainSetting(w http.ResponseWriter, r *http.Request, dirPath stri
 		}
 	}
 	if *serverListDir {
-		
-	} else {
-		fmt.Fprint(w, "List dir is forbiden.")
+		return HandleListDirDomainSetting(w, r, dirPath)
 	}
+	fmt.Fprint(w, "List dir is forbiden.")
 	return true
 }
 
@@ -93,6 +133,7 @@ func HandleFileDomainSetting(w http.ResponseWriter, r *http.Request, filePath st
 	openFile, openFileError := os.Open(filePath)
 	if openFileError != nil {
 		log.Println("Open file failed:", openFileError)
+		return false
 	}
 	defer openFile.Close()
 	io.Copy(w, openFile)

@@ -45,7 +45,7 @@ type DomainSetting struct {
 }
 
 var defaultDomainSetting = DomainSetting {
-	LOCATION, "", "",
+	LOCATION, "", "", // default startup path
 }
 
 var quickDomainSettingMap = map[string]*DomainSetting {

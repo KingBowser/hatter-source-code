@@ -27,6 +27,7 @@ var (
 	serverPath = flag.String("path", serverSysPath, "server path")
 	serverPort = flag.Int("port", 8888, "listen port")
 	serverListDir = flag.Bool("listdir", true, "list dir")
+	serverUseDefault = flag.Bool("usedefault", true, "list dir")
 	
 	indexPages = []string {
 		"index.htm",
@@ -190,9 +191,11 @@ func HandleRequest(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 	}
-	handleResult = HandleDirFileDomainSetting(w, r, &defaultDomainSetting)
-	if handleResult {
-		return
+	if *serverUseDefault {
+		handleResult = HandleDirFileDomainSetting(w, r, &defaultDomainSetting)
+		if handleResult {
+			return
+		}
 	}
 	HandleNotFound(w, r, requestURL)
 }

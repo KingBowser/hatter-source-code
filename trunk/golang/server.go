@@ -27,7 +27,7 @@ const (
 
 var (
 	serverSysPath, _ = os.Getwd()
-	serverPath = flag.String("path", "", "server path")
+	serverPath = flag.String("path", "serverSysPath", "server path")
 	serverPort = flag.Int("port", 8888, "listen port")
 	serverListDir = flag.Bool("listdir", true, "list dir")
 	serverUseDefault = flag.Bool("usedefault", true, "list dir")
@@ -53,7 +53,7 @@ type DomainSetting struct {
 }
 
 var defaultDomainSetting = DomainSetting {
-	LOCATION, "", *serverPath,
+	LOCATION, "", "",
 }
 
 var quickDomainSettingMap = map[string]*DomainSetting {
@@ -163,7 +163,7 @@ func HandleFileDomainSetting(w http.ResponseWriter, r *http.Request, filePath st
 func HandleDirFileDomainSetting(w http.ResponseWriter, r *http.Request, setting *DomainSetting) bool {
 	locationPath := setting.LocationPath
 	if locationPath == "" {
-		locationPath = serverSysPath
+		locationPath = *serverPath
 	}
 	accessPath := path.Join(locationPath, r.URL.Path)
 	accessFileInfo, accessFileInfoError := os.Stat(accessPath)

@@ -2,6 +2,7 @@
 package main
 
 import (
+	"./lib"
 	"io"
 	"os"
 	"fmt"
@@ -11,12 +12,6 @@ import (
 	"strings"
 	"net/http"
 	"sync/atomic"
-)
-
-const (
-	KB = 1024
-	MB = KB * KB
-	GB = KB * KB * KB
 )
 
 var urlFileNameRegexp, _ = regexp.Compile("[^0-9a-zA-Z\\.]")
@@ -106,7 +101,7 @@ func (h HttpServerHandle) ServeHTTP (
 		fmt.Fprint(w, "Downloading count: ", fmt.Sprintf("%v", downloadCount))
 		fmt.Fprint(w, ", total count: ", downloadedAllCount)
 		fmt.Fprint(w, ", success count: ", downloadedSuccCount)
-		fmt.Fprint(w, ", downloaded size: ", ToSize(downloadSize))
+		fmt.Fprint(w, ", downloaded size: ", lib.ToSize(downloadSize))
 		fmt.Fprint(w, "</body>\n")
 		fmt.Fprint(w, "</html>\n")
 		return
@@ -126,17 +121,6 @@ func (h HttpServerHandle) ServeHTTP (
 	go DoDownloadGet(formUrl, appHttpServerPath)
 	fmt.Fprint(w, "Download started: ", formUrl)
 	fmt.Fprint(w, "<br>", "<a href=\"/\">&lt;&lt;&lt;&lt;BACK&lt;&lt;&lt;&lt;</a>")
-}
-
-func ToSize(size int64) string {
-	if size > GB {
-		return fmt.Sprintf("%vGB", size / GB)
-	} else if size > MB {
-		return fmt.Sprintf("%vMB", size / MB)
-	} else if size > KB {
-		return fmt.Sprintf("%vKB", size / KB)
-	}
-	return fmt.Sprintf("%v bytes", size)
 }
 
 var appHttpServerPort = flag.Int("port", 8000, "listen port")

@@ -16,9 +16,19 @@ const (
 	IMAGE_PNG = "image/png"
 	IMAGE_GIF = "image/gif"
 	IMAGE_ICON = "image/vnd.microsoft.icon"
+	IMAGE_PSD = "image/vnd.adobe.photoshop"
+	AUDIO_WAV = "audio/wav"
+	VEDIO_MP4 = "video/mp4"
+	VEDIO_MPEG = "video/mpeg"
+	VEDIO_QUICKTIME = "video/quicktime"
+	VEDIO_ASF = "video/x-ms-asf"
+	VEDIO_WMV = "video/x-ms-wmv"
+	VEDIO_AVI = "video/x-msvideo"
+	VEDIO_MOVIE = "video/x-sgi-movie"
 	APPLICATION_PDF = "application/pdf"
 	APPLICATION_XML = "application/xml"
 	APPLICATION_JS = "application/javascript"
+	APPLICATION_RM = "application/vnd.rn-realmedia"
 	APPLICATION_OCTET_STREAM = "application/octet-stream"
 )
 
@@ -26,6 +36,46 @@ const (
 	KB = 1024
 	MB = KB * KB
 	GB = KB * KB * KB
+)
+
+var (
+	ContentTypeMap = map[string]string {
+	            		"go": TEXT_PLAIN, 
+			    		"java": TEXT_PLAIN, 
+						"txt": TEXT_PLAIN, 
+						"properties": TEXT_PLAIN,
+						"yaml": TEXT_PLAIN,
+						"css": TEXT_CSS,
+						"htm": TEXT_HTML,
+						"html": TEXT_HTML,
+						"jpg": IMAGE_JPEG,
+						"jpe": IMAGE_JPEG,
+						"jpeg": IMAGE_JPEG,
+						"png": IMAGE_PNG,
+						"gif": IMAGE_GIF,
+						"ico": IMAGE_ICON,
+						"pdf": APPLICATION_PDF,
+						"psd": IMAGE_PSD,
+						"xml": APPLICATION_XML,
+						"js": APPLICATION_JS,
+						"rm": APPLICATION_RM,
+						"wav": AUDIO_WAV,
+						"mp4": VEDIO_MP4,
+						"mp4v": VEDIO_MP4,
+						"mpg4": VEDIO_MP4,
+						"mpeg": VEDIO_MPEG,
+						"mpg": VEDIO_MPEG,
+						"mpe": VEDIO_MPEG,
+						"m1v": VEDIO_MPEG,
+						"m2v": VEDIO_MPEG,
+						"qt": VEDIO_QUICKTIME,
+						"mov": VEDIO_QUICKTIME,
+						"asf": VEDIO_ASF,
+						"asx": VEDIO_ASF,
+						"wmv": VEDIO_WMV,
+						"avi": VEDIO_AVI,
+						"movie": VEDIO_MOVIE,
+	}
 )
 
 func ToSize(size int64) string {
@@ -45,6 +95,14 @@ func GetSuffix(s string) string {
 		return s[lastIndexOfDot + 1:]
 	}
 	return ""
+}
+
+func GetContentType(suffix string) string {
+	contentType := ContentTypeMap[suffix]
+	if contentType == "" {
+		contentType = APPLICATION_OCTET_STREAM
+	}
+	return contentType
 }
 
 func ParseHost(host string) (string, int, error) {

@@ -14,71 +14,12 @@ import (
 const (
 	LIGHT_HTTP_SERVER_NAME = "Light http server"
 	LIGHT_HTTP_SERVER_VERSION = "0.0.1"
-	CONTENT_TYPE = "Content-Type"
-	TEXT_PLAIN = "text/plain"
-	TEXT_HTML = "text/html"
-	TEXT_CSS = "text/css"
-	IMAGE_JPEG = "image/jpeg"
-	IMAGE_PNG = "image/png"
-	IMAGE_GIF = "image/gif"
-	IMAGE_ICON = "image/vnd.microsoft.icon"
-	IMAGE_PSD = "image/vnd.adobe.photoshop"
-	AUDIO_WAV = "audio/wav"
-	VEDIO_MP4 = "video/mp4"
-	VEDIO_MPEG = "video/mpeg"
-	VEDIO_QUICKTIME = "video/quicktime"
-	VEDIO_ASF = "video/x-ms-asf"
-	VEDIO_WMV = "video/x-ms-wmv"
-	VEDIO_AVI = "video/x-msvideo"
-	VEDIO_MOVIE = "video/x-sgi-movie"
-	APPLICATION_PDF = "application/pdf"
-	APPLICATION_XML = "application/xml"
-	APPLICATION_JS = "application/javascript"
-	APPLICATION_RM = "application/vnd.rn-realmedia"
-	APPLICATION_OCTET_STREAM = "application/octet-stream"
 )
 
 var (
 	lightHttpServerPort = flag.Int("port", 8888, "listen port")
 	lightHttpServerPath = ""
 	lightHttpServerPrintVerbose = true
-	mimeTypeMap = map[string]string {
-	            		"go": TEXT_PLAIN, 
-			    		"java": TEXT_PLAIN, 
-						"txt": TEXT_PLAIN, 
-						"properties": TEXT_PLAIN,
-						"yaml": TEXT_PLAIN,
-						"css": TEXT_CSS,
-						"htm": TEXT_HTML,
-						"html": TEXT_HTML,
-						"jpg": IMAGE_JPEG,
-						"jpe": IMAGE_JPEG,
-						"jpeg": IMAGE_JPEG,
-						"png": IMAGE_PNG,
-						"gif": IMAGE_GIF,
-						"ico": IMAGE_ICON,
-						"pdf": APPLICATION_PDF,
-						"psd": IMAGE_PSD,
-						"xml": APPLICATION_XML,
-						"js": APPLICATION_JS,
-						"rm": APPLICATION_RM,
-						"wav": AUDIO_WAV,
-						"mp4": VEDIO_MP4,
-						"mp4v": VEDIO_MP4,
-						"mpg4": VEDIO_MP4,
-						"mpeg": VEDIO_MPEG,
-						"mpg": VEDIO_MPEG,
-						"mpe": VEDIO_MPEG,
-						"m1v": VEDIO_MPEG,
-						"m2v": VEDIO_MPEG,
-						"qt": VEDIO_QUICKTIME,
-						"mov": VEDIO_QUICKTIME,
-						"asf": VEDIO_ASF,
-						"asx": VEDIO_ASF,
-						"wmv": VEDIO_WMV,
-						"avi": VEDIO_AVI,
-						"movie": VEDIO_MOVIE,
-	}
 )
 
 func DisplayUsage() {
@@ -123,12 +64,9 @@ func (h HttpServerHandle) ServeHTTP (
 	
 	if !openFileIsDir {
 		openFileSuffix := lib.GetSuffix(openFileInfo.Name())
-		openFileMimeType := mimeTypeMap[openFileSuffix]
-		if openFileMimeType == "" {
-			openFileMimeType = APPLICATION_OCTET_STREAM
-		}
+		openFileMimeType := lib.GetContentType(openFileSuffix)
 		w.WriteHeader(200)
-		w.Header().Set(CONTENT_TYPE, openFileMimeType)
+		w.Header().Set(lib.CONTENT_TYPE, openFileMimeType)
 		
 		err := CopyBytes(openFile, w);
 		if err != nil {
@@ -144,7 +82,7 @@ func (h HttpServerHandle) ServeHTTP (
 		return;
 	}
 	
-	w.Header().Set(CONTENT_TYPE, TEXT_HTML)
+	w.Header().Set(lib.CONTENT_TYPE, lib.TEXT_HTML)
 	fmt.Fprint(w, "<h1>Listing dir:</h1>")
 	fmt.Fprint(w, "<ul>")
 	if (r.URL.Path != "/") {

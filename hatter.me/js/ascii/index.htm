@@ -1,0 +1,282 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>ASCII Chart</title>
+<meta name="description" content="ASCII chart with color coding, binary values, octal values, decimal values, hex values, and control character descriptions.">
+<meta name="keywords" content="large ascii chart, ascii chart large, ascii chart, chart of ascii characters, table of ascii characters">
+<link rel="shortcut icon" href="http://ostermiller.org/favicon.ico" type="image/x-icon">
+
+<!--
+This program is free software; you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the Free
+Software Foundation; either version 2 of the License, or (at your option)
+any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+or FITNESS FOR A PARTICULAR PURPOSE. See th GNU
+General Public License (http://www.gnu.org/copyleft/gpl.html)
+for more details.
+
+Weight Chart
+Written by Stephen Ostermiller
+Copyright (C) 2001 Stephen Ostermiller 
+http://ostermiller.org/contact.pl?regarding=JavaScript+Large+ASCII+Chart
+-->
+<style>
+body {
+color:black;
+background-color:white;
+margin:0;
+padding:0;
+}
+table {
+border:none;
+width:100%;
+}
+table tr td {
+border:thin black ridge;
+padding:0px;
+margin:0px;
+width:12%;
+vertical-align:top;
+}
+td.y{
+background-color:#ccccff;	
+}
+td.a{
+background-color:white;	
+}
+td.p{
+background-color:#ffcccc;	
+}
+.c {
+font-weight:bold;
+text-align:center;
+background-color:#ffffaa;
+font-family:Courier,monospace;
+font-size:16px;
+}
+.d, .x {
+text-align:left;
+float:left;
+}
+.o, .b {
+text-align:right;
+}
+.d, .o, .x, .b {
+text-align:right;
+font-family:Times,serif;
+font-size:12px;
+padding-right:2px;
+padding-left:2px;
+
+}
+.s {
+font-family:Arial,Helvetica,"sans-serif";
+text-align:center;
+color:gray;
+font-size:10px;
+}
+</style>
+
+</head>
+<body>
+
+<table>
+
+<tr>
+<td class=p><div class=c>NUL</div><div class=d>0</div><div class=o>0c0</div><div class=x>0x0</div><div class=b>0b0</div><div class=s>Null</div></td>
+<td class=p><div class=c>SOH</div><div class=d>1</div><div class=o>0c1</div><div class=x>0x1</div><div class=b>0b1</div><div class=s>Start of Header</div></td>
+<td class=p><div class=c>STX</div><div class=d>2</div><div class=o>0c2</div><div class=x>0x2</div><div class=b>0b10</div><div class=s>Start of Text</div></td>
+
+<td class=p><div class=c>ETX</div><div class=d>3</div><div class=o>0c3</div><div class=x>0x3</div><div class=b>0b11</div><div class=s>End of Text</div></td>
+<td class=p><div class=c>EOT</div><div class=d>4</div><div class=o>0c4</div><div class=x>0x4</div><div class=b>0b100</div><div class=s>End of Transmission</div></td>
+<td class=p><div class=c>ENQ</div><div class=d>5</div><div class=o>0c5</div><div class=x>0x5</div><div class=b>0b101</div><div class=s>Enquiry</div></td>
+
+<td class=p><div class=c>ACK</div><div class=d>6</div><div class=o>0c6</div><div class=x>0x6</div><div class=b>0b110</div><div class=s>Acknowledgment</div></td>
+<td class=p><div class=c>BEL</div><div class=d>7</div><div class=o>0c7</div><div class=x>0x7</div><div class=b>0b111</div><div class=s>Bell</div></td>
+</tr><tr>
+<td class=p><div class=c>BS</div><div class=d>8</div><div class=o>0c10</div><div class=x>0x8</div><div class=b>0b1000</div><div class=s>Backspace</div></td>
+
+<td class=y><div class=c>HT</div><div class=d>9</div><div class=o>0c11</div><div class=x>0x9</div><div class=b>0b1001</div><div class=s>Horizontal Tab \t</div></td>
+<td class=y><div class=c>LF</div><div class=d>10</div><div class=o>0c12</div><div class=x>0xA</div><div class=b>0b1010</div><div class=s>Line Feed \n</div></td>
+<td class=p><div class=c>VT</div><div class=d>11</div><div class=o>0c13</div><div class=x>0xB</div><div class=b>0b1011</div><div class=s>Vertical Tab</div></td>
+
+<td class=y><div class=c>FF</div><div class=d>12</div><div class=o>0c14</div><div class=x>0xC</div><div class=b>0b1100</div><div class=s>Form Feed \f</div></td>
+<td class=y><div class=c>CR</div><div class=d>13</div><div class=o>0c15</div><div class=x>0xD</div><div class=b>0b1101</div><div class=s>Carriage Return \r</div></td>
+<td class=p><div class=c>SO</div><div class=d>14</div><div class=o>0c16</div><div class=x>0xE</div><div class=b>0b1110</div><div class=s>Shift Out</div></td>
+
+<td class=p><div class=c>SI</div><div class=d>15</div><div class=o>0c17</div><div class=x>0xF</div><div class=b>0b1111</div><div class=s>Shift In</div></td>
+</tr><tr>
+<td class=p><div class=c>DLE</div><div class=d>16</div><div class=o>0c20</div><div class=x>0x10</div><div class=b>0b10000</div><div class=s>Data Link Escape</div></td>
+<td class=p><div class=c>DC1</div><div class=d>17</div><div class=o>0c21</div><div class=x>0x11</div><div class=b>0b10001</div><div class=s>XON,<br>Device Control 1</div></td>
+
+<td class=p><div class=c>DC2</div><div class=d>18</div><div class=o>0c22</div><div class=x>0x12</div><div class=b>0b10010</div><div class=s>Device Control 2</div></td>
+<td class=p><div class=c>DC3</div><div class=d>19</div><div class=o>0c23</div><div class=x>0x13</div><div class=b>0b10011</div><div class=s>XOFF,<br>Device Control 3</div></td>
+<td class=p><div class=c>DC4</div><div class=d>20</div><div class=o>0c24</div><div class=x>0x14</div><div class=b>0b10100</div><div class=s>Device Control 4</div></td>
+
+<td class=p><div class=c>NAK</div><div class=d>21</div><div class=o>0c25</div><div class=x>0x15</div><div class=b>0b10101</div><div class=s>Negative Acknowledgement</div></td>
+<td class=p><div class=c>SYN</div><div class=d>22</div><div class=o>0c26</div><div class=x>0x16</div><div class=b>0b10110</div><div class=s>Synchronous Idle</div></td>
+<td class=p><div class=c>ETB</div><div class=d>23</div><div class=o>0c27</div><div class=x>0x17</div><div class=b>0b10111</div><div class=s>End of Trans. Block</div></td>
+
+</tr><tr>
+<td class=p><div class=c>CAN</div><div class=d>24</div><div class=o>0c30</div><div class=x>0x18</div><div class=b>0b11000</div><div class=s>Cancel</div></td>
+<td class=p><div class=c>EM</div><div class=d>25</div><div class=o>0c31</div><div class=x>0x19</div><div class=b>0b11001</div><div class=s>End of Medium</div></td>
+<td class=p><div class=c>SUB</div><div class=d>26</div><div class=o>0c32</div><div class=x>0x1A</div><div class=b>0b11010</div><div class=s>Substitute</div></td>
+
+<td class=p><div class=c>ESC</div><div class=d>27</div><div class=o>0c33</div><div class=x>0x1B</div><div class=b>0b11011</div><div class=s>Escape</div></td>
+<td class=p><div class=c>FS</div><div class=d>28</div><div class=o>0c34</div><div class=x>0x1C</div><div class=b>0b11100</div><div class=s>File Separator</div></td>
+<td class=p><div class=c>GS</div><div class=d>29</div><div class=o>0c35</div><div class=x>0x1D</div><div class=b>0b11101</div><div class=s>Group Separator</div></td>
+
+<td class=p><div class=c>RS</div><div class=d>30</div><div class=o>0c36</div><div class=x>0x1E</div><div class=b>0b11110</div><div class=s>Request to Send,<br>Record Separator</div></td>
+<td class=p><div class=c>US</div><div class=d>31</div><div class=o>0c37</div><div class=x>0x1F</div><div class=b>0b11111</div><div class=s>Unit Separator</div></td>
+</tr><tr>
+<td class=y><div class=c>SP</div><div class=d>32</div><div class=o>0c40</div><div class=x>0x20</div><div class=b>0b100000</div><div class=s>Space</div></td>
+
+<td class=y><div class=c>!</div><div class=d>33</div><div class=o>0c41</div><div class=x>0x21</div><div class=b>0b100001</div></td>
+<td class=y><div class=c>"</div><div class=d>34</div><div class=o>0c42</div><div class=x>0x22</div><div class=b>0b100010</div></td>
+<td class=y><div class=c>#</div><div class=d>35</div><div class=o>0c43</div><div class=x>0x23</div><div class=b>0b100011</div></td>
+
+<td class=y><div class=c>$</div><div class=d>36</div><div class=o>0c44</div><div class=x>0x24</div><div class=b>0b100100</div></td>
+<td class=y><div class=c>%</div><div class=d>37</div><div class=o>0c45</div><div class=x>0x25</div><div class=b>0b100101</div></td>
+<td class=y><div class=c>&amp;</div><div class=d>38</div><div class=o>0c46</div><div class=x>0x26</div><div class=b>0b100110</div></td>
+
+<td class=y><div class=c>'</div><div class=d>39</div><div class=o>0c47</div><div class=x>0x27</div><div class=b>0b100111</div></td>
+</tr><tr>
+<td class=y><div class=c>(</div><div class=d>40</div><div class=o>0c50</div><div class=x>0x28</div><div class=b>0b101000</div></td>
+<td class=y><div class=c>)</div><div class=d>41</div><div class=o>0c51</div><div class=x>0x29</div><div class=b>0b101001</div></td>
+
+<td class=y><div class=c>*</div><div class=d>42</div><div class=o>0c52</div><div class=x>0x2A</div><div class=b>0b101010</div></td>
+<td class=y><div class=c>+</div><div class=d>43</div><div class=o>0c53</div><div class=x>0x2B</div><div class=b>0b101011</div></td>
+<td class=y><div class=c>,</div><div class=d>44</div><div class=o>0c54</div><div class=x>0x2C</div><div class=b>0b101100</div></td>
+
+<td class=y><div class=c>-</div><div class=d>45</div><div class=o>0c55</div><div class=x>0x2D</div><div class=b>0b101101</div></td>
+<td class=y><div class=c>.</div><div class=d>46</div><div class=o>0c56</div><div class=x>0x2E</div><div class=b>0b101110</div></td>
+<td class=y><div class=c>/</div><div class=d>47</div><div class=o>0c57</div><div class=x>0x2F</div><div class=b>0b101111</div></td>
+
+</tr><tr>
+<td class=a><div class=c>0</div><div class=d>48</div><div class=o>0c60</div><div class=x>0x30</div><div class=b>0b110000</div></td>
+<td class=a><div class=c>1</div><div class=d>49</div><div class=o>0c61</div><div class=x>0x31</div><div class=b>0b110001</div></td>
+<td class=a><div class=c>2</div><div class=d>50</div><div class=o>0c62</div><div class=x>0x32</div><div class=b>0b110010</div></td>
+
+<td class=a><div class=c>3</div><div class=d>51</div><div class=o>0c63</div><div class=x>0x33</div><div class=b>0b110011</div></td>
+<td class=a><div class=c>4</div><div class=d>52</div><div class=o>0c64</div><div class=x>0x34</div><div class=b>0b110100</div></td>
+<td class=a><div class=c>5</div><div class=d>53</div><div class=o>0c65</div><div class=x>0x35</div><div class=b>0b110101</div></td>
+
+<td class=a><div class=c>6</div><div class=d>54</div><div class=o>0c66</div><div class=x>0x36</div><div class=b>0b110110</div></td>
+<td class=a><div class=c>7</div><div class=d>55</div><div class=o>0c67</div><div class=x>0x37</div><div class=b>0b110111</div></td>
+</tr><tr>
+<td class=a><div class=c>8</div><div class=d>56</div><div class=o>0c70</div><div class=x>0x38</div><div class=b>0b111000</div></td>
+
+<td class=a><div class=c>9</div><div class=d>57</div><div class=o>0c71</div><div class=x>0x39</div><div class=b>0b111001</div></td>
+<td class=y><div class=c>:</div><div class=d>58</div><div class=o>0c72</div><div class=x>0x3A</div><div class=b>0b111010</div></td>
+<td class=y><div class=c>;</div><div class=d>59</div><div class=o>0c73</div><div class=x>0x3B</div><div class=b>0b111011</div></td>
+
+<td class=y><div class=c>&lt;</div><div class=d>60</div><div class=o>0c74</div><div class=x>0x3C</div><div class=b>0b111100</div></td>
+<td class=y><div class=c>=</div><div class=d>61</div><div class=o>0c75</div><div class=x>0x3D</div><div class=b>0b111101</div></td>
+<td class=y><div class=c>&gt;</div><div class=d>62</div><div class=o>0c76</div><div class=x>0x3E</div><div class=b>0b111110</div></td>
+<td class=y><div class=c>?</div><div class=d>63</div><div class=o>0c77</div><div class=x>0x3F</div><div class=b>0b111111</div></td>
+
+</tr><tr>
+<td class=y><div class=c>@</div><div class=d>64</div><div class=o>0c100</div><div class=x>0x40</div><div class=b>0b1000000</div></td>
+<td class=a><div class=c>A</div><div class=d>65</div><div class=o>0c101</div><div class=x>0x41</div><div class=b>0b1000001</div></td>
+<td class=a><div class=c>B</div><div class=d>66</div><div class=o>0c102</div><div class=x>0x42</div><div class=b>0b1000010</div></td>
+
+<td class=a><div class=c>C</div><div class=d>67</div><div class=o>0c103</div><div class=x>0x43</div><div class=b>0b1000011</div></td>
+<td class=a><div class=c>D</div><div class=d>68</div><div class=o>0c104</div><div class=x>0x44</div><div class=b>0b1000100</div></td>
+<td class=a><div class=c>E</div><div class=d>69</div><div class=o>0c105</div><div class=x>0x45</div><div class=b>0b1000101</div></td>
+
+<td class=a><div class=c>F</div><div class=d>70</div><div class=o>0c106</div><div class=x>0x46</div><div class=b>0b1000110</div></td>
+<td class=a><div class=c>G</div><div class=d>71</div><div class=o>0c107</div><div class=x>0x47</div><div class=b>0b1000111</div></td>
+</tr><tr>
+<td class=a><div class=c>H</div><div class=d>72</div><div class=o>0c110</div><div class=x>0x48</div><div class=b>0b1001000</div></td>
+
+<td class=a><div class=c>I</div><div class=d>73</div><div class=o>0c111</div><div class=x>0x49</div><div class=b>0b1001001</div></td>
+<td class=a><div class=c>J</div><div class=d>74</div><div class=o>0c112</div><div class=x>0x4A</div><div class=b>0b1001010</div></td>
+<td class=a><div class=c>K</div><div class=d>75</div><div class=o>0c113</div><div class=x>0x4B</div><div class=b>0b1001011</div></td>
+
+<td class=a><div class=c>L</div><div class=d>76</div><div class=o>0c114</div><div class=x>0x4C</div><div class=b>0b1001100</div></td>
+<td class=a><div class=c>M</div><div class=d>77</div><div class=o>0c115</div><div class=x>0x4D</div><div class=b>0b1001101</div></td>
+<td class=a><div class=c>N</div><div class=d>78</div><div class=o>0c116</div><div class=x>0x4E</div><div class=b>0b1001110</div></td>
+
+<td class=a><div class=c>O</div><div class=d>79</div><div class=o>0c117</div><div class=x>0x4F</div><div class=b>0b1001111</div></td>
+</tr><tr>
+<td class=a><div class=c>P</div><div class=d>80</div><div class=o>0c120</div><div class=x>0x50</div><div class=b>0b1010000</div></td>
+<td class=a><div class=c>Q</div><div class=d>81</div><div class=o>0c121</div><div class=x>0x51</div><div class=b>0b1010001</div></td>
+
+<td class=a><div class=c>R</div><div class=d>82</div><div class=o>0c122</div><div class=x>0x52</div><div class=b>0b1010010</div></td>
+<td class=a><div class=c>S</div><div class=d>83</div><div class=o>0c123</div><div class=x>0x53</div><div class=b>0b1010011</div></td>
+<td class=a><div class=c>T</div><div class=d>84</div><div class=o>0c124</div><div class=x>0x54</div><div class=b>0b1010100</div></td>
+
+<td class=a><div class=c>U</div><div class=d>85</div><div class=o>0c125</div><div class=x>0x55</div><div class=b>0b1010101</div></td>
+<td class=a><div class=c>V</div><div class=d>86</div><div class=o>0c126</div><div class=x>0x56</div><div class=b>0b1010110</div></td>
+<td class=a><div class=c>W</div><div class=d>87</div><div class=o>0c127</div><div class=x>0x57</div><div class=b>0b1010111</div></td>
+
+</tr><tr>
+<td class=a><div class=c>X</div><div class=d>88</div><div class=o>0c130</div><div class=x>0x58</div><div class=b>0b1011000</div></td>
+<td class=a><div class=c>Y</div><div class=d>89</div><div class=o>0c131</div><div class=x>0x59</div><div class=b>0b1011001</div></td>
+<td class=a><div class=c>Z</div><div class=d>90</div><div class=o>0c132</div><div class=x>0x5A</div><div class=b>0b1011010</div></td>
+
+<td class=y><div class=c>[</div><div class=d>91</div><div class=o>0c133</div><div class=x>0x5B</div><div class=b>0b1011011</div></td>
+<td class=y><div class=c>\</div><div class=d>92</div><div class=o>0c134</div><div class=x>0x5C</div><div class=b>0b1011100</div></td>
+<td class=y><div class=c>]</div><div class=d>93</div><div class=o>0c135</div><div class=x>0x5D</div><div class=b>0b1011101</div></td>
+
+<td class=y><div class=c>^</div><div class=d>94</div><div class=o>0c136</div><div class=x>0x5E</div><div class=b>0b1011110</div></td>
+<td class=y><div class=c>_</div><div class=d>95</div><div class=o>0c137</div><div class=x>0x5F</div><div class=b>0b1011111</div></td>
+</tr><tr>
+<td class=y><div class=c>`</div><div class=d>96</div><div class=o>0c140</div><div class=x>0x60</div><div class=b>0b1100000</div></td>
+
+<td class=a><div class=c>a</div><div class=d>97</div><div class=o>0c141</div><div class=x>0x61</div><div class=b>0b1100001</div></td>
+<td class=a><div class=c>b</div><div class=d>98</div><div class=o>0c142</div><div class=x>0x62</div><div class=b>0b1100010</div></td>
+<td class=a><div class=c>c</div><div class=d>99</div><div class=o>0c143</div><div class=x>0x63</div><div class=b>0b1100011</div></td>
+
+<td class=a><div class=c>d</div><div class=d>100</div><div class=o>0c144</div><div class=x>0x64</div><div class=b>0b1100100</div></td>
+<td class=a><div class=c>e</div><div class=d>101</div><div class=o>0c145</div><div class=x>0x65</div><div class=b>0b1100101</div></td>
+<td class=a><div class=c>f</div><div class=d>102</div><div class=o>0c146</div><div class=x>0x66</div><div class=b>0b1100110</div></td>
+
+<td class=a><div class=c>g</div><div class=d>103</div><div class=o>0c147</div><div class=x>0x67</div><div class=b>0b1100111</div></td>
+</tr><tr>
+<td class=a><div class=c>h</div><div class=d>104</div><div class=o>0c150</div><div class=x>0x68</div><div class=b>0b1101000</div></td>
+<td class=a><div class=c>i</div><div class=d>105</div><div class=o>0c151</div><div class=x>0x69</div><div class=b>0b1101001</div></td>
+
+<td class=a><div class=c>j</div><div class=d>106</div><div class=o>0c152</div><div class=x>0x6A</div><div class=b>0b1101010</div></td>
+<td class=a><div class=c>k</div><div class=d>107</div><div class=o>0c153</div><div class=x>0x6B</div><div class=b>0b1101011</div></td>
+<td class=a><div class=c>l</div><div class=d>108</div><div class=o>0c154</div><div class=x>0x6C</div><div class=b>0b1101100</div></td>
+
+<td class=a><div class=c>m</div><div class=d>109</div><div class=o>0c155</div><div class=x>0x6D</div><div class=b>0b1101101</div></td>
+<td class=a><div class=c>n</div><div class=d>110</div><div class=o>0c156</div><div class=x>0x6E</div><div class=b>0b1101110</div></td>
+<td class=a><div class=c>o</div><div class=d>111</div><div class=o>0c157</div><div class=x>0x6F</div><div class=b>0b1101111</div></td>
+
+</tr><tr>
+<td class=a><div class=c>p</div><div class=d>112</div><div class=o>0c160</div><div class=x>0x70</div><div class=b>0b1110000</div></td>
+<td class=a><div class=c>q</div><div class=d>113</div><div class=o>0c161</div><div class=x>0x71</div><div class=b>0b1110001</div></td>
+<td class=a><div class=c>r</div><div class=d>114</div><div class=o>0c162</div><div class=x>0x72</div><div class=b>0b1110010</div></td>
+
+<td class=a><div class=c>s</div><div class=d>115</div><div class=o>0c163</div><div class=x>0x73</div><div class=b>0b1110011</div></td>
+<td class=a><div class=c>t</div><div class=d>116</div><div class=o>0c164</div><div class=x>0x74</div><div class=b>0b1110100</div></td>
+<td class=a><div class=c>u</div><div class=d>117</div><div class=o>0c165</div><div class=x>0x75</div><div class=b>0b1110101</div></td>
+
+<td class=a><div class=c>v</div><div class=d>118</div><div class=o>0c166</div><div class=x>0x76</div><div class=b>0b1110110</div></td>
+<td class=a><div class=c>w</div><div class=d>119</div><div class=o>0c167</div><div class=x>0x77</div><div class=b>0b1110111</div></td>
+</tr><tr>
+<td class=a><div class=c>x</div><div class=d>120</div><div class=o>0c170</div><div class=x>0x78</div><div class=b>0b1111000</div></td>
+
+<td class=a><div class=c>y</div><div class=d>121</div><div class=o>0c171</div><div class=x>0x79</div><div class=b>0b1111001</div></td>
+<td class=a><div class=c>z</div><div class=d>122</div><div class=o>0c172</div><div class=x>0x7A</div><div class=b>0b1111010</div></td>
+<td class=y><div class=c>{</div><div class=d>123</div><div class=o>0c173</div><div class=x>0x7B</div><div class=b>0b1111011</div></td>
+
+<td class=y><div class=c>|</div><div class=d>124</div><div class=o>0c174</div><div class=x>0x7C</div><div class=b>0b1111100</div></td>
+<td class=y><div class=c>}</div><div class=d>125</div><div class=o>0c175</div><div class=x>0x7D</div><div class=b>0b1111101</div></td>
+<td class=y><div class=c>~</div><div class=d>126</div><div class=o>0c176</div><div class=x>0x7E</div><div class=b>0b1111110</div></td>
+
+<td class=p><div class=c>DEL</div><div class=d>127</div><div class=o>0c177</div><div class=x>0x7F</div><div class=b>0b1111111</div><div class=s>Delete</div></td>
+</tr>
+</table>
+
+<div style="padding:0.2cm;"><a href="http://ostermiller.org/calc/">More converters, calculators, and other JavaScript goodies</a></div>
+<div style="padding:0.2cm;text-align:right;"><a href="http://ostermiller.org/">ostermiller.org</a> (<a href="http://ostermiller.org/siteindex.html">site index</a>)</div>
+
+<div style="padding:0.2cm;"><p>Copyright <a href="http://ostermiller.org/contact.pl?regarding=ASCII+Table" class=mail>Stephen Ostermiller</a> 2002-2006</p></div>
+</body>
+</html>

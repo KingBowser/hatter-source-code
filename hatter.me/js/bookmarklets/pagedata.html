@@ -1,0 +1,311 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<title>Text and Data Bookmarklets</title> 
+<link rel="stylesheet" href="squarefree.css" type="text/css"> 
+</head> 
+ 
+<body> 
+ 
+<div style="text-align: center"> 
+<a href="./">Bookmarklets Home</a> 
+| <a href="pagelinks.html">Links</a> 
+| <a href="forms.html">Forms</a> 
+| <a href="pagedata.html">Text and Data</a> 
+| <a href="zap.html">Zap</a> 
+| <a href="webdevel.html">Web Development</a> 
+| <a href="validation.html">Validation</a> 
+| <a href="misc.html">Misc</a> 
+</div> 
+ 
+<hr> 
+ 
+<script type="text/javascript"> 
+var ua = navigator.userAgent, d, s="";
+if (/Gecko\/200305(\d\d)/.exec(ua))
+{
+  day = parseInt(RegExp.$1, 10)
+  if (16 <= day && day < 22)
+  {
+    s = "<p class='ack'><b>You are using a version of Mozilla in which many bookmarklets do not work.<\/b>  Mozilla builds between May 16 and May 22 (including Mozilla Firebird 0.6, released May 16) suffer from bug 205989 and bug 206026.<br><br><b>Please upgrade<\/b> to one of the following:<br>"
+    s += "<a href='http://ftp.mozilla.org/pub/firebird/nightly/latest-trunk/'>A Mozilla Firebird nightly<\/a> (recommended)<br>";
+    s += "<a href='http://ftp.mozilla.org/pub/mozilla/nightly/latest-trunk/'>A Mozilla nightly<\/a><br>";
+    s += "<a href='http://www.mozilla.org/releases/'>Mozilla 1.4 RC1 or a later release<\/a><\/p>";
+    document.write(s);
+  }
+}
+</script> 
+<h3>Text and Data Bookmarklets</h3> 
+<p>These bookmarklets let you use the text and other content of a web page in new ways.</p> 
+ 
+<script type="text/javascript">if (/show_password/.test(location.hash)) location = "http://www.squarefree.com/bookmarklets/forms.html#view_passwords";</script> 
+ 
+<p class=smallitalic>(To keep <a href="./">bookmarklets</a> in order to use them on other web pages, drag them to your <a href="personaltoolbar.html">Bookmarks Toolbar</a>.  Or, <a href="importall.html">install them all at once</a>.)</p> 
+ 
+<div class=summarytable><table class=summarytable> 
+ 
+<thead> 
+<tr> 
+<th>Bookmarklet</th> 
+<th>Description</th> 
+<th colspan=4>Works in</th> 
+</tr> 
+</thead> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){var count=0, text, dv;text=prompt(&quot;Search phrase:&quot;, &quot;&quot;);if(text==null || text.length==0)return;dv=document.defaultView;function searchWithinNode(node, te, len){var pos, skip, spannode, middlebit, endbit, middleclone;skip=0;if( node.nodeType==3 ){pos=node.data.toUpperCase().indexOf(te);if(pos&gt;=0){spannode=document.createElement(&quot;SPAN&quot;);spannode.style.backgroundColor=&quot;yellow&quot;;middlebit=node.splitText(pos);endbit=middlebit.splitText(len);middleclone=middlebit.cloneNode(true);spannode.appendChild(middleclone);middlebit.parentNode.replaceChild(spannode,middlebit);++count;skip=1;}}else if( node.nodeType==1&amp;&amp; node.childNodes &amp;&amp; node.tagName.toUpperCase()!=&quot;SCRIPT&quot; &amp;&amp; node.tagName.toUpperCase!=&quot;STYLE&quot;){for (var child=0; child &lt; node.childNodes.length; ++child){child=child+searchWithinNode(node.childNodes[child], te, len);}}return skip;}window.status=&quot;Searching for '&quot;+text+&quot;'...&quot;;searchWithinNode(document.body, text.toUpperCase(), text.length);window.status=&quot;Found &quot;+count+&quot; occurrence&quot;+(count==1?&quot;&quot;:&quot;s&quot;)+&quot; of '&quot;+text+&quot;'.&quot;;})();"
+>highlight</a></td> 
+<td>Highlights each occurrence of a search phrase. <a href="#highlight">Details</a></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){var count=0, text, regexp;text=prompt(&quot;Search regexp:&quot;, &quot;&quot;);if(text==null || text.length==0)return;try{regexp=new RegExp(&quot;(&quot; + text +&quot;)&quot;, &quot;i&quot;);}catch(er){alert(&quot;Unable to create regular expression using text '&quot;+text+&quot;'.\n\n&quot;+er);return;}function searchWithinNode(node, re){var pos, skip, spannode, middlebit, endbit, middleclone;skip=0;if( node.nodeType==3 ){pos=node.data.search(re);if(pos&gt;=0){spannode=document.createElement(&quot;SPAN&quot;);spannode.style.backgroundColor=&quot;yellow&quot;;middlebit=node.splitText(pos);endbit=middlebit.splitText(RegExp.$1.length);middleclone=middlebit.cloneNode(true);spannode.appendChild(middleclone);middlebit.parentNode.replaceChild(spannode,middlebit);++count;skip=1;}}else if( node.nodeType==1 &amp;&amp; node.childNodes &amp;&amp; node.tagName.toUpperCase()!=&quot;SCRIPT&quot; &amp;&amp; node.tagName.toUpperCase!=&quot;STYLE&quot;){for (var child=0; child &lt; node.childNodes.length; ++child){child=child+searchWithinNode(node.childNodes[child], re);}}return skip;}window.status=&quot;Searching for &quot;+regexp+&quot;...&quot;;searchWithinNode(document.body, regexp);window.status=&quot;Found &quot;+count+&quot; match&quot;+(count==1?&quot;&quot;:&quot;es&quot;)+&quot; for &quot;+regexp+&quot;.&quot;;})();"
+>highlight regexp</a></td> 
+<td>Highlights each match for a regular expression. <a href="#highlight_regexp">Details</a></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){ function zoomImage(image, amt) { if(image.initialHeight == null) { /* avoid accumulating integer-rounding error */ image.initialHeight=image.height; image.initialWidth=image.width; image.scalingFactor=1; } image.scalingFactor*=amt; image.width=image.scalingFactor*image.initialWidth; image.height=image.scalingFactor*image.initialHeight; } var i,L=document.images.length; for (i=0;i&lt;L;++i) zoomImage(document.images[i], 2); if (!L) alert(&quot;This page contains no images.&quot;); })();"
+>zoom images in</a></td> 
+<td>Doubles the size of each image on the page. <a href="#zoom_images_in">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){ function zoomImage(image, amt) { if(image.initialHeight == null) { /* avoid accumulating integer-rounding error */ image.initialHeight=image.height; image.initialWidth=image.width; image.scalingFactor=1; } image.scalingFactor*=amt; image.width=image.scalingFactor*image.initialWidth; image.height=image.scalingFactor*image.initialHeight; } var i,L=document.images.length; for (i=0;i&lt;L;++i) zoomImage(document.images[i],.5); if (!L) alert(&quot;This page contains no images.&quot;); })();"
+>zoom images out</a></td> 
+<td>Halves the size of each image on the page. <a href="#zoom_images_out">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:factor=Math.sqrt(2); if(!window.scale) { scale=1; zW=[]; zH=[]; unitless=/^[0-9.]+$/; function r(N) { w=N.width; h=N.height; if (unitless.test(w)) zW.push([N,w]); if (unitless.test(h)) zH.push([N,h]); var C=N.childNodes,i; for (i=0;i&lt;C.length;++i) r(C[i]); } r(document.body); } scale*=factor; for(i in zW) zW[i][0].width=zW[i][1]*scale; for(i in zH) zH[i][0].height = zH[i][1]*scale; [].v"
+>zoom layout</a></td> 
+<td>Increases the size of fixed-pixel-size layout elements and images. <a href="#zoom_layout">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){ var d=open().document; d.title=&quot;Selection&quot;; if (window.getSelection) { /*Moz*/ var s = getSelection(); for(i=0; i&lt;s.rangeCount; ++i) { var a, r = s.getRangeAt(i); if (!r.collapsed) { var x = document.createElement(&quot;div&quot;); x.appendChild(r.cloneContents()); if (d.importNode) x = d.importNode(x, true); d.body.appendChild(x); } } } else { /*IE*/ d.body.innerHTML = document.selection.createRange().htmlText; } })();"
+>view selection</a></td> 
+<td>Displays the selection in a new window. <a href="#view_selection">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:function toArray (c){var a, k;a=new Array;for (k=0; k&lt;c.length; ++k)a[k]=c[k];return a;}function insAtTop(par,child){if(par.childNodes.length) par.insertBefore(child, par.childNodes[0]);else par.appendChild(child);}function countCols(tab){var nCols, i;nCols=0;for(i=0;i&lt;tab.rows.length;++i)if(tab.rows[i].cells.length&gt;nCols)nCols=tab.rows[i].cells.length;return nCols;}function makeHeaderLink(tableNo, colNo, ord){var link;link=document.createElement('a');link.href='javascript:sortTable('+tableNo+','+colNo+','+ord+');';link.appendChild(document.createTextNode((ord&gt;0)?'a':'d'));return link;}function makeHeader(tableNo,nCols){var header, headerCell, i;header=document.createElement('tr');for(i=0;i&lt;nCols;++i){headerCell=document.createElement('td');headerCell.appendChild(makeHeaderLink(tableNo,i,1));headerCell.appendChild(document.createTextNode('/'));headerCell.appendChild(makeHeaderLink(tableNo,i,-1));header.appendChild(headerCell);}return header;}g_tables=toArray(document.getElementsByTagName('table'));if(!g_tables.length) alert(&quot;This page doesn't contain any tables.&quot;);(function(){var j, thead;for(j=0;j&lt;g_tables.length;++j){thead=g_tables[j].createTHead();insAtTop(thead, makeHeader(j,countCols(g_tables[j])))}}) ();function compareRows(a,b){if(a.sortKey==b.sortKey)return 0;return (a.sortKey &lt; b.sortKey) ? g_order : -g_order;}function sortTable(tableNo, colNo, ord){var table, rows, nR, bs, i, j, temp;g_order=ord;g_colNo=colNo;table=g_tables[tableNo];rows=new Array();nR=0;bs=table.tBodies;for(i=0; i&lt;bs.length; ++i)for(j=0; j&lt;bs[i].rows.length; ++j){rows[nR]=bs[i].rows[j];temp=rows[nR].cells[g_colNo];if(temp) rows[nR].sortKey=temp.innerHTML;else rows[nR].sortKey=&quot;&quot;;++nR;}rows.sort(compareRows);for (i=0; i &lt; rows.length; ++i)insAtTop(table.tBodies[0], rows[i]);}"
+>sort table</a></td> 
+<td>Lets you sort tables in a web page alphabetically. <a href="#sort_table">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){function has(par,ctag){for(var k=0;k&lt;par.childNodes.length;++k)if(par.childNodes[k].tagName==ctag)return true;} function add(par,ctag,text){var c=document.createElement(ctag); c.appendChild(document.createTextNode(text)); par.insertBefore(c,par.childNodes[0]);} var i,ts=document.getElementsByTagName(&quot;TABLE&quot;); for(i=0;i&lt;ts.length;++i) { var n=0,trs=ts[i].rows,j,tr; for(j=0;j&lt;trs.length;++j) {tr=trs[j]; if(has(tr,&quot;TD&quot;))add(tr,&quot;TD&quot;,++n); else if(has(tr,&quot;TH&quot;))add(tr,&quot;TH&quot;,&quot;Row&quot;);}}})()"
+>number rows</a></td> 
+<td>Numbers the rows of each table. <a href="#number_rows">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){var d=document,q=&quot;table&quot;,i,j,k,y,r,c,t;for(i=0;t=d.getElementsByTagName(q)[i];++i){var w=0,N=t.cloneNode(0);N.width=&quot;&quot;;N.height=&quot;&quot;;N.border=1;for(j=0;r=t.rows[j];++j)for(y=k=0;c=r.cells[k];++k){var z,a=c.rowSpan,b=c.colSpan,v=c.cloneNode(1);v.rowSpan=b;v.colSpan=a;v.width=&quot;&quot;;v.height=&quot;&quot;;if(!v.bgColor)v.bgColor=r.bgColor;while(w&lt;y+b)N.insertRow(w++).p=0;while(N.rows[y].p&gt;j)++y;N.rows[y].appendChild(v);for(z=0;z&lt;b;++z)N.rows[y+z].p+=a;y+=b;}t.parentNode.replaceChild(N,t);}})()"
+>transpose tables</a></td> 
+<td>Turns table rows into columns and vice versa. <a href="#transpose_tables">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:uls=document.getElementsByTagName(&quot;ul&quot;); for (i=uls.length-1; i&gt;=0; --i) { oldul = uls[i]; newol = document.createElement(&quot;ol&quot;); for(j=0;j&lt;oldul.childNodes.length;++j) newol.appendChild(oldul.childNodes[j].cloneNode(true)); oldul.parentNode.replaceChild(newol, oldul); } void 0"
+>bullets to numbers</a></td> 
+<td>Turns bulleted lists into numbered lists. <a href="#bullets_to_numbers">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){var i,p,L,d,j,n; for(i=0; p=document.getElementsByTagName(&quot;pre&quot;)[i]; ++i) { L=p.innerHTML.split(&quot;\r\n&quot;); d=&quot;&quot;+L.length; for(j=0;j&lt;L.length;++j) { n = &quot;&quot;+(j+1)+&quot;. &quot;; while(n.length&lt;d.length+2) n=&quot;0&quot;+n; L[j] = n + L[j]; } p.innerHTML=L.join(&quot;&lt;br&gt;&quot;);/*join with br for ie*/ } })()"
+>number lines</a></td> 
+<td>Numbers lines in &lt;pre&gt; tags or plain-text documents. <a href="#number_lines">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:var coding = &quot;abcdefghijklmnopqrstuvwxyzabcdefghijklmABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLM&quot;; function rot13(t) { for (var r = &quot;&quot;,i=0;i&lt;t.length;i++) { character = t.charAt(i); position = coding.indexOf(character); if (position &gt; -1) character = coding.charAt(position + 13); r += character; } return r; } S=window.getSelection(); function t(N) { return N.nodeType == N.TEXT_NODE; } function r(N) { if (t(N)) N.data = rot13(N.data); } for (j=0;j&lt;S.rangeCount;++j) { var g=S.getRangeAt(j), e=g.startContainer, f=g.endContainer, E=g.startOffset, F=g.endOffset, m=(e==f); if(!m||!t(e)) { /* rot13 each text node between e and f, not including e and f. */ q=document.createTreeWalker(g.commonAncestorContainer, NodeFilter.SHOW_ELEMENT | NodeFilter.SHOW_TEXT, null, false); q.currentNode=e; for(N=q.nextNode(); N &amp;&amp; N != f; N = q.nextNode()) r(N); } if (t(f)) f.splitText(F); if (!m) r(f); if (t(e)) { r(k=e.splitText(E)); if(m)f=k; e=k;} if (t(f)) g.setEnd(f,f.data.length); } void 0"
+>rot13 selection</a></td> 
+<td>Replaces each letter in the selected text with its <a href="http://www.usemod.com/cgi-bin/mb.pl?RotThirteen">rot13</a> equivalent. <a href="#rot13_selection">Details</a></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+</table></div> 
+ 
+<p class=smallitalic>Browsers: <img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16> is <a href="http://www.microsoft.com/windows/ie/default.asp">Internet Explorer for Windows</a>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16> is <a href="http://channels.netscape.com/ns/browsers/default.jsp">Netscape 7</a> or <a href="http://www.mozilla.org/">Mozilla</a>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16> is <a href="http://ftp.netscape.com/pub/communicator/english/">Netscape 4</a>, and <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16> is <a href="http://www.opera.com/">Opera</a>.</p> 
+ 
+ 
+<hr> 
+ 
+<h3>Details</h3> 
+<h4 class=transparent><a name="highlight" class="bml"
+href="javascript:(function(){var count=0, text, dv;text=prompt(&quot;Search phrase:&quot;, &quot;&quot;);if(text==null || text.length==0)return;dv=document.defaultView;function searchWithinNode(node, te, len){var pos, skip, spannode, middlebit, endbit, middleclone;skip=0;if( node.nodeType==3 ){pos=node.data.toUpperCase().indexOf(te);if(pos&gt;=0){spannode=document.createElement(&quot;SPAN&quot;);spannode.style.backgroundColor=&quot;yellow&quot;;middlebit=node.splitText(pos);endbit=middlebit.splitText(len);middleclone=middlebit.cloneNode(true);spannode.appendChild(middleclone);middlebit.parentNode.replaceChild(spannode,middlebit);++count;skip=1;}}else if( node.nodeType==1&amp;&amp; node.childNodes &amp;&amp; node.tagName.toUpperCase()!=&quot;SCRIPT&quot; &amp;&amp; node.tagName.toUpperCase!=&quot;STYLE&quot;){for (var child=0; child &lt; node.childNodes.length; ++child){child=child+searchWithinNode(node.childNodes[child], te, len);}}return skip;}window.status=&quot;Searching for '&quot;+text+&quot;'...&quot;;searchWithinNode(document.body, text.toUpperCase(), text.length);window.status=&quot;Found &quot;+count+&quot; occurrence&quot;+(count==1?&quot;&quot;:&quot;s&quot;)+&quot; of '&quot;+text+&quot;'.&quot;;})();"
+>highlight</a> 
+(<img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Highlights each occurrence of a search phrase.</p> 
+<p>Only finds phrases that do not cross element boundaries.  For example, it will find "Paul McGarry" and "search phrase" but not "by Paul" in the next paragraph.
+ 
+<p>Based on a <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=62467#c1">partial implementation</a> by <a href="http://homepages.tig.com.au/~mcgarry/paul/">Paul McGarry</a>.</p> 
+ 
+<h4 class=transparent><a name="highlight_regexp" class="bml"
+href="javascript:(function(){var count=0, text, regexp;text=prompt(&quot;Search regexp:&quot;, &quot;&quot;);if(text==null || text.length==0)return;try{regexp=new RegExp(&quot;(&quot; + text +&quot;)&quot;, &quot;i&quot;);}catch(er){alert(&quot;Unable to create regular expression using text '&quot;+text+&quot;'.\n\n&quot;+er);return;}function searchWithinNode(node, re){var pos, skip, spannode, middlebit, endbit, middleclone;skip=0;if( node.nodeType==3 ){pos=node.data.search(re);if(pos&gt;=0){spannode=document.createElement(&quot;SPAN&quot;);spannode.style.backgroundColor=&quot;yellow&quot;;middlebit=node.splitText(pos);endbit=middlebit.splitText(RegExp.$1.length);middleclone=middlebit.cloneNode(true);spannode.appendChild(middleclone);middlebit.parentNode.replaceChild(spannode,middlebit);++count;skip=1;}}else if( node.nodeType==1 &amp;&amp; node.childNodes &amp;&amp; node.tagName.toUpperCase()!=&quot;SCRIPT&quot; &amp;&amp; node.tagName.toUpperCase!=&quot;STYLE&quot;){for (var child=0; child &lt; node.childNodes.length; ++child){child=child+searchWithinNode(node.childNodes[child], re);}}return skip;}window.status=&quot;Searching for &quot;+regexp+&quot;...&quot;;searchWithinNode(document.body, regexp);window.status=&quot;Found &quot;+count+&quot; match&quot;+(count==1?&quot;&quot;:&quot;es&quot;)+&quot; for &quot;+regexp+&quot;.&quot;;})();"
+>highlight regexp</a> 
+(<img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Highlights each match for a regular expression.</p> 
+<p>For help using regular expressions, see <a href="http://www.mozilla.org/bugs/text-searching.html#regex%20basics">Sean Richardson's introduction</a> or <a href="http://developer.netscape.com/docs/manuals/js/client/jsref/regexp.htm#1193188">Netscape's reference</a>.
+ 
+<p>Like "highlight", this bookmarklet does not find phrases that cross element boundaries.</p> 
+ 
+<!-- Used $1 instead of lastMatch because Opera 7.11 does not support lastMatch.  Had to add () to the RegExp itself to make the $1 work. --> 
+ 
+<h4 class=transparent><a name="zoom_images_in" class="bml"
+href="javascript:(function(){ function zoomImage(image, amt) { if(image.initialHeight == null) { /* avoid accumulating integer-rounding error */ image.initialHeight=image.height; image.initialWidth=image.width; image.scalingFactor=1; } image.scalingFactor*=amt; image.width=image.scalingFactor*image.initialWidth; image.height=image.scalingFactor*image.initialHeight; } var i,L=document.images.length; for (i=0;i&lt;L;++i) zoomImage(document.images[i], 2); if (!L) alert(&quot;This page contains no images.&quot;); })();"
+>zoom images in</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Doubles the size of each image on the page.</p> 
+<p>Doesn't work on background images or image submit buttons, and doesn't affect the size of text.
+ 
+<p>Suggested by <a href="http://mywebpage.netscape.com/aufbau01/">Niels Aufbau</a>.</p> 
+ 
+<h4 class=transparent><a name="zoom_images_out" class="bml"
+href="javascript:(function(){ function zoomImage(image, amt) { if(image.initialHeight == null) { /* avoid accumulating integer-rounding error */ image.initialHeight=image.height; image.initialWidth=image.width; image.scalingFactor=1; } image.scalingFactor*=amt; image.width=image.scalingFactor*image.initialWidth; image.height=image.scalingFactor*image.initialHeight; } var i,L=document.images.length; for (i=0;i&lt;L;++i) zoomImage(document.images[i],.5); if (!L) alert(&quot;This page contains no images.&quot;); })();"
+>zoom images out</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Halves the size of each image on the page.</p> 
+ 
+ 
+<h4 class=transparent><a name="zoom_layout" class="bml"
+href="javascript:factor=Math.sqrt(2); if(!window.scale) { scale=1; zW=[]; zH=[]; unitless=/^[0-9.]+$/; function r(N) { w=N.width; h=N.height; if (unitless.test(w)) zW.push([N,w]); if (unitless.test(h)) zH.push([N,h]); var C=N.childNodes,i; for (i=0;i&lt;C.length;++i) r(C[i]); } r(document.body); } scale*=factor; for(i in zW) zW[i][0].width=zW[i][1]*scale; for(i in zH) zH[i][0].height = zH[i][1]*scale; [].v"
+>zoom layout</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Increases the size of fixed-pixel-size layout elements and images.</p> 
+<p>Multiplies the width and height attributes of each element by sqrt(2).  Double-click the bookmarklet to multiply each by a factor of 2.
+ 
+<p>This bookmarklet only affects sites that use fixed layouts with widths and heights specified in pixels.  It does not change percent values or values computed based on the size of contents.  It does not affect sites that use CSS layouts (luckily, CSS layouts with fixed pixel values are rare).  It does not affect text size; the purpose of the bookmarklet is to fix layout when the Text Zoom feature built into a browser doesn't agree with a site's fixed layout.
+ 
+<p>Suggested by <a href="http://www.mozillazine.org/weblogs/asa/">Asa Dotzler</a>, who would like to read <a href="http://talkingpointsmemo.com/">Talking Points Memo</a> and <a href="http://www.dailyhowler.com/">The Daily Howler</a> but has a Dell Latitude laptop whose resolution is stuck at 1600x1200.</p> 
+ 
+<h4 class=transparent><a name="view_selection" class="bml"
+href="javascript:(function(){ var d=open().document; d.title=&quot;Selection&quot;; if (window.getSelection) { /*Moz*/ var s = getSelection(); for(i=0; i&lt;s.rangeCount; ++i) { var a, r = s.getRangeAt(i); if (!r.collapsed) { var x = document.createElement(&quot;div&quot;); x.appendChild(r.cloneContents()); if (d.importNode) x = d.importNode(x, true); d.body.appendChild(x); } } } else { /*IE*/ d.body.innerHTML = document.selection.createRange().htmlText; } })();"
+>view selection</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>)
+</h4><p class=shortdesc>Displays the selection in a new window.</p> 
+<p>Copies the selection into a new window, preserving links, paragraphs, and images.  Uses:
+ 
+<ul> 
+<li>Free the text of article from surrounding advertisements.  (Tip: in Mozilla, while viewing a page that uses a table layout, you can Ctrl+click text to select the table cell it is in.)</li> 
+<li>Make another bookmarklet, such as search links or collect buglinks, only look at one part of a page.</li> 
+</ul> 
+ 
+<!--
+ 
+in IE, document.selection.createRange.parentElement().cloneNode(true) doesn't seem to work, and it includes some stuff outside of the selection. so i use htmlText and innerHTML in IE.
+ 
+--> 
+ 
+<h4 class=transparent><a name="sort_table" class="bml"
+href="javascript:function toArray (c){var a, k;a=new Array;for (k=0; k&lt;c.length; ++k)a[k]=c[k];return a;}function insAtTop(par,child){if(par.childNodes.length) par.insertBefore(child, par.childNodes[0]);else par.appendChild(child);}function countCols(tab){var nCols, i;nCols=0;for(i=0;i&lt;tab.rows.length;++i)if(tab.rows[i].cells.length&gt;nCols)nCols=tab.rows[i].cells.length;return nCols;}function makeHeaderLink(tableNo, colNo, ord){var link;link=document.createElement('a');link.href='javascript:sortTable('+tableNo+','+colNo+','+ord+');';link.appendChild(document.createTextNode((ord&gt;0)?'a':'d'));return link;}function makeHeader(tableNo,nCols){var header, headerCell, i;header=document.createElement('tr');for(i=0;i&lt;nCols;++i){headerCell=document.createElement('td');headerCell.appendChild(makeHeaderLink(tableNo,i,1));headerCell.appendChild(document.createTextNode('/'));headerCell.appendChild(makeHeaderLink(tableNo,i,-1));header.appendChild(headerCell);}return header;}g_tables=toArray(document.getElementsByTagName('table'));if(!g_tables.length) alert(&quot;This page doesn't contain any tables.&quot;);(function(){var j, thead;for(j=0;j&lt;g_tables.length;++j){thead=g_tables[j].createTHead();insAtTop(thead, makeHeader(j,countCols(g_tables[j])))}}) ();function compareRows(a,b){if(a.sortKey==b.sortKey)return 0;return (a.sortKey &lt; b.sortKey) ? g_order : -g_order;}function sortTable(tableNo, colNo, ord){var table, rows, nR, bs, i, j, temp;g_order=ord;g_colNo=colNo;table=g_tables[tableNo];rows=new Array();nR=0;bs=table.tBodies;for(i=0; i&lt;bs.length; ++i)for(j=0; j&lt;bs[i].rows.length; ++j){rows[nR]=bs[i].rows[j];temp=rows[nR].cells[g_colNo];if(temp) rows[nR].sortKey=temp.innerHTML;else rows[nR].sortKey=&quot;&quot;;++nR;}rows.sort(compareRows);for (i=0; i &lt; rows.length; ++i)insAtTop(table.tBodies[0], rows[i]);}"
+>sort table</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Lets you sort tables in a web page alphabetically.</p> 
+<p>Adds an row to the top of each table on the page with an "a" link and a "d" link in each column.  You can then click on these links to sort the table ascending or descending by that column.  The sort is alphabetical by HTML code, so if the table entries are links, the link URLs will be given higher precedence than the text of the links.</p> 
+ 
+<h4 class=transparent><a name="number_rows" class="bml"
+href="javascript:(function(){function has(par,ctag){for(var k=0;k&lt;par.childNodes.length;++k)if(par.childNodes[k].tagName==ctag)return true;} function add(par,ctag,text){var c=document.createElement(ctag); c.appendChild(document.createTextNode(text)); par.insertBefore(c,par.childNodes[0]);} var i,ts=document.getElementsByTagName(&quot;TABLE&quot;); for(i=0;i&lt;ts.length;++i) { var n=0,trs=ts[i].rows,j,tr; for(j=0;j&lt;trs.length;++j) {tr=trs[j]; if(has(tr,&quot;TD&quot;))add(tr,&quot;TD&quot;,++n); else if(has(tr,&quot;TH&quot;))add(tr,&quot;TH&quot;,&quot;Row&quot;);}}})()"
+>number rows</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Numbers the rows of each table.</p> 
+<p>Useful on for sorted tables such as <a href="http://bugzilla.mozilla.org/duplicates.cgi?openonly=1">most frequently reported Mozilla bugs</a>.
+ 
+<p>If a table has a header row, the bookmarklet does not give the header row a number but instead adds a header for the new row-number column with the text "Row".</p> 
+ 
+<h4 class=transparent><a name="transpose_tables" class="bml"
+href="javascript:(function(){var d=document,q=&quot;table&quot;,i,j,k,y,r,c,t;for(i=0;t=d.getElementsByTagName(q)[i];++i){var w=0,N=t.cloneNode(0);N.width=&quot;&quot;;N.height=&quot;&quot;;N.border=1;for(j=0;r=t.rows[j];++j)for(y=k=0;c=r.cells[k];++k){var z,a=c.rowSpan,b=c.colSpan,v=c.cloneNode(1);v.rowSpan=b;v.colSpan=a;v.width=&quot;&quot;;v.height=&quot;&quot;;if(!v.bgColor)v.bgColor=r.bgColor;while(w&lt;y+b)N.insertRow(w++).p=0;while(N.rows[y].p&gt;j)++y;N.rows[y].appendChild(v);for(z=0;z&lt;b;++z)N.rows[y+z].p+=a;y+=b;}t.parentNode.replaceChild(N,t);}})()"
+>transpose tables</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Turns table rows into columns and vice versa.</p> 
+<p>Takes rowspans and colspans into account, and tries to maintain background colors.</p> 
+ 
+<h4 class=transparent><a name="bullets_to_numbers" class="bml"
+href="javascript:uls=document.getElementsByTagName(&quot;ul&quot;); for (i=uls.length-1; i&gt;=0; --i) { oldul = uls[i]; newol = document.createElement(&quot;ol&quot;); for(j=0;j&lt;oldul.childNodes.length;++j) newol.appendChild(oldul.childNodes[j].cloneNode(true)); oldul.parentNode.replaceChild(newol, oldul); } void 0"
+>bullets to numbers</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Turns bulleted lists into numbered lists.</p> 
+<p>Useful for finding the "position" of your site in a <a href="http://dmoz.org/Computers/Software/Internet/Clients/WWW/Browsers/Mozilla/">dmoz category</a>.</p> 
+ 
+<h4 class=transparent><a name="number_lines" class="bml"
+href="javascript:(function(){var i,p,L,d,j,n; for(i=0; p=document.getElementsByTagName(&quot;pre&quot;)[i]; ++i) { L=p.innerHTML.split(&quot;\r\n&quot;); d=&quot;&quot;+L.length; for(j=0;j&lt;L.length;++j) { n = &quot;&quot;+(j+1)+&quot;. &quot;; while(n.length&lt;d.length+2) n=&quot;0&quot;+n; L[j] = n + L[j]; } p.innerHTML=L.join(&quot;&lt;br&gt;&quot;);/*join with br for ie*/ } })()"
+>number lines</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>)
+</h4><p class=shortdesc>Numbers lines in &lt;pre&gt; tags or plain-text documents.</p> 
+<p>Hits a weird bug on plain-text documents in newer versions of Mozilla (bug number?).</p> 
+ 
+<h4 class=transparent><a name="rot13_selection" class="bml"
+href="javascript:var coding = &quot;abcdefghijklmnopqrstuvwxyzabcdefghijklmABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLM&quot;; function rot13(t) { for (var r = &quot;&quot;,i=0;i&lt;t.length;i++) { character = t.charAt(i); position = coding.indexOf(character); if (position &gt; -1) character = coding.charAt(position + 13); r += character; } return r; } S=window.getSelection(); function t(N) { return N.nodeType == N.TEXT_NODE; } function r(N) { if (t(N)) N.data = rot13(N.data); } for (j=0;j&lt;S.rangeCount;++j) { var g=S.getRangeAt(j), e=g.startContainer, f=g.endContainer, E=g.startOffset, F=g.endOffset, m=(e==f); if(!m||!t(e)) { /* rot13 each text node between e and f, not including e and f. */ q=document.createTreeWalker(g.commonAncestorContainer, NodeFilter.SHOW_ELEMENT | NodeFilter.SHOW_TEXT, null, false); q.currentNode=e; for(N=q.nextNode(); N &amp;&amp; N != f; N = q.nextNode()) r(N); } if (t(f)) f.splitText(F); if (!m) r(f); if (t(e)) { r(k=e.splitText(E)); if(m)f=k; e=k;} if (t(f)) g.setEnd(f,f.data.length); } void 0"
+>rot13 selection</a> 
+(<img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>)
+</h4><p class=shortdesc>Replaces each letter in the selected text with its <a href="http://www.usemod.com/cgi-bin/mb.pl?RotThirteen">rot13</a> equivalent.</p> 
+<p>For example, A becomes N, B becomes O, and O becomes B.  <a href="http://www.mozillanews.org/">Grey Hodge aka jesus_X</a> wrote the rot13() function for this bookmarklet.
+ 
+<p><b>Bugs:</b> The bookmarklet rot13s more than you have selected if you use the bookmarklet just after dragging a link.  I think this is because I don't check range offsets for non-text endpoints.  Mozilla forgets to redraw the entire selection if the bookmarklet is run from a page rather than the address bar, but text is still selected.</p> 
+ 
+<hr><p><i><a href="copyright.html">&copy;</a> 2000-2007 <a href="http://www.squarefree.com/">Jesse Ruderman</a> (<a href="mailto:jruderman@gmail.com">jruderman@gmail.com</a>). Feedback is welcome.<br> 
+Last modified November 1, 2006.</i></p> 
+ 
+</body> 
+</html> 

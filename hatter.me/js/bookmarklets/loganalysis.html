@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<title>Log Analysis Bookmarklets</title> 
+<link rel="stylesheet" href="squarefree.css" type="text/css"> 
+</head> 
+ 
+<body> 
+ 
+<div style="text-align: center"> 
+<a href="./">Bookmarklets Home</a> 
+| <a href="pagelinks.html">Links</a> 
+| <a href="forms.html">Forms</a> 
+| <a href="pagedata.html">Text and Data</a> 
+| <a href="zap.html">Zap</a> 
+| <a href="webdevel.html">Web Development</a> 
+| <a href="validation.html">Validation</a> 
+| <a href="misc.html">Misc</a> 
+</div> 
+ 
+<hr> 
+ 
+<script type="text/javascript"> 
+var ua = navigator.userAgent, d, s="";
+if (/Gecko\/200305(\d\d)/.exec(ua))
+{
+  day = parseInt(RegExp.$1, 10)
+  if (16 <= day && day < 22)
+  {
+    s = "<p class='ack'><b>You are using a version of Mozilla in which many bookmarklets do not work.<\/b>  Mozilla builds between May 16 and May 22 (including Mozilla Firebird 0.6, released May 16) suffer from bug 205989 and bug 206026.<br><br><b>Please upgrade<\/b> to one of the following:<br>"
+    s += "<a href='http://ftp.mozilla.org/pub/firebird/nightly/latest-trunk/'>A Mozilla Firebird nightly<\/a> (recommended)<br>";
+    s += "<a href='http://ftp.mozilla.org/pub/mozilla/nightly/latest-trunk/'>A Mozilla nightly<\/a><br>";
+    s += "<a href='http://www.mozilla.org/releases/'>Mozilla 1.4 RC1 or a later release<\/a><\/p>";
+    document.write(s);
+  }
+}
+</script> 
+<h3>Log Analysis Bookmarklets</h3> 
+<p>I use these bookmarklets to analyze my referer logs.  "linkify" and "query as link text" make up for <a href="mylogparser.html">the ridiculously simple log parser I use</a>, but "find links to <em class=replace>squarefree</em>" is indispensable and can be used with any log parser.</p> 
+ 
+ 
+<script type="text/javascript"> 
+ 
+// rep()
+// customizes "find links to squarefree" and any similar links.
+ 
+function rep()
+{
+  if (!document.getElementsByTagName)
+  {
+    alert("Sorry, your browser doesn't support the 'find links to' bookmarklet. Try Mozilla, Opera 7, or IE6Win.");
+    return;
+  }
+ 
+  var a,b,i,x,L;
+  a = /squarefree/g;
+  b = document.cust.b.value;
+  for (i=0; x=document.getElementsByTagName("em")[i]; ++i)
+  {
+    if (x.className == "replace")
+    {
+      while(x.firstChild)
+        x.removeChild(x.firstChild);
+      x.appendChild(document.createTextNode(b));
+ 
+      L = x.parentNode;
+      if (L.tagName == 'A')
+      {
+        if (!L.originalHref)
+          L.originalHref = L.href;
+        L.href = L.originalHref.replace(a, b);
+      }
+    }
+  }
+}
+</script> 
+ 
+<form name="cust" action="javascript:void 0"> 
+<p> 
+Customize the "find links to" bookmarklet to find links to: 
+<input type="text" onchange="rep()" oninput="rep()" onkeyup="rep()" name=b value="squarefree" maxLength=12 size=13> 
+<input type=submit value="Customize"> 
+</p> 
+</form> 
+ 
+<p class=smallitalic>(To keep <a href="./">bookmarklets</a> in order to use them on other web pages, drag them to your <a href="personaltoolbar.html">Bookmarks Toolbar</a>.  Or, <a href="importall.html">install them all at once</a>.)</p> 
+ 
+<div class=summarytable><table class=summarytable> 
+ 
+<thead> 
+<tr> 
+<th>Bookmarklet</th> 
+<th>Description</th> 
+<th colspan=4>Works in</th> 
+</tr> 
+</thead> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){var D=document; D.body.normalize(); F(D.body); function F(n){var u,A,M,R,c,x; if(n.nodeType==3){ u=n.data.search(/https?\:\/\/[^\s]*[^.,;'&quot;&gt;\s\)\]]/); if(u&gt;=0) { M=n.splitText(u); R=M.splitText(RegExp.lastMatch.length); A=document.createElement(&quot;A&quot;); A.href=M.data; A.appendChild(M); R.parentNode.insertBefore(A,R); } }else if(n.tagName!=&quot;STYLE&quot; &amp;&amp; n.tagName!=&quot;SCRIPT&quot; &amp;&amp; n.tagName!=&quot;A&quot;)for(c=0;x=n.childNodes[c];++c)F(x); } })();"
+>linkify</a></td> 
+<td>Makes plain-text URLs into links. <a href="#linkify">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:for (j=0; L=document.links[j]; ++j) { Q=[]; c=L.search.slice(1).split('&amp;'); for (i in c) { f=c[i].split('='); if (f[0]=='q' || f[0]=='as_q' || f[0]=='p' || f[0]=='query') if (f[1]) Q.push(f[1]) } R=unescape(Q.join('; ').replace(/\+/g,&quot; &quot;)); if(R) { while (h=L.childNodes[0]) L.removeChild(h); L.appendChild(document.createTextNode(L.host + &quot;: &quot; + R)); L.style.fontSize=&quot;90%&quot;; L.style.fontFamily=&quot;sans-serif&quot;; L.style.background=&quot;#ddd&quot; } } void 0"
+>query as link text</a></td> 
+<td>Changes link text of links to searches to "engine: query" <a href="#query_as_link_text">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){var s=&quot;squarefree&quot;,D=document,N,h,i,r;if(window.mlT!=s){mlT=s;mlL=[];for(i=0;h=D.links[i];++i)if(h.href.indexOf(s)!=-1)mlL.push(h);mlI=0}N=mlL.length;if(N){if(mlI==N)mlI=0;h=mlL[mlI++];h.onfocus=function(){return!1};h.focus();h.onfocus=null;if(D.createRange){r=D.createRange();r.selectNode(h);getSelection().addRange(r)}if(i=D.selection){r=i.createRange();r.moveToElementText(h);r.select()}top.status=s+&quot;: match &quot;+mlI+&quot; of &quot;+N+&quot;: &quot;+h.href}else top.status=s+&quot;: no matching links.&quot;})()"
+>find links to <em class="replace">squarefree</em></a></td> 
+<td>Selects a link to <em class="replace">squarefree</em> each time you click it. Customize above. <a href="#find_links_to_">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+</table></div> 
+ 
+<p class=smallitalic>Browsers: <img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16> is <a href="http://www.microsoft.com/windows/ie/default.asp">Internet Explorer for Windows</a>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16> is <a href="http://channels.netscape.com/ns/browsers/default.jsp">Netscape 7</a> or <a href="http://www.mozilla.org/">Mozilla</a>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16> is <a href="http://ftp.netscape.com/pub/communicator/english/">Netscape 4</a>, and <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16> is <a href="http://www.opera.com/">Opera</a>.</p> 
+ 
+ 
+<hr> 
+ 
+<h3>Details</h3> 
+<h4 class=transparent><a name="linkify" class="bml"
+href="javascript:(function(){var D=document; D.body.normalize(); F(D.body); function F(n){var u,A,M,R,c,x; if(n.nodeType==3){ u=n.data.search(/https?\:\/\/[^\s]*[^.,;'&quot;&gt;\s\)\]]/); if(u&gt;=0) { M=n.splitText(u); R=M.splitText(RegExp.lastMatch.length); A=document.createElement(&quot;A&quot;); A.href=M.data; A.appendChild(M); R.parentNode.insertBefore(A,R); } }else if(n.tagName!=&quot;STYLE&quot; &amp;&amp; n.tagName!=&quot;SCRIPT&quot; &amp;&amp; n.tagName!=&quot;A&quot;)for(c=0;x=n.childNodes[c];++c)F(x); } })();"
+>linkify</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Makes plain-text URLs into links.</p> 
+<p>For example, turns the text "http://www.google.com/" into a link.</p> 
+ 
+<h4 class=transparent><a name="query_as_link_text" class="bml"
+href="javascript:for (j=0; L=document.links[j]; ++j) { Q=[]; c=L.search.slice(1).split('&amp;'); for (i in c) { f=c[i].split('='); if (f[0]=='q' || f[0]=='as_q' || f[0]=='p' || f[0]=='query') if (f[1]) Q.push(f[1]) } R=unescape(Q.join('; ').replace(/\+/g,&quot; &quot;)); if(R) { while (h=L.childNodes[0]) L.removeChild(h); L.appendChild(document.createTextNode(L.host + &quot;: &quot; + R)); L.style.fontSize=&quot;90%&quot;; L.style.fontFamily=&quot;sans-serif&quot;; L.style.background=&quot;#ddd&quot; } } void 0"
+>query as link text</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Changes link text of links to searches to "engine: query"</p> 
+<p>For example, changes the text of the link <a href="http://www.google.com/search?hl=en&q=%22remove+plugins%22+%22internet+explorer%22">http://www.google.com/search?hl=en&q=%22remove+plugins%22+%22internet+explorer%22</a> to "www.google.com: 'remove plugins' 'internet explorer'".
+ 
+<h4 class=transparent><a name="find_links_to_" class="bml"
+href="javascript:(function(){var s=&quot;squarefree&quot;,D=document,N,h,i,r;if(window.mlT!=s){mlT=s;mlL=[];for(i=0;h=D.links[i];++i)if(h.href.indexOf(s)!=-1)mlL.push(h);mlI=0}N=mlL.length;if(N){if(mlI==N)mlI=0;h=mlL[mlI++];h.onfocus=function(){return!1};h.focus();h.onfocus=null;if(D.createRange){r=D.createRange();r.selectNode(h);getSelection().addRange(r)}if(i=D.selection){r=i.createRange();r.moveToElementText(h);r.select()}top.status=s+&quot;: match &quot;+mlI+&quot; of &quot;+N+&quot;: &quot;+h.href}else top.status=s+&quot;: no matching links.&quot;})()"
+>find links to <em class="replace">squarefree</em></a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Selects a link to <em class="replace">squarefree</em> each time you click it. Customize above.</p> 
+ 
+ 
+<hr><p><i><a href="copyright.html">&copy;</a> 2000-2007 <a href="http://www.squarefree.com/">Jesse Ruderman</a> (<a href="mailto:jruderman@gmail.com">jruderman@gmail.com</a>). Feedback is welcome.<br> 
+Last modified April 15, 2004.</i></p> 
+ 
+</body> 
+</html> 

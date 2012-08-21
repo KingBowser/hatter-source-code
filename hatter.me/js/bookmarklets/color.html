@@ -1,0 +1,300 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<title>Color Bookmarklets</title> 
+<link rel="stylesheet" href="squarefree.css" type="text/css"> 
+</head> 
+ 
+<body> 
+ 
+<div style="text-align: center"> 
+<a href="./">Bookmarklets Home</a> 
+| <a href="pagelinks.html">Links</a> 
+| <a href="forms.html">Forms</a> 
+| <a href="pagedata.html">Text and Data</a> 
+| <a href="zap.html">Zap</a> 
+| <a href="webdevel.html">Web Development</a> 
+| <a href="validation.html">Validation</a> 
+| <a href="misc.html">Misc</a> 
+</div> 
+ 
+<hr> 
+ 
+<script type="text/javascript"> 
+var ua = navigator.userAgent, d, s="";
+if (/Gecko\/200305(\d\d)/.exec(ua))
+{
+  day = parseInt(RegExp.$1, 10)
+  if (16 <= day && day < 22)
+  {
+    s = "<p class='ack'><b>You are using a version of Mozilla in which many bookmarklets do not work.<\/b>  Mozilla builds between May 16 and May 22 (including Mozilla Firebird 0.6, released May 16) suffer from bug 205989 and bug 206026.<br><br><b>Please upgrade<\/b> to one of the following:<br>"
+    s += "<a href='http://ftp.mozilla.org/pub/firebird/nightly/latest-trunk/'>A Mozilla Firebird nightly<\/a> (recommended)<br>";
+    s += "<a href='http://ftp.mozilla.org/pub/mozilla/nightly/latest-trunk/'>A Mozilla nightly<\/a><br>";
+    s += "<a href='http://www.mozilla.org/releases/'>Mozilla 1.4 RC1 or a later release<\/a><\/p>";
+    document.write(s);
+  }
+}
+</script> 
+<h3>Color Bookmarklets</h3> 
+<p>These bookmarklets let you play with colors on any web page that does not make heavy use of images.  They require <b>Mozilla 1.5a+</b> because they use CSS3 <a href="http://www.w3.org/TR/css3-color/#hsl-color">HSL (Hue-Saturation-Lightness) colors</a>.</p> 
+ 
+<p class=smallitalic>(To keep <a href="./">bookmarklets</a> in order to use them on other web pages, drag them to your <a href="personaltoolbar.html">Bookmarks Toolbar</a>.  Or, <a href="importall.html">install them all at once</a>.)</p> 
+ 
+<div class=summarytable><table class=summarytable> 
+ 
+<thead> 
+<tr> 
+<th>Bookmarklet</th> 
+<th>Description</th> 
+<th colspan=4>Works in</th> 
+</tr> 
+</thead> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){function RGBtoHSL(RGBColor){with(Math){var R,G,B;var cMax,cMin;var sum,diff;var Rdelta,Gdelta,Bdelta;var H,L,S;R=RGBColor[0];G=RGBColor[1];B=RGBColor[2];cMax=max(max(R,G),B);cMin=min(min(R,G),B);sum=cMax+cMin;diff=cMax-cMin;L=sum/2;if(cMax==cMin){S=0;H=0;}else{if(L&lt;=(1/2))S=diff/sum;else S=diff/(2-sum);Rdelta=R/6/diff;Gdelta=G/6/diff;Bdelta=B/6/diff;if(R==cMax)H=Gdelta-Bdelta;else if(G==cMax)H=(1/3)+Bdelta-Rdelta;else H=(2/3)+Rdelta-Gdelta;if(H&lt;0)H+=1;if(H&gt;1)H-=1;}return[H,S,L];}}function getRGBColor(node,prop){var rgb=getComputedStyle(node,null).getPropertyValue(prop);var r,g,b;if(/rgb\((\d+),\s(\d+),\s(\d+)\)/.exec(rgb)){r=parseInt(RegExp.$1,10);g=parseInt(RegExp.$2,10);b=parseInt(RegExp.$3,10);return[r/255,g/255,b/255];}return rgb;}function hslToCSS(hsl){return &quot;hsl(&quot;+Math.round(hsl[0]*360)+&quot;, &quot;+Math.round(hsl[1]*100)+&quot;%, &quot;+Math.round(hsl[2]*100)+&quot;%)&quot;;}var props=[&quot;color&quot;,&quot;background-color&quot;,&quot;border-left-color&quot;,&quot;border-right-color&quot;,&quot;border-top-color&quot;,&quot;border-bottom-color&quot;];var props2=[&quot;color&quot;,&quot;backgroundColor&quot;,&quot;borderLeftColor&quot;,&quot;borderRightColor&quot;,&quot;borderTopColor&quot;,&quot;borderBottomColor&quot;];if(typeof getRGBColor(document.documentElement,&quot;background-color&quot;)==&quot;string&quot;)document.documentElement.style.backgroundColor=&quot;white&quot;;revl(document.documentElement);function revl(n){var i,x,color,hsl;if(n.nodeType==Node.ELEMENT_NODE){for(i=0;x=n.childNodes[i];++i)revl(x);for(i=0;x=props[i];++i){color=getRGBColor(n,x);if(typeof(color)!=&quot;string&quot;){hsl=RGBtoHSL(color);hsl[0]=(hsl[0]+1/24)%1;n.style[props2[i]]=hslToCSS(hsl);}}}}})()"
+>+hue</a></td> 
+<td>[H = H + 1/24] Red becomes green, etc. <a href="#+hue">Details</a></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){function RGBtoHSL(RGBColor){with(Math){var R,G,B;var cMax,cMin;var sum,diff;var Rdelta,Gdelta,Bdelta;var H,L,S;R=RGBColor[0];G=RGBColor[1];B=RGBColor[2];cMax=max(max(R,G),B);cMin=min(min(R,G),B);sum=cMax+cMin;diff=cMax-cMin;L=sum/2;if(cMax==cMin){S=0;H=0;}else{if(L&lt;=(1/2))S=diff/sum;else S=diff/(2-sum);Rdelta=R/6/diff;Gdelta=G/6/diff;Bdelta=B/6/diff;if(R==cMax)H=Gdelta-Bdelta;else if(G==cMax)H=(1/3)+Bdelta-Rdelta;else H=(2/3)+Rdelta-Gdelta;if(H&lt;0)H+=1;if(H&gt;1)H-=1;}return[H,S,L];}}function getRGBColor(node,prop){var rgb=getComputedStyle(node,null).getPropertyValue(prop);var r,g,b;if(/rgb\((\d+),\s(\d+),\s(\d+)\)/.exec(rgb)){r=parseInt(RegExp.$1,10);g=parseInt(RegExp.$2,10);b=parseInt(RegExp.$3,10);return[r/255,g/255,b/255];}return rgb;}function hslToCSS(hsl){return &quot;hsl(&quot;+Math.round(hsl[0]*360)+&quot;, &quot;+Math.round(hsl[1]*100)+&quot;%, &quot;+Math.round(hsl[2]*100)+&quot;%)&quot;;}var props=[&quot;color&quot;,&quot;background-color&quot;,&quot;border-left-color&quot;,&quot;border-right-color&quot;,&quot;border-top-color&quot;,&quot;border-bottom-color&quot;];var props2=[&quot;color&quot;,&quot;backgroundColor&quot;,&quot;borderLeftColor&quot;,&quot;borderRightColor&quot;,&quot;borderTopColor&quot;,&quot;borderBottomColor&quot;];if(typeof getRGBColor(document.documentElement,&quot;background-color&quot;)==&quot;string&quot;)document.documentElement.style.backgroundColor=&quot;white&quot;;revl(document.documentElement);function revl(n){var i,x,color,hsl;if(n.nodeType==Node.ELEMENT_NODE){for(i=0;x=n.childNodes[i];++i)revl(x);for(i=0;x=props[i];++i){color=getRGBColor(n,x);if(typeof(color)!=&quot;string&quot;){hsl=RGBtoHSL(color);hsl[0] = (hsl[0] + 23/24) % 1;n.style[props2[i]]=hslToCSS(hsl);}}}}})()"
+>-hue</a></td> 
+<td>[H = H - 1/24] Green becomes red, etc. <a href="#-hue">Details</a></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){function RGBtoHSL(RGBColor){with(Math){var R,G,B;var cMax,cMin;var sum,diff;var Rdelta,Gdelta,Bdelta;var H,L,S;R=RGBColor[0];G=RGBColor[1];B=RGBColor[2];cMax=max(max(R,G),B);cMin=min(min(R,G),B);sum=cMax+cMin;diff=cMax-cMin;L=sum/2;if(cMax==cMin){S=0;H=0;}else{if(L&lt;=(1/2))S=diff/sum;else S=diff/(2-sum);Rdelta=R/6/diff;Gdelta=G/6/diff;Bdelta=B/6/diff;if(R==cMax)H=Gdelta-Bdelta;else if(G==cMax)H=(1/3)+Bdelta-Rdelta;else H=(2/3)+Rdelta-Gdelta;if(H&lt;0)H+=1;if(H&gt;1)H-=1;}return[H,S,L];}}function getRGBColor(node,prop){var rgb=getComputedStyle(node,null).getPropertyValue(prop);var r,g,b;if(/rgb\((\d+),\s(\d+),\s(\d+)\)/.exec(rgb)){r=parseInt(RegExp.$1,10);g=parseInt(RegExp.$2,10);b=parseInt(RegExp.$3,10);return[r/255,g/255,b/255];}return rgb;}function hslToCSS(hsl){return &quot;hsl(&quot;+Math.round(hsl[0]*360)+&quot;, &quot;+Math.round(hsl[1]*100)+&quot;%, &quot;+Math.round(hsl[2]*100)+&quot;%)&quot;;}var props=[&quot;color&quot;,&quot;background-color&quot;,&quot;border-left-color&quot;,&quot;border-right-color&quot;,&quot;border-top-color&quot;,&quot;border-bottom-color&quot;];var props2=[&quot;color&quot;,&quot;backgroundColor&quot;,&quot;borderLeftColor&quot;,&quot;borderRightColor&quot;,&quot;borderTopColor&quot;,&quot;borderBottomColor&quot;];if(typeof getRGBColor(document.documentElement,&quot;background-color&quot;)==&quot;string&quot;)document.documentElement.style.backgroundColor=&quot;white&quot;;revl(document.documentElement);function revl(n){var i,x,color,hsl;if(n.nodeType==Node.ELEMENT_NODE){for(i=0;x=n.childNodes[i];++i)revl(x);for(i=0;x=props[i];++i){color=getRGBColor(n,x);if(typeof(color)!=&quot;string&quot;){hsl=RGBtoHSL(color);hsl[0] = 0;n.style[props2[i]]=hslToCSS(hsl);}}}}})()"
+>red</a></td> 
+<td>[H = 0] <a href="#red">Details</a></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){function RGBtoHSL(RGBColor){with(Math){var R,G,B;var cMax,cMin;var sum,diff;var Rdelta,Gdelta,Bdelta;var H,L,S;R=RGBColor[0];G=RGBColor[1];B=RGBColor[2];cMax=max(max(R,G),B);cMin=min(min(R,G),B);sum=cMax+cMin;diff=cMax-cMin;L=sum/2;if(cMax==cMin){S=0;H=0;}else{if(L&lt;=(1/2))S=diff/sum;else S=diff/(2-sum);Rdelta=R/6/diff;Gdelta=G/6/diff;Bdelta=B/6/diff;if(R==cMax)H=Gdelta-Bdelta;else if(G==cMax)H=(1/3)+Bdelta-Rdelta;else H=(2/3)+Rdelta-Gdelta;if(H&lt;0)H+=1;if(H&gt;1)H-=1;}return[H,S,L];}}function getRGBColor(node,prop){var rgb=getComputedStyle(node,null).getPropertyValue(prop);var r,g,b;if(/rgb\((\d+),\s(\d+),\s(\d+)\)/.exec(rgb)){r=parseInt(RegExp.$1,10);g=parseInt(RegExp.$2,10);b=parseInt(RegExp.$3,10);return[r/255,g/255,b/255];}return rgb;}function hslToCSS(hsl){return &quot;hsl(&quot;+Math.round(hsl[0]*360)+&quot;, &quot;+Math.round(hsl[1]*100)+&quot;%, &quot;+Math.round(hsl[2]*100)+&quot;%)&quot;;}var props=[&quot;color&quot;,&quot;background-color&quot;,&quot;border-left-color&quot;,&quot;border-right-color&quot;,&quot;border-top-color&quot;,&quot;border-bottom-color&quot;];var props2=[&quot;color&quot;,&quot;backgroundColor&quot;,&quot;borderLeftColor&quot;,&quot;borderRightColor&quot;,&quot;borderTopColor&quot;,&quot;borderBottomColor&quot;];if(typeof getRGBColor(document.documentElement,&quot;background-color&quot;)==&quot;string&quot;)document.documentElement.style.backgroundColor=&quot;white&quot;;revl(document.documentElement);function revl(n){var i,x,color,hsl;if(n.nodeType==Node.ELEMENT_NODE){for(i=0;x=n.childNodes[i];++i)revl(x);for(i=0;x=props[i];++i){color=getRGBColor(n,x);if(typeof(color)!=&quot;string&quot;){hsl=RGBtoHSL(color);hsl[0] = 1/3;n.style[props2[i]]=hslToCSS(hsl);}}}}})()"
+>green</a></td> 
+<td>[H = 1/3] <a href="#green">Details</a></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){function RGBtoHSL(RGBColor){with(Math){var R,G,B;var cMax,cMin;var sum,diff;var Rdelta,Gdelta,Bdelta;var H,L,S;R=RGBColor[0];G=RGBColor[1];B=RGBColor[2];cMax=max(max(R,G),B);cMin=min(min(R,G),B);sum=cMax+cMin;diff=cMax-cMin;L=sum/2;if(cMax==cMin){S=0;H=0;}else{if(L&lt;=(1/2))S=diff/sum;else S=diff/(2-sum);Rdelta=R/6/diff;Gdelta=G/6/diff;Bdelta=B/6/diff;if(R==cMax)H=Gdelta-Bdelta;else if(G==cMax)H=(1/3)+Bdelta-Rdelta;else H=(2/3)+Rdelta-Gdelta;if(H&lt;0)H+=1;if(H&gt;1)H-=1;}return[H,S,L];}}function getRGBColor(node,prop){var rgb=getComputedStyle(node,null).getPropertyValue(prop);var r,g,b;if(/rgb\((\d+),\s(\d+),\s(\d+)\)/.exec(rgb)){r=parseInt(RegExp.$1,10);g=parseInt(RegExp.$2,10);b=parseInt(RegExp.$3,10);return[r/255,g/255,b/255];}return rgb;}function hslToCSS(hsl){return &quot;hsl(&quot;+Math.round(hsl[0]*360)+&quot;, &quot;+Math.round(hsl[1]*100)+&quot;%, &quot;+Math.round(hsl[2]*100)+&quot;%)&quot;;}var props=[&quot;color&quot;,&quot;background-color&quot;,&quot;border-left-color&quot;,&quot;border-right-color&quot;,&quot;border-top-color&quot;,&quot;border-bottom-color&quot;];var props2=[&quot;color&quot;,&quot;backgroundColor&quot;,&quot;borderLeftColor&quot;,&quot;borderRightColor&quot;,&quot;borderTopColor&quot;,&quot;borderBottomColor&quot;];if(typeof getRGBColor(document.documentElement,&quot;background-color&quot;)==&quot;string&quot;)document.documentElement.style.backgroundColor=&quot;white&quot;;revl(document.documentElement);function revl(n){var i,x,color,hsl;if(n.nodeType==Node.ELEMENT_NODE){for(i=0;x=n.childNodes[i];++i)revl(x);for(i=0;x=props[i];++i){color=getRGBColor(n,x);if(typeof(color)!=&quot;string&quot;){hsl=RGBtoHSL(color);hsl[0] = 2/3;n.style[props2[i]]=hslToCSS(hsl);}}}}})()"
+>blue</a></td> 
+<td>[H = 2/3] <a href="#blue">Details</a></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){function RGBtoHSL(RGBColor){with(Math){var R,G,B;var cMax,cMin;var sum,diff;var Rdelta,Gdelta,Bdelta;var H,L,S;R=RGBColor[0];G=RGBColor[1];B=RGBColor[2];cMax=max(max(R,G),B);cMin=min(min(R,G),B);sum=cMax+cMin;diff=cMax-cMin;L=sum/2;if(cMax==cMin){S=0;H=0;}else{if(L&lt;=(1/2))S=diff/sum;else S=diff/(2-sum);Rdelta=R/6/diff;Gdelta=G/6/diff;Bdelta=B/6/diff;if(R==cMax)H=Gdelta-Bdelta;else if(G==cMax)H=(1/3)+Bdelta-Rdelta;else H=(2/3)+Rdelta-Gdelta;if(H&lt;0)H+=1;if(H&gt;1)H-=1;}return[H,S,L];}}function getRGBColor(node,prop){var rgb=getComputedStyle(node,null).getPropertyValue(prop);var r,g,b;if(/rgb\((\d+),\s(\d+),\s(\d+)\)/.exec(rgb)){r=parseInt(RegExp.$1,10);g=parseInt(RegExp.$2,10);b=parseInt(RegExp.$3,10);return[r/255,g/255,b/255];}return rgb;}function hslToCSS(hsl){return &quot;hsl(&quot;+Math.round(hsl[0]*360)+&quot;, &quot;+Math.round(hsl[1]*100)+&quot;%, &quot;+Math.round(hsl[2]*100)+&quot;%)&quot;;}var props=[&quot;color&quot;,&quot;background-color&quot;,&quot;border-left-color&quot;,&quot;border-right-color&quot;,&quot;border-top-color&quot;,&quot;border-bottom-color&quot;];var props2=[&quot;color&quot;,&quot;backgroundColor&quot;,&quot;borderLeftColor&quot;,&quot;borderRightColor&quot;,&quot;borderTopColor&quot;,&quot;borderBottomColor&quot;];if(typeof getRGBColor(document.documentElement,&quot;background-color&quot;)==&quot;string&quot;)document.documentElement.style.backgroundColor=&quot;white&quot;;revl(document.documentElement);function revl(n){var i,x,color,hsl;if(n.nodeType==Node.ELEMENT_NODE){for(i=0;x=n.childNodes[i];++i)revl(x);for(i=0;x=props[i];++i){color=getRGBColor(n,x);if(typeof(color)!=&quot;string&quot;){hsl=RGBtoHSL(color);hsl[2] = Math.pow(hsl[2], 5/6);n.style[props2[i]]=hslToCSS(hsl);}}}}})()"
+>+light</a></td> 
+<td>[L = L ^ (5/6)] <a href="#+light">Details</a></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){function RGBtoHSL(RGBColor){with(Math){var R,G,B;var cMax,cMin;var sum,diff;var Rdelta,Gdelta,Bdelta;var H,L,S;R=RGBColor[0];G=RGBColor[1];B=RGBColor[2];cMax=max(max(R,G),B);cMin=min(min(R,G),B);sum=cMax+cMin;diff=cMax-cMin;L=sum/2;if(cMax==cMin){S=0;H=0;}else{if(L&lt;=(1/2))S=diff/sum;else S=diff/(2-sum);Rdelta=R/6/diff;Gdelta=G/6/diff;Bdelta=B/6/diff;if(R==cMax)H=Gdelta-Bdelta;else if(G==cMax)H=(1/3)+Bdelta-Rdelta;else H=(2/3)+Rdelta-Gdelta;if(H&lt;0)H+=1;if(H&gt;1)H-=1;}return[H,S,L];}}function getRGBColor(node,prop){var rgb=getComputedStyle(node,null).getPropertyValue(prop);var r,g,b;if(/rgb\((\d+),\s(\d+),\s(\d+)\)/.exec(rgb)){r=parseInt(RegExp.$1,10);g=parseInt(RegExp.$2,10);b=parseInt(RegExp.$3,10);return[r/255,g/255,b/255];}return rgb;}function hslToCSS(hsl){return &quot;hsl(&quot;+Math.round(hsl[0]*360)+&quot;, &quot;+Math.round(hsl[1]*100)+&quot;%, &quot;+Math.round(hsl[2]*100)+&quot;%)&quot;;}var props=[&quot;color&quot;,&quot;background-color&quot;,&quot;border-left-color&quot;,&quot;border-right-color&quot;,&quot;border-top-color&quot;,&quot;border-bottom-color&quot;];var props2=[&quot;color&quot;,&quot;backgroundColor&quot;,&quot;borderLeftColor&quot;,&quot;borderRightColor&quot;,&quot;borderTopColor&quot;,&quot;borderBottomColor&quot;];if(typeof getRGBColor(document.documentElement,&quot;background-color&quot;)==&quot;string&quot;)document.documentElement.style.backgroundColor=&quot;white&quot;;revl(document.documentElement);function revl(n){var i,x,color,hsl;if(n.nodeType==Node.ELEMENT_NODE){for(i=0;x=n.childNodes[i];++i)revl(x);for(i=0;x=props[i];++i){color=getRGBColor(n,x);if(typeof(color)!=&quot;string&quot;){hsl=RGBtoHSL(color);hsl[2] = Math.pow(hsl[2], 6/5);n.style[props2[i]]=hslToCSS(hsl);}}}}})()"
+>-light</a></td> 
+<td>[L = L ^ (6/5)] <a href="#-light">Details</a></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){function RGBtoHSL(RGBColor){with(Math){var R,G,B;var cMax,cMin;var sum,diff;var Rdelta,Gdelta,Bdelta;var H,L,S;R=RGBColor[0];G=RGBColor[1];B=RGBColor[2];cMax=max(max(R,G),B);cMin=min(min(R,G),B);sum=cMax+cMin;diff=cMax-cMin;L=sum/2;if(cMax==cMin){S=0;H=0;}else{if(L&lt;=(1/2))S=diff/sum;else S=diff/(2-sum);Rdelta=R/6/diff;Gdelta=G/6/diff;Bdelta=B/6/diff;if(R==cMax)H=Gdelta-Bdelta;else if(G==cMax)H=(1/3)+Bdelta-Rdelta;else H=(2/3)+Rdelta-Gdelta;if(H&lt;0)H+=1;if(H&gt;1)H-=1;}return[H,S,L];}}function getRGBColor(node,prop){var rgb=getComputedStyle(node,null).getPropertyValue(prop);var r,g,b;if(/rgb\((\d+),\s(\d+),\s(\d+)\)/.exec(rgb)){r=parseInt(RegExp.$1,10);g=parseInt(RegExp.$2,10);b=parseInt(RegExp.$3,10);return[r/255,g/255,b/255];}return rgb;}function hslToCSS(hsl){return &quot;hsl(&quot;+Math.round(hsl[0]*360)+&quot;, &quot;+Math.round(hsl[1]*100)+&quot;%, &quot;+Math.round(hsl[2]*100)+&quot;%)&quot;;}var props=[&quot;color&quot;,&quot;background-color&quot;,&quot;border-left-color&quot;,&quot;border-right-color&quot;,&quot;border-top-color&quot;,&quot;border-bottom-color&quot;];var props2=[&quot;color&quot;,&quot;backgroundColor&quot;,&quot;borderLeftColor&quot;,&quot;borderRightColor&quot;,&quot;borderTopColor&quot;,&quot;borderBottomColor&quot;];if(typeof getRGBColor(document.documentElement,&quot;background-color&quot;)==&quot;string&quot;)document.documentElement.style.backgroundColor=&quot;white&quot;;revl(document.documentElement);function revl(n){var i,x,color,hsl;if(n.nodeType==Node.ELEMENT_NODE){for(i=0;x=n.childNodes[i];++i)revl(x);for(i=0;x=props[i];++i){color=getRGBColor(n,x);if(typeof(color)!=&quot;string&quot;){hsl=RGBtoHSL(color);hsl[2]=1-hsl[2];n.style[props2[i]]=hslToCSS(hsl);}}}}})()"
+>invert lightness</a></td> 
+<td>[L = 1 - L] Dark green becomes light green, white becomes black. <a href="#invert_lightness">Details</a></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){function RGBtoHSL(RGBColor){with(Math){var R,G,B;var cMax,cMin;var sum,diff;var Rdelta,Gdelta,Bdelta;var H,L,S;R=RGBColor[0];G=RGBColor[1];B=RGBColor[2];cMax=max(max(R,G),B);cMin=min(min(R,G),B);sum=cMax+cMin;diff=cMax-cMin;L=sum/2;if(cMax==cMin){S=0;H=0;}else{if(L&lt;=(1/2))S=diff/sum;else S=diff/(2-sum);Rdelta=R/6/diff;Gdelta=G/6/diff;Bdelta=B/6/diff;if(R==cMax)H=Gdelta-Bdelta;else if(G==cMax)H=(1/3)+Bdelta-Rdelta;else H=(2/3)+Rdelta-Gdelta;if(H&lt;0)H+=1;if(H&gt;1)H-=1;}return[H,S,L];}}function getRGBColor(node,prop){var rgb=getComputedStyle(node,null).getPropertyValue(prop);var r,g,b;if(/rgb\((\d+),\s(\d+),\s(\d+)\)/.exec(rgb)){r=parseInt(RegExp.$1,10);g=parseInt(RegExp.$2,10);b=parseInt(RegExp.$3,10);return[r/255,g/255,b/255];}return rgb;}function hslToCSS(hsl){return &quot;hsl(&quot;+Math.round(hsl[0]*360)+&quot;, &quot;+Math.round(hsl[1]*100)+&quot;%, &quot;+Math.round(hsl[2]*100)+&quot;%)&quot;;}var props=[&quot;color&quot;,&quot;background-color&quot;,&quot;border-left-color&quot;,&quot;border-right-color&quot;,&quot;border-top-color&quot;,&quot;border-bottom-color&quot;];var props2=[&quot;color&quot;,&quot;backgroundColor&quot;,&quot;borderLeftColor&quot;,&quot;borderRightColor&quot;,&quot;borderTopColor&quot;,&quot;borderBottomColor&quot;];if(typeof getRGBColor(document.documentElement,&quot;background-color&quot;)==&quot;string&quot;)document.documentElement.style.backgroundColor=&quot;white&quot;;revl(document.documentElement);function revl(n){var i,x,color,hsl;if(n.nodeType==Node.ELEMENT_NODE){for(i=0;x=n.childNodes[i];++i)revl(x);for(i=0;x=props[i];++i){color=getRGBColor(n,x);if(typeof(color)!=&quot;string&quot;){hsl=RGBtoHSL(color);hsl[2] = 0.5;n.style[props2[i]]=hslToCSS(hsl);}}}}})()"
+>midbright</a></td> 
+<td>[L = 0.5] <a href="#midbright">Details</a></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){function RGBtoHSL(RGBColor){with(Math){var R,G,B;var cMax,cMin;var sum,diff;var Rdelta,Gdelta,Bdelta;var H,L,S;R=RGBColor[0];G=RGBColor[1];B=RGBColor[2];cMax=max(max(R,G),B);cMin=min(min(R,G),B);sum=cMax+cMin;diff=cMax-cMin;L=sum/2;if(cMax==cMin){S=0;H=0;}else{if(L&lt;=(1/2))S=diff/sum;else S=diff/(2-sum);Rdelta=R/6/diff;Gdelta=G/6/diff;Bdelta=B/6/diff;if(R==cMax)H=Gdelta-Bdelta;else if(G==cMax)H=(1/3)+Bdelta-Rdelta;else H=(2/3)+Rdelta-Gdelta;if(H&lt;0)H+=1;if(H&gt;1)H-=1;}return[H,S,L];}}function getRGBColor(node,prop){var rgb=getComputedStyle(node,null).getPropertyValue(prop);var r,g,b;if(/rgb\((\d+),\s(\d+),\s(\d+)\)/.exec(rgb)){r=parseInt(RegExp.$1,10);g=parseInt(RegExp.$2,10);b=parseInt(RegExp.$3,10);return[r/255,g/255,b/255];}return rgb;}function hslToCSS(hsl){return &quot;hsl(&quot;+Math.round(hsl[0]*360)+&quot;, &quot;+Math.round(hsl[1]*100)+&quot;%, &quot;+Math.round(hsl[2]*100)+&quot;%)&quot;;}var props=[&quot;color&quot;,&quot;background-color&quot;,&quot;border-left-color&quot;,&quot;border-right-color&quot;,&quot;border-top-color&quot;,&quot;border-bottom-color&quot;];var props2=[&quot;color&quot;,&quot;backgroundColor&quot;,&quot;borderLeftColor&quot;,&quot;borderRightColor&quot;,&quot;borderTopColor&quot;,&quot;borderBottomColor&quot;];if(typeof getRGBColor(document.documentElement,&quot;background-color&quot;)==&quot;string&quot;)document.documentElement.style.backgroundColor=&quot;white&quot;;revl(document.documentElement);function revl(n){var i,x,color,hsl;if(n.nodeType==Node.ELEMENT_NODE){for(i=0;x=n.childNodes[i];++i)revl(x);for(i=0;x=props[i];++i){color=getRGBColor(n,x);if(typeof(color)!=&quot;string&quot;){hsl=RGBtoHSL(color);hsl[1] = Math.min(hsl[1] + .15, 1);n.style[props2[i]]=hslToCSS(hsl);}}}}})()"
+>+sat</a></td> 
+<td>[S = S + 0.15] <a href="#+sat">Details</a></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){function RGBtoHSL(RGBColor){with(Math){var R,G,B;var cMax,cMin;var sum,diff;var Rdelta,Gdelta,Bdelta;var H,L,S;R=RGBColor[0];G=RGBColor[1];B=RGBColor[2];cMax=max(max(R,G),B);cMin=min(min(R,G),B);sum=cMax+cMin;diff=cMax-cMin;L=sum/2;if(cMax==cMin){S=0;H=0;}else{if(L&lt;=(1/2))S=diff/sum;else S=diff/(2-sum);Rdelta=R/6/diff;Gdelta=G/6/diff;Bdelta=B/6/diff;if(R==cMax)H=Gdelta-Bdelta;else if(G==cMax)H=(1/3)+Bdelta-Rdelta;else H=(2/3)+Rdelta-Gdelta;if(H&lt;0)H+=1;if(H&gt;1)H-=1;}return[H,S,L];}}function getRGBColor(node,prop){var rgb=getComputedStyle(node,null).getPropertyValue(prop);var r,g,b;if(/rgb\((\d+),\s(\d+),\s(\d+)\)/.exec(rgb)){r=parseInt(RegExp.$1,10);g=parseInt(RegExp.$2,10);b=parseInt(RegExp.$3,10);return[r/255,g/255,b/255];}return rgb;}function hslToCSS(hsl){return &quot;hsl(&quot;+Math.round(hsl[0]*360)+&quot;, &quot;+Math.round(hsl[1]*100)+&quot;%, &quot;+Math.round(hsl[2]*100)+&quot;%)&quot;;}var props=[&quot;color&quot;,&quot;background-color&quot;,&quot;border-left-color&quot;,&quot;border-right-color&quot;,&quot;border-top-color&quot;,&quot;border-bottom-color&quot;];var props2=[&quot;color&quot;,&quot;backgroundColor&quot;,&quot;borderLeftColor&quot;,&quot;borderRightColor&quot;,&quot;borderTopColor&quot;,&quot;borderBottomColor&quot;];if(typeof getRGBColor(document.documentElement,&quot;background-color&quot;)==&quot;string&quot;)document.documentElement.style.backgroundColor=&quot;white&quot;;revl(document.documentElement);function revl(n){var i,x,color,hsl;if(n.nodeType==Node.ELEMENT_NODE){for(i=0;x=n.childNodes[i];++i)revl(x);for(i=0;x=props[i];++i){color=getRGBColor(n,x);if(typeof(color)!=&quot;string&quot;){hsl=RGBtoHSL(color);hsl[1] = Math.max(hsl[1] - .15, 0);n.style[props2[i]]=hslToCSS(hsl);}}}}})()"
+>-sat</a></td> 
+<td>[S = S - 0.15] <a href="#-sat">Details</a></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){function RGBtoHSL(RGBColor){with(Math){var R,G,B;var cMax,cMin;var sum,diff;var Rdelta,Gdelta,Bdelta;var H,L,S;R=RGBColor[0];G=RGBColor[1];B=RGBColor[2];cMax=max(max(R,G),B);cMin=min(min(R,G),B);sum=cMax+cMin;diff=cMax-cMin;L=sum/2;if(cMax==cMin){S=0;H=0;}else{if(L&lt;=(1/2))S=diff/sum;else S=diff/(2-sum);Rdelta=R/6/diff;Gdelta=G/6/diff;Bdelta=B/6/diff;if(R==cMax)H=Gdelta-Bdelta;else if(G==cMax)H=(1/3)+Bdelta-Rdelta;else H=(2/3)+Rdelta-Gdelta;if(H&lt;0)H+=1;if(H&gt;1)H-=1;}return[H,S,L];}}function getRGBColor(node,prop){var rgb=getComputedStyle(node,null).getPropertyValue(prop);var r,g,b;if(/rgb\((\d+),\s(\d+),\s(\d+)\)/.exec(rgb)){r=parseInt(RegExp.$1,10);g=parseInt(RegExp.$2,10);b=parseInt(RegExp.$3,10);return[r/255,g/255,b/255];}return rgb;}function hslToCSS(hsl){return &quot;hsl(&quot;+Math.round(hsl[0]*360)+&quot;, &quot;+Math.round(hsl[1]*100)+&quot;%, &quot;+Math.round(hsl[2]*100)+&quot;%)&quot;;}var props=[&quot;color&quot;,&quot;background-color&quot;,&quot;border-left-color&quot;,&quot;border-right-color&quot;,&quot;border-top-color&quot;,&quot;border-bottom-color&quot;];var props2=[&quot;color&quot;,&quot;backgroundColor&quot;,&quot;borderLeftColor&quot;,&quot;borderRightColor&quot;,&quot;borderTopColor&quot;,&quot;borderBottomColor&quot;];if(typeof getRGBColor(document.documentElement,&quot;background-color&quot;)==&quot;string&quot;)document.documentElement.style.backgroundColor=&quot;white&quot;;revl(document.documentElement);function revl(n){var i,x,color,hsl;if(n.nodeType==Node.ELEMENT_NODE){for(i=0;x=n.childNodes[i];++i)revl(x);for(i=0;x=props[i];++i){color=getRGBColor(n,x);if(typeof(color)!=&quot;string&quot;){hsl=RGBtoHSL(color);hsl[1] = 0;n.style[props2[i]]=hslToCSS(hsl);}}}}})()"
+>no sat</a></td> 
+<td>[S = 0] (grayscale) <a href="#no_sat">Details</a></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){function RGBtoHSL(RGBColor){with(Math){var R,G,B;var cMax,cMin;var sum,diff;var Rdelta,Gdelta,Bdelta;var H,L,S;R=RGBColor[0];G=RGBColor[1];B=RGBColor[2];cMax=max(max(R,G),B);cMin=min(min(R,G),B);sum=cMax+cMin;diff=cMax-cMin;L=sum/2;if(cMax==cMin){S=0;H=0;}else{if(L&lt;=(1/2))S=diff/sum;else S=diff/(2-sum);Rdelta=R/6/diff;Gdelta=G/6/diff;Bdelta=B/6/diff;if(R==cMax)H=Gdelta-Bdelta;else if(G==cMax)H=(1/3)+Bdelta-Rdelta;else H=(2/3)+Rdelta-Gdelta;if(H&lt;0)H+=1;if(H&gt;1)H-=1;}return[H,S,L];}}function getRGBColor(node,prop){var rgb=getComputedStyle(node,null).getPropertyValue(prop);var r,g,b;if(/rgb\((\d+),\s(\d+),\s(\d+)\)/.exec(rgb)){r=parseInt(RegExp.$1,10);g=parseInt(RegExp.$2,10);b=parseInt(RegExp.$3,10);return[r/255,g/255,b/255];}return rgb;}function hslToCSS(hsl){return &quot;hsl(&quot;+Math.round(hsl[0]*360)+&quot;, &quot;+Math.round(hsl[1]*100)+&quot;%, &quot;+Math.round(hsl[2]*100)+&quot;%)&quot;;}var props=[&quot;color&quot;,&quot;background-color&quot;,&quot;border-left-color&quot;,&quot;border-right-color&quot;,&quot;border-top-color&quot;,&quot;border-bottom-color&quot;];var props2=[&quot;color&quot;,&quot;backgroundColor&quot;,&quot;borderLeftColor&quot;,&quot;borderRightColor&quot;,&quot;borderTopColor&quot;,&quot;borderBottomColor&quot;];if(typeof getRGBColor(document.documentElement,&quot;background-color&quot;)==&quot;string&quot;)document.documentElement.style.backgroundColor=&quot;white&quot;;revl(document.documentElement);function revl(n){var i,x,color,hsl;if(n.nodeType==Node.ELEMENT_NODE){for(i=0;x=n.childNodes[i];++i)revl(x);for(i=0;x=props[i];++i){color=getRGBColor(n,x);if(typeof(color)!=&quot;string&quot;){hsl=RGBtoHSL(color);hsl[1] = 1;n.style[props2[i]]=hslToCSS(hsl);}}}}})()"
+>full sat</a></td> 
+<td>[S = 1] <a href="#full_sat">Details</a></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+</table></div> 
+ 
+<p class=smallitalic>Browsers: <img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16> is <a href="http://www.microsoft.com/windows/ie/default.asp">Internet Explorer for Windows</a>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16> is <a href="http://channels.netscape.com/ns/browsers/default.jsp">Netscape 7</a> or <a href="http://www.mozilla.org/">Mozilla</a>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16> is <a href="http://ftp.netscape.com/pub/communicator/english/">Netscape 4</a>, and <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16> is <a href="http://www.opera.com/">Opera</a>.</p> 
+ 
+ 
+<hr> 
+ 
+<h3>Details</h3> 
+<h4 class=transparent><a name="+hue" class="bml"
+href="javascript:(function(){function RGBtoHSL(RGBColor){with(Math){var R,G,B;var cMax,cMin;var sum,diff;var Rdelta,Gdelta,Bdelta;var H,L,S;R=RGBColor[0];G=RGBColor[1];B=RGBColor[2];cMax=max(max(R,G),B);cMin=min(min(R,G),B);sum=cMax+cMin;diff=cMax-cMin;L=sum/2;if(cMax==cMin){S=0;H=0;}else{if(L&lt;=(1/2))S=diff/sum;else S=diff/(2-sum);Rdelta=R/6/diff;Gdelta=G/6/diff;Bdelta=B/6/diff;if(R==cMax)H=Gdelta-Bdelta;else if(G==cMax)H=(1/3)+Bdelta-Rdelta;else H=(2/3)+Rdelta-Gdelta;if(H&lt;0)H+=1;if(H&gt;1)H-=1;}return[H,S,L];}}function getRGBColor(node,prop){var rgb=getComputedStyle(node,null).getPropertyValue(prop);var r,g,b;if(/rgb\((\d+),\s(\d+),\s(\d+)\)/.exec(rgb)){r=parseInt(RegExp.$1,10);g=parseInt(RegExp.$2,10);b=parseInt(RegExp.$3,10);return[r/255,g/255,b/255];}return rgb;}function hslToCSS(hsl){return &quot;hsl(&quot;+Math.round(hsl[0]*360)+&quot;, &quot;+Math.round(hsl[1]*100)+&quot;%, &quot;+Math.round(hsl[2]*100)+&quot;%)&quot;;}var props=[&quot;color&quot;,&quot;background-color&quot;,&quot;border-left-color&quot;,&quot;border-right-color&quot;,&quot;border-top-color&quot;,&quot;border-bottom-color&quot;];var props2=[&quot;color&quot;,&quot;backgroundColor&quot;,&quot;borderLeftColor&quot;,&quot;borderRightColor&quot;,&quot;borderTopColor&quot;,&quot;borderBottomColor&quot;];if(typeof getRGBColor(document.documentElement,&quot;background-color&quot;)==&quot;string&quot;)document.documentElement.style.backgroundColor=&quot;white&quot;;revl(document.documentElement);function revl(n){var i,x,color,hsl;if(n.nodeType==Node.ELEMENT_NODE){for(i=0;x=n.childNodes[i];++i)revl(x);for(i=0;x=props[i];++i){color=getRGBColor(n,x);if(typeof(color)!=&quot;string&quot;){hsl=RGBtoHSL(color);hsl[0]=(hsl[0]+1/24)%1;n.style[props2[i]]=hslToCSS(hsl);}}}}})()"
+>+hue</a> 
+(<img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>)
+</h4><p class=shortdesc>[H = H + 1/24] Red becomes green, etc.</p> 
+ 
+ 
+<h4 class=transparent><a name="-hue" class="bml"
+href="javascript:(function(){function RGBtoHSL(RGBColor){with(Math){var R,G,B;var cMax,cMin;var sum,diff;var Rdelta,Gdelta,Bdelta;var H,L,S;R=RGBColor[0];G=RGBColor[1];B=RGBColor[2];cMax=max(max(R,G),B);cMin=min(min(R,G),B);sum=cMax+cMin;diff=cMax-cMin;L=sum/2;if(cMax==cMin){S=0;H=0;}else{if(L&lt;=(1/2))S=diff/sum;else S=diff/(2-sum);Rdelta=R/6/diff;Gdelta=G/6/diff;Bdelta=B/6/diff;if(R==cMax)H=Gdelta-Bdelta;else if(G==cMax)H=(1/3)+Bdelta-Rdelta;else H=(2/3)+Rdelta-Gdelta;if(H&lt;0)H+=1;if(H&gt;1)H-=1;}return[H,S,L];}}function getRGBColor(node,prop){var rgb=getComputedStyle(node,null).getPropertyValue(prop);var r,g,b;if(/rgb\((\d+),\s(\d+),\s(\d+)\)/.exec(rgb)){r=parseInt(RegExp.$1,10);g=parseInt(RegExp.$2,10);b=parseInt(RegExp.$3,10);return[r/255,g/255,b/255];}return rgb;}function hslToCSS(hsl){return &quot;hsl(&quot;+Math.round(hsl[0]*360)+&quot;, &quot;+Math.round(hsl[1]*100)+&quot;%, &quot;+Math.round(hsl[2]*100)+&quot;%)&quot;;}var props=[&quot;color&quot;,&quot;background-color&quot;,&quot;border-left-color&quot;,&quot;border-right-color&quot;,&quot;border-top-color&quot;,&quot;border-bottom-color&quot;];var props2=[&quot;color&quot;,&quot;backgroundColor&quot;,&quot;borderLeftColor&quot;,&quot;borderRightColor&quot;,&quot;borderTopColor&quot;,&quot;borderBottomColor&quot;];if(typeof getRGBColor(document.documentElement,&quot;background-color&quot;)==&quot;string&quot;)document.documentElement.style.backgroundColor=&quot;white&quot;;revl(document.documentElement);function revl(n){var i,x,color,hsl;if(n.nodeType==Node.ELEMENT_NODE){for(i=0;x=n.childNodes[i];++i)revl(x);for(i=0;x=props[i];++i){color=getRGBColor(n,x);if(typeof(color)!=&quot;string&quot;){hsl=RGBtoHSL(color);hsl[0] = (hsl[0] + 23/24) % 1;n.style[props2[i]]=hslToCSS(hsl);}}}}})()"
+>-hue</a> 
+(<img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>)
+</h4><p class=shortdesc>[H = H - 1/24] Green becomes red, etc.</p> 
+ 
+ 
+<h4 class=transparent><a name="red" class="bml"
+href="javascript:(function(){function RGBtoHSL(RGBColor){with(Math){var R,G,B;var cMax,cMin;var sum,diff;var Rdelta,Gdelta,Bdelta;var H,L,S;R=RGBColor[0];G=RGBColor[1];B=RGBColor[2];cMax=max(max(R,G),B);cMin=min(min(R,G),B);sum=cMax+cMin;diff=cMax-cMin;L=sum/2;if(cMax==cMin){S=0;H=0;}else{if(L&lt;=(1/2))S=diff/sum;else S=diff/(2-sum);Rdelta=R/6/diff;Gdelta=G/6/diff;Bdelta=B/6/diff;if(R==cMax)H=Gdelta-Bdelta;else if(G==cMax)H=(1/3)+Bdelta-Rdelta;else H=(2/3)+Rdelta-Gdelta;if(H&lt;0)H+=1;if(H&gt;1)H-=1;}return[H,S,L];}}function getRGBColor(node,prop){var rgb=getComputedStyle(node,null).getPropertyValue(prop);var r,g,b;if(/rgb\((\d+),\s(\d+),\s(\d+)\)/.exec(rgb)){r=parseInt(RegExp.$1,10);g=parseInt(RegExp.$2,10);b=parseInt(RegExp.$3,10);return[r/255,g/255,b/255];}return rgb;}function hslToCSS(hsl){return &quot;hsl(&quot;+Math.round(hsl[0]*360)+&quot;, &quot;+Math.round(hsl[1]*100)+&quot;%, &quot;+Math.round(hsl[2]*100)+&quot;%)&quot;;}var props=[&quot;color&quot;,&quot;background-color&quot;,&quot;border-left-color&quot;,&quot;border-right-color&quot;,&quot;border-top-color&quot;,&quot;border-bottom-color&quot;];var props2=[&quot;color&quot;,&quot;backgroundColor&quot;,&quot;borderLeftColor&quot;,&quot;borderRightColor&quot;,&quot;borderTopColor&quot;,&quot;borderBottomColor&quot;];if(typeof getRGBColor(document.documentElement,&quot;background-color&quot;)==&quot;string&quot;)document.documentElement.style.backgroundColor=&quot;white&quot;;revl(document.documentElement);function revl(n){var i,x,color,hsl;if(n.nodeType==Node.ELEMENT_NODE){for(i=0;x=n.childNodes[i];++i)revl(x);for(i=0;x=props[i];++i){color=getRGBColor(n,x);if(typeof(color)!=&quot;string&quot;){hsl=RGBtoHSL(color);hsl[0] = 0;n.style[props2[i]]=hslToCSS(hsl);}}}}})()"
+>red</a> 
+(<img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>)
+</h4><p class=shortdesc>[H = 0]</p> 
+ 
+ 
+<h4 class=transparent><a name="green" class="bml"
+href="javascript:(function(){function RGBtoHSL(RGBColor){with(Math){var R,G,B;var cMax,cMin;var sum,diff;var Rdelta,Gdelta,Bdelta;var H,L,S;R=RGBColor[0];G=RGBColor[1];B=RGBColor[2];cMax=max(max(R,G),B);cMin=min(min(R,G),B);sum=cMax+cMin;diff=cMax-cMin;L=sum/2;if(cMax==cMin){S=0;H=0;}else{if(L&lt;=(1/2))S=diff/sum;else S=diff/(2-sum);Rdelta=R/6/diff;Gdelta=G/6/diff;Bdelta=B/6/diff;if(R==cMax)H=Gdelta-Bdelta;else if(G==cMax)H=(1/3)+Bdelta-Rdelta;else H=(2/3)+Rdelta-Gdelta;if(H&lt;0)H+=1;if(H&gt;1)H-=1;}return[H,S,L];}}function getRGBColor(node,prop){var rgb=getComputedStyle(node,null).getPropertyValue(prop);var r,g,b;if(/rgb\((\d+),\s(\d+),\s(\d+)\)/.exec(rgb)){r=parseInt(RegExp.$1,10);g=parseInt(RegExp.$2,10);b=parseInt(RegExp.$3,10);return[r/255,g/255,b/255];}return rgb;}function hslToCSS(hsl){return &quot;hsl(&quot;+Math.round(hsl[0]*360)+&quot;, &quot;+Math.round(hsl[1]*100)+&quot;%, &quot;+Math.round(hsl[2]*100)+&quot;%)&quot;;}var props=[&quot;color&quot;,&quot;background-color&quot;,&quot;border-left-color&quot;,&quot;border-right-color&quot;,&quot;border-top-color&quot;,&quot;border-bottom-color&quot;];var props2=[&quot;color&quot;,&quot;backgroundColor&quot;,&quot;borderLeftColor&quot;,&quot;borderRightColor&quot;,&quot;borderTopColor&quot;,&quot;borderBottomColor&quot;];if(typeof getRGBColor(document.documentElement,&quot;background-color&quot;)==&quot;string&quot;)document.documentElement.style.backgroundColor=&quot;white&quot;;revl(document.documentElement);function revl(n){var i,x,color,hsl;if(n.nodeType==Node.ELEMENT_NODE){for(i=0;x=n.childNodes[i];++i)revl(x);for(i=0;x=props[i];++i){color=getRGBColor(n,x);if(typeof(color)!=&quot;string&quot;){hsl=RGBtoHSL(color);hsl[0] = 1/3;n.style[props2[i]]=hslToCSS(hsl);}}}}})()"
+>green</a> 
+(<img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>)
+</h4><p class=shortdesc>[H = 1/3]</p> 
+ 
+ 
+<h4 class=transparent><a name="blue" class="bml"
+href="javascript:(function(){function RGBtoHSL(RGBColor){with(Math){var R,G,B;var cMax,cMin;var sum,diff;var Rdelta,Gdelta,Bdelta;var H,L,S;R=RGBColor[0];G=RGBColor[1];B=RGBColor[2];cMax=max(max(R,G),B);cMin=min(min(R,G),B);sum=cMax+cMin;diff=cMax-cMin;L=sum/2;if(cMax==cMin){S=0;H=0;}else{if(L&lt;=(1/2))S=diff/sum;else S=diff/(2-sum);Rdelta=R/6/diff;Gdelta=G/6/diff;Bdelta=B/6/diff;if(R==cMax)H=Gdelta-Bdelta;else if(G==cMax)H=(1/3)+Bdelta-Rdelta;else H=(2/3)+Rdelta-Gdelta;if(H&lt;0)H+=1;if(H&gt;1)H-=1;}return[H,S,L];}}function getRGBColor(node,prop){var rgb=getComputedStyle(node,null).getPropertyValue(prop);var r,g,b;if(/rgb\((\d+),\s(\d+),\s(\d+)\)/.exec(rgb)){r=parseInt(RegExp.$1,10);g=parseInt(RegExp.$2,10);b=parseInt(RegExp.$3,10);return[r/255,g/255,b/255];}return rgb;}function hslToCSS(hsl){return &quot;hsl(&quot;+Math.round(hsl[0]*360)+&quot;, &quot;+Math.round(hsl[1]*100)+&quot;%, &quot;+Math.round(hsl[2]*100)+&quot;%)&quot;;}var props=[&quot;color&quot;,&quot;background-color&quot;,&quot;border-left-color&quot;,&quot;border-right-color&quot;,&quot;border-top-color&quot;,&quot;border-bottom-color&quot;];var props2=[&quot;color&quot;,&quot;backgroundColor&quot;,&quot;borderLeftColor&quot;,&quot;borderRightColor&quot;,&quot;borderTopColor&quot;,&quot;borderBottomColor&quot;];if(typeof getRGBColor(document.documentElement,&quot;background-color&quot;)==&quot;string&quot;)document.documentElement.style.backgroundColor=&quot;white&quot;;revl(document.documentElement);function revl(n){var i,x,color,hsl;if(n.nodeType==Node.ELEMENT_NODE){for(i=0;x=n.childNodes[i];++i)revl(x);for(i=0;x=props[i];++i){color=getRGBColor(n,x);if(typeof(color)!=&quot;string&quot;){hsl=RGBtoHSL(color);hsl[0] = 2/3;n.style[props2[i]]=hslToCSS(hsl);}}}}})()"
+>blue</a> 
+(<img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>)
+</h4><p class=shortdesc>[H = 2/3]</p> 
+ 
+ 
+<h4 class=transparent><a name="+light" class="bml"
+href="javascript:(function(){function RGBtoHSL(RGBColor){with(Math){var R,G,B;var cMax,cMin;var sum,diff;var Rdelta,Gdelta,Bdelta;var H,L,S;R=RGBColor[0];G=RGBColor[1];B=RGBColor[2];cMax=max(max(R,G),B);cMin=min(min(R,G),B);sum=cMax+cMin;diff=cMax-cMin;L=sum/2;if(cMax==cMin){S=0;H=0;}else{if(L&lt;=(1/2))S=diff/sum;else S=diff/(2-sum);Rdelta=R/6/diff;Gdelta=G/6/diff;Bdelta=B/6/diff;if(R==cMax)H=Gdelta-Bdelta;else if(G==cMax)H=(1/3)+Bdelta-Rdelta;else H=(2/3)+Rdelta-Gdelta;if(H&lt;0)H+=1;if(H&gt;1)H-=1;}return[H,S,L];}}function getRGBColor(node,prop){var rgb=getComputedStyle(node,null).getPropertyValue(prop);var r,g,b;if(/rgb\((\d+),\s(\d+),\s(\d+)\)/.exec(rgb)){r=parseInt(RegExp.$1,10);g=parseInt(RegExp.$2,10);b=parseInt(RegExp.$3,10);return[r/255,g/255,b/255];}return rgb;}function hslToCSS(hsl){return &quot;hsl(&quot;+Math.round(hsl[0]*360)+&quot;, &quot;+Math.round(hsl[1]*100)+&quot;%, &quot;+Math.round(hsl[2]*100)+&quot;%)&quot;;}var props=[&quot;color&quot;,&quot;background-color&quot;,&quot;border-left-color&quot;,&quot;border-right-color&quot;,&quot;border-top-color&quot;,&quot;border-bottom-color&quot;];var props2=[&quot;color&quot;,&quot;backgroundColor&quot;,&quot;borderLeftColor&quot;,&quot;borderRightColor&quot;,&quot;borderTopColor&quot;,&quot;borderBottomColor&quot;];if(typeof getRGBColor(document.documentElement,&quot;background-color&quot;)==&quot;string&quot;)document.documentElement.style.backgroundColor=&quot;white&quot;;revl(document.documentElement);function revl(n){var i,x,color,hsl;if(n.nodeType==Node.ELEMENT_NODE){for(i=0;x=n.childNodes[i];++i)revl(x);for(i=0;x=props[i];++i){color=getRGBColor(n,x);if(typeof(color)!=&quot;string&quot;){hsl=RGBtoHSL(color);hsl[2] = Math.pow(hsl[2], 5/6);n.style[props2[i]]=hslToCSS(hsl);}}}}})()"
+>+light</a> 
+(<img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>)
+</h4><p class=shortdesc>[L = L ^ (5/6)]</p> 
+ 
+ 
+<h4 class=transparent><a name="-light" class="bml"
+href="javascript:(function(){function RGBtoHSL(RGBColor){with(Math){var R,G,B;var cMax,cMin;var sum,diff;var Rdelta,Gdelta,Bdelta;var H,L,S;R=RGBColor[0];G=RGBColor[1];B=RGBColor[2];cMax=max(max(R,G),B);cMin=min(min(R,G),B);sum=cMax+cMin;diff=cMax-cMin;L=sum/2;if(cMax==cMin){S=0;H=0;}else{if(L&lt;=(1/2))S=diff/sum;else S=diff/(2-sum);Rdelta=R/6/diff;Gdelta=G/6/diff;Bdelta=B/6/diff;if(R==cMax)H=Gdelta-Bdelta;else if(G==cMax)H=(1/3)+Bdelta-Rdelta;else H=(2/3)+Rdelta-Gdelta;if(H&lt;0)H+=1;if(H&gt;1)H-=1;}return[H,S,L];}}function getRGBColor(node,prop){var rgb=getComputedStyle(node,null).getPropertyValue(prop);var r,g,b;if(/rgb\((\d+),\s(\d+),\s(\d+)\)/.exec(rgb)){r=parseInt(RegExp.$1,10);g=parseInt(RegExp.$2,10);b=parseInt(RegExp.$3,10);return[r/255,g/255,b/255];}return rgb;}function hslToCSS(hsl){return &quot;hsl(&quot;+Math.round(hsl[0]*360)+&quot;, &quot;+Math.round(hsl[1]*100)+&quot;%, &quot;+Math.round(hsl[2]*100)+&quot;%)&quot;;}var props=[&quot;color&quot;,&quot;background-color&quot;,&quot;border-left-color&quot;,&quot;border-right-color&quot;,&quot;border-top-color&quot;,&quot;border-bottom-color&quot;];var props2=[&quot;color&quot;,&quot;backgroundColor&quot;,&quot;borderLeftColor&quot;,&quot;borderRightColor&quot;,&quot;borderTopColor&quot;,&quot;borderBottomColor&quot;];if(typeof getRGBColor(document.documentElement,&quot;background-color&quot;)==&quot;string&quot;)document.documentElement.style.backgroundColor=&quot;white&quot;;revl(document.documentElement);function revl(n){var i,x,color,hsl;if(n.nodeType==Node.ELEMENT_NODE){for(i=0;x=n.childNodes[i];++i)revl(x);for(i=0;x=props[i];++i){color=getRGBColor(n,x);if(typeof(color)!=&quot;string&quot;){hsl=RGBtoHSL(color);hsl[2] = Math.pow(hsl[2], 6/5);n.style[props2[i]]=hslToCSS(hsl);}}}}})()"
+>-light</a> 
+(<img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>)
+</h4><p class=shortdesc>[L = L ^ (6/5)]</p> 
+ 
+ 
+<h4 class=transparent><a name="invert_lightness" class="bml"
+href="javascript:(function(){function RGBtoHSL(RGBColor){with(Math){var R,G,B;var cMax,cMin;var sum,diff;var Rdelta,Gdelta,Bdelta;var H,L,S;R=RGBColor[0];G=RGBColor[1];B=RGBColor[2];cMax=max(max(R,G),B);cMin=min(min(R,G),B);sum=cMax+cMin;diff=cMax-cMin;L=sum/2;if(cMax==cMin){S=0;H=0;}else{if(L&lt;=(1/2))S=diff/sum;else S=diff/(2-sum);Rdelta=R/6/diff;Gdelta=G/6/diff;Bdelta=B/6/diff;if(R==cMax)H=Gdelta-Bdelta;else if(G==cMax)H=(1/3)+Bdelta-Rdelta;else H=(2/3)+Rdelta-Gdelta;if(H&lt;0)H+=1;if(H&gt;1)H-=1;}return[H,S,L];}}function getRGBColor(node,prop){var rgb=getComputedStyle(node,null).getPropertyValue(prop);var r,g,b;if(/rgb\((\d+),\s(\d+),\s(\d+)\)/.exec(rgb)){r=parseInt(RegExp.$1,10);g=parseInt(RegExp.$2,10);b=parseInt(RegExp.$3,10);return[r/255,g/255,b/255];}return rgb;}function hslToCSS(hsl){return &quot;hsl(&quot;+Math.round(hsl[0]*360)+&quot;, &quot;+Math.round(hsl[1]*100)+&quot;%, &quot;+Math.round(hsl[2]*100)+&quot;%)&quot;;}var props=[&quot;color&quot;,&quot;background-color&quot;,&quot;border-left-color&quot;,&quot;border-right-color&quot;,&quot;border-top-color&quot;,&quot;border-bottom-color&quot;];var props2=[&quot;color&quot;,&quot;backgroundColor&quot;,&quot;borderLeftColor&quot;,&quot;borderRightColor&quot;,&quot;borderTopColor&quot;,&quot;borderBottomColor&quot;];if(typeof getRGBColor(document.documentElement,&quot;background-color&quot;)==&quot;string&quot;)document.documentElement.style.backgroundColor=&quot;white&quot;;revl(document.documentElement);function revl(n){var i,x,color,hsl;if(n.nodeType==Node.ELEMENT_NODE){for(i=0;x=n.childNodes[i];++i)revl(x);for(i=0;x=props[i];++i){color=getRGBColor(n,x);if(typeof(color)!=&quot;string&quot;){hsl=RGBtoHSL(color);hsl[2]=1-hsl[2];n.style[props2[i]]=hslToCSS(hsl);}}}}})()"
+>invert lightness</a> 
+(<img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>)
+</h4><p class=shortdesc>[L = 1 - L] Dark green becomes light green, white becomes black.</p> 
+ 
+ 
+<h4 class=transparent><a name="midbright" class="bml"
+href="javascript:(function(){function RGBtoHSL(RGBColor){with(Math){var R,G,B;var cMax,cMin;var sum,diff;var Rdelta,Gdelta,Bdelta;var H,L,S;R=RGBColor[0];G=RGBColor[1];B=RGBColor[2];cMax=max(max(R,G),B);cMin=min(min(R,G),B);sum=cMax+cMin;diff=cMax-cMin;L=sum/2;if(cMax==cMin){S=0;H=0;}else{if(L&lt;=(1/2))S=diff/sum;else S=diff/(2-sum);Rdelta=R/6/diff;Gdelta=G/6/diff;Bdelta=B/6/diff;if(R==cMax)H=Gdelta-Bdelta;else if(G==cMax)H=(1/3)+Bdelta-Rdelta;else H=(2/3)+Rdelta-Gdelta;if(H&lt;0)H+=1;if(H&gt;1)H-=1;}return[H,S,L];}}function getRGBColor(node,prop){var rgb=getComputedStyle(node,null).getPropertyValue(prop);var r,g,b;if(/rgb\((\d+),\s(\d+),\s(\d+)\)/.exec(rgb)){r=parseInt(RegExp.$1,10);g=parseInt(RegExp.$2,10);b=parseInt(RegExp.$3,10);return[r/255,g/255,b/255];}return rgb;}function hslToCSS(hsl){return &quot;hsl(&quot;+Math.round(hsl[0]*360)+&quot;, &quot;+Math.round(hsl[1]*100)+&quot;%, &quot;+Math.round(hsl[2]*100)+&quot;%)&quot;;}var props=[&quot;color&quot;,&quot;background-color&quot;,&quot;border-left-color&quot;,&quot;border-right-color&quot;,&quot;border-top-color&quot;,&quot;border-bottom-color&quot;];var props2=[&quot;color&quot;,&quot;backgroundColor&quot;,&quot;borderLeftColor&quot;,&quot;borderRightColor&quot;,&quot;borderTopColor&quot;,&quot;borderBottomColor&quot;];if(typeof getRGBColor(document.documentElement,&quot;background-color&quot;)==&quot;string&quot;)document.documentElement.style.backgroundColor=&quot;white&quot;;revl(document.documentElement);function revl(n){var i,x,color,hsl;if(n.nodeType==Node.ELEMENT_NODE){for(i=0;x=n.childNodes[i];++i)revl(x);for(i=0;x=props[i];++i){color=getRGBColor(n,x);if(typeof(color)!=&quot;string&quot;){hsl=RGBtoHSL(color);hsl[2] = 0.5;n.style[props2[i]]=hslToCSS(hsl);}}}}})()"
+>midbright</a> 
+(<img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>)
+</h4><p class=shortdesc>[L = 0.5]</p> 
+ 
+ 
+<h4 class=transparent><a name="+sat" class="bml"
+href="javascript:(function(){function RGBtoHSL(RGBColor){with(Math){var R,G,B;var cMax,cMin;var sum,diff;var Rdelta,Gdelta,Bdelta;var H,L,S;R=RGBColor[0];G=RGBColor[1];B=RGBColor[2];cMax=max(max(R,G),B);cMin=min(min(R,G),B);sum=cMax+cMin;diff=cMax-cMin;L=sum/2;if(cMax==cMin){S=0;H=0;}else{if(L&lt;=(1/2))S=diff/sum;else S=diff/(2-sum);Rdelta=R/6/diff;Gdelta=G/6/diff;Bdelta=B/6/diff;if(R==cMax)H=Gdelta-Bdelta;else if(G==cMax)H=(1/3)+Bdelta-Rdelta;else H=(2/3)+Rdelta-Gdelta;if(H&lt;0)H+=1;if(H&gt;1)H-=1;}return[H,S,L];}}function getRGBColor(node,prop){var rgb=getComputedStyle(node,null).getPropertyValue(prop);var r,g,b;if(/rgb\((\d+),\s(\d+),\s(\d+)\)/.exec(rgb)){r=parseInt(RegExp.$1,10);g=parseInt(RegExp.$2,10);b=parseInt(RegExp.$3,10);return[r/255,g/255,b/255];}return rgb;}function hslToCSS(hsl){return &quot;hsl(&quot;+Math.round(hsl[0]*360)+&quot;, &quot;+Math.round(hsl[1]*100)+&quot;%, &quot;+Math.round(hsl[2]*100)+&quot;%)&quot;;}var props=[&quot;color&quot;,&quot;background-color&quot;,&quot;border-left-color&quot;,&quot;border-right-color&quot;,&quot;border-top-color&quot;,&quot;border-bottom-color&quot;];var props2=[&quot;color&quot;,&quot;backgroundColor&quot;,&quot;borderLeftColor&quot;,&quot;borderRightColor&quot;,&quot;borderTopColor&quot;,&quot;borderBottomColor&quot;];if(typeof getRGBColor(document.documentElement,&quot;background-color&quot;)==&quot;string&quot;)document.documentElement.style.backgroundColor=&quot;white&quot;;revl(document.documentElement);function revl(n){var i,x,color,hsl;if(n.nodeType==Node.ELEMENT_NODE){for(i=0;x=n.childNodes[i];++i)revl(x);for(i=0;x=props[i];++i){color=getRGBColor(n,x);if(typeof(color)!=&quot;string&quot;){hsl=RGBtoHSL(color);hsl[1] = Math.min(hsl[1] + .15, 1);n.style[props2[i]]=hslToCSS(hsl);}}}}})()"
+>+sat</a> 
+(<img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>)
+</h4><p class=shortdesc>[S = S + 0.15]</p> 
+ 
+ 
+<h4 class=transparent><a name="-sat" class="bml"
+href="javascript:(function(){function RGBtoHSL(RGBColor){with(Math){var R,G,B;var cMax,cMin;var sum,diff;var Rdelta,Gdelta,Bdelta;var H,L,S;R=RGBColor[0];G=RGBColor[1];B=RGBColor[2];cMax=max(max(R,G),B);cMin=min(min(R,G),B);sum=cMax+cMin;diff=cMax-cMin;L=sum/2;if(cMax==cMin){S=0;H=0;}else{if(L&lt;=(1/2))S=diff/sum;else S=diff/(2-sum);Rdelta=R/6/diff;Gdelta=G/6/diff;Bdelta=B/6/diff;if(R==cMax)H=Gdelta-Bdelta;else if(G==cMax)H=(1/3)+Bdelta-Rdelta;else H=(2/3)+Rdelta-Gdelta;if(H&lt;0)H+=1;if(H&gt;1)H-=1;}return[H,S,L];}}function getRGBColor(node,prop){var rgb=getComputedStyle(node,null).getPropertyValue(prop);var r,g,b;if(/rgb\((\d+),\s(\d+),\s(\d+)\)/.exec(rgb)){r=parseInt(RegExp.$1,10);g=parseInt(RegExp.$2,10);b=parseInt(RegExp.$3,10);return[r/255,g/255,b/255];}return rgb;}function hslToCSS(hsl){return &quot;hsl(&quot;+Math.round(hsl[0]*360)+&quot;, &quot;+Math.round(hsl[1]*100)+&quot;%, &quot;+Math.round(hsl[2]*100)+&quot;%)&quot;;}var props=[&quot;color&quot;,&quot;background-color&quot;,&quot;border-left-color&quot;,&quot;border-right-color&quot;,&quot;border-top-color&quot;,&quot;border-bottom-color&quot;];var props2=[&quot;color&quot;,&quot;backgroundColor&quot;,&quot;borderLeftColor&quot;,&quot;borderRightColor&quot;,&quot;borderTopColor&quot;,&quot;borderBottomColor&quot;];if(typeof getRGBColor(document.documentElement,&quot;background-color&quot;)==&quot;string&quot;)document.documentElement.style.backgroundColor=&quot;white&quot;;revl(document.documentElement);function revl(n){var i,x,color,hsl;if(n.nodeType==Node.ELEMENT_NODE){for(i=0;x=n.childNodes[i];++i)revl(x);for(i=0;x=props[i];++i){color=getRGBColor(n,x);if(typeof(color)!=&quot;string&quot;){hsl=RGBtoHSL(color);hsl[1] = Math.max(hsl[1] - .15, 0);n.style[props2[i]]=hslToCSS(hsl);}}}}})()"
+>-sat</a> 
+(<img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>)
+</h4><p class=shortdesc>[S = S - 0.15]</p> 
+ 
+ 
+<h4 class=transparent><a name="no_sat" class="bml"
+href="javascript:(function(){function RGBtoHSL(RGBColor){with(Math){var R,G,B;var cMax,cMin;var sum,diff;var Rdelta,Gdelta,Bdelta;var H,L,S;R=RGBColor[0];G=RGBColor[1];B=RGBColor[2];cMax=max(max(R,G),B);cMin=min(min(R,G),B);sum=cMax+cMin;diff=cMax-cMin;L=sum/2;if(cMax==cMin){S=0;H=0;}else{if(L&lt;=(1/2))S=diff/sum;else S=diff/(2-sum);Rdelta=R/6/diff;Gdelta=G/6/diff;Bdelta=B/6/diff;if(R==cMax)H=Gdelta-Bdelta;else if(G==cMax)H=(1/3)+Bdelta-Rdelta;else H=(2/3)+Rdelta-Gdelta;if(H&lt;0)H+=1;if(H&gt;1)H-=1;}return[H,S,L];}}function getRGBColor(node,prop){var rgb=getComputedStyle(node,null).getPropertyValue(prop);var r,g,b;if(/rgb\((\d+),\s(\d+),\s(\d+)\)/.exec(rgb)){r=parseInt(RegExp.$1,10);g=parseInt(RegExp.$2,10);b=parseInt(RegExp.$3,10);return[r/255,g/255,b/255];}return rgb;}function hslToCSS(hsl){return &quot;hsl(&quot;+Math.round(hsl[0]*360)+&quot;, &quot;+Math.round(hsl[1]*100)+&quot;%, &quot;+Math.round(hsl[2]*100)+&quot;%)&quot;;}var props=[&quot;color&quot;,&quot;background-color&quot;,&quot;border-left-color&quot;,&quot;border-right-color&quot;,&quot;border-top-color&quot;,&quot;border-bottom-color&quot;];var props2=[&quot;color&quot;,&quot;backgroundColor&quot;,&quot;borderLeftColor&quot;,&quot;borderRightColor&quot;,&quot;borderTopColor&quot;,&quot;borderBottomColor&quot;];if(typeof getRGBColor(document.documentElement,&quot;background-color&quot;)==&quot;string&quot;)document.documentElement.style.backgroundColor=&quot;white&quot;;revl(document.documentElement);function revl(n){var i,x,color,hsl;if(n.nodeType==Node.ELEMENT_NODE){for(i=0;x=n.childNodes[i];++i)revl(x);for(i=0;x=props[i];++i){color=getRGBColor(n,x);if(typeof(color)!=&quot;string&quot;){hsl=RGBtoHSL(color);hsl[1] = 0;n.style[props2[i]]=hslToCSS(hsl);}}}}})()"
+>no sat</a> 
+(<img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>)
+</h4><p class=shortdesc>[S = 0] (grayscale)</p> 
+ 
+ 
+<h4 class=transparent><a name="full_sat" class="bml"
+href="javascript:(function(){function RGBtoHSL(RGBColor){with(Math){var R,G,B;var cMax,cMin;var sum,diff;var Rdelta,Gdelta,Bdelta;var H,L,S;R=RGBColor[0];G=RGBColor[1];B=RGBColor[2];cMax=max(max(R,G),B);cMin=min(min(R,G),B);sum=cMax+cMin;diff=cMax-cMin;L=sum/2;if(cMax==cMin){S=0;H=0;}else{if(L&lt;=(1/2))S=diff/sum;else S=diff/(2-sum);Rdelta=R/6/diff;Gdelta=G/6/diff;Bdelta=B/6/diff;if(R==cMax)H=Gdelta-Bdelta;else if(G==cMax)H=(1/3)+Bdelta-Rdelta;else H=(2/3)+Rdelta-Gdelta;if(H&lt;0)H+=1;if(H&gt;1)H-=1;}return[H,S,L];}}function getRGBColor(node,prop){var rgb=getComputedStyle(node,null).getPropertyValue(prop);var r,g,b;if(/rgb\((\d+),\s(\d+),\s(\d+)\)/.exec(rgb)){r=parseInt(RegExp.$1,10);g=parseInt(RegExp.$2,10);b=parseInt(RegExp.$3,10);return[r/255,g/255,b/255];}return rgb;}function hslToCSS(hsl){return &quot;hsl(&quot;+Math.round(hsl[0]*360)+&quot;, &quot;+Math.round(hsl[1]*100)+&quot;%, &quot;+Math.round(hsl[2]*100)+&quot;%)&quot;;}var props=[&quot;color&quot;,&quot;background-color&quot;,&quot;border-left-color&quot;,&quot;border-right-color&quot;,&quot;border-top-color&quot;,&quot;border-bottom-color&quot;];var props2=[&quot;color&quot;,&quot;backgroundColor&quot;,&quot;borderLeftColor&quot;,&quot;borderRightColor&quot;,&quot;borderTopColor&quot;,&quot;borderBottomColor&quot;];if(typeof getRGBColor(document.documentElement,&quot;background-color&quot;)==&quot;string&quot;)document.documentElement.style.backgroundColor=&quot;white&quot;;revl(document.documentElement);function revl(n){var i,x,color,hsl;if(n.nodeType==Node.ELEMENT_NODE){for(i=0;x=n.childNodes[i];++i)revl(x);for(i=0;x=props[i];++i){color=getRGBColor(n,x);if(typeof(color)!=&quot;string&quot;){hsl=RGBtoHSL(color);hsl[1] = 1;n.style[props2[i]]=hslToCSS(hsl);}}}}})()"
+>full sat</a> 
+(<img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>)
+</h4><p class=shortdesc>[S = 1]</p> 
+ 
+ 
+<hr><p><i><a href="copyright.html">&copy;</a> 2000-2007 <a href="http://www.squarefree.com/">Jesse Ruderman</a> (<a href="mailto:jruderman@gmail.com">jruderman@gmail.com</a>). Feedback is welcome.<br> 
+Last modified July 9, 2003.</i></p> 
+ 
+</body> 
+</html> 

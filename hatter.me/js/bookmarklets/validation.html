@@ -1,0 +1,371 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<title>Validation Bookmarklets</title> 
+<link rel="stylesheet" href="squarefree.css" type="text/css"> 
+</head> 
+ 
+<body> 
+ 
+<div style="text-align: center"> 
+<a href="./">Bookmarklets Home</a> 
+| <a href="pagelinks.html">Links</a> 
+| <a href="forms.html">Forms</a> 
+| <a href="pagedata.html">Text and Data</a> 
+| <a href="zap.html">Zap</a> 
+| <a href="webdevel.html">Web Development</a> 
+| <a href="validation.html">Validation</a> 
+| <a href="misc.html">Misc</a> 
+</div> 
+ 
+<hr> 
+ 
+<script type="text/javascript"> 
+var ua = navigator.userAgent, d, s="";
+if (/Gecko\/200305(\d\d)/.exec(ua))
+{
+  day = parseInt(RegExp.$1, 10)
+  if (16 <= day && day < 22)
+  {
+    s = "<p class='ack'><b>You are using a version of Mozilla in which many bookmarklets do not work.<\/b>  Mozilla builds between May 16 and May 22 (including Mozilla Firebird 0.6, released May 16) suffer from bug 205989 and bug 206026.<br><br><b>Please upgrade<\/b> to one of the following:<br>"
+    s += "<a href='http://ftp.mozilla.org/pub/firebird/nightly/latest-trunk/'>A Mozilla Firebird nightly<\/a> (recommended)<br>";
+    s += "<a href='http://ftp.mozilla.org/pub/mozilla/nightly/latest-trunk/'>A Mozilla nightly<\/a><br>";
+    s += "<a href='http://www.mozilla.org/releases/'>Mozilla 1.4 RC1 or a later release<\/a><\/p>";
+    document.write(s);
+  }
+}
+</script> 
+<h3>Validation Bookmarklets</h3> 
+<p>These bookmarklets let you check pages for correctness, standards-compliance, and several aspects of accessibility.</p> 
+ 
+<p class=smallitalic>(To keep <a href="./">bookmarklets</a> in order to use them on other web pages, drag them to your <a href="personaltoolbar.html">Bookmarks Toolbar</a>.  Or, <a href="importall.html">install them all at once</a>.)</p> 
+ 
+<div class=summarytable><table class=summarytable> 
+ 
+<thead> 
+<tr> 
+<th>Bookmarklet</th> 
+<th>Description</th> 
+<th colspan=4>Works in</th> 
+</tr> 
+</thead> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){ function fixFileUrl(u) { var windows,u; windows = (navigator.platform.indexOf(&quot;Win&quot;) != -1);  /* chop off file:///, unescape each %hh, convert / to \ and | to : */  u = u.substr(windows ? 8 : 7); u = unescape(u); if(windows) { u = u.replace(/\//g,&quot;\\&quot;); u = u.replace(/\|/g,&quot;:&quot;); } return u; } /* bookmarklet body */ var loc,fileloc; loc = document.location.href; if (loc.length &gt; 9 &amp;&amp; loc.substr(0,8)==&quot;file:///&quot;) { fileloc = fixFileUrl(loc); if (prompt(&quot;Copy filename to clipboard, press enter, paste into validator form&quot;, fileloc) != null) { document.location.href = &quot;http://validator.w3.org/file-upload.html&quot; } } else document.location.href = &quot;http://validator.w3.org/check?uri=&quot; + escape(document.location.href); void(0); })();"
+>validate html</a></td> 
+<td>Validates HTML using the <a href="http://www.w3.org/">W3C</a> <a href="http://validator.w3.org/">HTML validator</a>. <a href="#validate_html">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:location = 'http://validator.w3.org/check?uri=' + escape(location) + ((document.doctype &amp;&amp; document.doctype.toString()) ? '' : '&amp;doctype=HTML+4.01+Transitional') + '&amp;charset=' + document.characterSet + '&amp;ss=1';"
+>quick validate</a></td> 
+<td>Validates HTML, avoiding "missing doctype" and "missing charset" errors. <a href="#quick_validate">Details</a></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:location = 'http://uptime.netcraft.com/up/graph?site='+escape(location); void 0"
+>netcraft</a></td> 
+<td>Tells you what type of server a site uses and displays an uptime graph. <a href="#netcraft">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:document.location.href = 'http://webtools.mozilla.org/web-sniffer/view.cgi?url=' + escape(document.location.href)"
+>http headers</a></td> 
+<td>Uses <a href="http://webtools.mozilla.org/web-sniffer/">Web Sniffer</a> to display HTTP headers. <a href="#http_headers">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:document.body.style.filter='gray';void(0);"
+>grayscale</a></td> 
+<td>Applies a "black and white TV" filter to the page. <a href="#grayscale">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:var s=document.createElement('link');s.setAttribute('href','http://www.ressukka.net/misc/pdaize.css');s.setAttribute('rel','stylesheet');s.setAttribute('type','text/css'); document.getElementsByTagName('head')[0].appendChild(s);var l=document.getElementsByTagName('img');for(var i=0;il.length;i++){if(l[i].width&gt;176){l[i].height*=176/l[i].width;l[i].width=176}else if(l[i].naturalWidth&gt;176){var e=176/l[i].naturalWidth;l[i].height=l[i].naturalHeight*e;l[i].width=176;}}void(0);"
+>PDAize</a></td> 
+<td>Lets you see what a page might look like on a PDA. <a href="#PDAize">Details</a></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){var D=document,e,styles=&quot;table,thead,tbody,tr,th,td{display:block!important;}*{width:auto!important;height:auto!important;position:static!important;float:none!important;margin-left:0!important;margin-right:0!important;} img,iframe,embed,object{display:none;} body {margin:4px!important;}&quot;; e=D.createElement('link'); e.rel='stylesheet'; e.href=window.opera ? &quot;javascript:'&quot;+styles+&quot;'&quot; : &quot;data:text/css,&quot;+styles; D.getElementsByTagName(&quot;head&quot;)[0].appendChild(e)})()"
+>linearize</a></td> 
+<td>Linearizes the text of the page and removes most non-text elements. <a href="#linearize">Details</a></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){var ims=document.images, brokenCount=0, brokenURLs=&quot;&quot;, text, i; for(i=0;i&lt;ims.length;++i) if (! (ims[i].naturalHeight || ims[i].fileSize &gt; 0)) { ++brokenCount; brokenURLs += &quot;URL: &quot; + ims[i].src + &quot;\n&quot;; }; text = brokenCount + &quot; broken image&quot; + (brokenCount==1?&quot;&quot;:&quot;s&quot;); if(brokenCount) alert(text + &quot;:\n\n&quot; + brokenURLs); else alert(&quot;No broken images.&quot;); })()"
+>check images</a></td> 
+<td>Lists the URLs of broken images. <a href="#check_images">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){function toArray (c){var a, k;a=new Array;for (k=0; k &lt; c.length; ++k)a[k]=c[k];return a;}var images, img, altText;images=toArray(document.images);for (var i=0; i &lt; images.length; ++i){img=images[i];altText=document.createTextNode(img.alt);img.parentNode.replaceChild(altText, img)}})();"
+>zap images</a></td> 
+<td>Replaces each image with its <a href="http://ppewww.ph.gla.ac.uk/~flavell/alt/alt-text.html">alternate text</a>. <a href="#zap_images">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){function d(s){return s==null?&quot;missing&quot;:&quot;\&quot;&quot;+s+&quot;\&quot;&quot;}var c=[0,0,0],i,P,a,y,D=document; if(D.createElement(&quot;img&quot;).getAttribute(&quot;alt&quot;)!=null)alert(&quot;Your browser misreports missing alts as empty alts.&quot;);for(i=0;P=D.images[i];++i){a=P.getAttribute(&quot;alt&quot;);y=!!a+(a!=null);++c[y];P.style.border=&quot;2px &quot;+[&quot;dotted red&quot;,&quot;dashed #888&quot;,&quot;solid green&quot;][y];P.title=&quot;Alt: &quot;+d(a)+&quot;, Title: &quot;+d(P.getAttribute(&quot;title&quot;));}top.status=&quot;Image alt texts: &quot;+c[0]+&quot; missing, &quot;+c[1]+&quot; empty, &quot;+c[2]+&quot; present&quot;})()"
+>check alts</a></td> 
+<td>Shows which images have missing and empty alts using borders and tooltips. <a href="#check_alts">Details</a></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){var A={},B=[],D=document,i,e,a,k,y,s,m,u,t,r,j,v,h,q,c,G; G=open().document;G.open();G.close(); function C(t){return G.createElement(t)}function P(p,c){p.appendChild(c)}function T(t){return G.createTextNode(t)}for(i=0;e=D.images[i];++i){a=e.getAttribute(&quot;alt&quot;);k=escape(e.src)+&quot;%&quot;+(a!=null)+a;if(!A[k]){y=!!a+(a!=null);s=C(&quot;span&quot;);s.style.color=[&quot;red&quot;,&quot;gray&quot;,&quot;green&quot;][y];s.style.fontStyle=[&quot;italic&quot;,&quot;italic&quot;,&quot;&quot;][y];P(s,T([&quot;missing&quot;,&quot;empty&quot;,a][y]));m=e.cloneNode(true); if(G.importNode)m=G.importNode(m, true); if(m.width&gt;350)m.width=350;B.push([0,7,T(e.src.split('/').reverse()[0]),m,s]);A[k]=B.length;}u=B[A[k]-1];u[1]=(T(++u[0]));}t=C(&quot;table&quot;);t.border=1;r=t.createTHead().insertRow(-1);for(j=0;v=[&quot;#&quot;,&quot;Filename&quot;,&quot;Image&quot;,&quot;Alternate text&quot;][j];++j){h=C(&quot;th&quot;);P(h,T(v));P(r,h);}for(i=0;q=B[i];++i){r=t.insertRow(-1);for(j=1;v=q[j];++j){c=r.insertCell(-1);P(c,v);}} P(G.body,t);})()"
+>list alts</a></td> 
+<td>Lists images and their alternate text (or "missing" or "empty"). <a href="#list_alts">Details</a></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){var s,d,f,i,x,u; s='&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;&lt;html&gt;&lt;head&gt;&lt;title&gt;&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;div&gt;';function R(w){var i,x; for(i=0;x=w.document.getElementsByTagName(&quot;textarea&quot;)[i];++i){s+=x.value;u=true;} for(i=0;x=w.frames[i];++i)try{R(x)}catch(e){};};R(top); s+=&quot;\n&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;&quot;; if(!u){alert(&quot;No textareas to validate!&quot;); return; } d=open().document; d.write('&lt;body&gt;&lt;form action=http://www.htmlhelp.com/cgi-bin/validate.cgi method=post&gt;'); f=d.forms[0]; for(i=0;x=[&quot;area&quot;,&quot;warnings&quot;,&quot;input&quot;][i];++i) { d.write(&quot;&lt;input type=hidden name=&quot;+x+&quot;&gt;&quot;); f[i].value=[s,&quot;yes&quot;,&quot;yes&quot;][i]; } f.submit(); })()"
+>blogidate html4.01 transitional</a></td> 
+<td>Validates HTML fragments in textareas. <a href="#blogidate_html4.01_transitional">Details</a></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){var s,d,f,i,x,u; s='&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot; &quot;http://www.w3.org/TR/html4/strict.dtd&quot;&gt;&lt;html&gt;&lt;head&gt;&lt;title&gt;&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;div&gt;';function R(w){var i,x; for(i=0;x=w.document.getElementsByTagName(&quot;textarea&quot;)[i];++i){s+=x.value;u=true;} for(i=0;x=w.frames[i];++i)try{R(x)}catch(e){};};R(top); s+=&quot;\n&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;&quot;; if(!u){alert(&quot;No textareas to validate!&quot;); return; } d=open().document; d.write('&lt;body&gt;&lt;form action=http://www.htmlhelp.com/cgi-bin/validate.cgi method=post&gt;'); f=d.forms[0]; for(i=0;x=[&quot;area&quot;,&quot;warnings&quot;,&quot;input&quot;][i];++i) { d.write(&quot;&lt;input type=hidden name=&quot;+x+&quot;&gt;&quot;); f[i].value=[s,&quot;yes&quot;,&quot;yes&quot;][i]; } f.submit(); })()"
+>blogidate html4.01 strict</a></td> 
+<td>Validates HTML fragments in textareas. <a href="#blogidate_html4.01_strict">Details</a></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){var s,d,f,i,x,u; s='&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;&lt;html&gt;&lt;head&gt;&lt;title&gt;&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;div&gt;';function R(w){var i,x; for(i=0;x=w.document.getElementsByTagName(&quot;textarea&quot;)[i];++i){s+=x.value;u=true;} for(i=0;x=w.frames[i];++i)try{R(x)}catch(e){};};R(top); s+=&quot;\n&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;&quot;; if(!u){alert(&quot;No textareas to validate!&quot;); return; } d=open().document; d.write('&lt;body&gt;&lt;form action=http://www.htmlhelp.com/cgi-bin/validate.cgi method=post&gt;'); f=d.forms[0]; for(i=0;x=[&quot;area&quot;,&quot;warnings&quot;,&quot;input&quot;][i];++i) { d.write(&quot;&lt;input type=hidden name=&quot;+x+&quot;&gt;&quot;); f[i].value=[s,&quot;yes&quot;,&quot;yes&quot;][i]; } f.submit(); })()"
+>blogidate xhtml1 transitional</a></td> 
+<td>Validates XHTML fragments in textareas. <a href="#blogidate_xhtml1_transitional">Details</a></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){var s,d,f,i,x,u; s='&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Strict//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt;&lt;html&gt;&lt;head&gt;&lt;title&gt;&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;div&gt;';function R(w){var i,x; for(i=0;x=w.document.getElementsByTagName(&quot;textarea&quot;)[i];++i){s+=x.value;u=true;} for(i=0;x=w.frames[i];++i)try{R(x)}catch(e){};};R(top); s+=&quot;\n&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;&quot;; if(!u){alert(&quot;No textareas to validate!&quot;); return; } d=open().document; d.write('&lt;body&gt;&lt;form action=http://www.htmlhelp.com/cgi-bin/validate.cgi method=post&gt;'); f=d.forms[0]; for(i=0;x=[&quot;area&quot;,&quot;warnings&quot;,&quot;input&quot;][i];++i) { d.write(&quot;&lt;input type=hidden name=&quot;+x+&quot;&gt;&quot;); f[i].value=[s,&quot;yes&quot;,&quot;yes&quot;][i]; } f.submit(); })()"
+>blogidate xhtml1 strict</a></td> 
+<td>Validates XHTML fragments in textareas. <a href="#blogidate_xhtml1_strict">Details</a></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){var u; function recurse(w){var i,x; for(i=0;x=w.document.getElementsByTagName(&quot;textarea&quot;)[i];++i){checkWellFormedness(x, w.document);u=true;} for(i=0;x=w.frames[i];++i)try{recurse(x)}catch(e){}} recurse(top); if(!u){alert(&quot;No textareas to validate!&quot;); } function changeBackground(ta, c) { ta.style.backgroundColor = c; ta.style.color = &quot;#000&quot;; ta.addEventListener(&quot;input&quot;, f, false); function f() { this.removeEventListener(&quot;input&quot;, f, false); this.style.backgroundColor=&quot;#fff&quot;; window.status = &quot;&quot;; } } function checkWellFormedness(ta, doc) { var x,de,error,line,column,lines,cc,i,spot; x=doc.createElement(&quot;iframe&quot;); x.style.display=&quot;none&quot;; x.onload = g; function g() { window.status = window.status;/*Prevent &quot;done&quot; for second textarea from overriding error message for first textarea*/ de = x.contentDocument.documentElement; if(de.tagName == &quot;testroot&quot;) { changeBackground(ta, &quot;#bfb&quot;); } else if (de.tagName == &quot;parsererror&quot;) { changeBackground(ta, &quot;#fdd&quot;); de.normalize(); error = de.childNodes[0].data.split(&quot;\n&quot;); if(/(\d+)[^\d]+(\d+)/(error[2])) { line = parseInt(RegExp.$1); column = parseInt(RegExp.$2); window.status = &quot;Line &quot; + (line-2) + &quot; column &quot; + column + &quot;: &quot; + error[0]; lines = ta.value.split(&quot;\n&quot;); cc = 0; for(i=0; i &lt; (line-3); ++i) cc += lines[i].length + 1; spot = Math.min(cc + (column - 1), ta.value.length - 1); ta.focus(); ta.selectionStart = spot; ta.selectionEnd = spot + 2; } else alert(&quot;No line number information!?&quot;) } else alert(&quot;Unexpected root!? &quot; + de.tagName);}; x.src='data:text/xml;charset=UTF-8,' + encodeURIComponent('&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;\n&lt;testroot&gt;\n' + (ta.value) + '&lt;/testroot&gt;'); doc.body.appendChild(x); } })()"
+>blogidate xml well-formedness</a></td> 
+<td>Quickly checks the well-formedness of XML fragments in textareas. <a href="#blogidate_xml_well-formedness">Details</a></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+</table></div> 
+ 
+<p class=smallitalic>Browsers: <img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16> is <a href="http://www.microsoft.com/windows/ie/default.asp">Internet Explorer for Windows</a>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16> is <a href="http://channels.netscape.com/ns/browsers/default.jsp">Netscape 7</a> or <a href="http://www.mozilla.org/">Mozilla</a>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16> is <a href="http://ftp.netscape.com/pub/communicator/english/">Netscape 4</a>, and <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16> is <a href="http://www.opera.com/">Opera</a>.</p> 
+ 
+ 
+<hr> 
+ 
+<h3>Details</h3> 
+<h4 class=transparent><a name="validate_html" class="bml"
+href="javascript:(function(){ function fixFileUrl(u) { var windows,u; windows = (navigator.platform.indexOf(&quot;Win&quot;) != -1);  /* chop off file:///, unescape each %hh, convert / to \ and | to : */  u = u.substr(windows ? 8 : 7); u = unescape(u); if(windows) { u = u.replace(/\//g,&quot;\\&quot;); u = u.replace(/\|/g,&quot;:&quot;); } return u; } /* bookmarklet body */ var loc,fileloc; loc = document.location.href; if (loc.length &gt; 9 &amp;&amp; loc.substr(0,8)==&quot;file:///&quot;) { fileloc = fixFileUrl(loc); if (prompt(&quot;Copy filename to clipboard, press enter, paste into validator form&quot;, fileloc) != null) { document.location.href = &quot;http://validator.w3.org/file-upload.html&quot; } } else document.location.href = &quot;http://validator.w3.org/check?uri=&quot; + escape(document.location.href); void(0); })();"
+>validate html</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Validates HTML using the <a href="http://www.w3.org/">W3C</a> <a href="http://validator.w3.org/">HTML validator</a>.</p> 
+<p>On Windows and Linux, this bookmarklet even works for local files! (Supporting local HTML files was suggested by Stephan Niemz.)</p> 
+ 
+<h4 class=transparent><a name="quick_validate" class="bml"
+href="javascript:location = 'http://validator.w3.org/check?uri=' + escape(location) + ((document.doctype &amp;&amp; document.doctype.toString()) ? '' : '&amp;doctype=HTML+4.01+Transitional') + '&amp;charset=' + document.characterSet + '&amp;ss=1';"
+>quick validate</a> 
+(<img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>)
+</h4><p class=shortdesc>Validates HTML, avoiding "missing doctype" and "missing charset" errors.</p> 
+<p>When the document does not contain a doctype, validates as HTML 4.01 Transitional. The W3C validator will say that the page is "tentatively valid" if you validate against a doctype not declared on a page, so using this bookmarklet won't cause you to forget to include a doctype.
+ 
+<p>Always uses the character set the browser used to interpret the page. The validator does <i>not</i> warn about character set overrides.</p> 
+ 
+<h4 class=transparent><a name="netcraft" class="bml"
+href="javascript:location = 'http://uptime.netcraft.com/up/graph?site='+escape(location); void 0"
+>netcraft</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Tells you what type of server a site uses and displays an uptime graph.</p> 
+ 
+ 
+<h4 class=transparent><a name="http_headers" class="bml"
+href="javascript:document.location.href = 'http://webtools.mozilla.org/web-sniffer/view.cgi?url=' + escape(document.location.href)"
+>http headers</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Uses <a href="http://webtools.mozilla.org/web-sniffer/">Web Sniffer</a> to display HTTP headers.</p> 
+ 
+ 
+<h4 class=transparent><a name="grayscale" class="bml"
+href="javascript:document.body.style.filter='gray';void(0);"
+>grayscale</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>)
+</h4><p class=shortdesc>Applies a "black and white TV" filter to the page.</p> 
+<p>Converts all colors on the page (including images) to gray scale.  This will give you a rough idea of how your page looks to color-blind visitors.  See the <a href="http://www.w3.org/TR/WAI-WEBCONTENT/#gl-color">Web Content Accessibility Guidelines for color</a> for some common problems and examples of how to provide redundant representations.
+ 
+<p>On a <a href="http://entries.the5k.org/171/visualizer.html">color table</a> you'll notice that yellow is considered slightly brighter than cyan, which is considered slightly brighter than magenta.  I don't know whether this is accurate.
+ 
+<p>(From Steve Kangas's <a href="http://www.508compliant.com/tools.htm">accessibility bookmarklets</a>.)</p> 
+ 
+<h4 class=transparent><a name="PDAize" class="bml"
+href="javascript:var s=document.createElement('link');s.setAttribute('href','http://www.ressukka.net/misc/pdaize.css');s.setAttribute('rel','stylesheet');s.setAttribute('type','text/css'); document.getElementsByTagName('head')[0].appendChild(s);var l=document.getElementsByTagName('img');for(var i=0;il.length;i++){if(l[i].width&gt;176){l[i].height*=176/l[i].width;l[i].width=176}else if(l[i].naturalWidth&gt;176){var e=176/l[i].naturalWidth;l[i].height=l[i].naturalHeight*e;l[i].width=176;}}void(0);"
+>PDAize</a> 
+(<img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>)
+</h4><p class=shortdesc>Lets you see what a page might look like on a PDA.</p> 
+<p>Written by <a href="http://daniel.glazman.free.fr/weblog/archived/2002_10_20_glazblogarc.html#83291371">Daniel Glazman</a>.</p> 
+ 
+<h4 class=transparent><a name="linearize" class="bml"
+href="javascript:(function(){var D=document,e,styles=&quot;table,thead,tbody,tr,th,td{display:block!important;}*{width:auto!important;height:auto!important;position:static!important;float:none!important;margin-left:0!important;margin-right:0!important;} img,iframe,embed,object{display:none;} body {margin:4px!important;}&quot;; e=D.createElement('link'); e.rel='stylesheet'; e.href=window.opera ? &quot;javascript:'&quot;+styles+&quot;'&quot; : &quot;data:text/css,&quot;+styles; D.getElementsByTagName(&quot;head&quot;)[0].appendChild(e)})()"
+>linearize</a> 
+(<img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Linearizes the text of the page and removes most non-text elements.</p> 
+ 
+ 
+<h4 class=transparent><a name="check_images" class="bml"
+href="javascript:(function(){var ims=document.images, brokenCount=0, brokenURLs=&quot;&quot;, text, i; for(i=0;i&lt;ims.length;++i) if (! (ims[i].naturalHeight || ims[i].fileSize &gt; 0)) { ++brokenCount; brokenURLs += &quot;URL: &quot; + ims[i].src + &quot;\n&quot;; }; text = brokenCount + &quot; broken image&quot; + (brokenCount==1?&quot;&quot;:&quot;s&quot;); if(brokenCount) alert(text + &quot;:\n\n&quot; + brokenURLs); else alert(&quot;No broken images.&quot;); })()"
+>check images</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>)
+</h4><p class=shortdesc>Lists the URLs of broken images.</p> 
+<p>Suggested by "Tomyellow" in #mozillazine.</p> 
+ 
+<h4 class=transparent><a name="zap_images" class="bml"
+href="javascript:(function(){function toArray (c){var a, k;a=new Array;for (k=0; k &lt; c.length; ++k)a[k]=c[k];return a;}var images, img, altText;images=toArray(document.images);for (var i=0; i &lt; images.length; ++i){img=images[i];altText=document.createTextNode(img.alt);img.parentNode.replaceChild(altText, img)}})();"
+>zap images</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Replaces each image with its <a href="http://ppewww.ph.gla.ac.uk/~flavell/alt/alt-text.html">alternate text</a>.</p> 
+<p>This lets you quickly see how a page might look with images turned off.  It should also give you rough idea of how a page would look to a blind user or someone using a console (text-only) browser such as <a href="http://links.sourceforge.net/">Links</a>.  For more information about providing text equivalents, see the <a href="http://www.w3.org/TR/WAI-WEBCONTENT/">Web Content Accessibility Guidelines for alternate text</a>.
+ 
+<p>This bookmarklet only replaces &lt;img&gt; tags; it doesn't do anything to image buttons, background images, or image maps.</p> 
+ 
+<h4 class=transparent><a name="check_alts" class="bml"
+href="javascript:(function(){function d(s){return s==null?&quot;missing&quot;:&quot;\&quot;&quot;+s+&quot;\&quot;&quot;}var c=[0,0,0],i,P,a,y,D=document; if(D.createElement(&quot;img&quot;).getAttribute(&quot;alt&quot;)!=null)alert(&quot;Your browser misreports missing alts as empty alts.&quot;);for(i=0;P=D.images[i];++i){a=P.getAttribute(&quot;alt&quot;);y=!!a+(a!=null);++c[y];P.style.border=&quot;2px &quot;+[&quot;dotted red&quot;,&quot;dashed #888&quot;,&quot;solid green&quot;][y];P.title=&quot;Alt: &quot;+d(a)+&quot;, Title: &quot;+d(P.getAttribute(&quot;title&quot;));}top.status=&quot;Image alt texts: &quot;+c[0]+&quot; missing, &quot;+c[1]+&quot; empty, &quot;+c[2]+&quot; present&quot;})()"
+>check alts</a> 
+(<img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>)
+</h4><p class=shortdesc>Shows which images have missing and empty alts using borders and tooltips.</p> 
+<p>Key to borders:</p> 
+<ul> 
+<li>missing: dotted red
+<li>empty: dashed gray
+<li>present: solid green
+</ul> 
+ 
+<p>Also sets image tooltips to show alt text and displays counts of (missing, empty, present) alt texts in the status bar.</p> 
+ 
+<p><a href="http://www.amazon.com">Amazon.com</a> is a good test page.</p> 
+ 
+<h4 class=transparent><a name="list_alts" class="bml"
+href="javascript:(function(){var A={},B=[],D=document,i,e,a,k,y,s,m,u,t,r,j,v,h,q,c,G; G=open().document;G.open();G.close(); function C(t){return G.createElement(t)}function P(p,c){p.appendChild(c)}function T(t){return G.createTextNode(t)}for(i=0;e=D.images[i];++i){a=e.getAttribute(&quot;alt&quot;);k=escape(e.src)+&quot;%&quot;+(a!=null)+a;if(!A[k]){y=!!a+(a!=null);s=C(&quot;span&quot;);s.style.color=[&quot;red&quot;,&quot;gray&quot;,&quot;green&quot;][y];s.style.fontStyle=[&quot;italic&quot;,&quot;italic&quot;,&quot;&quot;][y];P(s,T([&quot;missing&quot;,&quot;empty&quot;,a][y]));m=e.cloneNode(true); if(G.importNode)m=G.importNode(m, true); if(m.width&gt;350)m.width=350;B.push([0,7,T(e.src.split('/').reverse()[0]),m,s]);A[k]=B.length;}u=B[A[k]-1];u[1]=(T(++u[0]));}t=C(&quot;table&quot;);t.border=1;r=t.createTHead().insertRow(-1);for(j=0;v=[&quot;#&quot;,&quot;Filename&quot;,&quot;Image&quot;,&quot;Alternate text&quot;][j];++j){h=C(&quot;th&quot;);P(h,T(v));P(r,h);}for(i=0;q=B[i];++i){r=t.insertRow(-1);for(j=1;v=q[j];++j){c=r.insertCell(-1);P(c,v);}} P(G.body,t);})()"
+>list alts</a> 
+(<img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>)
+</h4><p class=shortdesc>Lists images and their alternate text (or "missing" or "empty").</p> 
+<p>The idea for this bookmarklet came from a similar bookmarklet, "Get ALT Info" from <a href="http://www.scriptygoddess.com/archives/003975.php">scriptygoddess</a>.</p> 
+ 
+<h4 class=transparent><a name="blogidate_html4.01_transitional" class="bml"
+href="javascript:(function(){var s,d,f,i,x,u; s='&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;&lt;html&gt;&lt;head&gt;&lt;title&gt;&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;div&gt;';function R(w){var i,x; for(i=0;x=w.document.getElementsByTagName(&quot;textarea&quot;)[i];++i){s+=x.value;u=true;} for(i=0;x=w.frames[i];++i)try{R(x)}catch(e){};};R(top); s+=&quot;\n&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;&quot;; if(!u){alert(&quot;No textareas to validate!&quot;); return; } d=open().document; d.write('&lt;body&gt;&lt;form action=http://www.htmlhelp.com/cgi-bin/validate.cgi method=post&gt;'); f=d.forms[0]; for(i=0;x=[&quot;area&quot;,&quot;warnings&quot;,&quot;input&quot;][i];++i) { d.write(&quot;&lt;input type=hidden name=&quot;+x+&quot;&gt;&quot;); f[i].value=[s,&quot;yes&quot;,&quot;yes&quot;][i]; } f.submit(); })()"
+>blogidate html4.01 transitional</a> 
+(<img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>)
+</h4><p class=shortdesc>Validates HTML fragments in textareas.</p> 
+ 
+ 
+<h4 class=transparent><a name="blogidate_html4.01_strict" class="bml"
+href="javascript:(function(){var s,d,f,i,x,u; s='&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot; &quot;http://www.w3.org/TR/html4/strict.dtd&quot;&gt;&lt;html&gt;&lt;head&gt;&lt;title&gt;&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;div&gt;';function R(w){var i,x; for(i=0;x=w.document.getElementsByTagName(&quot;textarea&quot;)[i];++i){s+=x.value;u=true;} for(i=0;x=w.frames[i];++i)try{R(x)}catch(e){};};R(top); s+=&quot;\n&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;&quot;; if(!u){alert(&quot;No textareas to validate!&quot;); return; } d=open().document; d.write('&lt;body&gt;&lt;form action=http://www.htmlhelp.com/cgi-bin/validate.cgi method=post&gt;'); f=d.forms[0]; for(i=0;x=[&quot;area&quot;,&quot;warnings&quot;,&quot;input&quot;][i];++i) { d.write(&quot;&lt;input type=hidden name=&quot;+x+&quot;&gt;&quot;); f[i].value=[s,&quot;yes&quot;,&quot;yes&quot;][i]; } f.submit(); })()"
+>blogidate html4.01 strict</a> 
+(<img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>)
+</h4><p class=shortdesc>Validates HTML fragments in textareas.</p> 
+ 
+ 
+<h4 class=transparent><a name="blogidate_xhtml1_transitional" class="bml"
+href="javascript:(function(){var s,d,f,i,x,u; s='&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;&lt;html&gt;&lt;head&gt;&lt;title&gt;&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;div&gt;';function R(w){var i,x; for(i=0;x=w.document.getElementsByTagName(&quot;textarea&quot;)[i];++i){s+=x.value;u=true;} for(i=0;x=w.frames[i];++i)try{R(x)}catch(e){};};R(top); s+=&quot;\n&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;&quot;; if(!u){alert(&quot;No textareas to validate!&quot;); return; } d=open().document; d.write('&lt;body&gt;&lt;form action=http://www.htmlhelp.com/cgi-bin/validate.cgi method=post&gt;'); f=d.forms[0]; for(i=0;x=[&quot;area&quot;,&quot;warnings&quot;,&quot;input&quot;][i];++i) { d.write(&quot;&lt;input type=hidden name=&quot;+x+&quot;&gt;&quot;); f[i].value=[s,&quot;yes&quot;,&quot;yes&quot;][i]; } f.submit(); })()"
+>blogidate xhtml1 transitional</a> 
+(<img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>)
+</h4><p class=shortdesc>Validates XHTML fragments in textareas.</p> 
+ 
+ 
+<h4 class=transparent><a name="blogidate_xhtml1_strict" class="bml"
+href="javascript:(function(){var s,d,f,i,x,u; s='&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Strict//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt;&lt;html&gt;&lt;head&gt;&lt;title&gt;&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;div&gt;';function R(w){var i,x; for(i=0;x=w.document.getElementsByTagName(&quot;textarea&quot;)[i];++i){s+=x.value;u=true;} for(i=0;x=w.frames[i];++i)try{R(x)}catch(e){};};R(top); s+=&quot;\n&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;&quot;; if(!u){alert(&quot;No textareas to validate!&quot;); return; } d=open().document; d.write('&lt;body&gt;&lt;form action=http://www.htmlhelp.com/cgi-bin/validate.cgi method=post&gt;'); f=d.forms[0]; for(i=0;x=[&quot;area&quot;,&quot;warnings&quot;,&quot;input&quot;][i];++i) { d.write(&quot;&lt;input type=hidden name=&quot;+x+&quot;&gt;&quot;); f[i].value=[s,&quot;yes&quot;,&quot;yes&quot;][i]; } f.submit(); })()"
+>blogidate xhtml1 strict</a> 
+(<img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>)
+</h4><p class=shortdesc>Validates XHTML fragments in textareas.</p> 
+ 
+ 
+<h4 class=transparent><a name="blogidate_xml_well-formedness" class="bml"
+href="javascript:(function(){var u; function recurse(w){var i,x; for(i=0;x=w.document.getElementsByTagName(&quot;textarea&quot;)[i];++i){checkWellFormedness(x, w.document);u=true;} for(i=0;x=w.frames[i];++i)try{recurse(x)}catch(e){}} recurse(top); if(!u){alert(&quot;No textareas to validate!&quot;); } function changeBackground(ta, c) { ta.style.backgroundColor = c; ta.style.color = &quot;#000&quot;; ta.addEventListener(&quot;input&quot;, f, false); function f() { this.removeEventListener(&quot;input&quot;, f, false); this.style.backgroundColor=&quot;#fff&quot;; window.status = &quot;&quot;; } } function checkWellFormedness(ta, doc) { var x,de,error,line,column,lines,cc,i,spot; x=doc.createElement(&quot;iframe&quot;); x.style.display=&quot;none&quot;; x.onload = g; function g() { window.status = window.status;/*Prevent &quot;done&quot; for second textarea from overriding error message for first textarea*/ de = x.contentDocument.documentElement; if(de.tagName == &quot;testroot&quot;) { changeBackground(ta, &quot;#bfb&quot;); } else if (de.tagName == &quot;parsererror&quot;) { changeBackground(ta, &quot;#fdd&quot;); de.normalize(); error = de.childNodes[0].data.split(&quot;\n&quot;); if(/(\d+)[^\d]+(\d+)/(error[2])) { line = parseInt(RegExp.$1); column = parseInt(RegExp.$2); window.status = &quot;Line &quot; + (line-2) + &quot; column &quot; + column + &quot;: &quot; + error[0]; lines = ta.value.split(&quot;\n&quot;); cc = 0; for(i=0; i &lt; (line-3); ++i) cc += lines[i].length + 1; spot = Math.min(cc + (column - 1), ta.value.length - 1); ta.focus(); ta.selectionStart = spot; ta.selectionEnd = spot + 2; } else alert(&quot;No line number information!?&quot;) } else alert(&quot;Unexpected root!? &quot; + de.tagName);}; x.src='data:text/xml;charset=UTF-8,' + encodeURIComponent('&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;\n&lt;testroot&gt;\n' + (ta.value) + '&lt;/testroot&gt;'); doc.body.appendChild(x); } })()"
+>blogidate xml well-formedness</a> 
+(<img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>)
+</h4><p class=shortdesc>Quickly checks the well-formedness of XML fragments in textareas.</p> 
+<p>This bookmarklet is faster than the other "blogidate" bookmarklets because it does not open a new window and does not contact any servers.  It only checks for well-formedness, which is necessary but not sufficient for validity.  It works with XHTML (which is a type of XML) but not with HTML (which is not XML).</p> 
+ 
+<hr><p><i><a href="copyright.html">&copy;</a> 2000-2007 <a href="http://www.squarefree.com/">Jesse Ruderman</a> (<a href="mailto:jruderman@gmail.com">jruderman@gmail.com</a>). Feedback is welcome.<br> 
+Last modified November 1, 2006.</i></p> 
+ 
+</body> 
+</html> 

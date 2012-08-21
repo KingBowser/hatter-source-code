@@ -1,0 +1,160 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>interactive xpath tester</title>
+  <style>
+    body {
+      background-color: #eee;
+    }
+    #in {
+      width: 100%;
+      height: 20%;
+    }
+    #expr {
+      width: 100%;
+    }
+    #xpath.error input {
+      color: red;
+    }
+    
+    textarea, input {
+      background-color: #ffd;
+    }
+
+    #data { display:none }
+    tag {
+      display: block;
+      color: blue;
+      margin-left: 1em;
+      font-weight: bold;
+    }
+    tag:before { content: '<' attr(name) '>'; }
+    tag:after { content: '</' attr(name) '>'; }
+
+    tag[marked="true"] {
+      display: block;
+      color: green;
+      margin-left: 1em;
+      font-weight: bold;
+    }
+
+    text {
+      display: block;
+      color: black;
+      margin-left: 1em;
+      font-weight: normal;
+    }
+    text:before { content: "#text : \"" attr(value) "\""}
+  </style>
+
+  <script>
+function decorate() {
+  var expr = document.getElementById('expr').value;
+  var in_txt = document.getElementById('in').value;
+  var d = document.getElementById('data');
+  d.innerHTML = in_txt;
+  try {
+    var nodes = document.evaluate(expr, d, null,
+                                  XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
+                                  null);
+  } catch (e) {
+    // display the error message
+    document.getElementById('xpath').className = 'error';
+    return;
+  }
+  // hide the error message
+  document.getElementById('xpath').className = '';
+  
+  for (var i = 0; i < nodes.snapshotLength; ++i) {
+    var elt = nodes.snapshotItem(i);
+    elt.marked = true;
+  }
+  
+  // output the tree
+  var walker = document.createTreeWalker(d, NodeFilter.SHOW_ALL, 
+     {
+       acceptNode : function(node) {
+         if (node.nodeType == Node.TEXT_NODE &&
+             !(/[^\t\n\r ]/.test(node.nodeValue)))
+           return NodeFilter.FILTER_REJECT;
+         return NodeFilter.FILTER_ACCEPT;
+       }
+     }, true);
+  
+  // generate the output tree
+  var output = document.getElementById('output');
+  output.innerHTML = '';
+  addTree(walker, output);
+}
+
+// This function was taken from 
+// http://www.mozilla.org/docs/dom/samples/treewalkerdemo.xml
+/*
+ * Function that is called recursivly to create the output tree
+ * Note how this function is exactly the same independingly on what
+ * filter we use, the TreeWalker handles the filtering for us
+ */
+function addTree(walker, destNode) {
+  // walk the TreeWalker tree...
+  if(walker.firstChild()) {
+    do {
+      // ...and create an output node for every node we find
+      var curNode = walker.currentNode
+      var newNode;
+      switch (curNode.nodeType) {
+        case Node.ELEMENT_NODE:
+          newNode = document.createElementNS(null, "tag");
+          newNode.setAttribute("name", curNode.nodeName);
+          break;
+
+        default:
+          newNode = document.createElementNS(null, "text");
+          newNode.setAttribute("value", curNode.nodeValue);
+          break;
+      }
+      if (curNode.marked) {
+        newNode.setAttribute('marked', 'true');
+      }
+
+      // insert the output node and recursivly walk the children
+      // of every node
+      destNode.appendChild(newNode);
+      addTree(walker, newNode);
+    } while(walker.nextSibling());
+
+    // don't forget to return the treewalker to it's previous state
+    // before exiting the function
+    walker.parentNode();
+  }
+}
+  </script>
+  </head>
+  <body onload="decorate()">
+
+  <textarea id="in" onkeyup="decorate()"><body>
+  <h1>title</h1>
+</div>
+<div id="menu">
+  <ul>
+    <li>home</li>
+    <li>about</li>
+  </ul>
+</div>
+<div id="sidebar">
+  <ul>
+    <li>one</li>
+    <li>two</li>
+  </ul>
+</div>
+</body>
+</textarea>
+
+  <div id="xpath" style="margin: 8px 0;">
+    <input id="expr" value='//div[@id="menu"]//li' onkeyup="decorate()"/>
+  </div>
+
+  <div>
+    <div id="output" style="border: 1px dashed #000; margin-top: 10px;"></div>
+  </div>
+
+  <div id="data"></div>
+</html>

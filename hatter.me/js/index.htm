@@ -1,0 +1,200 @@
+<html>
+<head>
+<title>Select javascript and related tools ...</title>
+<style type="text/css">
+.buttonCSS
+{
+  width:300px;
+  height:60px;
+  font-size:20px;
+  background:#FFFF99;
+  font-family:'Courier New';
+  cursor:pointer;
+}
+</style>
+</head>
+<body onload="doOnload();">
+<script type="text/javascript" src="/icon/icon.js"></script>
+<script type="text/javascript" src="micro$s.js"></script>
+<script type="text/javascript" src="microcookie.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+  function openUrl(url) {
+    if (openInNewWindow()) {
+      window.open(url, "_blank");
+    } else {
+      window.location = url;
+    }
+  }
+  
+  function openInNewWindow() {
+    return $("openinnewwindow").checked;
+  }
+  
+  function changeOpenInNewCheck() {
+    if ($("openinnewwindow").checked) {
+      setcookie("openinnewwindow", "1");
+    } else {
+      setcookie("openinnewwindow", "0");
+    }
+  }
+  
+  function doOnload() {
+    if (getcookie("openinnewwindow") == "1") {
+      $("openinnewwindow").checked  = true;
+    }
+  }
+  
+  var itemList = [
+    { url: "shell", title: "Javascript Shell v1.4" },
+    { url: "lint2", title: "JavaScript Verifier" },
+    { url: "packer", title: "JavaScript Packer" },
+    { url: "jsbeautifier3", title: "JavaScript Beautifier" },
+    { url: "regex", title: "RegExp evaluator v1.1" },
+    { url: "regexpal", title: "JavaScript Regex Tester v0.1.2" },
+    { url: "xpath", title: "Interactive xpath tester" },
+    { url: "csslint", title: "CSS Lint" },
+    { url: "format_css", title: "Format CSS" },
+    { url: "jsonlint", title: "JSON Lint" },
+    { url: "jsonviewer", title: "JSON Viewer" },
+    { url: "ascii", title: "ASCII chart" },
+    { url: "live-html-editor", title: "Live HTML editor" },
+    { url: "bookmarklets", title: "Bookmarklets" },
+    { url: "prettydiff", title: "Pretty Diff" }
+
+  ];
+  
+  var firFoxPluginList = [
+    {url: "https://addons.mozilla.org/zh-cn/firefox/addon/6647/", title: "HttpFox"},
+    {url: "https://addons.mozilla.org/en-US/firefox/addon/1843/", title: "FireBug"}
+  ];
+//]]>
+</script>
+
+<script type="text/javascript">
+  var COL_COUNT = 3; // count of col
+  var itemListList = [];
+  var lastList = [];
+  for (var i = 0; i < itemList.length; i++) {
+  	lastList.push(itemList[i]);
+  	if (lastList.length == COL_COUNT) {
+  		itemListList.push(lastList);
+  		lastList = [];
+  	}
+  }
+  if (lastList.length > 0) {
+  	for (var j = 0; j < (COL_COUNT - lastList.length); j++) {
+  		lastList.push({url: "", title: ""});
+  	}
+  	itemListList.push(lastList);
+  }
+  
+  var html = "";
+  html += "<table>";
+  for (var i = 0; i < itemListList.length; i++) {
+  	html += "<tr>";
+  	var il = itemListList[i];
+  	for (var j = 0; j < il.length; j++) {
+      var it = il[j]
+      if (it.url == "") {
+      	html += "<td>&nbsp;</td>";
+      } else {
+      	html += "<td>";
+      	html += "<button class=\"buttonCSS\" onclick=\"openUrl('" + it.url + "');\" >";
+      	html += "<b>";
+      	html += it.title;
+      	html += "<b/>";
+      	html += "</button>";
+      	html += "</td>";
+      }
+  	}
+  	html += "</tr>";
+  }
+  	
+  html += "<tr>";
+  for (var i = 0; i < (COL_COUNT - 1); i++) {
+    html += "<td>&nbsp;</td>";
+  }
+  html += "<td align=\"right\">";
+  html += "<br/><input type=\"checkbox\" id=\"openinnewwindow\" value=\"1\" onclick=\"changeOpenInNewCheck()\"/>";
+  html += "<label for=\"openinnewwindow\" style=\"font-family:'Times New Roman';\">Open in new window</label>";
+  html += "</td>";
+  html += "</tr>";
+  
+  html += "</table>";
+</script>
+<center>
+<br/>
+  <font style="font-size:30px;font-family:'Times New Roman';">
+    <i>Select javascript and related tools ...</i>
+  </font>
+<br/><br/>
+<script type="text/javascript">document.write(html);</script>
+<br/>
+
+<table style="width:300px;">
+<tr><th align="left">
+    Other tools
+</th><tr>
+<tr><td>
+<a href="http://htmlhelp.com/tools/csscheck/" target="_blank">
+<b>CSS Check
+</b></a><br/>
+<a href="http://htmlhelp.com/tools/validator/" target="_blank">
+<b>WDG HTML Validator
+</b></a><br/>
+<a href="http://validator.w3.org/" target="_blank">
+<b>Markup Validation Service
+</b></a><br/>
+<a href="http://lab.gracecode.com/format_json/" target="_blank">
+<b>Format JSON</b></a><br/>
+<a href="http://www.qrone.org/cssdesigner.html" target="_blank">
+<b>QrONE CSS Designer</b></a><br/>
+<a href="http://jsbeauty.iyi.cn/" target="_blank">
+<b>Js Beauty</b></a><br/>
+<a href="http://closure-compiler.appspot.com/home" target="_blank">
+<b>Closure Compiler</b></a><br/>
+</td></tr>
+</table>
+<br/>
+
+<table style="width:300px;">
+<tr><th align="left">
+    Insite tools
+</th><tr>
+<tr><td>
+<a href="javascript:var firebug=document.createElement('script');firebug.setAttribute('src','http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed.js');document.body.appendChild(firebug);(function(){if(window.firebug.init){firebug.init();}else{setTimeout(arguments.callee);}})();void(firebug);">
+<b>Firebug lite
+</b></a>  &nbsp;&nbsp;<a href="javascript:var firebug=document.createElement('script');firebug.setAttribute('src','http://aprilsoft.cn/js/firebug-lite/firebug-lite-compressed.js');document.body.appendChild(firebug);(function(){if(window.firebug.init){firebug.init();}else{setTimeout(arguments.callee);}})();void(firebug);">[F]</a><br/>
+<a href="javascript:(function(){document.body.appendChild(document.createElement('script')).src='http://www.billyreisinger.com/jash/source/latest/Jash.js';})();">
+<b>Jash
+</b></a> &nbsp;&nbsp;<a href="javascript:(function(){document.body.appendChild(document.createElement('script')).src='http://aprilsoft.cn/js/jash/Jash.js';})();">[J]</a><br/>
+</td></tr>
+</table>
+<br/>
+<br/>
+
+<!--
+<table style="width:300px;">
+<tr><td>
+<a href="tool/scd10en.7z.rar">
+<b>Microsoft Script Debug</b></a><br/>
+<a href="tool/IEDevToolBarSetup.7z.rar">
+<b>Internet Explorer Developer</b></a><br/>
+</td></tr>
+</table>
+<br/><br/>
+-->
+
+<font style="font-size:16px;color:green;">
+	<b>
+		<i>
+			Hatter Jiang 's
+			<!-- <script type="text/javascript">icon();</script> -->
+			Javascript tools.
+		</i>
+	</b>
+</font>
+</center>
+</body>
+</html>

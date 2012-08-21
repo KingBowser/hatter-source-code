@@ -141,10 +141,6 @@ func HandleDirDomainSetting(w http.ResponseWriter, r *http.Request, dirPath stri
 			return HandleFileDomainSetting(w, r, filePath)
 		}
 	}
-	if !strings.HasSuffix(r.URL.Path, "/") {
-		lib.RedirectURL(w, r.URL.Path + "/")
-		return true;
-	}
 	if *serverListDir {
 		return HandleListDirDomainSetting(w, r, dirPath)
 	}
@@ -174,6 +170,10 @@ func HandleDirFileDomainSetting(w http.ResponseWriter, r *http.Request, setting 
 	if accessFileInfoError != nil {
 		log.Println("OS Stat file/path failed:", accessFileInfoError)
 		return false;
+	}
+	if accessFileInfo.IsDir() && !strings.HasSuffix(r.URL.Path, "/") {
+		lib.RedirectURL(w, r.URL.Path + "/")
+		return true;
 	}
 	if accessFileInfo.IsDir() {
 		return HandleDirDomainSetting(w, r, accessPath)

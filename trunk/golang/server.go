@@ -212,11 +212,12 @@ func HandleRequest(w http.ResponseWriter, r *http.Request) {
 		if handleResult {
 			return
 		}
-	}
-	if *serverUseDefault {
-		handleResult = HandleDirFileDomainSetting(w, r, &defaultDomainSetting)
-		if handleResult {
-			return
+	} else {
+		if *serverUseDefault {
+			handleResult = HandleDirFileDomainSetting(w, r, &defaultDomainSetting)
+			if handleResult {
+				return
+			}
 		}
 	}
 	HandleNotFound(w, r, requestURL)

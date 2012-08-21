@@ -40,6 +40,7 @@ var (
 const (
 	REDIRECT = 0
 	LOCATION = 1
+	PROXY =2
 )
 
 type DomainSettingType int
@@ -56,13 +57,13 @@ var defaultDomainSetting = DomainSetting {
 
 var quickDomainSettingMap = map[string]*DomainSetting {
 	"hatter.me": &DomainSetting {
-		REDIRECT, "http://blog.hatter.me/", "",
+		LOCATION, "", "/root/hatter.me",
 	},
 	"blog.hatter.me": &DomainSetting {
 		REDIRECT, "http://aprilsoft.cn/blog/", "",
 	},
 	"code.hatter.me": &DomainSetting {
-		REDIRECT, "https://code.google.com/p/hatter-source-code/", "",
+		PROXY, "", "http://code.google.com/p/hatter-source-code/wiki/Study_Java_HotSpot_Thread_VMThread",
 	},
 	"mail.hatter.me": &DomainSetting {
 		REDIRECT, "https://www.google.com/a/hatterjiang.com", "",

@@ -160,7 +160,7 @@ func HandleFileDomainSetting(w http.ResponseWriter, r *http.Request, filePath st
 }
 
 func HandleDirFileDomainSetting(w http.ResponseWriter, r *http.Request, setting *DomainSetting) bool {
-	locationPath := *serverPath
+	locationPath := setting.LocationPath
 	if locationPath == "" {
 		locationPath = serverSysPath
 	}

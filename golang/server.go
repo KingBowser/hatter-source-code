@@ -130,7 +130,7 @@ func HandleDirDomainSetting(w http.ResponseWriter, r *http.Request, dirPath stri
 			log.Println("Read file failed:", indexRedirectPathFileBytesError)
 			return false
 		}
-		indexRedirectUrl := string(indexRedirectPathFileBytes)
+		indexRedirectUrl := strings.TrimSpace(string(indexRedirectPathFileBytes))
 		lib.RedirectURL(w, indexRedirectUrl)
 		return true
 	}

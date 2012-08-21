@@ -48,10 +48,16 @@ var defaultDomainSetting = DomainSetting {
 	LOCATION, "", "", // default startup path
 }
 
-var quickDomainSettingMap = map[string]*DomainSetting {
-	"hatter.me": &DomainSetting {
+var hatterMeDomainSetting = DomainSetting {
 		LOCATION, "", "/root/hatter.me",
-	},
+}
+
+var quickDomainSettingMap = map[string]*DomainSetting {
+	"hatter.me": &hatterMeDomainSetting,
+	"aprilsoft.cn": &hatterMeDomainSetting,
+	"www.aprilsoft.cn": &hatterMeDomainSetting,
+	"iwebsky.cn": &hatterMeDomainSetting,
+	"www.iwebsky.cn": &hatterMeDomainSetting,
 	"blog.hatter.me": &DomainSetting {
 		REDIRECT, "http://aprilsoft.cn/blog/", "",
 	},

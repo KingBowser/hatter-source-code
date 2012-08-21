@@ -1,0 +1,334 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<title>Link Bookmarklets</title> 
+<link rel="stylesheet" href="squarefree.css" type="text/css"> 
+</head> 
+ 
+<body> 
+ 
+<div style="text-align: center"> 
+<a href="./">Bookmarklets Home</a> 
+| <a href="pagelinks.html">Links</a> 
+| <a href="forms.html">Forms</a> 
+| <a href="pagedata.html">Text and Data</a> 
+| <a href="zap.html">Zap</a> 
+| <a href="webdevel.html">Web Development</a> 
+| <a href="validation.html">Validation</a> 
+| <a href="misc.html">Misc</a> 
+</div> 
+ 
+<hr> 
+ 
+<script type="text/javascript"> 
+var ua = navigator.userAgent, d, s="";
+if (/Gecko\/200305(\d\d)/.exec(ua))
+{
+  day = parseInt(RegExp.$1, 10)
+  if (16 <= day && day < 22)
+  {
+    s = "<p class='ack'><b>You are using a version of Mozilla in which many bookmarklets do not work.<\/b>  Mozilla builds between May 16 and May 22 (including Mozilla Firebird 0.6, released May 16) suffer from bug 205989 and bug 206026.<br><br><b>Please upgrade<\/b> to one of the following:<br>"
+    s += "<a href='http://ftp.mozilla.org/pub/firebird/nightly/latest-trunk/'>A Mozilla Firebird nightly<\/a> (recommended)<br>";
+    s += "<a href='http://ftp.mozilla.org/pub/mozilla/nightly/latest-trunk/'>A Mozilla nightly<\/a><br>";
+    s += "<a href='http://www.mozilla.org/releases/'>Mozilla 1.4 RC1 or a later release<\/a><\/p>";
+    document.write(s);
+  }
+}
+</script> 
+<h3>Link Bookmarklets</h3> 
+<p>These bookmarklets let you quickly search, open, or list links on whatever page you're viewing.</p> 
+ 
+<p class=smallitalic>(To keep <a href="./">bookmarklets</a> in order to use them on other web pages, drag them to your <a href="personaltoolbar.html">Bookmarks Toolbar</a>.  Or, <a href="importall.html">install them all at once</a>.)</p> 
+ 
+<div class=summarytable><table class=summarytable> 
+ 
+<thead> 
+<tr> 
+<th>Bookmarklet</th> 
+<th>Description</th> 
+<th colspan=4>Works in</th> 
+</tr> 
+</thead> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){var x,n,nD,z,i; function htmlEscape(s){s=s.replace(/&amp;/g,'&amp;amp;');s=s.replace(/&gt;/g,'&amp;gt;');s=s.replace(/&lt;/g,'&amp;lt;');return s;} function attrQuoteEscape(s){s=s.replace(/&amp;/g,'&amp;amp;'); s=s.replace(/&quot;/g, '&amp;quot;');return s;} x=prompt(&quot;show links with this word/phrase in link text or target url (leave blank to list all links):&quot;, &quot;&quot;); n=0; if(x!=null) { x=x.toLowerCase(); nD = window.open().document; nD.writeln('&lt;html&gt;&lt;head&gt;&lt;title&gt;Links containing &quot;'+htmlEscape(x)+'&quot;&lt;/title&gt;&lt;base target=&quot;_blank&quot;&gt;&lt;/head&gt;&lt;body&gt;'); nD.writeln('Links on &lt;a href=&quot;'+attrQuoteEscape(location.href)+'&quot;&gt;'+htmlEscape(location.href)+'&lt;/a&gt;&lt;br&gt; with link text or target url containing &amp;quot;' + htmlEscape(x) + '&amp;quot;&lt;br&gt;&lt;hr&gt;'); z = document.links; for (i = 0; i &lt; z.length; ++i) { if ((z[i].innerHTML &amp;&amp; z[i].innerHTML.toLowerCase().indexOf(x) != -1) || z[i].href.toLowerCase().indexOf(x) != -1 ) { nD.writeln(++n + '. &lt;a href=&quot;' + attrQuoteEscape(z[i].href) + '&quot;&gt;' + (z[i].innerHTML || htmlEscape(z[i].href)) + '&lt;/a&gt;&lt;br&gt;'); } } nD.writeln('&lt;hr&gt;&lt;/body&gt;&lt;/html&gt;'); nD.close(); } })();"
+>search links</a></td> 
+<td>Lists all links on the page containing the specified text. <a href="#search_links">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){function I(u){var t=u.split('.'),e=t[t.length-1].toLowerCase();return {gif:1,jpg:1,jpeg:1,png:1,mng:1}[e]}function hE(s){return s.replace(/&amp;/g,'&amp;amp;').replace(/&gt;/g,'&amp;gt;').replace(/&lt;/g,'&amp;lt;').replace(/&quot;/g,'&amp;quot;');}var q,h,i,z=open().document;z.write('&lt;p&gt;Images linked to by '+hE(location.href)+':&lt;/p&gt;&lt;hr&gt;');for(i=0;q=document.links[i];++i){h=q.href;if(h&amp;&amp;I(h))z.write('&lt;p&gt;'+q.innerHTML+' ('+hE(h)+')&lt;br&gt;&lt;img src=&quot;'+hE(h)+'&quot;&gt;');}z.close();})()"
+>linked images</a></td> 
+<td>Opens a window showing all images linked to from the current page. <a href="#linked_images">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){var dims,dimarray,wid,hei,dimstring,x,i,z,url; function linkIsSafe(u) { if (u.substr(0,7)=='mailto:') return false; if (u.substr(0,11)=='javascript:') return false; return true; } function htmlEscape(s){s=s.replace(/&amp;/g,'&amp;amp;');s=s.replace(/&gt;/g,'&amp;gt;');s=s.replace(/&lt;/g,'&amp;lt;');return s;} dims = prompt('width, height for each frame', '760, 500'); if (dims!=null) { dimarray = dims.split(','); wid = parseInt(dimarray[0]); hei = parseInt(dimarray[1]); dimstring = 'width='+wid+' height='+hei; x = document.links; z = window.open().document; for (i = 0; i &lt; x.length; ++i) { url = x[i].href; if(linkIsSafe(url)) { z.writeln('&lt;p&gt;' + x[i].innerHTML + ' (' + htmlEscape(url) + ')&lt;br&gt;&lt;iframe ' + dimstring + ' src=&quot;' + url.replace(/&quot;/g, '&amp;quot;') + '&quot;&gt;[broken iframe]&lt;/iframe&gt;&lt;/p&gt;'); } } z.close(); } })();"
+>linked pages</a></td> 
+<td>Opens a window showing all pages linked to from the current page. <a href="#linked_pages">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){var newSS, styles=':visited {display: none}'; if(document.createStyleSheet) { document.createStyleSheet(&quot;javascript:'&quot;+styles+&quot;'&quot;); } else { newSS=document.createElement('link'); newSS.rel='stylesheet'; newSS.href='data:text/css,'+escape(styles); document.getElementsByTagName(&quot;head&quot;)[0].appendChild(newSS); } })();"
+>hide visited</a></td> 
+<td>Hides visited links. <a href="#hide_visited">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){var i,x; for (i=0;x=document.links[i];++i)x.style.color=[&quot;blue&quot;,&quot;red&quot;,&quot;orange&quot;][sim(x,location)]; function sim(a,b) { if (a.hostname!=b.hostname) return 0; if (fixPath(a.pathname)!=fixPath(b.pathname) || a.search!=b.search) return 1; return 2; } function fixPath(p){ p = (p.charAt(0)==&quot;/&quot; ? &quot;&quot; : &quot;/&quot;) + p;/*many browsers*/ p=p.split(&quot;?&quot;)[0];/*opera*/ return p; } })()"
+>int/ext links</a></td> 
+<td>Colors internal links red, external links blue, and in-page links orange. <a href="#int/ext_links">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){var n_to_open,dl,dll,i; function linkIsSafe(u) { if (u.substr(0,7)=='mailto:') return false; if (u.substr(0,11)=='javascript:') return false; return true; } n_to_open = 0; dl = document.links; dll = dl.length; for(i = 0; i &lt; dll; ++i) { if (linkIsSafe(dl[i].href)) ++n_to_open; } if (!n_to_open) alert ('no links'); else { if (confirm('Open ' + n_to_open + ' links in new windows?')) for (i = 0; i &lt; dll; ++i) if (linkIsSafe(dl[i].href)) window.open(dl[i].href); } })();"
+>open all links</a></td> 
+<td>Opens each link on the page in a new window. <a href="#open_all_links">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){var n_to_open,dl,dll,i; function linkIsSafe(u) { if (u.substr(0,7)=='mailto:') return false; if (u.substr(0,11)=='javascript:') return false; return true; } n_to_open = 0; dl = document.links; dll = dl.length; if (window.getSelection &amp;&amp; window.getSelection().containsNode) { /* mozilla */ for(i=0; i&lt;dll; ++i) { if (window.getSelection().containsNode(dl[i], true) &amp;&amp; linkIsSafe(dl[i].href)) ++n_to_open; } if (n_to_open &amp;&amp; confirm('Open ' + n_to_open + ' selected links in new windows?')) { for(i=0; i&lt;dll; ++i) if (window.getSelection().containsNode(dl[i], true) &amp;&amp; linkIsSafe(dl[i].href)) window.open(dl[i].href); } } /* /mozilla */ if (!n_to_open) { /*ie, or mozilla with no links selected: this section matches open_all_links, except for the alert text */ for(i = 0; i &lt; dll; ++i) { if (linkIsSafe(dl[i].href)) ++n_to_open; } if (!n_to_open) alert ('no links'); else { if (confirm('No links selected.  Open ' + n_to_open + ' links in new windows?')) for (i = 0; i &lt; dll; ++i) if (linkIsSafe(dl[i].href)) window.open(dl[i].href); } } })();"
+>open selected links</a></td> 
+<td>Opens each link within the selection in a new window. <a href="#open_selected_links">Details</a></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){var x,i; x=document.links; for(i=0;i&lt;x.length;++i) { x[i].target=&quot;_self&quot;; } })();"
+>target this window</a></td> 
+<td>Makes links open in the same window (when you click them). <a href="#target_this_window">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){var x,i; x=document.links; for(i=0;i&lt;x.length;++i) { x[i].target=&quot;_blank&quot;; } })();"
+>target new windows</a></td> 
+<td>Makes links open in new windows. <a href="#target_new_windows">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){function tn(e){e=e?e:window.event; open(this.href); focus(); return false;} var dl=document.links, i; for (i=0;i&lt;dl.length;++i) dl[i].onclick=tn; })();"
+>target new bg windows</a></td> 
+<td>Makes links open in new windows behind the current window. <a href="#target_new_bg_windows">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){var x,i,r=Math.random(); x=document.links; for(i=0;i&lt;x.length;++i) { x[i].target=r; } })();"
+>target one new window</a></td> 
+<td>Makes links open in one new window. <a href="#target_one_new_window">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){var k,x,t,i,j,p; for(k=0;x=document.links[k];k++){t=x.href.replace(/[%]3A/ig,':').replace(/[%]2f/ig,'/');i=t.lastIndexOf('http');if(i&gt;0){ t=t.substring(i); j=t.indexOf('&amp;'); if(j&gt;0)t=t.substring(0,j); p=/https?\:\/\/[^\s]*[^.,;'&quot;&gt;\s\)\]]/.exec(unescape(t)); if(p) x.href=p[0]; } else if (x.onmouseover&amp;&amp;x.onmouseout){x.onmouseover(); if (window.status &amp;&amp; window.status.indexOf('://')!=-1)x.href=window.status; x.onmouseout(); } x.onmouseover=null; x.onmouseout=null; }})();"
+>remove redirects</a></td> 
+<td>Changes redirecting links to go directly to the "real" target. <a href="#remove_redirects">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){var i,c,x,h; for(i=0;x=document.links[i];++i) { h=x.getAttribute(&quot;href&quot;); x.title+=&quot; &quot; + x.innerHTML; while(c=x.firstChild)x.removeChild(c); x.appendChild(document.createTextNode(h)); } })()"
+>hrefs as link text</a></td> 
+<td>Changes the text of links to match their hrefs. <a href="#hrefs_as_link_text">Details</a></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){var i,c,x,h; for(i=0;x=document.links[i];++i) { h=x.href; x.title+=&quot; &quot; + x.innerHTML; while(c=x.firstChild)x.removeChild(c); x.appendChild(document.createTextNode(h)); } })()"
+>full urls as link text</a></td> 
+<td>Changes the text of links to match their absolute urls. <a href="#full_urls_as_link_text">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+</table></div> 
+ 
+<p class=smallitalic>Browsers: <img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16> is <a href="http://www.microsoft.com/windows/ie/default.asp">Internet Explorer for Windows</a>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16> is <a href="http://channels.netscape.com/ns/browsers/default.jsp">Netscape 7</a> or <a href="http://www.mozilla.org/">Mozilla</a>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16> is <a href="http://ftp.netscape.com/pub/communicator/english/">Netscape 4</a>, and <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16> is <a href="http://www.opera.com/">Opera</a>.</p> 
+ 
+ 
+<hr> 
+ 
+<h3>Details</h3> 
+<h4 class=transparent><a name="search_links" class="bml"
+href="javascript:(function(){var x,n,nD,z,i; function htmlEscape(s){s=s.replace(/&amp;/g,'&amp;amp;');s=s.replace(/&gt;/g,'&amp;gt;');s=s.replace(/&lt;/g,'&amp;lt;');return s;} function attrQuoteEscape(s){s=s.replace(/&amp;/g,'&amp;amp;'); s=s.replace(/&quot;/g, '&amp;quot;');return s;} x=prompt(&quot;show links with this word/phrase in link text or target url (leave blank to list all links):&quot;, &quot;&quot;); n=0; if(x!=null) { x=x.toLowerCase(); nD = window.open().document; nD.writeln('&lt;html&gt;&lt;head&gt;&lt;title&gt;Links containing &quot;'+htmlEscape(x)+'&quot;&lt;/title&gt;&lt;base target=&quot;_blank&quot;&gt;&lt;/head&gt;&lt;body&gt;'); nD.writeln('Links on &lt;a href=&quot;'+attrQuoteEscape(location.href)+'&quot;&gt;'+htmlEscape(location.href)+'&lt;/a&gt;&lt;br&gt; with link text or target url containing &amp;quot;' + htmlEscape(x) + '&amp;quot;&lt;br&gt;&lt;hr&gt;'); z = document.links; for (i = 0; i &lt; z.length; ++i) { if ((z[i].innerHTML &amp;&amp; z[i].innerHTML.toLowerCase().indexOf(x) != -1) || z[i].href.toLowerCase().indexOf(x) != -1 ) { nD.writeln(++n + '. &lt;a href=&quot;' + attrQuoteEscape(z[i].href) + '&quot;&gt;' + (z[i].innerHTML || htmlEscape(z[i].href)) + '&lt;/a&gt;&lt;br&gt;'); } } nD.writeln('&lt;hr&gt;&lt;/body&gt;&lt;/html&gt;'); nD.close(); } })();"
+>search links</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Lists all links on the page containing the specified text.</p> 
+<p>Prompts for a string (word or phrase), and then lists links on the page that contain that string in a new window. The string may appear in the link's target url or in its anchor text. If you leave the prompt blank, all links on the page will be listed.
+ 
+<p><b>Opera/NS4:</b> the text of the link won't be shown or searched (only the URL will be).</p> 
+ 
+<h4 class=transparent><a name="linked_images" class="bml"
+href="javascript:(function(){function I(u){var t=u.split('.'),e=t[t.length-1].toLowerCase();return {gif:1,jpg:1,jpeg:1,png:1,mng:1}[e]}function hE(s){return s.replace(/&amp;/g,'&amp;amp;').replace(/&gt;/g,'&amp;gt;').replace(/&lt;/g,'&amp;lt;').replace(/&quot;/g,'&amp;quot;');}var q,h,i,z=open().document;z.write('&lt;p&gt;Images linked to by '+hE(location.href)+':&lt;/p&gt;&lt;hr&gt;');for(i=0;q=document.links[i];++i){h=q.href;if(h&amp;&amp;I(h))z.write('&lt;p&gt;'+q.innerHTML+' ('+hE(h)+')&lt;br&gt;&lt;img src=&quot;'+hE(h)+'&quot;&gt;');}z.close();})()"
+>linked images</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Opens a window showing all images linked to from the current page.</p> 
+<p>Use this on a page or directory listing where many of the links are links to images, such as <a href="http://dmoz.org/images/moz/">http://dmoz.org/images/moz/</a>.
+ 
+<p><b>Opera 6 bug:</b> to load the images after running the bookmarklet, press G three times.  (Bug <a href="https://bugs.opera.com/show_bug.cgi?id=46513">46513</a>)</p> 
+ 
+<h4 class=transparent><a name="linked_pages" class="bml"
+href="javascript:(function(){var dims,dimarray,wid,hei,dimstring,x,i,z,url; function linkIsSafe(u) { if (u.substr(0,7)=='mailto:') return false; if (u.substr(0,11)=='javascript:') return false; return true; } function htmlEscape(s){s=s.replace(/&amp;/g,'&amp;amp;');s=s.replace(/&gt;/g,'&amp;gt;');s=s.replace(/&lt;/g,'&amp;lt;');return s;} dims = prompt('width, height for each frame', '760, 500'); if (dims!=null) { dimarray = dims.split(','); wid = parseInt(dimarray[0]); hei = parseInt(dimarray[1]); dimstring = 'width='+wid+' height='+hei; x = document.links; z = window.open().document; for (i = 0; i &lt; x.length; ++i) { url = x[i].href; if(linkIsSafe(url)) { z.writeln('&lt;p&gt;' + x[i].innerHTML + ' (' + htmlEscape(url) + ')&lt;br&gt;&lt;iframe ' + dimstring + ' src=&quot;' + url.replace(/&quot;/g, '&amp;quot;') + '&quot;&gt;[broken iframe]&lt;/iframe&gt;&lt;/p&gt;'); } } z.close(); } })();"
+>linked pages</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Opens a window showing all pages linked to from the current page.</p> 
+<p>An example of where this is useful is the <a href="http://www.monkey.org/~dirt/tinysepuku/">Tiny Sepuku</a> page.</p> 
+ 
+<h4 class=transparent><a name="hide_visited" class="bml"
+href="javascript:(function(){var newSS, styles=':visited {display: none}'; if(document.createStyleSheet) { document.createStyleSheet(&quot;javascript:'&quot;+styles+&quot;'&quot;); } else { newSS=document.createElement('link'); newSS.rel='stylesheet'; newSS.href='data:text/css,'+escape(styles); document.getElementsByTagName(&quot;head&quot;)[0].appendChild(newSS); } })();"
+>hide visited</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>)
+</h4><p class=shortdesc>Hides visited links.</p> 
+<p>Especially useful on pages with lots of image links, because it's often hard to tell whether an image link is visited.
+ 
+<p>Note that some people, including me, consider it a <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=147777">privacy hole</a> that sites are able to determine whether a link is visited.  This bookmarklet will probably stop working when that bug is fixed, and will have to be converted into a browser extension.</p> 
+ 
+<h4 class=transparent><a name="int/ext_links" class="bml"
+href="javascript:(function(){var i,x; for (i=0;x=document.links[i];++i)x.style.color=[&quot;blue&quot;,&quot;red&quot;,&quot;orange&quot;][sim(x,location)]; function sim(a,b) { if (a.hostname!=b.hostname) return 0; if (fixPath(a.pathname)!=fixPath(b.pathname) || a.search!=b.search) return 1; return 2; } function fixPath(p){ p = (p.charAt(0)==&quot;/&quot; ? &quot;&quot; : &quot;/&quot;) + p;/*many browsers*/ p=p.split(&quot;?&quot;)[0];/*opera*/ return p; } })()"
+>int/ext links</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Colors internal links red, external links blue, and in-page links orange.</p> 
+<p>Based on a simpler bookmarklet by <a href="http://bookmarklets.com/tools/new00.html">Steve Kangas</a>.</p> 
+ 
+<h4 class=transparent><a name="open_all_links" class="bml"
+href="javascript:(function(){var n_to_open,dl,dll,i; function linkIsSafe(u) { if (u.substr(0,7)=='mailto:') return false; if (u.substr(0,11)=='javascript:') return false; return true; } n_to_open = 0; dl = document.links; dll = dl.length; for(i = 0; i &lt; dll; ++i) { if (linkIsSafe(dl[i].href)) ++n_to_open; } if (!n_to_open) alert ('no links'); else { if (confirm('Open ' + n_to_open + ' links in new windows?')) for (i = 0; i &lt; dll; ++i) if (linkIsSafe(dl[i].href)) window.open(dl[i].href); } })();"
+>open all links</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Opens each link on the page in a new window.</p> 
+<p>(Inspired by Matthew Tuck's suggestion on <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=9274">Mozilla bug 9274</a>.)</p> 
+ 
+<!-- note: this bookmarklet shares a lot of code with open_selected_links --> 
+ 
+<h4 class=transparent><a name="open_selected_links" class="bml"
+href="javascript:(function(){var n_to_open,dl,dll,i; function linkIsSafe(u) { if (u.substr(0,7)=='mailto:') return false; if (u.substr(0,11)=='javascript:') return false; return true; } n_to_open = 0; dl = document.links; dll = dl.length; if (window.getSelection &amp;&amp; window.getSelection().containsNode) { /* mozilla */ for(i=0; i&lt;dll; ++i) { if (window.getSelection().containsNode(dl[i], true) &amp;&amp; linkIsSafe(dl[i].href)) ++n_to_open; } if (n_to_open &amp;&amp; confirm('Open ' + n_to_open + ' selected links in new windows?')) { for(i=0; i&lt;dll; ++i) if (window.getSelection().containsNode(dl[i], true) &amp;&amp; linkIsSafe(dl[i].href)) window.open(dl[i].href); } } /* /mozilla */ if (!n_to_open) { /*ie, or mozilla with no links selected: this section matches open_all_links, except for the alert text */ for(i = 0; i &lt; dll; ++i) { if (linkIsSafe(dl[i].href)) ++n_to_open; } if (!n_to_open) alert ('no links'); else { if (confirm('No links selected.  Open ' + n_to_open + ' links in new windows?')) for (i = 0; i &lt; dll; ++i) if (linkIsSafe(dl[i].href)) window.open(dl[i].href); } } })();"
+>open selected links</a> 
+(<img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>)
+</h4><p class=shortdesc>Opens each link within the selection in a new window.</p> 
+<p>If you don't select anything or if you're not using Mozilla, all links on the page will be opened instead of just the selected links.
+ 
+<p>(Inspired by Matthew Tuck's suggestion on <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=9274">Mozilla bug 9274</a>.)</p> 
+ 
+<h4 class=transparent><a name="target_this_window" class="bml"
+href="javascript:(function(){var x,i; x=document.links; for(i=0;i&lt;x.length;++i) { x[i].target=&quot;_self&quot;; } })();"
+>target this window</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Makes links open in the same window (when you click them).</p> 
+ 
+ 
+<h4 class=transparent><a name="target_new_windows" class="bml"
+href="javascript:(function(){var x,i; x=document.links; for(i=0;i&lt;x.length;++i) { x[i].target=&quot;_blank&quot;; } })();"
+>target new windows</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Makes links open in new windows.</p> 
+ 
+ 
+<h4 class=transparent><a name="target_new_bg_windows" class="bml"
+href="javascript:(function(){function tn(e){e=e?e:window.event; open(this.href); focus(); return false;} var dl=document.links, i; for (i=0;i&lt;dl.length;++i) dl[i].onclick=tn; })();"
+>target new bg windows</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Makes links open in new windows behind the current window.</p> 
+<p>Thanks to George Brunetti for the idea for this bookmarklet.</p> 
+ 
+<h4 class=transparent><a name="target_one_new_window" class="bml"
+href="javascript:(function(){var x,i,r=Math.random(); x=document.links; for(i=0;i&lt;x.length;++i) { x[i].target=r; } })();"
+>target one new window</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Makes links open in one new window.</p> 
+ 
+ 
+<h4 class=transparent><a name="remove_redirects" class="bml"
+href="javascript:(function(){var k,x,t,i,j,p; for(k=0;x=document.links[k];k++){t=x.href.replace(/[%]3A/ig,':').replace(/[%]2f/ig,'/');i=t.lastIndexOf('http');if(i&gt;0){ t=t.substring(i); j=t.indexOf('&amp;'); if(j&gt;0)t=t.substring(0,j); p=/https?\:\/\/[^\s]*[^.,;'&quot;&gt;\s\)\]]/.exec(unescape(t)); if(p) x.href=p[0]; } else if (x.onmouseover&amp;&amp;x.onmouseout){x.onmouseover(); if (window.status &amp;&amp; window.status.indexOf('://')!=-1)x.href=window.status; x.onmouseout(); } x.onmouseover=null; x.onmouseout=null; }})();"
+>remove redirects</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Changes redirecting links to go directly to the "real" target.</p> 
+<p>This bookmarklet uses two methods to determine the "real" target of a link.</p> 
+<ul> 
+<li>If the link URL contains another URL, as in <a href="http://example.com/redir.cgi?to=http://example.net/">http://example.com/redir.cgi?to=http://example.net/</a>, the link becomes a link to http://example.net/.</li> 
+<li>If the link has a mouseover effect, and the mouseover effect puts something in the status bar that looks like a full URL, the link gets that URL.</li> 
+</ul> 
+ 
+<p>Based on a submission by Michael Roller and a suggestion from Guido Tonini.</p> 
+ 
+<h4 class=transparent><a name="hrefs_as_link_text" class="bml"
+href="javascript:(function(){var i,c,x,h; for(i=0;x=document.links[i];++i) { h=x.getAttribute(&quot;href&quot;); x.title+=&quot; &quot; + x.innerHTML; while(c=x.firstChild)x.removeChild(c); x.appendChild(document.createTextNode(h)); } })()"
+>hrefs as link text</a> 
+(<img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>)
+</h4><p class=shortdesc>Changes the text of links to match their hrefs.</p> 
+ 
+ 
+<h4 class=transparent><a name="full_urls_as_link_text" class="bml"
+href="javascript:(function(){var i,c,x,h; for(i=0;x=document.links[i];++i) { h=x.href; x.title+=&quot; &quot; + x.innerHTML; while(c=x.firstChild)x.removeChild(c); x.appendChild(document.createTextNode(h)); } })()"
+>full urls as link text</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Changes the text of links to match their absolute urls.</p> 
+ 
+ 
+<hr><p><i><a href="copyright.html">&copy;</a> 2000-2007 <a href="http://www.squarefree.com/">Jesse Ruderman</a> (<a href="mailto:jruderman@gmail.com">jruderman@gmail.com</a>). Feedback is welcome.<br> 
+Last modified October 9, 2004.</i></p> 
+ 
+</body> 
+</html> 

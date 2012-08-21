@@ -1,0 +1,198 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<title>Flash Bookmarklets</title> 
+<link rel="stylesheet" href="squarefree.css" type="text/css"> 
+</head> 
+ 
+<body> 
+ 
+<div style="text-align: center"> 
+<a href="./">Bookmarklets Home</a> 
+| <a href="pagelinks.html">Links</a> 
+| <a href="forms.html">Forms</a> 
+| <a href="pagedata.html">Text and Data</a> 
+| <a href="zap.html">Zap</a> 
+| <a href="webdevel.html">Web Development</a> 
+| <a href="validation.html">Validation</a> 
+| <a href="misc.html">Misc</a> 
+</div> 
+ 
+<hr> 
+ 
+<script type="text/javascript"> 
+var ua = navigator.userAgent, d, s="";
+if (/Gecko\/200305(\d\d)/.exec(ua))
+{
+  day = parseInt(RegExp.$1, 10)
+  if (16 <= day && day < 22)
+  {
+    s = "<p class='ack'><b>You are using a version of Mozilla in which many bookmarklets do not work.<\/b>  Mozilla builds between May 16 and May 22 (including Mozilla Firebird 0.6, released May 16) suffer from bug 205989 and bug 206026.<br><br><b>Please upgrade<\/b> to one of the following:<br>"
+    s += "<a href='http://ftp.mozilla.org/pub/firebird/nightly/latest-trunk/'>A Mozilla Firebird nightly<\/a> (recommended)<br>";
+    s += "<a href='http://ftp.mozilla.org/pub/mozilla/nightly/latest-trunk/'>A Mozilla nightly<\/a><br>";
+    s += "<a href='http://www.mozilla.org/releases/'>Mozilla 1.4 RC1 or a later release<\/a><\/p>";
+    document.write(s);
+  }
+}
+</script> 
+<h3>Flash Bookmarklets</h3> 
+<p>These bookmarklets let you control cartoons and other movies made with <a href="http://www.macromedia.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash&P5_Language=English">Macromedia Flash</a>.  They require Scriptable Flash.  On Linux, you need Flash Player 7.0r25 or higher.  On Windows, you may have to reinstall Flash for them to work.</p> 
+ 
+<!-- Mac: <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=203861">203861</a>). --> 
+ 
+<p>Test them at <a href="http://homestarrunner.com/whereis.html">Where is the Cheat?</a> or <a href="http://www.mit.edu/~mikeho/media/endofworld.swf">The End of the World</a>.</p> 
+ 
+<p class=smallitalic>(To keep <a href="./">bookmarklets</a> in order to use them on other web pages, drag them to your <a href="personaltoolbar.html">Bookmarks Toolbar</a>.  Or, <a href="importall.html">install them all at once</a>.)</p> 
+ 
+<div class=summarytable><table class=summarytable> 
+ 
+<thead> 
+<tr> 
+<th>Bookmarklet</th> 
+<th>Description</th> 
+<th colspan=4>Works in</th> 
+</tr> 
+</thead> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){setTimeout(initFlashControls,100);function initFlashControls(){var count=0;function tt(elem){if(typeof elem.TotalFrames!=&quot;undefined&quot;){addFlashControls(elem);++count;}}var i,x;for(i=0;x=document.getElementsByTagName(&quot;object&quot;)[i];++i)tt(x);for(i=0;x=document.getElementsByTagName(&quot;embed&quot;)[i];++i)tt(x);if(!count)alert(&quot;No scriptable flash on this page.&quot;);}function addFlashControls(flash){var controlsDiv=document.createElement(&quot;div&quot;);var where=flash;while(where.parentNode.tagName.toLowerCase()==&quot;object&quot;)where=where.parentNode;where.parentNode.insertBefore(controlsDiv,where.nextSibling);var table=document.createElement(&quot;table&quot;);controlsDiv.appendChild(table);var row=table.insertRow(-1);var pauseButton=document.createElement(&quot;button&quot;);pauseButton.appendChild(document.createTextNode(&quot;Pause&quot;));var buttonCell=row.insertCell(-1);buttonCell.appendChild(pauseButton);var slider=row.insertCell(-1);slider.width=&quot;100%&quot;;var visibleSlider=document.createElement(&quot;div&quot;);visibleSlider.style.position=&quot;relative&quot;;visibleSlider.style.height=&quot;10px&quot;;visibleSlider.style.width=&quot;100%&quot;;visibleSlider.style.MozBorderRadius=&quot;4px&quot;;visibleSlider.style.background=&quot;#aaa&quot;;slider.appendChild(visibleSlider);var thumb=document.createElement(&quot;div&quot;);thumb.style.position=&quot;absolute&quot;;thumb.style.height=&quot;20px&quot;;thumb.style.width=&quot;10px&quot;;thumb.style.top=&quot;-5px&quot;;thumb.style.MozBorderRadius=&quot;4px&quot;;thumb.style.background=&quot;#666&quot;;visibleSlider.appendChild(thumb);var sliderWidth;var paused=false;var dragging=false;table.width=Math.max(parseInt(flash.width)||0,400);addEvent(pauseButton,&quot;click&quot;,pauseUnpause);addEvent(slider,&quot;mousedown&quot;,drag);addEvent(slider,&quot;drag&quot;,function(){return false;});window.setInterval(update,30);function pauseUnpause(){paused=!paused;pauseButton.style.borderStyle=paused?&quot;inset&quot;:&quot;&quot;;if(paused)flash.StopPlay();else flash.Play();}function update(){sliderWidth=parseInt(getWidth(slider)-getWidth(thumb));if(!paused&amp;&amp;!dragging)thumb.style.left=parseInt(flash.CurrentFrame()/totalFrames()*sliderWidth)+&quot;px&quot;;}function dragMousemove(e){var pageX=e.clientX+document.body.scrollLeft;var pos=bounds(0,pageX-getX(slider)-5,sliderWidth);var frame=bounds(1,Math.ceil(totalFrames()*pos/sliderWidth),totalFrames()-2);thumb.style.left=pos+&quot;px&quot;;flash.GotoFrame(frame);}function release(e){removeEvent(document,&quot;mousemove&quot;,dragMousemove);removeEvent(document,&quot;mouseup&quot;,release);if(!paused)flash.Play();dragging=false;}function drag(e){addEvent(document,&quot;mousemove&quot;,dragMousemove);addEvent(document,&quot;mouseup&quot;,release);dragging=true;dragMousemove(e);}function bounds(min,val,max){return Math.min(Math.max(min,val),max);}function totalFrames(){if(typeof flash.TotalFrames==&quot;number&quot;)return flash.TotalFrames;else if(typeof flash.TotalFrames==&quot;function&quot;)return flash.TotalFrames();else return 1;}function getWidth(elem){if(document.defaultView&amp;&amp;document.defaultView.getComputedStyle)return parseFloat(document.defaultView.getComputedStyle(elem,null).getPropertyValue(&quot;width&quot;));else return parseFloat(elem.offsetWidth);}function getX(elem){if(!elem)return 0;return(elem.offsetLeft)+getX(elem.offsetParent);}function addEvent(elem,eventName,fun){if(elem.addEventListener)elem.addEventListener(eventName,fun,false);else elem.attachEvent(&quot;on&quot;+eventName,fun);}function removeEvent(elem,eventName,fun){if(elem.addEventListener)elem.removeEventListener(eventName,fun,false);else elem.detachEvent(&quot;on&quot;+eventName,fun);}}})()"
+>seek bar</a></td> 
+<td>Creates a pause button and a seek bar under Flash movies. <a href="#seek_bar">Details</a></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){ var s = document.createElement(&quot;script&quot;); s.src = &quot;http://www.squarefree.com/bookmarklets/flashSeekBar.js&quot;; s.type=&quot;text/javascript&quot;; document.body.appendChild(s); })()"
+>seek bar for IE</a></td> 
+<td>Creates a pause button and a seek bar under Flash movies. <a href="#seek_bar_for_IE">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:for(i=0; o=document.getElementsByTagName(&quot;object&quot;)[i]; ++i) try{F(o)}catch(e){}; for(i=0; o=document.getElementsByTagName(&quot;embed&quot;)[i]; ++i) try{F(o)}catch(e){}; function F(o){ if(o.timer){clearInterval(o.timer); o.timer=0; } if (o.IsPlaying()) o.StopPlay(); else o.Play(); }"
+>pause</a></td> 
+<td>Pauses and unpauses Flash movies. <a href="#pause">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:for(i=0; o=document.getElementsByTagName(&quot;object&quot;)[i]; ++i) try{F(o)}catch(e){}; for(i=0; o=document.getElementsByTagName(&quot;embed&quot;)[i]; ++i) try{F(o)}catch(e){}; function F(o){ if(o.timer){clearInterval(o.timer); o.timer=0; o.Play(); } else { o.StopPlay(); o.timer=setInterval(function(){var targ=o.CurrentFrame() - 8; if (targ&gt;0) o.GotoFrame(o.CurrentFrame() - 8); else { o.GotoFrame(0); clearInterval(o.timer); timer=0; o.Play(); } }, 30); } }"
+>rewind</a></td> 
+<td>Rewinds Flash movies. <a href="#rewind">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:for(i=0; o=document.getElementsByTagName(&quot;object&quot;)[i]; ++i) try{F(o)}catch(e){}; for(i=0; o=document.getElementsByTagName(&quot;embed&quot;)[i]; ++i) try{F(o)}catch(e){}; function F(o){ if(o.timer){clearInterval(o.timer); o.timer=0; o.Play(); } else { o.StopPlay(); o.timer=setInterval(function(){o.GotoFrame(o.CurrentFrame() + 8); }, 30); } }"
+>fast-forward</a></td> 
+<td>Fast-forwards Flash movies. <a href="#fast-forward">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:for(i=0; o=document.getElementsByTagName(&quot;object&quot;)[i]; ++i) try{F(o)}catch(e){}; for(i=0; o=document.getElementsByTagName(&quot;embed&quot;)[i]; ++i) try{F(o)}catch(e){}; function F(o){  o.GotoFrame(o.CurrentFrame() - 150); if(o.timer){clearInterval(o.timer); o.timer=0; } o.Play(); }"
+>rewind 5s</a></td> 
+<td>Rewinds 5 seconds in a Flash movie. <a href="#rewind_5s">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:for(i=0; o=document.getElementsByTagName(&quot;object&quot;)[i]; ++i) try{F(o)}catch(e){}; for(i=0; o=document.getElementsByTagName(&quot;embed&quot;)[i]; ++i) try{F(o)}catch(e){}; function F(o){ o.GotoFrame(o.CurrentFrame() + 150); if(o.timer){clearInterval(o.timer); o.timer=0; } o.Play(); }"
+>forward 5s</a></td> 
+<td>Skips forward 5 seconds in a Flash movie. <a href="#forward_5s">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+</table></div> 
+ 
+<p class=smallitalic>Browsers: <img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16> is <a href="http://www.microsoft.com/windows/ie/default.asp">Internet Explorer for Windows</a>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16> is <a href="http://channels.netscape.com/ns/browsers/default.jsp">Netscape 7</a> or <a href="http://www.mozilla.org/">Mozilla</a>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16> is <a href="http://ftp.netscape.com/pub/communicator/english/">Netscape 4</a>, and <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16> is <a href="http://www.opera.com/">Opera</a>.</p> 
+ 
+ 
+<hr> 
+ 
+<h3>Details</h3> 
+<h4 class=transparent><a name="seek_bar" class="bml"
+href="javascript:(function(){setTimeout(initFlashControls,100);function initFlashControls(){var count=0;function tt(elem){if(typeof elem.TotalFrames!=&quot;undefined&quot;){addFlashControls(elem);++count;}}var i,x;for(i=0;x=document.getElementsByTagName(&quot;object&quot;)[i];++i)tt(x);for(i=0;x=document.getElementsByTagName(&quot;embed&quot;)[i];++i)tt(x);if(!count)alert(&quot;No scriptable flash on this page.&quot;);}function addFlashControls(flash){var controlsDiv=document.createElement(&quot;div&quot;);var where=flash;while(where.parentNode.tagName.toLowerCase()==&quot;object&quot;)where=where.parentNode;where.parentNode.insertBefore(controlsDiv,where.nextSibling);var table=document.createElement(&quot;table&quot;);controlsDiv.appendChild(table);var row=table.insertRow(-1);var pauseButton=document.createElement(&quot;button&quot;);pauseButton.appendChild(document.createTextNode(&quot;Pause&quot;));var buttonCell=row.insertCell(-1);buttonCell.appendChild(pauseButton);var slider=row.insertCell(-1);slider.width=&quot;100%&quot;;var visibleSlider=document.createElement(&quot;div&quot;);visibleSlider.style.position=&quot;relative&quot;;visibleSlider.style.height=&quot;10px&quot;;visibleSlider.style.width=&quot;100%&quot;;visibleSlider.style.MozBorderRadius=&quot;4px&quot;;visibleSlider.style.background=&quot;#aaa&quot;;slider.appendChild(visibleSlider);var thumb=document.createElement(&quot;div&quot;);thumb.style.position=&quot;absolute&quot;;thumb.style.height=&quot;20px&quot;;thumb.style.width=&quot;10px&quot;;thumb.style.top=&quot;-5px&quot;;thumb.style.MozBorderRadius=&quot;4px&quot;;thumb.style.background=&quot;#666&quot;;visibleSlider.appendChild(thumb);var sliderWidth;var paused=false;var dragging=false;table.width=Math.max(parseInt(flash.width)||0,400);addEvent(pauseButton,&quot;click&quot;,pauseUnpause);addEvent(slider,&quot;mousedown&quot;,drag);addEvent(slider,&quot;drag&quot;,function(){return false;});window.setInterval(update,30);function pauseUnpause(){paused=!paused;pauseButton.style.borderStyle=paused?&quot;inset&quot;:&quot;&quot;;if(paused)flash.StopPlay();else flash.Play();}function update(){sliderWidth=parseInt(getWidth(slider)-getWidth(thumb));if(!paused&amp;&amp;!dragging)thumb.style.left=parseInt(flash.CurrentFrame()/totalFrames()*sliderWidth)+&quot;px&quot;;}function dragMousemove(e){var pageX=e.clientX+document.body.scrollLeft;var pos=bounds(0,pageX-getX(slider)-5,sliderWidth);var frame=bounds(1,Math.ceil(totalFrames()*pos/sliderWidth),totalFrames()-2);thumb.style.left=pos+&quot;px&quot;;flash.GotoFrame(frame);}function release(e){removeEvent(document,&quot;mousemove&quot;,dragMousemove);removeEvent(document,&quot;mouseup&quot;,release);if(!paused)flash.Play();dragging=false;}function drag(e){addEvent(document,&quot;mousemove&quot;,dragMousemove);addEvent(document,&quot;mouseup&quot;,release);dragging=true;dragMousemove(e);}function bounds(min,val,max){return Math.min(Math.max(min,val),max);}function totalFrames(){if(typeof flash.TotalFrames==&quot;number&quot;)return flash.TotalFrames;else if(typeof flash.TotalFrames==&quot;function&quot;)return flash.TotalFrames();else return 1;}function getWidth(elem){if(document.defaultView&amp;&amp;document.defaultView.getComputedStyle)return parseFloat(document.defaultView.getComputedStyle(elem,null).getPropertyValue(&quot;width&quot;));else return parseFloat(elem.offsetWidth);}function getX(elem){if(!elem)return 0;return(elem.offsetLeft)+getX(elem.offsetParent);}function addEvent(elem,eventName,fun){if(elem.addEventListener)elem.addEventListener(eventName,fun,false);else elem.attachEvent(&quot;on&quot;+eventName,fun);}function removeEvent(elem,eventName,fun){if(elem.addEventListener)elem.removeEventListener(eventName,fun,false);else elem.detachEvent(&quot;on&quot;+eventName,fun);}}})()"
+>seek bar</a> 
+(<img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>)
+</h4><p class=shortdesc>Creates a pause button and a seek bar under Flash movies.</p> 
+ 
+ 
+<h4 class=transparent><a name="seek_bar_for_IE" class="bml"
+href="javascript:(function(){ var s = document.createElement(&quot;script&quot;); s.src = &quot;http://www.squarefree.com/bookmarklets/flashSeekBar.js&quot;; s.type=&quot;text/javascript&quot;; document.body.appendChild(s); })()"
+>seek bar for IE</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>)
+</h4><p class=shortdesc>Creates a pause button and a seek bar under Flash movies.</p> 
+<p>This version loads the bookmarklet code as an external script to get around Internet Explorer's bookmarklet length limitation.  As a result, it's slower than the Mozilla version.  Feel free to mirror <a href="http://www.squarefree.com/bookmarklets/flashSeekBar.js">flashSeekBar.js</a> on a server closer to you in order to speed up this bookmarklet.</p> 
+ 
+<p>In IE, this bookmarklet doesn't work when Flash is displayed outside of a web page (<a href="http://www.mit.edu/~mikeho/media/endofworld.swf">example</a>).</p> 
+ 
+<h4 class=transparent><a name="pause" class="bml"
+href="javascript:for(i=0; o=document.getElementsByTagName(&quot;object&quot;)[i]; ++i) try{F(o)}catch(e){}; for(i=0; o=document.getElementsByTagName(&quot;embed&quot;)[i]; ++i) try{F(o)}catch(e){}; function F(o){ if(o.timer){clearInterval(o.timer); o.timer=0; } if (o.IsPlaying()) o.StopPlay(); else o.Play(); }"
+>pause</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>)
+</h4><p class=shortdesc>Pauses and unpauses Flash movies.</p> 
+ 
+ 
+<h4 class=transparent><a name="rewind" class="bml"
+href="javascript:for(i=0; o=document.getElementsByTagName(&quot;object&quot;)[i]; ++i) try{F(o)}catch(e){}; for(i=0; o=document.getElementsByTagName(&quot;embed&quot;)[i]; ++i) try{F(o)}catch(e){}; function F(o){ if(o.timer){clearInterval(o.timer); o.timer=0; o.Play(); } else { o.StopPlay(); o.timer=setInterval(function(){var targ=o.CurrentFrame() - 8; if (targ&gt;0) o.GotoFrame(o.CurrentFrame() - 8); else { o.GotoFrame(0); clearInterval(o.timer); timer=0; o.Play(); } }, 30); } }"
+>rewind</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>)
+</h4><p class=shortdesc>Rewinds Flash movies.</p> 
+ 
+ 
+<h4 class=transparent><a name="fast-forward" class="bml"
+href="javascript:for(i=0; o=document.getElementsByTagName(&quot;object&quot;)[i]; ++i) try{F(o)}catch(e){}; for(i=0; o=document.getElementsByTagName(&quot;embed&quot;)[i]; ++i) try{F(o)}catch(e){}; function F(o){ if(o.timer){clearInterval(o.timer); o.timer=0; o.Play(); } else { o.StopPlay(); o.timer=setInterval(function(){o.GotoFrame(o.CurrentFrame() + 8); }, 30); } }"
+>fast-forward</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>)
+</h4><p class=shortdesc>Fast-forwards Flash movies.</p> 
+ 
+ 
+<h4 class=transparent><a name="rewind_5s" class="bml"
+href="javascript:for(i=0; o=document.getElementsByTagName(&quot;object&quot;)[i]; ++i) try{F(o)}catch(e){}; for(i=0; o=document.getElementsByTagName(&quot;embed&quot;)[i]; ++i) try{F(o)}catch(e){}; function F(o){  o.GotoFrame(o.CurrentFrame() - 150); if(o.timer){clearInterval(o.timer); o.timer=0; } o.Play(); }"
+>rewind 5s</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>)
+</h4><p class=shortdesc>Rewinds 5 seconds in a Flash movie.</p> 
+ 
+ 
+<h4 class=transparent><a name="forward_5s" class="bml"
+href="javascript:for(i=0; o=document.getElementsByTagName(&quot;object&quot;)[i]; ++i) try{F(o)}catch(e){}; for(i=0; o=document.getElementsByTagName(&quot;embed&quot;)[i]; ++i) try{F(o)}catch(e){}; function F(o){ o.GotoFrame(o.CurrentFrame() + 150); if(o.timer){clearInterval(o.timer); o.timer=0; } o.Play(); }"
+>forward 5s</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>)
+</h4><p class=shortdesc>Skips forward 5 seconds in a Flash movie.</p> 
+ 
+ 
+<hr><p><i><a href="copyright.html">&copy;</a> 2000-2007 <a href="http://www.squarefree.com/">Jesse Ruderman</a> (<a href="mailto:jruderman@gmail.com">jruderman@gmail.com</a>). Feedback is welcome.<br> 
+Last modified July 22, 2004.</i></p> 
+ 
+</body> 
+</html> 

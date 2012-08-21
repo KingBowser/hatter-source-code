@@ -1,0 +1,321 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<title>Form Bookmarklets</title> 
+<link rel="stylesheet" href="squarefree.css" type="text/css"> 
+</head> 
+ 
+<body> 
+ 
+<div style="text-align: center"> 
+<a href="./">Bookmarklets Home</a> 
+| <a href="pagelinks.html">Links</a> 
+| <a href="forms.html">Forms</a> 
+| <a href="pagedata.html">Text and Data</a> 
+| <a href="zap.html">Zap</a> 
+| <a href="webdevel.html">Web Development</a> 
+| <a href="validation.html">Validation</a> 
+| <a href="misc.html">Misc</a> 
+</div> 
+ 
+<hr> 
+ 
+<script type="text/javascript"> 
+var ua = navigator.userAgent, d, s="";
+if (/Gecko\/200305(\d\d)/.exec(ua))
+{
+  day = parseInt(RegExp.$1, 10)
+  if (16 <= day && day < 22)
+  {
+    s = "<p class='ack'><b>You are using a version of Mozilla in which many bookmarklets do not work.<\/b>  Mozilla builds between May 16 and May 22 (including Mozilla Firebird 0.6, released May 16) suffer from bug 205989 and bug 206026.<br><br><b>Please upgrade<\/b> to one of the following:<br>"
+    s += "<a href='http://ftp.mozilla.org/pub/firebird/nightly/latest-trunk/'>A Mozilla Firebird nightly<\/a> (recommended)<br>";
+    s += "<a href='http://ftp.mozilla.org/pub/mozilla/nightly/latest-trunk/'>A Mozilla nightly<\/a><br>";
+    s += "<a href='http://www.mozilla.org/releases/'>Mozilla 1.4 RC1 or a later release<\/a><\/p>";
+    document.write(s);
+  }
+}
+</script> 
+<h3>Form Bookmarklets</h3> 
+<p>These bookmarklets let you interact with forms on web pages more efficiently.</p> 
+ 
+<p class=smallitalic>(To keep <a href="./">bookmarklets</a> in order to use them on other web pages, drag them to your <a href="personaltoolbar.html">Bookmarks Toolbar</a>.  Or, <a href="importall.html">install them all at once</a>.)</p> 
+ 
+<div class=summarytable><table class=summarytable> 
+ 
+<thead> 
+<tr> 
+<th>Bookmarklet</th> 
+<th>Description</th> 
+<th colspan=4>Works in</th> 
+</tr> 
+</thead> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){var x,i; x = document.forms; for (i = 0; i &lt; x.length; ++i) x[i].method=&quot;get&quot;; alert(&quot;Changed &quot; + x.length + &quot; forms to use the GET method.  After submitting a form from this page, you should be able to bookmark the result.&quot;); })();"
+>frmget</a></td> 
+<td>Makes "Post" forms submit to bookmarkable URLs (with ?var=value). <a href="#frmget">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){ function toggle(box){ temp=box.onchange; box.onchange=null; box.checked=!box.checked; box.onchange=temp; } var x,k,f,j; x=document.forms; for (k=0; k&lt;x.length; ++k) { f=x[k]; for (j=0;j&lt;f.length;++j) if (f[j].type.toLowerCase() == &quot;checkbox&quot;) toggle(f[j]); } })();"
+>toggle checkboxes</a></td> 
+<td>Toggles the state of each checkbox on the page. <a href="#toggle_checkboxes">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){ function rotate(es) { var i,n=es.length; for (i=0; i&lt;n; ++i) { if(es[i].checked) { es[(i+1) % n].checked=true; break; } } if (i==es.length) es[0].checked=true; }   var x,k,f,j,e,B,key; x=document.forms; for (k=0; f=x[k]; ++k) { B=[]; for (j=0;e=f[j];++j) if (e.type &amp;&amp; e.type.toLowerCase() == &quot;radio&quot;) { key=&quot; &quot;+e.name; if (!B[key]) B[key]=[]; B[key].push(e); } for(key in B) rotate(B[key]) }})()"
+>next option</a></td> 
+<td>Selects the next option in each group of option buttons. <a href="#next_option">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){function down(){bmlRadioValue=this.checked;bmlRadioRef=this;} function click() {if((window.bmlRadioRef==this)&amp;&amp;window.bmlRadioValue) {this.checked=false;bmlRadioRef=null;}}function mU(radio){radio.onmousedown=down; radio.onkeydown=down;radio.onclick=click;}var x,k,f,j;x=document.forms;for (k=0;k&lt;x.length;++k){f=x[k];for(j=0;j&lt;f.length;++j)if(f[j].type.toLowerCase()==&quot;radio&quot;)mU(f[j]);}window.status=&quot;To unselect a selected option button, click on it or press spacebar.&quot;})();"
+>allow no option</a></td> 
+<td>Click on a selected option button to clear the selection. <a href="#allow_no_option">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){var x,k,f,j;x=document.forms;for(k=0;k&lt;x.length;++k){f=x[k];for(j=0;j&lt;f.length;++j)f[j].removeAttribute(&quot;maxLength&quot;);}})()"
+>remove maxlength</a></td> 
+<td>Removes maxLength restrictions from textboxes. <a href="#remove_maxlength">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){var i,x; for(i=0;x=document.getElementsByTagName(&quot;textarea&quot;)[i];++i) x.rows += 5; })()"
+>enlarge textareas</a></td> 
+<td>Makes textareas 5 lines taller. <a href="#enlarge_textareas">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){var i,f,j,e,div,label,ne; for(i=0;f=document.forms[i];++i)for(j=0;e=f[j];++j)if(e.type==&quot;hidden&quot;){ D=document; function C(t){return D.createElement(t);} function A(a,b){a.appendChild(b);} div=C(&quot;div&quot;); label=C(&quot;label&quot;); A(div, label); A(label, D.createTextNode(e.name + &quot;: &quot;)); e.parentNode.insertBefore(div, e); e.parentNode.removeChild(e); ne=C(&quot;input&quot;);/*for ie*/ ne.type=&quot;text&quot;; ne.value=e.value; A(label, ne); label.style.MozOpacity=&quot;.6&quot;; --j;/*for moz*/}})()"
+>show hiddens</a></td> 
+<td>Shows hidden form elements. <a href="#show_hiddens">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){var x,k,f,j;x=document.forms;for (k=0;k&lt;x.length;++k){f=x[k];for(j=0;j&lt;f.length;++j){f[j].disabled=false; f[j].readOnly=false;}}})()"
+>undisable</a></td> 
+<td>Enables all form elements. <a href="#undisable">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){var D=document,i,f,j,e;for(i=0;f=D.forms[i];++i)for(j=0;e=f[j];++j)if(e.type==&quot;text&quot;||e.type==&quot;password&quot;||e.tagName.toLowerCase()==&quot;textarea&quot;)S(e);function S(e){if(!e.N){var x=D.createElement(&quot;span&quot;),s=x.style;s.color=&quot;green&quot;;s.background=&quot;white&quot;;s.font=&quot;bold 10pt sans-serif&quot;;s.verticalAlign=&quot;top&quot;;e.parentNode.insertBefore(x,e.nextSibling);function u(){x.innerHTML=e.value.length;}u();e.onchange=u;e.onkeyup=u;e.oninput=u;e.N=x;}else{e.parentNode.removeChild(e.N);e.N=0;}}})()"
+>character count</a></td> 
+<td>Displays a running count of the characters in each textbox. <a href="#character_count">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){var s,F,j,f,i; s = &quot;&quot;; F = document.forms; for(j=0; j&lt;F.length; ++j) { f = F[j]; for (i=0; i&lt;f.length; ++i) { if (f[i].type.toLowerCase() == &quot;password&quot;) s += f[i].value + &quot;\n&quot;; } } if (s) alert(&quot;Passwords in forms on this page:\n\n&quot; + s); else alert(&quot;There are no passwords in forms on this page.&quot;);})();"
+>view passwords</a></td> 
+<td>Shows the contents of password fields. <a href="#view_passwords">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){var ca,cea,cs,df,dfe,i,j,x,y;function n(i,what){return i+&quot; &quot;+what+((i==1)?&quot;&quot;:&quot;s&quot;)}ca=cea=cs=0;df=document.forms;for(i=0;i&lt;df.length;++i){x=df[i];dfe=x.elements;if(x.onsubmit){x.onsubmit=&quot;&quot;;++cs;}if(x.attributes[&quot;autocomplete&quot;]){x.attributes[&quot;autocomplete&quot;].value=&quot;on&quot;;++ca;}for(j=0;j&lt;dfe.length;++j){y=dfe[j];if(y.attributes[&quot;autocomplete&quot;]){y.attributes[&quot;autocomplete&quot;].value=&quot;on&quot;;++cea;}}}alert(&quot;Removed autocomplete=off from &quot;+n(ca,&quot;form&quot;)+&quot; and from &quot;+n(cea,&quot;form element&quot;)+&quot;, and removed onsubmit from &quot;+n(cs,&quot;form&quot;)+&quot;. After you type your password and submit the form, the browser will offer to remember your password.&quot;)})();"
+>remember password</a></td> 
+<td>Makes the browser ignore web site requests to not remember passwords. <a href="#remember_password">Details</a></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){var d=document,i,f,j,t,m,s,u,q;for(i=0;f=d.forms[i];++i)for(j=0;t=f[j];++j)if(t.tagName==&quot;TEXTAREA&quot;&amp;&amp;!t.htmlarea){t.htmlarea=1;t.style.display=&quot;none&quot;;m=d.createElement(&quot;div&quot;);m.contentEditable=true;m.innerHTML=t.value;s=m.style;s.overflow=&quot;scroll&quot;;s.width=500;s.height=250;s.border=&quot;2px inset green&quot;;t.parentNode.insertBefore(m,t);u=U(m,t);setInterval(u,50);f.attachEvent(&quot;onsubmit&quot;,u);if(q=f.posttype)q.selectedIndex=1;}function U(m,t){return function(){t.value=m.innerHTML}}})()"
+>htmlarea ie</a></td> 
+<td>Lets you edit textareas expecting HTML code as wysiwyg. (IE) <a href="#htmlarea_ie">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){for(i=0;f=document.forms[i];++i)for(j=0;t=f[j];++j)if(t.tagName==&quot;TEXTAREA&quot;&amp;&amp;!t.midasified){var m=document.createElement(&quot;iframe&quot;);t.parentNode.insertBefore(m,t);Midas(m,t.value);m.style.background=&quot;white&quot;;m.style.width=getComputedStyle(t,&quot;&quot;).getPropertyValue(&quot;width&quot;);m.style.height=getComputedStyle(t,&quot;&quot;).getPropertyValue(&quot;height&quot;);m.style.border=&quot;2px inset green&quot;;m.oldTextarea=t;t.midasified=true;t.style.display=&quot;none&quot;;var U=makeUpdate(m);setInterval(U,50);f.addEventListener(&quot;submit&quot;,U,false);if(q=f.posttype){q.selectedIndex=1;q.style.background=&quot;#dfd&quot;;}}function makeUpdate(M){return function(){M.oldTextarea.value=M.contentDocument.body.innerHTML;}}function Midas(M,V){M.onload=function(){M.contentDocument.body.innerHTML=V;M.contentDocument.designMode=&quot;on&quot;;this.onload=function(){M.contentDocument.body.innerHTML=V;}}}})()"
+>htmlarea moz</a></td> 
+<td>Lets you edit textareas expecting HTML code as wysiwyg. (Mozilla) <a href="#htmlarea_moz">Details</a></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+</table></div> 
+ 
+<p class=smallitalic>Browsers: <img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16> is <a href="http://www.microsoft.com/windows/ie/default.asp">Internet Explorer for Windows</a>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16> is <a href="http://channels.netscape.com/ns/browsers/default.jsp">Netscape 7</a> or <a href="http://www.mozilla.org/">Mozilla</a>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16> is <a href="http://ftp.netscape.com/pub/communicator/english/">Netscape 4</a>, and <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16> is <a href="http://www.opera.com/">Opera</a>.</p> 
+ 
+ 
+<hr> 
+ 
+<h3>Details</h3> 
+<h4 class=transparent><a name="frmget" class="bml"
+href="javascript:(function(){var x,i; x = document.forms; for (i = 0; i &lt; x.length; ++i) x[i].method=&quot;get&quot;; alert(&quot;Changed &quot; + x.length + &quot; forms to use the GET method.  After submitting a form from this page, you should be able to bookmark the result.&quot;); })();"
+>frmget</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Makes "Post" forms submit to bookmarkable URLs (with ?var=value).</p> 
+<p>Turns all Post forms on a page into Get forms, allowing you to bookmark a search-results page. Try it on <a href="http://www.m-w.com/">Merriam-Webster</a> or <a href="http://www.everything2.com">everything2</a>!
+ 
+<p><b>Background:</b> There are two types of forms on the Web, <i>Get</i> forms and <i>Post</i> forms.  Most search forms are Get forms, which include form data as part of the URL in a format like <tt>?var=value</tt>.  Forms that have a permanent effect, such as sending e-mail, are always Post forms.  Some sites use Post forms for searches when the URL is ugly or long, which makes it difficult to bookmark the results of the search, but most of these sites also accept the same form submitted using the Get method.
+ 
+<p><b>Passwords:</b> You can use this bookmarklet to store URLs with passwords as bookmarks, but if you do, you should be aware of several security issues:
+<ul> 
+<li>Your password will be visible to anyone who shares your bookmarks.</li> 
+<li>Your password will be visible to anyone looking over your shoulder.</li> 
+<li>Your password will be visible to the owner of a site linked to by the page whose URL contains the password.  Using a bookmark with a password to your webmail inbox is fairly safe, but I wouldn't recommend keeping a bookmark with a password to a site that has many external links on its front page (e.g., <a href="http://slashdot.org/">Slashdot</a>).  Thanks to <a href="mailto:jlpoutre@corp.home.nl">Johannes la Poutre</a> for pointing this out.</li> 
+</ul> 
+ 
+<h4 class=transparent><a name="toggle_checkboxes" class="bml"
+href="javascript:(function(){ function toggle(box){ temp=box.onchange; box.onchange=null; box.checked=!box.checked; box.onchange=temp; } var x,k,f,j; x=document.forms; for (k=0; k&lt;x.length; ++k) { f=x[k]; for (j=0;j&lt;f.length;++j) if (f[j].type.toLowerCase() == &quot;checkbox&quot;) toggle(f[j]); } })();"
+>toggle checkboxes</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Toggles the state of each checkbox on the page.</p> 
+<!-- Temporarily disables onchange events to avoid accidentally submitting the form (keepersoflists/radio uses onclick) or triggering an allbox (hotmail/ uses onclick). --> 
+ 
+<h4 class=transparent><a name="next_option" class="bml"
+href="javascript:(function(){ function rotate(es) { var i,n=es.length; for (i=0; i&lt;n; ++i) { if(es[i].checked) { es[(i+1) % n].checked=true; break; } } if (i==es.length) es[0].checked=true; }   var x,k,f,j,e,B,key; x=document.forms; for (k=0; f=x[k]; ++k) { B=[]; for (j=0;e=f[j];++j) if (e.type &amp;&amp; e.type.toLowerCase() == &quot;radio&quot;) { key=&quot; &quot;+e.name; if (!B[key]) B[key]=[]; B[key].push(e); } for(key in B) rotate(B[key]) }})()"
+>next option</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Selects the next option in each group of option buttons.</p> 
+<p>In each group of option buttons, selects the option after the previously selected one. If no option was previously selected, selects the first.
+ 
+<p>Based on a suggestion by Tim Berry (Inktomi).</p> 
+ 
+<h4 class=transparent><a name="allow_no_option" class="bml"
+href="javascript:(function(){function down(){bmlRadioValue=this.checked;bmlRadioRef=this;} function click() {if((window.bmlRadioRef==this)&amp;&amp;window.bmlRadioValue) {this.checked=false;bmlRadioRef=null;}}function mU(radio){radio.onmousedown=down; radio.onkeydown=down;radio.onclick=click;}var x,k,f,j;x=document.forms;for (k=0;k&lt;x.length;++k){f=x[k];for(j=0;j&lt;f.length;++j)if(f[j].type.toLowerCase()==&quot;radio&quot;)mU(f[j]);}window.status=&quot;To unselect a selected option button, click on it or press spacebar.&quot;})();"
+>allow no option</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Click on a selected option button to clear the selection.</p> 
+<p>Allows you to unselect an option button without selecting another option.</p> 
+ 
+<h4 class=transparent><a name="remove_maxlength" class="bml"
+href="javascript:(function(){var x,k,f,j;x=document.forms;for(k=0;k&lt;x.length;++k){f=x[k];for(j=0;j&lt;f.length;++j)f[j].removeAttribute(&quot;maxLength&quot;);}})()"
+>remove maxlength</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Removes maxLength restrictions from textboxes.</p> 
+<p>Submitted by <a href="http://www.livejournal.com/users/davidgro/">David Grossberg</a>.</p> 
+ 
+<h4 class=transparent><a name="enlarge_textareas" class="bml"
+href="javascript:(function(){var i,x; for(i=0;x=document.getElementsByTagName(&quot;textarea&quot;)[i];++i) x.rows += 5; })()"
+>enlarge textareas</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Makes textareas 5 lines taller.</p> 
+<p>Suggested by <a href="http://augart.com/">Steven Augart</a>.</p> 
+ 
+<h4 class=transparent><a name="show_hiddens" class="bml"
+href="javascript:(function(){var i,f,j,e,div,label,ne; for(i=0;f=document.forms[i];++i)for(j=0;e=f[j];++j)if(e.type==&quot;hidden&quot;){ D=document; function C(t){return D.createElement(t);} function A(a,b){a.appendChild(b);} div=C(&quot;div&quot;); label=C(&quot;label&quot;); A(div, label); A(label, D.createTextNode(e.name + &quot;: &quot;)); e.parentNode.insertBefore(div, e); e.parentNode.removeChild(e); ne=C(&quot;input&quot;);/*for ie*/ ne.type=&quot;text&quot;; ne.value=e.value; A(label, ne); label.style.MozOpacity=&quot;.6&quot;; --j;/*for moz*/}})()"
+>show hiddens</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Shows hidden form elements.</p> 
+<p>Shows hidden form elements as textboxes and lets you edit them.
+ 
+<p>Suggested by "shad".</p> 
+ 
+<h4 class=transparent><a name="undisable" class="bml"
+href="javascript:(function(){var x,k,f,j;x=document.forms;for (k=0;k&lt;x.length;++k){f=x[k];for(j=0;j&lt;f.length;++j){f[j].disabled=false; f[j].readOnly=false;}}})()"
+>undisable</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Enables all form elements.</p> 
+<p>Lets you <a href="http://slashdot.org/comments.pl?sid=11164&cid=355601">edit license agreements</a> and other disabled form elements.
+ 
+<p>Submitted by <a href="http://www.livejournal.com/users/davidgro/">David Grossberg</a>.</p> 
+ 
+<h4 class=transparent><a name="character_count" class="bml"
+href="javascript:(function(){var D=document,i,f,j,e;for(i=0;f=D.forms[i];++i)for(j=0;e=f[j];++j)if(e.type==&quot;text&quot;||e.type==&quot;password&quot;||e.tagName.toLowerCase()==&quot;textarea&quot;)S(e);function S(e){if(!e.N){var x=D.createElement(&quot;span&quot;),s=x.style;s.color=&quot;green&quot;;s.background=&quot;white&quot;;s.font=&quot;bold 10pt sans-serif&quot;;s.verticalAlign=&quot;top&quot;;e.parentNode.insertBefore(x,e.nextSibling);function u(){x.innerHTML=e.value.length;}u();e.onchange=u;e.onkeyup=u;e.oninput=u;e.N=x;}else{e.parentNode.removeChild(e.N);e.N=0;}}})()"
+>character count</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Displays a running count of the characters in each textbox.</p> 
+<p>Clicking again makes the counts go away.</p> 
+ 
+<h4 class=transparent><a name="view_passwords" class="bml"
+href="javascript:(function(){var s,F,j,f,i; s = &quot;&quot;; F = document.forms; for(j=0; j&lt;F.length; ++j) { f = F[j]; for (i=0; i&lt;f.length; ++i) { if (f[i].type.toLowerCase() == &quot;password&quot;) s += f[i].value + &quot;\n&quot;; } } if (s) alert(&quot;Passwords in forms on this page:\n\n&quot; + s); else alert(&quot;There are no passwords in forms on this page.&quot;);})();"
+>view passwords</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Shows the contents of password fields.</p> 
+<p>May be useful if you want to switch browsers, upgrade to a new computer, or dump <a href="http://www.cexx.org/gator.htm">Gator</a>.</p> 
+ 
+<h4 class=transparent><a name="remember_password" class="bml"
+href="javascript:(function(){var ca,cea,cs,df,dfe,i,j,x,y;function n(i,what){return i+&quot; &quot;+what+((i==1)?&quot;&quot;:&quot;s&quot;)}ca=cea=cs=0;df=document.forms;for(i=0;i&lt;df.length;++i){x=df[i];dfe=x.elements;if(x.onsubmit){x.onsubmit=&quot;&quot;;++cs;}if(x.attributes[&quot;autocomplete&quot;]){x.attributes[&quot;autocomplete&quot;].value=&quot;on&quot;;++ca;}for(j=0;j&lt;dfe.length;++j){y=dfe[j];if(y.attributes[&quot;autocomplete&quot;]){y.attributes[&quot;autocomplete&quot;].value=&quot;on&quot;;++cea;}}}alert(&quot;Removed autocomplete=off from &quot;+n(ca,&quot;form&quot;)+&quot; and from &quot;+n(cea,&quot;form element&quot;)+&quot;, and removed onsubmit from &quot;+n(cs,&quot;form&quot;)+&quot;. After you type your password and submit the form, the browser will offer to remember your password.&quot;)})();"
+>remember password</a> 
+(<img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>)
+</h4><p class=shortdesc>Makes the browser ignore web site requests to not remember passwords.</p> 
+<p>Some sites, including many banks and a few other sites such as <a href="http://mail.yahoo.com/">Yahoo Mail</a> and <a href="http://login.passport.com/">Microsoft Passport</a>, tell browsers not to remember passwords for visitors using autocomplete="off".  This bookmarklet makes the browser ignore autocomplete="off" temporarily, allowing you to save passwords even on sites that use autocomplete="off".</p> 
+ 
+<p>Use this bookmarklet just before submitting the form with your password in it.  When you submit the form, your browser should offer to remember the password (as if the site didn't use autocomplete="off"); click "Yes".  Once your browser has your password stored, it will ignore autocomplete="off", so you won't have to use the bookmarklet each time you visit the site.</p> 
+ 
+<p>Thanks to Erich Iseli for making the bookmarklet work on the Passport site.</p> 
+ 
+<p>This bookmarklet only works on sites that use autocomplete="off" to prevent your browser from remembering passwords.  If the site uses another method to break your browser's password manager, such as having two password fields or submitting the form using JavaScript, this bookmarklet won't help.</p> 
+ 
+<h4 class=transparent><a name="htmlarea_ie" class="bml"
+href="javascript:(function(){var d=document,i,f,j,t,m,s,u,q;for(i=0;f=d.forms[i];++i)for(j=0;t=f[j];++j)if(t.tagName==&quot;TEXTAREA&quot;&amp;&amp;!t.htmlarea){t.htmlarea=1;t.style.display=&quot;none&quot;;m=d.createElement(&quot;div&quot;);m.contentEditable=true;m.innerHTML=t.value;s=m.style;s.overflow=&quot;scroll&quot;;s.width=500;s.height=250;s.border=&quot;2px inset green&quot;;t.parentNode.insertBefore(m,t);u=U(m,t);setInterval(u,50);f.attachEvent(&quot;onsubmit&quot;,u);if(q=f.posttype)q.selectedIndex=1;}function U(m,t){return function(){t.value=m.innerHTML}}})()"
+>htmlarea ie</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>)
+</h4><p class=shortdesc>Lets you edit textareas expecting HTML code as wysiwyg. (IE)</p> 
+ 
+ 
+<h4 class=transparent><a name="htmlarea_moz" class="bml"
+href="javascript:(function(){for(i=0;f=document.forms[i];++i)for(j=0;t=f[j];++j)if(t.tagName==&quot;TEXTAREA&quot;&amp;&amp;!t.midasified){var m=document.createElement(&quot;iframe&quot;);t.parentNode.insertBefore(m,t);Midas(m,t.value);m.style.background=&quot;white&quot;;m.style.width=getComputedStyle(t,&quot;&quot;).getPropertyValue(&quot;width&quot;);m.style.height=getComputedStyle(t,&quot;&quot;).getPropertyValue(&quot;height&quot;);m.style.border=&quot;2px inset green&quot;;m.oldTextarea=t;t.midasified=true;t.style.display=&quot;none&quot;;var U=makeUpdate(m);setInterval(U,50);f.addEventListener(&quot;submit&quot;,U,false);if(q=f.posttype){q.selectedIndex=1;q.style.background=&quot;#dfd&quot;;}}function makeUpdate(M){return function(){M.oldTextarea.value=M.contentDocument.body.innerHTML;}}function Midas(M,V){M.onload=function(){M.contentDocument.body.innerHTML=V;M.contentDocument.designMode=&quot;on&quot;;this.onload=function(){M.contentDocument.body.innerHTML=V;}}}})()"
+>htmlarea moz</a> 
+(<img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>)
+</h4><p class=shortdesc>Lets you edit textareas expecting HTML code as wysiwyg. (Mozilla)</p> 
+<p>Wysiwyg editing in web pages only works in Mozilla 1.4+ and Mozilla Firebird 0.6.1+.  Some Mozilla derivatives and some unofficial Mozilla Firebird builds don't enable it.</p> 
+ 
+<hr><p><i><a href="copyright.html">&copy;</a> 2000-2007 <a href="http://www.squarefree.com/">Jesse Ruderman</a> (<a href="mailto:jruderman@gmail.com">jruderman@gmail.com</a>). Feedback is welcome.<br> 
+Last modified April 5, 2004.</i></p> 
+ 
+</body> 
+</html> 

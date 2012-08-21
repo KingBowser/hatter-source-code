@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<title>Site-specific Bookmarklets</title> 
+<link rel="stylesheet" href="squarefree.css" type="text/css"> 
+</head> 
+ 
+<body> 
+ 
+<div style="text-align: center"> 
+<a href="./">Bookmarklets Home</a> 
+| <a href="pagelinks.html">Links</a> 
+| <a href="forms.html">Forms</a> 
+| <a href="pagedata.html">Text and Data</a> 
+| <a href="zap.html">Zap</a> 
+| <a href="webdevel.html">Web Development</a> 
+| <a href="validation.html">Validation</a> 
+| <a href="misc.html">Misc</a> 
+</div> 
+ 
+<hr> 
+ 
+<script type="text/javascript"> 
+var ua = navigator.userAgent, d, s="";
+if (/Gecko\/200305(\d\d)/.exec(ua))
+{
+  day = parseInt(RegExp.$1, 10)
+  if (16 <= day && day < 22)
+  {
+    s = "<p class='ack'><b>You are using a version of Mozilla in which many bookmarklets do not work.<\/b>  Mozilla builds between May 16 and May 22 (including Mozilla Firebird 0.6, released May 16) suffer from bug 205989 and bug 206026.<br><br><b>Please upgrade<\/b> to one of the following:<br>"
+    s += "<a href='http://ftp.mozilla.org/pub/firebird/nightly/latest-trunk/'>A Mozilla Firebird nightly<\/a> (recommended)<br>";
+    s += "<a href='http://ftp.mozilla.org/pub/mozilla/nightly/latest-trunk/'>A Mozilla nightly<\/a><br>";
+    s += "<a href='http://www.mozilla.org/releases/'>Mozilla 1.4 RC1 or a later release<\/a><\/p>";
+    document.write(s);
+  }
+}
+</script> 
+<h3>Site-specific Bookmarklets</h3> 
+<p>These bookmarklets are for specific sites that I read often.  If you happen to own one of these sites, please change your site so that it's more usable without bookmarklets!</p> 
+ 
+<p class=smallitalic>(To keep <a href="./">bookmarklets</a> in order to use them on other web pages, drag them to your <a href="personaltoolbar.html">Bookmarks Toolbar</a>.  Or, <a href="importall.html">install them all at once</a>.)</p> 
+ 
+<div class=summarytable><table class=summarytable> 
+ 
+<thead> 
+<tr> 
+<th>Bookmarklet</th> 
+<th>Description</th> 
+<th colspan=4>Works in</th> 
+</tr> 
+</thead> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){ if (!location.pathname.match(/\/submitted/)) { alert(&quot;This bookmarklet should only be used on your friends' \&quot;submitted\&quot; pages on Digg, or your \&quot;friends/news/submitted\&quot; page.  If people used this bookmarklet on other Digg pages, every Digg article could turn into a evil virus meme thing.&quot;); return; } var i, L, duggCount = 0; for (i=0; L=document.links[i]; ++i) { if (L.parentNode.className == &quot;digg-it&quot; &amp;&amp; L.childNodes[0] &amp;&amp; L.childNodes[0].data == &quot;digg it&quot;) { if (L.href.match(/^javascript\:dig/)) { ++duggCount; eval(L.href); } else if (L.pathname &amp;&amp; L.pathname.match(/^\/login/)) { alert(&quot;You need to log in!&quot;); return; } } } if (duggCount == 0) alert(&quot;No stories to digg!&quot;) })()"
+>digg all</a></td> 
+<td>[<a href="http://digg.com/">digg.com</a>] Diggs all the stories submitted by your friend or friends. <a href="#digg_all">Details</a></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){ var z=[],N,title,tc,j; function r(N) { if (N.title) z.push(N); var C=N.childNodes,i;for(i=0;i&lt;C.length;++i)r(C[i]); } r(document.body); for (j in z) { N=z[j]; title=document.createTextNode(&quot;(&quot;+N.title+&quot;)&quot;); tc=document.createElement(&quot;span&quot;); tc.style.color=&quot;green&quot;; tc.style.background=&quot;black&quot;; tc.appendChild(title); N.parentNode.insertBefore(tc,N.nextSibling); N.parentNode.insertBefore(document.createTextNode(&quot; &quot;),tc); }})();"
+>paren tips</a></td> 
+<td>[<a href="http://randomfoo.net/">randomfoo.net</a>] Turns tooltips (title attributes) into parenthetical phrases. <a href="#paren_tips">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:lh=location.href;d=document;function st(s){return s.substr(1,s.length-2);}function SE(N){var NC,y=0,r=N.nodeType;if(r==3){p=N.data.search(/![a-z]+(:[^!:]*)?!/i);if(p+1){L=RegExp.lastMatch.length;nn=d.createElement('A');nn.href=lh.match(/.*\?/)+st(''+N.data.match(/![a-z]+[!:]/))+lh.match(/@.*/);B=N.splitText(p);C=B.splitText(L);BB=B.cloneNode(true);nn.appendChild(BB);B.parentNode.replaceChild(nn,B);y=1;}}if(NC=N.childNodes)for(var i=0;i&lt;NC.length;++i)i=i+SE(NC[i]);return y;}void SE(d.body)"
+>planlinks</a></td> 
+<td>[<a href="http://www.amherst.edu/cgi-bin/finger?jchang@note.amherst.edu">Amherst Planworld</a>] Turns !person! and !person:phrase! into links. <a href="#planlinks">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+</table></div> 
+ 
+<p class=smallitalic>Browsers: <img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16> is <a href="http://www.microsoft.com/windows/ie/default.asp">Internet Explorer for Windows</a>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16> is <a href="http://channels.netscape.com/ns/browsers/default.jsp">Netscape 7</a> or <a href="http://www.mozilla.org/">Mozilla</a>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16> is <a href="http://ftp.netscape.com/pub/communicator/english/">Netscape 4</a>, and <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16> is <a href="http://www.opera.com/">Opera</a>.</p> 
+ 
+ 
+<hr> 
+ 
+<h3>Details</h3> 
+<h4 class=transparent><a name="digg_all" class="bml"
+href="javascript:(function(){ if (!location.pathname.match(/\/submitted/)) { alert(&quot;This bookmarklet should only be used on your friends' \&quot;submitted\&quot; pages on Digg, or your \&quot;friends/news/submitted\&quot; page.  If people used this bookmarklet on other Digg pages, every Digg article could turn into a evil virus meme thing.&quot;); return; } var i, L, duggCount = 0; for (i=0; L=document.links[i]; ++i) { if (L.parentNode.className == &quot;digg-it&quot; &amp;&amp; L.childNodes[0] &amp;&amp; L.childNodes[0].data == &quot;digg it&quot;) { if (L.href.match(/^javascript\:dig/)) { ++duggCount; eval(L.href); } else if (L.pathname &amp;&amp; L.pathname.match(/^\/login/)) { alert(&quot;You need to log in!&quot;); return; } } } if (duggCount == 0) alert(&quot;No stories to digg!&quot;) })()"
+>digg all</a> 
+(<img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>[<a href="http://digg.com/">digg.com</a>] Diggs all the stories submitted by your friend or friends.</p> 
+<p><a href="http://digg.com/users/isage/profile">Digg user isage</a> likes to digg most of the stories that his friends submit.  Digg has a page that lists <a href="http://digg.com/users/isage/friends/news/submitted">stories submitted by his friends</a>, but he was getting tired of clicking "digg it" next to every article listed there, so he suggested that I write this bookmarklet.</p> 
+ 
+<p>To use this bookmarklet, simply navigate to a friend's "Submitted" page and click it.  If you want to digg all stories from <em>all</em> of your friends, go to your profile, click "Friends", and then click "Submitted" instead.</p> 
+ 
+<h4 class=transparent><a name="paren_tips" class="bml"
+href="javascript:(function(){ var z=[],N,title,tc,j; function r(N) { if (N.title) z.push(N); var C=N.childNodes,i;for(i=0;i&lt;C.length;++i)r(C[i]); } r(document.body); for (j in z) { N=z[j]; title=document.createTextNode(&quot;(&quot;+N.title+&quot;)&quot;); tc=document.createElement(&quot;span&quot;); tc.style.color=&quot;green&quot;; tc.style.background=&quot;black&quot;; tc.appendChild(title); N.parentNode.insertBefore(tc,N.nextSibling); N.parentNode.insertBefore(document.createTextNode(&quot; &quot;),tc); }})();"
+>paren tips</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>[<a href="http://randomfoo.net/">randomfoo.net</a>] Turns tooltips (title attributes) into parenthetical phrases.</p> 
+<p>Turns title attributes (tooltips in IE and Mozilla) into parenthetical phrases so you don't have to hover over each element with a title attribute.  <a href="http://randomfoo.net/">Leonard Lin (randomfoo.net)</a> often uses the title attribute <a href="http://randomfoo.net/?p=2002_05_26_archive.inc#85133167">to express his opinion, to expand an acronym</a>, and sometimes even <a href="http://randomfoo.net/?p=2002_04_07_archive.inc#75214670">to give essential information</a> when he can't figure out how to work the information into his sentence structure.
+ 
+<p>See <a href="http://www.webmasterworld.com/forum5/1250.htm#msg5">my original post on Webmasterworld</a> and <a href="http://randomfoo.net/?p=2002_07_28_archive.inc#justforjesse">Leonard's reply</a>.  Here's an <acronym title="AOL Instant Messenger">AIM</acronym> conversation from shortly after Leonard's post:</p> 
+ 
+<div class="aim"> 
+<div class="me">JesseRud: moving the mouse to hover over a part of a sentence breaks the flow of the narrative much more than a phrase in parentheses</div> 
+<div class="me">JesseRud: when i write something for the first time, about half of the text is in parentheses</div> 
+<div class="other">randomfoo: it doesn't break the narrative at all because you don't have to read it unless you're compulsive and want to know every single tidbit</div> 
+<div class="other">randomfoo: that's a choice the user makes ;P</div> 
+<div class="me">JesseRud: then i move things around, change where the sentences begin and end, etc. until most of it is not in parentheses and delete some of the less useful phrases that are still in parens</div> 
+<div class="other">randomfoo: yes, well, that's writing.  this is blogging.  it's the literary equivalent of diahrea i believe</div> 
+<div class="me">JesseRud: no, that's commenting in bug reports</div> 
+<div class="me">JesseRud: writing is when i stress out for a week and pull an all-nighter</div> 
+</div> 
+ 
+<p>Am I part of a tiny minority who hovers over every element with a tooltip?  Part of the problem for me is that some tooltips are important and useful while others are half-completed and off-topic side comments.
+ 
+<p><strong><a name="072902">Update July 29, 2002:</a></strong> <a href="http://www.bradchoate.com/">Brad Choate</a> points out that it sounds like I'm saying randomfoo shouldn't use the title attribute at all.  Using the title attribute on a link is not always bad. It's great for expanding acronyms, explaining what an icon or short link does, or giving a title or short summary of the target site.  Putting explanatory text in parentheses next to an icon link would be counterproductive, since the point of an icon link is to have a small link.  Putting the source of a link in parentheses can be <a href="http://www.bradchoate.com/past/000892.php" title="Brad Choate, Title attribute usage (July 29, 2002)">confusing</a> if it's not clear that the parenthetical text is used to indicate the source of the link just before the parenthetical text. In these cases, the link title attribute works well for helping me figure out the purpose of the link if I'm specifically trying to figure out whether to follow the link.
+ 
+<p>The link title attribute is not as great for giving your opinion of the linked site, because most of your readers not see your opinion and some of your readers will feel compelled to try hovering over each of your links for a second to see if you have provided a tooltip, even if they are unlikely to follow those links.  It's better to put your opinion next to the link or leave it out entirely.
+ 
+<p>What annoys me is not that randomfoo and <a href="http://diveintomark.org/archives/2002/07/29.html#while_you_were_out" title="Mark Pilgrim, While you were out (July 29, 2002)">diveintomark</a> use the link title attribute, but that they sometimes use it in ways I consider useful and sometimes use it to give opinions or make jokes.  Informative titles are useful and unobstructive, and opinion/joke titles can be cute even though they are inefficient, but when both types of titles are mixed on a single site, they're annoying.</p> 
+ 
+<h4 class=transparent><a name="planlinks" class="bml"
+href="javascript:lh=location.href;d=document;function st(s){return s.substr(1,s.length-2);}function SE(N){var NC,y=0,r=N.nodeType;if(r==3){p=N.data.search(/![a-z]+(:[^!:]*)?!/i);if(p+1){L=RegExp.lastMatch.length;nn=d.createElement('A');nn.href=lh.match(/.*\?/)+st(''+N.data.match(/![a-z]+[!:]/))+lh.match(/@.*/);B=N.splitText(p);C=B.splitText(L);BB=B.cloneNode(true);nn.appendChild(BB);B.parentNode.replaceChild(nn,B);y=1;}}if(NC=N.childNodes)for(var i=0;i&lt;NC.length;++i)i=i+SE(NC[i]);return y;}void SE(d.body)"
+>planlinks</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>)
+</h4><p class=shortdesc>[<a href="http://www.amherst.edu/cgi-bin/finger?jchang@note.amherst.edu">Amherst Planworld</a>] Turns !person! and !person:phrase! into links.</p> 
+<p>Turns !username! or !username:phrase! into a link to username's plan.  This syntax is common in <a href="http://www.amherst.edu/cgi-bin/finger?jchang@note.amherst.edu">Amherst Planworld</a>.  If you use the bookmarklet on a site that isn't a Planworld site, the generated links will point to bogus addresses.</p> 
+ 
+<hr><p><i><a href="copyright.html">&copy;</a> 2000-2007 <a href="http://www.squarefree.com/">Jesse Ruderman</a> (<a href="mailto:jruderman@gmail.com">jruderman@gmail.com</a>). Feedback is welcome.<br> 
+Last modified Jan 23, 2007.</i></p> 
+ 
+</body> 
+</html> 

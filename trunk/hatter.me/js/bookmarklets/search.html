@@ -1,0 +1,340 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<title>Search bookmarklets</title> 
+<link rel="stylesheet" href="squarefree.css" type="text/css"> 
+</head> 
+ 
+<body> 
+ 
+<div style="text-align: center"> 
+<a href="./">Bookmarklets Home</a> 
+| <a href="pagelinks.html">Links</a> 
+| <a href="forms.html">Forms</a> 
+| <a href="pagedata.html">Text and Data</a> 
+| <a href="zap.html">Zap</a> 
+| <a href="webdevel.html">Web Development</a> 
+| <a href="validation.html">Validation</a> 
+| <a href="misc.html">Misc</a> 
+</div> 
+ 
+<hr> 
+ 
+<script type="text/javascript"> 
+var ua = navigator.userAgent, d, s="";
+if (/Gecko\/200305(\d\d)/.exec(ua))
+{
+  day = parseInt(RegExp.$1, 10)
+  if (16 <= day && day < 22)
+  {
+    s = "<p class='ack'><b>You are using a version of Mozilla in which many bookmarklets do not work.<\/b>  Mozilla builds between May 16 and May 22 (including Mozilla Firebird 0.6, released May 16) suffer from bug 205989 and bug 206026.<br><br><b>Please upgrade<\/b> to one of the following:<br>"
+    s += "<a href='http://ftp.mozilla.org/pub/firebird/nightly/latest-trunk/'>A Mozilla Firebird nightly<\/a> (recommended)<br>";
+    s += "<a href='http://ftp.mozilla.org/pub/mozilla/nightly/latest-trunk/'>A Mozilla nightly<\/a><br>";
+    s += "<a href='http://www.mozilla.org/releases/'>Mozilla 1.4 RC1 or a later release<\/a><\/p>";
+    document.write(s);
+  }
+}
+</script> 
+<h3>Search bookmarklets</h3> 
+<p>Search bookmarklets.</p> 
+ 
+<p class=smallitalic>(To keep <a href="./">bookmarklets</a> in order to use them on other web pages, drag them to your <a href="personaltoolbar.html">Bookmarks Toolbar</a>.  Or, <a href="importall.html">install them all at once</a>.)</p> 
+ 
+<div class=summarytable><table class=summarytable> 
+ 
+<thead> 
+<tr> 
+<th>Bookmarklet</th> 
+<th>Description</th> 
+<th colspan=4>Works in</th> 
+</tr> 
+</thead> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:q = &quot;&quot; + (window.getSelection ? window.getSelection() : document.getSelection ? document.getSelection() : document.selection.createRange().text); if (!q) q = prompt(&quot;You didn't select any text.  Enter a search phrase:&quot;, &quot;&quot;); if (q!=null) location=&quot;http://www.google.com/search?q=&quot; + escape(q).replace(/ /g, &quot;+&quot;); void 0"
+>google</a></td> 
+<td>Searches Google for the selected text. <a href="#google">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:q = &quot;&quot; + (window.getSelection ? window.getSelection() : document.getSelection ? document.getSelection() : document.selection.createRange().text); if (!q) q = prompt(&quot;You didn't select any text.  Enter a search phrase:&quot;, &quot;&quot;); if (q!=null) location=(&quot;http://www.google.com/search?num=100&amp;q=site:&quot; + escape(location.hostname) + &quot; \&quot;&quot; + escape(q.replace(/\&quot;/g,&quot;&quot;)) + &quot;\&quot;&quot;).replace(/ /g, &quot;+&quot;); void 0"
+>google site search</a></td> 
+<td>Searches Google for pages on the site containing selected text. <a href="#google_site_search">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:location=&quot;http://www.google.com/search?num=100&amp;q=site:&quot; + escape(location.hostname); void 0"
+>google site search: all</a></td> 
+<td>Searches Google for all pages on the site. <a href="#google_site_search:_all">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:location=(&quot;http://www.google.com/search?num=100&amp;q=site:&quot; + escape(location.hostname) + &quot; \&quot;&quot; + escape(document.title.replace(/\&quot;/g,&quot;&quot;)) + &quot;\&quot;&quot;).replace(/ /g, &quot;+&quot;); void 0"
+>google site search: title</a></td> 
+<td>Searches Google for pages on the site with the same title. <a href="#google_site_search:_title">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:N=&quot;num=100&quot;; R = /num=\d*/; if (R.exec(location.search)) location.search = location.search.replace(R, N); else location.search += &quot;&amp;&quot; + N; void 0"
+>num=100</a></td> 
+<td>Changes a Google search to show 100 results per page. <a href="#num=100">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:N=&quot;num=10&quot;; R = /num=\d*/; if (R.exec(location.search)) location.search = location.search.replace(R, N); else location.search += &quot;&amp;&quot; + N; void 0"
+>num=10</a></td> 
+<td>Changes a Google search to show 10 results per page. <a href="#num=10">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:N=&quot;num=1&quot;; R = /num=\d*/; if (R.exec(location.search)) location.search = location.search.replace(R, N); else location.search += &quot;&amp;&quot; + N; void 0"
+>num=1</a></td> 
+<td>Changes a Google search to show <a href="http://www.webmasterworld.com/forum3/11751.htm">1 result per page</a>. <a href="#num=1">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:N=&quot;filter=0&quot;; R = /filter=\d*/; if (R.exec(location.search)) location.search = location.search.replace(R, N); else location.search += &quot;&amp;&quot; + N; void 0"
+>filter=0</a></td> 
+<td>Changes a Google search to remove the limit of 2 URLs per site. <a href="#filter=0">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:Q=[]; c=location.search.slice(1).split('&amp;'); for (i in c) { f=c[i].split('='); if (f[0]=='q' || f[0]=='as_q' || f[0]=='p' || f[0]=='query') if (f[1]) Q.push(f[1]) } R=unescape(Q.join('; ').replace(/\+/g,' ')); location = 'http://www.google.com/search?q=' + escape(R);"
+>@google</a></td> 
+<td>Takes you from any search to the same search on Google. <a href="#@google">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:Q=[]; c=location.search.slice(1).split('&amp;'); for (i in c) { f=c[i].split('='); if (f[0]=='q' || f[0]=='as_q' || f[0]=='p' || f[0]=='query') if (f[1]) Q.push(f[1]) } R=unescape(Q.join('; ').replace(/\+/g,' ')); location = 'http://www.alltheweb.com/search?q=' + escape(R);"
+>@alltheweb</a></td> 
+<td>Takes you from any search to the same search on Alltheweb. <a href="#@alltheweb">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:Q=[]; c=location.search.slice(1).split('&amp;'); for (i in c) { f=c[i].split('='); if (f[0]=='q' || f[0]=='as_q' || f[0]=='p' || f[0]=='query') if (f[1]) Q.push(f[1]) } R=unescape(Q.join('; ').replace(/\+/g,' ')); location = 'http://s.teoma.com/search?q=' + escape(R);"
+>@teoma</a></td> 
+<td>Takes you from any search to the same search on Teoma. <a href="#@teoma">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:Q=[]; c=location.search.slice(1).split('&amp;'); for (i in c) { f=c[i].split('='); if (f[0]=='q' || f[0]=='as_q' || f[0]=='p' || f[0]=='query') if (f[1]) Q.push(f[1]) } R=unescape(Q.join('; ').replace(/\+/g,' ')); location = 'http://search.msn.com/results.aspx?q=' + escape(R);"
+>@msn</a></td> 
+<td>Takes you from any search to the same search on MSN Search. <a href="#@msn">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:Q=[]; c=location.search.slice(1).split('&amp;'); for (i in c) { f=c[i].split('='); if (f[0]=='q' || f[0]=='as_q' || f[0]=='p' || f[0]=='query') if (f[1]) Q.push(f[1]) } R=unescape(Q.join('; ').replace(/\+/g,' ')); location = 'http://altavista.com/web/results?q=' + escape(R);"
+>@altavista</a></td> 
+<td>Takes you from any search to the same search on Altavista. <a href="#@altavista">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:void(location.href='http://web.archive.org/'+escape(location.href));"
+>wayback newest</a></td> 
+<td>Goes to the newest archived copy of a page. <a href="#wayback_newest">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:void(location.href='http://web.archive.org/web/*/'+escape(location.href));"
+>wayback search </a></td> 
+<td>Searches the <a href="http://www.archive.org/">Wayback Machine</a> for all old copies of the page. <a href="#wayback_search_">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+</table></div> 
+ 
+<p class=smallitalic>Browsers: <img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16> is <a href="http://www.microsoft.com/windows/ie/default.asp">Internet Explorer for Windows</a>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16> is <a href="http://channels.netscape.com/ns/browsers/default.jsp">Netscape 7</a> or <a href="http://www.mozilla.org/">Mozilla</a>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16> is <a href="http://ftp.netscape.com/pub/communicator/english/">Netscape 4</a>, and <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16> is <a href="http://www.opera.com/">Opera</a>.</p> 
+ 
+ 
+<hr> 
+ 
+<h3>Details</h3> 
+<h4 class=transparent><a name="google" class="bml"
+href="javascript:q = &quot;&quot; + (window.getSelection ? window.getSelection() : document.getSelection ? document.getSelection() : document.selection.createRange().text); if (!q) q = prompt(&quot;You didn't select any text.  Enter a search phrase:&quot;, &quot;&quot;); if (q!=null) location=&quot;http://www.google.com/search?q=&quot; + escape(q).replace(/ /g, &quot;+&quot;); void 0"
+>google</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Searches Google for the selected text.</p> 
+ 
+ 
+<h4 class=transparent><a name="google_site_search" class="bml"
+href="javascript:q = &quot;&quot; + (window.getSelection ? window.getSelection() : document.getSelection ? document.getSelection() : document.selection.createRange().text); if (!q) q = prompt(&quot;You didn't select any text.  Enter a search phrase:&quot;, &quot;&quot;); if (q!=null) location=(&quot;http://www.google.com/search?num=100&amp;q=site:&quot; + escape(location.hostname) + &quot; \&quot;&quot; + escape(q.replace(/\&quot;/g,&quot;&quot;)) + &quot;\&quot;&quot;).replace(/ /g, &quot;+&quot;); void 0"
+>google site search</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Searches Google for pages on the site containing selected text.</p> 
+ 
+ 
+<h4 class=transparent><a name="google_site_search:_all" class="bml"
+href="javascript:location=&quot;http://www.google.com/search?num=100&amp;q=site:&quot; + escape(location.hostname); void 0"
+>google site search: all</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Searches Google for all pages on the site.</p> 
+ 
+ 
+<h4 class=transparent><a name="google_site_search:_title" class="bml"
+href="javascript:location=(&quot;http://www.google.com/search?num=100&amp;q=site:&quot; + escape(location.hostname) + &quot; \&quot;&quot; + escape(document.title.replace(/\&quot;/g,&quot;&quot;)) + &quot;\&quot;&quot;).replace(/ /g, &quot;+&quot;); void 0"
+>google site search: title</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Searches Google for pages on the site with the same title.</p> 
+ 
+ 
+<h4 class=transparent><a name="num=100" class="bml"
+href="javascript:N=&quot;num=100&quot;; R = /num=\d*/; if (R.exec(location.search)) location.search = location.search.replace(R, N); else location.search += &quot;&amp;&quot; + N; void 0"
+>num=100</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>)
+</h4><p class=shortdesc>Changes a Google search to show 100 results per page.</p> 
+ 
+ 
+<h4 class=transparent><a name="num=10" class="bml"
+href="javascript:N=&quot;num=10&quot;; R = /num=\d*/; if (R.exec(location.search)) location.search = location.search.replace(R, N); else location.search += &quot;&amp;&quot; + N; void 0"
+>num=10</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>)
+</h4><p class=shortdesc>Changes a Google search to show 10 results per page.</p> 
+ 
+ 
+<h4 class=transparent><a name="num=1" class="bml"
+href="javascript:N=&quot;num=1&quot;; R = /num=\d*/; if (R.exec(location.search)) location.search = location.search.replace(R, N); else location.search += &quot;&amp;&quot; + N; void 0"
+>num=1</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>)
+</h4><p class=shortdesc>Changes a Google search to show <a href="http://www.webmasterworld.com/forum3/11751.htm">1 result per page</a>.</p> 
+ 
+ 
+<h4 class=transparent><a name="filter=0" class="bml"
+href="javascript:N=&quot;filter=0&quot;; R = /filter=\d*/; if (R.exec(location.search)) location.search = location.search.replace(R, N); else location.search += &quot;&amp;&quot; + N; void 0"
+>filter=0</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>)
+</h4><p class=shortdesc>Changes a Google search to remove the limit of 2 URLs per site.</p> 
+ 
+ 
+<h4 class=transparent><a name="@google" class="bml"
+href="javascript:Q=[]; c=location.search.slice(1).split('&amp;'); for (i in c) { f=c[i].split('='); if (f[0]=='q' || f[0]=='as_q' || f[0]=='p' || f[0]=='query') if (f[1]) Q.push(f[1]) } R=unescape(Q.join('; ').replace(/\+/g,' ')); location = 'http://www.google.com/search?q=' + escape(R);"
+>@google</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Takes you from any search to the same search on Google.</p> 
+You can also use this bookmarklet to simplify Google search URLs so they only include the q parameter.  This is useful if you want to link to a Google search in a blog, for example.
+ 
+<h4 class=transparent><a name="@alltheweb" class="bml"
+href="javascript:Q=[]; c=location.search.slice(1).split('&amp;'); for (i in c) { f=c[i].split('='); if (f[0]=='q' || f[0]=='as_q' || f[0]=='p' || f[0]=='query') if (f[1]) Q.push(f[1]) } R=unescape(Q.join('; ').replace(/\+/g,' ')); location = 'http://www.alltheweb.com/search?q=' + escape(R);"
+>@alltheweb</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Takes you from any search to the same search on Alltheweb.</p> 
+ 
+ 
+<h4 class=transparent><a name="@teoma" class="bml"
+href="javascript:Q=[]; c=location.search.slice(1).split('&amp;'); for (i in c) { f=c[i].split('='); if (f[0]=='q' || f[0]=='as_q' || f[0]=='p' || f[0]=='query') if (f[1]) Q.push(f[1]) } R=unescape(Q.join('; ').replace(/\+/g,' ')); location = 'http://s.teoma.com/search?q=' + escape(R);"
+>@teoma</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Takes you from any search to the same search on Teoma.</p> 
+ 
+ 
+<h4 class=transparent><a name="@msn" class="bml"
+href="javascript:Q=[]; c=location.search.slice(1).split('&amp;'); for (i in c) { f=c[i].split('='); if (f[0]=='q' || f[0]=='as_q' || f[0]=='p' || f[0]=='query') if (f[1]) Q.push(f[1]) } R=unescape(Q.join('; ').replace(/\+/g,' ')); location = 'http://search.msn.com/results.aspx?q=' + escape(R);"
+>@msn</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Takes you from any search to the same search on MSN Search.</p> 
+ 
+ 
+<h4 class=transparent><a name="@altavista" class="bml"
+href="javascript:Q=[]; c=location.search.slice(1).split('&amp;'); for (i in c) { f=c[i].split('='); if (f[0]=='q' || f[0]=='as_q' || f[0]=='p' || f[0]=='query') if (f[1]) Q.push(f[1]) } R=unescape(Q.join('; ').replace(/\+/g,' ')); location = 'http://altavista.com/web/results?q=' + escape(R);"
+>@altavista</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Takes you from any search to the same search on Altavista.</p> 
+ 
+ 
+<h4 class=transparent><a name="wayback_newest" class="bml"
+href="javascript:void(location.href='http://web.archive.org/'+escape(location.href));"
+>wayback newest</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Goes to the newest archived copy of a page.</p> 
+<p>Goes to the newest archived copy in the <a href="http://www.archive.org/">Wayback Machine</a>.
+ 
+<p>Written by <a href="http://kalsey.com/rant/archives/2001_10.html#000073">Adam Kalsey</a>.</p> 
+ 
+<h4 class=transparent><a name="wayback_search_" class="bml"
+href="javascript:void(location.href='http://web.archive.org/web/*/'+escape(location.href));"
+>wayback search </a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Searches the <a href="http://www.archive.org/">Wayback Machine</a> for all old copies of the page.</p> 
+<p>Useful for countering 404 or server-not-found errors.
+ 
+<p>Written by <a href="http://kalsey.com/rant/archives/2001_10.html#000073">Adam Kalsey</a>.</p> 
+ 
+<hr><p><i><a href="copyright.html">&copy;</a> 2000-2007 <a href="http://www.squarefree.com/">Jesse Ruderman</a> (<a href="mailto:jruderman@gmail.com">jruderman@gmail.com</a>). Feedback is welcome.<br> 
+Last modified April 21, 2003.</i></p> 
+ 
+</body> 
+</html> 

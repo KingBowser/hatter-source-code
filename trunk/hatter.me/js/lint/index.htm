@@ -1,0 +1,134 @@
+<html><head><title>JSLint, The JavaScript Verifier</title>
+<style>
+fieldset {border: 2px solid black; margin: 1em; background-color: gainsboro;
+   padding: 8px;}
+legend {border: 2px solid black; background-color: thistle; padding: 8px;}
+textarea {width: 90%; height: 3in; font-family: monospace; overflow: auto;
+    margin: 10pt; border: 2px solid black; padding: 0.5em;}
+i {font-family: serif; font-style: italic;}
+p {padding-left: 10pt;}
+input[type=button] {border: 2px solid black; background-color: navajowhite;}
+input[type=button]:hover {background-color: lightsteelblue; text-decoration: underline;}
+input[type=button]:active {background-color: indianred; text-decoration: none;}
+
+a {text-decoration: none;}
+a:link {color: black;}
+a:visited {color: purple;}
+a:hover {color: blue; text-decoration: underline;}
+a:active {color: red;}
+
+#options {background-color: linen;}
+#options div {float: left; margin-left: 1em;}
+
+div#errors {margin: 1em; border: 2px solid black; padding: 1em; background-color: mistyrose;}
+#errors p {margin-left: 2em;}
+#errors p.evidence {margin-left: 0em; font-family: monospace;}
+
+div#functions {margin: 1em; border: 2px solid black; padding: 1em; background-color: white;}
+#functions {font-family: monospace;}
+#functions div {margin-left: 10em; text-indent: -5em;}
+#functions div.function {margin-left: 0em; text-indent: 0em;}
+
+</style></head>
+<body bgcolor="linen">
+<fieldset><legend><tt><big>JSLint</big></tt></legend>
+<p align=center><b>&nbsp;The <a href="http://javascript.crockford.com/">JavaScript</a>
+Verifier&nbsp;</b> (<a href="lint.html">Read the documentation</a>) &nbsp; &nbsp;
+
+Edition
+
+2007-09-22
+
+</p>
+<p align=center><textarea id=input></textarea></p>
+<p align=center>
+    <input type=button name=jslint value=JSLint>
+    &nbsp; &nbsp;
+    <input type=button name=jslint value=clear>
+</p>
+<br clear=all>
+<div id=output>
+    <p align=center>Paste your program into the text box above
+    and click the <input type=button name=jslint value=JSLint> button.
+    </p>
+
+    <p align=center><a href="http://yuiblog.com/blog/2006/09/26/for-in-intrigue/">
+        <b>The body of a <tt>for</tt> <tt>in</tt> statement should be filtered.</b>
+    </a></p>
+</div>
+<br clear=all>
+<p align=center>
+    <input type=button name=jslint value=JSLint>
+
+    &nbsp; &nbsp;
+    <input type=button name=jslint value=clear>
+</p>
+
+<fieldset id=options><legend>Options</legend>
+  <div>
+    <input type=checkbox id=passfail><label for=passfail>Stop on first error</label>
+  <br>
+    <input type=checkbox id=white><label for=white>Strict whitespace</label>
+
+  <br>
+    <input type=checkbox id=browser><label for=browser>Assume a browser</label>
+  <br>
+    <input type=checkbox id=widget><label for=widget>Assume a
+        <a href="http://widgets.yahoo.com/gallery/view.php?widget=37484">Yahoo Widget</a></label>
+  <br>
+    <input type=checkbox id=rhino><label for=rhino>Assume
+        <a href="http://www.mozilla.org/rhino/">Rhino</a></label>
+
+  </div>
+  <div>
+    <input type=checkbox id=laxbreak><label for=laxbreak>Tolerate sloppy line breaking</label>
+  <br>
+    <input type=checkbox id=cap><label for=cap>Tolerate <tt>HTML</tt> case</label>
+  <br>
+
+    <input type=checkbox id=fragment><label for=fragment>Tolerate <tt>HTML</tt> fragments</label>
+  <br>
+    <input type=checkbox id=debug><label for=debug>Tolerate <tt>debugger</tt> statements</label>
+  <br>
+    <input type=checkbox id=evil><label for=evil>Tolerate <tt>eval</tt></label>
+
+  <br>
+    <input type=checkbox id=forin><label for=forin><b>Tolerate unfiltered <tt>for</tt> <tt>in</tt></b></label>
+  </div>
+  <div>
+    <input type=checkbox id=undef><label for=nomen>Disallow undefined variables</label>
+  <br>
+
+    <input type=checkbox id=nomen><label for=nomen>Disallow <tt>$</tt> and
+    leading <tt>_</tt> in identifiers</label>
+  <br>
+    <input type=checkbox id=eqeqeq><label for=eqeqeq>Disallow
+    <tt>==</tt> and <tt>!=</tt></label>
+
+  <br>
+    <input type=checkbox id=plusplus><label for=plusplus>Disallow <tt>++</tt> and
+    <tt>--</tt></label>
+  <br>
+    <input type=checkbox id=bitwise><label for=bitwise>Disallow bitwise operators</label>
+  <br>
+    <input type=checkbox id=adsafe><label for=adsafe>Adsafe</label>
+
+  </div>
+</fieldset>
+<p align=center>
+    <input type=button id=clearall value="Clear All Options">
+    &nbsp; &nbsp;
+    <input type=button id=recommended value="Recommended Options">
+    &nbsp; &nbsp;
+    <input type=button id=goodparts value="Good Parts">
+</p>
+
+<p align=center>
+Copyright 2002 <a href="mailto:douglas@crockford.com">Douglas Crockford.</a>
+<a target=_top href="http://www.crockford.com/">All Rights Reserved Wrrrldwide.</a>
+<br><a href="http://javascript.crockford.com/code.html" target=_blank>Code
+Conventions for the JavaScript Programming Language</a>
+</p></fieldset>
+<script src="webjslint.js"></script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"> 
+<head> 
+ <title>/packer/</title> 
+ <meta name="author" content="Dean Edwards"/> 
+ <!-- keeping code tidy!! --> 
+ <meta name="copyright" content="&copy; copyright 2004-2009, Dean Edwards"/> 
+ <link rel="icon" href="/favicon.ico"/> 
+ <link rel="stylesheet" type="text/css" href="screen.css" media="screen, projection"/> 
+ <link rel="stylesheet" type="text/css" href="print.css" media="print"/> 
+ <!--[if lt IE 8]><link rel="stylesheet" type="text/css" href="ie-layout.css"><![endif]--> 
+ <script type="text/javascript" src="my.js"></script> 
+ <meta name="description" content="A Javascript compressor."/> 
+ <meta name="keywords" content="packer,javascript,compressor,obfuscator"/> 
+ <link rel="stylesheet" href="forms.css" type="text/css" media="screen, projection"/> 
+ <link rel="stylesheet" href="packer.css" type="text/css" media="screen, projection"/> 
+ <script src="base2-load.js" type="text/javascript"></script> 
+ <script src="Packer.js" type="text/javascript"></script> 
+ <script src="Words.js" type="text/javascript"></script> 
+ <script src="bindings.js" type="text/javascript"></script> 
+</head> 
+<body id="packer"> 
+<div class="document"> 
+<div class="header"> 
+<h1 class="home"><a href="http://dean.edwards.name/">dean.edwards.name</a>/packer/</h1> 
+  <ul class="menu" id="main-menu"><!--
+--><li><a href="http://dean.edwards.name/my/">my</a></li><!--
+--><li><a href="http://dean.edwards.name/weblog/">weblog</a></li><!--
+--><li><a href="http://dean.edwards.name/about/">about</a></li><!--
+--><li><a href="http://dean.edwards.name/contact/">contact</a></li><!--
+--><li class="last-child"><a href="http://dean.edwards.name/search/">search</a></li><!--
+--></ul> 
+ <hr /> 
+</div> 
+ 
+<div class="content"> 
+ <h2><span class="description">A JavaScript Compressor.</span> 
+  <span class="version">version 3.0</span></h2> 
+ <hr class="short"/> 
+ <form class="disabled" id="form" action="" method="post"> 
+  <p id="help"><a href="http://dean.edwards.name/usage/">Help</a></p> 
+  <p><label class="paste">Paste:</label><br /> 
+   <textarea id="input" name="input" rows="10" cols="80" disabled="disabled"></textarea></p> 
+  <p id="controls"> 
+   <label for="base62">Base62 encode
+	<input type="checkbox" id="base62" name="base62" value="1" disabled="disabled"/></label><br /> 
+   <label for="shrink">Shrink variables
+    <input type="checkbox" id="shrink" name="shrink" value="1" disabled="disabled"/></label> 
+  </p> 
+  <p class="form-buttons" id="input-buttons"> 
+   <input type="file" id="upload-script" name="upload" disabled="disabled"/> 
+   <button type="button" id="load-script" disabled="disabled">Load</button> 
+   <button type="button" id="clear-all" disabled="disabled">Clear</button> 
+   <button type="button" id="pack-script" disabled="disabled">Pack</button> 
+  </p> 
+  <p><label class="copy">Copy:</label> 
+   <textarea id="output" name="output" rows="10" cols="80" readonly="readonly" disabled="disabled"></textarea></p> 
+  <p id="message" class="error">disabled</p> 
+  <p class="form-buttons" id="output-buttons"> 
+   <button type="submit" id="save-script" disabled="disabled">Save</button> 
+   <button type="button" id="decode-script" disabled="disabled">Decode</button> 
+  </p> 
+  <fieldset class="hidden"> 
+   <input type="hidden" name="command" value=""/> 
+   <input type="hidden" name="filename" value=""/> 
+   <input type="hidden" name="filetype" value=""/> 
+  </fieldset> 
+ </form> 
+ <p>Also available as <a href="http://dean.edwards.name/download/#packer">.NET, perl and <abbr>PHP</abbr></a> applications.</p> 
+</div> 
+ 
+<div class="footer"> 
+ <p id="modified">last modified: 2007/08/29</p> 
+ <hr /> 
+ <ul class="menu" id="buttons"> 
+  <li id="britpack"><a href="http://www.britpack.org/"><img
+
+   src="britpack.gif" title="Standing Firm"
+
+   alt="A Proud Member" height="31" width="88"/></a></li> 
+ </ul> 
+ <p id="syndication"><a href="http://dean.edwards.name/syndication/"><img src="rss.png" width="16" height="16" alt="RSS" title="RSS"/> 
+  <span class="link-text">syndicate this site</span></a>.</p> 
+</div> 
+</div> 
+</body> 
+</html> 

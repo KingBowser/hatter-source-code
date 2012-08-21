@@ -1,0 +1,240 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<title>Bugzilla Bookmarklets</title> 
+<link rel="stylesheet" href="squarefree.css" type="text/css"> 
+</head> 
+ 
+<body> 
+ 
+<div style="text-align: center"> 
+<a href="./">Bookmarklets Home</a> 
+| <a href="pagelinks.html">Links</a> 
+| <a href="forms.html">Forms</a> 
+| <a href="pagedata.html">Text and Data</a> 
+| <a href="zap.html">Zap</a> 
+| <a href="webdevel.html">Web Development</a> 
+| <a href="validation.html">Validation</a> 
+| <a href="misc.html">Misc</a> 
+</div> 
+ 
+<hr> 
+ 
+<script type="text/javascript"> 
+var ua = navigator.userAgent, d, s="";
+if (/Gecko\/200305(\d\d)/.exec(ua))
+{
+  day = parseInt(RegExp.$1, 10)
+  if (16 <= day && day < 22)
+  {
+    s = "<p class='ack'><b>You are using a version of Mozilla in which many bookmarklets do not work.<\/b>  Mozilla builds between May 16 and May 22 (including Mozilla Firebird 0.6, released May 16) suffer from bug 205989 and bug 206026.<br><br><b>Please upgrade<\/b> to one of the following:<br>"
+    s += "<a href='http://ftp.mozilla.org/pub/firebird/nightly/latest-trunk/'>A Mozilla Firebird nightly<\/a> (recommended)<br>";
+    s += "<a href='http://ftp.mozilla.org/pub/mozilla/nightly/latest-trunk/'>A Mozilla nightly<\/a><br>";
+    s += "<a href='http://www.mozilla.org/releases/'>Mozilla 1.4 RC1 or a later release<\/a><\/p>";
+    document.write(s);
+  }
+}
+</script> 
+<h3>Bugzilla Bookmarklets</h3> 
+<p><a href="http://bugzilla.mozilla.org/">Bugzilla.mozilla.org</a> tracks bugs in the <a href="http://www.mozilla.org/">Mozilla</a> browser and other Mozilla software.  Most of these bookmarklets should work at any <a href="http://www.bugzilla.org/">Bugzilla</a> installation, but you'll have to edit "collect buglinks" and "buglinkify" if you want to use them for Bugzillas other than bugzilla.mozilla.org.</p> 
+ 
+<p class=smallitalic>(To keep <a href="./">bookmarklets</a> in order to use them on other web pages, drag them to your <a href="personaltoolbar.html">Bookmarks Toolbar</a>.  Or, <a href="importall.html">install them all at once</a>.)</p> 
+ 
+<div class=summarytable><table class=summarytable> 
+ 
+<thead> 
+<tr> 
+<th>Bookmarklet</th> 
+<th>Description</th> 
+<th colspan=4>Works in</th> 
+</tr> 
+</thead> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){ function getSearchString (promptString) { s = null; if (document.selection &amp;&amp; document.selection.createRange) { s = document.selection.createRange().text; } else if (document.getSelection) { s = document.getSelection(); } if (! (s &amp;&amp; s.length)) { s = prompt(promptString,''); } return s; } searchString = getSearchString('Enter a bug number or some search terms (or select them before activating this bookmarklet)'); if (searchString != null) { if (searchString.length) { location = 'http://www.squarefree.com/bugzilla/autoqs.html?auto=yes&amp;query='+escape(searchString); } else { location = 'http://www.squarefree.com/bugzilla/autoqs.html'; } }  })();"
+>bug search</a></td> 
+<td>Lets you quickly search bugzilla or jump to a bug number. <a href="#bug_search">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:var url=location.href, r, killREs=[], fields=[], nextEmptyChart=/field(\d+)-(\d+)-(\d+)=noop/g, nextEmptyItem=/&amp;([^=]+)=(?=&amp;)/g, empties=[]; while( r=/&amp;email([12])=&amp;/g.exec(url) ) { killREs.push( new RegExp(&quot;&amp;email[^=]*&quot;+r[1]+&quot;=[^&amp;]*&quot;,&quot;g&quot;) ); } while( r=nextEmptyChart.exec(url) ) { fields.push( r[1]+&quot;-&quot;+r[2]+&quot;-&quot;+r[3] ); } killREs.push( new RegExp( &quot;&amp;(?:field|type|value)(?:&quot;+fields.join(&quot;|&quot;)+&quot;)=[^&amp;]*&quot;,&quot;g&quot;) ); if( /&amp;cmdtype=doit/.test(url) ) { killREs.push( /&amp;cmdtype=doit/ ); killREs.push( /&amp;remaction=[^&amp;]*/ ); killREs.push( /&amp;namedcmd=[^&amp;]*/ ); } if( /&amp;bug_id=&amp;/.test(url) ) { killREs.push( /&amp;bugidtype=[^&amp;]*/ ); } while( r=nextEmptyItem.exec(url) ) { empties.push( r[1] ); } killREs.push( new RegExp( &quot;&amp;(?:&quot;+empties.join(&quot;|&quot;)+&quot;)(?:_type|)=[^&amp;]*&quot;,&quot;g&quot; ) ); killREs.push( /&amp;order=Reuse\+same\+sort\+as\+last\+time/ ); for( var i=0; i &lt; killREs.length; ++i ) { url=url.replace( killREs[i],&quot;&quot; ); } url=url.replace( /\?[^=]+=&amp;/,&quot;?&quot; ); prompt(&quot;This is the shortened query:&quot;,url); void(0)"
+>shorten bug query</a></td> 
+<td>Removes unused fields from a bugzilla query, making it much shorter. <a href="#shorten_bug_query">Details</a></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:function markDoomed() { styles='table.bz_buglist &gt; tbody &gt; tr &gt; td &gt; a:visited { font-family: doomed }'; newSS = document.createElement('link'); newSS.rel = 'stylesheet'; newSS.href = 'data:text/css,' + escape(styles); document.documentElement.childNodes[0].appendChild(newSS); } function killDoomed() { for(i=0;x=document.links[i];++i) { if (getComputedStyle(x,null).getPropertyValue(&quot;font-family&quot;) == &quot;doomed&quot;) { x.parentNode.parentNode.style.display = &quot;none&quot;; } } } markDoomed(); setTimeout(killDoomed, 0); void 0"
+>hide visited bug rows</a></td> 
+<td>On a Bugzilla search-results page, hides the rows containing visited bugs. <a href="#hide_visited_bug_rows">Details</a></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){var y,i,L,a; y = ''; for (i = 0; L = document.links[i]; ++i) { a = L.innerHTML; if (L.hostname == &quot;bugzilla.mozilla.org&quot; &amp;&amp; L.pathname == &quot;/show_bug.cgi&quot; &amp;&amp; L.search != location.search &amp;&amp; a != 'First' &amp;&amp; a != 'Last' &amp;&amp; a != 'Prev' &amp;&amp; a != 'Next') y += ',' + parseInt(L.search.substr(4,18)); } if(y.length) location = 'https://bugzilla.mozilla.org/buglist.cgi?bugidtype=include&amp;order=bugs.bug_id&amp;bug_id=' + y; else alert('no buglinks on this page'); })();"
+>collect buglinks</a></td> 
+<td>Queries <a href="http://bugzilla.mozilla.org/">bugzilla</a> to show a list of bugs linked to from the current page. <a href="#collect_buglinks">Details</a></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:function insertLink (textNode, start, end, url){p1=textNode;p2=textNode.splitText(start);p3=p2.splitText(end-start);link=document.createElement('a');link.href=url;link.appendChild(p2);p3.parentNode.insertBefore(link, p3);}function isDigit(ch){return (&quot;0123456789&quot;.indexOf(ch)!=-1)}function buglinkify(node){var i, j, t;if(node.nodeType==3) {t=node.data;for (i=0; i &lt; t.length; ++i){if(isDigit(t.charAt(i))){for (j=i+1; j &lt; t.length; ++j){if(!isDigit(t.charAt(j)))break;}insertLink(node, i, j, 'https://bugzilla.mozilla.org/show_bug.cgi?id='+t.substring(i,j));break;}}}else if(node.nodeType==1 &amp;&amp; node.tagName.toLowerCase()=='a' &amp;&amp; node.href){}else{for (i=0; i &lt; node.childNodes.length; ++i)buglinkify(node.childNodes[i]);}}buglinkify(document.body)"
+>buglinkify</a></td> 
+<td>Turns all numbers on the page into bug links. <a href="#buglinkify">Details</a></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:t=document.title; bug=t.match(/[0-9]+/)[0]; summary=t.match(/-.*/)[0].slice(2); x=window.open(&quot;&quot;,&quot;buglinks&quot;); d=x.document; if (!(ta=d.getElementsByTagName(&quot;textarea&quot;)[0])) { d.open(); d.close(); ta=d.createElement(&quot;textarea&quot;); ta.cols=80; ta.rows=10; d.body.appendChild(ta); } ta.value += (&quot;bug &quot; + bug + &quot; &quot; + summary + &quot;\n&quot;); ta.select(); focus();"
+>reference bug</a></td> 
+<td>Lets you cross-reference bugs quickly. <a href="#reference_bug">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function() { function htmlEscape(s){s=s.replace(/&amp;/g,'&amp;amp;');s=s.replace(/&gt;/g,'&amp;gt;');s=s.replace(/&lt;/g,'&amp;lt;');return s;} function sentencify(t) { t = t.substr(0,1).toUpperCase() + t.slice(1); if (t.charAt(t.length-1) != &quot;.&quot;) t += &quot;.&quot;; return t; } var textToCopy = &quot;&lt;li&gt;Fixed: &lt;a href=\&quot;&quot; + location.href + &quot;\&quot;&gt;&quot; + /\d+/.exec(document.title)[0] + &quot;&lt;/a&gt; - &quot; + htmlEscape(sentencify(/-.*/.exec(document.title)[0].slice(2))) + &quot;&lt;/li&gt;\n&quot;; document.write(&quot;&lt;form name=f&gt;&lt;textarea name=ta cols=80 rows=5&gt;&lt;/textarea&gt;&lt;/form&gt;&quot;); document.close(); document.f.ta.value = textToCopy; document.f.ta.select(); })()"
+>make link to bug</a></td> 
+<td>Creates HTML that links to a bug. <a href="#make_link_to_bug">Details</a></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:if (document.forms[0] &amp;&amp; document.forms[0].comment) { document.forms[0].comment.value = navigator.userAgent + &quot;\n\n&quot; + &quot;Steps to reproduce:\n1. \n\n&quot; + &quot;Results: \n\n&quot; + &quot;Expected: &quot; + document.forms[0].comment.value; } else { alert(&quot;This isn't a bug-report page.&quot;) } void 0"
+>prefill bug report</a></td> 
+<td>Prefills a new bug report with your user agent and a steps-result-expected template. <a href="#prefill_bug_report">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){var urlForID,i,x,rexResult; urlForID = {}; for(i=0;x=document.links[i];++i) if ((rexResult = /^http\:\/\/talkback-public\.mozilla\.org\/talkback\/fastfind\.jsp?.*\&amp;id=(TB)?(\d+)/(x.href))) urlForID[rexResult[2]] = x.href; for(i in urlForID) { open(urlForID[i]); } })()"
+>open talkback links</a></td> 
+<td>Opens each talkback link in the page in a new window <a href="#open_talkback_links">Details</a></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+</table></div> 
+ 
+<p class=smallitalic>Browsers: <img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16> is <a href="http://www.microsoft.com/windows/ie/default.asp">Internet Explorer for Windows</a>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16> is <a href="http://channels.netscape.com/ns/browsers/default.jsp">Netscape 7</a> or <a href="http://www.mozilla.org/">Mozilla</a>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16> is <a href="http://ftp.netscape.com/pub/communicator/english/">Netscape 4</a>, and <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16> is <a href="http://www.opera.com/">Opera</a>.</p> 
+ 
+ 
+<hr> 
+ 
+<h3>Details</h3> 
+<h4 class=transparent><a name="bug_search" class="bml"
+href="javascript:(function(){ function getSearchString (promptString) { s = null; if (document.selection &amp;&amp; document.selection.createRange) { s = document.selection.createRange().text; } else if (document.getSelection) { s = document.getSelection(); } if (! (s &amp;&amp; s.length)) { s = prompt(promptString,''); } return s; } searchString = getSearchString('Enter a bug number or some search terms (or select them before activating this bookmarklet)'); if (searchString != null) { if (searchString.length) { location = 'http://www.squarefree.com/bugzilla/autoqs.html?auto=yes&amp;query='+escape(searchString); } else { location = 'http://www.squarefree.com/bugzilla/autoqs.html'; } }  })();"
+>bug search</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Lets you quickly search bugzilla or jump to a bug number.</p> 
+<p>If you select text on a web page before activating <tt>bug search</tt>, the bookmarklet will search for the selected text without prompting (IE, NS6, and NS4 only).
+ 
+<p>This bookmarklet uses <a href="http://bugzilla.mozilla.org/quicksearch.html">Bugzilla QuickSearch</a>.</p> 
+ 
+<h4 class=transparent><a name="shorten_bug_query" class="bml"
+href="javascript:var url=location.href, r, killREs=[], fields=[], nextEmptyChart=/field(\d+)-(\d+)-(\d+)=noop/g, nextEmptyItem=/&amp;([^=]+)=(?=&amp;)/g, empties=[]; while( r=/&amp;email([12])=&amp;/g.exec(url) ) { killREs.push( new RegExp(&quot;&amp;email[^=]*&quot;+r[1]+&quot;=[^&amp;]*&quot;,&quot;g&quot;) ); } while( r=nextEmptyChart.exec(url) ) { fields.push( r[1]+&quot;-&quot;+r[2]+&quot;-&quot;+r[3] ); } killREs.push( new RegExp( &quot;&amp;(?:field|type|value)(?:&quot;+fields.join(&quot;|&quot;)+&quot;)=[^&amp;]*&quot;,&quot;g&quot;) ); if( /&amp;cmdtype=doit/.test(url) ) { killREs.push( /&amp;cmdtype=doit/ ); killREs.push( /&amp;remaction=[^&amp;]*/ ); killREs.push( /&amp;namedcmd=[^&amp;]*/ ); } if( /&amp;bug_id=&amp;/.test(url) ) { killREs.push( /&amp;bugidtype=[^&amp;]*/ ); } while( r=nextEmptyItem.exec(url) ) { empties.push( r[1] ); } killREs.push( new RegExp( &quot;&amp;(?:&quot;+empties.join(&quot;|&quot;)+&quot;)(?:_type|)=[^&amp;]*&quot;,&quot;g&quot; ) ); killREs.push( /&amp;order=Reuse\+same\+sort\+as\+last\+time/ ); for( var i=0; i &lt; killREs.length; ++i ) { url=url.replace( killREs[i],&quot;&quot; ); } url=url.replace( /\?[^=]+=&amp;/,&quot;?&quot; ); prompt(&quot;This is the shortened query:&quot;,url); void(0)"
+>shorten bug query</a> 
+(<img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Removes unused fields from a bugzilla query, making it much shorter.</p> 
+<p>sirLurxalot wrote this bookmarklet.</p> 
+ 
+<h4 class=transparent><a name="hide_visited_bug_rows" class="bml"
+href="javascript:function markDoomed() { styles='table.bz_buglist &gt; tbody &gt; tr &gt; td &gt; a:visited { font-family: doomed }'; newSS = document.createElement('link'); newSS.rel = 'stylesheet'; newSS.href = 'data:text/css,' + escape(styles); document.documentElement.childNodes[0].appendChild(newSS); } function killDoomed() { for(i=0;x=document.links[i];++i) { if (getComputedStyle(x,null).getPropertyValue(&quot;font-family&quot;) == &quot;doomed&quot;) { x.parentNode.parentNode.style.display = &quot;none&quot;; } } } markDoomed(); setTimeout(killDoomed, 0); void 0"
+>hide visited bug rows</a> 
+(<img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>)
+</h4><p class=shortdesc>On a Bugzilla search-results page, hides the rows containing visited bugs.</p> 
+<p>Similar to the "hide visited" bookmarklet, but hides the entire row instead of just the link.</p> 
+ 
+<p>Suggested by <a href="http://www.mozillazine.org/weblogs/asa/">Asa Dotzler</a>.</p> 
+ 
+<h4 class=transparent><a name="collect_buglinks" class="bml"
+href="javascript:(function(){var y,i,L,a; y = ''; for (i = 0; L = document.links[i]; ++i) { a = L.innerHTML; if (L.hostname == &quot;bugzilla.mozilla.org&quot; &amp;&amp; L.pathname == &quot;/show_bug.cgi&quot; &amp;&amp; L.search != location.search &amp;&amp; a != 'First' &amp;&amp; a != 'Last' &amp;&amp; a != 'Prev' &amp;&amp; a != 'Next') y += ',' + parseInt(L.search.substr(4,18)); } if(y.length) location = 'https://bugzilla.mozilla.org/buglist.cgi?bugidtype=include&amp;order=bugs.bug_id&amp;bug_id=' + y; else alert('no buglinks on this page'); })();"
+>collect buglinks</a> 
+(<img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>)
+</h4><p class=shortdesc>Queries <a href="http://bugzilla.mozilla.org/">bugzilla</a> to show a list of bugs linked to from the current page.</p> 
+<p><b>Background:</b> bugzilla.mozilla.org is the bug tracking system for the Mozilla browser and several other projects.  In bugzilla, the term "bug" is often used to refer to not only defects, but also missing or requested features.</p> 
+ 
+<p><b>Browsers:</b> Netscape 4 doesn't support the DOM2 property childNodes, so the feature that the "first/last/prev/next" links are skipped doesn't work in those browsers.  This bookmarklet is too long for IE XPSP2.  Opera 7.53 gets link.pathname wrong, so this bookmarklet doesn't work at all in Opera.</p> 
+ 
+<p><b>Bugzillas:</b> It should be possible to modify this bookmarklet to work with bugzilla installations other than <a href="http://bugzilla.mozilla.org/">bugzilla.mozilla.org</a>.  It doesn't work with the <a href="http://bugzilla.redhat.com/bugzilla/">redhat bugzilla</a>, though (why?).</p> 
+ 
+<p>I got the idea for this bookmarklet from Matthew Tuck's <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=12286">bug 12286</a>.</p> 
+ 
+<h4 class=transparent><a name="buglinkify" class="bml"
+href="javascript:function insertLink (textNode, start, end, url){p1=textNode;p2=textNode.splitText(start);p3=p2.splitText(end-start);link=document.createElement('a');link.href=url;link.appendChild(p2);p3.parentNode.insertBefore(link, p3);}function isDigit(ch){return (&quot;0123456789&quot;.indexOf(ch)!=-1)}function buglinkify(node){var i, j, t;if(node.nodeType==3) {t=node.data;for (i=0; i &lt; t.length; ++i){if(isDigit(t.charAt(i))){for (j=i+1; j &lt; t.length; ++j){if(!isDigit(t.charAt(j)))break;}insertLink(node, i, j, 'https://bugzilla.mozilla.org/show_bug.cgi?id='+t.substring(i,j));break;}}}else if(node.nodeType==1 &amp;&amp; node.tagName.toLowerCase()=='a' &amp;&amp; node.href){}else{for (i=0; i &lt; node.childNodes.length; ++i)buglinkify(node.childNodes[i]);}}buglinkify(document.body)"
+>buglinkify</a> 
+(<img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Turns all numbers on the page into bug links.</p> 
+<p>For example, if the page contains the text "29346", that text will become a link to <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=29346" title="VERIFIED FIXED - Prevent repeating pop-up windows">bug 29346</a>.  This bookmarklet ignores numbers that are already inside links.</p> 
+ 
+<h4 class=transparent><a name="reference_bug" class="bml"
+href="javascript:t=document.title; bug=t.match(/[0-9]+/)[0]; summary=t.match(/-.*/)[0].slice(2); x=window.open(&quot;&quot;,&quot;buglinks&quot;); d=x.document; if (!(ta=d.getElementsByTagName(&quot;textarea&quot;)[0])) { d.open(); d.close(); ta=d.createElement(&quot;textarea&quot;); ta.cols=80; ta.rows=10; d.body.appendChild(ta); } ta.value += (&quot;bug &quot; + bug + &quot; &quot; + summary + &quot;\n&quot;); ta.select(); focus();"
+>reference bug</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>)
+</h4><p class=shortdesc>Lets you cross-reference bugs quickly.</p> 
+<p>If you run the bookmarklet at a bugzilla bug, the bookmarklet creates a named window with a textarea and adds the current bug number and summary to the textarea.  If you run the same bookmarklet from other windows or tabs containing bugs, those bug numbers and summaries are also added to the textarea.  This bookmarklet is a workaround for the fact that there is no easy way to copy the bug number and summary from a bug.</p> 
+ 
+<h4 class=transparent><a name="make_link_to_bug" class="bml"
+href="javascript:(function() { function htmlEscape(s){s=s.replace(/&amp;/g,'&amp;amp;');s=s.replace(/&gt;/g,'&amp;gt;');s=s.replace(/&lt;/g,'&amp;lt;');return s;} function sentencify(t) { t = t.substr(0,1).toUpperCase() + t.slice(1); if (t.charAt(t.length-1) != &quot;.&quot;) t += &quot;.&quot;; return t; } var textToCopy = &quot;&lt;li&gt;Fixed: &lt;a href=\&quot;&quot; + location.href + &quot;\&quot;&gt;&quot; + /\d+/.exec(document.title)[0] + &quot;&lt;/a&gt; - &quot; + htmlEscape(sentencify(/-.*/.exec(document.title)[0].slice(2))) + &quot;&lt;/li&gt;\n&quot;; document.write(&quot;&lt;form name=f&gt;&lt;textarea name=ta cols=80 rows=5&gt;&lt;/textarea&gt;&lt;/form&gt;&quot;); document.close(); document.f.ta.value = textToCopy; document.f.ta.select(); })()"
+>make link to bug</a> 
+(<img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>)
+</h4><p class=shortdesc>Creates HTML that links to a bug.</p> 
+<p>This bookmarklet creates links in the following format, which I use for <a href="http://www.squarefree.com/burningedge/">The Burning Edge</a>:</p> 
+ 
+<p>&lt;li&gt;Fixed: &lt;a href="http://bugzilla.mozilla.org/show_bug.cgi?id=250407"&gt;250407&lt;/a&gt; - Find doesn't work in Full Screen mode.&lt;/li&gt;</p> 
+ 
+<h4 class=transparent><a name="prefill_bug_report" class="bml"
+href="javascript:if (document.forms[0] &amp;&amp; document.forms[0].comment) { document.forms[0].comment.value = navigator.userAgent + &quot;\n\n&quot; + &quot;Steps to reproduce:\n1. \n\n&quot; + &quot;Results: \n\n&quot; + &quot;Expected: &quot; + document.forms[0].comment.value; } else { alert(&quot;This isn't a bug-report page.&quot;) } void 0"
+>prefill bug report</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Prefills a new bug report with your user agent and a steps-result-expected template.</p> 
+ 
+ 
+<h4 class=transparent><a name="open_talkback_links" class="bml"
+href="javascript:(function(){var urlForID,i,x,rexResult; urlForID = {}; for(i=0;x=document.links[i];++i) if ((rexResult = /^http\:\/\/talkback-public\.mozilla\.org\/talkback\/fastfind\.jsp?.*\&amp;id=(TB)?(\d+)/(x.href))) urlForID[rexResult[2]] = x.href; for(i in urlForID) { open(urlForID[i]); } })()"
+>open talkback links</a> 
+(<img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>)
+</h4><p class=shortdesc>Opens each talkback link in the page in a new window</p> 
+<p>Opens each talkback link in a window (or tab, if you force window.open() into tabs using Firefox prefs).  Avoids opening multiple tabs for the same ID. Suggested by timeless.  Try it on a bug report with lots of talkback links, such as <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=300572">bug 300572</a>.</p> 
+ 
+<hr><p><i><a href="copyright.html">&copy;</a> 2000-2007 <a href="http://www.squarefree.com/">Jesse Ruderman</a> (<a href="mailto:jruderman@gmail.com">jruderman@gmail.com</a>). Feedback is welcome.<br> 
+Last modified Auguest 18, 2005.</i></p> 
+ 
+</body> 
+</html> 

@@ -1,0 +1,290 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<title>Search Engine Optimization Bookmarklets</title> 
+<link rel="stylesheet" href="squarefree.css" type="text/css"> 
+</head> 
+ 
+<body> 
+ 
+<div style="text-align: center"> 
+<a href="./">Bookmarklets Home</a> 
+| <a href="pagelinks.html">Links</a> 
+| <a href="forms.html">Forms</a> 
+| <a href="pagedata.html">Text and Data</a> 
+| <a href="zap.html">Zap</a> 
+| <a href="webdevel.html">Web Development</a> 
+| <a href="validation.html">Validation</a> 
+| <a href="misc.html">Misc</a> 
+</div> 
+ 
+<hr> 
+ 
+<script type="text/javascript"> 
+var ua = navigator.userAgent, d, s="";
+if (/Gecko\/200305(\d\d)/.exec(ua))
+{
+  day = parseInt(RegExp.$1, 10)
+  if (16 <= day && day < 22)
+  {
+    s = "<p class='ack'><b>You are using a version of Mozilla in which many bookmarklets do not work.<\/b>  Mozilla builds between May 16 and May 22 (including Mozilla Firebird 0.6, released May 16) suffer from bug 205989 and bug 206026.<br><br><b>Please upgrade<\/b> to one of the following:<br>"
+    s += "<a href='http://ftp.mozilla.org/pub/firebird/nightly/latest-trunk/'>A Mozilla Firebird nightly<\/a> (recommended)<br>";
+    s += "<a href='http://ftp.mozilla.org/pub/mozilla/nightly/latest-trunk/'>A Mozilla nightly<\/a><br>";
+    s += "<a href='http://www.mozilla.org/releases/'>Mozilla 1.4 RC1 or a later release<\/a><\/p>";
+    document.write(s);
+  }
+}
+</script> 
+<h3>Search Engine Optimization Bookmarklets</h3> 
+<p>These bookmarklets may be helpful in analyzing search engine positions, in combination with <a href="search.html">search bookmarklets</a>.  If you find these useful, you might also like the <a href="loganalysis.html">log analysis bookmarklets</a>.</p> 
+ 
+<script type="text/javascript"> 
+ 
+// rep()
+// customizes "find links to squarefree" and any similar links.
+ 
+function rep()
+{
+  if (!document.getElementsByTagName)
+  {
+    alert("Sorry, your browser doesn't support the 'find links to' bookmarklet. Try Mozilla, Opera 7, or IE6Win.");
+    return;
+  }
+ 
+  var a,b,i,x,L;
+  a = /squarefree/g;
+  b = document.cust.b.value;
+  for (i=0; x=document.getElementsByTagName("em")[i]; ++i)
+  {
+    if (x.className == "replace")
+    {
+      while(x.firstChild)
+        x.removeChild(x.firstChild);
+      x.appendChild(document.createTextNode(b));
+ 
+      L = x.parentNode;
+      if (L.tagName == 'A')
+      {
+        if (!L.originalHref)
+          L.originalHref = L.href;
+        L.href = L.originalHref.replace(a, b);
+      }
+    }
+  }
+}
+</script> 
+ 
+<form name="cust" action="javascript:void 0"> 
+<p> 
+Customize the "find links to" bookmarklet to find links to: 
+<input type="text" onchange="rep()" oninput="rep()" onkeyup="rep()" name=b value="squarefree" maxLength=12 size=13> 
+<input type=submit value="Customize"> 
+</p> 
+</form> 
+ 
+<p class=smallitalic>(To keep <a href="./">bookmarklets</a> in order to use them on other web pages, drag them to your <a href="personaltoolbar.html">Bookmarks Toolbar</a>.  Or, <a href="importall.html">install them all at once</a>.)</p> 
+ 
+<div class=summarytable><table class=summarytable> 
+ 
+<thead> 
+<tr> 
+<th>Bookmarklet</th> 
+<th>Description</th> 
+<th colspan=4>Works in</th> 
+</tr> 
+</thead> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){var s=&quot;squarefree&quot;,D=document,N,h,i,r;if(window.mlT!=s){mlT=s;mlL=[];for(i=0;h=D.links[i];++i)if(h.href.indexOf(s)!=-1)mlL.push(h);mlI=0}N=mlL.length;if(N){if(mlI==N)mlI=0;h=mlL[mlI++];h.onfocus=function(){return!1};h.focus();h.onfocus=null;if(D.createRange){r=D.createRange();r.selectNode(h);getSelection().addRange(r)}if(i=D.selection){r=i.createRange();r.moveToElementText(h);r.select()}top.status=s+&quot;: match &quot;+mlI+&quot; of &quot;+N+&quot;: &quot;+h.href}else top.status=s+&quot;: no matching links.&quot;})()"
+>find links to <em class="replace">squarefree</em></a></td> 
+<td>Selects a link to <em class="replace">squarefree</em> each time you click it. Customize above. <a href="#find_links_to_">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:location = 'http://www.google.com/search?q=link:' + escape(location);"
+>google backlinks</a></td> 
+<td>Searches Google for PR4+ pages that link to the current PR4+ page. <a href="#google_backlinks">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:location = 'http://www.alltheweb.com/search?q=link.all:' + escape(location.href) + '+site:' + escape(location.host);"
+>atw internal backlinks</a></td> 
+<td>Searches Alltheweb for backlinks from other pages on the site. <a href="#atw_internal_backlinks">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:location = 'http://www.alltheweb.com/search?q=link.all:' + escape(location.href) + '+-site:' + escape(location.host);"
+>atw external backlinks</a></td> 
+<td>Searches Alltheweb for backlinks from other sites. <a href="#atw_external_backlinks">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:location = 'http://www.alltheweb.com/search?q=' + escape(location.href) + '+-link.all:' + escape(location.href);"
+>atw plaintext backlinks</a></td> 
+<td>Searches Alltheweb for non-hyperlinked "backlinks". <a href="#atw_plaintext_backlinks">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:location=&quot;http://www.google.com/search?num=100&amp;q=site:&quot; + escape(location.hostname); void 0"
+>google site search: all</a></td> 
+<td>Searches Google for all pages on the site. <a href="#google_site_search:_all">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:location = 'http://www.alltheweb.com/search?q=%' + '2Burl.all:' + escape(location.hostname);"
+>atw site search: all</a></td> 
+<td>Searches Alltheweb for all pages from the site. <a href="#atw_site_search:_all">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){ var x, i, p, s=0, n=0, R=/start=([^&amp;]*)/; if ((x=R.exec(location.search)) &amp;&amp; x[1]) s = n = parseInt(unescape(x[1]),10); for (i=0;p=document.getElementsByTagName(&quot;p&quot;)[i];++i) if (p.className == 'g') p.insertBefore(document.createTextNode(++n + &quot;. &quot;), p.firstChild); if (n==s) alert(&quot;This page doesn't contain Google search results.&quot;); })()"
+>number google hits</a></td> 
+<td>Adds result numbers to Google SERPs, taking start= into account. <a href="#number_google_hits">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:location = &quot;data:application/PLEASE-OPEN-WITH-IE,&lt;html&gt;&lt;body&gt;&lt;script&gt;location='&quot; + escape(location.href.replace(/\\/g,&quot;\\\\&quot;).replace(/\&quot;/g,&quot;\\\&quot;&quot;)) + &quot;';&lt;/script&gt;&quot;;"
+>open in ie</a></td> 
+<td>Opens the page in IE.  After clicking, select "Open With... iexplore.exe". <a href="#open_in_ie">Details</a></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){var T={},W=[],C=0,s,i; function F(n){var i,x,a,w,t=n.tagName;if(n.nodeType==3){a=n.data.toLowerCase().split(/[\s\(\)\:\,\.;\&lt;\&gt;\&amp;\'\&quot;]/);for(i in a)if(w=a[i]){w=&quot; &quot;+w;T[w]=T[w]?T[w]+1:1;++C;}}if(t!=&quot;SCRIPT&quot;&amp;&amp;t!=&quot;STYLE&quot;)for(i=0;x=n.childNodes[i];++i)F(x)}F(document);for(i in T)W.push([T[i],i]);W.sort(function(a,b){var x=b[0]-a[0];return x?x:((b[1]&lt;a[1])?1:-1)}); s=&quot;&lt;h3&gt;&quot;+C+&quot; words&lt;/h3&gt;&quot;;for(i in W)s+=W[i][0]+&quot;:&quot;+W[i][1]+&quot;&lt;br&gt;&quot;;with(open().document){write(s);close()}})()"
+>word frequency</a></td> 
+<td>Lists the words in the page and how many times each word appears. <a href="#word_frequency">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+</table></div> 
+ 
+<p class=smallitalic>Browsers: <img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16> is <a href="http://www.microsoft.com/windows/ie/default.asp">Internet Explorer for Windows</a>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16> is <a href="http://channels.netscape.com/ns/browsers/default.jsp">Netscape 7</a> or <a href="http://www.mozilla.org/">Mozilla</a>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16> is <a href="http://ftp.netscape.com/pub/communicator/english/">Netscape 4</a>, and <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16> is <a href="http://www.opera.com/">Opera</a>.</p> 
+ 
+ 
+<hr> 
+ 
+<h3>Details</h3> 
+<h4 class=transparent><a name="find_links_to_" class="bml"
+href="javascript:(function(){var s=&quot;squarefree&quot;,D=document,N,h,i,r;if(window.mlT!=s){mlT=s;mlL=[];for(i=0;h=D.links[i];++i)if(h.href.indexOf(s)!=-1)mlL.push(h);mlI=0}N=mlL.length;if(N){if(mlI==N)mlI=0;h=mlL[mlI++];h.onfocus=function(){return!1};h.focus();h.onfocus=null;if(D.createRange){r=D.createRange();r.selectNode(h);getSelection().addRange(r)}if(i=D.selection){r=i.createRange();r.moveToElementText(h);r.select()}top.status=s+&quot;: match &quot;+mlI+&quot; of &quot;+N+&quot;: &quot;+h.href}else top.status=s+&quot;: no matching links.&quot;})()"
+>find links to <em class="replace">squarefree</em></a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Selects a link to <em class="replace">squarefree</em> each time you click it. Customize above.</p> 
+ 
+ 
+<h4 class=transparent><a name="google_backlinks" class="bml"
+href="javascript:location = 'http://www.google.com/search?q=link:' + escape(location);"
+>google backlinks</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Searches Google for PR4+ pages that link to the current PR4+ page.</p> 
+ 
+ 
+<h4 class=transparent><a name="atw_internal_backlinks" class="bml"
+href="javascript:location = 'http://www.alltheweb.com/search?q=link.all:' + escape(location.href) + '+site:' + escape(location.host);"
+>atw internal backlinks</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Searches Alltheweb for backlinks from other pages on the site.</p> 
+ 
+ 
+<h4 class=transparent><a name="atw_external_backlinks" class="bml"
+href="javascript:location = 'http://www.alltheweb.com/search?q=link.all:' + escape(location.href) + '+-site:' + escape(location.host);"
+>atw external backlinks</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Searches Alltheweb for backlinks from other sites.</p> 
+ 
+ 
+<h4 class=transparent><a name="atw_plaintext_backlinks" class="bml"
+href="javascript:location = 'http://www.alltheweb.com/search?q=' + escape(location.href) + '+-link.all:' + escape(location.href);"
+>atw plaintext backlinks</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Searches Alltheweb for non-hyperlinked "backlinks".</p> 
+<!-- <p>Seems to return /some/ of the pages that have plaintext links to subpages, but not all. Curious.</p> --> 
+ 
+<h4 class=transparent><a name="google_site_search:_all" class="bml"
+href="javascript:location=&quot;http://www.google.com/search?num=100&amp;q=site:&quot; + escape(location.hostname); void 0"
+>google site search: all</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Searches Google for all pages on the site.</p> 
+ 
+ 
+<h4 class=transparent><a name="atw_site_search:_all" class="bml"
+href="javascript:location = 'http://www.alltheweb.com/search?q=%' + '2Burl.all:' + escape(location.hostname);"
+>atw site search: all</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Searches Alltheweb for all pages from the site.</p> 
+<p>I don't know if this is the best search to use.  For my site, ATW's <a href="http://www.alltheweb.com/urlinfo?q=http://www.squarefree.com">URL Inspector</a> links to the search <code>+url.all:www.squarefree.com +site:squarefree.com</code>.  I don't know how it computes the domain. or why removing the <code>www</code> makes a difference when all indexed pages have the www.  Removing the <code>+</code>'s, removing one of the two "constraints", removing <code>url.all</code>'s <code>www</code>, or adding <code>www</code> to <code>site</code> all make <em>fewer</em> sites appear, which is weird.</p> 
+ 
+<h4 class=transparent><a name="number_google_hits" class="bml"
+href="javascript:(function(){ var x, i, p, s=0, n=0, R=/start=([^&amp;]*)/; if ((x=R.exec(location.search)) &amp;&amp; x[1]) s = n = parseInt(unescape(x[1]),10); for (i=0;p=document.getElementsByTagName(&quot;p&quot;)[i];++i) if (p.className == 'g') p.insertBefore(document.createTextNode(++n + &quot;. &quot;), p.firstChild); if (n==s) alert(&quot;This page doesn't contain Google search results.&quot;); })()"
+>number google hits</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Adds result numbers to Google SERPs, taking start= into account.</p> 
+ 
+ 
+<h4 class=transparent><a name="open_in_ie" class="bml"
+href="javascript:location = &quot;data:application/PLEASE-OPEN-WITH-IE,&lt;html&gt;&lt;body&gt;&lt;script&gt;location='&quot; + escape(location.href.replace(/\\/g,&quot;\\\\&quot;).replace(/\&quot;/g,&quot;\\\&quot;&quot;)) + &quot;';&lt;/script&gt;&quot;;"
+>open in ie</a> 
+(<img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>)
+</h4><p class=shortdesc>Opens the page in IE.  After clicking, select "Open With... iexplore.exe".</p> 
+ 
+ 
+<h4 class=transparent><a name="word_frequency" class="bml"
+href="javascript:(function(){var T={},W=[],C=0,s,i; function F(n){var i,x,a,w,t=n.tagName;if(n.nodeType==3){a=n.data.toLowerCase().split(/[\s\(\)\:\,\.;\&lt;\&gt;\&amp;\'\&quot;]/);for(i in a)if(w=a[i]){w=&quot; &quot;+w;T[w]=T[w]?T[w]+1:1;++C;}}if(t!=&quot;SCRIPT&quot;&amp;&amp;t!=&quot;STYLE&quot;)for(i=0;x=n.childNodes[i];++i)F(x)}F(document);for(i in T)W.push([T[i],i]);W.sort(function(a,b){var x=b[0]-a[0];return x?x:((b[1]&lt;a[1])?1:-1)}); s=&quot;&lt;h3&gt;&quot;+C+&quot; words&lt;/h3&gt;&quot;;for(i in W)s+=W[i][0]+&quot;:&quot;+W[i][1]+&quot;&lt;br&gt;&quot;;with(open().document){write(s);close()}})()"
+>word frequency</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Lists the words in the page and how many times each word appears.</p> 
+ 
+ 
+<hr><p><i><a href="copyright.html">&copy;</a> 2000-2007 <a href="http://www.squarefree.com/">Jesse Ruderman</a> (<a href="mailto:jruderman@gmail.com">jruderman@gmail.com</a>). Feedback is welcome.<br> 
+Last modified April 22, 2004.</i></p> 
+ 
+</body> 
+</html> 

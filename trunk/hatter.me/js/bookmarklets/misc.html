@@ -1,0 +1,348 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<title>Miscellaneous Bookmarklets</title> 
+<link rel="stylesheet" href="squarefree.css" type="text/css"> 
+</head> 
+ 
+<body> 
+ 
+<div style="text-align: center"> 
+<a href="./">Bookmarklets Home</a> 
+| <a href="pagelinks.html">Links</a> 
+| <a href="forms.html">Forms</a> 
+| <a href="pagedata.html">Text and Data</a> 
+| <a href="zap.html">Zap</a> 
+| <a href="webdevel.html">Web Development</a> 
+| <a href="validation.html">Validation</a> 
+| <a href="misc.html">Misc</a> 
+</div> 
+ 
+<hr> 
+ 
+<script type="text/javascript"> 
+var ua = navigator.userAgent, d, s="";
+if (/Gecko\/200305(\d\d)/.exec(ua))
+{
+  day = parseInt(RegExp.$1, 10)
+  if (16 <= day && day < 22)
+  {
+    s = "<p class='ack'><b>You are using a version of Mozilla in which many bookmarklets do not work.<\/b>  Mozilla builds between May 16 and May 22 (including Mozilla Firebird 0.6, released May 16) suffer from bug 205989 and bug 206026.<br><br><b>Please upgrade<\/b> to one of the following:<br>"
+    s += "<a href='http://ftp.mozilla.org/pub/firebird/nightly/latest-trunk/'>A Mozilla Firebird nightly<\/a> (recommended)<br>";
+    s += "<a href='http://ftp.mozilla.org/pub/mozilla/nightly/latest-trunk/'>A Mozilla nightly<\/a><br>";
+    s += "<a href='http://www.mozilla.org/releases/'>Mozilla 1.4 RC1 or a later release<\/a><\/p>";
+    document.write(s);
+  }
+}
+</script> 
+<h3>Miscellaneous Bookmarklets</h3> 
+<p>These bookmarklets add to the simple Back and Forward navigation built into web browsers, and do other miscellaneous things.</p> 
+ 
+<p class=smallitalic>(To keep <a href="./">bookmarklets</a> in order to use them on other web pages, drag them to your <a href="personaltoolbar.html">Bookmarks Toolbar</a>.  Or, <a href="importall.html">install them all at once</a>.)</p> 
+ 
+<div class=summarytable><table class=summarytable> 
+ 
+<thead> 
+<tr> 
+<th>Bookmarklet</th> 
+<th>Description</th> 
+<th colspan=4>Works in</th> 
+</tr> 
+</thead> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:if (location.pathname == &quot;/&quot;); else if (location.pathname.charAt(location.pathname.length-1) == &quot;/&quot;) location = &quot;..&quot;; else location = &quot;.&quot;; void 0"
+>up</a></td> 
+<td>Goes up a directory from the page you're viewing. <a href="#up">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:location.pathname = &quot;&quot;; void 0"
+>top</a></td> 
+<td>Goes to the top level of the site. <a href="#top">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){ var e,s; IB=1; function isDigit(c) { return (&quot;0&quot; &lt;= c &amp;&amp; c &lt;= &quot;9&quot;) } L = location.href; LL = L.length; for (e=LL-1; e&gt;=0; --e) if (isDigit(L.charAt(e))) { for(s=e-1; s&gt;=0; --s) if (!isDigit(L.charAt(s))) break; break; } ++s; if (e&lt;0) return; oldNum = L.substring(s,e+1); newNum = &quot;&quot; + (parseInt(oldNum,10) + IB); while (newNum.length &lt; oldNum.length) newNum = &quot;0&quot; + newNum; location.href = L.substring(0,s) + newNum + L.slice(e+1); })();"
+>increment</a></td> 
+<td>Increases the last number in the URL by 1. <a href="#increment">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){ var e,s; IB=-1; function isDigit(c) { return (&quot;0&quot; &lt;= c &amp;&amp; c &lt;= &quot;9&quot;) } L = location.href; LL = L.length; for (e=LL-1; e&gt;=0; --e) if (isDigit(L.charAt(e))) { for(s=e-1; s&gt;=0; --s) if (!isDigit(L.charAt(s))) break; break; } ++s; if (e&lt;0) return; oldNum = L.substring(s,e+1); newNum = &quot;&quot; + (parseInt(oldNum,10) + IB); while (newNum.length &lt; oldNum.length) newNum = &quot;0&quot; + newNum; location.href = L.substring(0,s) + newNum + L.slice(e+1); })();"
+>decrement</a></td> 
+<td>Decreases the last number in the URL by 1. <a href="#decrement">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){ function selectColor(i) { return [&quot;#fdc&quot;, &quot;#cdf&quot;, &quot;#bfd&quot;, &quot;#dbf&quot;, &quot;#fbd&quot;] [i%5]; } var u=location.href, ul=u.length; var tparts=[&quot;&quot;], zparts=[], nz=0; function isDigit(c) { return (&quot;0&quot; &lt;= c &amp;&amp; c &lt;= &quot;9&quot;); } for (i=0; i&lt;ul; ) { for (; i&lt;ul &amp;&amp; !isDigit(u.charAt(i)); ++i) tparts[nz] += u.charAt(i); if(i&lt;ul) { zparts[nz]=&quot;&quot;; for (; i&lt;ul &amp;&amp; isDigit(u.charAt(i)); ++i) zparts[nz] += u.charAt(i); tparts[nz+1]=&quot;&quot;; ++nz; } } if(!nz) { alert(&quot;No numbers in URL.&quot;); return; } D=window.open().document; D.write(); D.close(); function a(n) { A(D.body,n); } function A(p,n) { p.appendChild(n); } function E(q) { return D.createElement(q); } function cT(t) { return D.createTextNode(t) } function cBR() { return E(&quot;br&quot;); } function cS(t,ci) { var s=E(&quot;span&quot;); s.style.background=selectColor(ci); s.style.fontWeight=&quot;bold&quot;; A(s, cT(t)); return s; } function cTB(v,oc) { var b=E(&quot;input&quot;); b.size=6; b.value=v; b.addEventListener(&quot;input&quot;, oc, false); return b; } function cCB(t,oc) { var L=E(&quot;label&quot;), b=E(&quot;input&quot;); b.type=&quot;checkbox&quot;; b.checked=true; b.onchange=oc; A(L,b); A(L,cT(t)); return L; } function cL(nz,tparts,zparts) { var L=E(&quot;a&quot;); var u=&quot;&quot;; for (var i=0; i&lt;nz; ++i) { A(L,cT(tparts[i])); A(L,cS(zparts[i], i)); u += tparts[i]+zparts[i]; } A(L,cT(tparts[nz])); u += tparts[nz]; L.href=u; L.target=&quot;_blank&quot;; return L; } a(cT(&quot;Original URL: &quot;)); a(cBR()); a(cL(nz, tparts, zparts)); a(cBR()); a(cBR()); var fromBoxes=[], toBoxes=[], padChecks=[]; for (i=0; i&lt;nz; ++i) { a(cT(&quot;Run &quot;)); a(cS(zparts[i], i)); a(cT(&quot; from &quot;)); a(fromBoxes[i]=cTB(zparts[i], listURLs)); a(cT(&quot; to &quot;)); a(toBoxes[i]=cTB(zparts[i], listURLs)); a(cT(&quot; (&quot;)); a(j=cCB(&quot; Pad with zeroes to maintain length&quot;, listURLs)); padChecks[i]=j.childNodes[0]; a(cT(&quot;)&quot;)); a(cBR()); } a(cBR()); resultDiv=E(&quot;div&quot;); a(resultDiv); listURLs(); function listURLs() { while (resultDiv.childNodes.length) resultDiv.removeChild(resultDiv.childNodes[0]); var lows=[], highs=[]; for (i=0; i&lt;nz; ++i) { lows[i]=parseInt(fromBoxes[i].value, 10); highs[i]=parseInt(toBoxes[i].value, 10); if(highs[i]-lows[i] &gt; 999) { A(resultDiv, cT(&quot;Too many&quot;)); return; } } urls=[]; function cb(sta) { var newzparts=[]; for (var i=0; i&lt;nz; ++i) { var z=&quot;&quot;+sta[i]; if(padChecks[i].checked) while (z.length &lt; zparts[i].length) z=&quot;0&quot;+z; newzparts[i]=z; } A(resultDiv, cL(nz, tparts, newzparts)); A(resultDiv, cBR()); } fors(nz, cb, lows, highs); } function fors (n, callback, lows, highs) { function fors_inner (states, v) { if(v &gt;= n) callback(states); else for (states[v]=lows[v]; states[v] &lt;= highs[v]; ++(states[v])) fors_inner(states, v+1); } fors_inner ([], 0); } })()"
+>make numbered list</a></td> 
+<td>Creates a list of URLs with each number looped through a range you specify. <a href="#make_numbered_list">Details</a></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:if(!document.referrer) alert(&quot;No referrer!&quot;); else document.location = document.referrer; void 0"
+>go to referrer</a></td> 
+<td>Like clicking Back, but works even after opening a link in a new window. <a href="#go_to_referrer">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:for(i=1; i&lt;=history.length; ++i) history.go(-i); void 0"
+>back to first</a></td> 
+<td>Goes to the first page in this window's history. <a href="#back_to_first">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){var x; x=prompt('Sidebar title:', document.title); if (x != null) { window.sidebar.addPanel(x,location.href,''); } })();"
+>add sidebar</a></td> 
+<td>Adds the page you're viewing as sidebar panel. <a href="#add_sidebar">Details</a></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){var h,p; h = location.host.split('.'); p = h.length; if (h[p-1].match(/com$|net$|org$|edu$/i)) { location = 'http://www.netsol.com/cgi-bin/whois/whois?SearchType=do&amp;STRING=' + h[p-2] + '.' + h[p-1]; } else { alert('This bookmarklet can only look up owners for .com, .net, .org, and .edu domains.'); } void(0); })();"
+>domain owner</a></td> 
+<td>Tells you who owns the domain of the page you're viewing. <a href="#domain_owner">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:document.body.contentEditable = 'true'; document.designMode='on'; void 0"
+>edit page</a></td> 
+<td>Lets you edit the page. <a href="#edit_page">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:alert('Cookies stored by this host or domain:\n\n' + document.cookie.replace(/; /g,'\n'));"
+>view cookies</a></td> 
+<td>Shows the cookies stored by the page you're viewing. <a href="#view_cookies">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:h=location.host;z=&quot;Bookmarklet: &lt;a href=\&quot;javascript:if(location.host!='&quot;+h+&quot;')location='http://&quot;+h;v=document;function s(c,y){v.cookie=a=c+&quot;; domain=&quot;+d+&quot;; path=/; expires=&quot;+new Date((new Date).getTime()+y*1e11).toGMTString()}C=v.cookie.split(&quot;; &quot;);d=&quot;..&quot;+h;while(d=(&quot;&quot;+d).substr(1).match(/\..*$/))for(i in C)if(c=C[i]){s(c.match(/.*=/)+C,1);q=v.cookie;q.split(&quot;;&quot;).length&gt;C.length?s(c,-1):q.match(C)?(s(c,1),z=a+&quot;&lt;br&gt;&quot;+z+&quot;';document.cookie='&quot;+a):0}v.write(z+&quot;';[].v\&quot;&gt;my &quot;+h+&quot; cookies&lt;/a&gt;&quot;)"
+>transfer cookies</a></td> 
+<td>Creates a bookmarklet you can use to move cookies to another browser. <a href="#transfer_cookies">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function(){C=document.cookie.split(&quot;; &quot;);for(d=&quot;.&quot;+location.host;d;d=(&quot;&quot;+d).substr(1).match(/\..*$/))for(sl=0;sl&lt;2;++sl)for(p=&quot;/&quot;+location.pathname;p;p=p.substring(0,p.lastIndexOf('/')))for(i in C)if(c=C[i]){document.cookie=c+&quot;; domain=&quot;+d.slice(sl)+&quot;; path=&quot;+p.slice(1)+&quot;/&quot;+&quot;; expires=&quot;+new Date((new Date).getTime()-1e11).toGMTString()}})()"
+>zap cookies</a></td> 
+<td>Removes cookies set by the site, including cookies with paths and domains. <a href="#zap_cookies">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:(function() { var d,b,f,u,L,i,K,t, LL=&quot;zh Chinese-simplified,zt Chinese-traditional,nl Dutch,fr French,de German,el Greek,it Italian,ja Japanese,ko Korean,pt Portuguese,ru Russian,es Spanish&quot;.split(&quot;,&quot;); d=open().document; b=d.body; f=d.createElement(&quot;form&quot;); b.appendChild(f); f.action=&quot;http://babelfish.altavista.com/babelfish/trurl_pagecontent&quot;; u=d.createElement(&quot;input&quot;); u.name=&quot;url&quot;; u.style.width=&quot;100%&quot;; u.value=location; f.appendChild(u); for (i=0; L=LL[i]; ++i) { K = L.split(&quot; &quot;); f.appendChild(d.createElement(&quot;br&quot;)); t=d.createElement(&quot;button&quot;); t.name=&quot;lp&quot;; t.value=K[0]+&quot;_en&quot;; t.innerHTML = &quot;&lt;b&gt;&quot; + K[1] + &quot;&lt;/b&gt; to English&quot;; f.appendChild(t); } })()"
+>babelfish</a></td> 
+<td>Translates from 11 languages (you choose the language) to English. <a href="#babelfish">Details</a></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td class="empty"></td> 
+</tr> 
+ 
+<tr> 
+<td><a class="bml"
+href="javascript:location='http://translate.google.com/translate?u=' + encodeURIComponent(location);"
+>google translate</a></td> 
+<td>Translates from 5 languages (it guesses the language) to English. <a href="#google_translate">Details</a></td> 
+<td><img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16></td> 
+<td><img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16></td> 
+<td class="empty"></td> 
+<td><img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16></td> 
+</tr> 
+ 
+</table></div> 
+ 
+<p class=smallitalic>Browsers: <img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16> is <a href="http://www.microsoft.com/windows/ie/default.asp">Internet Explorer for Windows</a>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16> is <a href="http://channels.netscape.com/ns/browsers/default.jsp">Netscape 7</a> or <a href="http://www.mozilla.org/">Mozilla</a>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16> is <a href="http://ftp.netscape.com/pub/communicator/english/">Netscape 4</a>, and <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16> is <a href="http://www.opera.com/">Opera</a>.</p> 
+ 
+ 
+<hr> 
+ 
+<h3>Details</h3> 
+<h4 class=transparent><a name="up" class="bml"
+href="javascript:if (location.pathname == &quot;/&quot;); else if (location.pathname.charAt(location.pathname.length-1) == &quot;/&quot;) location = &quot;..&quot;; else location = &quot;.&quot;; void 0"
+>up</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Goes up a directory from the page you're viewing.</p> 
+<p>For example, takes you from <tt>http://www.foo.com/bar/baz.html</tt> to <tt>http://www.foo.com/bar/</tt> and then to <tt>http://www.foo.com/</tt>.</p> 
+ 
+<h4 class=transparent><a name="top" class="bml"
+href="javascript:location.pathname = &quot;&quot;; void 0"
+>top</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Goes to the top level of the site.</p> 
+<p>For example, takes you from <tt>http://www.foo.com/bar/baz.html</tt> to <tt>http://www.foo.com/</tt>.</p> 
+ 
+<h4 class=transparent><a name="increment" class="bml"
+href="javascript:(function(){ var e,s; IB=1; function isDigit(c) { return (&quot;0&quot; &lt;= c &amp;&amp; c &lt;= &quot;9&quot;) } L = location.href; LL = L.length; for (e=LL-1; e&gt;=0; --e) if (isDigit(L.charAt(e))) { for(s=e-1; s&gt;=0; --s) if (!isDigit(L.charAt(s))) break; break; } ++s; if (e&lt;0) return; oldNum = L.substring(s,e+1); newNum = &quot;&quot; + (parseInt(oldNum,10) + IB); while (newNum.length &lt; oldNum.length) newNum = &quot;0&quot; + newNum; location.href = L.substring(0,s) + newNum + L.slice(e+1); })();"
+>increment</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Increases the last number in the URL by 1.</p> 
+<p>For example, takes you from <tt>http://foo.org/1/9.jpg</tt> to <tt>http://foo.org/1/10.jpg</tt>.  Useful for navigating between numbered images or numbered pages. 
+ 
+<p><a href="http://bugzilla.mozilla.org/show_bug.cgi?id=32627">Suggested</a> by <a href="mailto:netdemonz@yahoo.com">Brian Bober</a> and <a href="http://matrix.netsoc.tcd.ie/~horkana/dev/javascript/">Alan Horkan</a>.</p> 
+ 
+<h4 class=transparent><a name="decrement" class="bml"
+href="javascript:(function(){ var e,s; IB=-1; function isDigit(c) { return (&quot;0&quot; &lt;= c &amp;&amp; c &lt;= &quot;9&quot;) } L = location.href; LL = L.length; for (e=LL-1; e&gt;=0; --e) if (isDigit(L.charAt(e))) { for(s=e-1; s&gt;=0; --s) if (!isDigit(L.charAt(s))) break; break; } ++s; if (e&lt;0) return; oldNum = L.substring(s,e+1); newNum = &quot;&quot; + (parseInt(oldNum,10) + IB); while (newNum.length &lt; oldNum.length) newNum = &quot;0&quot; + newNum; location.href = L.substring(0,s) + newNum + L.slice(e+1); })();"
+>decrement</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Decreases the last number in the URL by 1.</p> 
+<p>For example, takes you from <tt>http://foo.org/1/10.jpg</tt> to <tt>http://foo.org/1/09.jpg</tt>.</p> 
+ 
+<h4 class=transparent><a name="make_numbered_list" class="bml"
+href="javascript:(function(){ function selectColor(i) { return [&quot;#fdc&quot;, &quot;#cdf&quot;, &quot;#bfd&quot;, &quot;#dbf&quot;, &quot;#fbd&quot;] [i%5]; } var u=location.href, ul=u.length; var tparts=[&quot;&quot;], zparts=[], nz=0; function isDigit(c) { return (&quot;0&quot; &lt;= c &amp;&amp; c &lt;= &quot;9&quot;); } for (i=0; i&lt;ul; ) { for (; i&lt;ul &amp;&amp; !isDigit(u.charAt(i)); ++i) tparts[nz] += u.charAt(i); if(i&lt;ul) { zparts[nz]=&quot;&quot;; for (; i&lt;ul &amp;&amp; isDigit(u.charAt(i)); ++i) zparts[nz] += u.charAt(i); tparts[nz+1]=&quot;&quot;; ++nz; } } if(!nz) { alert(&quot;No numbers in URL.&quot;); return; } D=window.open().document; D.write(); D.close(); function a(n) { A(D.body,n); } function A(p,n) { p.appendChild(n); } function E(q) { return D.createElement(q); } function cT(t) { return D.createTextNode(t) } function cBR() { return E(&quot;br&quot;); } function cS(t,ci) { var s=E(&quot;span&quot;); s.style.background=selectColor(ci); s.style.fontWeight=&quot;bold&quot;; A(s, cT(t)); return s; } function cTB(v,oc) { var b=E(&quot;input&quot;); b.size=6; b.value=v; b.addEventListener(&quot;input&quot;, oc, false); return b; } function cCB(t,oc) { var L=E(&quot;label&quot;), b=E(&quot;input&quot;); b.type=&quot;checkbox&quot;; b.checked=true; b.onchange=oc; A(L,b); A(L,cT(t)); return L; } function cL(nz,tparts,zparts) { var L=E(&quot;a&quot;); var u=&quot;&quot;; for (var i=0; i&lt;nz; ++i) { A(L,cT(tparts[i])); A(L,cS(zparts[i], i)); u += tparts[i]+zparts[i]; } A(L,cT(tparts[nz])); u += tparts[nz]; L.href=u; L.target=&quot;_blank&quot;; return L; } a(cT(&quot;Original URL: &quot;)); a(cBR()); a(cL(nz, tparts, zparts)); a(cBR()); a(cBR()); var fromBoxes=[], toBoxes=[], padChecks=[]; for (i=0; i&lt;nz; ++i) { a(cT(&quot;Run &quot;)); a(cS(zparts[i], i)); a(cT(&quot; from &quot;)); a(fromBoxes[i]=cTB(zparts[i], listURLs)); a(cT(&quot; to &quot;)); a(toBoxes[i]=cTB(zparts[i], listURLs)); a(cT(&quot; (&quot;)); a(j=cCB(&quot; Pad with zeroes to maintain length&quot;, listURLs)); padChecks[i]=j.childNodes[0]; a(cT(&quot;)&quot;)); a(cBR()); } a(cBR()); resultDiv=E(&quot;div&quot;); a(resultDiv); listURLs(); function listURLs() { while (resultDiv.childNodes.length) resultDiv.removeChild(resultDiv.childNodes[0]); var lows=[], highs=[]; for (i=0; i&lt;nz; ++i) { lows[i]=parseInt(fromBoxes[i].value, 10); highs[i]=parseInt(toBoxes[i].value, 10); if(highs[i]-lows[i] &gt; 999) { A(resultDiv, cT(&quot;Too many&quot;)); return; } } urls=[]; function cb(sta) { var newzparts=[]; for (var i=0; i&lt;nz; ++i) { var z=&quot;&quot;+sta[i]; if(padChecks[i].checked) while (z.length &lt; zparts[i].length) z=&quot;0&quot;+z; newzparts[i]=z; } A(resultDiv, cL(nz, tparts, newzparts)); A(resultDiv, cBR()); } fors(nz, cb, lows, highs); } function fors (n, callback, lows, highs) { function fors_inner (states, v) { if(v &gt;= n) callback(states); else for (states[v]=lows[v]; states[v] &lt;= highs[v]; ++(states[v])) fors_inner(states, v+1); } fors_inner ([], 0); } })()"
+>make numbered list</a> 
+(<img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>)
+</h4><p class=shortdesc>Creates a list of URLs with each number looped through a range you specify.</p> 
+<p>After you specify bounds for each number in the URL, it creates a list of links to URLs with the numbers changed.</p> 
+ 
+<h4 class=transparent><a name="go_to_referrer" class="bml"
+href="javascript:if(!document.referrer) alert(&quot;No referrer!&quot;); else document.location = document.referrer; void 0"
+>go to referrer</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Like clicking Back, but works even after opening a link in a new window.</p> 
+<p>Useful for getting from an image to the thumbnail gallery it was in if you have closed the thumbnail gallery.</p> 
+ 
+<h4 class=transparent><a name="back_to_first" class="bml"
+href="javascript:for(i=1; i&lt;=history.length; ++i) history.go(-i); void 0"
+>back to first</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Goes to the first page in this window's history.</p> 
+ 
+ 
+<h4 class=transparent><a name="add_sidebar" class="bml"
+href="javascript:(function(){var x; x=prompt('Sidebar title:', document.title); if (x != null) { window.sidebar.addPanel(x,location.href,''); } })();"
+>add sidebar</a> 
+(<img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>)
+</h4><p class=shortdesc>Adds the page you're viewing as sidebar panel.</p> 
+<p>For example, you can put <a href="http://www.nrr.co.uk/xulmine/xulmine.xul?rows=14&amp;cols=8&amp;mines=20&amp;marks=false&amp;graphics=true">XUL Minesweeper</a> in your sidebar.
+ 
+<p><b>Note:</b> because of <a href="http://bugzilla.mozilla.org/show_bug.cgi?id=27162">bug 27162</a>, any links in the panel will load in the sidebar (replacing the panel) instead of in the main content area.  To work around this problem, drag links into the main content area instead of clicking on them.</p> 
+ 
+<h4 class=transparent><a name="domain_owner" class="bml"
+href="javascript:(function(){var h,p; h = location.host.split('.'); p = h.length; if (h[p-1].match(/com$|net$|org$|edu$/i)) { location = 'http://www.netsol.com/cgi-bin/whois/whois?SearchType=do&amp;STRING=' + h[p-2] + '.' + h[p-1]; } else { alert('This bookmarklet can only look up owners for .com, .net, .org, and .edu domains.'); } void(0); })();"
+>domain owner</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Tells you who owns the domain of the page you're viewing.</p> 
+<p>For example, if you use the bookmarklet while viewing <a href="http://www.linux.com/">www.linux.com</a>, you'll find out that the linux.com domain is owned by VA Linux.
+ 
+<p>Only works for .com, .net, .org, and .edu domains.</p> 
+ 
+<h4 class=transparent><a name="edit_page" class="bml"
+href="javascript:document.body.contentEditable = 'true'; document.designMode='on'; void 0"
+>edit page</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>)
+</h4><p class=shortdesc>Lets you edit the page.</p> 
+<p>Don't like a site's terms of service?  Edit them*!  You can use standard editing shortcuts like Ctrl+B for bold, Ctrl+C for copy, etc. You can also use Ctrl+K to turn text into a hyperlink.
+ 
+<p>* <acronym title="I am not a lawyer">IANAL</acronym>, but my guess is this wouldn't hold up in court.</p> 
+ 
+<h4 class=transparent><a name="view_cookies" class="bml"
+href="javascript:alert('Cookies stored by this host or domain:\n\n' + document.cookie.replace(/; /g,'\n'));"
+>view cookies</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Shows the cookies stored by the page you're viewing.</p> 
+<p><b>Opera bug:</b> "/n" will be shown between each cookie, and the cookies will not be shown on separate lines.</p> 
+ 
+<h4 class=transparent><a name="transfer_cookies" class="bml"
+href="javascript:h=location.host;z=&quot;Bookmarklet: &lt;a href=\&quot;javascript:if(location.host!='&quot;+h+&quot;')location='http://&quot;+h;v=document;function s(c,y){v.cookie=a=c+&quot;; domain=&quot;+d+&quot;; path=/; expires=&quot;+new Date((new Date).getTime()+y*1e11).toGMTString()}C=v.cookie.split(&quot;; &quot;);d=&quot;..&quot;+h;while(d=(&quot;&quot;+d).substr(1).match(/\..*$/))for(i in C)if(c=C[i]){s(c.match(/.*=/)+C,1);q=v.cookie;q.split(&quot;;&quot;).length&gt;C.length?s(c,-1):q.match(C)?(s(c,1),z=a+&quot;&lt;br&gt;&quot;+z+&quot;';document.cookie='&quot;+a):0}v.write(z+&quot;';[].v\&quot;&gt;my &quot;+h+&quot; cookies&lt;/a&gt;&quot;)"
+>transfer cookies</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Creates a bookmarklet you can use to move cookies to another browser.</p> 
+<p>Displays each cookie for the current site and gives you a bookmarklet that sets the same cookies.  You can use the generated bookmarklet to transfer the cookies to another computer or another browser.  Due to the Heisenberg Uncertainty Principle, it is not possible to determine the domain of a cookie without changing its expiration date.  As a result, this bookmarklet changes the expiration date of each cookie to about three years in the future as it tries to determine whether the cookie is set with the domain www.amazon.com, *.amazon.com, or *.com.
+ 
+<p>This bookmarklet is fragile in Netscape 4 because I had to squeeze it to work in Internet Explorer 6.  In Netscape 4, it only works in some domains and often doesn't display the generated bookmarklet.</p> 
+ 
+<h4 class=transparent><a name="zap_cookies" class="bml"
+href="javascript:(function(){C=document.cookie.split(&quot;; &quot;);for(d=&quot;.&quot;+location.host;d;d=(&quot;&quot;+d).substr(1).match(/\..*$/))for(sl=0;sl&lt;2;++sl)for(p=&quot;/&quot;+location.pathname;p;p=p.substring(0,p.lastIndexOf('/')))for(i in C)if(c=C[i]){document.cookie=c+&quot;; domain=&quot;+d.slice(sl)+&quot;; path=&quot;+p.slice(1)+&quot;/&quot;+&quot;; expires=&quot;+new Date((new Date).getTime()-1e11).toGMTString()}})()"
+>zap cookies</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/ns4.PNG" alt="NS4" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Removes cookies set by the site, including cookies with paths and domains.</p> 
+<p>Doesn't work at <a href="http://slashdot.org/">slashdot.org</a> in Netscape 4.  Slashdot is unusual in setting its cookie at the domain "slashdot.org" rather than ".slashdot.org".</p> 
+ 
+<h4 class=transparent><a name="babelfish" class="bml"
+href="javascript:(function() { var d,b,f,u,L,i,K,t, LL=&quot;zh Chinese-simplified,zt Chinese-traditional,nl Dutch,fr French,de German,el Greek,it Italian,ja Japanese,ko Korean,pt Portuguese,ru Russian,es Spanish&quot;.split(&quot;,&quot;); d=open().document; b=d.body; f=d.createElement(&quot;form&quot;); b.appendChild(f); f.action=&quot;http://babelfish.altavista.com/babelfish/trurl_pagecontent&quot;; u=d.createElement(&quot;input&quot;); u.name=&quot;url&quot;; u.style.width=&quot;100%&quot;; u.value=location; f.appendChild(u); for (i=0; L=LL[i]; ++i) { K = L.split(&quot; &quot;); f.appendChild(d.createElement(&quot;br&quot;)); t=d.createElement(&quot;button&quot;); t.name=&quot;lp&quot;; t.value=K[0]+&quot;_en&quot;; t.innerHTML = &quot;&lt;b&gt;&quot; + K[1] + &quot;&lt;/b&gt; to English&quot;; f.appendChild(t); } })()"
+>babelfish</a> 
+(<img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>)
+</h4><p class=shortdesc>Translates from 11 languages (you choose the language) to English.</p> 
+<p>Languages: Chinese (simplified or traditional), Dutch, French, German, Greek, Italian, Japanese, Korean, Portuguese, Russian, Spanish.</p> 
+ 
+<h4 class=transparent><a name="google_translate" class="bml"
+href="javascript:location='http://translate.google.com/translate?u=' + encodeURIComponent(location);"
+>google translate</a> 
+(<img src="icons/FFF6ED/ie.PNG" alt="IE" width=16 height=16>, <img src="icons/FFF6ED/phx.PNG" alt="Moz" width=16 height=16>, <img src="icons/FFF6ED/op7.PNG" alt="Op7" width=16 height=16>)
+</h4><p class=shortdesc>Translates from 5 languages (it guesses the language) to English.</p> 
+<p>Languages: French, Spanish, Portuguese, German, Italian.</p> 
+ 
+<p>Based on <a href="http://www.microcontentnews.com/resources/translator.htm">Microcontentnews Google Translate</a>.</p> 
+ 
+<hr><p><i><a href="copyright.html">&copy;</a> 2000-2007 <a href="http://www.squarefree.com/">Jesse Ruderman</a> (<a href="mailto:jruderman@gmail.com">jruderman@gmail.com</a>). Feedback is welcome.<br> 
+Last modified August 14, 2004.</i></p> 
+ 
+</body> 
+</html> 

@@ -52,12 +52,16 @@ var hatterMeDomainSetting = DomainSetting {
 	LOCATION, "", "/root/hatter.me",
 }
 
+var hatterMeRedirectDomainSetting = DomainSetting {
+	REDIRECT, "http://hatter.me", "",
+}
+
 var quickDomainSettingMap = map[string]*DomainSetting {
 	"hatter.me": &hatterMeDomainSetting,
-	"aprilsoft.cn": &hatterMeDomainSetting,
-	"www.aprilsoft.cn": &hatterMeDomainSetting,
-	"iwebsky.com": &hatterMeDomainSetting,
-	"www.iwebsky.com": &hatterMeDomainSetting,
+	"aprilsoft.cn": &hatterMeRedirectDomainSetting,
+	"www.aprilsoft.cn": &hatterMeRedirectDomainSetting,
+	"iwebsky.com": &hatterMeRedirectDomainSetting,
+	"www.iwebsky.com": &hatterMeRedirectDomainSetting,
 	"blog.hatter.me": &DomainSetting {
 		REDIRECT, "http://aprilsoft.cn/blog/", "",
 	},

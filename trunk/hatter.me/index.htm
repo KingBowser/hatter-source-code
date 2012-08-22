@@ -194,7 +194,9 @@
     var a = allA[i];
     if (a.href != "") {
       a.onmousedown = (function(a) {
-        a.href = "http://hatter.me/redirect?url=" + encodeURIComponent(a.href);
+        return function() {
+          a.href = "http://hatter.me/redirect?url=" + encodeURIComponent(a.href);
+        };
       })(a);
     }
   }

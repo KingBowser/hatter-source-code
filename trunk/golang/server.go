@@ -78,6 +78,31 @@ var quickDomainSettingMap = map[string]*DomainSetting {
 	},
 }
 
+var domainPathHandlerMap = map[string]func (w http.ResponseWriter, r *http.Request) bool {
+	"hatter.me/redirect": DomainPathRedirectHandle, 
+	"hatter.me/uphatterme": DomainPathSvnUpHandle, 
+}
+
+func DomainPathSvnUpHandle(w http.ResponseWriter, r *http.Request) bool {
+	DoSvnUpHatterMe(w, r)
+	return true
+}
+
+func DomainPathRedirectHandle(w http.ResponseWriter, r *http.Request) bool {
+	parseError := r.ParseForm()
+	if parseError != nil {
+		log.Println("Parse form failed:", parseError)
+		return false
+	}
+	formUrl := r.FormValue("url")
+	if formUrl == "" {
+		log.Println("Form url is empty.")
+		return false;
+	}
+	lib.RedirectURL(w, formUrl)
+	return true
+}
+
 func HandleRedirectDomainSetting(w http.ResponseWriter, r *http.Request, setting *DomainSetting) bool {
 	log.Println("Redirect to url:", setting.RedirectURL)
 	lib.RedirectURL(w, setting.RedirectURL)
@@ -227,13 +252,15 @@ func HandleRequest(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	domainAndPort := lib.ToDomainAndPort(hostDomain, hostPort)
+	domainAndPortPath := domainAndPort + r.URL.Path
 	requestURL := fmt.Sprintf("http://%v%v", domainAndPort, r.RequestURI)
 	log.Println("Request url:", requestURL)
 	if r.Referer() != "" {
 		log.Println("---- Referer:", r.Referer())
 	}
-	if domainAndPort == "hatter.me" && r.URL.Path == "/uphatterme" { // special logic
-		DoSvnUpHatterMe(w, r)
+	domainPathHandler := domainPathHandlerMap[domainAndPortPath]
+	if domainPathHandler != nil {
+		domainPathHandler(w, r)
 		return
 	}
 	setting := quickDomainSettingMap[domainAndPort]

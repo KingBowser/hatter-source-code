@@ -188,6 +188,17 @@
   })();
   </script>
   <!-- TRACE ENDED -->
+  <script type="text/javascript">
+  var allA = document.getElementsByTagName("a");
+  for (var i = 0; i < allA.length; i++) {
+    var a = allA[i];
+    if (a.href != "") {
+      a.onmousedown = (function(a) {
+        a.href = "http://hatter.me/redirect?url=" + encodeURIComponent(a.href);
+      })(a);
+    }
+  }
+  </script>
 </table>
 </body>
 </html>

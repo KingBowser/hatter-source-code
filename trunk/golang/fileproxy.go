@@ -16,10 +16,10 @@ import (
 
 var urlFileNameRegexp, _ = regexp.Compile("[^0-9a-zA-Z\\.]")
 
-var downloadCount int64 = 0;
-var downloadedAllCount int64 = 0;
-var downloadedSuccCount int64 = 0;
-var downloadSize int64 = 0;
+var downloadCount int64 = 0
+var downloadedAllCount int64 = 0
+var downloadedSuccCount int64 = 0
+var downloadSize int64 = 0
 
 func DoDownloadGet(url, basePath string) {
 	size, err := DownloadGet(url, basePath)

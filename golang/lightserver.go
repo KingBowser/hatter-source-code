@@ -29,7 +29,7 @@ func DisplayUsage() {
 	fmt.Println("Usage:")
 	fmt.Println("  lightserver [options] [dir]")
 	fmt.Println("    -port               http listen port")
-	os.Exit(0);
+	os.Exit(0)
 }
 
 func DisplayStartmessage() {
@@ -68,7 +68,7 @@ func (h HttpServerHandle) ServeHTTP (
 		w.WriteHeader(200)
 		w.Header().Set(lib.CONTENT_TYPE, openFileMimeType)
 		
-		err := CopyBytes(openFile, w);
+		err := CopyBytes(openFile, w)
 		if err != nil {
 			fmt.Println("[ERROR] Error in write file to response: ", fmt.Sprintf("%T %v", err, err))
 		}
@@ -79,7 +79,7 @@ func (h HttpServerHandle) ServeHTTP (
 	if readDirError != nil {
 		w.WriteHeader(500)
 		fmt.Fprint(w, "Error: " + fmt.Sprintf("%T %v", readDirError, readDirError))
-		return;
+		return
 	}
 	
 	w.Header().Set(lib.CONTENT_TYPE, lib.TEXT_HTML)
@@ -102,7 +102,7 @@ func (h HttpServerHandle) ServeHTTP (
 		if !isDir {
 			fileSize = " (" + lib.ToSize(fileInfo.Size()) + ")"
 		}
-		fmt.Fprint(w, "<li>", "<a href=\"", basePath, fileInfo.Name(), "\">", fName, "</a>", fileSize, "</li>");
+		fmt.Fprint(w, "<li>", "<a href=\"", basePath, fileInfo.Name(), "\">", fName, "</a>", fileSize, "</li>")
 	}
 	fmt.Fprint(w, "</ul>")
 	fmt.Fprint(w, "<br/>", "<br/>")
@@ -116,7 +116,7 @@ func CopyBytes(file *os.File, writer http.ResponseWriter) error {
 		writer.Write(buffer[0:count])
 		if err != nil {
 			if err == io.EOF {
-				break;
+				break
 			}
 			return err
 		}
@@ -127,7 +127,7 @@ func CopyBytes(file *os.File, writer http.ResponseWriter) error {
 func main() {
 	// init
 	flag.Usage = DisplayUsage
-	flag.Parse();
+	flag.Parse()
 	lightHttpServerPath, _ = os.Getwd()
 	
 	args := flag.Args()

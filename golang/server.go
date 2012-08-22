@@ -228,7 +228,10 @@ func HandleRequest(w http.ResponseWriter, r *http.Request) {
 	}
 	domainAndPort := lib.ToDomainAndPort(hostDomain, hostPort)
 	requestURL := fmt.Sprintf("http://%v%v", domainAndPort, r.RequestURI)
-	log.Println("Request url: ", requestURL)
+	log.Println("Request url:", requestURL)
+	if r.Referer() != "" {
+		log.Println("---- Referer:", r.Referer())
+	}
 	if domainAndPort == "hatter.me" && r.URL.Path == "/uphatterme" { // special logic
 		DoSvnUpHatterMe(w, r)
 		return

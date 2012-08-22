@@ -55,7 +55,7 @@ var hatterMeDomainSetting = DomainSetting {
 }
 
 var hatterMeRedirectDomainSetting = DomainSetting {
-	REDIRECT, "http://hatter.me", "",
+	REDIRECT, "http://hatter.me/", "",
 }
 
 var quickDomainSettingMap = map[string]*DomainSetting {

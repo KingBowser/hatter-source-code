@@ -1,14 +1,11 @@
 #summary Go Lang Study
 
-{{{
-func ToSize(size int64) string {
-	if size > GB {
-		return fmt.Sprintf("%vGB", size / GB)
-	} else if size > MB {
-		return fmt.Sprintf("%vMB", size / MB)
-	} else if size > KB {
-		return fmt.Sprintf("%vKB", size / KB)
-	}
-	return fmt.Sprintf("%v bytes", size)
-}
-}}}
+
+==IDE==
+[http://code.google.com/p/golangide/ LiteIDE]
+
+
+===参考资料===
+`[1].` http://golang.org<br>
+`[1].` http://code.google.com/p/golang-china/<br>
+`[1].` http://code.google.com/p/golangide/<br>

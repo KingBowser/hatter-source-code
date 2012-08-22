@@ -8,7 +8,9 @@ import (
 	"log"
 	"flag"
 	"path"
+	"bytes"
 	"strings"
+	"os/exec"
 	"io/ioutil"
 	"net/http"
 )
@@ -113,7 +115,7 @@ func HandleListDirDomainSetting(w http.ResponseWriter, r *http.Request, dirPath 
 		if !isDir {
 			fileSize = " (" + lib.ToSize(fileInfo.Size()) + ")"
 		}
-		fmt.Fprint(w, "<li>", "<a href=\"", basePath, fileInfo.Name(), "\">", fName, "</a>", fileSize, "</li>");
+		fmt.Fprint(w, "<li>", "<a href=\"", basePath, fileInfo.Name(), "\">", fName, "</a>", fileSize, "</li>")
 	}
 	fmt.Fprint(w, "</ul>")
 	fmt.Fprint(w, "<br/>", "<br/>")
@@ -172,11 +174,11 @@ func HandleDirFileDomainSetting(w http.ResponseWriter, r *http.Request, setting 
 	accessFileInfo, accessFileInfoError := os.Stat(accessPath)
 	if accessFileInfoError != nil {
 		log.Println("OS Stat file/path failed:", accessFileInfoError)
-		return false;
+		return false
 	}
 	if accessFileInfo.IsDir() && !strings.HasSuffix(r.URL.Path, "/") {
 		lib.RedirectURL(w, r.URL.Path + "/")
-		return true;
+		return true
 	}
 	if accessFileInfo.IsDir() {
 		return HandleDirDomainSetting(w, r, accessPath)
@@ -202,6 +204,20 @@ func HandleNotFound(w http.ResponseWriter, r *http.Request, requestURL string) b
 	return false
 }
 
+func DoSvnUpHatterMe(w http.ResponseWriter, r *http.Request) bool {
+	log.Println("Exec: svn up /root/hatter.me")
+	cmd := exec.Command("svn", "up", "/root/hatter.me")
+	var out bytes.Buffer
+	cmd.Stdout = &out
+	err := cmd.Run()
+	if err != nil {
+	    fmt.Fprint(w, fmt.Sprintf("Error: %T %v", err, err))
+	} else {
+		fmt.Fprint(w, out.String())
+	}
+	return true
+}
+
 func HandleRequest(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Server", "HatterPrivateServer/0.0.1")
 	w.Header().Set("X-Powered-By", "GoLang")
@@ -213,6 +229,10 @@ func HandleRequest(w http.ResponseWriter, r *http.Request) {
 	domainAndPort := lib.ToDomainAndPort(hostDomain, hostPort)
 	requestURL := fmt.Sprintf("http://%v%v", domainAndPort, r.RequestURI)
 	log.Println("Request url: ", requestURL)
+	if domainAndPort == "hatter.me" && r.URL.Path == "/uphatterme" { // special logic
+		DoSvnUpHatterMe(w, r)
+		return
+	}
 	setting := quickDomainSettingMap[domainAndPort]
 	handleResult := false
 	if setting != nil {

@@ -183,13 +183,13 @@
       if ((a.href != "") && (a.href != "#")) {
         a.onmousedown = (function(a) {
           return function() {
-          	if (/.*\/redirect\?/.test(a.href)) {
+          	if (/.*\/redirect\?.*/.test(a.href)) {
           		return;
           	}
           	var oldHref = a.href;
             a.href = "http://hatter.me/redirect?url=" + encodeURIComponent(a.href);
             setTimeout(function() {
-            	if (/.*\/redirect\?/.test(a.href)) {
+            	if (/.*\/redirect\?.*/.test(a.href)) {
             	  a.href = oldHref;
             	}
             }, 1000);

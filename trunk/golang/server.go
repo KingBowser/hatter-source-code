@@ -280,6 +280,7 @@ func HandleProxyDomainSetting(w http.ResponseWriter, r *http.Request, setting *D
 			fmt.Fprint(w, "Read from response failed:", getResponseBodyError)
 		} else {
 			w.WriteHeader(getResponse.StatusCode)
+			log.Println("====",getResponse.Header)
 			w.Header().Set(lib.CONTENT_TYPE, getResponse.Header.Get(lib.CONTENT_TYPE))
 			fmt.Fprint(w, string(getResponseBody))
 		}

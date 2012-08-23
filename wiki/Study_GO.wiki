@@ -1,7 +1,7 @@
 #summary Go Lang Study
 
 ==官方网站==
-http://blog.golang.org/
+http://golang.org
 
 ==官方博客==
 http://blog.golang.org/ ，通过Google Reader订阅该地址：http://blog.golang.org/feeds/posts/default

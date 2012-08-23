@@ -275,6 +275,9 @@ func HandleProxyDomainSetting(w http.ResponseWriter, r *http.Request, setting *D
 	}
 	client := &http.Client{}
 	getRequest, getRequestError := http.NewRequest(r.Method, proxyFullURL, requestBody)
+	if r.Method == "POST" {
+		getRequest.Header.Set(lib.CONTENT_TYPE, lib.APPLICATION_WWW_FORM_URLENCODED)
+	}
 	if getRequestError != nil {
 		w.WriteHeader(500)
 		fmt.Fprint(w, "New request failed:", getRequestError)

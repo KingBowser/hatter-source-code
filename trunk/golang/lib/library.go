@@ -30,6 +30,7 @@ const (
 	APPLICATION_JS = "application/javascript"
 	APPLICATION_RM = "application/vnd.rn-realmedia"
 	APPLICATION_OCTET_STREAM = "application/octet-stream"
+	APPLICATION_WWW_FORM_URLENCODED = "application/x-www-form-urlencoded"
 )
 
 const (

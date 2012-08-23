@@ -7,7 +7,7 @@
 </td>
 <td>  </td>
 <td>
-<font size="80px">The Go Programming Language</font>
+<font size="60px">The Go Programming Language</font>
 </td>
 </tr>
 </table>

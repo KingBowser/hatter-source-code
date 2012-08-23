@@ -8,6 +8,10 @@ import (
 )
 
 const (
+	X_FORWARDED_FOR = "X-Forwarded-For"
+)
+
+const (
 	CONTENT_TYPE = "Content-Type"
 	TEXT_PLAIN = "text/plain"
 	TEXT_HTML = "text/html"

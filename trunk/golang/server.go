@@ -290,7 +290,7 @@ func HandleDomainSetting(w http.ResponseWriter, r *http.Request, setting *Domain
 		return HandleDirFileDomainSetting(w, r, setting)
 	}
 	if setting.SettingType == PROXY {
-		return HandleRedirectDomainSetting(w, r, setting)
+		return HandleProxyDomainSetting(w, r, setting)
 	}
 	return false
 }

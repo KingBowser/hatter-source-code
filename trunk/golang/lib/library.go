@@ -134,6 +134,9 @@ func RedirectURL(w http.ResponseWriter, url string) {
 }
 
 func JoinURLPath(url, path string) string {
+	if path == "" {
+		return url
+	}
 	hasSlashSuffixOfUrl := strings.HasSuffix(url, "/")
 	hasSlashPrefoxOfPath := strings.HasPrefix(path, "/")
 	if !hasSlashSuffixOfUrl {

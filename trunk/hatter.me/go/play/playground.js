@@ -77,8 +77,8 @@ function playground(opts) {
 			code[0],
 			{
 				lineNumbers: true,
-				indentUnit: 4,
-				indentWithTabs: false,
+				indentUnit: 8,
+				indentWithTabs: true,
 				onKeyEvent: function(editor, e) { keyHandler(e); }
 			}
 		);

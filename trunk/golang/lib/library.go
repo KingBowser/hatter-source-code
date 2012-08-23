@@ -111,6 +111,7 @@ func GetContentType(suffix string) string {
 }
 
 func ParseHost(host string) (string, int, error) {
+	// format: domain(or ip) [+ ":" + port]
 	commaIndex := strings.Index(host, ":")
 	if commaIndex > -1 {
 		strPort := host[commaIndex + 1:]
@@ -121,6 +122,15 @@ func ParseHost(host string) (string, int, error) {
 		return host[:commaIndex], intPort, nil
 	}
 	return host, 80, nil
+}
+
+func GetRemoteAddrIP(remoteAddr string) string {
+	// format: ip [+ ":" + port]
+	commaIndex := strings.Index(remoteAddr, ":")
+	if commaIndex > -1 {
+		return remoteAddr[:commaIndex]
+	}
+	return remoteAddr
 }
 
 func ToDomainAndPort(hostDomain string, hostPort int) string {

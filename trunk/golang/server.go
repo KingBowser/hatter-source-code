@@ -12,6 +12,7 @@ import (
 	"strings"
 	"os/exec"
 	"io/ioutil"
+	"net/url"
 	"net/http"
 )
 
@@ -79,8 +80,10 @@ var quickDomainSettingMap = map[string]*DomainSetting {
 }
 
 var domainPathHandlerMap = map[string]func (w http.ResponseWriter, r *http.Request) bool {
-	"hatter.me/redirect": DomainPathRedirectHandle, 
-	"hatter.me/uphatterme": DomainPathSvnUpHandle, 
+	"hatter.me/redirect": DomainPathRedirectHandle,
+	"hatter.me/uphatterme": DomainPathSvnUpHandle,
+	"hatter.me/gocompile": DomainPathGoCompileHandle,
+	"hatter.me/goformat": DomainPathGoFormatHandle,
 }
 
 func DomainPathSvnUpHandle(w http.ResponseWriter, r *http.Request) bool {
@@ -101,6 +104,52 @@ func DomainPathRedirectHandle(w http.ResponseWriter, r *http.Request) bool {
 	}
 	lib.RedirectURL(w, formUrl)
 	return true
+}
+
+func DomainPathGoFormatHandle(w http.ResponseWriter, r *http.Request) bool {
+	parseError := r.ParseForm()
+	if parseError != nil {
+		log.Println("Parse form failed:", parseError)
+		return false
+	}
+	body := r.FormValue("body")
+	postResponse, postResponseError := http.PostForm("http://play.golang.org/fmt",
+	                                url.Values{"body": {body}})
+	if postResponseError != nil {
+		fmt.Fprint(w, "Post form formt failed:", postResponseError)
+	} else {
+		defer postResponse.Body.Close()
+		postResponseBody, postResponseBodyError := ioutil.ReadAll(postResponse.Body)
+		if postResponseBodyError != nil {
+			fmt.Fprint(w, "Read from response failed:", postResponseBodyError)
+		} else {
+			fmt.Fprint(w, string(postResponseBody))
+		}
+	}
+	return true;
+}
+
+func DomainPathGoCompileHandle(w http.ResponseWriter, r *http.Request) bool {
+	parseError := r.ParseForm()
+	if parseError != nil {
+		log.Println("Parse form failed:", parseError)
+		return false
+	}
+	body := r.FormValue("body")
+	postResponse, postResponseError := http.PostForm("http://play.golang.org/compile",
+	                                url.Values{"body": {body}})
+	if postResponseError != nil {
+		fmt.Fprint(w, "Post form compile failed:", postResponseError)
+	} else {
+		defer postResponse.Body.Close()
+		postResponseBody, postResponseBodyError := ioutil.ReadAll(postResponse.Body)
+		if postResponseBodyError != nil {
+			fmt.Fprint(w, "Read from response failed:", postResponseBodyError)
+		} else {
+			fmt.Fprint(w, string(postResponseBody))
+		}
+	}
+	return true;
 }
 
 func HandleRedirectDomainSetting(w http.ResponseWriter, r *http.Request, setting *DomainSetting) bool {

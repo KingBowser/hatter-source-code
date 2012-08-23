@@ -144,7 +144,7 @@ function playground(opts) {
 		if (opts['preCompile']) {
 			opts['preCompile'](data);
 		}
-		$.ajax("/compile", {
+		$.ajax("/gocompile", {
 			data: data,
 			type: "POST",
 			dataType: "json",
@@ -185,7 +185,7 @@ function playground(opts) {
 
 	$(opts['fmtEl']).click(function() {
 		loading();
-		$.ajax("/fmt", {
+		$.ajax("/goformat", {
 			data: {"body": body()},
 			type: "POST",
 			dataType: "json",

@@ -71,6 +71,9 @@ var quickDomainSettingMap = map[string]*DomainSetting {
 	"code.hatter.me": &DomainSetting {
 		PROXY, "", "http://code.google.com/p/hatter-source-code/wiki/Study_Java_HotSpot_Thread_VMThread",
 	},
+	"go.hatter.me": &DomainSetting {
+		PROXY, "", "http://golang.org",
+	},
 	"mail.hatter.me": &DomainSetting {
 		REDIRECT, "https://www.google.com/a/hatterjiang.com", "",
 	},
@@ -260,12 +263,34 @@ func HandleDirFileDomainSetting(w http.ResponseWriter, r *http.Request, setting 
 	return HandleFileDomainSetting(w, r, accessPath)
 }
 
+func HandleProxyDomainSetting(w http.ResponseWriter, r *http.Request, setting *DomainSetting) bool {
+	targetURL := setting.LocationPath
+	requestURI := r.RequestURI
+	proxyFullURL := lib.JoinURLPath(targetURL, requestURI)
+	getResponse, getResponseError := http.Get(proxyFullURL)
+	if getResponseError != nil {
+		fmt.Fprint(w, "Get request failed:", getResponseError)
+	} else {
+		defer getResponse.Body.Close()
+		getResponseBody, getResponseBodyError := ioutil.ReadAll(getResponse.Body)
+		if getResponseBodyError != nil {
+			fmt.Fprint(w, "Read from response failed:", getResponseBodyError)
+		} else {
+			fmt.Fprint(w, string(getResponseBody))
+		}
+	}
+	return true
+}
+
 func HandleDomainSetting(w http.ResponseWriter, r *http.Request, setting *DomainSetting) bool {
 	if setting.SettingType == REDIRECT {
 		return HandleRedirectDomainSetting(w, r, setting)
 	}
 	if setting.SettingType == LOCATION {
 		return HandleDirFileDomainSetting(w, r, setting)
+	}
+	if setting.SettingType == PROXY {
+		return HandleRedirectDomainSetting(w, r, setting)
 	}
 	return false
 }

@@ -2031,7 +2031,7 @@ var CodeMirror = (function() {
     if (te.value.indexOf("\r") > -1) lineSep = "\r\n";
   }());
 
-  var tabSize = 4;
+  var tabSize = 8;
   var mac = /Mac/.test(navigator.platform);
   var movementKeys = {};
   for (var i = 35; i <= 40; ++i)

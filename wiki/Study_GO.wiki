@@ -4,7 +4,7 @@
 http://blog.golang.org/
 
 ==官方博客==
-http://blog.golang.org/，通过Google Reader订阅该地址：http://blog.golang.org/feeds/posts/default
+http://blog.golang.org/ ，通过Google Reader订阅该地址：http://blog.golang.org/feeds/posts/default
 
 ==授权==
 [http://golang.org/LICENSE BSD-Style License]

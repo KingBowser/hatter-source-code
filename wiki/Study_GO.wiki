@@ -4,6 +4,9 @@
 [http://golang.org/LICENSE BSD-Style License]
 
 ==开发人员==
+ * Google
+ * 其它贡献者
+  ** http://golang.org/CONTRIBUTORS
 
 ==荣誉==
  * InfoWorld BOSSIE

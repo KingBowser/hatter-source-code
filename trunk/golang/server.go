@@ -267,15 +267,20 @@ func HandleProxyDomainSetting(w http.ResponseWriter, r *http.Request, setting *D
 	targetURL := setting.LocationPath
 	requestURI := r.RequestURI
 	proxyFullURL := lib.JoinURLPath(targetURL, requestURI)
+	log.Println("Proxy to url:", proxyFullURL)
 	getResponse, getResponseError := http.Get(proxyFullURL)
 	if getResponseError != nil {
+		w.WriteHeader(500)
 		fmt.Fprint(w, "Get request failed:", getResponseError)
 	} else {
 		defer getResponse.Body.Close()
 		getResponseBody, getResponseBodyError := ioutil.ReadAll(getResponse.Body)
 		if getResponseBodyError != nil {
+			w.WriteHeader(500)
 			fmt.Fprint(w, "Read from response failed:", getResponseBodyError)
 		} else {
+			w.WriteHeader(getResponse.StatusCode)
+			w.Header().Set(lib.CONTENT_TYPE, getResponse.Header.Get(lib.CONTENT_TYPE))
 			fmt.Fprint(w, string(getResponseBody))
 		}
 	}

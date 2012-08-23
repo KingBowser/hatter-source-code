@@ -273,6 +273,16 @@ func HandleProxyDomainSetting(w http.ResponseWriter, r *http.Request, setting *D
 	if r.Method == "POST" {
 		getRequest.Header.Set(lib.CONTENT_TYPE, lib.APPLICATION_WWW_FORM_URLENCODED)
 	}
+	remoteAddr := r.RemoteAddr
+	if remoteAddr != "" {
+		xForwardFor := r.Header.Get(lib.X_FORWARDED_FOR)
+		if xForwardFor == "" {
+			xForwardFor = remoteAddr
+		} else {
+			xForwardFor = xForwardFor + ", " + remoteAddr
+		}
+		getRequest.Header.Set(lib.X_FORWARDED_FOR, xForwardFor)
+	}
 	if getRequestError != nil {
 		w.WriteHeader(500)
 		fmt.Fprint(w, "New request failed:", getRequestError)
@@ -356,6 +366,9 @@ func HandleRequest(w http.ResponseWriter, r *http.Request) {
 	log.Println("Request url:", requestURL)
 	if r.Referer() != "" {
 		log.Println("---- Referer:", r.Referer())
+	}
+	if r.RemoteAddr != "" {
+		log.Println("---- Remote addr:", r.RemoteAddr)
 	}
 	domainPathHandler := domainPathHandlerMap[domainAndPortPath]
 	if domainPathHandler != nil {

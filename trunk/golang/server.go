@@ -276,7 +276,7 @@ func HandleProxyDomainSetting(w http.ResponseWriter, r *http.Request, setting *D
 		return true
 	}
 	if r.Method == "POST" {
-		r.ParseForm()
+		//r.ParseForm()
 		getRequest.Form = r.Form
 	}
 	getResponse, getResponseError := client.Do(getRequest)

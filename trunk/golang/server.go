@@ -261,9 +261,7 @@ func HandleDirFileDomainSetting(w http.ResponseWriter, r *http.Request, setting 
 }
 
 func HandleProxyDomainSetting(w http.ResponseWriter, r *http.Request, setting *DomainSetting) bool {
-	targetURL := setting.LocationPath
-	requestURI := r.RequestURI
-	proxyFullURL := lib.JoinURLPath(targetURL, requestURI)
+	proxyFullURL := lib.JoinURLPath(setting.LocationPath, r.RequestURI)
 	log.Println("Proxy to url:", proxyFullURL)
 	var requestBody io.Reader = nil
 	if r.Method == "POST" {

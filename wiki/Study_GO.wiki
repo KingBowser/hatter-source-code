@@ -1,5 +1,8 @@
 #summary Go Lang Study
 
+==授权==
+[http://golang.org/LICENSE BSD-Style License]
+
 ==开发人员==
 
 ==荣誉==

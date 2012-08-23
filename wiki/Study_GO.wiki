@@ -1,5 +1,7 @@
 #summary Go Lang Study
 
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/golang/Golang.png]
+
 ==官方网站==
 http://golang.org
 

@@ -132,3 +132,15 @@ func RedirectURL(w http.ResponseWriter, url string) {
 	w.WriteHeader(301)
 	fmt.Fprint(w, "Redirect to: <a href=\"" + url + "\">", url, "</a>")
 }
+
+func JoinURLPath(url, path string) string {
+	hasSlashSuffixOfUrl := strings.HasSuffix(url, "/")
+	hasSlashPrefoxOfPath := strings.HasPrefix(path, "/")
+	if !hasSlashSuffixOfUrl {
+		url = url + "/"
+	}
+	if hasSlashPrefoxOfPath {
+		path = path[1:]
+	}
+	return url + path
+}

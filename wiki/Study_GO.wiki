@@ -7,10 +7,18 @@
 </td>
 <td>  </td>
 <td>
-<font size="60px">The Go Programming Language</font>
+<font size="6">The Go Programming Language</font>
 </td>
 </tr>
 </table>
+
+{{{
+package main
+import "fmt"
+func main() {
+  fmt.Println("你好，世界！")
+}
+}}}
 
 ==官方网站==
 http://golang.org

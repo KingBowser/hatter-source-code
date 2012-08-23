@@ -2,6 +2,10 @@
 
 ==开发人员==
 
+==荣誉==
+ * InfoWorld BOSSIE
+ * TIOBE "Language of the year"
+
 
 ==IDE==
 [http://code.google.com/p/golangide/ LiteIDE] Go语言写的跨平台Go语言IDE

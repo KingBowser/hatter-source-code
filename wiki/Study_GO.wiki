@@ -1,11 +1,14 @@
 #summary Go Lang Study
 
+==开发人员==
+
 
 ==IDE==
-[http://code.google.com/p/golangide/ LiteIDE]
+[http://code.google.com/p/golangide/ LiteIDE] Go语言写的跨平台Go语言IDE
 
 
 ===参考资料===
 `[1].` http://golang.org<br>
-`[1].` http://code.google.com/p/golang-china/<br>
-`[1].` http://code.google.com/p/golangide/<br>
+`[2].` http://code.google.com/p/golang-china/<br>
+`[3].` http://code.google.com/p/golangide/<br>
+`[4].` https://github.com/wonderfo/wonderfogo/wiki<br>

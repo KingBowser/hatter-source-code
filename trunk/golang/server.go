@@ -268,21 +268,17 @@ func HandleProxyDomainSetting(w http.ResponseWriter, r *http.Request, setting *D
 	requestURI := r.RequestURI
 	proxyFullURL := lib.JoinURLPath(targetURL, requestURI)
 	log.Println("Proxy to url:", proxyFullURL)
+	var requestBody io.Reader = nil
+	if r.Method == "POST" {
+		r.ParseForm()
+		requestBody = strings.NewReader(r.Form.Encode())
+	}
 	client := &http.Client{}
-	getRequest, getRequestError := http.NewRequest(r.Method, proxyFullURL, nil)
+	getRequest, getRequestError := http.NewRequest(r.Method, proxyFullURL, requestBody)
 	if getRequestError != nil {
 		w.WriteHeader(500)
 		fmt.Fprint(w, "New request failed:", getRequestError)
 		return true
-	}
-	log.Println("METHOD:::::", r.Method)
-	if r.Method == "POST" {
-		r.ParseForm()
-		log.Println("FORM:", r.Form)
-		getRequest.Form = make(url.Values)
-		for k, v := range r.Form {
-			getRequest.Form[k] = v
-		}
 	}
 	getResponse, getResponseError := client.Do(getRequest)
 	if getResponseError != nil {

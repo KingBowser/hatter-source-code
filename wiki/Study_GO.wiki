@@ -1,6 +1,16 @@
 #summary Go Lang Study
 
+<table>
+<tr>
+<td>
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/golang/Golang.png]
+</td>
+<td>  </td>
+<td>
+<font size="80px">The Go Programming Language</font>
+</td>
+</tr>
+</table>
 
 ==官方网站==
 http://golang.org

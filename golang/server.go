@@ -293,8 +293,19 @@ func HandleProxyDomainSetting(w http.ResponseWriter, r *http.Request, setting *D
 		fmt.Fprint(w, "Read from response failed:", getResponseBodyError)
 		return true
 	}
-	if getResponse.Header.Get(lib.CONTENT_TYPE) != "" {
-		w.Header().Set(lib.CONTENT_TYPE, getResponse.Header.Get(lib.CONTENT_TYPE))
+	//if getResponse.Header.Get(lib.CONTENT_TYPE) != "" {
+	//	w.Header().Set(lib.CONTENT_TYPE, getResponse.Header.Get(lib.CONTENT_TYPE))
+	//}
+	for headerKey, headerValues := range getResponse.Header {
+		if headerKey != "" && headerKey != "Server" && headerKey != "X-Powered-By" {
+			for headerValueIndex, headerValue := range headerValues {
+				if headerValueIndex == 0 {
+					w.Header().Set(headerKey, headerValue)
+				} else {
+					w.Header().Add(headerKey, headerValue)
+				}
+			}
+		}
 	}
 	w.WriteHeader(getResponse.StatusCode)
 	w.Write(getResponseBody)

@@ -275,8 +275,10 @@ func HandleProxyDomainSetting(w http.ResponseWriter, r *http.Request, setting *D
 		fmt.Fprint(w, "New request failed:", getRequestError)
 		return true
 	}
+	log.Println("METHOD:::::", r.Method)
 	if r.Method == "POST" {
 		//r.ParseForm()
+		log.Println("FORM:", r.Form)
 		getRequest.Form = r.Form
 	}
 	getResponse, getResponseError := client.Do(getRequest)

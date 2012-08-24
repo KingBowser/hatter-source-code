@@ -138,7 +138,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `UseSSE42Intrinsics` || `bool` || `product` || 使用`SSE4.2`优化Java程序运行，打开此参数将对以下函数使用`SSE4.2`优化：<br>`MacroAssembler::string_compare`<br>`MacroAssembler::char_arrays_equals`<br>`MacroAssembler::string_indexof` ^[27]^ ||
 || `ForceTimeHighResolution` || `bool` || `product` || _仅在Windows下有效，不清楚是干什么的_ ||
 || `BackgroundCompilation` || `bool` || `product_pd` || 后台JIT编译优化启动 ^[32]^ ||
-|| `PrintVMQWaitTime` || `` || `` || ||
+|| `PrintVMQWaitTime` || `bool` || `product` || 打印等待执行的VMOperation的时间，当一个VMOperation有等待时间时，则打开这个VMOperation的名字和这它等待的时间(毫秒) ||
 || `MethodFlushing` || `` || `` || ||
 || `PrintJNIResolving` || `` || `` || ||
 || `UseInlineCaches` || `` || `` || ||

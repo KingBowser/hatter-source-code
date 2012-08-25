@@ -7,12 +7,34 @@ import (
 	"net/http"
 )
 
+// port
 const (
-	X_FORWARDED_FOR = "X-Forwarded-For"
+	DEFAULT_FTP_PORT = 21
+	DEFAULT_SMTP_PORT = 25
+	DEFAULT_HTTP_PORT = 80
+)
+
+// status code
+const (
+	HTTP_STATUS_CODE_301 = 301
 )
 
 const (
+	EMPTY = ""
+	DOT = "."
+	COLON = ":"
+	SLASH = "/"
+)
+
+// http header
+const (
+	X_FORWARDED_FOR = "X-Forwarded-For"
+	LOCATION = "Location"
 	CONTENT_TYPE = "Content-Type"
+)
+
+// mime type
+const (
 	TEXT_PLAIN = "text/plain"
 	TEXT_HTML = "text/html"
 	TEXT_CSS = "text/css"
@@ -95,16 +117,16 @@ func ToSize(size int64) string {
 }
 
 func GetSuffix(s string) string {
-	lastIndexOfDot := strings.LastIndex(s, ".")
+	lastIndexOfDot := strings.LastIndex(s, DOT)
 	if lastIndexOfDot > -1 {
 		return s[lastIndexOfDot + 1:]
 	}
-	return ""
+	return EMPTY
 }
 
 func GetContentType(suffix string) string {
 	contentType := ContentTypeMap[suffix]
-	if contentType == "" {
+	if contentType == EMPTY {
 		contentType = APPLICATION_OCTET_STREAM
 	}
 	return contentType
@@ -112,21 +134,21 @@ func GetContentType(suffix string) string {
 
 func ParseHost(host string) (string, int, error) {
 	// format: domain(or ip) [+ ":" + port]
-	commaIndex := strings.Index(host, ":")
+	commaIndex := strings.Index(host, COLON)
 	if commaIndex > -1 {
 		strPort := host[commaIndex + 1:]
 		intPort, err := strconv.Atoi(strPort)
 		if err != nil {
-			return "", 0, err
+			return EMPTY, 0, err
 		}
 		return host[:commaIndex], intPort, nil
 	}
-	return host, 80, nil
+	return host, DEFAULT_HTTP_PORT, nil
 }
 
 func GetRemoteAddrIP(remoteAddr string) string {
 	// format: ip [+ ":" + port]
-	commaIndex := strings.Index(remoteAddr, ":")
+	commaIndex := strings.Index(remoteAddr, COLON)
 	if commaIndex > -1 {
 		return remoteAddr[:commaIndex]
 	}
@@ -135,27 +157,27 @@ func GetRemoteAddrIP(remoteAddr string) string {
 
 func ToDomainAndPort(hostDomain string, hostPort int) string {
 	domainAndPort := hostDomain
-	if hostPort != 80 {
+	if hostPort != DEFAULT_HTTP_PORT {
 		domainAndPort = hostDomain + ":" + strconv.Itoa(hostPort)
 	}
 	return domainAndPort
 }
 
 func RedirectURL(w http.ResponseWriter, url string) {
-	w.Header().Set("Location", url)
+	w.Header().Set(LOCATION, url)
 	w.Header().Set(CONTENT_TYPE, TEXT_HTML)
-	w.WriteHeader(301)
+	w.WriteHeader(HTTP_STATUS_CODE_301)
 	fmt.Fprint(w, "Redirect to: <a href=\"" + url + "\">", url, "</a>")
 }
 
 func JoinURLPath(url, path string) string {
-	if path == "" {
+	if path == EMPTY {
 		return url
 	}
-	hasSlashSuffixOfUrl := strings.HasSuffix(url, "/")
-	hasSlashPrefoxOfPath := strings.HasPrefix(path, "/")
+	hasSlashSuffixOfUrl := strings.HasSuffix(url, SLASH)
+	hasSlashPrefoxOfPath := strings.HasPrefix(path, SLASH)
 	if !hasSlashSuffixOfUrl {
-		url = url + "/"
+		url = url + SLASH
 	}
 	if hasSlashPrefoxOfPath {
 		path = path[1:]

@@ -19,6 +19,7 @@ const (
 	HTTP_STATUS_CODE_301 = 301
 )
 
+// string constants
 const (
 	EMPTY = ""
 	DOT = "."
@@ -59,6 +60,7 @@ const (
 	APPLICATION_WWW_FORM_URLENCODED = "application/x-www-form-urlencoded"
 )
 
+// size
 const (
 	KB = 1024
 	MB = KB * KB

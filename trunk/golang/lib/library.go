@@ -16,7 +16,11 @@ const (
 
 // status code
 const (
+	HTTP_STATUS_CODE_200 = 200
 	HTTP_STATUS_CODE_301 = 301
+	HTTP_STATUS_CODE_302 = 302
+	HTTP_STATUS_CODE_404 = 404
+	HTTP_STATUS_CODE_500 = 500
 )
 
 // string constants

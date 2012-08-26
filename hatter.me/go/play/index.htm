@@ -51,15 +51,21 @@ func main() {
 	if (window.localStorage) {
 	  $(document).ready(function() {
 	  	  if (localStorage.getItem("_gocode")) {
-	  	  	_editor.setValue(localStorage.getItem("_gocode"))
+	  	  	_editor.setValue(localStorage.getItem("_gocode"));
 	  	  }
 	  });
 	  window.onunload = function() {
-	    localStorage.setItem("_gocode", _editor.getValue())
+	    localStorage.setItem("_gocode", _editor.getValue());
 	  };
+	  _savecode = function() {
+	    _editor.setValue(document.getElementById("code").value);
+	  };
+	  _interval = setInterval(_savecode, 5000);
 	  document.getElementById("rset").onclick = function() {
-	    _editor.setValue(document.getElementById("code").value)
+	    clearInterval(_interval);
+	    _savecode();
 	  };
+	  
 	}
 	</script>
 </html>

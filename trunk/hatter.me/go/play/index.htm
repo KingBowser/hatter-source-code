@@ -10,7 +10,7 @@
 		<script src="playground.js"></script>
 		<script>
 		$(document).ready(function() {
-			playground({
+		 _editor = playground({
 				"codeEl":     "#code",
 				"outputEl":   "#output",
 				"runEl":      "#run",
@@ -31,8 +31,9 @@
 		</div>
 		
 		<div class="switch">
-			Editor not working?<br/>
-			Switch to <a href="?simple=1">simple mode</a>.
+			<div id="controlsx">
+			<input type="button" value="Reset" id="rset">
+			</div>
 		</div>
 		
 		<textarea itemprop="description" id="code" name="code"  autocorrect="off" autocomplete="off" autocapitalize="off">package main
@@ -46,5 +47,20 @@ func main() {
 		<div id="output"></div>
 		<img itemprop="image" src="project.png" style="display:none">
 	</body>
+	<script type="text/javascript">
+	if (window.localStorage) {
+	  $(document).ready(function() {
+	  	  if (localStorage.getItem("_gocode")) {
+	  	  	_editor.setValue(localStorage.getItem("_gocode"))
+	  	  }
+	  });
+	  window.onunload = function() {
+	    localStorage.setItem("_gocode", _editor.getValue())
+	  };
+	  document.getElementById("rset").onclick = function() {
+	    _editor.setValue(document.getElementById("code").value)
+	  };
+	}
+	</script>
 </html>
 

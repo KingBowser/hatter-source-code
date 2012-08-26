@@ -77,6 +77,19 @@ textarea.simple {
 	color: white;
 	background: #666;
 }
+#controlsx {
+}
+#controlsx input[type=button] {
+	height: 30px;
+	border: 1px solid #ccc;
+	font-size: 20px;
+	background: #eee;
+	color: black;
+}
+#controlsx input[type=button]:hover {
+	color: white;
+	background: #666;
+}
 #shareURL { 
 	width: 350px;
 	font-size: 16px;

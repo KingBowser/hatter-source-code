@@ -60,12 +60,9 @@ func main() {
 	  _savecode = function() {
 	    _editor.setValue(document.getElementById("code").value);
 	  };
-	  _interval = setInterval(_savecode, 5000);
 	  document.getElementById("rset").onclick = function() {
-	    clearInterval(_interval);
 	    _savecode();
 	  };
-	  
 	}
 	</script>
 </html>

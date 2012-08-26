@@ -54,15 +54,18 @@ func main() {
 	  	  	_editor.setValue(localStorage.getItem("_gocode"));
 	  	  }
 	  });
-	  window.onunload = function() {
+	  _savecode = function() {
 	    localStorage.setItem("_gocode", _editor.getValue());
 	  };
-	  _savecode = function() {
-	    _editor.setValue(document.getElementById("code").value);
-	  };
-	  document.getElementById("rset").onclick = function() {
+	  window.onunload = function() {
+	  	clearInterval(_interval);
 	    _savecode();
 	  };
+	  _interval = setInterval(_savecode, 5000);
+	  document.getElementById("rset").onclick = function() {
+	    _editor.setValue(document.getElementById("code").value);
+	  };
+	  
 	}
 	</script>
 </html>

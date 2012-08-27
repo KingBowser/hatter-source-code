@@ -89,7 +89,7 @@ func (dec *Base32Decode) Decode(encoded string) ([]byte, error) {
 }
 
 func numberOfTrailingZeros(i int) int {
-	return ZerosOnRightModLookup[(i&-i)%37];
+	return ZerosOnRightModLookup[(i&-i)%37]
 }
 
 func int64ToBytes(v int64) []byte {

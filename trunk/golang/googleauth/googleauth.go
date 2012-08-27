@@ -1,5 +1,12 @@
 package googleauth
 
+/*
+Use sample:
+challenge := googleauth.GetChallenge()
+currPasscode, err := googleauth.GenerateResponseCode(keys, challenge) // current passcode
+nextPasscode, err := googleauth.GenerateResponseCode(keys, challenge + 1) // next passcode
+*/
+
 import (
 	"fmt"
 	"time"

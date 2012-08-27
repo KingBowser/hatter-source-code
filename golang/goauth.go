@@ -9,7 +9,7 @@ import (
 
 func main() {
 	challenge := googleauth.GetChallenge()
-	fmt.Println(googleauth.GenerateResponseCode("aaaaaaaaaaaaaaaaaaaa", challenge - 1))
-	fmt.Println(googleauth.GenerateResponseCode("aaaaaaaaaaaaaaaaaaaa", challenge))
-	fmt.Println(googleauth.GenerateResponseCode("aaaaaaaaaaaaaaaaaaaa", challenge + 1))
+	for i := challenge; i < (challenge + 10); i++ {
+		fmt.Println(googleauth.GenerateResponseCode("aaaaaaaaaaaaaaaaaaaa", i))
+	}
 }

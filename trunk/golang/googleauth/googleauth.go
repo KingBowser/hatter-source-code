@@ -116,6 +116,10 @@ func getCurrentTimeMillis() int64 {
 	return time.Now().UnixNano() / 1000 / 1000
 }
 
+func GetChallenge() int64 {
+	return getCurrentTimeMillis() / 1000 / INTERVAL
+}
+
 func GenerateResponseCode(seed string, challenge int64) (string, error) {
 	dec := DefaultNewBase32Decode()
 	decode, decodeError := dec.Decode(seed)
@@ -134,8 +138,4 @@ func GenerateResponseCode(seed string, challenge int64) (string, error) {
 		return code, nil
 	}
 	return strings.Repeat("0", PASS_CODE_LENGTH - len(code)) + code, nil
-}
-
-func GetChallenge() int64 {
-	return getCurrentTimeMillis() / 1000 / INTERVAL
 }

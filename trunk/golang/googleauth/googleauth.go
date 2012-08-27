@@ -103,7 +103,7 @@ func int64ToBytes(v int64) []byte {
 
 func hashToInt(bytes []byte, start int) uint32 {
 	var result uint32 = 0
-	for i := start - 1; i < len(bytes) && i < (start + 4); i++ {
+	for i := start ; i < len(bytes) && i < (start + 4); i++ {
 		result |= uint32(bytes[i])
 		if i < (start + 4 -1) {
 			result <<= 8

@@ -16,3 +16,9 @@
  [http://www.ietf.org/rfc/rfc6238.txt TXT] [http://tools.ietf.org/html/rfc6238 HTML] [http://tools.ietf.org/pdf/rfc6238.pdf PDF]
  * OCRA 【 OATH Challenge/Response Algorithms Specification 】
  [http://www.ietf.org/rfc/rfc6287.txt TXT] [http://tools.ietf.org/html/rfc6287 HTML] [http://tools.ietf.org/pdf/rfc6287.pdf PDF]
+
+==三、实现==
+ * Google Authenticator
+ [http://code.google.com/p/google-authenticator/]
+ * Hatter's Go Lang Implement
+ [https://code.google.com/p/hatter-source-code/source/browse/trunk/golang/googleauth/googleauth.go]

@@ -53,7 +53,7 @@
 || `google-code-wiki-to-html` || https://code.google.com/p/google-code-wiki-to-html/ || `Java` || google-code-wiki-to-html ||
 || `Guava` || https://code.google.com/p/guava-libraries/ || `Java` || Guava: Google Core Libraries for Java 1.6+ ||
 || `Diff Match and Patch` || https://code.google.com/p/google-diff-match-patch/ || `Multiple` || Diff, Match and Patch libraries for Plain Text ||
-|| `Guice` || https://code.google.com/p/google-guice/ || Guice (pronounced 'juice') is a lightweight dependency injection framework for Java 5 and above, brought to you by Google ||
+|| `Guice` || https://code.google.com/p/google-guice/ || `Java` || Guice (pronounced 'juice') is a lightweight dependency injection framework for Java 5 and above, brought to you by Google ||
 || `Google Refine` || https://code.google.com/p/google-refine/wiki/GettingStarted || `Java` || Google Refine, a power tool for working with messy data (formerly Freebase Gridworks) ||
 || `GroovyHelp` || https://code.google.com/p/groovyhelp/ || `-` || A Versatile API Documentation View, Search and Compare Utility ||
 || `horrorss` || https://code.google.com/p/horrorss/ || `Java` || A Simple Java RSS parser ||

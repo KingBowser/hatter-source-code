@@ -14,6 +14,7 @@ ECMA 262 http://www.ecma-international.org/publications/standards/Ecma-262.htm
 || `/packer/` || http://dean.edwards.name/packer/ || A JavaScript Compresso ||
 || `Beautify` || http://jsbeautifier.org/ || Beautify, unpack or deobfuscate JavaScript and HTML, make JSON/JSONP readable, etc ||
 || `JRX` || http://cuneytyilmaz.com/prog/jrx/ || This is a simple JavaScript real-time regular expression evaluator, similar to RX tool of Activestate's Komodo IDE ||
+|| `RegexPal` || http://hatter.me/js/regexpal/ || a JavaScript regular expression tester ||
 
 ===相关网站===
 || The HTML5 test || http://html5test.com/ || The HTML5 test score is an indication of how well your browser supports the upcoming HTML5 standard and related specifications ||

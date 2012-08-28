@@ -7,5 +7,5 @@
 || `CryptoJS ` || http://code.google.com/p/crypto-js/ || `JavaScript` || JavaScript implementations of standard and secure cryptographic algorithms ||
 || *<font color="#f00">UI</font>* || ||  ||  ||
 || `artDialog` || https://github.com/aui/artDialog || `JavaScript` || 优雅的web对话框控件 ||
-|| *<font color="#f00">Others</font>* ||  ||  ||
+|| *<font color="#f00">Others</font>* ||  ||  ||  ||
 || `bookreader.js` || http://code.google.com/p/bookreader-js/ ||` JavaScript` || JavaScript library to read a long document easily like paper books ||

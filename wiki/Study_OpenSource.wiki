@@ -10,7 +10,7 @@
 || *<font color="#f00">Security</font>* ||  ||  ||  ||
 || `CryptoJS ` || http://code.google.com/p/crypto-js/ || `JavaScript` || JavaScript implementations of standard and secure cryptographic algorithms ||
 || `Google Authenticator` || http://code.google.com/p/google-authenticator/ || `Multiple` || Two-step verification ||
-|| `Caja Compilier` || http://code.google.com/p/google-caja/ || || Compiler for making third-party HTML, CSS and JavaScript safe for embedding ||
+|| `Caja Compilier` || http://code.google.com/p/google-caja/ || `Java` || Compiler for making third-party HTML, CSS and JavaScript safe for embedding ||
 || *<font color="#f00">UI</font>* || ||  ||  ||
 || `artDialog` || https://github.com/aui/artDialog || `JavaScript` || 优雅的web对话框控件 ||
 || *<font color="#f00">Auto Test</font>* || ||  ||  ||
@@ -44,3 +44,6 @@
 || `dex2jar` || http://code.google.com/p/dex2jar/ || `Java` || Tools to work with android .dex and java .class files ||
 || `Gas Mask` || http://code.google.com/p/gmask/ || `-` || Gas Mask is simple hosts file manager for Mac OS X Snow Leopard & Lion ||
 || `prettify` || http://code.google.com/p/google-code-prettify/ || `JavaScript` || syntax highlighting of code snippets in a web page ||
+|| `google-code-wiki-to-html` || http://code.google.com/p/google-code-wiki-to-html/ || `Java` || google-code-wiki-to-html ||
+|| `Guava` || https://code.google.com/p/guava-libraries/ || `Java` || Guava: Google Core Libraries for Java 1.6+ ||
+|| `Diff Match and Patch` || https://code.google.com/p/google-diff-match-patch/ || `Multiple` || Diff, Match and Patch libraries for Plain Text ||

@@ -1,6 +1,6 @@
 #summary Open Source Study
 
-==Open Source Library==
+==Open Source Library/Software==
 
 || *Name* || *URL* || *Language* || *Description* ||
 || *<font color="#f00">IDE</font>* ||  ||  ||  ||

@@ -1,9 +1,14 @@
 #summary Authenticator Study
 
 ==一、OTP==
-  OTP即 One-Time Password。是目前广泛使用的2阶段密码验证技术，如 [http://support.google.com/accounts/bin/topic.py?hl=en&topic=28786&parent=2373945&ctx=topic 2-step verification]
+  OTP即 One-Time Password。是目前广泛使用的2阶段密码验证技术，如 [http://support.google.com/accounts/bin/topic.py?hl=en&topic=28786&parent=2373945&ctx=topic 2-step verification] <br>
+ 使用如下所示：<br>
+ [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/otp/2-step-with-red-box.png] <br>
+ 输入如下显示的6位数字： <br>
+ [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/otp/google_2step_iphone.png]
 
-==一、规范==
+
+==二、规范==
  http://www.openauthentication.org/specifications
  * HOTP 【 An HMAC-Based OTP Algorithm (RFC 4226) 】
  * TOTP【 Time-based One-time Password Algorithm (RFC 6238) 】

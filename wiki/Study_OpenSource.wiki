@@ -25,3 +25,4 @@
 || *<font color="#f00">Others</font>* ||  ||  ||  ||
 || `bookreader.js` || http://code.google.com/p/bookreader-js/ ||` JavaScript` || JavaScript library to read a long document easily like paper books ||
 || `Datejs` || http://code.google.com/p/datejs/ || `JavaScript` || A JavaScript Date Library ||
+|| `dex2jar` || http://code.google.com/p/dex2jar/ || `Java` || Tools to work with android .dex and java .class files ||

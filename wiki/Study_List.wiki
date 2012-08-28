@@ -3,9 +3,9 @@
 
 = List of my study =
 
- * [Study_Authenticator]
  * [Study_CPU]
   * [Study_CPU_MESI]
+ * [Study_GO]
  * [Study_Java]
   * [Study_Java_ByteCode]
   * [Study_Java_HotSpot]
@@ -19,7 +19,7 @@
    * [Study_Java_HotSpot_Thread]
     * [Study_Java_HotSpot_Thread_VMThread]
  * [Study_Maven]
- * [Study_GO]
+ * [Study_OpenAuthentication]
  * [Study_OS_Linux]
  * [Study_SVN]
 

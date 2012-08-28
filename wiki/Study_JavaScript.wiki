@@ -8,5 +8,9 @@ ECMA 262 http://www.ecma-international.org/publications/standards/Ecma-262.htm
 || `Ecma262 5th` || https://code.google.com/p/hatter-source-code/downloads/detail?name=Ecma-262-5th.pdf || Dec 2009 ||
 || `Ecma262 5th-r1` || https://code.google.com/p/hatter-source-code/downloads/detail?name=Ecma-262-5th-r1.pdf || Jun 2011 ||
 
+===JavaScript工具====
+|| `JavaScript Shell` || http://www.squarefree.com/shell/ || A command-line interface for JavaScript and DOM ||
+|| `JSLint` || http://jslint.com/ || JSLint,The JavaScript Code Quality Tool ||
+
 ===相关网站===
 || The HTML5 test || http://html5test.com/ || The HTML5 test score is an indication of how well your browser supports the upcoming HTML5 standard and related specifications ||

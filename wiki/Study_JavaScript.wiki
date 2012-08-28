@@ -1,0 +1,3 @@
+#summary JavaScript Study
+
+ECMA 262 http://www.ecma-international.org/publications/standards/Ecma-262.htm

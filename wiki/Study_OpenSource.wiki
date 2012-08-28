@@ -11,5 +11,7 @@
 || `artDialog` || https://github.com/aui/artDialog || `JavaScript` || 优雅的web对话框控件 ||
 || *<font color="#f00">Auto Test</font>* || ||  ||  ||
 || `AutoIt-CN` || http://code.google.com/p/autoit-cn/ || `autoit` || autoit script translate ||
+|| *<font color="#f00">Parser</font>* || ||  ||  ||
+|| `CookCC` || http://code.google.com/p/cookcc/ || `Java` || Lexer and Parser Generator ||
 || *<font color="#f00">Others</font>* ||  ||  ||  ||
 || `bookreader.js` || http://code.google.com/p/bookreader-js/ ||` JavaScript` || JavaScript library to read a long document easily like paper books ||

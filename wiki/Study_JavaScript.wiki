@@ -1,3 +1,10 @@
 #summary JavaScript Study
 
 ECMA 262 http://www.ecma-international.org/publications/standards/Ecma-262.htm
+
+Standards:
+|| `Ecma262 1st` || https://code.google.com/p/hatter-source-code/downloads/detail?name=Ecma-262-1st.pdf || Jun 1997 ||
+|| `Ecma262 2nd` || https://code.google.com/p/hatter-source-code/downloads/detail?name=Ecma-262-2nd.pdf || Aug 1998 ||
+|| `Ecma262 3rd` || https://code.google.com/p/hatter-source-code/downloads/detail?name=Ecma-262-3rd.pdf || Dec 1999 ||
+|| `Ecma262 5th` || https://code.google.com/p/hatter-source-code/downloads/detail?name=Ecma-262-5th.pdf || Dec 2009 ||
+|| `Ecma262 5th-r1` || https://code.google.com/p/hatter-source-code/downloads/detail?name=Ecma-262-5th-r1.pdf || Jun 2011 ||

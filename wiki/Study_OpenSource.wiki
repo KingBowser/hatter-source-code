@@ -20,6 +20,7 @@
 || `ANTLR` || http://www.antlr.org/ || `Java` || ANTLR Parser Generator ||
 || *<font color="#f00">Debug</font>* ||  ||  ||  ||
 || `CRaSH` || http://julienviet.com/crash/ || `Java` || A shell to extend the Java Platform ||
+|| `FindBugs` || http://code.google.com/p/findbugs/ || `JavaScript` || Static analysis tool to find coding defects in Java programs ||
 || *<font color="#f00">Database</font>* ||  ||  ||  ||
 || `DbLinq` || http://code.google.com/p/dblinq2007/ || `C#` || LINQ provider for Oracle, PostgreSQL, MySQL, Ingres, SQLite, Firebird and ... SQL Server (C# 3.0) ||
 || *<font color="#f00">Concurrent</font>* ||  ||  ||  ||

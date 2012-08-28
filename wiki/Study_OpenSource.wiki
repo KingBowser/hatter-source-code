@@ -11,6 +11,9 @@
 || `artDialog` || https://github.com/aui/artDialog || `JavaScript` || 优雅的web对话框控件 ||
 || *<font color="#f00">Auto Test</font>* || ||  ||  ||
 || `AutoIt-CN` || http://code.google.com/p/autoit-cn/ || `autoit` || autoit script translate ||
+|| *<font color="#f00">Parser</font>* || ||  ||  ||
+|| `JavaParser` || http://code.google.com/p/javaparser/ || `Java` || Java 1.5 Parser and AST ||
+|| `JSqlParser` || http://jsqlparser.sourceforge.net/ || `Java` || JSqlParser parses an SQL statement and translate it into a hierarchy of Java classes ||
 || *<font color="#f00">Parser Generator</font>* || ||  ||  ||
 || `CookCC` || http://code.google.com/p/cookcc/ || `Java` || Lexer and Parser Generator ||
 || `JavaCC` || http://javacc.java.net/ || `Java` || The Java Parser Generator ||

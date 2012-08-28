@@ -3,8 +3,8 @@ package googleauth
 /*
 Use sample:
 challenge := googleauth.GetChallenge()
-currPasscode, err := googleauth.GenerateResponseCode(keys, challenge) // current passcode
-nextPasscode, err := googleauth.GenerateResponseCode(keys, challenge + 1) // next passcode
+currPasscode, err := googleauth.GenerateResponseCode(secret, challenge) // current passcode
+nextPasscode, err := googleauth.GenerateResponseCode(secret, challenge + 1) // next passcode
 */
 
 import (
@@ -120,9 +120,9 @@ func GetChallenge() int64 {
 	return getCurrentTimeMillis() / 1000 / INTERVAL
 }
 
-func GenerateResponseCode(seed string, challenge int64) (string, error) {
+func GenerateResponseCode(secret string, challenge int64) (string, error) {
 	dec := DefaultNewBase32Decode()
-	decode, decodeError := dec.Decode(seed)
+	decode, decodeError := dec.Decode(secret)
 	if decodeError != nil {
 		return "", decodeError
 	}

@@ -33,6 +33,8 @@
 || `H2` || https://code.google.com/p/h2database/ || `-` || Java SQL database ||
 || *<font color="#f00">Concurrent</font>* ||  ||  ||  ||
 || `Disruptor` || https://code.google.com/p/disruptor/ || `Java` || High Performance Inter-Thread Messaging Library ||
+|| *<font color="#f00">Distribute</font>* ||  ||  ||  ||
+|| `Hypertable` || https://code.google.com/p/hypertable/ || `-` || A high performance, scalable, distributed storage and processing system for structured and unstructured data ||
 || *<font color="#f00">Management</font>* ||  ||  ||  ||
 || `GanttProject` || https://code.google.com/p/ganttproject/ || `Java` || GanttProject is a free project management tool ||
 || *<font color="#f00">SCM</font>* ||  ||  ||  ||

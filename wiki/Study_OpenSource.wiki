@@ -25,6 +25,7 @@
 || *<font color="#f00">Debug</font>* ||  ||  ||  ||
 || `CRaSH` || http://julienviet.com/crash/ || `Java` || A shell to extend the Java Platform ||
 || `FindBugs` || https://code.google.com/p/findbugs/ || `JavaScript` || Static analysis tool to find coding defects in Java programs ||
+|| `gperftools` || https://code.google.com/p/gperftools/ || `-` || Fast, multi-threaded malloc() and nifty performance analysis tools ||
 || *<font color="#f00">Programming</font>* ||  ||  ||  ||
 || `Go` || https://code.google.com/p/go/ || `Go` || The Go Programming Language ||
 || *<font color="#f00">Database</font>* ||  ||  ||  ||
@@ -50,3 +51,4 @@
 || `Guava` || https://code.google.com/p/guava-libraries/ || `Java` || Guava: Google Core Libraries for Java 1.6+ ||
 || `Diff Match and Patch` || https://code.google.com/p/google-diff-match-patch/ || `Multiple` || Diff, Match and Patch libraries for Plain Text ||
 || `Guice` || https://code.google.com/p/google-guice/ || Guice (pronounced 'juice') is a lightweight dependency injection framework for Java 5 and above, brought to you by Google ||
+|| `Google Refine` || https://code.google.com/p/google-refine/wiki/GettingStarted || `Java` || Google Refine, a power tool for working with messy data (formerly Freebase Gridworks) ||

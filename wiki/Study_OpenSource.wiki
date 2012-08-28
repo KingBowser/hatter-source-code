@@ -5,6 +5,8 @@
 || *Name* || *URL* || *Language* || *Description* ||
 || *<font color="#f00">IDE</font>* ||  ||  ||  ||
 || `Collide` || http://code.google.com/p/collide/ || `JavaScript` || Collaborative IDE ||
+|| `GoClipse` || http://code.google.com/p/goclipse/ || `Java` || Eclipse-based IDE for Google's Go Programming Language ||
+|| `LiteIDE` || http://code.google.com/p/golangide/ || `Go` || LiteIDE Released for Go ||
 || *<font color="#f00">Security</font>* ||  ||  ||  ||
 || `CryptoJS ` || http://code.google.com/p/crypto-js/ || `JavaScript` || JavaScript implementations of standard and secure cryptographic algorithms ||
 || *<font color="#f00">UI</font>* || ||  ||  ||
@@ -21,6 +23,8 @@
 || *<font color="#f00">Debug</font>* ||  ||  ||  ||
 || `CRaSH` || http://julienviet.com/crash/ || `Java` || A shell to extend the Java Platform ||
 || `FindBugs` || http://code.google.com/p/findbugs/ || `JavaScript` || Static analysis tool to find coding defects in Java programs ||
+|| *<font color="#f00">Programming</font>* ||  ||  ||  ||
+|| `Go` || http://code.google.com/p/go/ || `Go` || The Go Programming Language ||
 || *<font color="#f00">Database</font>* ||  ||  ||  ||
 || `DbLinq` || http://code.google.com/p/dblinq2007/ || `C#` || LINQ provider for Oracle, PostgreSQL, MySQL, Ingres, SQLite, Firebird and ... SQL Server (C# 3.0) ||
 || *<font color="#f00">Concurrent</font>* ||  ||  ||  ||
@@ -31,7 +35,9 @@
 || `Git for OS X` || http://code.google.com/p/git-osx-installer/ || `Unknow` || Install Git on Mac OS X. Build tools not required ||
 || *<font color="#f00">Anti-Great Fire Wall</font>* ||  ||  ||  ||
 || `GAppProxy` || http://code.google.com/p/gappproxy/ || `Java` || A http proxy based on Google App Engine ||
+|| `goagent` || http://code.google.com/p/goagent/ || `Python` || a gae proxy forked from gappproxy/wallproxy ||
 || *<font color="#f00">Others</font>* ||  ||  ||  ||
 || `bookreader.js` || http://code.google.com/p/bookreader-js/ ||` JavaScript` || JavaScript library to read a long document easily like paper books ||
 || `Datejs` || http://code.google.com/p/datejs/ || `JavaScript` || A JavaScript Date Library ||
 || `dex2jar` || http://code.google.com/p/dex2jar/ || `Java` || Tools to work with android .dex and java .class files ||
+|| `Gas Mask` || http://code.google.com/p/gmask/ || `Unknow` || Gas Mask is simple hosts file manager for Mac OS X Snow Leopard & Lion ||

@@ -32,7 +32,7 @@
 || *<font color="#f00">Management</font>* ||  ||  ||  ||
 || `GanttProject` || http://code.google.com/p/ganttproject/ || `Java` || GanttProject is a free project management tool ||
 || *<font color="#f00">SCM</font>* ||  ||  ||  ||
-|| `Git for OS X` || http://code.google.com/p/git-osx-installer/ || `Unknow` || Install Git on Mac OS X. Build tools not required ||
+|| `Git for OS X` || http://code.google.com/p/git-osx-installer/ || `-` || Install Git on Mac OS X. Build tools not required ||
 || *<font color="#f00">Anti-Great Fire Wall</font>* ||  ||  ||  ||
 || `GAppProxy` || http://code.google.com/p/gappproxy/ || `Java` || A http proxy based on Google App Engine ||
 || `goagent` || http://code.google.com/p/goagent/ || `Python` || a gae proxy forked from gappproxy/wallproxy ||
@@ -40,4 +40,4 @@
 || `bookreader.js` || http://code.google.com/p/bookreader-js/ ||` JavaScript` || JavaScript library to read a long document easily like paper books ||
 || `Datejs` || http://code.google.com/p/datejs/ || `JavaScript` || A JavaScript Date Library ||
 || `dex2jar` || http://code.google.com/p/dex2jar/ || `Java` || Tools to work with android .dex and java .class files ||
-|| `Gas Mask` || http://code.google.com/p/gmask/ || `Unknow` || Gas Mask is simple hosts file manager for Mac OS X Snow Leopard & Lion ||
+|| `Gas Mask` || http://code.google.com/p/gmask/ || `-` || Gas Mask is simple hosts file manager for Mac OS X Snow Leopard & Lion ||

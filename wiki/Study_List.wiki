@@ -20,6 +20,7 @@
     * [Study_Java_HotSpot_Thread_VMThread]
  * [Study_Maven]
  * [Study_OpenAuthentication]
+ * [Study_OpenSource]
  * [Study_OS_Linux]
  * [Study_SVN]
 

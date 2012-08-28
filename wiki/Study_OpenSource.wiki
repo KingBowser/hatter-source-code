@@ -3,6 +3,8 @@
 ==Open Source Library==
 
 || *Name* || *URL* || *Language* || *Description* ||
+|| *<font color="#f00">IDE</font>* ||  ||  ||  ||
+|| `Collide` || http://code.google.com/p/collide/ || `JavaScript` || Collaborative IDE ||
 || *<font color="#f00">Secure</font>* ||  ||  ||  ||
 || `CryptoJS ` || http://code.google.com/p/crypto-js/ || `JavaScript` || JavaScript implementations of standard and secure cryptographic algorithms ||
 || *<font color="#f00">UI</font>* || ||  ||  ||

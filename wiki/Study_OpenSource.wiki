@@ -22,6 +22,8 @@
 || `CRaSH` || http://julienviet.com/crash/ || `Java` || A shell to extend the Java Platform ||
 || *<font color="#f00">Database</font>* ||  ||  ||  ||
 || `DbLinq` || http://code.google.com/p/dblinq2007/ || `C#` || LINQ provider for Oracle, PostgreSQL, MySQL, Ingres, SQLite, Firebird and ... SQL Server (C# 3.0) ||
+|| *<font color="#f00">Concurrent</font>* ||  ||  ||  ||
+|| `Disruptor` || http://code.google.com/p/disruptor/ || `Java` || High Performance Inter-Thread Messaging Library ||
 || *<font color="#f00">Others</font>* ||  ||  ||  ||
 || `bookreader.js` || http://code.google.com/p/bookreader-js/ ||` JavaScript` || JavaScript library to read a long document easily like paper books ||
 || `Datejs` || http://code.google.com/p/datejs/ || `JavaScript` || A JavaScript Date Library ||

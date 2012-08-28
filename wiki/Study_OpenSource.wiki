@@ -1,0 +1,6 @@
+#summary Open Source Study
+
+ * Secure
+  * http://code.google.com/p/crypto-js/
+ * Misc
+  * http://code.google.com/p/bookreader-js/

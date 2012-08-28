@@ -30,6 +30,7 @@
 || `Go` || https://code.google.com/p/go/ || `Go` || The Go Programming Language ||
 || *<font color="#f00">Database</font>* ||  ||  ||  ||
 || `DbLinq` || https://code.google.com/p/dblinq2007/ || `C#` || LINQ provider for Oracle, PostgreSQL, MySQL, Ingres, SQLite, Firebird and ... SQL Server (C# 3.0) ||
+|| `H2` || https://code.google.com/p/h2database/ || `-` || Java SQL database ||
 || *<font color="#f00">Concurrent</font>* ||  ||  ||  ||
 || `Disruptor` || https://code.google.com/p/disruptor/ || `Java` || High Performance Inter-Thread Messaging Library ||
 || *<font color="#f00">Management</font>* ||  ||  ||  ||
@@ -52,3 +53,5 @@
 || `Diff Match and Patch` || https://code.google.com/p/google-diff-match-patch/ || `Multiple` || Diff, Match and Patch libraries for Plain Text ||
 || `Guice` || https://code.google.com/p/google-guice/ || Guice (pronounced 'juice') is a lightweight dependency injection framework for Java 5 and above, brought to you by Google ||
 || `Google Refine` || https://code.google.com/p/google-refine/wiki/GettingStarted || `Java` || Google Refine, a power tool for working with messy data (formerly Freebase Gridworks) ||
+|| `GroovyHelp` || https://code.google.com/p/groovyhelp/ || `-` || A Versatile API Documentation View, Search and Compare Utility ||
+|| `horrorss` || https://code.google.com/p/horrorss/ || `Java` || A Simple Java RSS parser ||

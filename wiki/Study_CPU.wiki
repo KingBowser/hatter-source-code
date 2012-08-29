@@ -1,5 +1,5 @@
 #summary CPU study
-
+#sidebar TableOfContents
 
 =X86=
 X86或80X86，X86架构使用可变长度指令CISC(复杂指令集计算机,Complex Instruction Set Computer)。<br>
@@ -97,10 +97,15 @@ Addressing modes for 64-bit code on 64-bit x86 processors can be summarized by t
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/x86/addressing_mode_64bit.png]
 
 ====Instruction suffixes ^[5]^====
-|| *b* || byte |||| *w* || word (2 bytes) |||| *l* || long (4 bytes) ||
+|| *b* || byte ||
+|| *w* || word (2 bytes) ||
+|| *l* || long (4 bytes) ||
 
 ====Condition codes ^[5]^====
-|| *CF* || Carry Flag |||| *ZF* || Zero Flag |||| *SF* || Sign Flag |||| *OF* || Overflow Flag ||
+|| *CF* || Carry Flag ||
+|| *ZF* || Zero Flag ||
+|| *SF* || Sign Flag ||
+|| *OF* || Overflow Flag ||
 
 ===IA32 Addressing modes ^[5]^===
 ====Immediate====
@@ -110,11 +115,22 @@ Addressing modes for 64-bit code on 64-bit x86 processors can be summarized by t
 
 ====Normal====
 || `(R) Mem[Reg[R]]` ||
-|| R: register R specifies memory address |||| `movl (%ecx), %eax` ||
+|| R: register R specifies memory address ||
+|| `movl (%ecx), %eax` ||
 
-====Displacement====|| `D(R) Mem[Reg[R]+D]` |||| R: register specifies start of memory region |||| D: constant displacement D specifies offset |||| movl 8(%ebp), %edx ||
+====Displacement====
+|| `D(R) Mem[Reg[R]+D]` ||
+|| R: register specifies start of memory region ||
+|| D: constant displacement D specifies offset ||
+|| movl 8(%ebp), %edx ||
 
-====Indexed====|| `D(Rb,Ri,S) Mem[Reg[Rb]+S*Reg[Ri]+D]` |||| D: constant displacement 1, 2, or 4 bytes |||| Rb: base register: any of 8 integer registers |||| Ri: index register: any, except %esp |||| S: scale: 1, 2, 4, or 8 |||| `movl 0x100(%ecx,%eax,4), %edx` ||
+====Indexed====
+|| `D(Rb,Ri,S) Mem[Reg[Rb]+S*Reg[Ri]+D]` ||
+|| D: constant displacement 1, 2, or 4 bytes ||
+|| Rb: base register: any of 8 integer registers ||
+|| Ri: index register: any, except %esp ||
+|| S: scale: 1, 2, 4, or 8 ||
+|| `movl 0x100(%ecx,%eax,4), %edx` ||
 
 =Intel=
 

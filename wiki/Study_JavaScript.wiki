@@ -14,8 +14,8 @@ ECMA 262 http://www.ecma-international.org/publications/standards/Ecma-262.htm
 || `ActionScript` ||
 
 ===相关语言===
-|| CoffeeScript ||
-|| Dart ||
+|| `CoffeeScript` ||
+|| `Dart` ||
 
 ===JavaScript工具====
 [http://hatter.me/js Hatter's JavaScript tools]<br>

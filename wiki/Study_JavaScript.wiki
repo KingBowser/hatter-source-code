@@ -14,17 +14,18 @@
 || JavaScript即是EcmaScript和父亲，也是EcmaScript的儿子，即先有了JavaScript，再形成EcmaScript规范，但JavaScript又遵循EcmaScript规范，同时遵循EcmaScript规范的语言有 `ActionScript`, `JScript` 等。  ||
 
 ===二、实现语言===
-|| `JavaScript` ||
-|| `JScript/ JScript.Net` ||
-|| `ActionScript` ||
-|| `Ejscript` ||
-|| `ExtendScript` ||
-|| `DMDScript` ||
-|| `CriScript` ||
-|| `InScript` ||
-|| `QtScript` ||
-|| `Caja` ||
-|| `WMLScript` ||
+|| *语言* || *描述* ||
+|| `JavaScript` || Netscape的实现，现在FireFox继承了该实现 ||
+|| `JScript/ JScript.Net` || 微软在IE、WScript、CScript、ASP和.NET中所所用的实现 ||
+|| `ActionScript` || Adobe的Flash、Flex(现在是Apache)的实现 ||
+|| `Ejscript` ||  ||
+|| `ExtendScript` ||  ||
+|| `DMDScript` ||  ||
+|| `CriScript` ||  ||
+|| `InScript` ||  ||
+|| `QtScript` ||  ||
+|| `Caja` ||  ||
+|| `WMLScript` ||  ||
 
 ===三、相关语言===
 || *语言* || *网站* || *描述* ||

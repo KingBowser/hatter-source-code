@@ -1,5 +1,5 @@
 #summary HotSpot Thread
-
+#sidebar TableOfContents
 
 ==线程类型==
 || `vm_thread` || VMThread ||

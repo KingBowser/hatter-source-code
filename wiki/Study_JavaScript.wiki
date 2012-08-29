@@ -23,3 +23,6 @@ ECMA 262 http://www.ecma-international.org/publications/standards/Ecma-262.htm
 
 ===相关网站===
 || The HTML5 test || http://html5test.com/ || The HTML5 test score is an indication of how well your browser supports the upcoming HTML5 standard and related specifications ||
+
+===友情连接===
+|| 开源中国在线工具-OSCTools || http://www.osctools.net/ || 开源中国在线工具,osctools为开发设计人员提供在线工具，提供jsbin在线 CSS、JS 调试，在线 Java API文档,在线 PHP API文档,在线 Node.js API文档,Less CSS编译器，MarkDown编译器等其他在线工具 ||

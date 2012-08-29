@@ -11,8 +11,8 @@ ECMA 262 http://www.ecma-international.org/publications/standards/Ecma-262.htm
 || `Ecma262 5th` || https://code.google.com/p/hatter-source-code/downloads/detail?name=Ecma-262-5th.pdf || Dec 2009 ||
 || `Ecma262 5th-r1` || https://code.google.com/p/hatter-source-code/downloads/detail?name=Ecma-262-5th-r1.pdf || Jun 2011 ||  ||
 
-EcmaScript 和 JavaScript 的关系：<br>
- JavaScript即是EcmaScript和父亲，也是EcmaScript的儿子，即先有了JavaScript，再形成EcmaScript规范，但JavaScript又遵循EcmaScript规范，同时遵循EcmaScript规范的语言有 `ActionScript`, `JScript` 等。 
+|| *EcmaScript 和 JavaScript 的关系* ||
+|| JavaScript即是EcmaScript和父亲，也是EcmaScript的儿子，即先有了JavaScript，再形成EcmaScript规范，但JavaScript又遵循EcmaScript规范，同时遵循EcmaScript规范的语言有 `ActionScript`, `JScript` 等。  ||
 
 ===二、实现语言===
 || `JavaScript` ||

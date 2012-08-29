@@ -1,4 +1,5 @@
 #summary HotSpot词汇表
+#sidebar TableOfContents
 
 ==HotSpot虚拟机相关的词汇列表==
  * *`HotSpot`* ^[2][3]^

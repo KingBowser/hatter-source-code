@@ -59,3 +59,4 @@ ECMA 262 http://www.ecma-international.org/publications/standards/Ecma-262.htm
 ===七、参考资料===
 `[1].` http://en.wikipedia.org/wiki/JavaScript<br>
 `[2].` http://en.wikipedia.org/wiki/ECMAScript<br>
+`[3].` http://ejohn.org/blog/the-world-of-ecmascript/<br>

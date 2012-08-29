@@ -1,7 +1,7 @@
 #summary Sidebar
 
- * [Study_CPU]
-  * [Study_CPU_MESI]
+ * [Study_CPU CPU]
+  * [Study_CPU_MESI MESI]
  * [Study_Database_MySQL]
  * [Study_GO]
  * [Study_Java]

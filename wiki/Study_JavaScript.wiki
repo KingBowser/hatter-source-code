@@ -2,11 +2,12 @@
 
 ===一、标准===
 ECMA 262 http://www.ecma-international.org/publications/standards/Ecma-262.htm
-|| `Ecma262 1st` || https://code.google.com/p/hatter-source-code/downloads/detail?name=Ecma-262-1st.pdf || Jun 1997 ||
-|| `Ecma262 2nd` || https://code.google.com/p/hatter-source-code/downloads/detail?name=Ecma-262-2nd.pdf || Aug 1998 ||
-|| `Ecma262 3rd` || https://code.google.com/p/hatter-source-code/downloads/detail?name=Ecma-262-3rd.pdf || Dec 1999 ||
+|| `Ecma262 1st` || https://code.google.com/p/hatter-source-code/downloads/detail?name=Ecma-262-1st.pdf || Jun 1997 ||  ||
+|| `Ecma262 2nd` || https://code.google.com/p/hatter-source-code/downloads/detail?name=Ecma-262-2nd.pdf || Aug 1998 ||  ||
+|| `Ecma262 3rd` || https://code.google.com/p/hatter-source-code/downloads/detail?name=Ecma-262-3rd.pdf || Dec 1999 ||  ||
+|| `Ecma262 4th` || `-` || `-` || 该版本已经废弃 ||
 || `Ecma262 5th` || https://code.google.com/p/hatter-source-code/downloads/detail?name=Ecma-262-5th.pdf || Dec 2009 ||
-|| `Ecma262 5th-r1` || https://code.google.com/p/hatter-source-code/downloads/detail?name=Ecma-262-5th-r1.pdf || Jun 2011 ||
+|| `Ecma262 5th-r1` || https://code.google.com/p/hatter-source-code/downloads/detail?name=Ecma-262-5th-r1.pdf || Jun 2011 ||  ||
 
 ===二、实现语言===
 || `JavaScript` ||
@@ -36,6 +37,7 @@ ECMA 262 http://www.ecma-international.org/publications/standards/Ecma-262.htm
 || `Closure Compiler` || http://closure-compiler.appspot.com/home || Closure Compiler Service ||
 || `Firebug Lite` || http://getfirebug.com/firebuglite || Firebug Lite: doing the Firebug way, anywhere ||
 || `Jash` || http://www.billyreisinger.com/jash/ || Jash: JavaScript Shell ||
+|| `jsFiddle ` || http://jsfiddle.net/ || mootools shell, easy test you snippets before implementing ||
 
 ===五、相关网站===
 || The HTML5 test || http://html5test.com/ || The HTML5 test score is an indication of how well your browser supports the upcoming HTML5 standard and related specifications ||

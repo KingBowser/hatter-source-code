@@ -1,5 +1,5 @@
 #summary MySQL Sudy
-
+#sidebar TableOfContents
 
 
 ===锁===

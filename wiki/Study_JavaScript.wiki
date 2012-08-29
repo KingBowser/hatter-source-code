@@ -1,6 +1,7 @@
 #summary JavaScript Study
 
 ===一、标准===
+官方网站: http://www.ecmascript.org/ <br>
 ECMA 262 http://www.ecma-international.org/publications/standards/Ecma-262.htm
 || `Ecma262 1st` || https://code.google.com/p/hatter-source-code/downloads/detail?name=Ecma-262-1st.pdf || Jun 1997 ||  ||
 || `Ecma262 2nd` || https://code.google.com/p/hatter-source-code/downloads/detail?name=Ecma-262-2nd.pdf || Aug 1998 ||  ||

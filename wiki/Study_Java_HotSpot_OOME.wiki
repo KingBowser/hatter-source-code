@@ -1,4 +1,5 @@
 #summary HotSpot OutOfMemoryError解析
+#sidebar TableOfContents
 
 ==HotSpot中OutOfMemoryError解析==
 
@@ -127,4 +128,3 @@ while(true) list.add(ByteBuffer.allocateDirect(10000000));
 `[11].` http://www.oracle.com/technetwork/java/javase/index-137495.html<br>
 `[12].` http://www.oracle.com/technetwork/java/javase/memleaks-137499.html<br>
 `[13].` http://blog.csdn.net/forandever/article/details/5717890<br>
-

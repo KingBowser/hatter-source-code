@@ -1,4 +1,5 @@
 #summary HotSpot虚拟机的参数
+#sidebar TableOfContents
 
 ==属性定义==
 属性名由以下字符组成：
@@ -865,4 +866,3 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 `[30].` http://hi.baidu.com/7636553/item/80f9bd144536e5cb39cb300a<br>
 `[31].` http://stackoverflow.com/questions/1120088/what-is-javas-xxusemembar-parameter<br>
 `[32].` http://www.open-open.com/home/space.php?uid=71669&do=blog&id=8891<br>
-

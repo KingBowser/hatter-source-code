@@ -1,6 +1,6 @@
 #summary JavaScript Study
 
-===标准===
+===一、标准===
 ECMA 262 http://www.ecma-international.org/publications/standards/Ecma-262.htm
 || `Ecma262 1st` || https://code.google.com/p/hatter-source-code/downloads/detail?name=Ecma-262-1st.pdf || Jun 1997 ||
 || `Ecma262 2nd` || https://code.google.com/p/hatter-source-code/downloads/detail?name=Ecma-262-2nd.pdf || Aug 1998 ||
@@ -8,16 +8,16 @@ ECMA 262 http://www.ecma-international.org/publications/standards/Ecma-262.htm
 || `Ecma262 5th` || https://code.google.com/p/hatter-source-code/downloads/detail?name=Ecma-262-5th.pdf || Dec 2009 ||
 || `Ecma262 5th-r1` || https://code.google.com/p/hatter-source-code/downloads/detail?name=Ecma-262-5th-r1.pdf || Jun 2011 ||
 
-===实现语言===
+===二、实现语言===
 || `JavaScript` ||
 || `JScript/ JScript.Net` ||
 || `ActionScript` ||
 
-===相关语言===
+===三、相关语言===
 || `CoffeeScript` ||
 || `Dart` ||
 
-===JavaScript工具====
+===四、JavaScript工具====
 [http://hatter.me/js Hatter's JavaScript tools]<br>
 || `JavaScript Shell` || http://www.squarefree.com/shell/ || A command-line interface for JavaScript and DOM ||
 || `JSLint` || http://jslint.com/ || JSLint,The JavaScript Code Quality Tool ||
@@ -37,11 +37,11 @@ ECMA 262 http://www.ecma-international.org/publications/standards/Ecma-262.htm
 || `Firebug Lite` || http://getfirebug.com/firebuglite || Firebug Lite: doing the Firebug way, anywhere ||
 || `Jash` || http://www.billyreisinger.com/jash/ || Jash: JavaScript Shell ||
 
-===相关网站===
+===五、相关网站===
 || The HTML5 test || http://html5test.com/ || The HTML5 test score is an indication of how well your browser supports the upcoming HTML5 standard and related specifications ||
 
-===友情连接===
+===六、友情连接===
 || 开源中国在线工具-OSCTools || http://www.osctools.net/ || 开源中国在线工具,osctools为开发设计人员提供在线工具，提供jsbin在线 CSS、JS 调试，在线 Java API文档,在线 PHP API文档,在线 Node.js API文档,Less CSS编译器，MarkDown编译器等其他在线工具 ||
 
-===参考资料===
+===七、参考资料===
 `[1].` http://en.wikipedia.org/wiki/JavaScript<br>

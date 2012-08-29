@@ -1,4 +1,5 @@
 #summary Java study.
+#sidebar TableOfContents
 
 Java Bytecode Instruction: http://en.wikipedia.org/wiki/Java_bytecode_instruction_listings
 

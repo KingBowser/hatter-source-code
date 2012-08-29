@@ -1,5 +1,6 @@
 #summary Java ByteCode Study
 #labels Java,JVM,ByteCode
+#sidebar TableOfContents
 
 ==1. Class格式及字节码介绍==
 Class文件的格式如下 ^[6]^：

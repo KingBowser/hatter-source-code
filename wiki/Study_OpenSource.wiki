@@ -1,4 +1,5 @@
 #summary Open Source Study
+#sidebar TableOfContents
 
 ==Open Source Library/Software==
 

@@ -22,13 +22,13 @@ ECMA 262 http://www.ecma-international.org/publications/standards/Ecma-262.htm
 || `InScript` ||
 || `QtScript` ||
 || `Caja` ||
-|| `Objective-J` ||
 || `WMLScript` ||
 
 ===三、相关语言===
-|| *语言* || *网站* ||
-|| `CoffeeScript` || http://coffeescript.org/ ||
-|| `Dart` || http://www.dartlang.org/ ||
+|| *语言* || *网站* || *描述* ||
+|| `CoffeeScript` || http://coffeescript.org/ || CoffeeScript is a little language that compiles into JavaScript ||
+|| `Dart` || http://www.dartlang.org/ || BUILD HTML5 APPS FOR THE MODERN WEB ||
+|| `Objective-J` || http://cappuccino.org/ ||  Objective-J is a programming language developed as part of the Cappuccino web development framework ||
 
 ===四、JavaScript工具====
 [http://hatter.me/js Hatter's JavaScript tools]<br>

@@ -1,4 +1,5 @@
 #summary Go Lang Study
+#sidebar TableOfContents
 
 <table>
 <tr>

@@ -74,7 +74,7 @@ http://blog.golang.org/ ，通过Google Reader订阅该地址：http://blog.gola
 `[2].` http://code.google.com/p/golang-china/<br>
 `[3].` http://code.google.com/p/golangide/<br>
 `[4].` https://github.com/wonderfo/wonderfogo/wiki<br>
-`[5].` http://en.wikipedia.org/wiki/Go_(programming_language)<br>
-`[6].` http://en.wikipedia.org/wiki/Limbo_(programming_language)<br>
+`[5].` [http://en.wikipedia.org/wiki/Go_(programming_language)]<br>
+`[6].` [http://en.wikipedia.org/wiki/Limbo_(programming_language)]<br>
 `[7].` http://en.wikipedia.org/wiki/Plan_9_from_Bell_Labs<br>
 `[8].` http://www.cnblogs.com/turingbooks/archive/2012/08/02/2620199.html<br>

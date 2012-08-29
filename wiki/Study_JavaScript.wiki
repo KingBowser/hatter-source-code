@@ -1,6 +1,7 @@
 #summary JavaScript Study
 
 ===一、标准===
+JavaScript was originally developed by _*Brendan Eich*_ of *Netscape* under the name *Mocha*, later *LiveScript*, and finally renamed to *JavaScript*.<br>
 官方网站: http://www.ecmascript.org/ <br>
 ECMA 262 http://www.ecma-international.org/publications/standards/Ecma-262.htm
 || `Ecma262 1st` || https://code.google.com/p/hatter-source-code/downloads/detail?name=Ecma-262-1st.pdf || Jun 1997 ||  ||
@@ -48,3 +49,4 @@ ECMA 262 http://www.ecma-international.org/publications/standards/Ecma-262.htm
 
 ===七、参考资料===
 `[1].` http://en.wikipedia.org/wiki/JavaScript<br>
+`[2].` http://en.wikipedia.org/wiki/ECMAScript<br>

@@ -1,4 +1,5 @@
 #summary Maven Study
+#sidebar TableOfContents
 
 {{{
 mvn dependency:tree -Dverbose

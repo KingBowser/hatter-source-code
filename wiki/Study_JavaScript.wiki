@@ -21,6 +21,7 @@ ECMA 262 http://www.ecma-international.org/publications/standards/Ecma-262.htm
 [http://hatter.me/js Hatter's JavaScript tools]<br>
 || `JavaScript Shell` || http://www.squarefree.com/shell/ || A command-line interface for JavaScript and DOM ||
 || `JSLint` || http://jslint.com/ || JSLint,The JavaScript Code Quality Tool ||
+|| `JSHint` || http://www.jshint.com/ || JSHint is a tool to detect errors and potential problems in JavaScript code ||
 || `/packer/` || http://dean.edwards.name/packer/ || A JavaScript Compressor ||
 || `Beautify` || http://jsbeautifier.org/ || Beautify, unpack or deobfuscate JavaScript and HTML, make JSON/JSONP readable, etc ||
 || `JRX` || http://cuneytyilmaz.com/prog/jrx/ || This is a simple JavaScript real-time regular expression evaluator, similar to RX tool of Activestate's Komodo IDE ||

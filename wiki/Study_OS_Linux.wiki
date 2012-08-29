@@ -42,7 +42,7 @@ $ xhost +
 $ xhost +<ip>
 }}}
 
-gdb
+gdb _pstack_
 {{{
 gdb -p pid
 

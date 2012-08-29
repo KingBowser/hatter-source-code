@@ -1,4 +1,5 @@
 #summary Sidebar
+ * [Study_List Main Page]
  * [Study_CPU CPU]
   * [Study_CPU_MESI MESI]
  * [Study_Database_MySQL MySQL]

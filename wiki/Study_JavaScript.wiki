@@ -1,4 +1,5 @@
 #summary JavaScript Study
+#sidebar TableOfContents
 
 ===一、标准===
 `JavaScript` was originally developed by _*Brendan Eich*_ of `Netscape` under the name `Mocha`, later `LiveScript`, and finally renamed to `JavaScript`. The key design principles within `JavaScript` are taken from the `Self` and `Scheme` programming languages.<br><br>

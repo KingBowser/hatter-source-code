@@ -5,6 +5,7 @@
 
  * [Study_CPU]
   * [Study_CPU_MESI]
+ * [Study_Database_MySQL]
  * [Study_GO]
  * [Study_Java]
   * [Study_Java_ByteCode]

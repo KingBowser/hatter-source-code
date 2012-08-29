@@ -1,4 +1,5 @@
 #summary HotSpot VM Study.
+#sidebar TableOfContents
 
 == [http://openjdk.java.net/ OpenJDK] ==
 

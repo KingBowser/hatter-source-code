@@ -1,4 +1,5 @@
 #summary GC Cause
+#sidebar TableOfContents
 
 || *Enum* || *Readable* || *Description* ||
 || `_no_gc` || `No GC` || 未发生过GC ||

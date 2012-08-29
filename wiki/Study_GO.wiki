@@ -12,6 +12,9 @@
 </tr>
 </table>
 
+<table width="240px">
+<tr>
+<td>
 {{{
 package main
 
@@ -21,6 +24,9 @@ func main() {
   fmt.Println("你好，世界！")
 }
 }}}
+</td>
+</tr>
+</table>
 
 ==官方网站==
 http://golang.org

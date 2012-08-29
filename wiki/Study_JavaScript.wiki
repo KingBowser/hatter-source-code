@@ -26,8 +26,9 @@ ECMA 262 http://www.ecma-international.org/publications/standards/Ecma-262.htm
 || `WMLScript` ||
 
 ===三、相关语言===
-|| `CoffeeScript` ||
-|| `Dart` ||
+|| *语言* || *网站* ||
+|| `CoffeeScript` || http://coffeescript.org/ ||
+|| `Dart` || http://www.dartlang.org/ ||
 
 ===四、JavaScript工具====
 [http://hatter.me/js Hatter's JavaScript tools]<br>

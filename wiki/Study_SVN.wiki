@@ -1,4 +1,5 @@
 #summary SVN Study.
+#sidebar TableOfContents
 
 {{{
 svn pe svn:ignore .

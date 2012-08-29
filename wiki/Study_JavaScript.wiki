@@ -8,6 +8,15 @@ ECMA 262 http://www.ecma-international.org/publications/standards/Ecma-262.htm
 || `Ecma262 5th` || https://code.google.com/p/hatter-source-code/downloads/detail?name=Ecma-262-5th.pdf || Dec 2009 ||
 || `Ecma262 5th-r1` || https://code.google.com/p/hatter-source-code/downloads/detail?name=Ecma-262-5th-r1.pdf || Jun 2011 ||
 
+===实现语言===
+|| `JavaScript` ||
+|| `JScript/ JScript.Net` ||
+|| `ActionScript` ||
+
+===相关语言===
+|| CoffeeScript ||
+|| Dart ||
+
 ===JavaScript工具====
 [http://hatter.me/js Hatter's JavaScript tools]<br>
 || `JavaScript Shell` || http://www.squarefree.com/shell/ || A command-line interface for JavaScript and DOM ||

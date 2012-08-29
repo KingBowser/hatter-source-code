@@ -23,6 +23,9 @@ ECMA 262 http://www.ecma-international.org/publications/standards/Ecma-262.htm
 || `Online JSON Viewer` || http://jsonviewer.stack.hu/ || JSON Viewer - Convert JSON Strings to a Friendly Readable Format ||
 || `Real-time HTML Editor` || http://htmledit.squarefree.com/ || Real-time HTML Editor ||
 || `Pretty Diff` || http://prettydiff.com/ || Pretty Diff - The difference tool ||
+|| `Closure Compiler` || http://closure-compiler.appspot.com/home || Closure Compiler Service ||
+|| `Firebug Lite` || http://getfirebug.com/firebuglite || Firebug Lite: doing the Firebug way, anywhere ||
+|| `Jash` || http://www.billyreisinger.com/jash/ || Jash: JavaScript Shell ||
 
 ===相关网站===
 || The HTML5 test || http://html5test.com/ || The HTML5 test score is an indication of how well your browser supports the upcoming HTML5 standard and related specifications ||

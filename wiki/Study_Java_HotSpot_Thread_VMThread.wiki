@@ -1,4 +1,5 @@
 #summary VM_Thread of hotspot
+#sidebar TableOfContents
 
 {{{
 class VM_Operation: public CHeapObj
@@ -81,4 +82,3 @@ enum VMOp_Type {
 || `VM_Exit` ||  ||  || 退出JVM  ||
 || `VM_DeoptimizeTheWorld` ||  ||  ||  ||
 || `VM_ReportJavaOutOfMemory` ||  ||  || 在OOM时执行Shell命令，通过参数`-XX:OnOutOfMemoryError=`设置 ||
-

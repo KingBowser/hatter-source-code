@@ -1,4 +1,5 @@
 #summary Java Object Layout
+#sidebar TableOfContents
 
 ==Java对象的内存结构 ^[1]^==
 

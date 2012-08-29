@@ -15,6 +15,15 @@ ECMA 262 http://www.ecma-international.org/publications/standards/Ecma-262.htm
 || `JavaScript` ||
 || `JScript/ JScript.Net` ||
 || `ActionScript` ||
+|| `Ejscript` ||
+|| `ExtendScript` ||
+|| `DMDScript` ||
+|| `CriScript` ||
+|| `InScript` ||
+|| `QtScript` ||
+|| `Caja` ||
+|| `Objective-J` ||
+|| `WMLScript` ||
 
 ===三、相关语言===
 || `CoffeeScript` ||

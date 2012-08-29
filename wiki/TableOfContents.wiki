@@ -1,5 +1,4 @@
 #summary Sidebar
-Hatter's Study List
  * [Study_CPU CPU]
   * [Study_CPU_MESI MESI]
  * [Study_Database_MySQL MySQL]

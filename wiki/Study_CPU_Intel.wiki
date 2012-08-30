@@ -2,14 +2,14 @@
 #sidebar TableOfContents
 
 ==Intel® 64 and IA-32 Architectures Software Developer’s Manual ==
-|| *Document Title* || *Document Number/Location* ||
-|| Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1: Basic Architecture || 253665 ||
-|| Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 2A: Instruction Set Reference, A-M || 253666 ||
-|| Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 2B: Instruction Set Reference, N-Z || 253667 ||
-|| Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 2C: Instruction Set Reference || 326018 ||
-|| Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A: System Programming Guide, Part 1 || 253668 ||
-|| Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3B: System Programming Guide, Part 2 || 253669 ||
-|| Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3C: System Programming Guide, Part 3 || 326019 ||
+|| *Document Title* || *Document Number/Location* || *View* ||
+|| Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1: Basic Architecture || 253665 || PDF ||
+|| Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 2A: Instruction Set Reference, A-M || 253666 || PDF ||
+|| Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 2B: Instruction Set Reference, N-Z || 253667 || PDF ||
+|| Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 2C: Instruction Set Reference || 326018 || PDF ||
+|| Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A: System Programming Guide, Part 1 || 253668 || PDF ||
+|| Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3B: System Programming Guide, Part 2 || 253669 || PDF ||
+|| Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3C: System Programming Guide, Part 3 || 326019 || PDF ||
 
 
 

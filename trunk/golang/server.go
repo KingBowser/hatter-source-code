@@ -82,11 +82,35 @@ var quickDomainSettingMap = map[string]*DomainSetting {
 	},
 }
 
-var domainPathHandlerMap = map[string]func (w http.ResponseWriter, r *http.Request) bool {
+type RequestCallFunc func (w http.ResponseWriter, r *http.Request) bool
+
+var domainPathHandlerMap = map[string]RequestCallFunc {
 	"hatter.me/redirect": DomainPathRedirectHandle,
 	"hatter.me/uphatterme": DomainPathSvnUpHandle,
 	"hatter.me/gocompile": DomainPathGoCompileHandle,
 	"hatter.me/goformat": DomainPathGoFormatHandle,
+}
+
+var domainFilters = map[string][]RequestCallFunc {
+	"hatter.me": []RequestCallFunc {
+		DomainPathWikiFilter,
+	},
+}
+
+func DomainPathWikiFilter(w http.ResponseWriter, r *http.Request) bool {
+	// http://code.google.com/p/hatter-source-code/wiki/Study_Java_HotSpot_Arguments?show=content
+	if r.Method != "GET" {
+		return false
+	}
+	if !strings.HasPrefix(r.URL.Path, "/wiki/") {
+		return false
+	}
+	pathName := r.URL.Path[len("/wiki/"):]
+	if strings.Contains(pathName, "/") {
+		return false;
+	}
+	proxyFullURL := "http://code.google.com/p/hatter-source-code/wiki/" + pathName + "?show=content"
+	return HandleProxyDomainURL(w, r, proxyFullURL)
 }
 
 func DomainPathSvnUpHandle(w http.ResponseWriter, r *http.Request) bool {
@@ -263,8 +287,13 @@ func HandleDirFileDomainSetting(w http.ResponseWriter, r *http.Request, setting 
 	return HandleFileDomainSetting(w, r, accessPath)
 }
 
+
 func HandleProxyDomainSetting(w http.ResponseWriter, r *http.Request, setting *DomainSetting) bool {
 	proxyFullURL := lib.JoinURLPath(setting.LocationPath, r.RequestURI)
+	return HandleProxyDomainURL(w, r, proxyFullURL)
+}
+
+func HandleProxyDomainURL(w http.ResponseWriter, r *http.Request, proxyFullURL string) bool {
 	log.Println("Proxy to url:", proxyFullURL)
 	var requestBody io.Reader = nil
 	if r.Method == "POST" {
@@ -372,6 +401,14 @@ func HandleRequest(w http.ResponseWriter, r *http.Request) {
 	}
 	if r.RemoteAddr != "" {
 		log.Println("---- Remote addr:", lib.GetRemoteAddrIP(r.RemoteAddr))
+	}
+	requestCallFuncs := domainFilters[domainAndPortPath]
+	if (requestCallFuncs != nil) {
+		for _, requestCallFunc := range requestCallFuncs {
+			if requestCallFunc(w, r) { // call filter
+				return
+			}
+		}
 	}
 	domainPathHandler := domainPathHandlerMap[domainAndPortPath]
 	if domainPathHandler != nil {

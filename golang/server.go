@@ -104,6 +104,14 @@ func DomainPathWikiFilter(w http.ResponseWriter, r *http.Request) bool {
 	}
 	isWiki := false
 	pathName := ""
+	if strings.HasPrefix(r.URL.Path, "/p/hatter-source-code/w/") {
+		lib.RedirectURL(w, lib.JoinURLPath("https://code.google.com", r.RequestURI))
+		return true
+	}
+	if strings.HasPrefix(r.URL.Path, "/u/") {
+		lib.RedirectURL(w, lib.JoinURLPath("https://code.google.com", r.RequestURI))
+		return true
+	}
 	if strings.HasPrefix(r.URL.Path, "/p/hatter-source-code/wiki/") {
 		isWiki = true
 		pathName = r.URL.Path[len("/p/hatter-source-code/wiki/"):]

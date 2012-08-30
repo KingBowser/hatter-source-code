@@ -1,4 +1,5 @@
 #summary Find ind source code
+#sidebar TableOfContents
 
 = Introduction =
 

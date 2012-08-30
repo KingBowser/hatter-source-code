@@ -1,5 +1,4 @@
 #summary Intl CPU
-
+#sidebar TableOfContents
 
 [http://www.intel.com/content/www/us/en/processors/processor-numbers.html About Intel® Processor Numbers]
-

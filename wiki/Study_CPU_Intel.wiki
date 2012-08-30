@@ -1,0 +1,5 @@
+#summary Intl CPU
+
+
+[http://www.intel.com/content/www/us/en/processors/processor-numbers.html About Intel® Processor Numbers]
+

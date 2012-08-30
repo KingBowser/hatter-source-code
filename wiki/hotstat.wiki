@@ -1,4 +1,5 @@
-#summary Display the diff of counters(monitor) of HotSpot.
+#summary Display the diff of counters(monitor) of HotSpot
+#sidebar TableOfContents
 
 = Introduction =
 

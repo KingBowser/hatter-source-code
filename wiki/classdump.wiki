@@ -1,4 +1,5 @@
 #summary Dump class in hotspot jvm
+#sidebar TableOfContents
 
 = Introduction =
 

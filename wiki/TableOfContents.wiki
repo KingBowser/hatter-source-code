@@ -23,7 +23,7 @@
  * [Study_OpenSource OpenSource]
  * [Study_OS_Linux Linux]
  * [Study_SVN SVN]
- * *My Tools*
+ * _*My Tools*_
   * [classdump]
   * [classlist]
   * [finding]

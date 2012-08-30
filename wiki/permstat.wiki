@@ -1,4 +1,5 @@
-#summary Print string instance count and size in perm.
+#summary Print string instance count and size in perm
+#sidebar TableOfContents
 
 Print string instance count and size in perm.
 

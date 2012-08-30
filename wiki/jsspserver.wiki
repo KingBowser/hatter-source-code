@@ -1,5 +1,6 @@
-#summary A light weight JSSP container.
+#summary A light weight JSSP container
 #labels Featured,java,server,jssp
+#sidebar TableOfContents
 
 = Introduction =
 

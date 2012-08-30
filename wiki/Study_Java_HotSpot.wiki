@@ -9,4 +9,4 @@
 export _JAVA_LAUNCHER_DEBUG=1
 }}}
 
-[https://code.google.com/p/hatter-source-code/wiki/HotSpot_Profilter HotSpot Collections]
+[HotSpot_Profiler HotSpot Collections]

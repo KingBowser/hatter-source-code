@@ -1,4 +1,5 @@
 #summary Show/Set HotSpot system/agent properties
+#sidebar TableOfContents
 
 = Introduction =
 

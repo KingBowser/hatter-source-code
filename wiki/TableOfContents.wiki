@@ -23,6 +23,7 @@
  * [Study_OpenSource OpenSource]
  * [Study_OS_Linux Linux]
  * [Study_SVN SVN]
+ * [Study_VPS VPS]
  * _*My Tools*_
   * [classdump]
   * [classlist]

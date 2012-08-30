@@ -1,4 +1,5 @@
 #summary /etc/hosts manager
+#sidebar TableOfContents
 
 = Introduction =
 

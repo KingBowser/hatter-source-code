@@ -1,4 +1,5 @@
 #summary Show/Set HotSpot JVM flags
+#sidebar TableOfContents
 
 = Introduction =
 

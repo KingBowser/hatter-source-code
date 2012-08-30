@@ -1,6 +1,8 @@
 #summary HotSpot VM Study.
 #sidebar TableOfContents
 
+`HotSpot` 是Sun(即现在的Oracle)官方JDK的虚拟机，也是OpenJDK的虚拟机。
+
 == [http://openjdk.java.net/ OpenJDK] ==
 
 <br><br>

@@ -404,6 +404,7 @@ func HandleRequest(w http.ResponseWriter, r *http.Request) {
 	}
 	requestCallFuncs := domainFilters[domainAndPortPath]
 	if (requestCallFuncs != nil) {
+		log.Println("XXXXXXX", requestCallFuncs)
 		for _, requestCallFunc := range requestCallFuncs {
 			if requestCallFunc(w, r) { // call filter
 				return

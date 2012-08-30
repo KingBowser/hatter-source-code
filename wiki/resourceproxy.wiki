@@ -1,5 +1,6 @@
-#summary One-sentence summary of this page.
+#summary Resource Proxy
 #labels Featured,java,proxy,debug,html,javascript,css
+#sidebar TableOfContents
 
 = Introduction =
 

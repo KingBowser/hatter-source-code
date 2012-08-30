@@ -102,8 +102,6 @@ func DomainPathWikiFilter(w http.ResponseWriter, r *http.Request) bool {
 	if r.Method != "GET" {
 		return false
 	}
-	isWiki := false
-	pathName := ""
 	if strings.HasPrefix(r.URL.Path, "/p/hatter-source-code/w/") {
 		lib.RedirectURL(w, lib.JoinURLPath("https://code.google.com", r.RequestURI))
 		return true
@@ -113,12 +111,15 @@ func DomainPathWikiFilter(w http.ResponseWriter, r *http.Request) bool {
 		return true
 	}
 	if strings.HasPrefix(r.URL.Path, "/p/hatter-source-code/wiki/") {
-		isWiki = true
-		pathName = r.URL.Path[len("/p/hatter-source-code/wiki/"):]
+		pWikiName := r.URL.Path[len("/p/hatter-source-code/wiki/"):]
+		lib.RedirectURL(w, lib.JoinURLPath("/wiki/", pWikiName))
+		return true
 	}
+	isWiki := false
+	wikiName := ""
 	if strings.HasPrefix(r.URL.Path, "/wiki/") {
 		isWiki = true
-		pathName = r.URL.Path[len("/wiki/"):]
+		wikiName = r.URL.Path[len("/wiki/"):]
 	}
 	if !isWiki {
 		if r.URL.Path == "/wiki" {
@@ -127,13 +128,13 @@ func DomainPathWikiFilter(w http.ResponseWriter, r *http.Request) bool {
 		}
 		return false
 	}
-	if pathName == "" {
-		pathName = "WikiIndex"
+	if wikiName == "" {
+		wikiName = "WikiIndex"
 	}
-	if strings.Contains(pathName, "/") {
+	if strings.Contains(wikiName, "/") {
 		return false;
 	}
-	proxyFullURL := "http://code.google.com/p/hatter-source-code/wiki/" + pathName + "?show=content"
+	proxyFullURL := "http://code.google.com/p/hatter-source-code/wiki/" + wikiName + "?show=content"
 	return HandleProxyDomainURL(w, r, proxyFullURL)
 }
 

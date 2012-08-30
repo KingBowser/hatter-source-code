@@ -402,7 +402,8 @@ func HandleRequest(w http.ResponseWriter, r *http.Request) {
 	if r.RemoteAddr != "" {
 		log.Println("---- Remote addr:", lib.GetRemoteAddrIP(r.RemoteAddr))
 	}
-	requestCallFuncs := domainFilters[domainAndPortPath]
+	log.Println("ZZZZZZZZZ", domainAndPort)
+	requestCallFuncs := domainFilters[domainAndPort]
 	if (requestCallFuncs != nil) {
 		log.Println("XXXXXXX", requestCallFuncs)
 		for _, requestCallFunc := range requestCallFuncs {

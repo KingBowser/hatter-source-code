@@ -1,4 +1,5 @@
 #summary Show class stat in perm
+#sidebar TableOfContents
 
 = Introduction =
 

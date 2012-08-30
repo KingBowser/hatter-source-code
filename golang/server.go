@@ -106,6 +106,9 @@ func DomainPathWikiFilter(w http.ResponseWriter, r *http.Request) bool {
 		return false
 	}
 	pathName := r.URL.Path[len("/wiki/"):]
+	if pathName == "" {
+		pathName = "WikiIndex"
+	}
 	if strings.Contains(pathName, "/") {
 		return false;
 	}
@@ -402,10 +405,8 @@ func HandleRequest(w http.ResponseWriter, r *http.Request) {
 	if r.RemoteAddr != "" {
 		log.Println("---- Remote addr:", lib.GetRemoteAddrIP(r.RemoteAddr))
 	}
-	log.Println("ZZZZZZZZZ", domainAndPort)
 	requestCallFuncs := domainFilters[domainAndPort]
 	if (requestCallFuncs != nil) {
-		log.Println("XXXXXXX", requestCallFuncs)
 		for _, requestCallFunc := range requestCallFuncs {
 			if requestCallFunc(w, r) { // call filter
 				return

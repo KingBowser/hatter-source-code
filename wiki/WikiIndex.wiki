@@ -1,8 +1,7 @@
 #summary Hatter's Wiki Index
 
 = Hatter's Wiki Index =
+<br>
+<br>
 
- * [Study_Java_HotSpot_Concurrent]
- * [Study_Java_HotSpot_Arguments]
-
-... ...
+<font size="90px">[TableOfContents]</font>

@@ -2,5 +2,7 @@
 
 = Hatter's Wiki Index =
 
+ * [Study_Java_HotSpot_Concurrent]
+ * [Study_Java_HotSpot_Arguments]
 
 ... ...

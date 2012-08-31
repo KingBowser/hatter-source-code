@@ -26,6 +26,7 @@ java里会设置3个DispatchTable，`_active_table，  _normal_table， _safept_
 || `_active_table` || 正在解释运行的线程使用的dispatch table ||
 || `_normal_table` || 就是正常运行的初始化的dispatch table ||
 || `_safept_table` || safe point需要的dispatch table ||
+
 解释运行的线程一直都在使用`_active_table`,关键处就是在进入saftpoint 的时候，用`_safept_table`替换`_active_table`, 在退出saftpoint 的时候，使用`_normal_table`来替换`_active_table`。<br>
 Source Code:
 {{{

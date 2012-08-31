@@ -7,11 +7,12 @@ class VM_Operation: public CHeapObj
 
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/vm_operation_queues.png]
 
+====safepoint介绍 ^[1]^====
 safe point 顾明思意，就是安全点，当需要jvm做一些操作的时候，需要把当前正在运行的线程进入一个安全点的状态（也可以说停止状态），这样才能做一些安全的操作，比如线程的dump，堆栈的信息。
 
-在jvm里面通常vm_thread（我们一直在谈论的做一些属于vm 份内事情的线程） 和cms_thread（内存回收的线程）做的操作，是需要将其他的线程通过调用`SafepointSynchronize::begin` 和 `SafepointSynchronize:end`来实现让其他的线程进入或者退出safe point 的状态。 ^[24]^
+在jvm里面通常vm_thread（我们一直在谈论的做一些属于vm 份内事情的线程） 和cms_thread（内存回收的线程）做的操作，是需要将其他的线程通过调用`SafepointSynchronize::begin` 和 `SafepointSynchronize:end`来实现让其他的线程进入或者退出safe point 的状态。
 
-====通常safepoint的有三种状态====
+====通常safepoint的有三种状态 ^[1]^====
 || `_not_synchronized` || 说明没有任何打断现在所有线程运行的操作，也就是vm thread, cms thread 没有接到操作的指令 ||
 || `_synchronizing` || vm thread,cms thread 接到操作指令，正在等待所有线程进入safe point ||
 || `_synchronized` || 所有线程进入safe point, vm thread, cms thread 可以开始指令操作 ||

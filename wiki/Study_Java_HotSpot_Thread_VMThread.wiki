@@ -17,6 +17,55 @@ safe point 顾明思意，就是安全点，当需要jvm做一些操作的时候
 || `_synchronizing` || vm thread,cms thread 接到操作指令，正在等待所有线程进入safe point ||
 || `_synchronized` || 所有线程进入safe point, vm thread, cms thread 可以开始指令操作 ||
 
+===Java线程的状态 ^[1]^===
+通常在java 进程中的Java 的线程有几个不同的状态，如何让这些线程进入safepoint 的状态中，jvm是采用不同的方式
+
+====a. 正在解释执行====
+由于java是解释性语言，而线程在解释java 字节码的时候，需要dispatch table,记录方法地址进行跳转的，那么这样让线程进入停止状态就比较容易了，只要替换掉dispatch table 就可以了，让线程知道当前进入softpoint 状态。<br>
+java里会设置3个DispatchTable，`_active_table，  _normal_table， _safept_table`
+|| `_active_table` || 正在解释运行的线程使用的dispatch table ||
+|| `_normal_table` || 就是正常运行的初始化的dispatch table ||
+|| `_safept_table` || safe point需要的dispatch table ||
+解释运行的线程一直都在使用_active_table,关键处就是在进入saftpoint 的时候，用_safept_table替换_active_table, 在退出saftpoint 的时候，使用_normal_table来替换_active_table。<br>
+Source Code:
+{{{
+void TemplateInterpreter::notice_safepoints() {  
+  if (!_notice_safepoints) {  
+    // switch to safepoint dispatch table  
+    _notice_safepoints = true;  
+    copy_table((address*)&_safept_table, (address*)&_active_table, sizeof(_active_table) / sizeof(address));  
+  }  
+}
+  
+// switch from the dispatch table which notices safepoints back to the  
+// normal dispatch table.  So that we can notice single stepping points,  
+// keep the safepoint dispatch table if we are single stepping in JVMTI.  
+// Note that the should_post_single_step test is exactly as fast as the  
+// JvmtiExport::_enabled test and covers both cases.  
+void TemplateInterpreter::ignore_safepoints() {  
+  if (_notice_safepoints) {  
+    if (!JvmtiExport::should_post_single_step()) {  
+      // switch to normal dispatch table  
+      _notice_safepoints = false;  
+      copy_table((address*)&_normal_table, (address*)&_active_table, sizeof(_active_table) / sizeof(address));  
+    }  
+  }  
+}
+}}}
+
+====b. 运行在native code====
+如果线程运行在native code的时候，vm thread 是不需要等待线程执行完的，只需要在从native code 返回的时候去判断一下 _state 的状态就可以了。
+
+在方法体里就是前面博客也出现过的 SafepointSynchronize::do_call_back()
+{{{
+inline static bool do_call_back() {  
+  return (_state != _not_synchronized);  
+}
+}}}
+判断了`_state` 不是`_not_synchronized`状态
+
+为了能让线程从native code 回到java 的时候为了能读到/设置正确线程的状态，通常的解决方法使用memory barrier，java 使用`OrderAccess::fence();` 在汇编里使用 `__asm__ volatile ("lock; addl $0,0(%%rsp)" : : : "cc", "memory");` 保证从内存里读到正确的值，但是这种方法严重影响系统的性能，于是java使用了每个线程都有独立的内存页来设置状态。通过使用使用参数-XX:+UseMembar  参数使用memory barrier，默认是不打开的，也就是使用独立的内存页来设置状态。
+
 {{{
 enum Priorities {
    SafepointPriority, // Highest priority (operation executed at a safepoint)

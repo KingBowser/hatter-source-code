@@ -261,7 +261,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `YoungPLABSize` || `` || `` || ||
 || `OldPLABSize` || `` || `` || ||
 || `GCTaskTimeStampEntries` || `` || `` || ||
-|| `AlwaysTenure` || `` || `` || ||
+|| `AlwaysTenure` || `bool` || `product` || 是否使用Surivor空间，当为真时Surivor空间不存放任何对象 ||
 || `NeverTenure` || `` || `` || ||
 || `ScavengeBeforeFullGC` || `` || `` || ||
 || `UseConcMarkSweepGC` || `` || `` || ||

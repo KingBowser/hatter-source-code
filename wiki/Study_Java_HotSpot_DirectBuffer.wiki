@@ -1,5 +1,8 @@
 #summary Direct Buffer
 #sidebar TableOfContents
 
+java.nio.ByteBuffer.allocateDirect
+
+-XX:MaxDirectMemorySieze=
 
 ... ...

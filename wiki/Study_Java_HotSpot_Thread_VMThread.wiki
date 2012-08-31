@@ -141,7 +141,7 @@ JVM_handle_linux_signal(int sig,
 
 =====d. block 状态=====
 当线程进入block状态的时候，继续保持block状态。
-
+----
 
 {{{
 enum Priorities {

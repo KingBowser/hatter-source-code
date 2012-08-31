@@ -44,9 +44,9 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `-Xconcgc` || `-` || `-XX:+UseConcMarkSweepGC` ||
 || `-Xnoconcgc` || `-` || `-XX:+UseConcMarkSweepGC` ||
 || `-Xbatch` || `-` || `-XX:+BackgroundCompilation` ||
-|| `-Xmn` || `-` || `-XX:MaxNewSize=,-XX:NewSize=` ||
+|| `-Xmx` || `-` || `-XX:MaxHeapSize=` ^注2^ ||
 || `-Xms` || `-` || `-XX:InitialHeapSize=` ||
-|| `-Xmx` || `-` || `-XX:MaxHeapSize=` ||
+|| `-Xmn` || `-` || `-XX:MaxNewSize=,-XX:NewSize=` ||
 || `-Xmaxf` || `-` || `-XX:MaxHeapFreeRatio=` ||
 || `-Xminf` || `-` || `-XX:MinHeapFreeRatio=` ||
 || `-Xss` || `-` || `-XX:ThreadStackSize=` ||
@@ -80,6 +80,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `-Xcheck:jni` || `-` || ||
 
 ^注1.^ 分隔符在Linux/Unix操作系统和Winodws操作系统不一样，在Linux/Unix下为`":"`（冒号），在Windows下为`";"`（分号）
+^注2.^ 当 `-Xmx != -Xms` 时，内部扩大或收缩需要通过一个Full GC来触发
 
 ==参数的类型==
 {{{

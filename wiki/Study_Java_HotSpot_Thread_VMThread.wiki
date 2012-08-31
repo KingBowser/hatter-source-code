@@ -7,6 +7,10 @@ class VM_Operation: public CHeapObj
 
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/vm_operation_queues.png]
 
+safe point 顾明思意，就是安全点，当需要jvm做一些操作的时候，需要把当前正在运行的线程进入一个安全点的状态（也可以说停止状态），这样才能做一些安全的操作，比如线程的dump，堆栈的信息。
+
+在jvm里面通常vm_thread（我们一直在谈论的做一些属于vm 份内事情的线程） 和cms_thread（内存回收的线程）做的操作，是需要将其他的线程通过调用SafepointSynchronize::begin 和 SafepointSynchronize:end来实现让其他的线程进入或者退出safe point 的状态。 ^[24]^
+
 {{{
 enum Priorities {
    SafepointPriority, // Highest priority (operation executed at a safepoint)
@@ -82,3 +86,6 @@ enum VMOp_Type {
 || `VM_Exit` ||  ||  || 退出JVM  ||
 || `VM_DeoptimizeTheWorld` ||  ||  ||  ||
 || `VM_ReportJavaOutOfMemory` ||  ||  || 在OOM时执行Shell命令，通过参数`-XX:OnOutOfMemoryError=`设置 ||
+
+===参将资料===
+`[1].` http://blog.csdn.net/raintungli/article/details/7162468<br>

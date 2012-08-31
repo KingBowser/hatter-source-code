@@ -455,7 +455,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `TraceLoaderConstraints` || `` || `` || ||
 || `TraceGen0Time` || `` || `` || ||
 || `TraceGen1Time` || `` || `` || ||
-|| `PrintTenuringDistribution` || `` || `` || ||
+|| `PrintTenuringDistribution` || `bool` || `product` || 打印对象晋升相关的信息 ||
 || `PrintHeapAtGC` || `bool` || `product_rw` || 在GC前后打印Heap分带信息 ||
 || `PrintHeapAtGCExtended` || `bool` || `product_rw` || 当在G1回收算法GC时打印扩展信息 ||
 || `PrintHeapAtSIGBREAK` || `` || `` || ||

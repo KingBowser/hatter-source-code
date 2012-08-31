@@ -67,6 +67,82 @@ inline static bool do_call_back() {
 
 为了能让线程从native code 回到java 的时候为了能读到/设置正确线程的状态，通常的解决方法使用memory barrier，java 使用`OrderAccess::fence();` 在汇编里使用 `__asm__ volatile ("lock; addl $0,0(%%rsp)" : : : "cc", "memory");` 保证从内存里读到正确的值，但是这种方法严重影响系统的性能，于是java使用了每个线程都有独立的内存页来设置状态。通过使用使用参数-XX:+UseMembar  参数使用memory barrier，默认是不打开的，也就是使用独立的内存页来设置状态。
 
+====c. 运行编译的代码====
+
+=====1. Poling page 页面=====
+Poling page是在jvm初始化启动的时候会初始化的一个单独的内存页面，这个页面是让运行的编译过的代码的线程进入停止状态的关键。
+
+在linux里面使用了mmap初始化，源码如下
+{{{
+address polling_page = (address) ::mmap(NULL, Linux::page_size(), PROT_READ, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0);
+}}}
+
+=====2. 编译=====
+java 的JIT 会直接编译一些热门的源码到机器码，直接执行而不需要在解释执行从而提高效率，在编译的代码中，当函数或者方法块返回的时候会去访问一个内存poling页面.
+
+x86架构下
+{{{
+void LIR_Assembler::return_op(LIR_Opr result) {  
+  assert(result->is_illegal() || !result->is_single_cpu() || result->as_register() == rax, "word returns are in rax,");  
+  if (!result->is_illegal() && result->is_float_kind() && !result->is_xmm_register()) {  
+    assert(result->fpu() == 0, "result must already be on TOS");  
+  }  
+  
+  // Pop the stack before the safepoint code  
+  __ remove_frame(initial_frame_size_in_bytes());  
+  
+  bool result_is_oop = result->is_valid() ? result->is_oop() : false;  
+  
+  // Note: we do not need to round double result; float result has the right precision  
+  // the poll sets the condition code, but no data registers  
+  AddressLiteral polling_page(os::get_polling_page() + (SafepointPollOffset % os::vm_page_size()),  
+                              relocInfo::poll_return_type);  
+  
+  // NOTE: the requires that the polling page be reachable else the reloc  
+  // goes to the movq that loads the address and not the faulting instruction  
+  // which breaks the signal handler code  
+  
+  __ test32(rax, polling_page);  
+  
+  __ ret(0);  
+}
+}}}
+
+在前面提到的 `SafepointSynchronize::begin` 函数源码中
+{{{
+if (UseCompilerSafepoints && DeferPollingPageLoopCount < 0) {  
+  // Make polling safepoint aware  
+  guarantee (PageArmed == 0, "invariant") ;  
+  PageArmed = 1 ;  
+  os::make_polling_page_unreadable();  
+}
+}}}
+这里提到了2个参数 `UseCompilerSafepoints` 和 `DeferPollingPageLoopCount` ，在默认的情况下这2个参数是true和-1
+
+函数体将会调用 `os:make_polling_page_unreadable();` 在linux os 下具体实现是调用了 `mprotect(bottom,size,prot)` 使polling 内存页变成不可读。
+
+=====3. 信号=====
+到当编译好的程序尝试在去访问这个不可读的polling页面的时候，在系统级别会产生一个错误信号SIGSEGV, 可以参考笔者的一篇博客中曾经讲过java 的信号处理，可以知道信号SIGSEGV的处理函数在x86体系下见下源码：
+{{{
+JVM_handle_linux_signal(int sig,  
+                        siginfo_t* info,  
+                        void* ucVoid,  
+                        int abort_if_unrecognized){  
+   ....  
+   if (sig == SIGSEGV && os::is_poll_address((address)info->si_addr)) {  
+        stub = SharedRuntime::get_poll_stub(pc);  
+      }   
+   ....  
+}
+}}}
+在`linux x86,64 bit`的体系中，poll stub 的地址 就是 `SafepointSynchronize::handle_polling_page_exception` 详细程序可见 `shareRuntime_x86_64.cpp`
+
+回到`safepoint.cpp`中，`SafepointSynchronize::handle_polling_page_exception` 通过取出线程的safepoint_stat,调用函数 `void ThreadSafepointState::handle_polling_page_exception`，最后通过调用 `SafepointSynchronize::block(thread());` 来block当前线程。
+
+=====d. block 状态=====
+当线程进入block状态的时候，继续保持block状态。
+
+
 {{{
 enum Priorities {
    SafepointPriority, // Highest priority (operation executed at a safepoint)

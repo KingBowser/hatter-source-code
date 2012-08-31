@@ -139,7 +139,7 @@ JVM_handle_linux_signal(int sig,
 
 回到`safepoint.cpp`中，`SafepointSynchronize::handle_polling_page_exception` 通过取出线程的safepoint_stat,调用函数 `void ThreadSafepointState::handle_polling_page_exception`，最后通过调用 `SafepointSynchronize::block(thread());` 来block当前线程。
 
-=====d. block 状态=====
+====d. block 状态====
 当线程进入block状态的时候，继续保持block状态。
 ----
 

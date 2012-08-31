@@ -34,6 +34,7 @@
  * *`GC map`* ^[1]^
  * *`generational garbage collection`* ^[1]^
  * *`handle`* ^[1]^
+ 对oop的再一次包装，这样jvm底层的c/c++代码都是通过handle来操作oop，而垃圾收集器也通过操作handle，能够更容易找到根引用（root reference）。同时，当进行垃圾回收时（也就是c/c++ 代码处于safepoint时），垃圾收集器可能会对handle里的oop做修改（比如将有些对象进行了压缩，或者从新生代移动到了老生代等），而此时对于那些c/c++代码来说，由于它们操作的handle没有变（只是handle里的oop变了而已），所以它们不用感知到这个变化，等其通过handle去获取里面的oop时，此时才感知到变化。所以handle的功能概括来就是，通过引入一个间接层，屏蔽其他代码（非垃圾回收代码）对于oop变动的感知。Handle既有全局的，也有线程可见的。不同的oop会有其对应的handle，而垃圾回收器需要了解所有的这些handle。 ^[24]^
  * *`hot lock`* ^[1]^
  * *`interpreter`* ^[1]^
  * *`JIT compilers`* ^[1]^

@@ -68,6 +68,7 @@ http://blog.golang.org/ ，通过Google Reader订阅该地址：http://blog.gola
 
 ==IDE==
 [http://code.google.com/p/golangide/ LiteIDE] Go语言写的跨平台Go语言IDE
+[http://go-ide.com/ Go IDE] Google Go Language IDE (based on Intellij IDEA platform)
 
 
 ===参考资料===

@@ -6,7 +6,7 @@
  * [Study_CSS CSS]
   * [Study_CSS_Selector Selector]
  * [Study_Database_MySQL MySQL]
- * [Study_GO GO]
+ * [Study_GO Go Lang]
  * [Study_Java Java]
   * [Study_Java_ByteCode ByteCode]
   * [Study_Java_HotSpot HotSpot]

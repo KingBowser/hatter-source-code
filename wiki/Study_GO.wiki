@@ -80,3 +80,4 @@ http://blog.golang.org/ ，通过Google Reader订阅该地址：http://blog.gola
 `[6].` [http://en.wikipedia.org/wiki/Limbo_(programming_language)]<br>
 `[7].` http://en.wikipedia.org/wiki/Plan_9_from_Bell_Labs<br>
 `[8].` http://www.cnblogs.com/turingbooks/archive/2012/08/02/2620199.html<br>
+`[9].` http://zh.wikipedia.org/wiki/%E9%B8%AD%E5%AD%90%E7%B1%BB%E5%9E%8B<br>

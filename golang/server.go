@@ -74,6 +74,9 @@ var quickDomainSettingMap = map[string]*DomainSetting {
 	"go.hatter.me": &DomainSetting {
 		PROXY, "", "http://golang.org",
 	},
+	"playgo.hatter.me": &DomainSetting {
+		PROXY, "", "http://play.golang.org",
+	},
 	"mail.hatter.me": &DomainSetting {
 		REDIRECT, "https://www.google.com/a/hatterjiang.com", "",
 	},

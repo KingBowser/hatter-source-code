@@ -337,9 +337,9 @@ func HandleProxyDomainURL(w http.ResponseWriter, r *http.Request, proxyFullURL s
 			log.Println("Read post body failed:", requestBodyReadAllError)
 			return false
 		}
-		defer r.Body.Close()
-		//requestBody = strings.NewReader(r.Form.Encode())
-		requestBody = bytes.NewReader(requestBodyReadAll)
+		log.Println("EEEEE", requestBodyReadAll, string(requestBodyReadAll))
+		requestBody = strings.NewReader(r.Form.Encode())
+		//requestBody = bytes.NewReader(requestBodyReadAll)
 	}
 	client := &http.Client{}
 	getRequest, getRequestError := http.NewRequest(r.Method, proxyFullURL, requestBody)

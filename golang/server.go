@@ -332,7 +332,14 @@ func HandleProxyDomainURL(w http.ResponseWriter, r *http.Request, proxyFullURL s
 		}
 		log.Println("XXXX Query:", r.Form.Encode())
 		log.Println("ZZZZZ", r.Body)
-		requestBody = strings.NewReader(r.Form.Encode())
+		requestBodyReadAll, requestBodyReadAllError := ioutil.ReadAll(r.Body)
+		if requestBodyReadAllError != nil {
+			log.Println("Read post body failed:", requestBodyReadAllError)
+			return false
+		}
+		defer r.Body.Close()
+		//requestBody = strings.NewReader(r.Form.Encode())
+		requestBody = bytes.NewReader(requestBodyReadAll)
 	}
 	client := &http.Client{}
 	getRequest, getRequestError := http.NewRequest(r.Method, proxyFullURL, requestBody)

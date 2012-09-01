@@ -331,6 +331,7 @@ func HandleProxyDomainURL(w http.ResponseWriter, r *http.Request, proxyFullURL s
 			log.Println(k, v)
 		}
 		log.Println("XXXX Query:", r.Form.Encode())
+		log.Println("ZZZZZ", r.Body)
 		requestBody = strings.NewReader(r.Form.Encode())
 	}
 	client := &http.Client{}

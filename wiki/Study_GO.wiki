@@ -62,8 +62,8 @@ http://blog.golang.org/ ，通过Google Reader订阅该地址：http://blog.gola
   ** http://golang.org/CONTRIBUTORS
 
 ==荣誉==
- * InfoWorld BOSSIE
- * TIOBE "Language of the year"
+|| 2010 || InfoWorld BOSSIE ||
+|| 2009 || TIOBE "Language of the year" ||
 
 
 ==IDE==

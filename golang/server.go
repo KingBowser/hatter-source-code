@@ -326,6 +326,10 @@ func HandleProxyDomainURL(w http.ResponseWriter, r *http.Request, proxyFullURL s
 	var requestBody io.Reader = nil
 	if r.Method == "POST" {
 		r.ParseForm()
+		log.Println("XXXX >>>>>>")
+		for k, v := range r.Form {
+			log.Println(k, v)
+		}
 		log.Println("XXXX Query:", r.Form.Encode())
 		requestBody = strings.NewReader(r.Form.Encode())
 	}

@@ -1,13 +1,16 @@
 #summary Direct Buffer
 #sidebar TableOfContents
 
-===原理===
+===简介及其原理===
+
+`java.nio.ByteBuffer.allocateDirect`
+
+可以通过参数 `-XX:MaxDirectMemorySieze=` 设置其可使用的最大内存大小。
 
 ===OOME===
 和DirectBuffer相关的内存泄漏参看[Study_Java_HotSpot_OOME]
 
-`java.nio.ByteBuffer.allocateDirect`
 
-`-XX:MaxDirectMemorySieze=`
+
 
 ... ...

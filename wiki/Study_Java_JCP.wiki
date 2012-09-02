@@ -2,3 +2,5 @@
 #sidebar TableOfContents
 
 The `Java Community Process (JCP)`, established in 1998, is a formalized mechanism that allows interested parties to develop standard technical specifications for Java technology.
+
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/golang/Golang.png]

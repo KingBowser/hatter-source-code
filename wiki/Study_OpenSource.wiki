@@ -30,6 +30,7 @@
 || *<font color="#f00">Programming</font>* ||  ||  ||  ||
 || `Go` || https://code.google.com/p/go/ || `Go` || The Go Programming Language ||
 || *<font color="#f00">Database</font>* ||  ||  ||  ||
+|| `SQL Fiddle` || http://sqlfiddle.com/ || `SQL` || Application for testing and sharing SQL queries ||
 || `DbLinq` || https://code.google.com/p/dblinq2007/ || `C#` || LINQ provider for Oracle, PostgreSQL, MySQL, Ingres, SQLite, Firebird and ... SQL Server (C# 3.0) ||
 || `H2` || https://code.google.com/p/h2database/ || `-` || Java SQL database ||
 || *<font color="#f00">Concurrent</font>* ||  ||  ||  ||

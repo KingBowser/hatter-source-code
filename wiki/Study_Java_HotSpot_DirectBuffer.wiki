@@ -16,7 +16,7 @@
 || `DirectMemory` || http://incubator.apache.org/directmemory/ || Apache DirectMemory is a multi layered cache implementation featuring off-heap memory management (a-la BigMemory) to enable efficient handling of a large number of java objects without affecting jvm garbage collection performance ||
 || `HugeCollections` || https://code.google.com/p/vanilla-java/wiki/HugeCollections || If you want to efficiently store large collections of data in memory. This library can dramatically reduce Full GC times and reduce memory consumption as well ||
 
-===OOME===
+===OutOfMemoryError===
 和 `DirectBuffer` 相关的内存泄漏参看[Study_Java_HotSpot_OOME]
 
 

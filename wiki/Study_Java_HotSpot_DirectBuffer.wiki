@@ -8,7 +8,7 @@
 可以通过参数 `-XX:MaxDirectMemorySieze=` 设置其可使用的最大内存大小。
 
 ===各种应用===
-|| HugeCollections || https://code.google.com/p/vanilla-java/wiki/HugeCollections ||
+|| `HugeCollections` || https://code.google.com/p/vanilla-java/wiki/HugeCollections ||
 
 ===OOME===
 和DirectBuffer相关的内存泄漏参看[Study_Java_HotSpot_OOME]

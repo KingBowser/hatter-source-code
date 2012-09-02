@@ -5,7 +5,7 @@
 
 `java.nio.ByteBuffer.allocateDirect`
 
-可以通过参数 `-XX:MaxDirectMemorySieze=` 设置其可使用的最大内存大小。
+可以通过参数 `-XX:MaxDirectMemorySize=` 设置其可使用的最大内存大小。
 
 ===各种应用===
 || `HugeCollections` || https://code.google.com/p/vanilla-java/wiki/HugeCollections ||

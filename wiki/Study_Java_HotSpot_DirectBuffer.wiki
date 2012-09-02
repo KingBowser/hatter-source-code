@@ -10,6 +10,7 @@ DirectBuffer通过免去中间交换的内存拷贝, 提升IO处理速度;也就
 可以通过参数 `-XX:MaxDirectMemorySize=` 设置其可使用的最大内存大小。
 
 ===各种应用===
+|| `DirectMemory` || http://incubator.apache.org/directmemory/ ||
 || `HugeCollections` || https://code.google.com/p/vanilla-java/wiki/HugeCollections ||
 
 ===OOME===

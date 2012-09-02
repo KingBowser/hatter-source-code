@@ -5,8 +5,8 @@
 
 DirectBuffer通过免去中间交换的内存拷贝, 提升IO处理速度;也就是常说的zero-copy
 
-`java.nio.ByteBuffer.allocateDirect`<br>
-`sun.nio.ch.DirectBuffer.cleaner(). clean()`
+|| 分配 || `java.nio.ByteBuffer.allocateDirect` ||
+|| 释放 || `sun.nio.ch.DirectBuffer.cleaner().clean()` ||
 
 可以通过参数 `-XX:MaxDirectMemorySize=` 设置其可使用的最大内存大小。
 

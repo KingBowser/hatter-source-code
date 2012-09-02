@@ -2,4 +2,6 @@
 #sidebar TableOfContents
 
 
+|| `memcached` || http://memcached.org/ || Memcached is an in-memory key-value store for small chunks of arbitrary data (strings, objects) from results of database calls, API calls, or page rendering ||
+|| `Redis` || http://redis.io/ || Redis is an open source, advanced key-value store. It is often referred to as a data structure server since keys can contain strings, hashes, lists, sets and sorted sets ||
 || `LevelDB` || http://code.google.com/p/leveldb/ || LevelDB is a fast key-value storage library written at Google that provides an ordered mapping from string keys to string values ||

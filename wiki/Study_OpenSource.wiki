@@ -29,6 +29,7 @@
 || `gperftools` || https://code.google.com/p/gperftools/ || `-` || Fast, multi-threaded malloc() and nifty performance analysis tools ||
 || *<font color="#f00">Programming</font>* ||  ||  ||  ||
 || `Go` || https://code.google.com/p/go/ || `Go` || The Go Programming Language ||
+|| `Try Haxe` || http://try.haxe.org/ || `Haxe` || Haxe is an amazing multiplatform programming language ||
 || *<font color="#f00">Database</font>* ||  ||  ||  ||
 || `SQL Fiddle` || http://sqlfiddle.com/ || `SQL` || Application for testing and sharing SQL queries ||
 || `DbLinq` || https://code.google.com/p/dblinq2007/ || `C#` || LINQ provider for Oracle, PostgreSQL, MySQL, Ingres, SQLite, Firebird and ... SQL Server (C# 3.0) ||

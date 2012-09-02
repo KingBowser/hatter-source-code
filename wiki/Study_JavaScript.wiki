@@ -20,7 +20,7 @@
 || `JScript/ JScript.Net` || 微软在IE、WScript、CScript、ASP和.NET中所所用的实现 ||
 || `ActionScript` || Adobe的Flash、Flex(现在是Apache)的实现 ||
 || `Ejscript` || Ejscript — a powerful server-side JavaScript language and web framework  ||
-|| `ExtendScript` ||  ||
+|| `ExtendScript` || `-` ||
 || `DMDScript` || DMDScript is Digital Mars' implementation of the ECMA 262 scripting language ||
 || `CriScript` || CRIScript is a lightweight implementation of JavaScript/ECMAScript for games ||
 || `InScript` || InScript is a software library providing an ECMAScript engine for ECMA-262 3ed, written in C++, and some Java classes for LiveConnect ||

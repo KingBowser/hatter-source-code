@@ -1,15 +1,4 @@
 #summary Java Community Process
 #sidebar TableOfContents
 
-
-= Introduction =
-
-Add your content here.
-
-
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+The `Java Community Process (JCP)`, established in 1998, is a formalized mechanism that allows interested parties to develop standard technical specifications for Java technology.

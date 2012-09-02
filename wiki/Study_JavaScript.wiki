@@ -23,7 +23,7 @@
 || `ExtendScript` ||  ||
 || `DMDScript` || DMDScript is Digital Mars' implementation of the ECMA 262 scripting language ||
 || `CriScript` || CRIScript is a lightweight implementation of JavaScript/ECMAScript for games ||
-|| `InScript` ||  ||
+|| `InScript` || InScript is a software library providing an ECMAScript engine for ECMA-262 3ed, written in C++, and some Java classes for LiveConnect ||
 || `QtScript` || QtScript is a scripting engine that has been part of the Qt cross-platform application framework since version 4.3.0 ||
 || `Caja` || The Caja Compiler is a tool for making third party HTML, CSS and JavaScript safe to embed in your website ||
 || `WMLScript` || WMLScript is the dialect of JavaScript used for WML pages and is part of the Wireless Application Protocol (WAP) ||

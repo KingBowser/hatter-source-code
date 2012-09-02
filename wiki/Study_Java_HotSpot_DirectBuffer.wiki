@@ -3,7 +3,7 @@
 
 ===简介及其原理===
 
-DirectBuffer通过免去中间交换的内存拷贝, 提升IO处理速度;也就是常说的zero-copy
+`DirectBuffer` 通过免去中间交换的内存拷贝, 提升IO处理速度;也就是常说的zero-copy
 
 || *分配* || `java.nio.ByteBuffer.allocateDirect` ||
 || *释放* || `sun.nio.ch.DirectBuffer.cleaner().clean()` ||

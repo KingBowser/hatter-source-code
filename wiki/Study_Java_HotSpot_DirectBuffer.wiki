@@ -11,6 +11,7 @@
 可以通过参数 `-XX:MaxDirectMemorySize=` 设置其可使用的最大内存大小。
 
 ===各种应用===
+|| `BigMemory` || http://terracotta.org/products/bigmemory || BigMemory stores “big” amounts of data in machine memory for ultra-fast access ||
 || `DirectMemory` || http://incubator.apache.org/directmemory/ || Apache DirectMemory is a multi layered cache implementation featuring off-heap memory management (a-la BigMemory) to enable efficient handling of a large number of java objects without affecting jvm garbage collection performance ||
 || `HugeCollections` || https://code.google.com/p/vanilla-java/wiki/HugeCollections || If you want to efficiently store large collections of data in memory. This library can dramatically reduce Full GC times and reduce memory consumption as well ||
 

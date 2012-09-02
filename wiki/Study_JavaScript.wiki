@@ -56,6 +56,7 @@
 || `Firebug Lite` || http://getfirebug.com/firebuglite || Firebug Lite: doing the Firebug way, anywhere ||
 || `Jash` || http://www.billyreisinger.com/jash/ || Jash: JavaScript Shell ||
 || `jsFiddle ` || http://jsfiddle.net/ || mootools shell, easy test you snippets before implementing ||
+|| `JS Bin` || http://jsbin.com/ || JS Bin - Collaborative JavaScript Debugging ||
 || `CodeMirror` || http://codemirror.net/ || CodeMirror is a JavaScript component that provides a code editor in the browser ||
 
 ===五、相关网站===

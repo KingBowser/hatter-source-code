@@ -3,6 +3,8 @@
 
 ===简介及其原理===
 
+DirectBuffer通过免去中间交换的内存拷贝, 提升IO处理速度;也就是常说的zero-copy
+
 `java.nio.ByteBuffer.allocateDirect`
 
 可以通过参数 `-XX:MaxDirectMemorySize=` 设置其可使用的最大内存大小。

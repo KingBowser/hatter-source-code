@@ -1,6 +1,11 @@
 #summary Direct Buffer
 #sidebar TableOfContents
 
+===原理===
+
+===OOME===
+和DirectBuffer相关的内存泄漏参看[Study_Java_HotSpot_OOME]
+
 `java.nio.ByteBuffer.allocateDirect`
 
 `-XX:MaxDirectMemorySieze=`

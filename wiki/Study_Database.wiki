@@ -8,7 +8,8 @@ http://www.oracle.com/
 http://www.microsoft.com/sqlserver/en/us/default.aspx
 
 ==MySQL==
-http://www.mysql.com/
+http://www.mysql.com/<br>
+The MySQL database has become the world's most popular open source database because of its high performance, high reliability and ease of use.
 
 || `Drizzle` || http://www.drizzle.org/ || Drizzle | A database for the cloud ||
 || `MariaDB` || http://mariadb.org/ || MariaDB - An enhanced, drop-in replacement for MySQL ||

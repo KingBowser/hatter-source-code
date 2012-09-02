@@ -5,10 +5,11 @@
 
 `DirectBuffer` 通过免去中间交换的内存拷贝, 提升IO处理速度;也就是常说的zero-copy
 
+
 || *分配* || `java.nio.ByteBuffer.allocateDirect` ||
 || *释放* || `sun.nio.ch.DirectBuffer.cleaner().clean()` ||
 
-可以通过参数 `-XX:MaxDirectMemorySize=` 设置其可使用的最大内存大小。
+可以通过参数 `-XX:MaxDirectMemorySize=` 设置其可使用的最大内存大小，当未设置时默认同 `-Xmx` 的大小。
 
 ===各种应用===
 || `BigMemory` || http://terracotta.org/products/bigmemory || BigMemory stores “big” amounts of data in machine memory for ultra-fast access ||

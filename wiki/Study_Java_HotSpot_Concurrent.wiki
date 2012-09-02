@@ -146,7 +146,7 @@ java.util.concurrent.lock 中的 Lock 框架是锁定的一个抽象，它允许
 
 =并发框架=
 
-==Java.Util.Concurrent==
+==JUC(`java.util.concurrent`)==
 JDK自带 rt.jar(或classes.jar)<br>
 
 ==Disruptor==

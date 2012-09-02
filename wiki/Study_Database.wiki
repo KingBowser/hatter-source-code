@@ -1,10 +1,10 @@
 #summary Database Study
 #sidebar TableOfContents
 
-==Oracle==
+==Oracle <font color="red">_【商业数据库】_</font>==
 http://www.oracle.com/
 
-==SQL Server==
+==SQL Server <font color="red">_【商业数据库】_</font>==
 http://www.microsoft.com/sqlserver/en/us/default.aspx
 
 ==MySQL==

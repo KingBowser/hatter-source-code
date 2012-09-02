@@ -6,3 +6,4 @@
 || `SQLite JDBC` || http://code.google.com/p/sqlite-jdbc/ || SQLite JDBC is a library for creating and accessing SQLite database files ||
 || `SQLite Java Wrapper/JDBC Driver` || http://www.ch-werner.de/javasqlite/ || Java wrapper including a basic JDBC driver for the SQLite 2/3 database engine ||
 || `SQLJet` || http://sqljet.com/ || SQLJet is an independent pure Java implementation of a popular SQLite database management system || 
+|| `sqlite4java` || http://code.google.com/p/sqlite4java/ || sqlite4java is a minimalistic Java wrapper for SQLite ||

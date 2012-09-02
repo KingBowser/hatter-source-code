@@ -1,6 +1,8 @@
 #summary Database Study
 #sidebar TableOfContents
 
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/sql/sql1992.txt The SQL-92 standard]
+
 ==Oracle <font color="red">_【商业数据库】_</font>==
 http://www.oracle.com/
 
@@ -31,5 +33,3 @@ Berkeley DB (BDB) is a software library that provides a high-performance embedde
 ==H2 Database==
 http://www.h2database.com/html/main.html<br>
 H2 is a relational database management system written in Java. It can be embedded in Java applications or run in the client-server mode.
-
-

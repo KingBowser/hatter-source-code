@@ -15,7 +15,7 @@
 || `HugeCollections` || https://code.google.com/p/vanilla-java/wiki/HugeCollections || If you want to efficiently store large collections of data in memory. This library can dramatically reduce Full GC times and reduce memory consumption as well ||
 
 ===OOME===
-和DirectBuffer相关的内存泄漏参看[Study_Java_HotSpot_OOME]
+和 `DirectBuffer` 相关的内存泄漏参看[Study_Java_HotSpot_OOME]
 
 
 

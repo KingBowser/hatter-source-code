@@ -34,7 +34,7 @@ http://golang.org
 
 ==支持系统==
 || *支持架构* || `i386, amd64, ARM` ||
-|| *支持操作系统* || `Linux, Mac OS X, FreeBSD, OpenBSD, Plan 9 ||
+|| *支持操作系统* || `Linux, Mac OS X, FreeBSD, OpenBSD, Plan 9` ||
 
 ==官方博客==
 http://blog.golang.org/ ，通过Google Reader订阅该地址：http://blog.golang.org/feeds/posts/default

@@ -1,8 +1,12 @@
 #summary Non-Uniform Memory Access
 #sidebar TableOfContents
 
-非均匀访存模型（NUMA Non-Uniform Memory Access）的特点是：被共享的存储器物理上是分布式的，所有这些存储器的集合就是全局地址空间。所以处理器访问这些存储器的时间是不一样的，显然访问本地存储器的速度要比访问全局共享存储器或远程访问外地存储器要快些。另外，NUMA中存储器可能是分层的：本地存储器，群内共享存储器，全局共享存储器。
+非均匀访存模型（NUMA Non-Uniform Memory Access）的特点是：被共享的存储器物理上是分布式的，所有这些存储器的集合就是全局地址空间。所以处理器访问这些存储器的时间是不一样的，显然访问本地存储器的速度要比访问全局共享存储器或远程访问外地存储器要快些。另外，NUMA中存储器可能是分层的：本地存储器，群内共享存储器，全局共享存储器。 ^[2]^
+
+下图是Intel 5600 CPU的架构：^[3]^
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/x86/intl_numa.jpg]
 
 ===参考资料===
 `[1].` http://en.wikipedia.org/wiki/Non-Uniform_Memory_Access<br>
 `[2].` http://zh.wikipedia.org/wiki/%E9%9D%9E%E5%9D%87%E5%8C%80%E8%AE%BF%E5%AD%98%E6%A8%A1%E5%9E%8B<br>
+`[3].` http://www.hellodb.net/2011/06/mysql_multi_instance.html<br>

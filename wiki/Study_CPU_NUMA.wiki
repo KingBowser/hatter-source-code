@@ -1,0 +1,6 @@
+#summary Non-Uniform Memory Access
+#sidebar TableOfContents
+
+
+===参考资料===
+`[1].` http://en.wikipedia.org/wiki/Non-Uniform_Memory_Access<br>

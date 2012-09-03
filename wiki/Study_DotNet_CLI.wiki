@@ -3,3 +3,7 @@
 
 http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-335.pdf
 
+The CLR is Microsoft's implementation of the CLI standard.
+
+===参考资料===
+`[1].` http://stackoverflow.com/questions/480752/clr-and-cli-what-is-the-difference<br>

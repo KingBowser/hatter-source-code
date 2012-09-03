@@ -151,6 +151,7 @@ JDK自带 rt.jar(或classes.jar)<br>
 
 ==Disruptor==
 http://code.google.com/p/disruptor/<br>
+High Performance Inter-Thread Messaging Library<br>
 
 
 <br><br>

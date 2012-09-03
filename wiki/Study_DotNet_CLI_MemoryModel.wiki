@@ -1,4 +1,4 @@
-#summary CLR Memory Model
+#summary CLI Memory Model
 #sidebar TableOfContents
 
 

@@ -9,6 +9,14 @@
 Intel QuickPath Interconnect (Intel QPI)技术 ^[5]^
  使用QPI架构代替了原来的FSB架构，QPI是基于数据包传输，高带宽低延迟的点到点传输技术，速度可以达到6.4GT/s，对双向传输的QPI总线连接来说理论最大值可以达到25.6GB/s的数据传输，远远高于原来基于FSB架构的数据带宽。
 
+NUMA的内存分配策略有四种： ^[3]^
+ # 缺省(default)：总是在本地节点分配（分配在当前进程运行的节点上）；
+ # 绑定(bind)：强制分配到指定节点上；
+ # 交叉(interleave)：在所有节点或者指定的节点上交织分配；
+ # 优先(preferred)：在指定节点上分配，失败则在其他节点上分配。
+
+ 因为NUMA默认的内存分配策略是优先在进程所在CPU的本地内存中分配，会导致CPU节点之间内存分配不均衡，当某个CPU节点的内存不足时，会导致swap产生，而不是从远程节点分配内存。这就是所谓的swap insanity现象。
+
 ===参考资料===
 `[1].` http://en.wikipedia.org/wiki/Non-Uniform_Memory_Access<br>
 `[2].` http://zh.wikipedia.org/wiki/%E9%9D%9E%E5%9D%87%E5%8C%80%E8%AE%BF%E5%AD%98%E6%A8%A1%E5%9E%8B<br>

@@ -6,7 +6,12 @@
 下图是Intel 5600 CPU的架构：^[3]^
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/x86/intl_numa.jpg]
 
+Intel QuickPath Interconnect (Intel QPI)技术 ^[5]^
+ 使用QPI架构代替了原来的FSB架构，QPI是基于数据包传输，高带宽低延迟的点到点传输技术，速度可以达到6.4GT/s，对双向传输的QPI总线连接来说理论最大值可以达到25.6GB/s的数据传输，远远高于原来基于FSB架构的数据带宽。
+
 ===参考资料===
 `[1].` http://en.wikipedia.org/wiki/Non-Uniform_Memory_Access<br>
 `[2].` http://zh.wikipedia.org/wiki/%E9%9D%9E%E5%9D%87%E5%8C%80%E8%AE%BF%E5%AD%98%E6%A8%A1%E5%9E%8B<br>
 `[3].` http://www.hellodb.net/2011/06/mysql_multi_instance.html<br>
+`[4].` http://software.intel.com/zh-cn/blogs/2008/11/24/numaxeon1/<br>
+`[5].` http://software.intel.com/zh-cn/blogs/2008/11/28/numaxeon2/<br>

@@ -29,14 +29,12 @@ func main() {
 </tr>
 </table>
 
-|| *支持架构* || `i386, amd64, ARM` ||
-|| *支持操作系统* || `Linux, Mac OS X, FreeBSD, OpenBSD, Plan 9` ||
-
 || *官方网站* || http://golang.org ||
 || *官方博客* || http://blog.golang.org/ 通过Google Reader订阅该地址：http://blog.golang.org/feeds/posts/default ||
 || 授权 || [http://golang.org/LICENSE BSD-Style License] ||
 
-^注1^: 通过Google Reader订阅该地址：http://blog.golang.org/feeds/posts/default
+|| *支持架构* || `i386, amd64, ARM` ||
+|| *支持操作系统* || `Linux, Mac OS X, FreeBSD, OpenBSD, Plan 9` ||
 
 
 ==开发人员==

@@ -2,6 +2,9 @@
 #sidebar TableOfContents
 
 =CLR内存模型=
+<table width="100%"><tr><td align="right">
+Microsoft's CLI implementation(CLR)'s memory model
+</td></tr></table>
 
 What is a memory model?  It’s the abstraction that makes the reality of today’s exotic hardware comprehensible to software developers.
 

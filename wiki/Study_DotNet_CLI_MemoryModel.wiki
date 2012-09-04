@@ -53,9 +53,13 @@ class Test
 ==三、深入理解volatile读/写==
 
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/dotnet/csharp/csharp_volatile_0.png]
+
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/dotnet/csharp/csharp_volatile_1.png]
+
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/dotnet/csharp/csharp_volatile_2.png]
+
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/dotnet/csharp/csharp_volatile_3.png]
+
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/dotnet/csharp/csharp_volatile_4.png]
 
 

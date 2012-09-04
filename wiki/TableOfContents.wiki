@@ -16,6 +16,8 @@
  * [Study_GO Go Lang]
  * [Study_GPU GPU]
   * [Study_GPU_GPGPU GPGPU]
+ * [Study_Hadoop Hadoop]
+  * [Study_Hadoop_Zookeeper Zookeeper]
  * [Study_Java Java]
   * [Study_Java_ByteCode ByteCode]
   * [Study_Java_HotSpot HotSpot]

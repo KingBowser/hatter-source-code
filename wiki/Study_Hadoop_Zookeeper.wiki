@@ -1,4 +1,5 @@
 #summary Zookeeper Study
+#sidebar TableOfContents
 
 下载ZooKeeper: [http://zookeeper.apache.org/releases.html]
 

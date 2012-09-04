@@ -67,6 +67,19 @@ class Test
 当读取 `volatile` 的值的时候，则变成：<br>
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/dotnet/csharp/csharp_volatile_4.png]
 
+==四、内存模型和.Net操作==
+
+|| *Construct* || *Refreshes thread cache before?* || *Flushes thread cache after?* || *Notes* ||
+|| Ordinary read || No || No || Read of a non-volatile field ||
+|| Ordinary write || No || Yes || Write of a non-volatile field ||
+|| Volatile read || Yes || No || Read of volatile field, or Thread.VolatileRead ||
+|| Volatile write || No || Yes || Write of a volatile field – same as non-volatile ||
+|| Thread.MemoryBarrier || Yes || Yes || Special memory barrier method ||
+|| Interlocked operations || Yes || Yes || Increment, Add, Exchange, etc. ||
+|| Lock acquire || Yes || No || Monitor.Enter or entering a lock {}  region ||
+|| Lock release || No || Yes || Monitor.Exit or exiting a lock {} region ||
+
+
 
 ===参考资料===
 `[1].` http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-335.pdf<br>

@@ -5,6 +5,39 @@ What is a memory model?  It’s the abstraction that makes the reality of today�
 
 The reality of hardware is that CPUs are renaming registers, performing speculative and out-of-order execution, and fixing up the world during retirement.  Memory state is cached at various levels in the system (L0 thru L3 on modern X86 boxes, presumably with more levels on the way).  Some levels of cache are shared between particular CPUs but not others.  For example, L0 is typically per-CPU but a hyper-threaded CPU may share L0 between the logical CPUs of a single physical CPU.  Or an 8-way box may split the system into two hemispheres with cache controllers performing an elaborate coherency protocol between these separate hemispheres.  If you consider caching effects, at some level all MP (multi-processor) computers are NUMA (non-uniform memory access).  But there’s enough magic going on that even a Unisys 32-way can generally be considered as UMA by developers.
 
+Sample: ^[7]^
+{{{
+class Test
+{
+    private bool _loop = true;
+
+    public static void Main()
+    {
+        Test test1 = new Test();
+
+        // Set _loop to false on another thread
+        new Thread(() => { test1._loop = false;}).Start();
+
+        // Poll the _loop field until it is set to false
+        while (test1._loop == true) ;
+
+        // The loop above will never terminate!
+    }
+}
+}}}
+
+编译出来的代码将会这样：
+{{{
+00000068  test        eax,eax
+0000006a  jne         00000068
+}}}
+
+如果将 `_loop` 标记为 `volatile` 时，编译出来的代码如下：
+{{{
+00000064  cmp         byte ptr [eax+4],0
+00000068  jne         00000064
+}}}
+
 
 ===参考资料===
 `[1].` http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-335.pdf<br>

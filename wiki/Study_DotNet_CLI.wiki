@@ -1,9 +1,9 @@
 #summary Common Language Infrastructure (CLI)
 #sidebar TableOfContents
 
-http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-335.pdf
+CLI标准：[http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-335.pdf ECMA 335]
 
-The CLR is Microsoft's implementation of the CLI standard.
+CLR(Common Language Runtime) 是微软对CLI(Common Language Infrastructure)  标准的一个实现。
 
 ===参考资料===
 `[1].` http://stackoverflow.com/questions/480752/clr-and-cli-what-is-the-difference<br>

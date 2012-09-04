@@ -50,6 +50,13 @@ class Test
 ==二、处理器优化==
 在多核系统下，不同的处理核拥有不同的缓存。在默认情况下，这些处理核不一定每次都保持所有的缓存行一致，需要一些特别的指令将缓存行刷到内存中。
 
+==三、深入理解volatile读/写==
+
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/dotnet/csharp/csharp_volatile_0.png]
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/dotnet/csharp/csharp_volatile_1.png]
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/dotnet/csharp/csharp_volatile_2.png]
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/dotnet/csharp/csharp_volatile_3.png]
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/dotnet/csharp/csharp_volatile_4.png]
 
 
 ===参考资料===

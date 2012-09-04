@@ -12,7 +12,7 @@
 || I(Invalid) || 这行数据无效 ||
 
 状态迁移图：<br>
-[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/mesi.gif]<br>
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/mesi.jpeg]<br>
 
 ==MESI-F==
 MESI-F，其中F即Forward，由Intel为NUMA的缓存一致性而开发 ^[6]^。<br>
@@ -26,8 +26,8 @@ MESI-F，其中F即Forward，由Intel为NUMA的缓存一致性而开发 ^[6]^。
 ==MSI==
 <br>
 
-MESI、MESI-F、MOESI状态机的比较： ^[9]^
-[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/x86_foc.jpeg]
+MESI、MESI-F、MOESI状态机的比较： ^[9]^<br>
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/x86_foc.gif]
 
 <br>
 

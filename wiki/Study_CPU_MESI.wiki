@@ -14,7 +14,7 @@
 状态迁移图：<br>
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/mesi.jpeg]<br>
 
-==MESI-F ^[6][9]^==
+==MESI-F ^[6][10]^==
  MESI-F可以说是Intel在多Xeon使用的MESI协议的扩充，增加了一个F状态（同时修改了S状态让其无法转发以避免进行过多的传输）。F状态就是这样一个状态：在一个多处理器之间共享的缓存页面中，只有其中一个处理器的该页面处于F状态，另外所有处理器的该页面均处于S状态，F状态负责响应其他没有该页面的处理器的读请求，而S状态则不响应并且不允许将缓存页面发给他人（或许S用Silent来代表更合适）。 
 
  当一个新处理器需求读取这个F页面时，原有的F页面则转为S状态，新的处理器获得的页面总是保持为F状态。在一群相同的页面中总有并且只有一个页面是处于F状态，其他的S副本则以F副本为中心。这种流动性让传输压力得以分散到各个处理器上，而不是总维持在原始页面上。
@@ -47,3 +47,4 @@ MESI、MESI-F、MOESI状态机的比较： ^[9]^<br>
 `[7].` http://www.tektalk.org/2011/07/11/cache%E4%B8%80%E8%87%B4%E6%80%A7%E5%8D%8F%E8%AE%AE%E4%B8%8Emesi2/<br>
 `[8].` http://blog.csdn.net/zhuliting/article/details/6210921<br>
 `[9].` http://www.tektalk.org/2010/12/05/%E6%B5%85%E8%B0%88intel-qpi%E7%9A%84mesfi%E5%8D%8F%E8%AE%AE/<br>
+`[10].` http://server.it168.com/a2008/1224/261/000000261184_all.shtml<br>

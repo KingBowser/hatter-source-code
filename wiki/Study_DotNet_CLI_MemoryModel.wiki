@@ -5,6 +5,8 @@ What is a memory model?  It’s the abstraction that makes the reality of today�
 
 The reality of hardware is that CPUs are renaming registers, performing speculative and out-of-order execution, and fixing up the world during retirement.  Memory state is cached at various levels in the system (L0 thru L3 on modern X86 boxes, presumably with more levels on the way).  Some levels of cache are shared between particular CPUs but not others.  For example, L0 is typically per-CPU but a hyper-threaded CPU may share L0 between the logical CPUs of a single physical CPU.  Or an 8-way box may split the system into two hemispheres with cache controllers performing an elaborate coherency protocol between these separate hemispheres.  If you consider caching effects, at some level all MP (multi-processor) computers are NUMA (non-uniform memory access).  But there’s enough magic going on that even a Unisys 32-way can generally be considered as UMA by developers.
 
+== 编译器优化==
+
 Sample: ^[7]^
 {{{
 class Test
@@ -37,6 +39,8 @@ class Test
 00000064  cmp         byte ptr [eax+4],0
 00000068  jne         00000064
 }}}
+
+==处理器优化==
 
 
 ===参考资料===

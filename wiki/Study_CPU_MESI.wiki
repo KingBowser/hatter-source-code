@@ -26,7 +26,10 @@ MESI-F，其中F即Forward，由Intel为NUMA的缓存一致性而开发 ^[6]^。
 ==MSI==
 <br>
 
-<br><br>
+MESI、MESI-F、MOESI状态机的比较： ^[9]^
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/x86_foc.jpeg]
+
+<br>
 
 ===参考资料===
 `[1].` http://en.wikipedia.org/wiki/MESI_protocol<br>
@@ -37,3 +40,4 @@ MESI-F，其中F即Forward，由Intel为NUMA的缓存一致性而开发 ^[6]^。
 `[6].` http://en.wikipedia.org/wiki/Non-Uniform_Memory_Access#Cache_coherent_NUMA_.28ccNUMA.29<br>
 `[7].` http://www.tektalk.org/2011/07/11/cache%E4%B8%80%E8%87%B4%E6%80%A7%E5%8D%8F%E8%AE%AE%E4%B8%8Emesi2/<br>
 `[8].` http://blog.csdn.net/zhuliting/article/details/6210921<br>
+`[9].` http://www.tektalk.org/2010/12/05/%E6%B5%85%E8%B0%88intel-qpi%E7%9A%84mesfi%E5%8D%8F%E8%AE%AE/<br>

@@ -42,7 +42,7 @@
  * *`eden`* ^[1]^
  * *`free list`* ^[1]^
  * *`garbage collection`* ^[1]^
- 一种对内存的自动管理。
+ 垃圾回收算法，一种对内存的自动管理。
  * *`garbage collection root`* ^[1]^
  从堆外指向堆中的Java对象的指针。这种指针包括：类中的表态成员变量，活动的Frame中的本地引用等。
  * *`GC map`* ^[1]^

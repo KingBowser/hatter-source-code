@@ -13,6 +13,7 @@
  * [Study_DotNet DotNet]
   * [Study_DotNet_CLI CLI]
    * [Study_DotNet_CLI_MemoryModel MemoryModel]
+  * [Study_DotNet_CSharp CSharp]
  * [Study_GO Go Lang]
  * [Study_GPU GPU]
   * [Study_GPU_GPGPU GPGPU]

@@ -52,14 +52,19 @@ class Test
 
 ==三、深入理解volatile读/写==
 
+在多处理器中，每个核都有各自的缓存(如L0, L1, L2)，具体参看 [Study_Java_HotSpot_Concurrent] 。假设程序读写两个变量 `u, v`。<br>
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/dotnet/csharp/csharp_volatile_0.png]
 
+当程序非 `volatile` 写内存时：<br>
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/dotnet/csharp/csharp_volatile_1.png]
 
+然而在 `C#` 中，所有的写数据都是 `volatile` 的，所以在 `C#` 中写变量则如下：<br>
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/dotnet/csharp/csharp_volatile_2.png]
 
+在读非 `volatile` 的变量时如下(没有读到内存中实际的值，取得到的是缓存过已经过期的值)：
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/dotnet/csharp/csharp_volatile_3.png]
 
+当读取 `volatile` 的值的时候，则变成：<br>
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/dotnet/csharp/csharp_volatile_4.png]
 
 

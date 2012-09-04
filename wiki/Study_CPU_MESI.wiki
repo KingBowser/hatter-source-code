@@ -27,7 +27,7 @@ MESI-F，其中F即Forward，由Intel为NUMA的缓存一致性而开发 ^[6]^。
 <br>
 
 MESI、MESI-F、MOESI状态机的比较： ^[9]^<br>
-[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/x86_foc.gif]
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/x86/mesi_foc.gif]
 
 <br>
 

@@ -12,7 +12,7 @@ The reality of hardware is that CPUs are renaming registers, performing speculat
 
 == 编译器优化==
 
-Sample: ^[7]^
+请看示例: ^[7]^
 {{{
 class Test
 {
@@ -38,12 +38,14 @@ class Test
 00000068  test        eax,eax
 0000006a  jne         00000068
 }}}
+由于 `_loop` 未加 `volatile` 关键词，所以编译在优化时读取了在 `EAX` 寄存中的值，即在单线程情况下运行是没有问题的。
 
 如果将 `_loop` 标记为 `volatile` 时，编译出来的代码如下：
 {{{
 00000064  cmp         byte ptr [eax+4],0
 00000068  jne         00000064
 }}}
+即程序生成的代码每次都会从主内存读取需要的数据(关于是否能读到真实的值还会在处理器优化中讨论到)。
 
 ==处理器优化==
 

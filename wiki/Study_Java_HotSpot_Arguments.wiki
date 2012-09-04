@@ -437,7 +437,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `PrefetchFieldsAhead` || `` || `` || ||
 || `DisableExplicitGC` || `bool` || `product` || 禁止在运行期显式地调用`System.gc()`。<br>开启该选项后，GC的触发时机将由Garbage Collector全权掌控。<br>注意：你熟悉的代码里没调用System.gc()，不代表你依赖的框架工具没在使用。<br>例如RMI就在多数用户毫不知情的情况下，显示地调用GC来防止自身OOM。^[19]^ ||
 || `PreZeroEden` || `` || `` || ||
-|| `CollectGen0First` || `` || `` || ||
+|| `CollectGen0First` || `bool` || `product` || FullGC时是否先YGC ||
 || `BindGCTaskThreadsToCPUs` || `` || `` || ||
 || `UseGCTaskAffinity` || `` || `` || ||
 || `ProcessDistributionStride` || `` || `` || ||
@@ -489,7 +489,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `UseHeavyMonitors` || `` || `` || ||
 || `RangeCheckElimination` || `` || `` || ||
 || `SplitIfBlocks` || `` || `` || ||
-|| `AggressiveOpts` || `` || `` || ||
+|| `AggressiveOpts` || `bool` || `product` || 加快编译 ||
 || `UseStringCache` || `` || `` || ||
 || `UseCompressedStrings` || `` || `` || ||
 || `SpecialStringCompress` || `` || `` || ||
@@ -503,7 +503,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `UseNiagaraInstrs` || `` || `` || ||
 || `UseLoopCounter` || `` || `` || ||
 || `UseFastEmptyMethods` || `` || `` || ||
-|| `UseFastAccessorMethods` || `` || `` || ||
+|| `UseFastAccessorMethods` || `bool` || `product` || 原始类型的快速优化 ||
 || `UseOnStackReplacement` || `` || `` || ||
 || `PreferInterpreterNativeStubs` || `` || `` || ||
 || `ProfileInterpreter` || `` || `` || ||
@@ -549,20 +549,20 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `InitialHeapSize` || `uintx` || `product` || 为Heap区域的初始值 ^[32]^ ||
 || `MaxHeapSize` || `uintx` || `product` || 为Heap区域的最大值 ^[32]^ ||
 || `OldSize` || `` || `` || ||
-|| `NewSize` || `` || `` || ||
-|| `MaxNewSize` || `` || `` || ||
-|| `PretenureSizeThreshold` || `` || `` || ||
+|| `NewSize` || `uintx` || `product` || 设置年轻代大小 ||
+|| `MaxNewSize` || `uintx` || `product` || 年轻代最大值 ||
+|| `PretenureSizeThreshold` || `uintx` || `product` || 对象超过多大是直接在旧生代分配,单位字节 新生代采用Parallel Scavenge GC时无效，另一种直接在旧生代分配的情况是大的数组对象,且数组中无外部引用对象 ^[33]^||
 || `TLABSize` || `` || `` || ||
 || `MinTLABSize` || `` || `` || ||
 || `TLABAllocationWeight` || `` || `` || ||
-|| `TLABWasteTargetPercent` || `` || `` || ||
+|| `TLABWasteTargetPercent` || `uintx` || `product` || TLAB占eden区的百分比 ||
 || `TLABRefillWasteFraction` || `` || `` || ||
 || `TLABWasteIncrement` || `` || `` || ||
 || `SurvivorRatio` || `intx` || `product` || 该参数为Eden与两个求助空间之一的比例，注意Yong的大小等价于Eden + S0 + S1，S0和S1的大小是等价的，这个参数为Eden与其中一个S区域的大小比例，如参数为8，那么Eden就占用Yong的80%，而S0和S1分别占用10% ^[32]^ ||
 || `NewRatio` || `intx` || `product` || 为Old区域为Yong的多少倍，间接设置Yong的大小，1.6中如果使用此参数，则默认会在适当时候被动态调整，具体请看下面参数UseAdaptiveSizePolicy 的说明 ^[32]^||
 || `NewSizeThreadIncrease` || `` || `` || ||
-|| `PermSize` || `` || `` || ||
-|| `MaxPermSize` || `` || `` || ||
+|| `PermSize` || `uintx` || `product_pd` || 设置持久代(perm gen)初始值 ||
+|| `MaxPermSize` || `uintx` || `product_pd` || 设置持久代最大值 ||
 || `MinHeapFreeRatio` || `` || `` || ||
 || `MaxHeapFreeRatio` || `` || `` || ||
 || `SoftRefLRUPolicyMSPerMB` || `` || `` || ||
@@ -867,3 +867,4 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 `[30].` http://hi.baidu.com/7636553/item/80f9bd144536e5cb39cb300a<br>
 `[31].` http://stackoverflow.com/questions/1120088/what-is-javas-xxusemembar-parameter<br>
 `[32].` http://www.open-open.com/home/space.php?uid=71669&do=blog&id=8891<br>
+`[33].` http://www.cnblogs.com/redcreen/archive/2011/05/04/2037057.html<br>

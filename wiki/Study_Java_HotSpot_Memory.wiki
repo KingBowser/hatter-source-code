@@ -1,0 +1,10 @@
+#summary HotSpot Memory Study
+#sidebar TableOfContents
+
+[https://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/java/hotspot_memory.png]
+
+[https://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/java/hotspot_heap.png]
+
+
+===参考资料===
+`[1].` http://www.cnblogs.com/redcreen/archive/2011/05/04/2036387.html<br>

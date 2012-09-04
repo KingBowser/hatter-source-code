@@ -3,7 +3,7 @@
 
 [https://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/java/hotspot_memory.png]
 
-|| *方法栈&本地方法栈* || 线程创建时产生,方法执行时生成栈帧
+|| *方法栈&本地方法栈* || 线程创建时产生,方法执行时生成栈帧 ||
 || *方法区* || 存储类的元数据信息 常量等 ||
 || *堆* || java代码中所有的new操作 ||
 || *native Memory(C heap)* || Direct Bytebuffer JNI Compile GC ||

@@ -37,7 +37,8 @@
  一种特定类型的垃圾收集器，该收集器的特定是其大部分的工作都是和工作线程并发执行的，只有小部分的工作需要stop the world。
  * *`copying garbage collection`* ^[1]^
  一种通过拷贝对象实现的垃圾回收算法。
- * *`deoptimization`* ^[1]^
+ * *`deoptimization` 逆优化* ^[1][26]^
+ deoptimization可以废除经优化后的方法机器码。在stack中如果有一个方法激活（there is an activation of the method on the stack)  。stack frame将被转换为interpreter frame，代码将在interpreter中继续执行。另外，vm将通过在entry point 控制的方式使机器码将不在被执行，而是进入interpreter 。我们可以通过这种方式deoptimaze所有编译过的方法，以确保没有由在错误的假定上生成的机器码在运行。
  * *`dependency`* ^[1]^
  * *`eden`* ^[1]^
  * *`free list`* ^[1]^
@@ -124,4 +125,5 @@
 `[23].` http://blog.csdn.net/raintungli/article/details/7162468<br>
 `[24].` http://blog.hummingbird-one.com/?p=10076<br>
 `[25].` http://blog.sina.com.cn/s/blog_693e438c0100qoos.html<br>
+`[26].` http://www.cnblogs.com/redcreen/archive/2011/06/14/2080718.html<br>
 

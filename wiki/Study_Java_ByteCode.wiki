@@ -6,21 +6,17 @@ Class文件的格式如下 ^[6]^：
 {{{
 struct Class_File_Format {
    u4 magic_number;   // HEX:CAFEBABE
- 
    u2 minor_version;   
    u2 major_version;   
  
-   u2 constant_pool_count;   
- 
+   u2 constant_pool_count; 
    cp_info constant_pool[constant_pool_count - 1];
  
    u2 access_flags;
- 
    u2 this_class;
    u2 super_class;
  
-   u2 interfaces_count;   
- 
+   u2 interfaces_count;
    u2 interfaces[interfaces_count];
  
    u2 fields_count;   
@@ -99,16 +95,11 @@ JVM中执行bytecode是在栈上执行的，以上字节码是这样运行的：
 [https://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/bytecode_interpreter.png]
 
 ==2. 字节码操纵框架==
- * [http://asm.ow2.org/ ASM]
- ObjectWeb ASM轻量级的Java字节码处理框架。它可以动态生成二进制格式的stub类或其他代理类，或者在类被JAVA虚拟机装入内存之前，动态修改类。ASM 提供了与 BCEL和SERP相似的功能，只有22K的大小，比起350K的BCEL和150K的SERP来说，是相当小巧的，并且它有更高的执行效率，是BCEL的7倍，SERP的11倍以上。 ^[1]^
- * [http://commons.apache.org/bcel/ BCEL]
- Byte Code Engineering Library (BCEL)，这是Apache Software Foundation 的Jakarta 项目的一部分。BCEL是 Java classworking 最广泛使用的一种框架,它可以让您深入 JVM 汇编语言进行类操作的细节。BCEL与Javassist 有不同的处理字节码方法，BCEL在实际的JVM 指令层次上进行操作(BCEL拥有丰富的JVM 指令级支持)而Javassist 所强调的源代码级别的工作。 ^[1]^
- * [http://www.javassist.org/ Javassist]
- Javassist是一个开源的分析、编辑和创建Java字节码的类库。是由东京技术学院的数学和计算机科学系的 Shigeru Chiba 所创建的。它已加入了开放源代码JBoss 应用服务器项目,通过使用Javassist对字节码操作为JBoss实现动态AOP框架。 ^[1]^
- * [http://cglib.sourceforge.net/ cglib]
- cglib是一个强大的,高性能,高质量的Code生成类库。它可以在运行期扩展Java类与实现Java接口。Hibernate用它来实现PO字节码的动态生成。 ^[1]^
- * [http://www.ej-technologies.com/products/jclasslib/overview.html jclasslib]
- JClassLib不但是一个字节码阅读器而且还包含一个类库允许开发者读取,修改,写入Java Class文件与字节码。 ^[1]^
+|| `ASM` || http://asm.ow2.org/ || ObjectWeb ASM轻量级的Java字节码处理框架。它可以动态生成二进制格式的stub类或其他代理类，或者在类被JAVA虚拟机装入内存之前，动态修改类。ASM 提供了与 BCEL和SERP相似的功能，只有22K的大小，比起350K的BCEL和150K的SERP来说，是相当小巧的，并且它有更高的执行效率，是BCEL的7倍，SERP的11倍以上。 ^[1]^ ||
+|| `BCEL` || http://commons.apache.org/bcel/ || Byte Code Engineering Library (BCEL)，这是Apache Software Foundation 的Jakarta 项目的一部分。BCEL是 Java classworking 最广泛使用的一种框架,它可以让您深入 JVM 汇编语言进行类操作的细节。BCEL与Javassist 有不同的处理字节码方法，BCEL在实际的JVM 指令层次上进行操作(BCEL拥有丰富的JVM 指令级支持)而Javassist 所强调的源代码级别的工作。 ^[1]^ ||
+|| Javassist || http://www.javassist.org/ || Javassist是一个开源的分析、编辑和创建Java字节码的类库。是由东京技术学院的数学和计算机科学系的 Shigeru Chiba 所创建的。它已加入了开放源代码JBoss 应用服务器项目,通过使用Javassist对字节码操作为JBoss实现动态AOP框架。 ^[1]^ ||
+|| cglib || http://cglib.sourceforge.net/ || cglib是一个强大的,高性能,高质量的Code生成类库。它可以在运行期扩展Java类与实现Java接口。Hibernate用它来实现PO字节码的动态生成。 ^[1]^ ||
+|| jclasslib || http://www.ej-technologies.com/products/jclasslib/overview.html || JClassLib不但是一个字节码阅读器而且还包含一个类库允许开发者读取,修改,写入Java Class文件与字节码。 ^[1]^ ||
 
 ==3. 反编译软件==
  * [http://java.decompiler.free.fr/ jd]

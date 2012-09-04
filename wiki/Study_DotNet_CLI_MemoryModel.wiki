@@ -13,3 +13,4 @@ The reality of hardware is that CPUs are renaming registers, performing speculat
 `[4].` http://blogs.msdn.com/b/cbrumme/archive/2003/05/17/51445.aspx<br>
 `[5].` http://www.bluebytesoftware.com/blog/2007/11/10/CLR20MemoryModel.aspx<br>
 `[6].` http://msdn.microsoft.com/en-us/magazine/cc163715.aspx<br>
+`[7].` http://igoro.com/archive/volatile-keyword-in-c-memory-model-explained/<br>

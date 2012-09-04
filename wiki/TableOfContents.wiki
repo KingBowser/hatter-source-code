@@ -28,6 +28,7 @@
    * [Study_Java_HotSpot_DirectBuffer DirectBuffer]
    * [Study_Java_HotSpot_GCCause GCCause]
    * [Study_Java_HotSpot_Glossay Glossay]
+   * [Study_Java_HotSpot_Memory Memory]
    * [Study_Java_HotSpot_ObjectLayout ObjectLayout]
    * [Study_Java_HotSpot_OOME OOME]
    * [Study_Java_HotSpot_Thread Thread]

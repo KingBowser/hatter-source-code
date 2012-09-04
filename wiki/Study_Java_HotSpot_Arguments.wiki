@@ -158,8 +158,8 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `BytecodeVerificationRemote` || `` || `` || ||
 || `BytecodeVerificationLocal` || `` || `` || ||
 || `PrintOopAddress` || `` || `` || ||
-|| `PrintGCApplicationConcurrentTime` || `` || `` || ||
-|| `PrintGCApplicationStoppedTime` || `` || `` || ||
+|| `PrintGCApplicationConcurrentTime` || `bool` || `product` || 打印每次垃圾回收前,程序未中断的执行时间 ^[33]^ ||
+|| `PrintGCApplicationStoppedTime` || `bool` || `product` || 打印垃圾回收期间程序暂停的时间 ^[33]^ ||
 || `ShowMessageBoxOnError` || `` || `` || ||
 || `UseOSErrorReporting` || `` || `` || ||
 || `SuppressFatalErrorMessage` || `` || `` || ||

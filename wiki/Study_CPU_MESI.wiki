@@ -26,11 +26,9 @@
 ==MOESI==
 MOSEI协议不需要被写入的M状态写入内存就可以进行共享（这时M状态会转变为O状态，共享后的Dirty副本被标记为S状态），这避免了一次写入内存，节约了一些开销；当再次写入O状态副本时，其他的S副本同样会被设置为无效。MOSEI也只允许一堆共享副本当中的中央副本（O状态）被写入，也存在着弹跳现象。 ^[10]^
 
-==MOSI==
-<br>
-
-==MSI==
-<br>
+==_MOSI_==
+==_MSI_==
+<br><br>
 
 MESI、MESI-F、MOESI状态机的比较： ^[9]^<br>
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/x86/mesi_foc.gif]

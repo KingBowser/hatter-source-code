@@ -19,7 +19,7 @@ func main() {
 }
 }}}
 
-|| *官方网站* || http://golang.org ||
+|| *官方网站* || http://golang.org 当无法访问该地址是请访问：http://go.hatter.me, http://playgo.hatter.me ||
 || *官方博客* || http://blog.golang.org/ 通过Google Reader订阅该地址：http://blog.golang.org/feeds/posts/default ||
 || 授权 || [http://golang.org/LICENSE BSD-Style License] ||
 

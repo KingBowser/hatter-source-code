@@ -33,3 +33,11 @@ Berkeley DB (BDB) is a software library that provides a high-performance embedde
 ==H2 Database==
 http://www.h2database.com/html/main.html<br>
 H2 is a relational database management system written in Java. It can be embedded in Java applications or run in the client-server mode.
+
+==Firebird==
+http://www.firebirdsql.org/<br>
+Firebird is a relational database offering many ANSI SQL standard features that runs on Linux, Windows, and a variety of Unix platforms. Firebird offers excellent concurrency, high performance, and powerful language support for stored procedures and triggers. It has been used in production systems, under a variety of names, since 1981.
+
+==neo4j==
+http://neo4j.org/<br>
+Neo4j is a high-performance, NOSQL graph database with all the features of a mature and robust database. 

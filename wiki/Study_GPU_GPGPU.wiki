@@ -2,8 +2,8 @@
 #sidebar TableOfContents
 
 
-General Purpose computation on a GPU (“GPGPU”)
-
+|| `GPGPU` || General Purpose computation on a GPU ||
+|| || ||
 || `CUDA` || Compute Unified Device Architecture ||
 || `OpenCL` || Open Computing Language ||
 

@@ -34,5 +34,7 @@
 </tr>
 </table>
 
-|| Processor || LoadStore || LoadLoad || StoreStore || StoreLoad || Data dependency orders loads? || Atomic Conditional || Other Atomics || Atomics
-provide barrier?||
+|| *Processor* || *LoadStore* || *LoadLoad* || *StoreStore* || *StoreLoad* || *Data dependency orders loads?* || *Atomic Conditional* || *Other Atomics* || *Atomics provide barrier?* ||
+|| x86 || no-op || no-op || no-op || mfence or cpuid or locked insn	yes || CAS: cmpxchg || xchg, locked insn || full ||
+
+

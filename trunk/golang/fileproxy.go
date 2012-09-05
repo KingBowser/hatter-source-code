@@ -113,7 +113,7 @@ func (h HttpServerHandle) ServeHTTP (
 		fmt.Fprint(w, "<br>", "<a href=\"/\">&lt;&lt;&lt;&lt;BACK&lt;&lt;&lt;&lt;</a>")
 		return
 	}
-	if ! strings.HasPrefix(formUrl, "http://") {
+	if ! (strings.HasPrefix(formUrl, "http://") || strings.HasPrefix(formUrl, "https://")) {
 		fmt.Fprint(w, "Error: ", "Url is not starts with http://: ", formUrl, "\n")
 		fmt.Fprint(w, "<br>", "<a href=\"/\">&lt;&lt;&lt;&lt;BACK&lt;&lt;&lt;&lt;</a>")
 		return

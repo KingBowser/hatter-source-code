@@ -4,8 +4,8 @@
 
 General Purpose computation on a GPU (“GPGPU”)
 
-|| `CUDA` ||  ||
-|| `OpenCL` ||  ||
+|| `CUDA` || Compute Unified Device Architecture ||
+|| `OpenCL` || Open Computing Language ||
 
 
 ===参考资料===

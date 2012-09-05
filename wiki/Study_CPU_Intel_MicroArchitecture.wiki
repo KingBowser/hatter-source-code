@@ -1,18 +1,18 @@
 #summary Intel CPU Micro Architecture
 #sidebar TableOfContents
 
-|| i386 ||
-|| i486 ||
-|| P5 ||
-|| P6 ||
-|| Netburst ||
-|| Pentium-M ||
-|| Core (Merom, Penryn) ||
-|| Nehalem (Nehalem, Westmere) ||
-|| Sandy Bridge (Sandy Bridge, Ivy Bridge) ||
-|| Haswell(Haswell, Rockwell) ||
+|| *微架构* || *说明* ||
+|| i386 ||  ||
+|| i486 ||  ||
+|| P5 ||  ||
+|| P6 ||  ||
+|| Netburst ||  ||
+|| Pentium-M ||  ||
+|| Core (Merom, Penryn) ||  ||
+|| Nehalem (Nehalem, Westmere) ||  ||
+|| Sandy Bridge (Sandy Bridge, Ivy Bridge) ||  ||
+|| Haswell (Haswell, Rockwell) ||  ||
 
 
 ===参考资料===
 `[1].` http://www.360doc.com/content/10/0929/13/158286_57292837.shtml<br>
-

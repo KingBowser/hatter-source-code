@@ -44,6 +44,7 @@
  * [Study_SVN SVN]
  * [Study_VPS VPS]
  * [ReportedBugList Reported Bug List]
+ * [Study_Others Others]
  * _*My Tools*_
   * [classdump]
   * [classlist]

@@ -34,6 +34,14 @@ Berkeley DB (BDB) is a software library that provides a high-performance embedde
 http://www.h2database.com/html/main.html<br>
 H2 is a relational database management system written in Java. It can be embedded in Java applications or run in the client-server mode.
 
+==HSQLDB==
+http://hsqldb.org/<br>
+HSQLDB - 100% Java Database
+
+==Apache Derby==
+http://db.apache.org/derby/<br>
+Apache Derby, an Apache DB subproject, is an open source relational database implemented entirely in Java and available under the Apache License, Version 2.0.
+
 ==Firebird==
 http://www.firebirdsql.org/<br>
 Firebird is a relational database offering many ANSI SQL standard features that runs on Linux, Windows, and a variety of Unix platforms. Firebird offers excellent concurrency, high performance, and powerful language support for stored procedures and triggers. It has been used in production systems, under a variety of names, since 1981.

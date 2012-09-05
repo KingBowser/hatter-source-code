@@ -1,4 +1,5 @@
 #summary Hatter's Reported Bug List
+#sidebar TableOfContents
 
 ==1. Java==
 * http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=7183920

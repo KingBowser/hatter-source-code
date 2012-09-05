@@ -1,7 +1,11 @@
 #summary MySQL Sudy
 #sidebar TableOfContents
 
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/pdfs/mysql/B+Tree_Indexes_and_InnoDB.pdf B+ Tree Indexes and InnoDB]
 
-===锁===
+
+==锁==
  * 当update or delete，where条件中为非索引条件时，锁全表。这是为什么在项目上线时大量死锁的原因。
  * 当update or delete，where条件中为非主键索引时，根据非主键索引找到对应的主键索引，并锁主建对应的记录。虽为行锁，但锁了多行。并且，mysql的行锁还有一个很隐蔽的问题，即使用主键索引，在一定条件下，可能会锁相邻记录。也就是说，锁的范围超出真正需要update的行。对这样的情形，使用where id=888的样式，逐行更新记录，则是非常安全的行为。
+ * MySQL drop table可能会导致全库hang住，所以删除大表，最好是通过硬链接的方式，为物理文件建立一个硬链接，然后从数据库中删除后，最后再删除物理文件。
+

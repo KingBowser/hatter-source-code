@@ -12,3 +12,10 @@
 || 7号 || PC其它类 || 水壶、水杯、奶瓶 ||
 
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/others/rec.jpeg]
+
+不可回收标志：<br>
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/others/no_rec.jpeg]
+
+===参考资料===
+`[1].` http://baike.baidu.com/view/1157154.htm<br>
+`[2].` http://www.hudong.com/wiki/%E5%A1%91%E6%96%99%E5%9B%9E%E6%94%B6%E6%A0%87%E5%BF%97<br>

@@ -21,7 +21,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `-Xmixed` || 混合模式，也是默认模式 ||
 
 ==Assertion Option ^[34]^==
-|| `-da, -disableassertions` || 禁用断言功能，不带参数时， -disableassertions 或 -da 开关选项禁用断言功能。 如果参数以"..."结尾，则在指定的包和子包中禁用断言功能。如果参数就是"..."，则在当前工作目录未命名的包中禁用断言功能。如果参数不是以"..."结尾，则在指定的类中禁用断言功能<br>Sample:<br>java -ea:a.b... -da:a.b.c ||
+|| `-da, -disableassertions` || 禁用断言功能，不带参数时， -disableassertions 或 -da 开关选项禁用断言功能。 如果参数以"..."结尾，则在指定的包和子包中禁用断言功能。如果参数就是"..."，则在当前工作目录未命名的包中禁用断言功能。如果参数不是以"..."结尾，则在指定的类中禁用断言功能，Sample:<br>java -ea:a.b… -da:a.b.c ||
 || `-ea, -enableassertions` || 启用断言 ||
 || `-dsa, -disablesystemassertions` || 在所有系统类中禁用断言功能 ||
 || `-esa, -enablesystemassertions` || 在所有系统类中启用断言功能 ||

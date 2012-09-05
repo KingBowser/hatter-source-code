@@ -7,3 +7,4 @@ General Purpose computation on a GPU (“GPGPU”)
 
 ===参考资料===
 `[1].` http://igoro.com/archive/how-gpu-came-to-be-used-for-general-computation/<br>
+`[2].` http://gpgpu.org/<br>

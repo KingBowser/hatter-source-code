@@ -2,6 +2,7 @@
  * [Study_List Main Page]
  * [Study_CPU CPU]
   * [Study_CPU_Intel Intel]
+   * [Study_CPU_Intel_MicroArchitecture MicroArchitecture]
   * [Study_CPU_MESI MESI]
   * [Study_CPU_NUMA NUMA]
  * [Study_CSS CSS]

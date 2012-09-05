@@ -8,3 +8,4 @@
 || 5号PP || 微波炉餐盒、保鲜盒，耐高温120℃ ||
 || 6号PS || 又耐热又抗寒，但不能放进微波炉中 ||
 || 7号PC其它类 || 水壶、水杯、奶瓶 ||
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/others/rec.jpeg]

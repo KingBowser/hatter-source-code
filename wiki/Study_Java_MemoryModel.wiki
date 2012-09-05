@@ -7,28 +7,27 @@
 <table border="1">
 <tr>
  <td>*Can Reorder*</td>
- <td colspan="3"> _2nd operation_ </td>
-</tr>
+ <td colspan="3" align="center"> _2nd operation_ </td></tr>
 <tr>
  <td> _1st operation_ </td>
- <td>Normal Load<br>Normal Store</td>
- <td>Volatile Load<br>MonitorEnter</td>
- <td>Volatile Store<br>MonitorExit</td>
+ <td>`Normal Load, Normal Store`</td>
+ <td>`Volatile Load, MonitorEnter`</td>
+ <td>`Volatile Store, MonitorExit`</td>
 </tr>
 <tr>
- <td>Normal Load<br>Normal Store</td>
+ <td>`Normal Load, Normal Store`</td>
  <td> </td>
  <td> </td>
  <td>No</td>
 </tr>
 <tr>
- <td>Volatile Load<br>MonitorEnter</td>
+ <td>`Volatile Load, MonitorEnter`</td>
  <td>No</td>
  <td>No</td>
  <td>No</td>
 </tr>
 <tr>
- <td>Volatile store<br>MonitorExit</td>
+ <td>`Volatile store, MonitorExit`</td>
  <td> </td>
  <td>No</td>
  <td>No</td>

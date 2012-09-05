@@ -20,11 +20,11 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `-Xcomp` || 编译模式，先编译再运行 ||
 || `-Xmixed` || 混合模式，也是默认模式 ||
 
-==Assertion Option==
-|| `-da, -disableassertions` || ||
-|| `-ea, -enableassertions` || ||
-|| `-dsa, -disablesystemassertions` || ||
-|| `-esa, -enablesystemassertions` || ||
+==Assertion Option ^[34]^==
+|| `-da, -disableassertions` || 禁用断言功能，不带参数时， -disableassertions 或 -da 开关选项禁用断言功能。 如果参数以"..."结尾，则在指定的包和子包中禁用断言功能。如果参数就是"..."，则在当前工作目录未命名的包中禁用断言功能。如果参数不是以"..."结尾，则在指定的类中禁用断言功能<br>Sample:<br>java -ea:a.b... -da:a.b.c ||
+|| `-ea, -enableassertions` || 启用断言 ||
+|| `-dsa, -disablesystemassertions` || 在所有系统类中禁用断言功能 ||
+|| `-esa, -enablesystemassertions` || 在所有系统类中启用断言功能 ||
 
 ==标准参数？==
 || *参数* || *具体参数* || *说明* ||
@@ -868,3 +868,4 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 `[31].` http://stackoverflow.com/questions/1120088/what-is-javas-xxusemembar-parameter<br>
 `[32].` http://www.open-open.com/home/space.php?uid=71669&do=blog&id=8891<br>
 `[33].` http://www.cnblogs.com/redcreen/archive/2011/05/04/2037057.html<br>
+`[34].` http://blog.csdn.net/fengbaoxp/article/details/4330564<br>

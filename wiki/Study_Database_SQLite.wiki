@@ -3,6 +3,8 @@
 
 http://www.sqlite.org/
 
+|| `SQLCipher ` || http://sqlcipher.net/ || SQLCipher is an open source extension to SQLite that provides transparent 256-bit AES encryption of database files ||
+
 
 || <font color="red">*Java*</font> ||  ||  ||
 || `SQLite JDBC` || http://code.google.com/p/sqlite-jdbc/ || SQLite JDBC is a library for creating and accessing SQLite database files ||

@@ -4,6 +4,9 @@
 
 General Purpose computation on a GPU (“GPGPU”)
 
+|| `CUDA` ||  ||
+|| `OpenCL` ||  ||
+
 
 ===参考资料===
 `[1].` http://igoro.com/archive/how-gpu-came-to-be-used-for-general-computation/<br>

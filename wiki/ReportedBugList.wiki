@@ -2,12 +2,12 @@
 #sidebar TableOfContents
 
 ==1. Java==
- # http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=7183920
+ * http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=7183920
 
 
 ==2. Go Lang==
- # http://code.google.com/p/go/issues/detail?id=3979
+ * http://code.google.com/p/go/issues/detail?id=3979
 
 
 ==3. Google Code==
- # http://code.google.com/p/support/issues/detail?id=28554
+ * http://code.google.com/p/support/issues/detail?id=28554

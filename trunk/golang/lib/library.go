@@ -16,11 +16,21 @@ const (
 
 // status code
 const (
-	HTTP_STATUS_CODE_200 = 200
-	HTTP_STATUS_CODE_301 = 301
-	HTTP_STATUS_CODE_302 = 302
-	HTTP_STATUS_CODE_404 = 404
-	HTTP_STATUS_CODE_500 = 500
+	HTTP_STATUS_CODE_200 = 200 // OK
+	HTTP_STATUS_CODE_201 = 201 // Created
+	HTTP_STATUS_CODE_202 = 202 // Accepted
+	HTTP_STATUS_CODE_204 = 204 // No Content
+	HTTP_STATUS_CODE_301 = 301 // Moved permanently
+	HTTP_STATUS_CODE_302 = 302 // Moved temporarily
+	HTTP_STATUS_CODE_304 = 304 // Not modified
+	HTTP_STATUS_CODE_400 = 400 // Bad request
+	HTTP_STATUS_CODE_401 = 401 // Unauthorised
+	HTTP_STATUS_CODE_403 = 403 // Forbidden
+	HTTP_STATUS_CODE_404 = 404 // Not found
+	HTTP_STATUS_CODE_500 = 500 // Internal server error
+	HTTP_STATUS_CODE_501 = 501 // Not implemented
+	HTTP_STATUS_CODE_502 = 502 // Bad gateway
+	HTTP_STATUS_CODE_503 = 503 // Service unavailable
 )
 
 // string constants

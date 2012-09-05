@@ -33,3 +33,6 @@
  <td>No</td>
 </tr>
 </table>
+
+|| Processor || LoadStore || LoadLoad || StoreStore || StoreLoad || Data dependency orders loads? || Atomic Conditional || Other Atomics || Atomics
+provide barrier?||

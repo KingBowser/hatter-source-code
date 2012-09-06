@@ -38,6 +38,7 @@
    * [Study_Java_HotSpot_OOME OOME]
    * [Study_Java_HotSpot_Thread Thread]
     * [Study_Java_HotSpot_Thread_VMThread VMThrad]
+   * [Study_Java_HotSpot_Tool Tool]
   * [Study_Java_JCP JCP]
   * [Study_Java_MemoryModel Memory Model]
  * [Study_JavaScript JavaScript]

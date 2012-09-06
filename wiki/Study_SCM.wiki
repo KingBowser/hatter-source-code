@@ -1,6 +1,6 @@
 #summary SCM Study.
 #sidebar TableOfContents
 
-|| Subversion || `svn` || http://subversion.apache.org/ ||
-|| Git || `git` || http://git-scm.com/ ||
-|| Mercurial || `hg` || http://mercurial.selenic.com/ ||
+|| Subversion || `svn` || http://subversion.apache.org/ ||  ||
+|| Git || `git` || http://git-scm.com/ ||  ||
+|| Mercurial || `hg` || http://mercurial.selenic.com/ || Mercurial is a free, distributed source control management tool ||

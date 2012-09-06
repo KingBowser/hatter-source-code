@@ -35,8 +35,8 @@ SCM (Source Control Management)
 || `git diff >patch_file` ||
 || <font color="blue">*提交更改*</font> ||
 || `svn commit` ||
-|| `hg commit` ||
-|| `git commit` ||
+|| `hg commit && hg push` ||
+|| `git commit && git push` ||
 || <font color="blue">*查看当前状态*</font> ||
 || `svn info` ||
 || `hg status` ||

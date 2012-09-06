@@ -3,7 +3,6 @@
 
 DES、3DES、AES、Blowfish、IDEA、RC4、RC5、RC6
 
-
-
+RSA、ElGamal、背包算法、Rabin(Rabin的加密法可以說是RSA方法的特例)、Diffie-Hellman (D-H) 密钥交换协议中的公钥加密算法、Elliptic Curve Cryptography（ECC, 椭圆曲线加密算法）
 
 

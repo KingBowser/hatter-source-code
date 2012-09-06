@@ -5,3 +5,44 @@
 || Git || `git` || http://git-scm.com/ || Git is a distributed revision control and source code management (SCM) system with an emphasis on speed ||
 || Mercurial || `hg` || http://mercurial.selenic.com/ || Mercurial is a free, distributed source control management tool ||
 || CVS || `cvs` || http://www.nongnu.org/cvs/ || CVS is a version control system, an important component of Source Configuration Management (SCM) ||
+
+|| <font color="blue">*第一次下载，包括源码和版本库*</font> ||
+|| `svn checkout http://path/to/repo repo_name` ||
+|| `hg clone http://path/to/repo  repo_name` ||
+|| `git glone http://path/to/repo repo_name, git glone git://path/to/repo repo_name` ||
+|| <font color="blue">*下载服务器上最新的更新*</font> ||
+|| `svn update` ||
+|| `hg pull && hg update -C` ||
+|| `git pull` ||
+|| <font color="blue">*检出某个修订版本*</font> ||
+|| `svn checkout -r <rev>` ||
+|| `hg update -C -r <rev>` ||
+|| `git reset –hard -r <rev>` ||
+|| <font color="blue">*新增被跟踪文件*</font> ||
+|| `svn add /path/to/file` ||
+|| `hg add /path/to/file` ||
+|| `git add /path/to/file` ||
+|| <font color="blue">*移除被跟踪文件*</font> ||
+|| `svn rm /path/to/file` ||
+|| `hg remove /path/to/file` ||
+|| `git rm /path/to/file` ||
+|| <font color="blue">*生成补丁*</font> ||
+|| `svn diff  >patch_file` ||
+|| `hg diff >patch_file` ||
+|| `git diff >patch_file` ||
+|| <font color="blue">*提交更改*</font> ||
+|| `svn commit` ||
+|| `hg commit` ||
+|| `git commit` ||
+|| <font color="blue">*查看当前状态*</font> ||
+|| `svn info` ||
+|| `hg status` ||
+|| `git status` ||
+|| <font color="blue">*查看修订记录*</font> ||
+|| `svn log` ||
+|| `hg log` ||
+|| `git log` ||
+|| <font color="blue">*启动服务器*</font> ||
+|| `svnserve -d` ||
+|| `hg serve -p 8002 &` ||
+|| `git daemon –base-path=/path/to/repo –export-all &` ||

@@ -142,6 +142,8 @@ Addressing modes for 64-bit code on 64-bit x86 processors can be summarized by t
  * [http://en.wikipedia.org/wiki/List_of_Intel_microprocessors List of Intel microprocessors]
  * [http://en.wikipedia.org/wiki/List_of_future_Intel_microprocessors List of future Intel microprocessors]
 
+Processor affinity or CPU Pinning. CPU pinning enables mapping and unmapping entire virtual machines or a specific virtual CPU (vCPU), to a physical CPU or a range of CPUs. ^[7]^
+
 
 ===参考资料===
 `[1].` http://zh.wikipedia.org/wiki/X86<br>
@@ -150,3 +152,4 @@ Addressing modes for 64-bit code on 64-bit x86 processors can be summarized by t
 `[4].` http://www.cs.virginia.edu/~evans/cs216/guides/x86.html<br>
 `[5].` http://www.stanford.edu/class/cs107/other/IA32_Cheat_Sheet.pdf<br>
 `[6].` http://en.wikipedia.org/wiki/Assembly_language<br>
+`[7].` http://en.wikipedia.org/wiki/Processor_affinity<br>

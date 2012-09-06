@@ -133,7 +133,7 @@ Addressing modes for 64-bit code on 64-bit x86 processors can be summarized by t
 || `movl 0x100(%ecx,%eax,4), %edx` ||
 
 ==Processor affinity==
- Processor affinity or CPU Pinning. CPU pinning enables mapping and unmapping entire virtual machines or a specific virtual CPU (vCPU), to a physical CPU or a range of CPUs. ^[7]^
+Processor affinity or CPU Pinning. CPU pinning enables mapping and unmapping entire virtual machines or a specific virtual CPU (vCPU), to a physical CPU or a range of CPUs. ^[7]^
 
 
 =Intel=

@@ -6,6 +6,7 @@
 || Mercurial || `hg` || http://mercurial.selenic.com/ || Mercurial is a free, distributed source control management tool ||
 || CVS || `cvs` || http://www.nongnu.org/cvs/ || CVS is a version control system, an important component of Source Configuration Management (SCM) ||
 
+=`svn, hg, git` 命令对照 ^[1]^=
 || <font color="blue">*第一次下载，包括源码和版本库*</font> ||
 || `svn checkout http://path/to/repo repo_name` ||
 || `hg clone http://path/to/repo  repo_name` ||
@@ -46,3 +47,6 @@
 || `svnserve -d` ||
 || `hg serve -p 8002 &` ||
 || `git daemon –base-path=/path/to/repo –export-all &` ||
+
+===参考资料===
+`[1].` http://www.1uu2.com/archives/992<br>

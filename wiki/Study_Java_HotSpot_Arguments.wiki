@@ -170,7 +170,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `HeapDumpOnOutOfMemoryError` || `` || `` || ||
 || `HeapDumpPath` || `` || `` || ||
 || `UseVectoredExceptions` || `` || `` || ||
-|| `PrintCompilation` || `` || `` || ||
+|| `PrintCompilation` || `bool` || `product` || 是否跟踪打印JIT编译信息 ^[35]^ ||
 || `AlwaysRestoreFPU` || `` || `` || ||
 || `StackTraceInThrowable` || `bool` || `product` || 当异常发生时收集异常堆栈 ||
 || `OmitStackTraceInFastThrow` || `bool` || `product` || 在已经优化过(编译为本地代码)的代码中对经常抛出的异常不收集堆栈 ||
@@ -185,7 +185,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `AllowParallelDefineClass` || `` || `` || ||
 || `MustCallLoadClassInternal` || `` || `` || ||
 || `DontYieldALot` || `` || `` || ||
-|| `UseBoundThreads` || `` || `` || ||
+|| `UseBoundThreads` || `bool` || `product` || 绑定用户级线程（Solaris only），这个选项强制所有的Java线程在创建时都作为操作系统绑定的线程 ^[35]^ ||
 || `UseLWPSynchronization` || `` || `` || ||
 || `SyncKnobs` || `` || `` || ||
 || `EmitSync` || `` || `` || ||
@@ -205,7 +205,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `NativeMonitorSpinLimit` || `` || `` || ||
 || `AdjustConcurrency` || `` || `` || ||
 || `ReduceSignalUsage` || `` || `` || ||
-|| `AllowUserSignalHandlers` || `` || `` || ||
+|| `AllowUserSignalHandlers` || `bool` || `product` || 允许用户在应用层设置信号处理回调函数 ^[35]^ ||
 || `UseSignalChaining` || `` || `` || ||
 || `UseAltSigs` || `` || `` || ||
 || `UseSpinning` || `bool` || `product` || 启用多线程自旋锁优化。详见 *[Study_Java_HotSpot_Glossay HotSpot词汇表-自适应自旋]* ^[19]^ ||
@@ -531,8 +531,8 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `MaxInlineLevel` || `` || `` || ||
 || `MaxRecursiveInlineLevel` || `` || `` || ||
 || `InlineSmallCode` || `` || `` || ||
-|| `MaxInlineSize` || `` || `` || ||
-|| `FreqInlineSize` || `` || `` || ||
+|| `MaxInlineSize` || `intx` || `product` || 限制动态编译的内联函数的虚拟机指令的最大数量 ^[35]^ ||
+|| `FreqInlineSize` || `intx` || `product_pd` || 限制经常使用的动态编译的函数的虚拟机指令的最大数量 ^[35]^ ||
 || `MaxTrivialSize` || `` || `` || ||
 || `MinInliningThreshold` || `` || `` || ||
 || `ProfileIntervalsTicks` || `` || `` || ||
@@ -604,7 +604,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `CompileCommandFile` || `` || `` || ||
 || `CompileCommand` || `` || `` || ||
 || `CICompilerCountPerCPU` || `` || `` || ||
-|| `UseThreadPriorities` || `` || `` || ||
+|| `UseThreadPriorities` || `bool` || `product_pd` || 设置是否使用本地线程优先级 ^[35]^ ||
 || `ThreadPriorityPolicy` || `` || `` || ||
 || `ThreadPriorityVerbose` || `` || `` || ||
 || `DefaultThreadPriority` || `` || `` || ||
@@ -869,3 +869,4 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 `[32].` http://www.open-open.com/home/space.php?uid=71669&do=blog&id=8891<br>
 `[33].` http://www.cnblogs.com/redcreen/archive/2011/05/04/2037057.html<br>
 `[34].` http://blog.csdn.net/fengbaoxp/article/details/4330564<br>
+`[35].` http://ig2net.info/archives/821.html<br>

@@ -1,4 +1,6 @@
 #summary SCM Study.
 #sidebar TableOfContents
 
-... ...
+|| Git || `git` ||
+|| Mercurial || `hg` ||
+|| Subversion || `svn` ||

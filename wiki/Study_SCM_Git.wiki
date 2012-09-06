@@ -6,7 +6,7 @@
 =应用=
  * Linux 代码管理采用 Git 管理
 
-=支持Git的源代码管理网站=
+=源代码管理网站=
 || GitHub || https://github.com/ ||
 || Google Code || https://code.google.com/hosting/ ||
 

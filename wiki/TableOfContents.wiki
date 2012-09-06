@@ -52,6 +52,9 @@
  * [Study_VPS VPS]
  * [ReportedBugList Reported Bug List]
  * [Study_Others Others]
+ * _*Papers*_
+  * [Paper_SymmetricKeyAlgorithmBasedHTTPAuth Auth]
+  * [Paper_SymmetricKeyAlgorithmBasedHTTPRegistration Registration]
  * _*My Tools*_
   * [classdump]
   * [classlist]

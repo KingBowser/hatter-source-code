@@ -2,6 +2,6 @@
 #sidebar TableOfContents
 
 =Build Tools=
- * Ant
- * Maven
- * Gradle
+|| Ant || `ant` || http://ant.apache.org/ || Ant is a Java library and command-line tool whose mission is to drive processes described in build files as targets and extension points dependent upon each other ||
+|| Maven || `mvn` || http://maven.apache.org/ || Maven is a software project management and comprehension tool ||
+|| Gradle || `gradle` || http://www.gradle.org/ || Gradle is build automation evolved. Gradle can automate the building, testing, publishing, deployment and more of software packages or other types of projects such as generated static websites, generated documentation or indeed anything else ||

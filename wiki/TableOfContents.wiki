@@ -1,5 +1,8 @@
 #summary Sidebar
  * [Study_List Main Page]
+ * Build
+  * [Study_Build_Ant Ant]
+  * [Study_Build_Gradle Gradle]
  * [Study_CPU CPU]
   * [Study_CPU_Intel Intel]
    * [Study_CPU_Intel_MicroArchitecture MicroArchitecture]

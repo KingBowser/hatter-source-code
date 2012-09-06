@@ -1,8 +1,18 @@
 #summary Encryption algorithm study.
 #sidebar TableOfContents
 
+=对称密钥加密=
 DES、3DES、AES、Blowfish、IDEA、RC4、RC5、RC6
 
+=非对称密钥加密=
 RSA、ElGamal、背包算法、Rabin(Rabin的加密法可以說是RSA方法的特例)、Diffie-Hellman (D-H) 密钥交换协议中的公钥加密算法、Elliptic Curve Cryptography（ECC, 椭圆曲线加密算法）
 
+=应用=
+ * HTTPS
 
+=相关软件=
+|| `TrueCrypt` || http://www.truecrypt.org/ || Free open-source disk encryption software for Windows 7/Vista/XP, Mac OS X, and Linux ||
+
+===参考资料===
+`[1].` http://zh.wikipedia.org/wiki/%E5%AF%B9%E7%A7%B0%E5%AF%86%E9%92%A5%E5%8A%A0%E5%AF%86<br>
+`[2].` http://zh.wikipedia.org/wiki/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%AF%86%E9%92%A5%E5%8A%A0%E5%AF%86<br>

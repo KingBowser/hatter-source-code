@@ -1,5 +1,8 @@
 #summary Symmetric-key algorithms based HTTP registration.
 #sidebar TableOfContents
 
+=一种基于对称加密算法的HTTP安全注册方法=
+
 ... ...
+
  

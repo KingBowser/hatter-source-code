@@ -1,5 +1,6 @@
 #summary Symmetric-key algorithms based HTTP auth.
 #sidebar TableOfContents
 
+=一种基于对称加密算法的HTTP安全身份验证方法=
 ... ...
  

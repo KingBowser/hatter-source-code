@@ -45,3 +45,9 @@ https://gist.github.com/956694
 
 ==Java Performance==
 [http://www.javaperformancetuning.com/]
+
+
+===参考资料===
+`[1].` [http://en.wikipedia.org/wiki/Java_(programming_language)]<br>
+`[2].` http://en.wikipedia.org/wiki/Java_virtual_machine<br>
+`[3].` http://en.wikipedia.org/wiki/List_of_Java_virtual_machines<br>

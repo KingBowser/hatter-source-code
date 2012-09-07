@@ -39,6 +39,16 @@ http://barcode-coder.com/en/
 || URL || `http://hatter.me` ||
 || E-mail address || `mailto:mail@example.com` ||
 || Telephone numbers || `tel:12345678` ||
+|| vCard ||  ||
+|| AU format ||  ||
+|| meCard ||  ||
+|| BIZCARD ||  ||
+|| SMS || `smsto:12345678:text` ||
+|| MMS ||  ||
+|| Geographic information ||  ||
+|| Android Market || ||
+|| Wifi Network config || `WIFI:S:ssid;T:WEP;P:password;;` ||
+|| iCal ||  ||
 
  * Google ZXing: https://code.google.com/p/zxing/
  * Google QR Code API: https://google-developers.appspot.com/chart/infographics/docs/qr_codes

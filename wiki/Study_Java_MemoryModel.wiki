@@ -35,5 +35,10 @@
 </table>
 
 || *Processor* || *LoadStore* || *LoadLoad* || *StoreStore* || *StoreLoad* || *Data dependency orders loads?* || *Atomic Conditional* || *Other Atomics* || *Atomics provide barrier?* ||
+|| `sparc-TSO` || `no-op` || `no-op` || `no-op` || `membar(StoreLoad)` || `yes` || `CAS:casa` || `swap, ldstub` || `full` ||
 || `x86` || `no-op` || `no-op` || `no-op` || `mfence or cpuid or locked insn` || `yes` || `CAS: cmpxchg` || `xchg, locked insn` || `full` ||
 || `ia64` || `combine with st.rel or ld.acq` || `ld.acq` || `st.rel` || `mf` || `yes` || `CAS:cmpxchg` || `xchg,fetchadd` || `target +acq/rel` ||
+
+
+===参考资料===
+`[1].` http://gee.cs.oswego.edu/dl/jmm/cookbook.html<br>

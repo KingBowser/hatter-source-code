@@ -13,6 +13,7 @@ http://barcode-coder.com/en/
 || DataMatrix || RVSI Acuity CiMatrix (USA) || Matrix || FA ||
 || Maxi Code || UPS (USA) || Matrix || Logistics ||
 
+==QR Code==
 [http://www.qrcode.com/en/index.html QRcode.com]
 
 <table border="1">
@@ -36,3 +37,4 @@ http://barcode-coder.com/en/
 
 ===参考资料===
 `[1].` http://zh.wikipedia.org/wiki/QR%E7%A2%BC<br>
+`[2].` http://www.qrcode.com/en/aboutqr.html<br>

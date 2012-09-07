@@ -10,8 +10,7 @@
  <td colspan="3" align="center"> _2nd operation_ </td></tr>
 <tr>
  <td> _1st operation_ </td>
- <td>`Normal Load, 
-Normal Store`</td>
+ <td>`Normal Load, Normal Store`</td>
  <td>`Volatile Load, MonitorEnter`</td>
  <td>`Volatile Store, MonitorExit`</td>
 </tr>

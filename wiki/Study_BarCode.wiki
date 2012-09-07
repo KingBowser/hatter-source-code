@@ -36,10 +36,11 @@ http://barcode-coder.com/en/
 </table>
 
 ==Barcode Contents ^[4]^==
+|| *Type* || *Sample* ||
 || URL || `http://hatter.me` ||
 || E-mail address || `mailto:mail@example.com` ||
 || Telephone numbers || `tel:12345678` ||
-|| vCard ||  ||
+|| vCard || `-` ||
 || AU format ||  ||
 || meCard || `MECARD:N:name;ADR:  ;TEL: 12345678;EMAIL: mail@example.com;URL: http://www.example.com;;` ||
 || BIZCARD || `-` ||

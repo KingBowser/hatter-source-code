@@ -2,12 +2,14 @@
 #sidebar TableOfContents
 
 =对称密钥加密=
-||  *算法* || *密钥长度* || *说明* ||
-|| `DES` || 56 || Data Encryption Standard || 
-|| `3DES` || 56, 112, 168 || Triple DES ||
-|| `AES` || 128, 192, 256 || Advanced Encryption Standard ||
+||  *算法* || *密钥长度* || *块大小* || *说明* ||
+|| `DES` || 56 || 64 || Data Encryption Standard || 
+|| `3DES` || 56, 112, 168 || 64 || Triple DES ||
+|| `AES` || 128, 192, 256 || 128 || Advanced Encryption Standard ||
+|| `Blowfish` || 1 ~ 448 || 64 || `-` ||
+|| `Twofish` || 128, 192, 256 || 128 || `-` ||
 
-Blowfish、IDEA、RC4、RC5、RC6、Twofish
+IDEA、RC4、RC5、RC6
 
 =非对称密钥加密=
 RSA、ElGamal、背包算法、Rabin(Rabin的加密法可以說是RSA方法的特例)、Diffie-Hellman (D-H) 密钥交换协议中的公钥加密算法、Elliptic Curve Cryptography（ECC, 椭圆曲线加密算法）

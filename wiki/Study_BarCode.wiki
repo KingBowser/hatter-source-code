@@ -18,7 +18,7 @@ http://barcode-coder.com/en/
 
 <table border="1">
 <tr><td colspan="2" align="center">*錯誤修正容量*</td></tr>
-<tr><td>L水平	7%的字碼可被修正</td></tr>
+<tr><td>L水平</td><td>7%的字碼可被修正</td></tr>
 <tr><td>M水平</td><td>15%的字碼可被修正</td></tr>
 <tr><td>Q水平</td><td>25%的字碼可被修正</td></tr>
 <tr><td>H水平</td><td>30%的字碼可被修正</td></tr>

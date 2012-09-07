@@ -34,6 +34,7 @@ http://barcode-coder.com/en/
 <tr><td>H水平</td><td>30%的字碼可被修正</td></tr>
 </table>
 
+^注^ QR Code is registered trademark of DENSO WAVE INCORPORATED.
 
 ===参考资料===
 `[1].` http://zh.wikipedia.org/wiki/QR%E7%A2%BC<br>

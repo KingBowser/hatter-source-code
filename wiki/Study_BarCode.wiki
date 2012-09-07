@@ -6,6 +6,13 @@ http://barcode-coder.com/en/
 =一维码=
 
 =二维码=
+
+|| *Name* || *Developer(country)* || * Type* || *Main usages* ||
+|| QR Code || DENSO(Japan) || Matrix || All categories ||
+|| PDF417 || Symbol Technologies (USA) || Stacked Bar Code || OA ||
+|| DataMatrix || RVSI Acuity CiMatrix (USA) || Matrix || FA ||
+|| Maxi Code || UPS (USA) || Matrix || Logistics ||
+
 [http://www.qrcode.com/en/index.html QRcode.com]
 
 <table border="1">

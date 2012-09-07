@@ -7,6 +7,8 @@
 || `CUDA` || Compute Unified Device Architecture ||
 || `OpenCL` || Open Computing Language ||
 
+http://software.intel.com/en-us/vcsource/tools/opencl-sdk
+
 
 ===参考资料===
 `[1].` http://igoro.com/archive/how-gpu-came-to-be-used-for-general-computation/<br>

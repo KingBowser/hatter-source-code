@@ -72,5 +72,3 @@
   * [jtop]
   * [permstat]
   * [resourceproxy]
-
-[http://hatter-source-code.googlecode.com/svn/trunk/attachments/hatter_me_card.png]

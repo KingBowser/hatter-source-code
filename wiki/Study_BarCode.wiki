@@ -35,7 +35,7 @@ http://barcode-coder.com/en/
 <tr><td>H水平</td><td>30%的字碼可被修正</td></tr>
 </table>
 
-==Barcode Contents==
+==Barcode Contents ^[4]^==
 || URL || `http://hatter.me` ||
 || E-mail address || `mailto:mail@example.com` ||
 || Telephone numbers || `tel:12345678` ||
@@ -59,3 +59,4 @@ http://barcode-coder.com/en/
 `[1].` http://zh.wikipedia.org/wiki/QR%E7%A2%BC<br>
 `[2].` http://www.qrcode.com/en/aboutqr.html<br>
 `[3].` http://zh.wikipedia.org/wiki/%E6%9D%A1%E5%BD%A2%E7%A0%81<br>
+`[4].` http://code.google.com/p/zxing/wiki/BarcodeContents<br>

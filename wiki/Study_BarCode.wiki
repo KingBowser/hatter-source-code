@@ -1,6 +1,8 @@
 #summary BarCode Study.
 #sidebar TableOfContents
 
+http://barcode-coder.com/en/
+
 =一维码=
 
 =二维码=

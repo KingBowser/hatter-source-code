@@ -35,6 +35,8 @@ http://barcode-coder.com/en/
 <tr><td>H水平</td><td>30%的字碼可被修正</td></tr>
 </table>
 
+Google QR Code API: https://google-developers.appspot.com/chart/infographics/docs/qr_codes
+
 ^注^ QR Code is registered trademark of DENSO WAVE INCORPORATED.
 
 ===参考资料===

@@ -6,10 +6,12 @@
 || `DES` || 56 || 64 || Data Encryption Standard || 
 || `3DES` || 56, 112, 168 || 64 || Triple DES ||
 || `AES` || 128, 192, 256 || 128 || Advanced Encryption Standard ||
-|| `Blowfish` || 1 ~ 448 || 64 || `-` ||
 || `Twofish` || 128, 192, 256 || 128 || `-` ||
-
-IDEA、RC4、RC5、RC6
+|| `Blowfish` || 1 ~ 448 || 64 || `-` ||
+|| `IDEA` || 128 || 64 || International Data Encryption Algorithm ||
+|| `RC4` || 4 ~ 2048 || `?` || `-` ||
+|| `RC5` || 4 ~ 2040 || 32, 64, 128 || `-` ||
+|| `RC6` || 128, 192, 256 || 128 || `-` ||
 
 =非对称密钥加密=
 RSA、ElGamal、背包算法、Rabin(Rabin的加密法可以說是RSA方法的特例)、Diffie-Hellman (D-H) 密钥交换协议中的公钥加密算法、Elliptic Curve Cryptography（ECC, 椭圆曲线加密算法）

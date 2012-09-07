@@ -41,12 +41,12 @@ http://barcode-coder.com/en/
 || Telephone numbers || `tel:12345678` ||
 || vCard ||  ||
 || AU format ||  ||
-|| meCard ||  ||
-|| BIZCARD ||  ||
+|| meCard || `MECARD:N:name;ADR:  ;TEL: 12345678;EMAIL: mail@example.com;URL: http://www.example.com;;` ||
+|| BIZCARD || `-` ||
 || SMS || `smsto:12345678:text` ||
-|| MMS ||  ||
-|| Geographic information ||  ||
-|| Android Market || ||
+|| MMS || `-`  ||
+|| Geographic information || `geo:111111,222222` ||
+|| Android Market || `market://details?id=appname` ||
 || Wifi Network config || `WIFI:S:ssid;T:WEP;P:password;;` ||
 || iCal ||  ||
 

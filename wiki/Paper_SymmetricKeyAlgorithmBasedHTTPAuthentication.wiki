@@ -15,8 +15,8 @@
 || `ENCRYPT(text, password)` || 通过 `password` 对 `text` 做对称加密 ||
 
 ===1. 服务器端记录用户名与挑战的映射===
-1.1 服务器端生成 `RAND()`，并通过某种方式让用户名和该字符串生成映射
-1.2 `HASH(user password)`
+1.1 服务器端生成 `RAND()`，并通过某种方式让用户名和该字符串生成映射<br>
+1.2 `HASH(user password)`<br>
 
 ===2. 客户端接受挑战并回应===
 

@@ -16,5 +16,13 @@ http://barcode-coder.com/en/
 <tr><td>中文漢字</td><td>最多1,800字元（採用BIG5）</td></tr>
 </table>
 
+<table border="1">
+<tr><td colspan="2" align="center">*錯誤修正容量*</td></tr>
+<tr><td>L水平	7%的字碼可被修正</td></tr>
+<tr><td>M水平</td><td>15%的字碼可被修正</td></tr>
+<tr><td>Q水平</td><td>25%的字碼可被修正</td></tr>
+<tr><td>H水平</td><td>30%的字碼可被修正</td></tr>
+</table>
+
 
 ===参考资料===

@@ -49,7 +49,7 @@ http://barcode-coder.com/en/
 || Geographic information || `geo:111111,222222` ||
 || Android Market || `market://details?id=appname` ||
 || Wifi Network config || `WIFI:S:ssid;T:WEP;P:password;;` ||
-|| iCal ||  ||
+|| iCal || `-` ||
 
  * Google ZXing: https://code.google.com/p/zxing/
  * Google QR Code API: https://google-developers.appspot.com/chart/infographics/docs/qr_codes

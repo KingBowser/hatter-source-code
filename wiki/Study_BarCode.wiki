@@ -4,6 +4,7 @@
 http://barcode-coder.com/en/
 
 =一维码=
+条形码或稱条码（barcode）是将宽度不等的多个黑条和空白，按照一定的编码规则排列，用以表达一组信息的图形标识符。
 
 =二维码=
 
@@ -39,3 +40,4 @@ http://barcode-coder.com/en/
 ===参考资料===
 `[1].` http://zh.wikipedia.org/wiki/QR%E7%A2%BC<br>
 `[2].` http://www.qrcode.com/en/aboutqr.html<br>
+`[3].` http://zh.wikipedia.org/wiki/%E6%9D%A1%E5%BD%A2%E7%A0%81<br>

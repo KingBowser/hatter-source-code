@@ -6,6 +6,8 @@ http://barcode-coder.com/en/
 =一维码=
 
 =二维码=
+[http://www.qrcode.com/en/index.html QRcode.com]
+
 <table border="1">
 <tr><td colspan="2" align="center">*QR碼資料容量*</td></tr>
 <tr><td>數字</td><td>最多7,089字元</td></tr>
@@ -26,3 +28,4 @@ http://barcode-coder.com/en/
 
 
 ===参考资料===
+`[1].` http://zh.wikipedia.org/wiki/QR%E7%A2%BC<br>

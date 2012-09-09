@@ -13,29 +13,25 @@
 || `RAND()` || 生成随机字符串 ||
 || `HASH(text)` || 一种Hash映射，如 `MD5, SHA1` 等 ||
 || `ENCRYPT(text, password)` || 通过 `password` 对 `text` 做对称加密 ||
+|| `DECRYPT(encrypt, password)` || 通过 `password` 对 `encrypt` 做对称解密 ||
 
 ===1. 服务器端记录用户名与挑战的映射===
 1.1 服务器端通过 `RAND()` 生成随机字符串 `STRRAND`，并通过某种方式让用户名和该字符串生成映射<br>
 1.2 `ENCRYPT(STRRAND, HASH(user password))`加密字符串，即为服务器端向客户端发起的挑战<br>
 
 ===2. 客户端接受挑战===
+2.1 客户端接收到数据器端返回的加密数据 `STRENCRYPT` 并解密 `STRDECRYPT = DECRYPT(STRENCRYPT, HASH(user password))`<br>
 
 ===3. 客户端回应挑战===
+3.1 客户端将用户名和 `STRDECRYPT` 生成新的字符串 `STRRESPONSE`
+3.2 `ENCRYPT(STRRESPONSE, HASH(user password))` 加密字符串，并发送到服务器端，回应挑战<br>
 
 ===4. 服务器端验证挑战===
+4.1 服务器端得回应并解密 `STRRESPONSEDECRYPT = DECRYPT(STRRESPONSE, HASH(user password))`<br>
+4.2 服务器端验证 `STRRESPONSEENCRYPT` 字符串是否正确，如果正确则验证成功<br>
 
 ==限制==
-... ...
+ * 本方法仅限于身份验证，无法将本方法用于服务器端和客户端数据交互。
+ * 对称加密算法存在被暴力破解的可能性，不宜选择KEY较短的加密算法。
 
-====基本思路====
-1. 服务器端生成随机串，和用户名对应<br>
-2. 使用用户的密钥加密<br>
-3. 客户端拿到后解密确认<br>
-3. 将随机串加上用户名后重新加密<br>
-4. 服务器端解密确认<br>
-
-
-====LOGGING====
-_状态：进行中_ 
- * 2012.09.06 idea, init
  

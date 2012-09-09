@@ -20,6 +20,8 @@
   * [Study_DotNet_CLI CLI]
    * [Study_DotNet_CLI_MemoryModel Memory Model]
   * [Study_DotNet_CSharp CSharp]
+ * [Study_Security Security]
+  * [Study_Security_EncryptionAlgorithm EncryptionAlgorithm]
  * [Study_GO Go Lang]
  * [Study_GPU GPU]
   * [Study_GPU_GPGPU GPGPU]

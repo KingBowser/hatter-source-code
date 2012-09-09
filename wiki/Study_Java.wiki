@@ -28,10 +28,6 @@ jstat -J-Djstat.showUnsupported=true -snap <pid>
 >>> hotspot.log
 }}}
 
-fastdebug jdk download: [http://download.java.net/jdk6/6u25/promoted/b01/index.html]
-{{{
-Query: site:download.java.net fastdebug
-}}}
 
 
 == HotSpot SA ==

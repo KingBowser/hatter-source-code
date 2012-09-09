@@ -13,3 +13,4 @@ export _JAVA_LAUNCHER_DEBUG=1
 
 
 ===参考资料===
+`[1].` http://openjdk.java.net/groups/hotspot/<br>

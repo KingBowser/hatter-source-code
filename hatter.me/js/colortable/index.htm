@@ -1,0 +1,26 @@
+<html>
+<head><title>Color Table</title></head>
+<body>
+<script type="text/javascript">
+var COLOR = ["00", "33", "66", "99", "CC", "FF"];
+var fcolor;
+document.write("<table border=\"0\" cellspacing=\"0\" cellpadding=\"0\" style=\"font-size:12px;font-family:courier;\">");
+for (var a = 0; a < COLOR.length; a++) {
+    for (var b = 0; b < COLOR.length; b++) {
+    	if (COLOR[b] == "00" || COLOR[b] == "33") {
+    	    fcolor = "#fff"
+    	} else {
+    	    fcolor = "#000";
+    	}
+    	document.write("<tr>");
+        for (var c = 0; c < COLOR.length; c++) {
+        	var color = "#" + COLOR[a] + COLOR[b] + COLOR[c];
+            document.write("<td style=\"height:30px;width:140px;padding-left:5px;color:" + fcolor + ";background-color:" + color + ";\">" + color + "</td>");
+        }
+        document.write("</tr>");
+    }
+}
+document.write("</table>");
+</script>
+</body>
+</html>

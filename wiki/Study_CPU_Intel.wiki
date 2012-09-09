@@ -13,7 +13,7 @@
 
 =Documents=
 ==Intel® 64 and IA-32 Architectures Software Developer’s Manual ==
-|| *Document Title* || *Document Number/Location* || *View* ||
+|| *Document Title* || *Document Number* || *View* ||
 || Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1: Basic Architecture || 253665 || [https://hatter-source-code.googlecode.com/svn/trunk/attachments/pdfs/intelasdm/1.pdf PDF] ||
 || Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 2A: Instruction Set Reference, A-M || 253666 || [https://hatter-source-code.googlecode.com/svn/trunk/attachments/pdfs/intelasdm/2A.pdf PDF] ||
 || Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 2B: Instruction Set Reference, N-Z || 253667 || [https://hatter-source-code.googlecode.com/svn/trunk/attachments/pdfs/intelasdm/2B.pdf PDF] ||

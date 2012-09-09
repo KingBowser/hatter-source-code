@@ -41,7 +41,7 @@ http://barcode-coder.com/en/
 || E-mail address || `mailto:mail@example.com` ||
 || Telephone numbers || `tel:12345678` ||
 || vCard || `-` ||
-|| AU format ||  ||
+|| AU format || `-` ||
 || meCard || `MECARD:N:name;ADR:  ;TEL: 12345678;EMAIL: mail@example.com;URL: http://www.example.com;;` ||
 || BIZCARD || `-` ||
 || SMS || `smsto:12345678:text` ||

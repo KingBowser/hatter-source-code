@@ -3,29 +3,29 @@
 
 =X86微架构=
 || *微架构* || *说明* ||
-|| 8086 ||  ||
-|| 186 ||  ||
-|| 286 ||  ||
-|| i386 ||  ||
-|| i486 ||  ||
-|| P5 ||  ||
-|| P6 ||  ||
-|| Netburst ||  ||
-|| Pentium-M ||  ||
-|| Core (Merom, Penryn) ||  ||
-|| Nehalem (Nehalem, Westmere) ||  ||
-|| Sandy Bridge (Sandy Bridge, Ivy Bridge) ||  ||
-|| Haswell (Haswell, Rockwell) ||  ||
-|| Skylake ||  ||
-|| Larrabee ||  ||
-|| Bonnell ||  ||
+|| `8086` ||  ||
+|| `186` ||  ||
+|| `286` ||  ||
+|| `i386` ||  ||
+|| `i486` ||  ||
+|| `P5` ||  ||
+|| `P6` ||  ||
+|| `Netburst` ||  ||
+|| `Pentium-M` ||  ||
+|| `Core (Merom, Penryn)` ||  ||
+|| `Nehalem (Nehalem, Westmere)` ||  ||
+|| `Sandy Bridge (Sandy Bridge, Ivy Bridge)` ||  ||
+|| `Haswell (Haswell, Rockwell)` ||  ||
+|| `Skylake` ||  ||
+|| `Larrabee` ||  ||
+|| `Bonnell` ||  ||
 
 =安腾微架构=
 || *微架构* || *说明* ||
-|| Merced ||  ||
-|| McKinley ||  ||
-|| Tukwila ||  ||
-|| Poulson ||  ||
+|| `Merced` ||  ||
+|| `McKinley` ||  ||
+|| `Tukwila` ||  ||
+|| `Poulson` ||  ||
 
 
 ===参考资料===

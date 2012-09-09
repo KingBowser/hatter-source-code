@@ -1,7 +1,11 @@
 #summary Intel CPU Micro Architecture
 #sidebar TableOfContents
 
+=X86微架构=
 || *微架构* || *说明* ||
+|| 8086 ||  ||
+|| 186 ||  ||
+|| 286 ||  ||
 || i386 ||  ||
 || i486 ||  ||
 || P5 ||  ||
@@ -12,7 +16,18 @@
 || Nehalem (Nehalem, Westmere) ||  ||
 || Sandy Bridge (Sandy Bridge, Ivy Bridge) ||  ||
 || Haswell (Haswell, Rockwell) ||  ||
+|| Skylake ||  ||
+|| Larrabee ||  ||
+|| Bonnell ||  ||
+
+=安腾微架构=
+|| *微架构* || *说明* ||
+|| Merced ||  ||
+|| McKinley ||  ||
+|| Tukwila ||  ||
+|| Poulson ||  ||
 
 
 ===参考资料===
 `[1].` http://www.360doc.com/content/10/0929/13/158286_57292837.shtml<br>
+`[2].` http://en.wikipedia.org/wiki/List_of_Intel_CPU_microarchitectures<br>

@@ -1,6 +1,17 @@
 #summary Intl CPU
 #sidebar TableOfContents
 
+
+
+=Intel=
+ * [http://ark.intel.com/ ARK | Your source for information on Intel products]
+  * [http://en.wikipedia.org/wiki/Xeon Xeon] 
+ * [ftp://download.intel.com/design/ Intl Design Download]
+ * [http://en.wikipedia.org/wiki/List_of_Intel_Xeon_microprocessors List]
+ * [http://en.wikipedia.org/wiki/List_of_Intel_microprocessors List of Intel microprocessors]
+ * [http://en.wikipedia.org/wiki/List_of_future_Intel_microprocessors List of future Intel microprocessors]
+
+
 ==Intel® 64 and IA-32 Architectures Software Developer’s Manual ==
 || *Document Title* || *Document Number/Location* || *View* ||
 || Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1: Basic Architecture || 253665 || [https://hatter-source-code.googlecode.com/svn/trunk/attachments/pdfs/intelasdm/1.pdf PDF] ||

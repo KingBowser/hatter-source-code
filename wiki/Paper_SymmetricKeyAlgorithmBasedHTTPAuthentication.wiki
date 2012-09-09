@@ -30,7 +30,10 @@
 4.1 服务器端得回应并解密 `STRRESPONSEDECRYPT = DECRYPT(STRRESPONSE, HASH(user password))`<br>
 4.2 服务器端验证 `STRRESPONSEENCRYPT` 字符串是否正确，如果正确则验证成功<br>
 
-==限制==
+==三、示例==
+... ...
+
+==四、限制==
  * 本方法仅限于身份验证，无法将本方法用于服务器端和客户端数据交互。
  * 对称加密算法存在被暴力破解的可能性，不宜选择KEY较短的加密算法。
 

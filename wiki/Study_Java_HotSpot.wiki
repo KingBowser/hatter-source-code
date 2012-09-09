@@ -17,3 +17,5 @@ export _JAVA_LAUNCHER_DEBUG=1
 
 ===参考资料===
 `[1].` http://openjdk.java.net/groups/hotspot/<br>
+`[2].` http://java.sun.com/products/hotspot/docs/whitepaper/Java_HotSpot_WP_Final_4_30_01.html<br>
+`[3].` http://www.oracle.com/technetwork/java/javase/tech/index-jsp-136373.html<br>

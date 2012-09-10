@@ -13,7 +13,7 @@ export _JAVA_LAUNCHER_DEBUG=1
 }}}
  * Download FastDebug HotSpot JDK
  || JDK6 || http://download.java.net/jdk6/6u25/promoted/b03/index.html ||
-|| JDK7 || http://download.java.net/jdk7/archive/b130/ ||
+ || JDK7 || http://download.java.net/jdk7/archive/b130/ ||
 
 
 [HotSpot_Profiler HotSpot Collections]

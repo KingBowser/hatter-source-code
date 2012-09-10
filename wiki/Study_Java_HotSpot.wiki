@@ -12,7 +12,8 @@ hg clone http://hg.openjdk.java.net/jdk7/hotspot/hotspot
 export _JAVA_LAUNCHER_DEBUG=1
 }}}
  * Download FastDebug HotSpot JDK
- http://download.java.net/jdk6/6u25/promoted/b01/index.html
+|| JDK6 || http://download.java.net/jdk6/6u25/promoted/b03/index.html ||
+|| JDK7 || http://download.java.net/jdk7/archive/b130/ ||
 
 
 [HotSpot_Profiler HotSpot Collections]

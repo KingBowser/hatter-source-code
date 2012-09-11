@@ -26,6 +26,7 @@
 </td>
 <td style="width:400px;" align="center" rowspan="2">
   <div id="output" style="margin-top:0px;"></div>
+  <button style="width:80px;height:24px;margin-top:10px;" disabled="disabled" id="to_image">To Image</button>
 </td>
 </tr>
 <tr>
@@ -145,6 +146,16 @@ function makeQrCode() {
     text: qrStrJoinMap[jQuery("#type")[0].value](),
     correctLevel : QRErrorCorrectLevel.M
   });
+  if (jQuery("#to_image")[0].disabled) {
+    jQuery("#to_image")[0].disabled = false;
+    jQuery("#to_image")[0].onclick = function() {
+      if (jQuery("#output canvas").length > 0) {
+  	    var canvas = jQuery("#output canvas")[0];
+        var img    = canvas.toDataURL("image/png");
+        document.getElementById("output").innerHTML = '<img src="' + img + '"/>';
+      }
+    };
+  }
 }
 </script>
 

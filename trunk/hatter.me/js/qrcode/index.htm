@@ -16,6 +16,7 @@
       <option value="t_text">Text</option>
       <option value="t_sms">SMS</option>
       <option value="t_wifi">WIFI</option>
+      <option value="t_cal">Calendar event</option>
     </select>
   </td>
   <td align="right">
@@ -47,6 +48,13 @@
       <option value="WPA">WPA/WPA2</option>
       <option value="nopass">No encryption</option>
     </select>
+  </div>
+  <div class="t_" id="t_cal" style="display:none;">
+    Event title: <input type="text" name="title" style="width:300px;"><br>
+    Start date: <input type="text" name="start" style="width:300px;"><br>
+    End date: <input type="text" name="end" style="width:300px;"><br>
+    Location: <input type="text" name="location" style="width:300px;"><br>
+    Description: <input type="text" name="description" style="width:300px;"><br>
   </div>
 </td>
 </tr>
@@ -137,6 +145,22 @@ qrStrJoinMap = {
     var password = item("password").value;
     var network = item("network").value;
     return "WIFI:S:" + ssid + ";T:" + network + ";P:" + password + ";;";
+  },
+  "t_cal": function() {
+    var title = item("title").value;
+    var start = item("start").value;
+    var end = item("end").value;
+    var location = item("location").value;
+    var description = item("description").value;
+    var cals = [];
+    cals.push("BEGIN:VEVENT");
+    cals.push("SUMMARY:" + title);
+    cals.push("DTSTART:" + start);
+    cals.push("DTEND:" + end);
+    cals.push("LOCATION:" + location);
+    cals.push("DESCRIPTION:" + description);
+    cals.push("END:VEVENT");
+    return cals.join("\n");
   }
 };
 

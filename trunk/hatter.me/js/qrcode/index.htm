@@ -8,27 +8,45 @@
 <div style="height:300px;">
 <table width="100%" style="margin-top:20px;">
 <tr>
-<td>
-  Select: <select id="type" style="margin-bottom:10px;width: 200px;" onchange="changeType();">
-    <option value="t_text">Text</option>
-    <option value="t_sms">SMS</option>
-  </select>
-  <div class="t_" id="t_text">
-    <textarea id="input" style="width:100%;height:180px;font-size:18px;"></textarea>
-  </div>
-  <div class="t_" id="t_sms" style="display:none;">
-    Phone No: <input type="text" id="no" style="width:300px;"><br>
-    Text:<br>
-    <textarea id="input" style="width:100%;height:180px;font-size:18px;"></textarea>
-  </div>
+<td valign="top">
+  <table width="100%">
+  <tr>
+  <td>
+    Select: <select id="type" style="margin-bottom:10px;width: 200px;" onchange="changeType();">
+      <option value="t_text">Text</option>
+      <option value="t_sms">SMS</option>
+      <option value="t_wifi">WIFI</option>
+    </select>
+  </td>
+  <td align="right">
+    <button style="width:300px;height:30px;font-size:12px;" onclick="makeQrCode();">Generate QR Code</button>
+  </td>
+  </tr>
+  </table>
 </td>
 <td style="width:400px;" align="center" rowspan="2">
-  <div id="output" style="margin-top:20px;"></div>
+  <div id="output" style="margin-top:0px;"></div>
 </td>
 </tr>
 <tr>
-<td align="right" valign="top">
-  <button style="width:300px;height:30px;font-size:12px;" onclick="makeQrCode();">Generate QR Code</button>
+<td>
+  <div class="t_" id="t_text">
+    <textarea name="input" style="width:100%;height:180px;font-size:18px;"></textarea>
+  </div>
+  <div class="t_" id="t_sms" style="display:none;">
+    Phone No: <input type="text" name="no" style="width:300px;"><br>
+    Text:<br>
+    <textarea name="input" style="width:100%;height:180px;font-size:18px;"></textarea>
+  </div>
+  <div class="t_" id="t_wifi" style="display:none;">
+    SSID: <input type="text" name="ssid" style="width:300px;"><br>
+    Password: <input type="text" name="password" style="width:300px;"><br>
+    <select name="network">
+      <option value="WEP">WEP</option>
+      <option value="WPA">WPA/WPA2</option>
+      <option value="nopass">No encryption</option>
+    </select>
+  </div>
 </td>
 </tr>
 </table>
@@ -101,7 +119,7 @@ function changeType() {
 
 function item(id) {
   var selTy = jQuery("#type")[0].value;
-  return jQuery("#" + selTy + " #" + id)[0];
+  return jQuery("#" + selTy + " *[name=\"" + id + "\"]")[0];
 }
 
 qrStrJoinMap = {
@@ -112,6 +130,12 @@ qrStrJoinMap = {
     var no = item("no").value;
     var text = item("input").value;
     return "smsto:" + no + ":" + text;
+  },
+  "t_wifi": function() {
+    var ssid = item("ssid").value;
+    var password = item("password").value;
+    var network = item("network").value;
+    return "WIFI:S:" + ssid + ";T:" + network + ";P:" + password + ";;";
   }
 };
 

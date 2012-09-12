@@ -1,0 +1,9 @@
+#summary Zing JVM
+#sidebar TableOfContents
+
+
+
+===参考资料===
+`[1].` http://www.azulsystems.com/products/zing/whatisit<br>
+`[2].` http://www.azulsystems.com/products/zing/faq<br>
+

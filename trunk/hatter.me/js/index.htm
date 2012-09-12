@@ -19,8 +19,8 @@
 <script type="text/javascript" src="microcookie.js"></script>
 <script type="text/javascript">
 //<![CDATA[
-  function openUrl(url) {
-    if (openInNewWindow()) {
+  function openUrl(url, newwin) {
+    if (newwin || openInNewWindow()) {
       window.open(url, "_blank");
     } else {
       window.location = url;
@@ -62,7 +62,8 @@
     { url: "live-html-editor", title: "Live HTML editor" },
     { url: "bookmarklets", title: "Bookmarklets" },
     { url: "prettydiff", title: "Pretty Diff" },
-    { url: "qrcode", title: "Generate QR Code"}
+    { url: "qrcode", title: "Generate QR Code"},
+    { url: "http://www.mergely.com/", title: "mergely(^)", newwin: true}
   ];
   
   var firFoxPluginList = [
@@ -101,7 +102,7 @@
       	html += "<td>&nbsp;</td>";
       } else {
       	html += "<td>";
-      	html += "<button class=\"buttonCSS\" onclick=\"openUrl('" + it.url + "');\" >";
+      	html += "<button class=\"buttonCSS\" onclick=\"openUrl('" + it.url + "'" + "," + (!!it.newwin) + ");\" >";
       	html += "<b>";
       	html += it.title;
       	html += "<b/>";

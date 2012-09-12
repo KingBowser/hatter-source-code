@@ -1,0 +1,112 @@
+<html>
+<head><title>Hatter's password manager</title></head>
+<script type="text/javascript">
+APPLICATION_LIBRARY_PATH = "http://jshtaframework.googlecode.com/svn/trunk/jshtaframework/src/source/";
+</script>
+<script type="text/javascript">
+document.write('<script type="text/javascript" src="');
+document.write(APPLICATION_LIBRARY_PATH);
+document.write('cn.aprilsoft.jsapp.core.js">' + '</' + 'script>');
+</script>
+<script type="text/javascript">
+SetIncludePath(APPLICATION_LIBRARY_PATH);
+Include("cn.aprilsoft.jsapp.common.Debug.js");
+Include("cn.aprilsoft.jsapp.common.StringUtil.js");
+Include("cn.aprilsoft.jsapp.system.System.js");
+Include("cn.aprilsoft.jsapp.encode.secure.Encrypt.js");
+Include("cn.aprilsoft.jsapp.encode.secure.AES.js");
+Include("cn.aprilsoft.jsapp.common.ShortCommand.js");
+</script>
+<script type="text/javascript">
+Import("cn.aprilsoft.jsapp.common.Debug");
+Import("cn.aprilsoft.jsapp.encode.secure.AES");
+</script>
+<body>
+<h2>Hatter's password manager</h2>
+<table>
+  <tr>
+    <td>Title:</td>
+    <td><input id="title" type="text" style="width:400px;"></td>
+  </tr>
+  <tr>
+    <td>URL:</td>
+    <td><input id="url" type="text" style="width:400px;"></td>
+  </tr>
+  <tr>
+    <td>Password:</td>
+    <td>
+      <input id="password" type="text" style="width:400px;">
+      <button onclick="newPassword()">NEW</button>
+    </td>
+  </tr>
+  <tr>
+    <td>Description:</td>
+    <td><input id="desc" type="text" style="width:400px;"></td>
+  </tr>
+  <tr>
+    <td>Encrypt:</td>
+    <td>
+      <input id="enc1" type="password" style="width:198px;">
+      <input id="enc2" type="password" style="width:198px;">
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <textarea id="generate" style="width:100%;height:200px;"></textarea>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="right">
+      <button style="width:200px;height:40px;" onclick="updatePasswrod()">UPDATE</button>
+    </td>
+  </tr>
+</table>
+<script type="text/javascript">
+PASSWORD_CHARS = "abcdefghijklmnopqrstuvwxyz"
+               + "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+               + "01234567890"
+               + "_=+-/.,;:|~!@#$%^&*";
+
+function newPassword() {
+  var t = (new Date()).getTime();
+  var password = [];
+  for (var i = 0; i < 16; i++) {
+    var iat = (Math.floor(Math.random() * 1000000) + t) % PASSWORD_CHARS.length;
+    password.push(PASSWORD_CHARS.charAt(iat));
+  }
+  $value("password", password.join(""));
+}
+
+function updatePasswrod() {
+  if ($value("enc1") == "") {
+    alert("Passwords is empty!");
+    return;
+  }
+  if ($value("enc1") != $value("enc2")) {
+    alert("Two passwords not match!");
+    return;
+  }
+  if ($value("password") == "") {
+    newPassword();
+  }
+  var title = $value("title");
+  var url = $value("url");
+  var password =$value("password");
+  var desc = $value("desc");
+  var r = [];
+  r.push(">>START>>");
+  r.push("Title:" + title);
+  r.push("URL:" + url);
+  r.push("Password:" + password);
+  r.push("Description:" + desc);
+  r.push("<<END<<");
+  var e = (new AES()).encrypt($value("enc1"), r.join("\n"));
+  var rr = [];
+  rr.push((title? title: "no title") + "/ " + (url? url: "no url"));
+  rr.push("Encrypted:");
+  rr.push(e);
+  $value("generate", rr.join("\n"));
+}
+</script>
+</body>
+</html>

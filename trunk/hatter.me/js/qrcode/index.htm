@@ -101,7 +101,7 @@ function initDatetime(prefix) {
   }
   html.push("</select>");
   html.push("<select name='" + prefix + "dd'>");
-  for (var i = 1; i <= getDateCount(yyyy, mm); i++) {
+  for (var i = 1; i <= 31; i++) {
     html.push("<option value='" + i + "'>");
     html.push(i);
     html.push("</option>");
@@ -256,6 +256,15 @@ qrStrJoinMap = {
     var end_mi = item("end_mi").value;
     var end_ss = item("end_ss").value;
     
+    if (start_dd > getDateCount(start_yyyy, start_mm)) {
+      alert("Day count error: " + start_yyyy + "/" + start_mm);
+      return null;
+    }
+    if (end_dd > getDateCount(end_yyyy, end_mm)) {
+      alert("Day count error: " + end_yyyy + "/" + end_mm);
+      return null;
+    }
+    
     var start = toGMT(start_yyyy, start_mm, start_dd, start_hh, start_mi, start_ss);
     var end = toGMT(end_yyyy, end_mm, end_dd, end_hh, end_mi, end_ss);
     
@@ -272,9 +281,11 @@ qrStrJoinMap = {
 };
 
 function makeQrCode() {
+  var qr_text = qrStrJoinMap[jQuery("#type")[0].value]();
+  if (qr_text == null) return;
   document.getElementById("output").innerHTML = "";
   jQuery('#output').qrcode({
-    text: qrStrJoinMap[jQuery("#type")[0].value](),
+    text: qr_text,
     correctLevel : QRErrorCorrectLevel.M
   });
   if (jQuery("#to_image")[0].disabled) {

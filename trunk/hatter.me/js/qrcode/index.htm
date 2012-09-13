@@ -51,10 +51,10 @@
   </div>
   <div class="t_" id="t_cal" style="display:none;">
     Event title: <input type="text" name="title" style="width:300px;"><br>
-    Start date: <input type="text" name="start" style="width:300px;"><br>
-    End date: <input type="text" name="end" style="width:300px;"><br>
+    Start date: <span id="start_datetime"></span><br>
+    End date: <span id="end_datetime"></span><br>
     Location: <input type="text" name="location" style="width:300px;"><br>
-    Description: <input type="text" name="description" style="width:300px;"><br>
+    Description: <textarea type="text" name="description" style="width:400px;height:140px;"></textarea><br>
   </div>
 </td>
 </tr>
@@ -66,6 +66,79 @@
 <script type="text/javascript" src="jquery-1.5.2-min.js"></script>
 <script type="text/javascript" src="qrcode.js"></script>
 <script type="text/javascript" src="jquery.qrcode.js"></script>
+<script type="text/javascript">
+function getDateCount(yyyy, mm) {
+  var mmdc = [31, null, 31, 30, 31, 30, 31, 31, 30, 31, 30 , 31];
+  var dc = mmdc[mm];
+  if (dc != null) {
+    return dc;
+  }
+  if (((year % 100 != 0) && (year % 4 == 0)) || (year % 400 == 0)) {
+    return 29;
+  } else {
+    return 28;
+  }
+}
+
+function initDatetime(prefix) {
+  var date = new Date();
+  var yyyy = date.getFullYear();
+  var mm = date.getMonth() + 1;
+  var dd = date.getDate();
+  var html = [];
+  html.push("<select name='" + prefix + "yyyy'>");
+  for (var i = 1900; i <= 2050; i++) {
+    html.push("<option value='" + i + "'>");
+    html.push(i);
+    html.push("</option>");
+  }
+  html.push("</select>");
+  html.push("<select name='" + prefix + "mm'>");
+  for (var i = 1; i <= 12; i++) {
+    html.push("<option value='" + i + "'>");
+    html.push(i);
+    html.push("</option>");
+  }
+  html.push("</select>");
+  html.push("<select name='" + prefix + "dd'>");
+  for (var i = 1; i <= getDateCount(yyyy, mm); i++) {
+    html.push("<option value='" + i + "'>");
+    html.push(i);
+    html.push("</option>");
+  }
+  html.push("</select>");
+  html.push("T");
+  html.push("<select name='" + prefix + "hh'>");
+  for (var i = 0; i < 24; i++) {
+    html.push("<option value='" + i + "'>");
+    html.push(i);
+    html.push("</option>");
+  }
+  html.push("</select>");
+  html.push("<select name='" + prefix + "mi'>");
+  for (var i = 0; i < 60; i++) {
+    html.push("<option value='" + i + "'>");
+    html.push(i);
+    html.push("</option>");
+  }
+  html.push("</select>");
+  html.push("<select name='" + prefix + "ss'>");
+  for (var i = 0; i < 60; i++) {
+    html.push("<option value='" + i + "'>");
+    html.push(i);
+    html.push("</option>");
+  }
+  html.push("</select>");
+  jQuery("#" + prefix + "datetime")[0].innerHTML = html.join("");
+  setTimeout(function() {
+    jQuery("select[name=\"" + prefix + "yyyy\"]")[0].value = yyyy;
+    jQuery("select[name=\"" + prefix + "mm\"]")[0].value = mm;
+    jQuery("select[name=\"" + prefix + "dd\"]")[0].value = dd;
+  }, 0);
+}
+initDatetime("start_");
+initDatetime("end_");
+</script>
 <script type="text/javascript">
 var _countBits = function(_c) {
     var cnt = 0;
@@ -131,6 +204,25 @@ function item(id) {
   return jQuery("#" + selTy + " *[name=\"" + id + "\"]")[0];
 }
 
+function toGMT(yyyy, mm, dd, hh, mi, ss) {
+  var pad = function(x) {
+    if (x < 10) return "0" + x;
+    return x;
+  };
+  var d = new Date(yyyy, mm - 1, dd, hh, mi, ss);
+  var dz = new Date(d.getTime() - (1000 * 60 * 60 * 8));
+  var tz = [];
+  tz.push(dz.getFullYear());
+  tz.push(pad(dz.getMonth() + 1));
+  tz.push(pad(dz.getDate()));
+  tz.push("T");
+  tz.push(pad(dz.getHours()));
+  tz.push(pad(dz.getMinutes()))
+  tz.push(pad(dz.getSeconds()))
+  tz.push("Z");
+  return tz.join("");
+}
+
 qrStrJoinMap = {
   "t_text": function() {
     return item("input").value;
@@ -148,17 +240,32 @@ qrStrJoinMap = {
   },
   "t_cal": function() {
     var title = item("title").value;
-    var start = item("start").value;
-    var end = item("end").value;
     var location = item("location").value;
     var description = item("description").value;
+    
+    var start_yyyy = item("start_yyyy").value;
+    var start_mm = item("start_mm").value;
+    var start_dd = item("start_dd").value;
+    var start_hh = item("start_hh").value;
+    var start_mi = item("start_mi").value;
+    var start_ss = item("start_ss").value;
+    var end_yyyy = item("end_yyyy").value;
+    var end_mm = item("end_mm").value;
+    var end_dd = item("end_dd").value;
+    var end_hh = item("end_hh").value;
+    var end_mi = item("end_mi").value;
+    var end_ss = item("end_ss").value;
+    
+    var start = toGMT(start_yyyy, start_mm, start_dd, start_hh, start_mi, start_ss);
+    var end = toGMT(end_yyyy, end_mm, end_dd, end_hh, end_mi, end_ss);
+    
     var cals = [];
     cals.push("BEGIN:VEVENT");
     cals.push("SUMMARY:" + title);
     cals.push("DTSTART:" + start);
     cals.push("DTEND:" + end);
     cals.push("LOCATION:" + location);
-    cals.push("DESCRIPTION:" + description);
+    cals.push("DESCRIPTION:" + description.replace(/\n/g, "\\n"));
     cals.push("END:VEVENT");
     return cals.join("\n");
   }

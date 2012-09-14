@@ -4,10 +4,14 @@
  * http://www.azulsystems.com/products/zing/whatisit
  * http://www.infoq.com/cn/news/2012/09/azul-zing-free
 
+|| `Sun Classic ` ||
+|| `Exact VM` ||
 || `HotSpot` ||
 || `JRockit` ||
 || `J9` ||
 || `Harmony` ||
+|| `Azul VM` ||
+|| `BEA Liquid VM` ||
 
 Java Bytecode Instruction: http://en.wikipedia.org/wiki/Java_bytecode_instruction_listings
 
@@ -37,3 +41,4 @@ jstat -J-Djstat.showUnsupported=true -snap <pid>
 `[1].` [http://en.wikipedia.org/wiki/Java_(programming_language)]<br>
 `[2].` http://en.wikipedia.org/wiki/Java_virtual_machine<br>
 `[3].` http://en.wikipedia.org/wiki/List_of_Java_virtual_machines<br>
+`[4].` http://blog.csdn.net/qiucaijuan/article/details/6672981<br>

@@ -1,5 +1,6 @@
 #summary Sidebar
  * [Study_List Main Page]
+ * [Study_AugmentedBNF Augmented BNF]
  * [Study_BarCode BarCode]
  * [Study_Build Build]
   * [Study_Build_Ant Ant]

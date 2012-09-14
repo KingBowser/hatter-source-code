@@ -44,8 +44,11 @@ func main() {
 
 
 ==IDE==
-|| LiteIDE || http://code.google.com/p/golangide/ || Go语言写的跨平台Go语言IDE ||
-|| Go IDE || http://go-ide.com/ || Google Go Language IDE (based on Intellij IDEA platform) ||
+|| `LiteIDE` || http://code.google.com/p/golangide/ || Go语言写的跨平台Go语言IDE ||
+|| `Go IDE` || http://go-ide.com/ || Google Go Language IDE (based on Intellij IDEA platform) ||
+
+==Library==
+|| `goquery` || https://github.com/PuerkitoBio/goquery || a little like that j-thing, only in Go ||
 
 
 ===参考资料===

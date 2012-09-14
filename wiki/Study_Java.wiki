@@ -1,6 +1,8 @@
 #summary Java study.
 #sidebar TableOfContents
 
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/java/java.jpeg]
+
 =JVM (Java Virtual Machine)=
 
 || `Sun Classic ` ||

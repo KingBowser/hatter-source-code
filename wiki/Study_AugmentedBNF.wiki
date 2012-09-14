@@ -3,8 +3,34 @@
 
 =Augmented Backus-Naur Form (BNF)=
 
+ * `name = definition`
+ * `"literal"`
+ * `rule1 | rule2`
+ * `(rule1 rule2)`
+ * `*rule`
+ * `[rule]`
+ * `N rule`
+ * `#rule`
+ * `; comment`
+ * `implied *LWS`
 
-===还可以看===
+{{{
+       OCTET          = <any 8-bit sequence of data>
+       CHAR           = <any US-ASCII character (octets 0 - 127)>
+       UPALPHA        = <any US-ASCII uppercase letter "A".."Z">
+       LOALPHA        = <any US-ASCII lowercase letter "a".."z">
+       ALPHA          = UPALPHA | LOALPHA
+       DIGIT          = <any US-ASCII digit "0".."9">
+       CTL            = <any US-ASCII control character
+                        (octets 0 - 31) and DEL (127)>
+       CR             = <US-ASCII CR, carriage return (13)>
+       LF             = <US-ASCII LF, linefeed (10)>
+       SP             = <US-ASCII SP, space (32)>
+       HT             = <US-ASCII HT, horizontal-tab (9)>
+       <">            = <US-ASCII double-quote mark (34)>
+}}}
+
+===See also===
 || `STANDARD FOR THE FORMAT OF ARPA INTERNET TEXT MESSAGES` || http://www.ietf.org/rfc/rfc822.txt ||
 
 

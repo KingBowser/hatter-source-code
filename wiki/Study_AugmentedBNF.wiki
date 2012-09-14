@@ -4,3 +4,5 @@
 http://www.ietf.org/rfc/rfc2616.txt
 
 
+===参考资料===
+`[1].` http://www.ietf.org/rfc/rfc2616.txt<br>

@@ -1,4 +1,6 @@
 #summary Android
 #sidebar TableOfContents
 
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/android/android.png]
+
 ... ...

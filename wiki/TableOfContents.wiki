@@ -1,6 +1,6 @@
 #summary Sidebar
  * [Study_List Main Page]
- * [Study_Android]
+ * [Study_Android Android]
  * [Study_AugmentedBNF Augmented BNF]
  * [Study_BarCode BarCode]
  * [Study_Build Build]

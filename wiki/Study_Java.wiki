@@ -1,8 +1,7 @@
 #summary Java study.
 #sidebar TableOfContents
 
- * http://www.azulsystems.com/products/zing/whatisit
- * http://www.infoq.com/cn/news/2012/09/azul-zing-free
+=JVM (Java Virtual Machine)=
 
 || `Sun Classic ` ||
 || `Exact VM` ||

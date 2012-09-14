@@ -1,7 +1,7 @@
 #summary Augmented BNF
 #sidebar TableOfContents
 
-http://www.ietf.org/rfc/rfc2616.txt
+=Augmented Backus-Naur Form (BNF)=
 
 
 ===参考资料===

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/main/resources"/>
+	<classpathentry kind="src" path="src/test/java"/>
+	<classpathentry kind="src" path="src/test/resources"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="lib" path="/Users/hatterjiang/Code/hatter-source-code/tests/disruptor/lib/disruptor-2.10.1.jar" sourcepath="lib/disruptor-2.10.1-sources.jar"/>
+	<classpathentry kind="output" path="classes"/>
+</classpath>

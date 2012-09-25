@@ -51,6 +51,7 @@
  * [Study_OpenAuthentication Open Authentication]
  * [Study_OpenSource Open Source]
  * [Study_OS_Linux Linux]
+ * [Sudy_RFC RFC]
  * [Study_SCM SCM]
   * [Study_SCM_Git Git]
   * [Study_SCM_Mercurial Mercurial]

@@ -14,11 +14,13 @@ MySQL在执行UPDATE时，如果更新前和更新后数据一样时不会产生
 
 {{{
 SHOW GRANTS FOR 用户名@域名或IP
+  show grants for username;
 
 GRANT 权限列表 ON 数据库名.表名 TO 用户名@来源地址 [IDENTIFIED BY '密码']
   grant select,insert,update,delete on schema.* to username@'%' identified by 'password';
 
-REVOKE 权限列表 ON 数据库名.表名 FROM 用户名@域名或IP  
+REVOKE 权限列表 ON 数据库名.表名 FROM 用户名@域名或IP
+  revoke ALL on schema.* from username;
 }}}
 
 

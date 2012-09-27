@@ -5,7 +5,9 @@
 
  * `name = definition`
  * `"literal"`
+ 用双引号包含越来的字符串。除非特别说明，默认情况下不区分大小写
  * `rule1 | rule2`
+ 以竖线“`|`”分割的二选一（或多选一）元素。例如：“`yes | no`”则表示“`yes`”和“`no`”都可被接受
  * `(rule1 rule2)`
  * `*rule`
  * `[rule]`

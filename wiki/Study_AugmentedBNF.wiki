@@ -54,3 +54,4 @@
 
 ===参考资料===
 `[1].` http://www.ietf.org/rfc/rfc2616.txt<br>
+`[2].` http://blog.chinaunix.net/uid-20350981-id-1701057.html<br>

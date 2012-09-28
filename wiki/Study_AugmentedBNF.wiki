@@ -11,6 +11,7 @@
  * `(rule1 rule2)`
  * `*rule`
  * `[rule]`
+ 方括号括越来表示可选，例如“[foo bar]”与“*1(foo bar)”等价
  * `N rule`
  * `#rule`
  * `; comment`

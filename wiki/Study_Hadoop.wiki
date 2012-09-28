@@ -3,3 +3,17 @@
 
 ... ...
 
+
+{{{
+ssh-keygen -t rsa
+
+cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+}}}
+
+
+{{{
+./hadoop namenode -format
+./start-all.sh
+
+hadoop fs -ls /
+}}}

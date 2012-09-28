@@ -13,7 +13,7 @@
  * `[rule]`
  方括号括越来表示可选，例如“`[foo bar]`”与“`*1(foo bar)`”等价
  * `N rule`
- 特定的重复次数，例如“<n>(element)”与“<n>*<n>(element)”等价
+ 特定的重复次数，例如“`<n>(element)`”与“`<n>*<n>(element)`”等价
  * `#rule`
  * `; comment`
  注释
@@ -53,14 +53,14 @@
 }}}
 
 {{{
-    CRLF           = CR LF
+       CRLF           = CR LF
 
-    LWS            = [CRLF] 1*( SP | HT )
+       LWS            = [CRLF] 1*( SP | HT )
 
-    TEXT           = <any OCTET except CTLs,
-                        but including LWS>
+       TEXT           = <any OCTET except CTLs,
+                           but including LWS>
 
-    HEX            = "A" | "B" | "C" | "D" | "E" | "F"
+       HEX            = "A" | "B" | "C" | "D" | "E" | "F"
                    | "a" | "b" | "c" | "d" | "e" | "f" | DIGIT
 }}}
 

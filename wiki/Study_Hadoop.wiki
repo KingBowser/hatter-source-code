@@ -1,8 +1,6 @@
 #summary Hadoop Study
 #sidebar TableOfContents
 
-... ...
-
 
 {{{
 ssh-keygen -t rsa
@@ -17,3 +15,12 @@ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 
 hadoop fs -ls /
 }}}
+
+{{{
+http://namenode:50070
+http://jobtracker:50030
+}}}
+
+
+===参考资料===
+`[1].` http://yymmiinngg.iteye.com/blog/706699<br>

@@ -57,5 +57,5 @@ if (!CACULATED_OBJECTS.contains(addr)) {
 
 在真实的情况下，你可能会看到这样的性能对比：
 
-[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/blog/ygc_cost.png]
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/blog/ygc_cost.png]<br>
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/blog/cpu_cost.png]

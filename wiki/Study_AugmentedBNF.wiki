@@ -33,23 +33,6 @@
        SP             = <US-ASCII SP, space (32)>
        HT             = <US-ASCII HT, horizontal-tab (9)>
        <">            = <US-ASCII double-quote mark (34)>
-
-       CRLF           = CR LF
-       LWS            = [CRLF] 1*( SP | HT )
-       TEXT           = <any OCTET except CTLs,
-                        but including LWS>
-       HEX            = "A" | "B" | "C" | "D" | "E" | "F"
-                      | "a" | "b" | "c" | "d" | "e" | "f" | DIGIT
-       token          = 1*<any CHAR except CTLs or separators>
-       separators     = "(" | ")" | "<" | ">" | "@"
-                      | "," | ";" | ":" | "\" | <">
-                      | "/" | "[" | "]" | "?" | "="
-                      | "{" | "}" | SP | HT
-       comment        = "(" *( ctext | quoted-pair | comment ) ")"
-       ctext          = <any TEXT excluding "(" and ")">
-       quoted-string  = ( <"> *(qdtext | quoted-pair ) <"> )
-       qdtext         = <any TEXT except <">>
-       quoted-pair    = "\" CHAR
 }}}
 
 {{{
@@ -61,7 +44,21 @@
                            but including LWS>
 
        HEX            = "A" | "B" | "C" | "D" | "E" | "F"
-                   | "a" | "b" | "c" | "d" | "e" | "f" | DIGIT
+                      | "a" | "b" | "c" | "d" | "e" | "f" | DIGIT
+
+       token          = 1*<any CHAR except CTLs or separators>
+       separators     = "(" | ")" | "<" | ">" | "@"
+                      | "," | ";" | ":" | "\" | <">
+                      | "/" | "[" | "]" | "?" | "="
+                      | "{" | "}" | SP | HT
+
+       comment        = "(" *( ctext | quoted-pair | comment ) ")"
+       ctext          = <any TEXT excluding "(" and ")">
+
+       quoted-string  = ( <"> *(qdtext | quoted-pair ) <"> )
+       qdtext         = <any TEXT except <">>
+
+       quoted-pair    = "\" CHAR
 }}}
 
 ===See also===

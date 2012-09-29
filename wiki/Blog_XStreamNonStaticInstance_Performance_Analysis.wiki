@@ -20,6 +20,7 @@
 实现这货就是XStream的包装！
 
 通过简单的循环测试，我们可以看到FGC的变化：
+
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/blog/new_xstream_old_gc.png]
 
 这个GC的效果相当明显。 
@@ -55,5 +56,6 @@ if (!CACULATED_OBJECTS.contains(addr)) {
 这时候再次对40万数据进行测试，发现只要5秒左右就结束了，根本没等我来的及打印GC信息。
 
 在真实的情况下，你可能会看到这样的性能对比：
+
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/blog/ygc_cost.png]
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/blog/cpu_cost.png]

@@ -3,7 +3,7 @@
 
 = XStream 非静态化实例的性能分析 =
 
-我们程序中有每次都new 一个JaxbXstreamWrapper实例：
+我们程序中有每次都new 一个`JaxbXstreamWrapper`实例：
 {{{
     public String getXmlString() {
 
@@ -49,7 +49,7 @@ if (!CACULATED_OBJECTS.contains(addr)) {
 11,776
 }}}
 
-根据这个结果我们可以判断每次new Xstream会增加11K左右的内存。
+根据这个结果我们可以判断每次`new Xstream`会增加11K左右的内存。
 
 但其实我们知道XStream是线程安全的，所以jx对象只要变成static成员就OK了。
 

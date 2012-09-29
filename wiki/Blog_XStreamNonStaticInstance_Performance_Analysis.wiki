@@ -1,7 +1,7 @@
-#summary XStream 非静态化实例的性能分析
+#summary XStream非静态化实例的性能分析
 #sidebar TableOfContents
 
-= XStream 非静态化实例的性能分析 =
+= XStream非静态化实例的性能分析 =
 
 我们程序中有每次都new 一个`JaxbXstreamWrapper`实例：
 {{{

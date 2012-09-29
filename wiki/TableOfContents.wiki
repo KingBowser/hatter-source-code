@@ -64,6 +64,8 @@
  * _*Papers*_
   * [Paper_SymmetricKeyAlgorithmBasedHTTPAuthentication Authentication]
   * [Paper_SymmetricKeyAlgorithmBasedHTTPRegistration Registration]
+ * _*Blogs*_
+  * [Blog_HelloWorld Hello world]
  * _*My Tools*_
   * [classdump]
   * [classlist]

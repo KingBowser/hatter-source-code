@@ -27,7 +27,7 @@
 
 通过“classmexer.jar”计算该实例大小，第一次计算出来是“1,163,232”，好家伙这个足足有1M多，这个初始始化当然慢啦！但每次实例化都要1M多么？显然不是，那么每次实例化会有多大呢？
 
-我们知道在JVM中默认的hashCode函数返回的是对象的地址，从java.lang.Object的这个描述可以看到“(This is typically implemented by converting the internal address of the object into an integer, but this implementation  technique is not required by the Java<font size="-2"><sup>TM</sup></font> programming language.)”，那么对于重载过hashCode方法的类似如何得到这个地址呢？虽然我们知道在C#中这个是可以做到的，但在Java中这个有点困难，但Java提供了另外一个方法，就是“System中的 public static native int identityHashCode(Object x)”。
+我们知道在JVM中默认的hashCode函数返回的是对象的地址，从`java.lang.Object`的这个描述可以看到“(This is typically implemented by converting the internal address of the object into an integer, but this implementation  technique is not required by the Java<font size="-2"><sup>TM</sup></font> programming language.)”，那么对于重载过hashCode方法的类似如何得到这个地址呢？虽然我们知道在C#中这个是可以做到的，但在Java中这个有点困难，但Java提供了另外一个方法，就是“`System`中的 `public static native int identityHashCode(Object x)`”。
 
 OK，现在修改classmexer的实现，通过对象的地址来判断是不是同一个对象：
 {{{

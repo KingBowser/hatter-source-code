@@ -34,3 +34,4 @@
 ===参考资料===
 `[1].` http://www.360doc.com/content/10/0929/13/158286_57292837.shtml<br>
 `[2].` http://en.wikipedia.org/wiki/List_of_Intel_CPU_microarchitectures<br>
+`[3].` http://en.wikipedia.org/wiki/List_of_Intel_Xeon_microprocessors<br>

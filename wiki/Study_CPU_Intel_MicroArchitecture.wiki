@@ -2,6 +2,9 @@
 #sidebar TableOfContents
 
 =X86微架构=
+不完整的Intel CPU微架构：
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/x86/intel_processor_roadmap.png]
+
 || *微架构* || *说明* ||
 || `8086` ||  ||
 || `186` ||  ||

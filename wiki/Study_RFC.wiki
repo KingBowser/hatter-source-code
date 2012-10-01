@@ -13,3 +13,4 @@ RFC文件只有新增，不會有取消或中途停止發行的情形。但是�
 
 ===参考资料===
 `[1].` http://zh.wikipedia.org/wiki/RFC<br>
+`[2].` http://en.wikipedia.org/wiki/Request_for_Comments<br>

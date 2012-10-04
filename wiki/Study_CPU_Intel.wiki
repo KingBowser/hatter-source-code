@@ -31,3 +31,4 @@ All in one: [https://hatter-source-code.googlecode.com/svn/trunk/attachments/pdf
 
 
 ===参考资料===
+`[1].` http://www.intel.com/content/www/us/en/processors/architectures-software-developer-manuals.html<br>

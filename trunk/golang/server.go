@@ -289,7 +289,13 @@ func HandleFileDomainSetting(w http.ResponseWriter, r *http.Request, filePath st
 		return false
 	}
 	defer openFile.Close()
+	openFileInfo, openFileInfoError := openFile.Stat()
+	if openFileInfoError != nil {
+		log.Println("Stat file failed:", openFileInfoError)
+		return false
+	}
 	w.Header().Set(lib.CONTENT_TYPE, lib.GetContentType(lib.GetSuffix(filePath)))
+	w.Header().Set(lib.CONTENT_LENGTH, string(openFileInfo.Size()))
 	io.Copy(w, openFile)
 	return true
 }

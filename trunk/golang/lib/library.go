@@ -46,6 +46,7 @@ const (
 	X_FORWARDED_FOR = "X-Forwarded-For"
 	LOCATION = "Location"
 	CONTENT_TYPE = "Content-Type"
+	CONTENT_LENGTH = "Content-Length"
 )
 
 // mime type

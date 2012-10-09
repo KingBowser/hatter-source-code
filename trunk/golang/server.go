@@ -227,7 +227,7 @@ func HandleListDirDomainSetting(w http.ResponseWriter, r *http.Request, dirPath 
 	fmt.Fprint(w, "<body>")
 	fmt.Fprint(w, "<h1>Listing dir:</h1>")
 	fmt.Fprint(w, "<ul>")
-	if (r.URL.Path != "/") {
+	if r.URL.Path != "/" {
 		fmt.Fprint(w, "<li>", "<a href=\"..\">[..]</a>", "</li>")
 	}
 	for _, fileInfo := range readDirFileInfos {
@@ -441,7 +441,7 @@ func HandleRequest(w http.ResponseWriter, r *http.Request) {
 		log.Println("---- Remote addr:", lib.GetRemoteAddrIP(r.RemoteAddr))
 	}
 	requestCallFuncs := domainFilters[domainAndPort]
-	if (requestCallFuncs != nil) {
+	if requestCallFuncs != nil {
 		for _, requestCallFunc := range requestCallFuncs {
 			if requestCallFunc(w, r) { // call filter
 				return

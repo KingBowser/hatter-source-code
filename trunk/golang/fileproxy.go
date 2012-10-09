@@ -37,7 +37,7 @@ func DownloadGet(url, basePath string) (int64, error) {
 	newFileName := GetRealFullFileName(basePath, GetFileName(url))
 	fmt.Println("Download file from: ", url, " -> " + newFileName)
 	resp, respError := http.Get(url)
-	if (respError != nil) {
+	if respError != nil {
 		return 0, respError
 	}
 	defer resp.Body.Close()
@@ -136,7 +136,7 @@ func main() {
 	fmt.Println("Start up at port:", *appHttpServerPort)
 	var h HttpServerHandle
 	listenAndServeError := http.ListenAndServe(fmt.Sprintf(":%v", *appHttpServerPort), h)
-	if (listenAndServeError != nil) {
+	if listenAndServeError != nil {
 		fmt.Println(listenAndServeError)
 	}
 }

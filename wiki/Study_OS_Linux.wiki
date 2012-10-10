@@ -73,6 +73,11 @@ Mac OS X:
 curl -O http://ftp.gnu.org/gnu/wget/wget-1.13.4.tar.gz
 }}}
 
+打开命令的退出值:
+{{{
+cmd; echo $?
+}}}
+
 <br><br>
 ===参考资料===
 `[1].` http://www.hungry.com/~jamie/xexport.html<br>

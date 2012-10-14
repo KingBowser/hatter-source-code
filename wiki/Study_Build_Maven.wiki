@@ -8,3 +8,9 @@ mvn help:effective-pom
 
 mvn dependency:copy-dependencies -DincludeScope=test|compile
 }}}
+
+
+Maven debug surefire test:
+{{{
+-Dmaven.surefire.debug
+}}}

@@ -37,5 +37,3 @@ Schema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://ma
         </plugins>
     	</build>
 </project>
-<-- (BIG POM) -->
-        

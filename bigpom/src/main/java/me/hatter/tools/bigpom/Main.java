@@ -93,6 +93,9 @@ public class Main {
                         if (f.getName().equals("all")) {
                             return false;
                         }
+                        if (f.getName().equals("bigpom")) {
+                            return false;
+                        }
                         if (f.getName().equals("pom.xml")) {
                             String pom = FileUtil.readFileToString(f);
                             if (!pom.contains("(BIG POM)")) {

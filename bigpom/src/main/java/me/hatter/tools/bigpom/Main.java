@@ -60,7 +60,7 @@ public class Main {
         System.out.println("Max intl.base version: " + maxVersion);
         System.out.println("Found project paths:");
         for (String p : filterProjectList) {
-            moduleList.add("<module>" + p + "</module>");
+            moduleList.add("<module>" + p.replace(Environment.USER_DIR, "../") + "</module>");
             System.out.println("  " + p.replace(Environment.USER_DIR, "../"));
         }
         String t = IOUtil.readResourceToString(Main.class, "/pom.xml.template");

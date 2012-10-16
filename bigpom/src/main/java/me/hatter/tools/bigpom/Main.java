@@ -2,6 +2,7 @@ package me.hatter.tools.bigpom;
 
 import java.io.File;
 import java.io.FileFilter;
+import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
@@ -9,10 +10,13 @@ import java.util.concurrent.atomic.AtomicLong;
 import me.hatter.tools.commons.args.UnixArgsutil;
 import me.hatter.tools.commons.environment.Environment;
 import me.hatter.tools.commons.file.FileUtil;
+import me.hatter.tools.commons.io.IOUtil;
+import me.hatter.tools.commons.string.StringUtil;
+import me.hatter.tools.commons.xml.XmlParser;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         UnixArgsutil.parseGlobalArgs(args);
 
         List<File> pomList = listPomFiles(new File(Environment.USER_DIR));
@@ -24,6 +28,49 @@ public class Main {
         for (File f : pomList) {
             System.out.println("  " + f);
         }
+        Version maxVersion = null;
+        List<String> filterProjectList = new ArrayList<String>();
+        for (File f : pomList) {
+            try {
+                XmlParser xp = new XmlParser(new FileInputStream(f));
+                String parentArtifactId = xp.parseXpathNode("/project/parent/artifactId").getTextContent();
+                if (!("intl.base".equalsIgnoreCase(parentArtifactId.trim()))) {
+                    continue;
+                }
+                String parentVersion = xp.parseXpathNode("/project/parent/version").getTextContent();
+                filterProjectList.add(f.getParent());
+                Version version = Version.parse(parentVersion);
+                if (maxVersion == null) {
+                    maxVersion = version;
+                } else {
+                    if (maxVersion.compareTo(version) < 0) {
+                        maxVersion = version;
+                    }
+                }
+            } catch (RuntimeException e) {
+                System.out.println("Read file: " + f + " failed, for: " + e.getMessage());
+                throw e;
+            }
+        }
+        if (filterProjectList.isEmpty()) {
+            System.out.println("No project path found.");
+            return;
+        }
+        List<String> moduleList = new ArrayList<String>();
+        System.out.println("Max intl.base version: " + maxVersion);
+        System.out.println("Found project paths:");
+        for (String p : filterProjectList) {
+            moduleList.add("<module>" + p + "</module>");
+            System.out.println("  " + p);
+        }
+        String t = IOUtil.readResourceToString(Main.class, "/pom.xml.template");
+        t = t.replace("${BASE_POM_VERSION}", maxVersion.toString());
+        t = t.replace("${MODULES_LIST}", StringUtil.join(moduleList, "\n"));
+        File bigPom = new File(Environment.USER_DIR, "bigpom");
+        bigPom.mkdirs();
+        File bigPomXml = new File(bigPom, "pom.xml");
+        FileUtil.writeStringToFile(bigPomXml, t);
+        System.out.println("Output big pom: " + bigPomXml);
     }
 
     private static List<File> listPomFiles(File dir) {
@@ -43,6 +90,9 @@ public class Main {
                 if (pathname.isDirectory()) {
                     File[] files = pathname.listFiles();
                     for (File f : files) {
+                        if (f.getName().equals("all")) {
+                            return false;
+                        }
                         if (f.getName().equals("pom.xml")) {
                             String pom = FileUtil.readFileToString(f);
                             if (!pom.contains("(BIG POM)")) {

@@ -61,7 +61,7 @@ public class Main {
         System.out.println("Found project paths:");
         for (String p : filterProjectList) {
             moduleList.add("<module>" + p + "</module>");
-            System.out.println("  " + p);
+            System.out.println("  " + p.replace(Environment.USER_DIR, "../"));
         }
         String t = IOUtil.readResourceToString(Main.class, "/pom.xml.template");
         t = t.replace("${BASE_POM_VERSION}", maxVersion.toString());

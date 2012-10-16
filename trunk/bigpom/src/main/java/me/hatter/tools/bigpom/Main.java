@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileFilter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
 
 import me.hatter.tools.commons.args.UnixArgsutil;
 import me.hatter.tools.commons.environment.Environment;
@@ -27,12 +28,17 @@ public class Main {
 
     private static List<File> listPomFiles(File dir) {
 
+        final AtomicLong count = new AtomicLong(0);
         final List<File> pomList = new ArrayList<File>();
         FileUtil.listFiles(dir, new FileFilter() {
 
             public boolean accept(File pathname) {
                 if (pathname.toString().contains(".svn")) {
                     return false;
+                }
+                count.incrementAndGet();
+                if (count.get() % 100 == 0) {
+                    System.out.print(".");
                 }
                 if (pathname.isDirectory()) {
                     File[] files = pathname.listFiles();
@@ -50,6 +56,7 @@ public class Main {
                 return false;
             }
         }, null);
+        System.out.println();
         return pomList;
     }
 }

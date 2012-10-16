@@ -87,13 +87,13 @@ public class Main {
                 if (count.get() % 100 == 0) {
                     System.out.print(".");
                 }
+                if (pathname.getName().equals("bigpom")) {
+                    return false;
+                }
                 if (pathname.isDirectory()) {
                     File[] files = pathname.listFiles();
                     for (File f : files) {
                         if (f.getName().equals("all")) {
-                            return false;
-                        }
-                        if (f.getName().equals("bigpom")) {
                             return false;
                         }
                         if (f.getName().equals("pom.xml")) {

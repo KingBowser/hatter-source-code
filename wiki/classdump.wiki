@@ -18,6 +18,9 @@ Usage:
     -filter <class name regex>       filter by classname
     -output <dir>                    output directory
     --i                              ignore case
+    --color                          color output
+    --hidejar                        hide from jar
+    --showclassloaders               show url classloaders
 }}}
 
 Sample:

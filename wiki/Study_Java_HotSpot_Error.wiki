@@ -1,0 +1,5 @@
+#summary HotSpot Error
+#sidebar TableOfContents
+
+hs_error_pidNNNNNN.log
+

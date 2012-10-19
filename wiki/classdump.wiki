@@ -61,3 +61,5 @@ _dump
 {{{
 $ java -jar classdumpall.jar --showclassloaders --color 1252
 }}}
+
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/classdump/classdump_showclassloaders.png]

@@ -1,5 +1,4 @@
 #summary HotSpot Error
 #sidebar TableOfContents
 
-hs_error_pidNNNNNN.log
-
+<b>hs_error_pid<font color="blue">NNNNNN</font>.log</b>

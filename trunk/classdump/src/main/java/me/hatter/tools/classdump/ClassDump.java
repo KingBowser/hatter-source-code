@@ -6,6 +6,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 import me.hatter.tools.commons.args.UnixArgsutil;
@@ -17,9 +19,12 @@ import me.hatter.tools.commons.log.LogUtil;
 import me.hatter.tools.commons.map.CountingMap;
 import me.hatter.tools.commons.regex.RegexUtil;
 import sun.jvm.hotspot.memory.SystemDictionary;
+import sun.jvm.hotspot.oops.HeapVisitor;
 import sun.jvm.hotspot.oops.Instance;
 import sun.jvm.hotspot.oops.InstanceKlass;
 import sun.jvm.hotspot.oops.Klass;
+import sun.jvm.hotspot.oops.ObjArray;
+import sun.jvm.hotspot.oops.ObjectHeap;
 import sun.jvm.hotspot.oops.Oop;
 import sun.jvm.hotspot.oops.OopField;
 import sun.jvm.hotspot.oops.OopUtilities;
@@ -41,9 +46,11 @@ public class ClassDump {
         if (UnixArgsutil.ARGS.args().length == 0) {
             usage();
         }
-        if (UnixArgsutil.ARGS.kvalue("filter") == null) {
-            LogUtil.error("Args -filter <class name regex> MUST assigned, if dump all classes set to '.*'");
-            System.exit(0);
+        if (!UnixArgsutil.ARGS.flags().containsAny("showclassloaders")) {
+            if (UnixArgsutil.ARGS.kvalue("filter") == null) {
+                LogUtil.error("Args -filter <class name regex> MUST assigned, if dump all classes set to '.*'");
+                System.exit(0);
+            }
         }
 
         ClassDumpTool.main(new String[] { UnixArgsutil.ARGS.args()[0] }, System.out);
@@ -63,9 +70,15 @@ public class ClassDump {
         }
 
         public void run() {
+            if (UnixArgsutil.ARGS.flags().contains("showclassloaders")) {
+                showClassLoaders();
+                return;
+            }
+
             // walk through the system dictionary
             SystemDictionary dict = VM.getVM().getSystemDictionary();
             LogUtil.info("Output directory: " + outputDirectory);
+
             dict.classesDo(new SystemDictionary.ClassVisitor() {
 
                 public void visit(Klass k) {
@@ -78,6 +91,62 @@ public class ClassDump {
                     }
                 }
             });
+        }
+
+        private void showClassLoaders() {
+            SystemDictionary dict = VM.getVM().getSystemDictionary();
+            Klass urlClassLoader = dict.find("java/net/URLClassLoader", null, null);
+            ObjectHeap objectHeap = VM.getVM().getObjectHeap();
+            objectHeap.iterateObjectsOfKlass(new HeapVisitor() {
+
+                public void prologue(long arg0) {
+                }
+
+                public void epilogue() {
+                }
+
+                public boolean doObj(Oop classloader) {
+                    String className = classloader.getKlass().getName().asString().replace('/', '.');
+                    System.out.println(className);
+                    List<String> pathList = getPathList(classloader);
+                    if (pathList == null) {
+                        System.out.println("    [NULL]");
+                    } else {
+                        for (String p : pathList) {
+                            System.out.println("    " + p);
+                        }
+                    }
+                    return false;
+                }
+            }, urlClassLoader, true);
+        }
+
+        private List<String> getPathList(Oop classloader) {
+            List<String> pathList = new ArrayList<String>();
+            Oop ucp = getOopFieldValueFrom(classloader, "ucp", "Lsun/misc/URLClassPath;");
+            if (ucp == null) {
+                return null;
+            }
+            Oop path = getOopFieldValueFrom(ucp, "path", "Ljava/util/ArrayList;");
+            if (path == null) {
+                return null;
+            }
+            ObjArray elementData = (ObjArray) getOopFieldValueFrom(path, "elementData", "[Ljava/lang/Object;");
+            if (elementData == null) {
+                return null;
+            }
+            for (int i = 0; i < elementData.getLength(); i++) {
+                Oop url = elementData.getObjAt(i);
+                if (url == null) {
+                    continue;
+                }
+                Oop p = getOopFieldValueFrom(url, "path", "Ljava/lang/String;");
+                if (p == null) {
+                    continue;
+                }
+                pathList.add(OopUtilities.stringOopToString(p));
+            }
+            return pathList;
         }
 
         private void dumpKlass(InstanceKlass kls) {
@@ -165,6 +234,7 @@ public class ClassDump {
         System.out.println("    -output <dir>                    output directory");
         System.out.println("    --i                              ignore case");
         System.out.println("    --hidejar                        hide from jar");
+        System.out.println("    --showclassloaders               show classloaders");
         System.out.println();
         HotSpotProcessUtil.printVMs(System.out, true);
         System.exit(0);

@@ -57,3 +57,7 @@ _dump
             |-- Usage$3.class
             `-- Usage.class
 }}}
+
+{{{
+$ java -jar classdumpall.jar --showclassloaders --color 1252
+}}}

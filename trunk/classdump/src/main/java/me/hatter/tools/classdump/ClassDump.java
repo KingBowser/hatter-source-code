@@ -20,9 +20,17 @@ import sun.jvm.hotspot.memory.SystemDictionary;
 import sun.jvm.hotspot.oops.Instance;
 import sun.jvm.hotspot.oops.InstanceKlass;
 import sun.jvm.hotspot.oops.Klass;
+import sun.jvm.hotspot.oops.Oop;
+import sun.jvm.hotspot.oops.OopField;
+import sun.jvm.hotspot.oops.OopUtilities;
 import sun.jvm.hotspot.runtime.VM;
 import sun.jvm.hotspot.tools.jcore.ClassWriter;
 
+/**
+ * Some code is copied from: https://gist.github.com/1441625
+ * 
+ * @author hatterjiang
+ */
 public class ClassDump {
 
     public static void main(String[] args) {
@@ -80,6 +88,9 @@ public class ClassDump {
                 return;
             }
             LogUtil.info("Dump class: " + className + "  @ " + getClassLoaderName(kls));
+            if (!UnixArgsutil.ARGS.flags().contains("hidejar")) {
+                LogUtil.info("       jar: " + getClassJarFileName(kls));
+            }
 
             klassName = klassName.replace('/', File.separatorChar);
             int index = klassName.lastIndexOf(File.separatorChar);
@@ -113,6 +124,26 @@ public class ClassDump {
         }
     }
 
+    public static String getClassJarFileName(InstanceKlass kls) {
+        Oop protectionDomain = kls.getProtectionDomain();
+        if (protectionDomain == null) {
+            return null;
+        }
+        Oop codesource = getOopFieldValueFrom(protectionDomain, "codesource", "Ljava/security/CodeSource;");
+        if (codesource == null) {
+            return null;
+        }
+        Oop location = getOopFieldValueFrom(codesource, "location", "Ljava/net/URL;");
+        if (location == null) {
+            return null;
+        }
+        Oop path = getOopFieldValueFrom(location, "path", "Ljava/lang/String;");
+        if (path == null) {
+            return null;
+        }
+        return OopUtilities.stringOopToString(path);
+    }
+
     public static String getClassLoaderName(InstanceKlass kls) {
         if ((kls.getClassLoader() != null) && (kls.getClassLoader() instanceof Instance)) {
             Instance cli = (Instance) kls.getClassLoader();
@@ -121,12 +152,19 @@ public class ClassDump {
         return null; // should be bootstrap classloader
     }
 
+    private static Oop getOopFieldValueFrom(Oop oop, String name, String sig) {
+        InstanceKlass klass = (InstanceKlass) oop.getKlass();
+        OopField field = (OopField) klass.findField(name, sig);
+        return field.getValue(oop);
+    }
+
     private static void usage() {
         System.out.println("Usage:");
         System.out.println("  java -jar classdumpall.jar [options] <PID>");
         System.out.println("    -filter <class name regex>       filter by classname");
         System.out.println("    -output <dir>                    output directory");
         System.out.println("    --i                              ignore case");
+        System.out.println("    --hidejar                        hide from jar");
         System.out.println();
         HotSpotProcessUtil.printVMs(System.out, true);
         System.exit(0);

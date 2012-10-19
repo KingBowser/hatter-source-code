@@ -36,6 +36,7 @@
    * [Study_Java_HotSpot_ClassLayout ClassLayout]
    * [Study_Java_HotSpot_Concurrent Concurrent]
    * [Study_Java_HotSpot_DirectBuffer DirectBuffer]
+   * [Study_Java_HotSpot_Error Error]
    * [Study_Java_HotSpot_GCCause GCCause]
    * [Study_Java_HotSpot_Glossay Glossay]
    * [Study_Java_HotSpot_Memory Memory]

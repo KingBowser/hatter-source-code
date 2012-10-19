@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 import me.hatter.tools.commons.args.UnixArgsutil;
+import me.hatter.tools.commons.color.Color;
 import me.hatter.tools.commons.jvm.HotSpotProcessUtil;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil.JDKLib;
@@ -107,13 +108,20 @@ public class ClassDump {
 
                 public boolean doObj(Oop classloader) {
                     String className = classloader.getKlass().getName().asString().replace('/', '.');
-                    System.out.println(className);
+                    boolean is_C = UnixArgsutil.ARGS.flags().contains("color");
+                    String colorSt = is_C ? (Color.CHAR_27 + "[;101m") : "";
+                    String colorEd = is_C ? Color.RESET : "";
+                    System.out.println(colorSt + className + " ::: " + colorEd);
                     List<String> pathList = getPathList(classloader);
                     if (pathList == null) {
-                        System.out.println("    [NULL]");
+                        System.out.println("  `- [NULL]");
                     } else {
-                        for (String p : pathList) {
-                            System.out.println("    " + p);
+                        for (int i = 0; i < pathList.size(); i++) {
+                            if (i < (pathList.size() - 1)) {
+                                System.out.println("  |- " + pathList.get(i));
+                            } else {
+                                System.out.println("  `- " + pathList.get(i));
+                            }
                         }
                     }
                     return false;
@@ -233,8 +241,9 @@ public class ClassDump {
         System.out.println("    -filter <class name regex>       filter by classname");
         System.out.println("    -output <dir>                    output directory");
         System.out.println("    --i                              ignore case");
+        System.out.println("    --color                          color output");
         System.out.println("    --hidejar                        hide from jar");
-        System.out.println("    --showclassloaders               show classloaders");
+        System.out.println("    --showclassloaders               show url classloaders");
         System.out.println();
         HotSpotProcessUtil.printVMs(System.out, true);
         System.exit(0);

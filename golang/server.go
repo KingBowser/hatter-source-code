@@ -304,7 +304,7 @@ func HandleFileDomainSetting(w http.ResponseWriter, r *http.Request, filePath st
 		isNotModified = true
 	}
 	w.Header().Set(lib.CONTENT_TYPE, lib.GetContentType(lib.GetSuffix(filePath)))
-	if isNotModified {
+	if !isNotModified {
 		w.Header().Set(lib.CONTENT_LENGTH, strconv.FormatInt(openFileInfo.Size(), 10))
 	}
 	w.Header().Set(lib.ETAG, etag)

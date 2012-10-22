@@ -53,6 +53,7 @@ const (
 	DATE = "Date"
 	EXPIRES = "Expires"
 	LAST_MODIFIED = "Last-Modified"
+	CACHE_CONTROL = "Cache-Control"
 	IF_NONE_MATCH = "If-None-Match"
 )
 

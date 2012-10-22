@@ -297,14 +297,25 @@ func HandleFileDomainSetting(w http.ResponseWriter, r *http.Request, filePath st
 		return false
 	}
 	etag := lib.CalcETag(openFileInfo)
+	rEtag := r.Header.Get(lib.IF_NONE_MATCH)
+	isNotModified := false
+	if (rEtag != "") && (etag == rEtag) {
+		w.WriteHeader(304)
+		isNotModified = true
+	}
 	w.Header().Set(lib.CONTENT_TYPE, lib.GetContentType(lib.GetSuffix(filePath)))
-	w.Header().Set(lib.CONTENT_LENGTH, strconv.FormatInt(openFileInfo.Size(), 10))
+	if isNotModified {
+		w.Header().Set(lib.CONTENT_LENGTH, strconv.FormatInt(openFileInfo.Size(), 10))
+	}
 	w.Header().Set(lib.ETAG, etag)
 	now := time.Now()
 	exp := now.Add(time.Duration(60 * 10))
 	w.Header().Set(lib.DATE, now.UTC().Format(lib.RFC1123))
 	w.Header().Set(lib.EXPIRES, exp.UTC().Format(lib.RFC1123))
 	w.Header().Set(lib.LAST_MODIFIED, openFileInfo.ModTime().UTC().Format(lib.RFC1123))
+	if isNotModified {
+		return true
+	}
 	io.Copy(w, openFile)
 	return true
 }

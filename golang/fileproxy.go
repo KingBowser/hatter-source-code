@@ -107,7 +107,11 @@ func (h HttpServerHandle) ServeHTTP (
 		fmt.Fprint(w, ", success count: ", downloadedSuccCount)
 		fmt.Fprint(w, ", downloaded size: ", lib.ToSize(downloadedSize))
 		fmt.Fprint(w, ", downloaded time: ", downloadedTime, "ms")
-		fmt.Fprint(w, ", average: ", lib.ToSize(downloadedSize / (downloadedTime / 1000)))
+		if downloadedTime > 0 {
+			fmt.Fprint(w, ", average: ", lib.ToSize(downloadedSize / (downloadedTime / 1000)))
+		} else {
+			fmt.Fprint(w, ", average: ", lib.ToSize(0))
+		}
 		fmt.Fprint(w, "</body>\n")
 		fmt.Fprint(w, "</html>\n")
 		return

@@ -9,6 +9,7 @@ import (
 	"flag"
 	"path"
 	"bytes"
+	"strconv"
 	"strings"
 	"os/exec"
 	"io/ioutil"
@@ -295,7 +296,7 @@ func HandleFileDomainSetting(w http.ResponseWriter, r *http.Request, filePath st
 		return false
 	}
 	w.Header().Set(lib.CONTENT_TYPE, lib.GetContentType(lib.GetSuffix(filePath)))
-	w.Header().Set(lib.CONTENT_LENGTH, string(openFileInfo.Size()))
+	w.Header().Set(lib.CONTENT_LENGTH, strconv.FormatInt(openFileInfo.Size(), 10))
 	io.Copy(w, openFile)
 	return true
 }

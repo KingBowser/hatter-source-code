@@ -197,6 +197,15 @@
   </tr>
 </table>
 <script type="text/javascript" src="jses/common.js"></script>
+<script type="text/javascript">
+  setTimeout(function() {
+    var f = document.createElement("link");
+    f.rel = "stylesheet";
+    f.type = "text/css";
+    f.href = "font.css";
+    document.getElementsByTagName("head")[0].appendChild(f);
+  }, 0);
+</script>
 </body>
 </html>
 

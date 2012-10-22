@@ -8,6 +8,7 @@ import (
 	"log"
 	"flag"
 	"path"
+	"time"
 	"bytes"
 	"strconv"
 	"strings"
@@ -295,8 +296,15 @@ func HandleFileDomainSetting(w http.ResponseWriter, r *http.Request, filePath st
 		log.Println("Stat file failed:", openFileInfoError)
 		return false
 	}
+	etag := lib.CalcETag(openFileInfo)
 	w.Header().Set(lib.CONTENT_TYPE, lib.GetContentType(lib.GetSuffix(filePath)))
 	w.Header().Set(lib.CONTENT_LENGTH, strconv.FormatInt(openFileInfo.Size(), 10))
+	w.Header().Set(lib.ETAG, etag)
+	now := time.Now()
+	exp := now.Add(time.Duration(60 * 10))
+	w.Header().Set(lib.DATE, now.UTC().Format(lib.RFC1123))
+	w.Header().Set(lib.EXPIRES, exp.UTC().Format(lib.RFC1123))
+	w.Header().Set(lib.LAST_MODIFIED, openFileInfo.ModTime().UTC().Format(lib.RFC1123))
 	io.Copy(w, openFile)
 	return true
 }

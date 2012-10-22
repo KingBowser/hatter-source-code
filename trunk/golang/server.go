@@ -19,7 +19,7 @@ import (
 )
 
 const (
-	CACHE_SECONDS = 60 * 60 * 24 * 30
+	CACHE_SECONDS = 60 * 60 * 24
 )
 
 const (

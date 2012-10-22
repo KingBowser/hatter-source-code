@@ -1,6 +1,7 @@
 package lib
 
 import (
+	"os"
 	"fmt"
 	"time"
 	"strconv"
@@ -48,6 +49,15 @@ const (
 	LOCATION = "Location"
 	CONTENT_TYPE = "Content-Type"
 	CONTENT_LENGTH = "Content-Length"
+	ETAG = "ETag"
+	DATE = "Date"
+	EXPIRES = "Expires"
+	LAST_MODIFIED = "Last-Modified"
+)
+
+// format
+const (
+	RFC1123 = "Mon, 02 Jan 2006 15:04:05 GMT"
 )
 
 // mime type
@@ -205,4 +215,10 @@ func JoinURLPath(url, path string) string {
 
 func GetCurrentTimeMillis() int64 {
 	return time.Now().UnixNano() / 1000 / 1000
+}
+
+func CalcETag(fileInfo os.FileInfo) string {
+	size := strconv.FormatInt(fileInfo.Size(), 16)
+	time := strconv.FormatInt(fileInfo.ModTime().UnixNano(), 16)
+	return "S" + size + "T" + time
 }

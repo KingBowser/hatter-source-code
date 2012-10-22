@@ -16,10 +16,11 @@ import (
 
 var urlFileNameRegexp, _ = regexp.Compile("[^0-9a-zA-Z\\.]")
 
-var downloadCount int64 = 0
+var downloadingCount int64 = 0
 var downloadedAllCount int64 = 0
 var downloadedSuccCount int64 = 0
-var downloadSize int64 = 0
+var downloadedSize int64 = 0
+var downloadedTime int64 = 0
 
 func DoDownloadGet(url, basePath string) {
 	size, err := DownloadGet(url, basePath)
@@ -31,9 +32,10 @@ func DoDownloadGet(url, basePath string) {
 }
 
 func DownloadGet(url, basePath string) (int64, error) {
-	atomic.AddInt64(&downloadCount, 1)
+	atomic.AddInt64(&downloadingCount, 1)
 	atomic.AddInt64(&downloadedAllCount, 1)
-	defer atomic.AddInt64(&downloadCount, -1)
+	defer atomic.AddInt64(&downloadingCount, -1)
+	timeStart := lib.GetCurrentTimeMillis()
 	newFileName := GetRealFullFileName(basePath, GetFileName(url))
 	fmt.Println("Download file from: ", url, " -> " + newFileName)
 	resp, respError := http.Get(url)
@@ -50,8 +52,10 @@ func DownloadGet(url, basePath string) (int64, error) {
 	if copyError != nil {
 		return 0, copyError
 	}
-	atomic.AddInt64(&downloadSize, copyCount)
+	timeEnd := lib.GetCurrentTimeMillis();
+	atomic.AddInt64(&downloadedSize, copyCount)
 	atomic.AddInt64(&downloadedSuccCount, 1)
+	atomic.AddInt64(&downloadedTime, (timeEnd - timeStart))
 	return copyCount, nil
 }
 
@@ -98,10 +102,12 @@ func (h HttpServerHandle) ServeHTTP (
 		fmt.Fprint(w, "URL: ", "<input type=\"text\" name=\"url\" style=\"width: 600px;\">\n")
 		fmt.Fprint(w, "<input type=\"submit\" value=\"Download\">\n")
 		fmt.Fprint(w, "</form>\n")
-		fmt.Fprint(w, "Downloading count: ", fmt.Sprintf("%v", downloadCount))
+		fmt.Fprint(w, "Downloading count: ", fmt.Sprintf("%v", downloadingCount))
 		fmt.Fprint(w, ", total count: ", downloadedAllCount)
 		fmt.Fprint(w, ", success count: ", downloadedSuccCount)
-		fmt.Fprint(w, ", downloaded size: ", lib.ToSize(downloadSize))
+		fmt.Fprint(w, ", downloaded size: ", lib.ToSize(downloadedSize))
+		fmt.Fprint(w, ", downloaded time: ", downloadedTime, "ms")
+		fmt.Fprint(w, ", average: ", lib.ToSize(downloadedSize / (downloadedTime / 1000)))
 		fmt.Fprint(w, "</body>\n")
 		fmt.Fprint(w, "</html>\n")
 		return

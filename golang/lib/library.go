@@ -2,6 +2,7 @@ package lib
 
 import (
 	"fmt"
+	"time"
 	"strconv"
 	"strings"
 	"net/http"
@@ -200,4 +201,8 @@ func JoinURLPath(url, path string) string {
 		path = path[1:]
 	}
 	return url + path
+}
+
+func GetCurrentTimeMillis() int64 {
+	return time.Now().UnixNano() / 1000 / 1000
 }

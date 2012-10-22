@@ -309,7 +309,7 @@ func HandleFileDomainSetting(w http.ResponseWriter, r *http.Request, filePath st
 	}
 	w.Header().Set(lib.ETAG, etag)
 	now := time.Now()
-	exp := now.Add(time.Duration(60 * 10))
+	exp := now.Add(time.Duration(1000000 * 1000 * 60 * 10))
 	w.Header().Set(lib.DATE, now.UTC().Format(lib.RFC1123))
 	w.Header().Set(lib.EXPIRES, exp.UTC().Format(lib.RFC1123))
 	w.Header().Set(lib.LAST_MODIFIED, openFileInfo.ModTime().UTC().Format(lib.RFC1123))

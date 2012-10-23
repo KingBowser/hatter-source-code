@@ -104,6 +104,20 @@ var domainFilters = map[string][]RequestCallFunc {
 	"hatter.me": []RequestCallFunc {
 		DomainPathWikiFilter,
 	},
+	"www.aprilsoft.cn": []RequestCallFunc {
+		HatterJiangHeadFilter,
+	},
+}
+
+
+func HatterJiangHeadFilter(w http.ResponseWriter, r *http.Request) bool {
+	if r.Method != "GET" {
+		return false
+	}
+	if r.URL.Path == "/hatterjiang_head.jpg" {
+		return HandleFileDomainSetting(w, r, "/root/hatter.me/hatterjiang_head.jpg")
+	}
+	return false
 }
 
 func DomainPathWikiFilter(w http.ResponseWriter, r *http.Request) bool {

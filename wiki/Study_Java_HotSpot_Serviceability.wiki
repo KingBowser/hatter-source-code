@@ -29,7 +29,7 @@
   * `ObjectReader`
 
 
-{code}
+{{{
   private void readSystemProperties() {
      InstanceKlass systemKls = getSystemDictionary().getSystemKlass();
      systemKls.iterate(new DefaultOopVisitor() {
@@ -47,7 +47,7 @@
                                }
                         }, false);
   }
-{code}
+}}}
 
 
 ===参数资料===

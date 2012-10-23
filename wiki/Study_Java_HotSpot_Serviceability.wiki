@@ -28,6 +28,7 @@
  * `sun.jvm.hotspot.utilities.*`
   * `CStringUtilities`
   * `ObjectReader`
+  * `SystemDictionaryHelper`
 
 
 Visitors:

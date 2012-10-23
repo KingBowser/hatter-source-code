@@ -117,7 +117,6 @@ func HatterJiangHeadFilter(w http.ResponseWriter, r *http.Request) bool {
 	if r.Method != "GET" {
 		return false
 	}
-	log.Println(r.URL.Path , " >>. XXX")
 	if r.URL.Path == "/hatterjiang_head.jpg" {
 		return HandleFileDomainSetting(w, r, "/root/hatter.me/hatterjiang_head.jpg")
 	}

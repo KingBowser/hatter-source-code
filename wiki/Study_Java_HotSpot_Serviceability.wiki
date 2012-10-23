@@ -25,7 +25,29 @@
  * `sun.jvm.hotspot.runtime.VM`
  
 
+ * `sun.jvm.hotspot.utilities.*`
+  * `ObjectReader`
 
+
+{code}
+  private void readSystemProperties() {
+     InstanceKlass systemKls = getSystemDictionary().getSystemKlass();
+     systemKls.iterate(new DefaultOopVisitor() {
+                               ObjectReader objReader = new ObjectReader();
+                               public void doOop(sun.jvm.hotspot.oops.OopField field, boolean isVMField) {
+                                  if (field.getID().getName().equals("props")) {
+                                     try {
+                                        sysProps = (Properties) objReader.readObject(field.getValue(getObj()));
+                                     } catch (Exception e) {
+                                        if (Assert.ASSERTS_ENABLED) {
+                                           e.printStackTrace();
+                                        }
+                                     }
+                                  }
+                               }
+                        }, false);
+  }
+{code}
 
 
 ===参数资料===

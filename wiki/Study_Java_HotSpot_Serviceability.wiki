@@ -95,3 +95,4 @@ Sample:
 
 ===参数资料===
 `[1].` http://openjdk.java.net/groups/hotspot/docs/Serviceability.html<br>
+`[2].` http://rednaxelafx.iteye.com/blog/730461<br>

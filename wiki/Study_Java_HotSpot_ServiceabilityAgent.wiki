@@ -9,7 +9,7 @@
   * `sun.jvm.hotspot.tools.FinalizerInfo` <br>查找 `java.lang.ref.Finalizer` 下的queue中的队列信息
   * `sun.jvm.hotspot.tools.FlagDumper` <br>通过 `VM.getVM().getCommandLineFlags()` 打印所有的flag信息
   * `sun.jvm.hotspot.tools.HeapDumper`
-  * `sun.jvm.hotspot.tools.HeapSummary`
+  * `sun.jvm.hotspot.tools.HeapSummary` <br>打印内存分配(分带)情况
   * `sun.jvm.hotspot.tools.JInfo`
   * `sun.jvm.hotspot.tools.JMap`
   * `sun.jvm.hotspot.tools.JSnap`
@@ -20,7 +20,7 @@
   * `sun.jvm.hotspot.tools.PStack`
   * `sun.jvm.hotspot.tools.StackTrace`
   * `sun.jvm.hotspot.tools.SysPropsDumper` <br>通过 `VM.getVM().getSystemProperties()` 打印 `Properties getProperties()` 的信息
-  * `sun.jvm.hotspot.tools.jcore.ClassDump`
+  * `sun.jvm.hotspot.tools.jcore.ClassDump` <br>打印内存中的class内存到文件
   * `sun.jvm.hotspot.tools.joql.JSDB`
   * `sun.jvm.hotspot.tools.joql.JOQL`
 

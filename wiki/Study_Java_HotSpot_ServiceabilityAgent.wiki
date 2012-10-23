@@ -31,6 +31,8 @@
   * `CStringUtilities`
   * `ObjectReader`
   * `SystemDictionaryHelper`
+ * `sun.jvm.hotspot.oops.*`
+  * `OopUtilities`
 
 
 Visitors:

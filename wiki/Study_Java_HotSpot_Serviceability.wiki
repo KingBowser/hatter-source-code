@@ -29,6 +29,8 @@
   * `ObjectReader`
 
 
+
+Sample:
 {{{
   private void readSystemProperties() {
      InstanceKlass systemKls = getSystemDictionary().getSystemKlass();

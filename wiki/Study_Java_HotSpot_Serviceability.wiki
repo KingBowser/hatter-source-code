@@ -26,8 +26,46 @@
  
 
  * `sun.jvm.hotspot.utilities.*`
+  * `CStringUtilities`
   * `ObjectReader`
 
+
+Visitors:
+{{{
+sun.jvm.hotspot.asm.InstructionVisitor
+	public interface InstructionVisitor {
+sun.jvm.hotspot.code.CodeCacheVisitor
+	public interface CodeCacheVisitor {
+sun.jvm.hotspot.compiler.OopMapVisitor
+	public interface OopMapVisitor {
+sun.jvm.hotspot.debugger.cdbg.LineNumberVisitor
+	public interface LineNumberVisitor {
+sun.jvm.hotspot.debugger.cdbg.ObjectVisitor
+	public interface ObjectVisitor {
+sun.jvm.hotspot.debugger.cdbg.TypeVisitor
+	public interface TypeVisitor {
+sun.jvm.hotspot.interpreter.BytecodeVisitor
+	public interface BytecodeVisitor {
+sun.jvm.hotspot.memory.StringTable
+	public interface StringVisitor {
+sun.jvm.hotspot.memory.SymbolTable
+	public interface SymbolVisitor {
+sun.jvm.hotspot.memory.SystemDictionary
+	public static interface ClassVisitor {
+	public static interface ClassAndLoaderVisitor {
+sun.jvm.hotspot.oops.HeapVisitor
+	public interface HeapVisitor {
+sun.jvm.hotspot.oops.OopVisitor
+	public interface OopVisitor {
+sun.jvm.hotspot.oops.RawHeapVisitor
+	public interface RawHeapVisitor extends AddressVisitor {
+sun.jvm.hotspot.runtime.AddressVisitor
+	public interface AddressVisitor {
+sun.jvm.hotspot.runtime.PerfMemory
+	public static interface PerfDataEntryVisitor {
+sun.jvm.hotspot.utilities.soql.ObjectVisitor
+	public interface ObjectVisitor {
+}}}
 
 
 Sample:

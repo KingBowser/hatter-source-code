@@ -104,6 +104,9 @@ var domainFilters = map[string][]RequestCallFunc {
 	"hatter.me": []RequestCallFunc {
 		DomainPathWikiFilter,
 	},
+	"aprilsoft.cn": []RequestCallFunc {
+		HatterJiangHeadFilter,
+	},
 	"www.aprilsoft.cn": []RequestCallFunc {
 		HatterJiangHeadFilter,
 	},

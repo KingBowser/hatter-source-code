@@ -19,7 +19,7 @@
   * `sun.jvm.hotspot.tools.PMap`
   * `sun.jvm.hotspot.tools.PStack`
   * `sun.jvm.hotspot.tools.StackTrace`
-  * `sun.jvm.hotspot.tools.SysPropsDumper`
+  * `sun.jvm.hotspot.tools.SysPropsDumper` <br>通过 `VM.getVM().getSystemProperties()` 打印 `Properties getProperties()` 的信息
   * `sun.jvm.hotspot.tools.jcore.ClassDump`
   * `sun.jvm.hotspot.tools.joql.JSDB`
   * `sun.jvm.hotspot.tools.joql.JOQL`

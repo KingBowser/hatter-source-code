@@ -22,5 +22,11 @@
   * `sun.jvm.hotspot.tools.joql.JSDB`
   * `sun.jvm.hotspot.tools.joql.JOQL`
 
+ * `sun.jvm.hotspot.runtime.VM`
+ 
+
+
+
+
 ===参数资料===
 `[1].` http://openjdk.java.net/groups/hotspot/docs/Serviceability.html<br>

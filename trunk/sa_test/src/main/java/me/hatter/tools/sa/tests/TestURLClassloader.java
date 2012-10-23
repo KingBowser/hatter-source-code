@@ -1,36 +1,41 @@
 package me.hatter.tools.sa.tests;
 
 import java.io.PrintStream;
-import java.util.Properties;
 
 import me.hatter.tools.sa.Tool;
+import sun.jvm.hotspot.memory.SystemDictionary;
 import sun.jvm.hotspot.oops.DefaultOopVisitor;
 import sun.jvm.hotspot.oops.InstanceKlass;
+import sun.jvm.hotspot.oops.Klass;
 import sun.jvm.hotspot.runtime.VM;
 import sun.jvm.hotspot.utilities.Assert;
 import sun.jvm.hotspot.utilities.ObjectReader;
 
-public class TestSystemProperties extends Tool {
+public class TestURLClassloader extends Tool {
 
     public static void main(String[] args, PrintStream err) {
-        TestSystemProperties ps = new TestSystemProperties();
+        TestURLClassloader ps = new TestURLClassloader();
         ps.start(args, err);
         ps.stop();
     }
 
-    Properties sysProps;
-
-    @SuppressWarnings("static-access")
     public void run() {
-        InstanceKlass systemKls = VM.getVM().getSystemDictionary().getSystemKlass();
-        systemKls.iterate(new DefaultOopVisitor() { // only static field
+        SystemDictionary dict = VM.getVM().getSystemDictionary();
+        Klass ucl = dict.find("java/net/URLClassLoader", null, null);
+        InstanceKlass iucl = (InstanceKlass) ucl;
+
+        System.out.println(iucl);
+        iucl.iterate(new DefaultOopVisitor() {
 
             ObjectReader objReader = new ObjectReader();
 
             public void doOop(sun.jvm.hotspot.oops.OopField field, boolean isVMField) {
-                if (field.getID().getName().equals("props")) {
+                System.out.println(field.getID().getName());
+                if (field.getID().getName().equals("ucp")) {
                     try {
-                        sysProps = (Properties) objReader.readObject(field.getValue(getObj()));
+                        System.out.println(isVMField);
+                        System.out.println(getObj());
+                        System.out.println(objReader.readObject(field.getValue(getObj())));
                     } catch (Exception e) {
                         if (Assert.ASSERTS_ENABLED) {
                             e.printStackTrace();
@@ -39,10 +44,5 @@ public class TestSystemProperties extends Tool {
                 }
             }
         }, false);
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-        for (Object k : sysProps.keySet()) {
-            System.out.println(k + ":" + sysProps.get(k));
-        }
-        System.out.println(sysProps);
     }
 }

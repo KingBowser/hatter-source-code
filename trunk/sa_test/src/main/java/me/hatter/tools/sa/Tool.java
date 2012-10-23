@@ -11,7 +11,7 @@
  */
 
 // package sun.jvm.hotspot.tools;
-package me.hatter.tools.classdump;
+package me.hatter.tools.sa;
 
 import java.io.PrintStream;
 

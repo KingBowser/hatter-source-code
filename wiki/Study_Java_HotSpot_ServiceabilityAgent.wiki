@@ -50,8 +50,8 @@
 || `getLogMinObjAlignmentInBytes` || `int` ||  ||
 || `getHeapWordSize` || `int` ||  ||
 || `getHeapOopSize` || `int` ||  ||
-|| `getOS` || `java.lang.String` ||  ||
-|| `getCPU` || `java.lang.String` ||  ||
+|| `getOS` || `java.lang.String` || 操作系统: `solaris, linux, win32` ||
+|| `getCPU` || `java.lang.String` || CPU架构: `x86, sparc, ia64, amd64(x86_64)` ||
 || `getVMRelease` || `java.lang.String` ||  ||
 || `getVMInternalInfo` || `java.lang.String` ||  ||
 || `getVM` || `sun.jvm.hotspot.runtime.VM` ||  ||

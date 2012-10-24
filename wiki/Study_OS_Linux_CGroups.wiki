@@ -8,3 +8,4 @@
 `[1].` http://en.wikipedia.org/wiki/Cgroups<br>
 `[2].` http://www.cnblogs.com/lisperl/archive/2012/04/17/2453838.html<br>
 `[3].` http://www.ibm.com/developerworks/cn/linux/l-lxc-containers/<br>
+`[4].` http://www.cnblogs.com/lisperl/archive/2012/07/24/2607024.html<br>

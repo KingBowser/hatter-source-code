@@ -12,9 +12,9 @@
   * `sun.jvm.hotspot.tools.HeapSummary` <br>打印内存分配(分带)情况
   * `sun.jvm.hotspot.tools.JInfo`
   * `sun.jvm.hotspot.tools.JMap`
-  * `sun.jvm.hotspot.tools.JSnap`
-  * `sun.jvm.hotspot.tools.JStack`
-  * `sun.jvm.hotspot.tools.ObjectHistogram`
+  * `sun.jvm.hotspot.tools.JSnap` <br>打印Perf信息
+  * `sun.jvm.hotspot.tools.JStack` <br>打印JVM的StackTrace
+  * `sun.jvm.hotspot.tools.ObjectHistogram` <br>打印'jmap -histo'信息
   * `sun.jvm.hotspot.tools.PermStat`
   * `sun.jvm.hotspot.tools.PMap`
   * `sun.jvm.hotspot.tools.PStack`

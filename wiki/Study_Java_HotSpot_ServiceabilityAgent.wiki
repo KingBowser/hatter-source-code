@@ -72,8 +72,8 @@
 || `getRuntime1` || `sun.jvm.hotspot.c1.Runtime1` ||  ||
 || `getDebugger` || `sun.jvm.hotspot.debugger.JVMDebugger` ||  ||
 || `getRevPtrs` || `sun.jvm.hotspot.utilities.ReversePtrs` ||  ||
-|| `getCommandLineFlags` || `sun.jvm.hotspot.runtime.VM$Flag[]` ||  ||
-|| `getSystemProperties` || `java.util.Properties` ||  ||
+|| `getCommandLineFlags` || `sun.jvm.hotspot.runtime.VM$Flag[]` || JVM的各种参数  ||
+|| `getSystemProperties` || `java.util.Properties` || System.getProperties()的各种参数 ||
  
 
  * `sun.jvm.hotspot.utilities.*`

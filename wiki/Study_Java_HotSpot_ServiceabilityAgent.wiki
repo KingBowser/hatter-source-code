@@ -27,14 +27,14 @@
  * `sun.jvm.hotspot.runtime.VM`
 
 || `isCore` || `boolean` ||  ||
-|| `isClientCompiler` || `boolean` ||  ||
-|| `isServerCompiler` || `boolean` ||  ||
+|| `isClientCompiler` || `boolean` || 是否是C1(client)编译器 ||
+|| `isServerCompiler` || `boolean` || 是否是C2(server)编译器 ||
 || `useDerivedPointerTable` || `boolean` ||  ||
-|| `isBigEndian` || `boolean` ||  ||
-|| `isLP64` || `boolean` ||  ||
+|| `isBigEndian` || `boolean` || 是否是BigEndian ||
+|| `isLP64` || `boolean` || 是否是64位JVM ||
 || `isSharingEnabled` || `boolean` ||  ||
 || `isCompressedOopsEnabled` || `boolean` ||  ||
-|| `getUseTLAB` || `boolean` ||  ||
+|| `getUseTLAB` || `boolean` || 是否使用TLAB(Thread Local Allocation Buffer) ||
 || `isDebugging` || `boolean` ||  ||
 || `wizardMode` || `boolean` ||  ||
 || `getInvocationEntryBCI` || `int` ||  ||

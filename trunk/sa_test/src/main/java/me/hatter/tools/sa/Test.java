@@ -8,11 +8,12 @@ import me.hatter.tools.sa.tests.*;
 
 public class Test {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         HotSpotVMUtil.autoAddToolsJarDependency(JDKTarget.SYSTEM_CLASSLOADER, JDKLib.TOOLS);
         HotSpotVMUtil.autoAddToolsJarDependency(JDKTarget.SYSTEM_CLASSLOADER, JDKLib.SA_JDI);
         UnixArgsutil.parseGlobalArgs(args);
 
-        TestKlass.main(UnixArgsutil.ARGS.args(), System.out);
+        TestAllObjects.main(UnixArgsutil.ARGS.args(), System.out);
+//        sun.jvm.hotspot.tools.soql.SOQL.main(UnixArgsutil.ARGS.args());
     }
 }

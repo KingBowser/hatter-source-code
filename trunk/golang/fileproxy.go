@@ -143,7 +143,7 @@ func (h HttpServerHandle) ServeHTTP (
 		fmt.Fprint(w, "Downloaded size: ", lib.ToSize(downloadedSize))
 		fmt.Fprint(w, ", downloaded time: ", downloadedTime, "ms")
 		if downloadedTime > 0 {
-			fmt.Fprint(w, ", average: ", lib.ToSize(downloadedSize / (downloadedTime / 1000)), "/s")
+			fmt.Fprint(w, ", average: ", lib.ToSize(downloadedSize / downloadedTime / 1000), "/s")
 		} else {
 			fmt.Fprint(w, ", average: ", lib.ToSize(0), "/s")
 		}
@@ -152,7 +152,7 @@ func (h HttpServerHandle) ServeHTTP (
 		fmt.Fprint(w, ", downloading time: ", downloadingTime, "ms")
 		fmt.Fprint(w, ", downloading average: ")
 		if downloadingTime > 0 {
-			fmt.Fprint(w, lib.ToSize(downloadingSize / (downloadingTime / 1000)), "/s")
+			fmt.Fprint(w, lib.ToSize(downloadingSize / downloadingTime / 1000), "/s")
 		} else {
 			fmt.Fprint(w, lib.ToSize(0), "/s")
 		}

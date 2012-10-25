@@ -98,6 +98,7 @@ var domainPathHandlerMap = map[string]RequestCallFunc {
 	"hatter.me/uphatterme": DomainPathSvnUpHandle,
 	"hatter.me/gocompile": DomainPathGoCompileHandle,
 	"hatter.me/goformat": DomainPathGoFormatHandle,
+	"hatter.me/apps": DomainPathAppsHandle,
 }
 
 var domainFilters = map[string][]RequestCallFunc {
@@ -165,6 +166,7 @@ func DomainPathWikiFilter(w http.ResponseWriter, r *http.Request) bool {
 }
 
 func DomainPathAppsHandle(w http.ResponseWriter, r *http.Request) bool {
+	return HandleProxyDomainURL(w, r, "http://hatter-source-code.googlecode.com/svn/trunk/apps.txt")
 }
 
 func DomainPathSvnUpHandle(w http.ResponseWriter, r *http.Request) bool {

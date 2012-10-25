@@ -3,7 +3,6 @@ package main
 
 import (
 	"./lib"
-	"io"
 	"os"
 	"fmt"
 	"flag"
@@ -21,6 +20,41 @@ var downloadedAllCount int64 = 0
 var downloadedSuccCount int64 = 0
 var downloadedSize int64 = 0
 var downloadedTime int64 = 0
+
+var downloadingTime int64 = 0
+var downloadingSize int64 = 0
+
+type CopingCallbackImpl struct {
+	downloadTimeStart int64
+	downloadingSize int64
+	downloadingTime int64
+}
+
+func NewCopingCallbackImpl() *CopingCallbackImpl {
+	callback := new(CopingCallbackImpl)
+	callback.downloadTimeStart = 0
+	callback.downloadingSize = 0
+	callback.downloadingTime = 0
+	return callback
+}
+
+func (callback *CopingCallbackImpl) CopyStart() {
+	callback.downloadTimeStart = lib.GetCurrentTimeMillis()
+}
+
+func (callback *CopingCallbackImpl) Coping(len int64) {
+	currTimeMillis := lib.GetCurrentTimeMillis()
+	diffTimeMillis := currTimeMillis - callback.downloadTimeStart - downloadingTime
+	atomic.AddInt64(&downloadingTime, diffTimeMillis)
+	atomic.AddInt64(&downloadingSize, len)
+	callback.downloadingTime += diffTimeMillis;
+	callback.downloadingSize += len
+}
+
+func (callback *CopingCallbackImpl) CopyEnd(err error) {
+	atomic.AddInt64(&downloadingTime, -callback.downloadingTime)
+	atomic.AddInt64(&downloadingSize, -callback.downloadingSize)
+}
 
 func DoDownloadGet(url, basePath string) {
 	size, err := DownloadGet(url, basePath)
@@ -48,7 +82,7 @@ func DownloadGet(url, basePath string) (int64, error) {
 		return 0, newFileError
 	}
 	defer newFile.Close()
-	copyCount, copyError := io.Copy(newFile, resp.Body)
+	copyCount, copyError := lib.CopyWithCallback(newFile, resp.Body, NewCopingCallbackImpl())
 	if copyError != nil {
 		return 0, copyError
 	}
@@ -105,12 +139,22 @@ func (h HttpServerHandle) ServeHTTP (
 		fmt.Fprint(w, "Downloading count: ", fmt.Sprintf("%v", downloadingCount))
 		fmt.Fprint(w, ", total count: ", downloadedAllCount)
 		fmt.Fprint(w, ", success count: ", downloadedSuccCount)
-		fmt.Fprint(w, ", downloaded size: ", lib.ToSize(downloadedSize))
+		fmt.Fprint(w, "<br>")
+		fmt.Fprint(w, "Downloaded size: ", lib.ToSize(downloadedSize))
 		fmt.Fprint(w, ", downloaded time: ", downloadedTime, "ms")
 		if downloadedTime > 0 {
 			fmt.Fprint(w, ", average: ", lib.ToSize(downloadedSize / (downloadedTime / 1000)), "/s")
 		} else {
 			fmt.Fprint(w, ", average: ", lib.ToSize(0), "/s")
+		}
+		fmt.Fprint(w, "<br>")
+		fmt.Fprint(w, "Downloading size: ", lib.ToSize(downloadingSize))
+		fmt.Fprint(w, ", downloading time: ", downloadingTime, "ms")
+		fmt.Fprint(w, ", downloading average: ")
+		if downloadingTime > 0 {
+			fmt.Fprint(w, lib.ToSize(downloadingSize / (downloadingTime / 1000)), "/s")
+		} else {
+			fmt.Fprint(w, lib.ToSize(0), "/s")
 		}
 		fmt.Fprint(w, "</body>\n")
 		fmt.Fprint(w, "</html>\n")

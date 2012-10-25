@@ -1,7 +1,9 @@
 package lib
 
 import (
+	"io"
 	"os"
+	"log"
 	"fmt"
 	"time"
 	"strconv"
@@ -223,4 +225,54 @@ func CalcETag(fileInfo os.FileInfo) string {
 	size := strconv.FormatInt(fileInfo.Size(), 16)
 	time := strconv.FormatInt(fileInfo.ModTime().UnixNano(), 16)
 	return "S" + size + "T" + time
+}
+
+type CopingCallback interface {
+	CopyStart()
+	Coping(len int64)
+	CopyEnd(err error)
+}
+
+func CopyWithCallback(dst io.Writer, src io.Reader, callback CopingCallback) (written int64, err error) {
+	// If the writer has a ReadFrom method, use it to do the copy.
+	// Avoids an allocation and a copy.
+	if rt, ok := dst.(io.ReaderFrom); ok {
+		log.Println("XXXXXXXXXX ReaderFrom")
+		return rt.ReadFrom(src)
+	}
+	// Similarly, if the reader has a WriteTo method, use it to do the copy.
+	if wt, ok := src.(io.WriterTo); ok {
+		log.Println("XXXXXXXXXX WriterTo")
+		return wt.WriteTo(dst)
+	}
+	log.Println("------------------")
+	buf := make([]byte, 32*1024)
+	callback.CopyStart()
+	for {
+		nr, er := src.Read(buf)
+		if nr > 0 {
+			nw, ew := dst.Write(buf[0:nr])
+			if nw > 0 {
+				written += int64(nw)
+				callback.Coping(int64(nw)) // copy len callback
+			}
+			if ew != nil {
+				err = ew
+				break
+			}
+			if nr != nw {
+				err = io.ErrShortWrite
+				break
+			}
+		}
+		if er == io.EOF {
+			break
+		}
+		if er != nil {
+			err = er
+			break
+		}
+	}
+	callback.CopyEnd(err)
+	return written, err
 }

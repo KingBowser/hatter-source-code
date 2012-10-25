@@ -1,2 +1,18 @@
-https://hatter-source-code.googlecode.com/svn/trunk/bigpom/bigpomall.jar
+https://hatter-source-code.googlecode.com/svn/trunk/ant/ant1.7.tar.gz
+https://hatter-source-code.googlecode.com/svn/trunk/btracescripts/btrace/btrace-bin.tar.gz
+https://hatter-source-code.googlecode.com/svn/trunk/crsh/crsh-1.0.0.tar.gz
+https://hatter-source-code.googlecode.com/svn/trunk/gradle/gradle-1.0-all.zip
 
+https://hatter-source-code.googlecode.com/svn/trunk/bigpom/bigpomall.jar
+https://hatter-source-code.googlecode.com/svn/trunk/classdump/classdumpall.jar
+https://hatter-source-code.googlecode.com/svn/trunk/classlist/classlistall.jar
+https://hatter-source-code.googlecode.com/svn/trunk/finding/findingall.jar
+https://hatter-source-code.googlecode.com/svn/trunk/histoana/histodiffall.jar
+https://hatter-source-code.googlecode.com/svn/trunk/hostsmanager/hostsmanager.jar
+https://hatter-source-code.googlecode.com/svn/trunk/hotstat/hotstatall.jar
+https://hatter-source-code.googlecode.com/svn/trunk/invokefind/invokefind.jar
+https://hatter-source-code.googlecode.com/svn/trunk/jflag/jflagall.jar
+https://hatter-source-code.googlecode.com/svn/trunk/jprop/jpropall.jar
+https://hatter-source-code.googlecode.com/svn/trunk/jtop/jtop.jar
+https://hatter-source-code.googlecode.com/svn/trunk/libana/libanaall.jar
+https://hatter-source-code.googlecode.com/svn/trunk/permstat/permstatall.jar

@@ -9,9 +9,11 @@ public class Main {
 
         if (UnixArgsutil.ARGS.flags().contains("checksvn")) {
             SvnCheck.main(args);
+            return;
         }
         if (UnixArgsutil.ARGS.flags().contains("bigpom")) {
             BigPom.main(args);
+            return;
         }
         System.out.println("Usage:");
         System.out.println("    --checksvn");

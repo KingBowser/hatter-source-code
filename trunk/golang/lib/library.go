@@ -3,7 +3,6 @@ package lib
 import (
 	"io"
 	"os"
-	"log"
 	"fmt"
 	"time"
 	"strconv"
@@ -234,18 +233,6 @@ type CopingCallback interface {
 }
 
 func CopyWithCallback(dst io.Writer, src io.Reader, callback CopingCallback) (written int64, err error) {
-	// If the writer has a ReadFrom method, use it to do the copy.
-	// Avoids an allocation and a copy.
-	if rt, ok := dst.(io.ReaderFrom); ok {
-		log.Println("XXXXXXXXXX ReaderFrom")
-		return rt.ReadFrom(src)
-	}
-	// Similarly, if the reader has a WriteTo method, use it to do the copy.
-	if wt, ok := src.(io.WriterTo); ok {
-		log.Println("XXXXXXXXXX WriterTo")
-		return wt.WriteTo(dst)
-	}
-	log.Println("------------------")
 	buf := make([]byte, 32*1024)
 	callback.CopyStart()
 	for {

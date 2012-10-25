@@ -164,6 +164,9 @@ func DomainPathWikiFilter(w http.ResponseWriter, r *http.Request) bool {
 	return HandleProxyDomainURL(w, r, proxyFullURL)
 }
 
+func DomainPathAppsHandle(w http.ResponseWriter, r *http.Request) bool {
+}
+
 func DomainPathSvnUpHandle(w http.ResponseWriter, r *http.Request) bool {
 	DoSvnUpHatterMe(w, r)
 	return true

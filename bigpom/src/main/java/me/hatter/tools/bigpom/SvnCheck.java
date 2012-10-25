@@ -65,6 +65,7 @@ public class SvnCheck {
             cmds.add("  svn up");
             cmds.add("  cd ..");
             cmds.add("fi");
+            cmds.add("");
         }
         FileUtil.writeStringToFile(new File("checksvn"), StringUtil.join(cmds, "\n"));
         new ProcessBuilder(Arrays.asList("chmod", "+x", "checksvn")).start();

@@ -73,6 +73,7 @@ public class BigPom {
         cmds.add("cd bigpom");
         cmds.add("mvn clean install -Dmaven.test.skip");
         cmds.add("cd ..");
+        cmds.add("");
         FileUtil.writeStringToFile(new File("compilebigpom"), StringUtil.join(cmds, "\n"));
         new ProcessBuilder(Arrays.asList("chmod", "+x", "compilebigpom")).start();
 

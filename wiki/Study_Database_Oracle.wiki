@@ -20,5 +20,25 @@ select tablespace_name,file_name from SYS.DBA_DATA_FILES;
 alter tablespace TABLE_SPACE_NAME add datafile 'xxx.dbf' size 5000M reuse AUTOEXTEND ON NEXT 200M MAXSIZE UNLIMITED;
 }}}
 
+
+{{{
+SELECT UPPER(D.TABLESPACE_NAME) "TableSpaceName",
+       D.TOT_GROOTTE_MB "Total(M)",
+       D.TOT_GROOTTE_MB - nvl(F.TOTAL_BYTES, 0) "Used(M)",
+       TO_CHAR(ROUND((D.TOT_GROOTTE_MB - nvl(F.TOTAL_BYTES, 0)) / D.TOT_GROOTTE_MB * 100, 2), '990.99')||'%' "Used(%)",
+       nvl(F.TOTAL_BYTES, 0) "Free(M)", F.MAX_BYTES "MaxBlock(M)"
+  FROM (SELECT TABLESPACE_NAME,
+               ROUND(SUM(BYTES) / (1024 * 1024), 2) TOTAL_BYTES,
+               ROUND(MAX(BYTES) / (1024 * 1024), 2) MAX_BYTES
+          FROM SYS.DBA_FREE_SPACE
+         GROUP BY TABLESPACE_NAME) F,
+       (SELECT DD.TABLESPACE_NAME,
+               ROUND(SUM(DD.BYTES) / (1024 * 1024), 2) TOT_GROOTTE_MB
+          FROM SYS.DBA_DATA_FILES DD
+         GROUP BY DD.TABLESPACE_NAME) D
+ WHERE D.TABLESPACE_NAME = F.TABLESPACE_NAME(+)
+ ORDER BY F.TABLESPACE_NAME;
+}}}
+
  * 显示所有用户：`select * from all_users;`
  * 查看tablespace空间：`select tablespace_name,round(sum(bytes)/1024/1024,2) "M" from dba_free_space group by tablespace_name;`

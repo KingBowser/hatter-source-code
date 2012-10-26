@@ -20,5 +20,5 @@ select tablespace_name,file_name from SYS.DBA_DATA_FILES;
 alter tablespace TABLE_SPACE_NAME add datafile 'xxx.dbf' size 5000M reuse AUTOEXTEND ON NEXT 200M MAXSIZE UNLIMITED;
 }}}
 
-显示所有用户：
-`select * from all_users;`
+显示所有用户：`select * from all_users;`
+查看tablespace空间：`select tablespace_name,round(sum(bytes)/1024/1024,2) "M" from dba_free_space group by tablespace_name;`

@@ -10,4 +10,7 @@ ps -ef | grep smon
 exp \"sys/oracle as sysdba\" file=/mnt/exp/db.dmp log=/mnt/exp/db.log full=y rows=n compress=y direct=n
 
 imp \"sys/oracle as sysdba\" file=db.dmp ignore=y full=y
+
+
+alter tablespace TABLE_SPACE_NAME add datafile 'xxx.dbf' size 5000M reuse AUTOEXTEND ON NEXT 200M MAXSIZE UNLIMITED;
 }}}

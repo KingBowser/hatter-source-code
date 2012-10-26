@@ -16,3 +16,6 @@ imp \"sys/oracle as sysdba\" file=db.dmp ignore=y full=y
 
 alter tablespace TABLE_SPACE_NAME add datafile 'xxx.dbf' size 5000M reuse AUTOEXTEND ON NEXT 200M MAXSIZE UNLIMITED;
 }}}
+
+显示所有用户：
+`select * from all_users;`

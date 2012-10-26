@@ -7,6 +7,8 @@ echo $ORACLE_HOME
 echo $ORACLE_SID
 ps -ef | grep smon
 
+/proc/<PID>/environ
+
 exp \"sys/oracle as sysdba\" file=/mnt/exp/db.dmp log=/mnt/exp/db.log full=y rows=n compress=y direct=n
 
 imp \"sys/oracle as sysdba\" file=db.dmp ignore=y full=y

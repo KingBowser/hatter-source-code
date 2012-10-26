@@ -40,6 +40,29 @@ SELECT UPPER(D.TABLESPACE_NAME) "TableSpaceName",
  ORDER BY F.TABLESPACE_NAME;
 }}}
 
+
+{{{
+GRANT privilege [, privilege...] TO user [, user| role, PUBLIC...]
+       [WITH ADMIN OPTION];  // 是否用户可再授权限给别的用户
+}}}
+|| `CREATE SESSION` || 创建会话 ||
+|| `CREATE SEQUENCE` || 创建序列 ||
+|| `CREATE SYNONYM` || 创建同名对象 ||
+|| `CREATE TABLE` || 在用户模式中创建表 ||
+|| `CREATE ANY TABLE` || 在任何模式中创建表 ||
+|| `DROP TABLE` || 在用户模式中删除表 ||
+|| `DROP ANY TABLE` || 在任何模式中删除表 ||
+|| `CREATE PROCEDURE` || 创建存储过程 ||
+|| `EXECUTE ANY PROCEDURE` || 执行任何模式的存储过程 ||
+|| `CREATE USER` || 创建用户 ||
+|| `DROP USER` || 删除用户 ||
+|| `CREATE VIEW` || 创建视图 ||
+
+{{{
+SELECT grantee,privilege,admin_option FROM dba_sys_privs
+               WHERE grantee IN ('ALIBABA1949', 'HZBOPS');
+}}}
+
  * 显示所有用户：`select * from all_users;`
  * 显示所有Table：`select * from all_tables;`
  * 查看tablespace空间：`select tablespace_name,round(sum(bytes)/1024/1024,2) "M" from dba_free_space group by tablespace_name;`

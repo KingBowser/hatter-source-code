@@ -17,6 +17,7 @@
  * [Study_Database Database]
   * [Study_Database_MySQL MySQL]
   * [Study_Database_NoSQL NoSQL]
+  * [Study_Database_Oracle Oracle]
   * [Study_Database_SQLite SQLite]
  * [Study_DotNet DotNet]
   * [Study_DotNet_CLI CLI]

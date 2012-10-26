@@ -47,6 +47,7 @@ SELECT UPPER(D.TABLESPACE_NAME) "TableSpaceName",
 GRANT privilege [, privilege...] TO user [, user| role, PUBLIC...]
        [WITH ADMIN OPTION];  // 是否用户可再授权限给别的用户
 }}}
+
 || `CREATE SESSION` || 创建会话 ||
 || `CREATE SEQUENCE` || 创建序列 ||
 || `CREATE SYNONYM` || 创建同名对象 ||
@@ -59,6 +60,7 @@ GRANT privilege [, privilege...] TO user [, user| role, PUBLIC...]
 || `CREATE USER` || 创建用户 ||
 || `DROP USER` || 删除用户 ||
 || `CREATE VIEW` || 创建视图 ||
+
 查看权限：
 {{{
 SELECT grantee,privilege,admin_option FROM dba_sys_privs

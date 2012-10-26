@@ -20,7 +20,7 @@ select tablespace_name,file_name from SYS.DBA_DATA_FILES;
 alter tablespace TABLE_SPACE_NAME add datafile 'xxx.dbf' size 5000M reuse AUTOEXTEND ON NEXT 200M MAXSIZE UNLIMITED;
 }}}
 
-
+计算表空间空闲空间：
 {{{
 SELECT UPPER(D.TABLESPACE_NAME) "TableSpaceName",
        D.TOT_GROOTTE_MB "Total(M)",

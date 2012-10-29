@@ -118,6 +118,11 @@ public class Main {
 }
 }}}
 
+上例输出为：
+{{{
+TestBean [name=this is a test custom tag]
+}}}
+
 
 ==测试代码地址==
 {{{

@@ -8,7 +8,7 @@ XML通常通过DTD、XSD定义，但DTD的表达能力较弱，XSD定义则能�
 
 Spring通过XML解析程序将其解析为DOM树，通过NamespaceHandler指定对应的Namespace的BeanDefinitionParser将其转换成BeanDefinition。再通过Spring自身的功能对BeanDefinition实例化对象。
 
-在期间，Spring会加载两个资料：
+在期间，Spring还会加载两个资料：
  * META-INF/spring.handlers <br>指定NamespaceHandler(实现`org.springframework.beans.factory.xml.NamespaceHandler`)接口，或使用`org.springframework.beans.factory.xml.NamespaceHandlerSupport`的子类。
  * META-INF/spring.schemas <br>在解析XML文件时将XSD重定向到本地文件，避免在解析XML文件时需要上网下载XSD文件。通过现实`org.xml.sax.EntityResolver`接口来实现该功能。
 

@@ -4,7 +4,7 @@
 =Spring自定义标签=
 
 ==Spring自定义标签的原理==
-XML通常通过DTD、XSD定义，但DTD的表达能力较弱，XSD定义则能力比较强，能够定义类型，出现次数等。
+XML通常通过DTD、XSD定义，但DTD的表达能力较弱，XSD定义则能力比较强，能够定义类型，出现次数等。自定义标签需要XSD支持，在实现时使用Namespace扩展来支持自定义标签。
 
 Spring通过XML解析程序将其解析为DOM树，通过NamespaceHandler指定对应的Namespace的BeanDefinitionParser将其转换成BeanDefinition。再通过Spring自身的功能对BeanDefinition实例化对象。
 

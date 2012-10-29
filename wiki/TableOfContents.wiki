@@ -62,6 +62,7 @@
   * [Study_SCM_Subversion Subversion]
  * [Study_Security Security]
   * [Study_Security_EncryptionAlgorithm Encryption Algorithm]
+ * [Study_Time Time]
  * [Study_VPS VPS]
  * [ReportedBugList Reported Bug List]
  * [Study_Others Others]

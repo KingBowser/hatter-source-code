@@ -121,5 +121,5 @@ public class Main {
 
 ==测试代码地址==
 {{{
-https://hatter-source-code.googlecode.com/svn/trunk/tests/springcustomtag
+svn co https://hatter-source-code.googlecode.com/svn/trunk/tests/springcustomtag
 }}}

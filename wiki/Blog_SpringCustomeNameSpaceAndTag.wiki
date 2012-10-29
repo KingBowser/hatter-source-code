@@ -16,3 +16,9 @@ Spring通过XML解析程序将其解析为DOM树，通过NamespaceHandler指定�
 
 
 ==测试代码==
+
+
+==测试代码地址==
+{{{
+https://hatter-source-code.googlecode.com/svn/trunk/tests/springcustomtag
+}}}

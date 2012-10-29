@@ -13,9 +13,110 @@ Spring通过XML解析程序将其解析为DOM树，通过NamespaceHandler指定�
  * META-INF/spring.schemas <br>在解析XML文件时将XSD重定向到本地文件，避免在解析XML文件时需要上网下载XSD文件。通过现实`org.xml.sax.EntityResolver`接口来实现该功能。
 
 ==制作自定义的标签==
+`spring.handlers`:
+{{{
+http\://test.hatter.me/schema/test=me.hatter.test.TestNamespaceHandler
+}}}
 
+`spring.schemas`:
+{{{
+http\://test.hatter.me/schema/test/test.xsd=META-INF/test.xsd
+}}}
+
+`test.xsd`:
+{{{
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns="http://test.hatter.me/schema/test"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	targetNamespace="http://test.hatter.me/schema/test">
+
+	<xsd:element name="custom" type="customType">
+	</xsd:element>
+	
+	<xsd:complexType name="customType">
+		<xsd:attribute name="id" type="xsd:ID">
+		</xsd:attribute>
+		<xsd:attribute name="name" type="xsd:string">
+		</xsd:attribute>
+	</xsd:complexType>
+
+</xsd:schema>
+}}}
+
+`me.hatter.test.TestNamespaceHandler`:
+{{{
+package me.hatter.test;
+
+import org.springframework.beans.factory.xml.NamespaceHandlerSupport;
+
+public class TestNamespaceHandler extends NamespaceHandlerSupport {
+
+    public void init() {
+        registerBeanDefinitionParser("custom", new TestCustomBeanDefinitionParser());
+    }
+}
+}}}
+
+`me.hatter.test.TestCustomBeanDefinitionParser`:
+{{{
+package me.hatter.test;
+
+import me.hatter.test.bean.TestBean;
+
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.beans.factory.support.RootBeanDefinition;
+import org.springframework.beans.factory.xml.BeanDefinitionParser;
+import org.springframework.beans.factory.xml.ParserContext;
+import org.w3c.dom.Element;
+
+public class TestCustomBeanDefinitionParser implements BeanDefinitionParser {
+
+    public BeanDefinition parse(Element element, ParserContext parserContext) {
+
+        String id = element.getAttribute("id");
+        String name = element.getAttribute("name");
+
+        RootBeanDefinition beanDefinition = new RootBeanDefinition();
+        beanDefinition.setBeanClass(TestBean.class);
+        beanDefinition.getPropertyValues().addPropertyValue("name", name);
+        parserContext.getRegistry().registerBeanDefinition(id, beanDefinition);
+
+        return beanDefinition;
+    }
+}
+}}}
 
 ==测试代码==
+`test.xml`:
+{{{
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:test="http://test.hatter.me/schema/test"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+		http://test.hatter.me/schema/test http://test.hatter.me/schema/test/test.xsd">
+	
+	<test:custom id="testCustom" name="this is a test custom tag" />
+</beans>
+}}}
+
+`me.hatter.test.main.Main`:
+{{{
+package me.hatter.test.main;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class Main {
+
+    public static void main(String[] args) {
+        String xml = "classpath:me/hatter/test/main/test.xml";
+        ApplicationContext context = new ClassPathXmlApplicationContext(new String[] { xml });
+        System.out.println(context.getBean("testCustom"));
+    }
+}
+}}}
 
 
 ==测试代码地址==

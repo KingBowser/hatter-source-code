@@ -72,7 +72,7 @@ SELECT grantee,privilege,admin_option FROM dba_sys_privs
  * 查看tablespace空间：`select tablespace_name,round(sum(bytes)/1024/1024,2) "M" from dba_free_space group by tablespace_name;`
 
 账号被锁：
- * 查看被锁用户及时间：` select username,lock_date from dba_users`
+ * 查看被锁用户及时间：` select username,lock_date from dba_users;`
  * 解锁：`ALTER USER username [IDENTIFIED BY password] ACCOUNT UNLOCK;`
  * 查看设置：`select * from dba_profiles where RESOURCE_NAME = 'FAILED_LOGIN_ATTEMPTS';`
  * 修改为30次：`alter profile default limit FAILED_LOGIN_ATTEMPTS 30;`

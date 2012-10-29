@@ -70,3 +70,6 @@ SELECT grantee,privilege,admin_option FROM dba_sys_privs
  * 显示所有用户：`select * from all_users;`
  * 显示所有Table：`select * from all_tables;`
  * 查看tablespace空间：`select tablespace_name,round(sum(bytes)/1024/1024,2) "M" from dba_free_space group by tablespace_name;`
+
+
+`ALTER USER username [IDENTIFIED BY password] ACCOUNT UNLOCK;`

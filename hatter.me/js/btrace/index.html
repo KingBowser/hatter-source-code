@@ -1,0 +1,44 @@
+<html>
+<head>
+<title>BTrace script generator</title>
+</head>
+<body>
+  <table style="width:1000px;" border="1">
+    <tr>
+      <td style="width:120px;">Class Name:</td>
+      <td><input id="t_class" type="text" style="width:600px;"></td>
+    </tr>
+    <tr>
+      <td>Method Name:</td>
+      <td>
+        <input id="t_method" type="text" style="width:600px;">
+        <button>&lt;init&gt;</button>
+      </td>
+    </tr>
+    <tr>
+      <td>调用点:</td>
+      <td>
+        <label><input type="radio" name="invokepoint">函数调用开始</label>
+        <label><input type="radio" name="invokepoint">函数调用结束</label>
+        <label><input type="radio" name="invokepoint">调用此函数位置 类、函数过滤</label>
+      </td>
+    </tr>
+    <tr>
+      <td>调用点:</td>
+      <td>
+        <label><input type="checkbox">分割线</label>
+        <label><input type="checkbox">打印stacktrace</label>
+        <label><input type="checkbox">打印参数</label>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" align="right">
+        <button style="height:30px;width:200px;background-color:red;"><b>Generate!</b></button>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2"><textarea style="height:400px;width:100%;"></textarea></td>
+    </tr>
+  </table>
+</body>
+</html>

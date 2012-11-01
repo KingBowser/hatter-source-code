@@ -78,6 +78,10 @@ curl -O http://ftp.gnu.org/gnu/wget/wget-1.13.4.tar.gz
 cmd; echo $?
 }}}
 
+`/etc/fstab`
+`http://smilejay.com/2011/03/fstab/`
+
 <br><br>
 ===参考资料===
 `[1].` http://www.hungry.com/~jamie/xexport.html<br>
+`[2].` http://smilejay.com/2011/03/fstab/<br>

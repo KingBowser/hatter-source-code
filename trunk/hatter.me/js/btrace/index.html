@@ -1,43 +1,154 @@
 <html>
 <head>
 <title>BTrace script generator</title>
+<script type="text/javascript">
+  APPLICATION_LIBRARY_PATH = "http://jshtaframework.googlecode.com/svn/trunk/jshtaframework/src/source/";
+</script>
+<script type="text/javascript">
+document.write('<script type="text/javascript" src="');
+document.write(APPLICATION_LIBRARY_PATH);
+document.write('cn.aprilsoft.jsapp.core.js">' + '</' + 'script>');
+</script>
+<script type="text/javascript">
+  SetIncludePath(APPLICATION_LIBRARY_PATH);
+</script>
+<script type="text/javascript">
+  Include("cn.aprilsoft.jsapp.common.StringUtil.js");
+  Include("cn.aprilsoft.jsapp.system.System.js");
+  Include("cn.aprilsoft.jsapp.common.ShortCommand.js");
+</script>
+<script type="text/javascript">
+Import("cn.aprilsoft.jsapp.common.StringUtil")
+
+function setT_MethodInit() {
+  $value("t_method", "<init>");
+}
+
+function setT_ClassSubClass() {
+  var t_class = StringUtil.trim($value("t_class"));
+  if (StringUtil.isEmpty(t_class)) {
+    return;
+  }
+  if (StringUtil.startWith(t_class, "+")) {
+    $value("t_class", t_class.substring(1));
+  } else {
+    $value("t_class", "+" + t_class);
+  }
+}
+
+function doGenerateBtraceScript() {
+  var hasError = false;
+  $("t_class").style.backgroundColor = "";
+  $("t_method").style.backgroundColor = "";
+  var t_class = StringUtil.trim($value("t_class"))
+  var t_method = StringUtil.trim($value("t_method"))
+  if (StringUtil.isEmpty(t_class)) {
+    hasError = true;
+    $("t_class").style.backgroundColor = "red";
+  }if (StringUtil.isEmpty(t_method)) {
+    hasError = true;
+    $("t_method").style.backgroundColor = "red";
+  }
+  if (hasError) {
+    return;
+  }
+  var m_index = 0;
+  var buf = [];
+  buf.push("import com.sun.btrace.AnyType;");
+  buf.push("import com.sun.btrace.annotations.*;");
+  buf.push("import static com.sun.btrace.BTraceUtils.*;");
+  buf.push("");
+  buf.push("@BTrace");
+  buf.push("public class Trace {");
+  buf.push("");
+  var params = [];
+  if ($isChecked("i_methodstart")) {
+    buf.push("    @OnMethod(clazz = \"" + t_class + "\", "
+                         + "method = \"" + t_method + "\")");
+    params.push("AnyType[] args");
+  }
+  if ($isChecked("i_methodend")) {
+    buf.push("    @OnMethod(clazz = \"" + t_class + "\", "
+                         + "method = \"" + t_method + "\", "
+                         + "location = @Location(Kind.RETURN))");
+    params.push("@Return Object ret");
+  }
+  if ($isChecked("i_methodcall")) {
+  	if (StringUtil.startWith(t_class, "+")) {
+  	  t_class = StringUtil.trim(t_class.substring(1));
+  	}
+    buf.push("    @OnMethod(clazz = \"/.*/\", "
+                         + "method = \"/.*/\", "
+                         + "location = @Location(value = Kind.CALL, "
+                                              + "clazz = \"" + t_class + "\", "
+                                              + "method = \"" + t_method + "\"))");
+    params.push("@ProbeClassName String clazz");
+    params.push("@ProbeMethodName String method");
+    params.push("@TargetInstance Object instance");
+  }
+  buf.push("    public static void " + ("m" + (m_index++)) + "(" + params.join(", ") + ") {");
+  if ($isChecked("o_split")) {
+    buf.push("        println(\"\\n==== " + t_class + "#" + t_method + " ====\");");
+  }
+  if ($isChecked("i_methodstart") && $isChecked("o_printargs")) {
+    buf.push("        printArray(args);");
+  }
+  if ($isChecked("i_methodend") && $isChecked("o_printret")) {
+    buf.push("        println(str(ret));");
+  }
+  if ($isChecked("o_stacktrace")) {
+    buf.push("        jstack();");
+  }
+  buf.push("    }");
+  buf.push("}");
+  $value("s_code", buf.join("\n"));
+}
+</script>
 </head>
 <body>
   <table style="width:1000px;" border="1">
     <tr>
       <td style="width:120px;">类名:</td>
-      <td><input id="t_class" type="text" style="width:600px;"></td>
+      <td>
+        <input id="t_class" type="text" style="width:600px;">
+        <button onclick="setT_ClassSubClass();">+ subclass</button>
+      </td>
     </tr>
     <tr>
       <td>方法名:</td>
       <td>
         <input id="t_method" type="text" style="width:600px;">
-        <button>&lt;init&gt;</button>
+        <button onclick="setT_MethodInit();">&lt;init&gt;</button>
       </td>
     </tr>
     <tr>
       <td>调用点:</td>
       <td>
-        <label><input type="radio" name="invokepoint">函数调用开始</label>
-        <label><input type="radio" name="invokepoint">函数调用结束</label>
-        <label><input type="radio" name="invokepoint">调用此函数位置 类、函数过滤</label>
+        <label><input id="i_methodstart" type="radio" name="invokepoint" checked="checked">函数调用开始</label>
+        <label><input id="i_methodend" type="radio" name="invokepoint">函数调用结束</label>
+        <label><input id="i_methodcall" type="radio" name="invokepoint">调用此函数位置 类、函数过滤</label>
       </td>
     </tr>
     <tr>
       <td>调用点:</td>
       <td>
-        <label><input type="checkbox">分割线</label>
-        <label><input type="checkbox">打印stacktrace</label>
-        <label><input type="checkbox">打印参数</label>
+        <label><input id="o_split" type="checkbox" checked="checked">分割线</label><br/>
+        <label><input id="o_printargs" type="checkbox" checked="checked">打印参数</label><br/>
+        <label><input id="o_printret" type="checkbox" checked="checked">打印返回值</label><br/>
+        <label><input id="o_stacktrace" type="checkbox" checked="checked">打印StackTrace</label>
       </td>
     </tr>
     <tr>
       <td colspan="2" align="right">
-        <button style="height:30px;width:200px;background-color:red;"><b>Generate!</b></button>
+        <button style="height:30px;width:200px;background-color:red;" onclick="doGenerateBtraceScript()">
+          <b>Generate!</b>
+        </button>
       </td>
     </tr>
     <tr>
-      <td colspan="2"><textarea style="height:400px;width:100%;"></textarea></td>
+      <td colspan="2">
+        <textarea id="s_code" style="height:400px;width:100%;font-family:courier new;font-size:16px;"></textarea>
+      </td>
     </tr>
   </table>
 </body>

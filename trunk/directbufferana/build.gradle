@@ -5,7 +5,7 @@ def baseProjectName = 'directbufferana'
 def shellCommandName = baseProjectName
 def eclipseProjectName = baseProjectName
 def eclipseProjectComment = 'my test application'
-def jarManifestMainClass = 'me.hatter.tools.xxx.Main'
+def jarManifestMainClass = 'me.hatter.tools.directbufferana.DirectBufferAna'
 def installTargetBin = '/usr/local/bin/'
 
 archivesBaseName = baseProjectName
@@ -66,6 +66,7 @@ task packall << {
 
 dependencies {
     compile files(fileTree(dir: 'lib', includes: ['*.jar'], excludes: ['*-sources.jar', '*-javadoc.jar']))
+    compile files(file(System.properties['java.home'].replaceAll('\\/jre(\\/)?$', "") + "/lib/sa-jdi.jar"))
 }
 
 eclipse {

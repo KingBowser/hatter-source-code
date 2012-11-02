@@ -74,7 +74,7 @@ public class DirectBufferAna {
             System.out.printf("  reserved size = %f MB (%d bytes)\n", toM(reservedMemory), reservedMemory);
             System.out.printf("  max size      = %f MB (%d bytes)\n", toM(directMemory), directMemory);
             long totalMallocSize = reservedMemory + pageSize * countHolder[0];
-            System.out.printf("  memory malloc'd size: %f MB (%d bytes)\n", toM(totalMallocSize), totalMallocSize);
+            System.out.printf("  malloc'd size = %f MB (%d bytes)\n", toM(totalMallocSize), totalMallocSize);
         }
 
         public static double toM(long value) {

@@ -283,7 +283,7 @@ func HandleListDirDomainSetting(w http.ResponseWriter, r *http.Request, dirPath 
 	return true
 }
 
-func HandleDirDomainSetting(w http.ResponseWriter, r *http.Request, dirPath string) bool {
+func HandleDirDomainSetting(w http.ResponseWriter, r *http.Request, dirPath string, charset string) bool {
 	indexRedirectPath := path.Join(dirPath, REDIRECT_URL)
 	indexRedirectPathFileInfo, indexRedirectPathFileInfoError := os.Stat(indexRedirectPath)
 	if indexRedirectPathFileInfoError == nil && (!indexRedirectPathFileInfo.IsDir()) {
@@ -300,7 +300,7 @@ func HandleDirDomainSetting(w http.ResponseWriter, r *http.Request, dirPath stri
 		filePath := path.Join(dirPath, indexPage)
 		_, statFileInfoError := os.Stat(filePath)
 		if statFileInfoError == nil {
-			return HandleFileDomainSetting(w, r, filePath, "")
+			return HandleFileDomainSetting(w, r, filePath, charset)
 		}
 	}
 	if *serverListDir {
@@ -365,7 +365,7 @@ func HandleDirFileDomainSetting(w http.ResponseWriter, r *http.Request, setting 
 		return true
 	}
 	if accessFileInfo.IsDir() {
-		return HandleDirDomainSetting(w, r, accessPath)
+		return HandleDirDomainSetting(w, r, accessPath, charset)
 	}
 	return HandleFileDomainSetting(w, r, accessPath, charset)
 }

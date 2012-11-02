@@ -155,10 +155,15 @@ func GetSuffix(s string) string {
 	return EMPTY
 }
 
-func GetContentType(suffix string) string {
+func GetContentType(suffix string, charset string) string {
 	contentType := ContentTypeMap[suffix]
 	if contentType == EMPTY {
 		contentType = APPLICATION_OCTET_STREAM
+	}
+	if charset != "" {
+		if   (contentType == TEXT_HTML) || (contentType == TEXT_CSS) || (contentType == APPLICATION_JS) || (contentType == APPLICATION_XML) {
+			return contentType + "; charset=" + charset
+		}
 	}
 	return contentType
 }

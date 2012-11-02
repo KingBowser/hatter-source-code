@@ -31,6 +31,7 @@
  * [Study_Hadoop Hadoop]
   * [Study_Hadoop_Zookeeper Zookeeper]
  * [Study_Java Java]
+  * [Study_Java_BTrace BTrace]
   * [Study_Java_ByteCode ByteCode]
   * [Study_Java_HotSpot HotSpot]
    * [Study_Java_HotSpot_Arguments Arguments]

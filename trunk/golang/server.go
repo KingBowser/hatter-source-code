@@ -51,18 +51,19 @@ type DomainSetting struct {
 	SettingType DomainSettingType
 	RedirectURL string
 	LocationPath string
+	Charset string
 }
 
 var defaultDomainSetting = DomainSetting {
-	LOCATION, "", "", // default startup path
+	LOCATION, "", "", "", // default startup path
 }
 
 var hatterMeDomainSetting = DomainSetting {
-	LOCATION, "", "/root/hatter.me",
+	LOCATION, "", "/root/hatter.me", "utf-8",
 }
 
 var hatterMeRedirectDomainSetting = DomainSetting {
-	REDIRECT, "http://hatter.me/", "",
+	REDIRECT, "http://hatter.me/", "", "",
 }
 
 var quickDomainSettingMap = map[string]*DomainSetting {
@@ -72,22 +73,22 @@ var quickDomainSettingMap = map[string]*DomainSetting {
 	"iwebsky.com": &hatterMeRedirectDomainSetting,
 	"www.iwebsky.com": &hatterMeRedirectDomainSetting,
 	"blog.hatter.me": &DomainSetting {
-		REDIRECT, "http://aprilsoft.cn/blog/", "",
+		REDIRECT, "http://aprilsoft.cn/blog/", "", "",
 	},
 	"code.hatter.me": &DomainSetting {
-		REDIRECT, "https://code.google.com/p/hatter-source-code/", "",
+		REDIRECT, "https://code.google.com/p/hatter-source-code/", "", "",
 	},
 	"go.hatter.me": &DomainSetting {
-		PROXY, "", "http://golang.org",
+		PROXY, "", "http://golang.org", "",
 	},
 	"playgo.hatter.me": &DomainSetting {
-		PROXY, "", "http://play.golang.org",
+		PROXY, "", "http://play.golang.org", "",
 	},
 	"mail.hatter.me": &DomainSetting {
-		REDIRECT, "https://www.google.com/a/hatterjiang.com", "",
+		REDIRECT, "https://www.google.com/a/hatterjiang.com", "", "",
 	},
 	"tinyencrypt.hatter.me": &DomainSetting {
-		REDIRECT, "https://jshtaframework.googlecode.com/svn/trunk/jshtaframework/src/application/TinyEncrypt/EmtpyApplication.hta", "",
+		REDIRECT, "https://jshtaframework.googlecode.com/svn/trunk/jshtaframework/src/application/TinyEncrypt/EmtpyApplication.hta", "", "",
 	},
 }
 
@@ -119,7 +120,7 @@ func HatterJiangHeadFilter(w http.ResponseWriter, r *http.Request) bool {
 		return false
 	}
 	if r.URL.Path == "/hatterjiang_head.jpg" {
-		return HandleFileDomainSetting(w, r, "/root/hatter.me/hatterjiang_head.jpg")
+		return HandleFileDomainSetting(w, r, "/root/hatter.me/hatterjiang_head.jpg", "")
 	}
 	return false
 }
@@ -299,7 +300,7 @@ func HandleDirDomainSetting(w http.ResponseWriter, r *http.Request, dirPath stri
 		filePath := path.Join(dirPath, indexPage)
 		_, statFileInfoError := os.Stat(filePath)
 		if statFileInfoError == nil {
-			return HandleFileDomainSetting(w, r, filePath)
+			return HandleFileDomainSetting(w, r, filePath, "")
 		}
 	}
 	if *serverListDir {
@@ -310,7 +311,7 @@ func HandleDirDomainSetting(w http.ResponseWriter, r *http.Request, dirPath stri
 }
 
 
-func HandleFileDomainSetting(w http.ResponseWriter, r *http.Request, filePath string) bool {
+func HandleFileDomainSetting(w http.ResponseWriter, r *http.Request, filePath string, charset string) bool {
 	openFile, openFileError := os.Open(filePath)
 	if openFileError != nil {
 		log.Println("Open file failed:", openFileError)
@@ -329,7 +330,7 @@ func HandleFileDomainSetting(w http.ResponseWriter, r *http.Request, filePath st
 		w.WriteHeader(304)
 		isNotModified = true
 	}
-	w.Header().Set(lib.CONTENT_TYPE, lib.GetContentType(lib.GetSuffix(filePath)))
+	w.Header().Set(lib.CONTENT_TYPE, lib.GetContentType(lib.GetSuffix(filePath), charset))
 	if !isNotModified {
 		w.Header().Set(lib.CONTENT_LENGTH, strconv.FormatInt(openFileInfo.Size(), 10))
 	}
@@ -349,6 +350,7 @@ func HandleFileDomainSetting(w http.ResponseWriter, r *http.Request, filePath st
 
 func HandleDirFileDomainSetting(w http.ResponseWriter, r *http.Request, setting *DomainSetting) bool {
 	locationPath := setting.LocationPath
+	charset := setting.Charset
 	if locationPath == "" {
 		locationPath = *serverPath
 	}
@@ -365,7 +367,7 @@ func HandleDirFileDomainSetting(w http.ResponseWriter, r *http.Request, setting 
 	if accessFileInfo.IsDir() {
 		return HandleDirDomainSetting(w, r, accessPath)
 	}
-	return HandleFileDomainSetting(w, r, accessPath)
+	return HandleFileDomainSetting(w, r, accessPath, charset)
 }
 
 

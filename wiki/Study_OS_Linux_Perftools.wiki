@@ -10,7 +10,7 @@ configure; make; sudo make install
 {{{
 configure –prefix=/home/user/perftools; make; sudo make install
 }}}
-  # 
+ # export
 {{{
 export LD_PRELOAD=/home/hadoop/perftools/lib/libtcmalloc.so
 export HEAPPROFILE=/home/user/perftools/test
@@ -18,8 +18,7 @@ export HEAPPROFILE=/home/user/perftools/test
  # 修改 `lc_config:sudo vi /etc/ld.so.conf.d/usr_local_lib.conf`，加入/usr/local/lib(libunwind的lib所在目录)
  # 执行sudo /sbin/ldconfig，使libunwind生效
  # 重启应用程序，应用程序会在/home/user/perftools/生成heap，名字包含pid
- # `pprof -text $JAVA_HOME/bin/java /home/admin/perftools/test_23106`
-     (注意如果配置crontab则ppof需要全路径去执行)
+ # `pprof -text $JAVA_HOME/bin/java /home/admin/perftools/test_23106` <br>(注意如果配置crontab则ppof需要全路径去执行)
  # 去发现那个占用内存最多类和方法名
 
 

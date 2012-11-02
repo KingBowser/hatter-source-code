@@ -1,0 +1,11 @@
+#summary BTrace
+#sidebar TableOfContents
+
+==官方网站==
+http://kenai.com/projects/btrace
+
+==工具==
+ * *生成简单BTrace的工具* http://hatter.me/js/btrace/
+
+===参考资料===
+`[1].` http://kenai.com/projects/btrace/pages/UserGuide<br>

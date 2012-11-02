@@ -1,4 +1,5 @@
 #summary Analysis Direct Buffer Size
+#sidebar TableOfContents
 
 
 

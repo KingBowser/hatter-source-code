@@ -120,4 +120,4 @@ Power failure
 非法的系统调用。
 
 ===参考资料===
-`[1].` http://www.zhurouyoudu.com/index.php/archives/691/<br>
+`[1].` http://www.dbafree.net/?p=870<br>

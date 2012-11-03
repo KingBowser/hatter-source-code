@@ -16,3 +16,4 @@ https://hatter-source-code.googlecode.com/svn/trunk/jprop/jpropall.jar
 https://hatter-source-code.googlecode.com/svn/trunk/jtop/jtop.jar
 https://hatter-source-code.googlecode.com/svn/trunk/libana/libanaall.jar
 https://hatter-source-code.googlecode.com/svn/trunk/permstat/permstatall.jar
+https://hatter-source-code.googlecode.com/svn/trunk/directbufferana/directbufferanaall.jar

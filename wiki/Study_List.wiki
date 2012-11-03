@@ -3,5 +3,7 @@
 #sidebar TableOfContents
 
 ==_Welcome to Hatter's Study List_==
+Hi, 这是我的学习记录。
+
 
 My Book list: [Study_List_Books]

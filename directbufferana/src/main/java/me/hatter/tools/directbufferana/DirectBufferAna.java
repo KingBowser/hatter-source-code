@@ -27,7 +27,7 @@ public class DirectBufferAna {
         if (UnixArgsutil.ARGS.args().length == 0) {
             usage();
         }
-        DirectBufferAnaTool.main(args, System.out);
+        DirectBufferAnaTool.main(UnixArgsutil.ARGS.args(), System.out);
     }
 
     public static class DirectBufferAnaTool extends Tool {

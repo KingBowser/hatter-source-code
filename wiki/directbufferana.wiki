@@ -3,6 +3,9 @@
 
 Usage:
 {{{
+wget https://hatter-source-code.googlecode.com/svn/trunk/directbufferana/directbufferanaall.jar
+}}}
+{{{
 $ java -jar directbufferanaall.jar 
 [INFO] Add system classloader jar url: /usr/alibaba/install/jdk1.6.0_25/lib/tools.jar
 [INFO] Add system classloader jar url: /usr/alibaba/install/jdk1.6.0_25/lib/sa-jdi.jar

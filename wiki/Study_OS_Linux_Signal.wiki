@@ -1,0 +1,7 @@
+#summary Linux Signal
+#sidebar TableOfContents
+
+通过 `kill -l` 查看信号量，如：
+
+===参考资料===
+`[1].` http://www.zhurouyoudu.com/index.php/archives/691/<br>

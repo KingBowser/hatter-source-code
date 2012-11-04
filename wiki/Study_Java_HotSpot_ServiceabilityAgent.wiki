@@ -57,14 +57,14 @@
 || `getCPU` || `java.lang.String` || CPU架构: `x86, sparc, ia64, amd64(x86_64)` ||
 || `getVMRelease` || `java.lang.String` ||  ||
 || `getVMInternalInfo` || `java.lang.String` ||  ||
-|| `getVM` || `sun.jvm.hotspot.runtime.VM` ||  ||
+|| `getVM` || `sun.jvm.hotspot.runtime.VM` || `static`: VM类singgleton实例 ||
 || `getBytes` || `sun.jvm.hotspot.runtime.Bytes` ||  ||
 || `getThreads` || `sun.jvm.hotspot.runtime.Threads` ||  ||
 || `getTypeDataBase` || `sun.jvm.hotspot.types.TypeDataBase` ||  ||
 || `getUniverse` || `sun.jvm.hotspot.memory.Universe` ||  ||
-|| `getObjectHeap` || `sun.jvm.hotspot.oops.ObjectHeap` ||  ||
-|| `getSymbolTable` || `sun.jvm.hotspot.memory.SymbolTable` ||  ||
-|| `getStringTable` || `sun.jvm.hotspot.memory.StringTable` ||  ||
+|| `getObjectHeap` || `sun.jvm.hotspot.oops.ObjectHeap` || Heap区对象 ||
+|| `getSymbolTable` || `sun.jvm.hotspot.memory.SymbolTable` || JVM的符号池 ||
+|| `getStringTable` || `sun.jvm.hotspot.memory.StringTable` || JVM的字符串常量池 ||
 || `getSystemDictionary` || `sun.jvm.hotspot.memory.SystemDictionary` ||  ||
 || `getObjectSynchronizer` || `sun.jvm.hotspot.runtime.ObjectSynchronizer` ||  ||
 || `getJNIHandles` || `sun.jvm.hotspot.runtime.JNIHandles` ||  ||

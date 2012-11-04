@@ -3,18 +3,18 @@
 
 <b>The Serviceability Agent(SA).</b> The Serviceability Agent is a Sun private component in the HotSpot repository that was developed by HotSpot engineers to assist in debugging HotSpot. They then realized that SA could be used to craft serviceability tools for end users since it can expose Java objects as well as HotSpot data structures both in running processes and in core files.
 
- * `sun.jvm.hotspot.CLHSDB`<br>命令行界面HotSpotDeBugger
- * `sun.jvm.hotspot.HSDB`<br>图形界面HotSpotDeBugger
+ * <b>`sun.jvm.hotspot.CLHSDB`</b> <br>命令行界面HotSpotDeBugger
+ * <b>`sun.jvm.hotspot.HSDB`</b> <br>图形界面HotSpotDeBugger
 
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/java/oop_klass.png]
 
  * <font color="red"><b>`sun.jvm.hotspot.tools.Tool`</b></font>
   * `sun.jvm.hotspot.tools.FinalizerInfo` <br>查找 `java.lang.ref.Finalizer` 下的queue中的队列信息
   * `sun.jvm.hotspot.tools.FlagDumper` <br>通过 `VM.getVM().getCommandLineFlags()` 打印所有的flag信息
-  * `sun.jvm.hotspot.tools.HeapDumper`
+  * `sun.jvm.hotspot.tools.HeapDumper` <br>Dump内存数据为文件
   * `sun.jvm.hotspot.tools.HeapSummary` <br>打印内存分配(分带)情况
-  * `sun.jvm.hotspot.tools.JInfo`
-  * `sun.jvm.hotspot.tools.JMap`
+  * `sun.jvm.hotspot.tools.JInfo` <br>命令`jinfo`
+  * `sun.jvm.hotspot.tools.JMap` <br>命令`jmap`
   * `sun.jvm.hotspot.tools.JSnap` <br>打印Perf信息
   * `sun.jvm.hotspot.tools.JStack` <br>打印JVM的StackTrace
   * `sun.jvm.hotspot.tools.ObjectHistogram` <br>打印'jmap -histo'信息
@@ -27,7 +27,7 @@
   * `sun.jvm.hotspot.tools.joql.JSDB`
   * `sun.jvm.hotspot.tools.joql.JOQL`
 
- * `sun.jvm.hotspot.runtime.VM`
+ * <font color="red"><b>`sun.jvm.hotspot.runtime.VM`</b></font>
 
 || `isCore` || `boolean` ||  ||
 || `isClientCompiler` || `boolean` || 是否是C1(client)编译器 ||
@@ -79,11 +79,11 @@
 || `getSystemProperties` || `java.util.Properties` || System.getProperties()的各种参数 ||
  
 
- * `sun.jvm.hotspot.utilities.*`
+ * <b>`sun.jvm.hotspot.utilities.*`</b>
   * `CStringUtilities`
   * `ObjectReader`
   * `SystemDictionaryHelper`
- * `sun.jvm.hotspot.oops.*`
+ * <b>`sun.jvm.hotspot.oops.*`</b>
   * `OopUtilities`
 
 

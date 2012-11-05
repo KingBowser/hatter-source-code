@@ -49,18 +49,6 @@ gdb -p pid
 thread apply all bt
 }}}
 
-SSH 打通：
-{{{
-ssh-keygen -t rsa
-
-cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
-}}}
-
-SSH代理：
-{{{
-ssh -f -N <user name>@<ip or domain> -D <port>
-}}}
-
 {{{
 tcpdump 命令常用参数说明 :
 -i 网络接口

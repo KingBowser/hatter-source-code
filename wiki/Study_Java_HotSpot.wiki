@@ -4,6 +4,8 @@
 =HotSpot=
 `HotSpot` 是[http://en.wikipedia.org/wiki/Sun_Microsystems Sun](即现在的[http://www.oracle.com/ Oracle])官方JDK的虚拟机，也是[http://openjdk.java.net/ OpenJDK]的虚拟机。
 
+==[HotSpot_Profiler HotSpot Collections]==
+
  * Check out HotSpot:
 {{{
 hg clone http://hg.openjdk.java.net/jdk7/hotspot/hotspot
@@ -18,10 +20,6 @@ export _JAVA_LAUNCHER_DEBUG=1
 
  * `BASIC DISASSEMBLER PLUGIN FOR HOTSPOT`
  http://kenai.com/projects/base-hsdis
-
-
-
-[HotSpot_Profiler HotSpot Collections]
 
 
 ===参考资料===

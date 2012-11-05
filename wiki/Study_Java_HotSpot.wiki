@@ -17,7 +17,7 @@ export _JAVA_LAUNCHER_DEBUG=1
 || JDK7 || http://download.java.net/jdk7/archive/b130/ ||
 
  * `BASIC DISASSEMBLER PLUGIN FOR HOTSPOT`
-http://kenai.com/projects/base-hsdis
+ http://kenai.com/projects/base-hsdis
 
 
 

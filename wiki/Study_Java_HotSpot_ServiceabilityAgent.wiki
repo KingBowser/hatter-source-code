@@ -3,6 +3,16 @@
 
 <b>The Serviceability Agent(SA).</b> The Serviceability Agent is a Sun private component in the HotSpot repository that was developed by HotSpot engineers to assist in debugging HotSpot. They then realized that SA could be used to craft serviceability tools for end users since it can expose Java objects as well as HotSpot data structures both in running processes and in core files.
 
+== `HotSpot SA` ==
+{{{
+alias clhsdb='java -classpath .:$JAVA_HOME/lib/sa-jdi.jar sun.jvm.hotspot.CLHSDB'
+alias ssum="awk '{sum+=\$1}; END {print sum}'"
+alias objectsizesumm="grep 'object size' | awk -F 'object size = ' '{print \$2}' | awk -F ')' '{print \$1}' | ssum"
+http://javasourcecode.org/html/open-source/jdk/jdk-6u23/sun/jvm/hotspot/CLHSDB.java.html
+http://rednaxelafx.iteye.com/blog/730461
+https://gist.github.com/956694
+}}}
+
  * <b>`sun.jvm.hotspot.CLHSDB`</b> <br>命令行界面HotSpotDeBugger
  * <b>`sun.jvm.hotspot.HSDB`</b> <br>图形界面HotSpotDeBugger
 

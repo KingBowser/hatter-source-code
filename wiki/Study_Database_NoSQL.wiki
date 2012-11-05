@@ -13,3 +13,4 @@ http://nosql-database.org/
 || `Cassandra` || http://cassandra.apache.org/ || The Apache Cassandra database is the right choice when you need scalability and high availability without compromising performance ||
 || `CouchDB` || http://couchdb.apache.org/ || Apache CouchDB™ is a database that uses JSON for documents, JavaScript for MapReduce queries, and regular HTTP for an API ||
 || `Tair` || http://tair.taobao.org/ || Tair是一个高性能，分布式，可扩展，高可靠的key/value结构存储系统 ||
+|| `OrientDB` || http://www.orientdb.org/ || The NoSQL Graph-Document DBMS ||

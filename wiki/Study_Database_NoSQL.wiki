@@ -1,8 +1,7 @@
 #summary No SQL Study
 #sidebar TableOfContents
 
-
-
+=No SQL Databases=
 
 || `Hypertable` || http://hypertable.org/ || Home | Hypertable - Big Data. Big Performance ||
 || `HBase` || http://hbase.apache.org/ || HBase is the Hadoop database. Think of it as a distributed, scalable, big data store ||

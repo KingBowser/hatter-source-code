@@ -3,10 +3,10 @@
 
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/sql/sql1992.txt The SQL-92 standard]
 
-==`Oracle` <font color="red">_【商业数据库】_</font>==
+==Oracle <font color="red">_【商业数据库】_</font>==
 http://www.oracle.com/
 
-==`SQL Server` <font color="red">_【商业数据库】_</font>==
+==SQL Server <font color="red">_【商业数据库】_</font>==
 http://www.microsoft.com/sqlserver/en/us/default.aspx
 
 ==MySQL==

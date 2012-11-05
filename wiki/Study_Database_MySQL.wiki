@@ -3,6 +3,8 @@
 
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/pdfs/mysql/B+Tree_Indexes_and_InnoDB.pdf B+ Tree Indexes and InnoDB]
 
+==维护==
+ * 查看有哪些用户 `select * from mysql.user`
 
 ==锁==
  * 当update or delete，where条件中为非索引条件时，锁全表。这是为什么在项目上线时大量死锁的原因。

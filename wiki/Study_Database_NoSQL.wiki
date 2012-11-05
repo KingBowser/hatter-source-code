@@ -1,7 +1,7 @@
 #summary No SQL Study
 #sidebar TableOfContents
 
-http://nosql-database.org/
+
 
 
 || `Hypertable` || http://hypertable.org/ || Home | Hypertable - Big Data. Big Performance ||
@@ -14,3 +14,7 @@ http://nosql-database.org/
 || `CouchDB` || http://couchdb.apache.org/ || Apache CouchDB™ is a database that uses JSON for documents, JavaScript for MapReduce queries, and regular HTTP for an API ||
 || `Tair` || http://tair.taobao.org/ || Tair是一个高性能，分布式，可扩展，高可靠的key/value结构存储系统 ||
 || `OrientDB` || http://www.orientdb.org/ || The NoSQL Graph-Document DBMS ||
+
+===参考资料==
+`[1].` http://nosql-database.org/<br>
+`[2].` http://www.oschina.net/project/tag/235/nosql?lang=0&os=0&sort=view<br>

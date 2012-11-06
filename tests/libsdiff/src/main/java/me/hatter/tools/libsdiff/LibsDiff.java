@@ -179,7 +179,7 @@ public class LibsDiff {
             } catch (NoSuchAlgorithmException e) {
                 throw new RuntimeException(e);
             }
-            String className = cn.name;
+            String className = cn.name.replace("/", ".");
             String jar = (jarFile == null) ? null : jarFile.getName();
             ClassJarMd5 cmd5 = new ClassJarMd5(className, jar, md5b64);
             if (classNameJarMd5Map.get(className) == null) {

@@ -78,12 +78,12 @@ public class JavaWalkTool {
                 System.out.print(".");
             }
             byte[] bytes = IOUtil.readToBytesAndClose(new BufferedInputStream(is));
-            dealClass(((type == AcceptType.Entry) ? file : null), readClass(bytes));
+            dealClass(((type == AcceptType.Entry) ? file : null), readClass(bytes), bytes);
         }
 
         abstract protected T readClass(byte[] bytes);
 
-        abstract protected void dealClass(File jarFile, T t);
+        abstract protected void dealClass(File jarFile, T t, byte[] bytes);
     }
 
     private File dir;

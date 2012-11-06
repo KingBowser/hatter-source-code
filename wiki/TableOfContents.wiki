@@ -52,6 +52,7 @@
   * [Study_Java_MemoryModel Memory Model]
   * [Study_Java_Zing Zing]
  * [Study_JavaScript JavaScript]
+  * [Study_JavaScript_Application Application]
  * [Study_OpenAuthentication Open Authentication]
  * [Study_OpenSource Open Source]
  * [Study_OS_Linux Linux]

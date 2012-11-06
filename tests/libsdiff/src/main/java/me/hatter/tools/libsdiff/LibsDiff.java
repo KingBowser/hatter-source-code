@@ -190,7 +190,7 @@ public class LibsDiff {
     }
 
     private static void usage() {
-        System.out.println("java -jar xxx.jar -p1 lib1 -p2 lib2");
+        System.out.println("java -jar libsdiffall.jar -p1 lib1 -p2 lib2");
         System.exit(-1);
     }
 }

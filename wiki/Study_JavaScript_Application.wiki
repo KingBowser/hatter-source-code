@@ -39,3 +39,6 @@ var fullscreenEnabled = document.fullScreenEnabled || document.mozScreenEnabled 
   background: pink;
 }
 }}}
+
+===参考资料===
+`[1].` http://davidwalsh.name/fullscreen<br>

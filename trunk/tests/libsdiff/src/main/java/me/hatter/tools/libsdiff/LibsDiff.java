@@ -69,7 +69,7 @@ public class LibsDiff {
                 List<ClassJarMd5> md5s = map1.get(c);
                 System.out.println("" + c);
                 for (ClassJarMd5 md5 : md5s) {
-                    System.out.println("    " + md5.getMd5() + "  " + md5.getJar());
+                    System.out.println("    --  " + md5.getMd5() + "  " + md5.getJar());
                 }
             }
         }
@@ -79,7 +79,7 @@ public class LibsDiff {
                 List<ClassJarMd5> md5s = map2.get(c);
                 System.out.println("" + c);
                 for (ClassJarMd5 md5 : md5s) {
-                    System.out.println("    " + md5.getMd5() + "  " + md5.getJar());
+                    System.out.println("    ++  " + md5.getMd5() + "  " + md5.getJar());
                 }
             }
         }

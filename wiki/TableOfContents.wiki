@@ -29,6 +29,7 @@
  * [Study_GPU GPU]
   * [Study_GPU_GPGPU GPGPU]
  * [Study_Hadoop Hadoop]
+  * [Study_Hadoop_Bookkeeper Bookkeeper]
   * [Study_Hadoop_Zookeeper Zookeeper]
  * [Study_Java Java]
   * [Study_Java_BTrace BTrace]

@@ -18,6 +18,7 @@ import me.hatter.tools.commons.file.JavaWalkTool;
 import me.hatter.tools.commons.file.JavaWalkTool.AbstractClassReaderJarWalker;
 import me.hatter.tools.commons.io.StringPrintWriter;
 import me.hatter.tools.commons.regex.RegexUtil;
+import me.hatter.tools.commons.string.StringUtil;
 
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.Opcodes;
@@ -39,7 +40,7 @@ public class LibAna {
             return cn;
         }
 
-        protected void dealClass(File jarFile, ClassNode cn) {
+        protected void dealClass(File jarFile, ClassNode cn, byte[] bytes) {
             String className = cn.name.replace('/', '.');
             dealClassNode(jarFile, cn, className);
         }
@@ -88,11 +89,18 @@ public class LibAna {
             final PrintWriter out = new StringPrintWriter();
             final Map<String, ClassNode> classNodeMap = new HashMap<String, ClassNode>();
             final Map<String, File> classJarFileMap = new HashMap<String, File>();
+
+            final Map<String, Set<File>> duplicateClassJarFileMap = new HashMap<String, Set<File>>();
             tool.walk(new AbstractClassNodeReaderJarWalker() {
 
                 @Override
                 protected void dealClassNode(File jarFile, ClassNode classNode, String className) {
                     if (duplicatClassNameSet.contains(className)) {
+                        if (duplicateClassJarFileMap.get(className) == null) {
+                            duplicateClassJarFileMap.put(className, new HashSet<File>());
+                        }
+                        duplicateClassJarFileMap.get(className).add(jarFile);
+
                         if (!classNodeMap.containsKey(className)) {
                             classNodeMap.put(className, classNode);
                             classJarFileMap.put(className, jarFile);
@@ -110,6 +118,14 @@ public class LibAna {
             if (!isVerbose() && isTrace()) System.out.println();
             System.out.println("Analysis result:");
             System.out.print(out.toString());
+            Set<Set<File>> allDuplicateJarSet = new HashSet<Set<File>>(duplicateClassJarFileMap.values());
+            System.out.println("All duplicate jars:");
+            for (Set<File> duplicateJarSet : allDuplicateJarSet) {
+                System.out.println(StringUtil.repeat("-", 100));
+                for (File j : duplicateJarSet) {
+                    System.out.println("  " + j);
+                }
+            }
         }
         System.out.println("Analysis finish.");
     }

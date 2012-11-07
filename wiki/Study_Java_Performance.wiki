@@ -1,9 +1,9 @@
 #summary Performace
 #sidebar TableOfContents
 
-=Hatter的性能工具=
+=Hatter的诊断工具=
 
-=第三方性能工具=
+=第三方诊断工具=
 || *Name* || *URL* || *Description* ||
 || [BTrace] || http://kenai.com/projects/btrace || BTrace is a safe, dynamic tracing tool for the Java platform. BTrace can be used to dynamically trace a running Java program (similar to DTrace for OpenSolaris applications and OS). ||
 || CRaSH || http://julienviet.com/crash/ || A shell to extend the Java Platform, Open source and open minded. ||

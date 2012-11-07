@@ -1,4 +1,4 @@
-#summary Performace
+#summary Diagnosis Tools
 #sidebar TableOfContents
 
 =Hatter的诊断工具=

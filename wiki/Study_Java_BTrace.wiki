@@ -7,6 +7,14 @@ http://kenai.com/projects/btrace
 ==原理介绍==
 `java.lang.instrument.Instrumentation`
 
+==参数==
+{{{
+-Dcom.sun.btrace.probeDescPath=.
+-Dcom.sun.btrace.dumpClasses=false
+-Dcom.sun.btrace.debug=false
+-Dcom.sun.btrace.unsafe=false
+}}}
+
 ==工具==
 *生成简单BTrace的工具* http://hatter.me/js/btrace/
 

@@ -3,6 +3,20 @@
 
 =Hatter的诊断工具=
 
+|| *Name* || *URL* || *License* || *Category* || *Description* ||
+|| [finding] || https://hatter-source-code.googlecode.com/svn/trunk/finding/ || `New_BSD` || `Java Tool` || Find ind source code ||
+|| [invokefind] || https://hatter-source-code.googlecode.com/svn/trunk/invokefind/ || `New_BSD` || `Java Tool` || invoke find ||
+|| libana || https://hatter-source-code.googlecode.com/svn/trunk/libana/ || `New_BSD` || `Java Tool` || lib analysis ||
+|| [jtop] || https://hatter-source-code.googlecode.com/svn/trunk/jtop/ || `New_BSD` || `HotSpot Tool` || Java edition of `top` ||
+|| [histodiff] || https://hatter-source-code.googlecode.com/svn/trunk/histoana/ || `GPL` || `HotSpot Tool` || Diff of `jmap -histo` ||
+|| [permstat] || https://hatter-source-code.googlecode.com/svn/trunk/permstat/ || `GPL` || `HotSpot Tool` || Diff of perm string constants ||
+|| [hotstat] || https://hatter-source-code.googlecode.com/svn/trunk/hotstat/ || `GPL` || `HotSpot Tool` || Diff of HotSpot JVM monitors ||
+|| [jflag] || https://hatter-source-code.googlecode.com/svn/trunk/jflag/ || `GPL` || `HotSpot Tool` || Show/Set HotSpot JVM flags ||
+|| [jprop] || https://hatter-source-code.googlecode.com/svn/trunk/jprop/ || `GPL` || `HotSpot Tool` || Show/Set HotSpot system/agent properties ||
+|| [classlist] || https://hatter-source-code.googlecode.com/svn/trunk/classlist/ || `GPL` || `HotSpot Tool` || Show class stat in perm ||
+|| [classdump] || https://hatter-source-code.googlecode.com/svn/trunk/classdump/ || `GPL` || `HotSpot Tool` || Dump class in hotspot jvm ||
+|| [directbufferana] || https://hatter-source-code.googlecode.com/svn/trunk/directbufferana/ || `GPL` || `HotSpot Tool` || Analysis Direct Buffer Size ||
+
 =第三方诊断工具=
 || *Name* || *URL* || *Description* ||
 || [BTrace] || http://kenai.com/projects/btrace || BTrace is a safe, dynamic tracing tool for the Java platform. BTrace can be used to dynamically trace a running Java program (similar to DTrace for OpenSolaris applications and OS). ||

@@ -78,7 +78,15 @@ public class JavaWalkTool {
                 System.out.print(".");
             }
             byte[] bytes = IOUtil.readToBytesAndClose(new BufferedInputStream(is));
-            dealClass(((type == AcceptType.Entry) ? file : null), readClass(bytes), bytes);
+            try {
+                dealClass(((type == AcceptType.Entry) ? file : null), readClass(bytes), bytes);
+            } catch (Exception e) {
+                handleException(is, file, name, type, e);
+            }
+        }
+
+        protected void handleException(InputStream is, File file, String name, AcceptType type, Exception e) {
+            System.out.println("[ERROR] read class: " + file + "!" + name + " failed: " + e.getMessage());
         }
 
         abstract protected T readClass(byte[] bytes);

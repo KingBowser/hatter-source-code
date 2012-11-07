@@ -39,3 +39,4 @@ The number of children of this znode.<br>
 
 ===参考资料===
 `[1].` http://zookeeper.apache.org/doc/r3.3.3/zookeeperProgrammers.html<br>
+`[2].` http://bbs.zoomla.cn/archiver/showtopic-15086.aspx<br>

@@ -9,8 +9,16 @@ mvn help:effective-pom
 mvn dependency:copy-dependencies -DincludeScope=test|compile
 }}}
 
-
 Maven debug surefire test:
 {{{
 -Dmaven.surefire.debug
+}}}
+
+My maven aliases:
+{{{
+alias mci='mvn clean install -Dmaven.test.skip'
+alias mcis='mvn clean install -Dmaven.test.skip -Dcheck.parent.skip'
+alias mee='mvn eclipse:clean eclipse:eclipse'
+alias mees='mvn eclipse:clean eclipse:eclipse -Dcheck.parent.skip'
+alias mct='mvn clean test'
 }}}

@@ -27,3 +27,17 @@ Debug maven:
 {{{
 export MAVEN_OPTS='-Xdebug -Xrunjdwp:transport=dt_socket,address=4000,server=y,suspend=y'
 }}}
+
+pom.xml exclude gid/aid:
+{{{
+<dependency>
+  <groupId>GID_</groupId>
+  <artifactId>AID_</artifactId>
+  <exclusions>
+    <exclusion>
+      <groupId>GID_</groupId>
+      <artifactId>AID_</artifactId>
+    </exclusion>
+  </exclusions>
+</dependency>
+}}}

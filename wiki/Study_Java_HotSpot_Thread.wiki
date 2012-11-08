@@ -22,5 +22,9 @@ Thread
 `-- WatcherThread
 }}}
 
+==线程信息==
+ * Java-level thread ID
+ * Native thread ID
+
 ===参考资料===
-`[1].` https://gist.github.com/843622/4c8ebef497322bb71c2b1f7f5beb46f1d150957a<br>
+`[1].` https://gist.github.com/843622/<br>

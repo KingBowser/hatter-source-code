@@ -13,6 +13,9 @@ http://kenai.com/projects/btrace
 -Dcom.sun.btrace.dumpClasses=false
 -Dcom.sun.btrace.debug=false
 -Dcom.sun.btrace.unsafe=false
+
+-Dcom.sun.btrace.trackRetransforms=false
+-Dcom.sun.btrace.dumpDir=.
 }}}
 
 ==工具==

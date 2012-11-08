@@ -18,6 +18,8 @@ Java Bytecode Instruction: http://en.wikipedia.org/wiki/Java_bytecode_instructio
 
 JVM note book: https://code.google.com/p/jvmnotebook/
 
+GC: http://www.cs.kent.ac.uk/people/staff/rej/gc.html
+
 {{{
 find . -name '*.java' -print > java.list
 javac -d classes @java.list
@@ -51,3 +53,4 @@ jstat -J-Djstat.showUnsupported=true -snap <pid>
 `[3].` http://en.wikipedia.org/wiki/List_of_Java_virtual_machines<br>
 `[4].` http://blog.csdn.net/qiucaijuan/article/details/6672981<br>
 `[5].` https://code.google.com/p/jvmnotebook/<br>
+`[6].` http://www.cs.kent.ac.uk/people/staff/rej/gc.html<br>

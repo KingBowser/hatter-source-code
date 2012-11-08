@@ -257,7 +257,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `ParallelOldDeadWoodLimiterStdDev` || `` || `` || ||
 || `UseParallelOldGCDensePrefix` || `` || `` || ||
 || `ParallelGCThreads` || `uintx` || `product` || 并行收集器的线程数，此值最好配置与处理器数目相等 同样适用于CMS ^[33]^ ||
-|| `ConcGCThreads` || `` || `` || ||
+|| `ConcGCThreads` || `unitx` || `product` || CMS收集器的线程数 ||
 || `YoungPLABSize` || `` || `` || ||
 || `OldPLABSize` || `` || `` || ||
 || `GCTaskTimeStampEntries` || `` || `` || ||

@@ -47,6 +47,7 @@ public class HotSpotVMUtil {
 
         @Deprecated
         // Actually, I don't know how to add bootstrap classpath at runtime
+        // Now I know, but it a little difficult, use agent can do this
         BOOTSTRAP_CLASSPATH;
     }
 

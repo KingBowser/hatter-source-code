@@ -11,6 +11,8 @@ BTrace is a safe, dynamic tracing tool for the Java platform. BTrace can be used
 ==原理介绍==
 `java.lang.instrument.Instrumentation`
 
+http://docs.oracle.com/javase/6/docs/technotes/guides/instrumentation/index.html
+
 ==参数==
 {{{
 -Dcom.sun.btrace.probeDescPath=.

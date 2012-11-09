@@ -1,0 +1,6 @@
+#summary MBean
+#sidebar TableOfContents
+
+{{{
+MBeanServer server = ManagementFactory.getPlatformMBeanServer();
+}}}

@@ -1,6 +1,8 @@
 #summary MBean
 #sidebar TableOfContents
 
+通过加载 `management-agent.jar` 在目标JVM上打开本地JMX服务。
+
 {{{
 MBeanServer server = ManagementFactory.getPlatformMBeanServer();
 }}}

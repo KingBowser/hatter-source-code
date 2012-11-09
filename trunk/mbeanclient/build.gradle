@@ -1,11 +1,11 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
 
-def baseProjectName = 'testapp'
+def baseProjectName = 'mbeanclient'
 def shellCommandName = baseProjectName
 def eclipseProjectName = baseProjectName
 def eclipseProjectComment = 'my test application'
-def jarManifestMainClass = 'me.hatter.tools.xxx.Main'
+def jarManifestMainClass = 'me.hatter.tools.mbeanclient.MBeanClient'
 def installTargetBin = '/usr/local/bin/'
 
 archivesBaseName = baseProjectName

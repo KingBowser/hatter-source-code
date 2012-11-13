@@ -78,6 +78,12 @@ vmstat
 dstat
 lsof
 htop
+netstat
+
+ping
+nslookup
+dig
+whois
 }}}
 
 `/etc/fstab`

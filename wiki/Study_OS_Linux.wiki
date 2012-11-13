@@ -84,6 +84,7 @@ ping
 nslookup
 dig
 whois
+tcpdump
 }}}
 
 `/etc/fstab`
@@ -93,3 +94,4 @@ whois
 ===参考资料===
 `[1].` http://www.hungry.com/~jamie/xexport.html<br>
 `[2].` http://smilejay.com/2011/03/fstab/<br>
+`[3].` http://www.cnblogs.com/liuhao/archive/2012/11/13/2768898.html<br>

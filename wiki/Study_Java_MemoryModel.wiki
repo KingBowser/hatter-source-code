@@ -42,3 +42,4 @@
 
 ===参考资料===
 `[1].` http://gee.cs.oswego.edu/dl/jmm/cookbook.html<br>
+`[2].` http://www.cs.umd.edu/~pugh/java/memoryModel/<br>

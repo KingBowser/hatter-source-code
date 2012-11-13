@@ -71,6 +71,13 @@ curl -O http://ftp.gnu.org/gnu/wget/wget-1.13.4.tar.gz
 cmd; echo $?
 }}}
 
+{{{
+top
+iostat
+vmstat
+dstat
+}}}
+
 `/etc/fstab`
 `http://smilejay.com/2011/03/fstab/`
 

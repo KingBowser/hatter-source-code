@@ -2,6 +2,21 @@
 #sidebar TableOfContents
 
 ==现象==
+系统几个核CPU占用率非常高（`100%`），且不处理正常业务：
+{{{
+top - 03:07:48 up 232 days,  5:14,  2 users,  load average: 3.77, 3.49, 3.43
+Tasks: 127 total,   1 running, 126 sleeping,   0 stopped,   0 zombie
+Cpu0  : 10.6%us,  0.3%sy,  0.0%ni, 89.0%id,  0.0%wa,  0.0%hi,  0.0%si,  0.0%st
+Cpu1  :  0.0%us,  0.0%sy,  0.0%ni, 98.7%id,  1.3%wa,  0.0%hi,  0.0%si,  0.0%st
+Cpu2  :  0.0%us,  0.0%sy,  0.0%ni,100.0%id,  0.0%wa,  0.0%hi,  0.0%si,  0.0%st
+Cpu3  :100.0%us,  0.0%sy,  0.0%ni,  0.0%id,  0.0%wa,  0.0%hi,  0.0%si,  0.0%st
+Cpu4  :100.0%us,  0.0%sy,  0.0%ni,  0.0%id,  0.0%wa,  0.0%hi,  0.0%si,  0.0%st
+Cpu5  :  0.0%us,  0.3%sy,  0.0%ni, 99.7%id,  0.0%wa,  0.0%hi,  0.0%si,  0.0%st
+Cpu6  :100.0%us,  0.0%sy,  0.0%ni,  0.0%id,  0.0%wa,  0.0%hi,  0.0%si,  0.0%st
+Cpu7  :  0.0%us,  0.0%sy,  0.0%ni,100.0%id,  0.0%wa,  0.0%hi,  0.0%si,  0.0%st
+Mem:  10485760k total,  9227556k used,  1258204k free,   201184k buffers
+Swap:  2097144k total,      116k used,  2097028k free,  1643884k cached
+}}}
 
 ==查找过程==
 

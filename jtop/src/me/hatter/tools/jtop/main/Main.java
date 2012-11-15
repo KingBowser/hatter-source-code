@@ -190,28 +190,41 @@ public class Main {
     }
 
     static boolean isMatch(StackTraceElement element) {
-        List<String> includes = UnixArgsutil.ARGS.kvalues("includes");
         List<String> excludes = UnixArgsutil.ARGS.kvalues("excludes");
-        if (CollectionUtil.isEmpty(includes)) {
+        List<String> includes = UnixArgsutil.ARGS.kvalues("includes");
+        if (CollectionUtil.isEmpty(excludes)) {
             return true;
         }
         boolean isMatch = false;
-        for (String i : includes) {
-            if (element.toString().contains(i)) {
+        for (String e : excludes) {
+            if (isMatchOne(element.toString(), e)) {
                 isMatch = true;
             }
         }
         if (!isMatch) {
-            return false;
+            return true;
         }
-        if (!CollectionUtil.isEmpty(excludes)) {
-            for (String e : excludes) {
-                if (element.toString().contains(e)) {
-                    return false;
+        if (!CollectionUtil.isEmpty(includes)) {
+            for (String i : includes) {
+                if (isMatchOne(element.toString(), i)) {
+                    return true;
                 }
             }
         }
-        return true;
+        return false;
+    }
+
+    static boolean isMatchOne(String ele, String pattern) {
+        if (pattern.startsWith("^")) {
+            if (ele.toString().startsWith(pattern.substring(1))) {
+                return true;
+            }
+        } else {
+            if (ele.toString().contains(pattern)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     static JThreadInfo[] sortJThreadInfos(JThreadInfo[] cJThreadInfos) {
@@ -301,7 +314,7 @@ public class Main {
         System.out.println("    -thread <N>                   Thread Top N (default: 5)");
         System.out.println("    -stack <N>                    Stacktrace Top N (default: 8)");
         System.out.println("    -excludes                     Excludes (string.contains)");
-        System.out.println("    -includes                     Includes (string.contains)");
+        System.out.println("    -includes                     Includes (string.contains, excludes than includes)");
         System.out.println("    --color                       Display color (default: off)");
         System.out.println("    --sortmem                     Sort by memory allocted (default: off)");
         System.out.println("    --summaryoff                  Do not display summary (default: off)");

@@ -13,6 +13,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import me.hatter.tools.commons.args.UnixArgsutil;
 import me.hatter.tools.commons.bytes.ByteUtil;
 import me.hatter.tools.commons.bytes.ByteUtil.ByteFormat;
+import me.hatter.tools.commons.collection.CollectionUtil;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil.JDKLib;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil.JDKTarget;
@@ -59,7 +60,7 @@ public class Main {
                     System.out.println("[INFO] First Round");
                 } else {
                     // display to console
-                    System.out.println("NEW ROUND ================================================== ");
+                    System.out.println("NEW ROUND =================================================================== ");
                     JThreadInfo[] cJThreadInfos = caculateJThreadInfos(jThreadInfos, lastJThreadInfoMap);
                     cJThreadInfos = sortJThreadInfos(cJThreadInfos);
                     int threadtopn = EnvUtil.getThreadTopN();
@@ -90,9 +91,16 @@ public class Main {
                                     + "  USER_TIME=" + TimeUnit.NANOSECONDS.toMillis(jThreadInfo.getUserTime()) //
                                     + " (" + nf.format(((double) jThreadInfo.getUserTime()) * 100 / cost) + "%)" //
                                     + " Allocted: " + toSize(jThreadInfo.getAlloctedBytes(), size));
-                        for (int j = 0; ((j < jThreadInfo.getStackTrace().length) && (j < stacktracetopn)); j++) {
+                        int matchCount = 0;
+                        for (int j = 0; ((j < jThreadInfo.getStackTrace().length) && (matchCount < stacktracetopn)); j++) {
                             StackTraceElement stackTrace = jThreadInfo.getStackTrace()[j];
-                            outputs.add("\t" + stackTrace.toString());
+                            if (isMatch(stackTrace)) {
+                                matchCount++;
+                                outputs.add("    " + stackTrace.toString());
+                            }
+                        }
+                        if ((matchCount == 0) && (jThreadInfo.getStackTrace().length > 0)) {
+                            outputs.add("    ---- all filtered ----");
                         }
                         outputs.add("");
                     }
@@ -107,37 +115,39 @@ public class Main {
                         }
                     }
 
-                    JMemoryInfo jMemoryInfo = jTopMXBean.getMemoryInfo();
-                    mainOutput.setjMemoryInfo(jMemoryInfo);
-                    System.out.println("Heap Memory:" //
-                                       + " INIT=" + toSize(jMemoryInfo.getHeap().getInit(), size) //
-                                       + "  USED=" + toSize(jMemoryInfo.getHeap().getUsed(), size) //
-                                       + "  COMMITED=" + toSize(jMemoryInfo.getHeap().getCommitted(), size) //
-                                       + "  MAX=" + toSize(jMemoryInfo.getHeap().getMax(), size) //
-                    );
-                    System.out.println("NonHeap Memory:" //
-                                       + " INIT=" + toSize(jMemoryInfo.getNonHeap().getInit(), size) //
-                                       + "  USED=" + toSize(jMemoryInfo.getNonHeap().getUsed(), size) //
-                                       + "  COMMITED=" + toSize(jMemoryInfo.getNonHeap().getCommitted(), size) //
-                                       + "  MAX=" + toSize(jMemoryInfo.getNonHeap().getMax(), size) //
-                    );
+                    if (!UnixArgsutil.ARGS.flags().contains("summaryoff")) {
+                        JMemoryInfo jMemoryInfo = jTopMXBean.getMemoryInfo();
+                        mainOutput.setjMemoryInfo(jMemoryInfo);
+                        System.out.println("Heap Memory:" //
+                                           + " INIT=" + toSize(jMemoryInfo.getHeap().getInit(), size) //
+                                           + "  USED=" + toSize(jMemoryInfo.getHeap().getUsed(), size) //
+                                           + "  COMMITED=" + toSize(jMemoryInfo.getHeap().getCommitted(), size) //
+                                           + "  MAX=" + toSize(jMemoryInfo.getHeap().getMax(), size) //
+                        );
+                        System.out.println("NonHeap Memory:" //
+                                           + " INIT=" + toSize(jMemoryInfo.getNonHeap().getInit(), size) //
+                                           + "  USED=" + toSize(jMemoryInfo.getNonHeap().getUsed(), size) //
+                                           + "  COMMITED=" + toSize(jMemoryInfo.getNonHeap().getCommitted(), size) //
+                                           + "  MAX=" + toSize(jMemoryInfo.getNonHeap().getMax(), size) //
+                        );
 
-                    JGCInfo[] jgcInfos = jTopMXBean.getGCInfos();
-                    for (JGCInfo jgcInfo : jgcInfos) {
-                        System.out.println("GC " + jgcInfo.getName() //
-                                           + "  " + (jgcInfo.getIsValid() ? "VALID" : "NOT_VALID") //
-                                           + "  " + Arrays.asList(jgcInfo.getMemoryPoolNames()) //
-                                           + "  GC=" + jgcInfo.getCollectionCount() //
-                                           + "  GCT=" + jgcInfo.getCollectionTime() //
+                        JGCInfo[] jgcInfos = jTopMXBean.getGCInfos();
+                        for (JGCInfo jgcInfo : jgcInfos) {
+                            System.out.println("GC " + jgcInfo.getName() //
+                                               + "  " + (jgcInfo.getIsValid() ? "VALID" : "NOT_VALID") //
+                                               + "  " + Arrays.asList(jgcInfo.getMemoryPoolNames()) //
+                                               + "  GC=" + jgcInfo.getCollectionCount() //
+                                               + "  GCT=" + jgcInfo.getCollectionTime() //
+                            );
+                        }
+
+                        JClassLoadingInfo jClassLoadingInfo = jTopMXBean.getClassLoadingInfo();
+                        System.out.println("ClassLoading" //
+                                           + " LOADED=" + jClassLoadingInfo.getLoadedClassCount() //
+                                           + "  TOTAL_LOADED=" + jClassLoadingInfo.getTotalLoadedClassCount() //
+                                           + "  UNLOADED=" + jClassLoadingInfo.getUnloadedClassCount() //
                         );
                     }
-
-                    JClassLoadingInfo jClassLoadingInfo = jTopMXBean.getClassLoadingInfo();
-                    System.out.println("ClassLoading" //
-                                       + " LOADED=" + jClassLoadingInfo.getLoadedClassCount() //
-                                       + "  TOTAL_LOADED=" + jClassLoadingInfo.getTotalLoadedClassCount() //
-                                       + "  UNLOADED=" + jClassLoadingInfo.getUnloadedClassCount() //
-                    );
 
                     System.out.println("Total threads: " //
                                        + Text.createText(getFont(mainOutput, cJThreadInfos.length,
@@ -177,6 +187,31 @@ public class Main {
             System.err.println("[ERROR] unknow error occured: " + e.getMessage());
             e.printStackTrace();
         }
+    }
+
+    static boolean isMatch(StackTraceElement element) {
+        List<String> includes = UnixArgsutil.ARGS.kvalues("includes");
+        List<String> excludes = UnixArgsutil.ARGS.kvalues("excludes");
+        if (CollectionUtil.isEmpty(includes)) {
+            return true;
+        }
+        boolean isMatch = false;
+        for (String i : includes) {
+            if (element.toString().contains(i)) {
+                isMatch = true;
+            }
+        }
+        if (!isMatch) {
+            return false;
+        }
+        if (!CollectionUtil.isEmpty(excludes)) {
+            for (String e : excludes) {
+                if (element.toString().contains(e)) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     static JThreadInfo[] sortJThreadInfos(JThreadInfo[] cJThreadInfos) {
@@ -265,8 +300,11 @@ public class Main {
         System.out.println("    -size <B|K|M|G|H>             Size, case insensitive (default: B, H for human)");
         System.out.println("    -thread <N>                   Thread Top N (default: 5)");
         System.out.println("    -stack <N>                    Stacktrace Top N (default: 8)");
+        System.out.println("    -excludes                     Excludes (string.contains)");
+        System.out.println("    -includes                     Includes (string.contains)");
         System.out.println("    --color                       Display color (default: off)");
         System.out.println("    --sortmem                     Sort by memory allocted (default: off)");
+        System.out.println("    --summaryoff                  Do not display summary (default: off)");
         System.out.println();
     }
 }

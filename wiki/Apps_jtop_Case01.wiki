@@ -43,7 +43,7 @@ DefaultQuartzScheduler_Worker-6  TID=84  STATE=RUNNABLE  CPU_TIME=2100 (99.43%) 
 	org.springframework.aop.aspectj.AspectJExpressionPointcut.<init>(AspectJExpressionPointcut.java:109)
 }}}
 
-发现停在这一行 `java.util.WeakHashMap.put(WeakHashMap.java:405)`， 查看JDK源代码，看到：
+发现这一行 `java.util.WeakHashMap.put(WeakHashMap.java:405)`消耗CPU极高，接近`100%`， 查看JDK源代码，看到：
 {{{
 399.    public V put(K key, V value) {
 400.        K k = (K) maskNull(key);
@@ -69,6 +69,7 @@ DefaultQuartzScheduler_Worker-6  TID=84  STATE=RUNNABLE  CPU_TIME=2100 (99.43%) 
 420.    }
 }}}
 
+通过`jstack`查看完整的堆栈信息：
 {{{
    java.lang.Thread.State: RUNNABLE
         at java.util.WeakHashMap.put(WeakHashMap.java:405)

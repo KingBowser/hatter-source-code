@@ -1,10 +1,16 @@
-#summary jtop case 
+#summary jtop case
 #sidebar TableOfContents
 
+==现象==
+
+==查找过程==
+
+使用`jtop`查看，命令如下：
 {{{
-java -jar jtop.jar <PID> 2000 100 -thread 3 -stack 8
+java -jar jtop.jar -thread 3 -stack 8 <PID> 2000 100
 }}}
 
+得到的输出如下：
 {{{
 DefaultQuartzScheduler_Worker-8  TID=86  STATE=RUNNABLE  CPU_TIME=2110 (99.90%)  USER_TIME=2110 (99.90%) Allocted: 0
 	java.util.WeakHashMap.put(WeakHashMap.java:405)
@@ -37,6 +43,31 @@ DefaultQuartzScheduler_Worker-6  TID=84  STATE=RUNNABLE  CPU_TIME=2100 (99.43%) 
 	org.springframework.aop.aspectj.AspectJExpressionPointcut.<init>(AspectJExpressionPointcut.java:109)
 }}}
 
+发现停在这一行 `java.util.WeakHashMap.put(WeakHashMap.java:405)`， 查看JDK源代码，看到：
+{{{
+399.    public V put(K key, V value) {
+400.        K k = (K) maskNull(key);
+401.        int h = HashMap.hash(k.hashCode());
+402.        Entry[] tab = getTable();
+403.        int i = indexFor(h, tab.length);
+404.
+405.        for (Entry<K,V> e = tab[i]; e != null; e = e.next) {
+406.            if (h == e.hash && eq(k, e.get())) {
+407.                V oldValue = e.value;
+408.                if (value != oldValue)
+409.                    e.value = value;
+410.                return oldValue;
+411.            }
+412.        }
+413.
+414.        modCount++;
+415.	Entry<K,V> e = tab[i];
+416.        tab[i] = new Entry<K,V>(k, value, queue, h, e);
+417.        if (++size >= threshold)
+418.            resize(tab.length * 2);
+419.        return null;
+420.    }
+}}}
 
 {{{
    java.lang.Thread.State: RUNNABLE

@@ -1,4 +1,84 @@
 #summary jtop case 
 #sidebar TableOfContents
 
+{{{
+java -jar jtop.jar <PID> 2000 100 -thread 3 -stack 8
+}}}
 
+{{{
+DefaultQuartzScheduler_Worker-8  TID=86  STATE=RUNNABLE  CPU_TIME=2110 (99.90%)  USER_TIME=2110 (99.90%) Allocted: 0
+	java.util.WeakHashMap.put(WeakHashMap.java:405)
+	org.aspectj.weaver.Dump.registerNode(Dump.java:253)
+	org.aspectj.weaver.World.<init>(World.java:150)
+	org.aspectj.weaver.reflect.ReflectionWorld.<init>(ReflectionWorld.java:50)
+	org.aspectj.weaver.tools.PointcutParser.setClassLoader(PointcutParser.java:221)
+	org.aspectj.weaver.tools.PointcutParser.<init>(PointcutParser.java:207)
+	org.aspectj.weaver.tools.PointcutParser.getPointcutParserSupportingSpecifiedPrimitivesAndUsingContextClassloaderForResolution(PointcutParser.java:128)
+	org.springframework.aop.aspectj.AspectJExpressionPointcut.<init>(AspectJExpressionPointcut.java:100)
+
+DefaultQuartzScheduler_Worker-10  TID=88  STATE=RUNNABLE  CPU_TIME=2110 (99.90%)  USER_TIME=2110 (99.90%) Allocted: 0
+	java.util.WeakHashMap.put(WeakHashMap.java:405)
+	org.aspectj.weaver.Dump.registerNode(Dump.java:253)
+	org.aspectj.weaver.World.<init>(World.java:150)
+	org.aspectj.weaver.reflect.ReflectionWorld.<init>(ReflectionWorld.java:50)
+	org.aspectj.weaver.tools.PointcutParser.setClassLoader(PointcutParser.java:221)
+	org.aspectj.weaver.tools.PointcutParser.<init>(PointcutParser.java:183)
+	org.aspectj.weaver.reflect.InternalUseOnlyPointcutParser.<init>(InternalUseOnlyPointcutParser.java:22)
+	org.aspectj.weaver.reflect.Java15ReflectionBasedReferenceTypeDelegate.getDeclaredPointcuts(Java15ReflectionBasedReferenceTypeDelegate.java:243)
+
+DefaultQuartzScheduler_Worker-6  TID=84  STATE=RUNNABLE  CPU_TIME=2100 (99.43%)  USER_TIME=2100 (99.43%) Allocted: 0
+	java.util.WeakHashMap.put(WeakHashMap.java:405)
+	org.aspectj.weaver.Dump.registerNode(Dump.java:253)
+	org.aspectj.weaver.World.<init>(World.java:150)
+	org.aspectj.weaver.reflect.ReflectionWorld.<init>(ReflectionWorld.java:50)
+	org.aspectj.weaver.tools.PointcutParser.setClassLoader(PointcutParser.java:221)
+	org.aspectj.weaver.tools.PointcutParser.getPointcutParserSupportingSpecifiedPrimitivesAndUsingContextClassloaderForResolution(PointcutParser.java:129)
+	org.springframework.aop.aspectj.AspectJExpressionPointcut.<init>(AspectJExpressionPointcut.java:100)
+	org.springframework.aop.aspectj.AspectJExpressionPointcut.<init>(AspectJExpressionPointcut.java:109)
+}}}
+
+
+{{{
+   java.lang.Thread.State: RUNNABLE
+        at java.util.WeakHashMap.put(WeakHashMap.java:405)
+        at org.aspectj.weaver.Dump.registerNode(Dump.java:253)
+        at org.aspectj.weaver.World.<init>(World.java:150)
+        at org.aspectj.weaver.reflect.ReflectionWorld.<init>(ReflectionWorld.java:50)
+        at org.aspectj.weaver.tools.PointcutParser.setClassLoader(PointcutParser.java:221)
+        at org.aspectj.weaver.tools.PointcutParser.<init>(PointcutParser.java:183)
+        at org.aspectj.weaver.reflect.InternalUseOnlyPointcutParser.<init>(InternalUseOnlyPointcutParser.java:22)
+        at org.aspectj.weaver.reflect.Java15ReflectionBasedReferenceTypeDelegate.getDeclaredPointcuts(Java15ReflectionBasedRef
+erenceTypeDelegate.java:243)
+        at org.aspectj.weaver.ReferenceType.getDeclaredPointcuts(ReferenceType.java:740)
+        at org.aspectj.weaver.ResolvedType$7.get(ResolvedType.java:531)
+        at org.aspectj.weaver.ResolvedType$7.get(ResolvedType.java:528)
+        at org.aspectj.weaver.Iterators$3$1.hasNext(Iterators.java:128)
+        at org.aspectj.weaver.Iterators$3.hasNext(Iterators.java:144)
+        at org.aspectj.weaver.ResolvedType.findPointcut(ResolvedType.java:539)
+        at org.aspectj.weaver.patterns.ReferencePointcut.resolveBindings(ReferencePointcut.java:149)
+        at org.aspectj.weaver.patterns.Pointcut.resolve(Pointcut.java:196)
+        at org.aspectj.weaver.tools.PointcutParser.resolvePointcutExpression(PointcutParser.java:314)
+        at org.aspectj.weaver.tools.PointcutParser.parsePointcutExpression(PointcutParser.java:295)
+        at org.springframework.aop.aspectj.AspectJExpressionPointcut.buildPointcutExpression(AspectJExpressionPointcut.java:15
+9)
+        at org.springframework.aop.aspectj.AspectJExpressionPointcut.checkReadyToMatch(AspectJExpressionPointcut.java:149)
+        at org.springframework.aop.aspectj.AspectJExpressionPointcut.getClassFilter(AspectJExpressionPointcut.java:134)
+        at org.springframework.aop.support.AopUtils.canApply(AopUtils.java:165)
+        at org.springframework.aop.support.AopUtils.canApply(AopUtils.java:225)
+        at org.springframework.aop.support.AopUtils.findAdvisorsThatCanApply(AopUtils.java:255)
+        at org.springframework.aop.framework.autoproxy.AbstractAdvisorAutoProxyCreator.findEligibleAdvisors(AbstractAdvisorAut
+oProxyCreator.java:73)
+        at org.springframework.aop.framework.autoproxy.AbstractAdvisorAutoProxyCreator.getAdvicesAndAdvisorsForBean(AbstractAd
+visorAutoProxyCreator.java:57)
+        at org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator.postProcessAfterInitialization(AbstractAutoPro
+xyCreator.java:255)
+        at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsAfterInitializa
+tion(AbstractAutowireCapableBeanFactory.java:312)
+        at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapable
+BeanFactory.java:1033)
+        at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBean
+Factory.java:421)
+        at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:264)
+        at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:156)
+        at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:640)
+}}}

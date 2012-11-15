@@ -78,6 +78,9 @@ var quickDomainSettingMap = map[string]*DomainSetting {
 	"code.hatter.me": &DomainSetting {
 		REDIRECT, "https://code.google.com/p/hatter-source-code/", "", "",
 	},
+	"svn.hatter.me": &DomainSetting {
+		PROXY, "", "https://hatter-source-code.googlecode.com/svn/trunk/", "",
+	},
 	"go.hatter.me": &DomainSetting {
 		PROXY, "", "http://golang.org", "",
 	},

@@ -1,7 +1,7 @@
 #summary Java edition TOP.
 #sidebar TableOfContents
 
-= Introduction <g:plusone size="medium"></g:plusone> =
+= Introduction =
 
 The java edition command of top.
 

@@ -1,8 +1,9 @@
 #summary jtop case
 #sidebar TableOfContents
 
-==现象==
-系统几个核CPU占用率非常高（`100%`），且不处理正常业务：
+有一个专门处理任务型的应用发现有停止处理业务逻辑。
+
+通过`top`看到，系统几个核CPU占用率非常高（`100%`），且不处理正常业务：
 {{{
 top - 03:07:48 up 232 days,  5:14,  2 users,  load average: 3.77, 3.49, 3.43
 Tasks: 127 total,   1 running, 126 sleeping,   0 stopped,   0 zombie
@@ -17,10 +18,9 @@ Cpu7  :  0.0%us,  0.0%sy,  0.0%ni,100.0%id,  0.0%wa,  0.0%hi,  0.0%si,  0.0%st
 Mem:  10485760k total,  9227556k used,  1258204k free,   201184k buffers
 Swap:  2097144k total,      116k used,  2097028k free,  1643884k cached
 }}}
+从上面`top`数据可以看到，有三个核 `CPU3,4,6` 占用的CPU一直是 100%，那发生了什么事情呢？
 
-==查找过程==
-
-使用`jtop`查看，命令如下：
+接着使用`jtop`查看，命令如下：
 {{{
 java -jar jtop.jar -thread 3 -stack 8 <PID> 2000 100
 }}}
@@ -58,7 +58,7 @@ DefaultQuartzScheduler_Worker-6  TID=84  STATE=RUNNABLE  CPU_TIME=2100 (99.43%) 
 	org.springframework.aop.aspectj.AspectJExpressionPointcut.<init>(AspectJExpressionPointcut.java:109)
 }}}
 
-发现这一行 `java.util.WeakHashMap.put(WeakHashMap.java:405)`消耗CPU极高，接近`100%`， 查看JDK源代码，看到：
+发现这一行 `java.util.WeakHashMap.put(WeakHashMap.java:405)`消耗CPU极高，接近`100%`， 通过查看JDK源代码，看到：
 {{{
 399.    public V put(K key, V value) {
 400.        K k = (K) maskNull(key);
@@ -84,7 +84,7 @@ DefaultQuartzScheduler_Worker-6  TID=84  STATE=RUNNABLE  CPU_TIME=2100 (99.43%) 
 420.    }
 }}}
 
-通过`jstack`查看完整的堆栈信息：
+从这里我们知道`WeakHashMap`是线程不安全的，而且这个版本的`aspectj`没有很好的使用这个类，再通过`jstack`查看完整的堆栈信息：
 {{{
    java.lang.Thread.State: RUNNABLE
         at java.util.WeakHashMap.put(WeakHashMap.java:405)

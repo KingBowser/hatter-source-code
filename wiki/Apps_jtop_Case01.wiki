@@ -129,3 +129,5 @@ Factory.java:421)
         at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:156)
         at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:640)
 }}}
+
+知道问题原因那么解决就简单了，原本想通过升级`aspectj`来解决，但因为一些特殊的历史原因无法简单的通过升级来解决，然后就采用了一种比较简单的解决方案，将调用spring的getBean的方法加上了`synchronized`修饰，问题解决。

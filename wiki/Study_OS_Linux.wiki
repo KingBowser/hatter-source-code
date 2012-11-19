@@ -55,6 +55,11 @@ gdb \
     --batch -p $(pidof mysqld)
 }}}
 
+ps
+{{{
+ps H -eo user,pid,ppid,tid,time,%cpu,cmd --sort=%cpu
+}}}
+
 {{{
 tcpdump 命令常用参数说明 :
 -i 网络接口

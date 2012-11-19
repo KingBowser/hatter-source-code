@@ -8,7 +8,7 @@
 =Profile=
  * `SELECT @@profiling;`
  * `SET profiling = 1;`
- * execute sql query
+ * `<execute sql query>;`
  * `show profiles;`
  * `show profile for query <N>;`
 

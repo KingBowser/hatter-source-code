@@ -7,7 +7,7 @@
 
 ==Segmented memory model==
 
-<br><br>
+<br>
 
 ==Real mode==
 

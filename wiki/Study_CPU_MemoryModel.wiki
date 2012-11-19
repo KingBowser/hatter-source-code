@@ -1,6 +1,12 @@
 #summary Memory Model
 #sidebar TableOfContents
 
+==Flat memory model==
+
+==Paged memory model==
+
+==Segmented memory model==
+
 
 ===参考资料===
 `[1].` https://en.wikipedia.org/wiki/Flat_memory_model<br>

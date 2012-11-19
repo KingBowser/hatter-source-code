@@ -2,6 +2,7 @@
 #sidebar TableOfContents
 
 =Explain=
+ * `explain <QUERY>`
 
 
 =Profile=

@@ -47,6 +47,12 @@ gdb _pstack_
 gdb -p pid
 
 thread apply all bt
+
+
+gdb \
+    -ex "set pagination 0" \
+    -ex "thread apply all bt" \
+    --batch -p $(pidof mysqld)
 }}}
 
 {{{

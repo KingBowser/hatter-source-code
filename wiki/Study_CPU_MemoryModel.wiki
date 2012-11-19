@@ -8,6 +8,11 @@
 ==Segmented memory model==
 
 
+==Real mode==
+
+==Protected mode==
+
+
 ===参考资料===
 `[1].` https://en.wikipedia.org/wiki/Flat_memory_model<br>
 `[2].` http://blog.csdn.net/geterns/article/details/8186988<br>

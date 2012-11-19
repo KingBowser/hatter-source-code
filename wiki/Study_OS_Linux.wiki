@@ -82,6 +82,7 @@ dstat
 lsof
 htop
 netstat
+ulimit
 
 ping
 nslookup

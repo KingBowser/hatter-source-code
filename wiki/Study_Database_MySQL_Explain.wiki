@@ -6,11 +6,11 @@
 
 
 =Profile=
- * `SELECT @@profiling;`
- * `SET profiling = 1;`
- * `<execute sql query>;`
- * `show profiles;`
- * `show profile for query <N>;`
+ * `SELECT @@profiling;`<br>查看是否已经打开Profile
+ * `SET profiling = 1;`<br>打开Profile
+ * `<execute sql query>;`<br>执行SQL语句
+ * `show profiles;`<br>查看做过Profile的SQL
+ * `show profile for query <N>;`<br>打印对应SQL的Profile数据
 
 ===参考资料===
 `[1].` http://dev.mysql.com/doc/refman/5.6/en/explain-output.html<br>

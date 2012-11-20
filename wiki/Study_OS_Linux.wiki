@@ -86,6 +86,7 @@ cmd; echo $?
 }}}
 
 {{{
+sar
 top
 iostat
 vmstat
@@ -94,6 +95,7 @@ lsof
 htop
 netstat
 ulimit
+mpstat
 
 ping
 nslookup

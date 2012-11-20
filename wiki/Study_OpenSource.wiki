@@ -62,3 +62,20 @@
 || `Google Refine` || https://code.google.com/p/google-refine/wiki/GettingStarted || `Java` || Google Refine, a power tool for working with messy data (formerly Freebase Gridworks) ||
 || `GroovyHelp` || https://code.google.com/p/groovyhelp/ || `-` || A Versatile API Documentation View, Search and Compare Utility ||
 || `horrorss` || https://code.google.com/p/horrorss/ || `Java` || A Simple Java RSS parser ||
+
+{{{
+Eclipse
+Eclipse Memory Analyzer
+AptanaStudio
+Komodo Edit
+Evernote
+Dropbox
+astah
+FreeMind 替代软件：XMind
+Filezilla
+TrueCrypt
+Pencil
+SQL Developer
+JD-GUI
+yEd
+}}}

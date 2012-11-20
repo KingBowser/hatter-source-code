@@ -5,10 +5,11 @@
 
 || *Name* || *URL* || *Language* || *Description* ||
 || *<font color="#f00">IDE</font>* ||  ||  ||  ||
+|| `AptanaStudio` || || ||
 || `Collide` || https://code.google.com/p/collide/ || `JavaScript` || Collaborative IDE ||
+|| `Eclipse` || || ||
 || `GoClipse` || https://code.google.com/p/goclipse/ || `Java` || Eclipse-based IDE for Google's Go Programming Language ||
 || `LiteIDE` || https://code.google.com/p/golangide/ || `Go` || LiteIDE Released for Go ||
-|| `Eclipse` || || ||
 || *<font color="#f00">Security</font>* ||  ||  ||  ||
 || `CryptoJS ` || https://code.google.com/p/crypto-js/ || `JavaScript` || JavaScript implementations of standard and secure cryptographic algorithms ||
 || `Google Authenticator` || https://code.google.com/p/google-authenticator/ || `Multiple` || Two-step verification ||

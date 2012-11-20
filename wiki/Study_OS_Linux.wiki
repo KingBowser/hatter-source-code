@@ -97,6 +97,8 @@ netstat
 ulimit
 mpstat
 
+pstree -p <PID>
+
 ping
 nslookup
 dig

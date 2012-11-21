@@ -8,14 +8,14 @@ XML通常通过DTD、XSD定义，但DTD的表达能力较弱，XSD定义则能�
 
 当你在苦逼的写下面的代码时：
 {{{
-	<bean id="beanId" class="com.xxx.xxxx.Xxxxx">
-		<property name="property1">
-			<value>XXXX</value>
-		</property>
-		<property name="property2">
-			<value>XXXX</value>
-		</property>
-	</bean>
+    <bean id="beanId" class="com.xxx.xxxx.Xxxxx">
+        <property name="property1">
+            <value>XXXX</value>
+        </property>
+        <property name="property2">
+            <value>XXXX</value>
+        </property>
+    </bean>
 }}}
 是不是会羡慕这样写代码呢？
 {{{

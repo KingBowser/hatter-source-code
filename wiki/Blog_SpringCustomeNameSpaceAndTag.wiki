@@ -19,7 +19,7 @@ XML通常通过DTD、XSD定义，但DTD的表达能力较弱，XSD定义则能�
 }}}
 是不是会羡慕这样写代码呢？
 {{{
-    <xxxx:xxxx id="beanId"/>
+    <xxx:xxxx id="beanId"/>
 }}}
 
 Spring通过XML解析程序将其解析为DOM树，通过NamespaceHandler指定对应的Namespace的BeanDefinitionParser将其转换成BeanDefinition。再通过Spring自身的功能对BeanDefinition实例化对象。

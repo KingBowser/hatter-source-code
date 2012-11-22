@@ -1,12 +1,50 @@
 package me.hatter.tools.commons.reflect;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class ReflectUtil {
+
+    @SuppressWarnings("unchecked")
+    public static <T> T cast(Object obj, Class<T> interf) {
+        Class<?> clazz;
+        boolean isClazz = (obj instanceof Class);
+        if (obj instanceof Class) {
+            clazz = (Class<?>) obj;
+        } else {
+            clazz = obj.getClass();
+        }
+        final Object fObj = obj;
+        final Class<?> fClazz = clazz;
+        final boolean fIsClazz = isClazz;
+
+        return (T) Proxy.newProxyInstance(interf.getClassLoader(), new Class<?>[] { interf }, new InvocationHandler() {
+
+            @Override
+            public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+                Method m = getDeclaredMethod(fClazz, method.getName(), method.getParameterTypes());
+                if (m == null) {
+                    throw new RuntimeException("Method '" + fClazz.getName() + "." + method.getName() + "("
+                                               + method.getParameterTypes() + ")' not found.");
+                }
+                if (!m.isAccessible()) m.setAccessible(true);
+                return m.invoke((fIsClazz ? null : fObj), args);
+            }
+        });
+    }
+
+    public static Class<?> classForName(String className) {
+        try {
+            return Class.forName(className);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public static Method getDeclaredMethod(Class<?> clazz, String methodName, Class<?>[] parameterTypes) {
         try {

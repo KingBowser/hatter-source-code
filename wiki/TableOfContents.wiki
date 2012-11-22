@@ -79,6 +79,7 @@
  * [ReportedBugList Reported Bug List]
  * [Study_Others Others]
  * _*Papers*_
+  * [Paper_QuickDuplicateMessageProcessingCheck Message Processing Check]
   * [Paper_SymmetricKeyAlgorithmBasedHTTPAuthentication Authentication]
   * [Paper_SymmetricKeyAlgorithmBasedHTTPRegistration Registration]
  * _*Blogs*_

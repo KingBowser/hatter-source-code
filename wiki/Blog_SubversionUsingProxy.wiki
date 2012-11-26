@@ -30,3 +30,15 @@ polipo -c c.conf > log 2>&1 &
 }}}
 
 ==设置Subversion的HTTP代理==
+在Subversion的配置文件 `~/.subversion/servers` 中增加：
+{{{
+[groups]
+groupgooglecode = *.googlecode.com
+
+[groupgooglecode]
+http-proxy-host = localhost
+http-proxy-port = 7778
+http-proxy-compression = no
+}}}
+
+配置完就OK了，Enjoy it。

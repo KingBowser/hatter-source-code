@@ -26,16 +26,17 @@
   * 加载过多类，通过增加启动参数查找JVM加载了哪些类：
    * `-verbose:class` 相当于 `+TraceClassLoading,+TraceClassUnloading`
    * `+TraceClassLoading` 当类加载时打印日志
+   日志格式则是 `类名 + 加载的jar包名字` ：
 {{{
 [Loaded sun.dc.pr.Rasterizer from /System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.jar]
 [Loaded sun.dc.pr.PathFiller from /System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.jar]
 [Loaded sun.dc.pr.PathDasher from /System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.jar]
 }}}
+而对于下面这些类(from 为 `__JVM_DefineClass__`)则是没有具体的jar包，GeneratedMethodAccessor相关的类则是类反射调用次数超过15次自JVM自动增强产生的，日志如下：
 {{{
-[Loaded sun.reflect.GeneratedSerializationConstructorAccessor11 from __JVM_DefineClass__]
-[Loaded sun.reflect.GeneratedSerializationConstructorAccessor12 from __JVM_DefineClass__]
-[Loaded sun.reflect.GeneratedSerializationConstructorAccessor13 from __JVM_DefineClass__]
-[Loaded sun.reflect.GeneratedSerializationConstructorAccessor14 from __JVM_DefineClass__]
+[Loaded sun.reflect.GeneratedMethodAccessor17 from __JVM_DefineClass__]
+[Loaded sun.reflect.GeneratedMethodAccessor18 from __JVM_DefineClass__]
+[Loaded sun.reflect.GeneratedMethodAccessor19 from __JVM_DefineClass__]
 }}}
    * `+TraceClassUnloading` 当类卸载时打印日志
   也可通过`classdump` 或 `classlist` 列出加载的类的情况。

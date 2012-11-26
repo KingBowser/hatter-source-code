@@ -67,6 +67,7 @@ JVM内存主要分为：
   * `ZipOutputStream`使用时未关闭会引起native内存无法正常释放
   * `Font`
  * Direct Buffer OOME
+ 通过 `directbufferana` 查看当前JVM的 Direct Buffer 使用情况。
 
 ===参考资料===
 `[1].` [Study_Java_HotSpot_OOME]<br>

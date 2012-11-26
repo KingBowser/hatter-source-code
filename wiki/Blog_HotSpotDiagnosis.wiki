@@ -31,7 +31,7 @@
   * String.intern() 加载过多字符串
    * 通过 `permstat` 可以分析当前JVM中加载的String.intern()的情况
    * 对于动态加载情况可以通过 btrace 跟踪加载情况
- * native OOME
+ * Native OOME
   * `ZipOutputStream`使用时未关闭会引起native内存无法正常释放
   * `Font`
  * Direct Buffer OOME

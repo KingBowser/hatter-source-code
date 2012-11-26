@@ -28,7 +28,9 @@ JVM内存主要分为：
   # Perm区内存(JDK8开始将不再有Perm区)
   # Direct Buffer内存
  # 非JVM管理的内存
-  # Native
+  # Native内存
+   # 线程创建占用的内存
+   # JNI程序占用的内存
 
 可以通过 `jstat -gcutil` 查找各个代的使用情况。
 || `O + E + S0/1` || 表示Heap区 ||

@@ -26,6 +26,17 @@
   * 加载过多类，通过增加启动参数查找JVM加载了哪些类：
    * `-verbose:class` 相当于 `+TraceClassLoading,+TraceClassUnloading`
    * `+TraceClassLoading` 当类加载时打印日志
+{{{
+[Loaded sun.dc.pr.Rasterizer from /System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.jar]
+[Loaded sun.dc.pr.PathFiller from /System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.jar]
+[Loaded sun.dc.pr.PathDasher from /System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.jar]
+}}}
+{{{
+[Loaded sun.reflect.GeneratedSerializationConstructorAccessor11 from __JVM_DefineClass__]
+[Loaded sun.reflect.GeneratedSerializationConstructorAccessor12 from __JVM_DefineClass__]
+[Loaded sun.reflect.GeneratedSerializationConstructorAccessor13 from __JVM_DefineClass__]
+[Loaded sun.reflect.GeneratedSerializationConstructorAccessor14 from __JVM_DefineClass__]
+}}}
    * `+TraceClassUnloading` 当类卸载时打印日志
   也可通过`classdump` 或 `classlist` 列出加载的类的情况。
   * String.intern() 加载过多字符串

@@ -10,6 +10,7 @@ import java.util.Set;
 
 import me.hatter.tools.commons.classloader.ClassLoaderUtil;
 import me.hatter.tools.commons.environment.Environment;
+import me.hatter.tools.commons.environment.Environment.JavaVendor;
 import me.hatter.tools.commons.log.LogUtil;
 import me.hatter.tools.commons.os.OSUtil;
 import me.hatter.tools.commons.os.OSUtil.OS;
@@ -18,27 +19,39 @@ public class HotSpotVMUtil {
 
     public static enum JDKLib {
 
-        TOOLS("tools.jar", Arrays.asList(OS.Linux, OS.Unix)),
+        TOOLS("tools.jar", //
+              Arrays.asList(JavaVendor.Sun, JavaVendor.Oracle, JavaVendor.Unknow), //
+              Arrays.asList(OS.Linux, OS.Unix)),
 
         // Use for load agent
-        MANAGEMENT_AGENT("management-agent.jar", Arrays.asList(OS.Linux, OS.Unix, OS.MacOS, OS.Windows)),
+        MANAGEMENT_AGENT("management-agent.jar", //
+                         Arrays.asList(JavaVendor.Apple, JavaVendor.Sun, JavaVendor.Oracle, JavaVendor.Unknow), //
+                         Arrays.asList(OS.Linux, OS.Unix, OS.MacOS, OS.Windows)),
 
-        SA_JDI("sa-jdi.jar", Arrays.asList(OS.Linux, OS.Unix, OS.MacOS));
+        SA_JDI("sa-jdi.jar", //
+               Arrays.asList(JavaVendor.Apple, JavaVendor.Sun, JavaVendor.Oracle, JavaVendor.Unknow), //
+               Arrays.asList(OS.Linux, OS.Unix, OS.MacOS));
 
-        private String  name;
-        private Set<OS> supporedOS;
+        private String          name;
+        private Set<JavaVendor> supportedvVendors;
+        private Set<OS>         supportedOS;
 
         public String getName() {
             return name;
         }
 
-        public Set<OS> getSupportedOS() {
-            return supporedOS;
+        public Set<JavaVendor> getSupportedJavaVendors() {
+            return supportedvVendors;
         }
 
-        private JDKLib(String name, List<OS> oss) {
+        public Set<OS> getSupportedOS() {
+            return supportedOS;
+        }
+
+        private JDKLib(String name, List<JavaVendor> vendors, List<OS> oss) {
             this.name = name;
-            this.supporedOS = Collections.unmodifiableSet(new HashSet<OSUtil.OS>(oss));
+            this.supportedvVendors = Collections.unmodifiableSet(new HashSet<Environment.JavaVendor>(vendors));
+            this.supportedOS = Collections.unmodifiableSet(new HashSet<OSUtil.OS>(oss));
         }
     }
 
@@ -57,7 +70,8 @@ public class HotSpotVMUtil {
     @SuppressWarnings("restriction")
     synchronized public static void autoAddToolsJarDependency(JDKTarget target, JDKLib jdkLib) {
         Set<JDKLib> addedJDKLibs = (target == JDKTarget.SYSTEM_CLASSLOADER) ? addedSysJDKLibs : addedBootJDKLibs;
-        if ((!addedJDKLibs.contains(jdkLib)) && jdkLib.getSupportedOS().contains(OSUtil.getOS())) {
+        if ((!addedJDKLibs.contains(jdkLib)) && jdkLib.getSupportedJavaVendors().contains(Environment.getVendor())
+            && jdkLib.getSupportedOS().contains(OSUtil.getOS())) {
             File toolsJar = new File(Environment.JDK_HOME, "lib/" + jdkLib.getName()).getAbsoluteFile();
             if (!toolsJar.exists()) {
                 LogUtil.error("JDK " + jdkLib.getName() + " not found: " + toolsJar.getPath());

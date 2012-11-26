@@ -70,3 +70,4 @@ JVM内存主要分为：
 
 ===参考资料===
 `[1].` [Study_Java_HotSpot_OOME]<br>
+`[2].` [Study_Java_HotSpot_Arguments]<br>

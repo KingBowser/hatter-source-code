@@ -12,6 +12,7 @@ public class Environment {
     public static final String OS_NAME           = System.getProperty("os.name");
     public static final String OS_ARCH           = System.getProperty("os.arch");
     public static final String OS_VERSION        = System.getProperty("os.version");
+    public static final String JAVA_VENDOR       = System.getProperty("java.vendor");
 
     public static final String JAVA_HOME         = System.getProperty("java.home");
     public static final String USER_DIR          = System.getProperty("user.dir");
@@ -25,6 +26,40 @@ public class Environment {
     public static final String PATH_SEPARATOR    = System.getProperty("path.separator");
     // Line separator ("\n" on UNIX)
     public static final String LINE_SEPARATOR    = System.getProperty("line.separator");
+
+    public static enum JavaVendor {
+        Apple("Apple"),
+
+        Sun("Sun"),
+
+        Oracle("Oracle"),
+
+        Unknow(null);
+
+        private String vendor;
+
+        private JavaVendor(String vendor) {
+            this.vendor = vendor;
+        }
+
+        public String getVendor() {
+            return this.vendor;
+        }
+    }
+
+    public static JavaVendor getVendor() {
+        String jv = JAVA_VENDOR.trim();
+        if (jv.startsWith(JavaVendor.Apple.getVendor())) {
+            return JavaVendor.Apple;
+        }
+        if (jv.startsWith(JavaVendor.Sun.getVendor())) {
+            return JavaVendor.Sun;
+        }
+        if (jv.startsWith(JavaVendor.Oracle.getVendor())) {
+            return JavaVendor.Oracle;
+        }
+        return JavaVendor.Unknow;
+    }
 
     public static String getStrPropertyOrDie(String key) {
         String value = System.getProperty(key);

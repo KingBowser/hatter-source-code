@@ -20,8 +20,26 @@
 这种情况可以使用 `jtop` 查看，通过对堆栈对CPU使用量排序，查找出问题的Java代码。
 
 ==应用占用内存过高，发生OOME异常==
-遇到这种问题我们首先需要判断是哪个区内存OOME，可以通过 `jstat -gcutil` 查找各个代的使用情况。这种情况也可使用 `jtop` 查看，通过参数 `--sortmem` ，查找对的Java代码。还可以通过 `jmap -histo` 查找每个类的实例数据及占用的内存大小，也可通过 `histodiff` 查找该断时间内创建的对象情况。
+遇到这种问题我们首先需要判断是哪个区内存OOME。
+
+JVM内存主要分为：
+ # JVM管理的内存
+  # Heap区内存
+  # Perm区内存(JDK8开始将不再有Perm区)
+  # Direct Buffer内存
+ # 非JVM管理的内存
+  # Native
+
+可以通过 `jstat -gcutil` 查找各个代的使用情况。
+|| `O + E + S0/1` || 表示Heap区 ||
+|| P || 表示Perm区||
+
+{{{
+  S0     S1     E      O      P     YGC     YGCT    FGC    FGCT     GCT   
+  0.00 100.00   6.47   0.21  81.13      1    0.015     0    0.000    0.015
+}}}
  * Heap区OOME
+ Heap区对象创建过多，一般情况是程序的问题，也有可能是 `-Xmx` 大小设计过小。这种情况也可使用 `jtop` 查看，通过参数 `--sortmem` ，查找对的Java代码。还可以通过 `jmap -histo` 查找每个类的实例数据及占用的内存大小，也可通过 `histodiff` 查找该断时间内创建的对象情况。
  * Perm区OOME
   * 加载过多类，通过增加启动参数查找JVM加载了哪些类：
    * `-verbose:class` 相当于 `+TraceClassLoading,+TraceClassUnloading`

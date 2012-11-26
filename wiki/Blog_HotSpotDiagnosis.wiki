@@ -41,7 +41,7 @@ JVM内存主要分为：
   0.00 100.00   6.47   0.21  81.13      1    0.015     0    0.000    0.015
 }}}
  * Heap区OOME
- Heap区对象创建过多，一般情况是程序的问题，也有可能是 `-Xmx` 大小设计过小。这种情况也可使用 `jtop` 查看，通过参数 `--sortmem` ，查找对的Java代码。还可以通过 `jmap -histo` 查找每个类的实例数据及占用的内存大小，也可通过 `histodiff` 查找该断时间内创建的对象情况。
+ Heap区对象创建过多，一般情况是程序的问题，也有可能是 `-Xmx` 大小设计过小。这种情况也可使用 `jtop` 查看，通过参数 `--sortmem` ，查找对的Java代码。还可以通过 `jmap -histo` 查找每个类的实例数据及占用的内存大小，也可通过 `histodiff` 查找该断时间内创建的对象情况。命令 `jmap -histo:live <PID>` 可以强制JVM做GC，通过多次这个命令可以看看内存中的对象是否会被回收。如果最终还是没有办法，可通过命令 `jmap -dump:format=b,file=<file name> <PID>` 将内存映象层出为文件，然后通过 `mat` 分析。
  * Perm区OOME
   * 加载过多类，通过增加启动参数查找JVM加载了哪些类：
    * `-verbose:class` 相当于 `+TraceClassLoading,+TraceClassUnloading`

@@ -1,5 +1,5 @@
 #summary Subversion using proxy
-#sidebar TableOfContent
+#sidebar TableOfContents
 
 = Introduction =
 

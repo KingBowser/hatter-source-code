@@ -14,7 +14,7 @@
 这种情况需要查看服务器Load是不是Load过高导致不处理正常业务逻辑，参看 `[应用Load过高]` 或 `[应用占用内存过高]` 。如果Load正常且内存占用也正常则需要通过命令 `jstack` 查看堆栈情况，分析程序未正常工作的原因。此类情况有可能是：
  * 数据库锁，更新/查询/删除数据未提交
  * 程序死锁，不恰当的使用Lock
- * 网络IO操作未返回，如未设置超时时间且当网络异常时有可能出现超时但无法继续执行的情况<br>如：URLConnection在使用时需要同时设置 `void setConnectTimeout(int timeout)` 和 `void setReadTimeout(int timeout)`，否则有可能在使用时出现客户端等待数据但网络连接一直保持的情况。
+ * 网络IO操作未返回，如未设置超时时间且当网络异常时有可能出现超时但无法继续执行的情况<br>如：URLConnection在使用时需要同时设置 `void setConnectTimeout(int timeout)` 和 `void setReadTimeout(int timeout)`，否则有可能在使用时出现客户端等待数据但网络连接一直保持的情况。使用HttpClient时也需要设置类似的两个参数(生产环境悲剧过，大家要引以为戒)。
 
 ==应用Load过高==
 这种情况可以使用 `jtop` 查看，通过对堆栈对CPU使用量排序，查找出问题的Java代码。

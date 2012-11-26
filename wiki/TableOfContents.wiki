@@ -83,7 +83,7 @@
   * [Paper_SymmetricKeyAlgorithmBasedHTTPAuthentication Authentication]
   * [Paper_SymmetricKeyAlgorithmBasedHTTPRegistration Registration]
  * _*Blogs*_
-  * [Blog_HotSpotDiagnosis HotSpot diagnosis]
+  * [Blog_HotSpotDiagnosis HotSpot问题诊断]
   * [Blog_SpringCustomeNameSpaceAndTag Spring自定义标签]
   * [Blog_SubversionUsingSocks5Proxy Subversion using socks5 proxy]
   * [Blog_XStreamNonStaticInstancePerformanceAnalysis XStream非静态化实例的性能问题分析]

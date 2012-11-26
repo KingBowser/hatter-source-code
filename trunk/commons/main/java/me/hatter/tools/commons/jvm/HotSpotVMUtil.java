@@ -21,7 +21,7 @@ public class HotSpotVMUtil {
 
         TOOLS("tools.jar", //
               Arrays.asList(JavaVendor.Sun, JavaVendor.Oracle, JavaVendor.Unknow), //
-              Arrays.asList(OS.Linux, OS.Unix)),
+              Arrays.asList(OS.Linux, OS.Unix, OS.MacOS)),
 
         // Use for load agent
         MANAGEMENT_AGENT("management-agent.jar", //

@@ -32,7 +32,7 @@
 [Loaded sun.dc.pr.PathFiller from /System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.jar]
 [Loaded sun.dc.pr.PathDasher from /System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.jar]
 }}}
-而对于下面这些类(from 为 `__JVM_DefineClass__`)则是没有具体的jar包，GeneratedMethodAccessor相关的类则是类反射调用次数超过15次自JVM自动增强产生的，日志如下：
+   而对于下面这些类(from 为 `__JVM_DefineClass__`)则是没有具体的jar包，GeneratedMethodAccessor相关的类则是类反射调用次数超过15次自JVM自动增强产生的，日志如下：
 {{{
 [Loaded sun.reflect.GeneratedMethodAccessor17 from __JVM_DefineClass__]
 [Loaded sun.reflect.GeneratedMethodAccessor18 from __JVM_DefineClass__]

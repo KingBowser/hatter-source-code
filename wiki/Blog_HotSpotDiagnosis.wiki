@@ -23,7 +23,14 @@
 遇到这种问题我们首先需要判断是哪个区内存OOME，可以通过 `jstat -gcutil` 查找各个代的使用情况。这种情况也可使用 `jtop` 查看，通过参数 `--sortmem` ，查找对的Java代码。还可以通过 `jmap -histo` 查找每个类的实例数据及占用的内存大小，也可通过 `histodiff` 查找该断时间内创建的对象情况。
  * Heap区OOME
  * Perm区OOME
+  * 加载过多类<br>通过增加启动参数查找JVM加载了哪些类：
+   * `-verbose:class` 相当于 `+TraceClassLoading,+TraceClassUnloading`
+   * `+TraceClassLoading` 当类加载时打印日志
+   * `+TraceClassUnloading` 当类卸载时打印日志
+  * String.intern() 加载过多字符串
  * native OOME
+  * `ZipOutputStream`使用时未关闭会引起native内存无法正常释放
+  * `Font`
  * Direct Buffer OOME
 
 ===参考资料===

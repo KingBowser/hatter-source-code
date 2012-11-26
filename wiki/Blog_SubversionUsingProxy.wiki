@@ -18,6 +18,15 @@ make
 {{{
 -rwxr-xr-x polipo
 }}}
-
+编写配置文件 `c.conf` ，内容如下：
+{{{
+socksParentProxy = "localhost:7777"
+socksProxyType = socks5
+proxyPort = 7778
+}}}
+再通过命令后台启动Polipo：
+{{{
+polipo -c c.conf > log 2>&1 &
+}}}
 
 ==设置Subversion的HTTP代理==

@@ -1,4 +1,4 @@
-#summary Subversion using proxy
+#summary Subversion using socks5 proxy
 #sidebar TableOfContents
 
 =在Mac OSX下Subversion使用代理=

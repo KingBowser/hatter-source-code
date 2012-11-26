@@ -84,8 +84,8 @@
   * [Paper_SymmetricKeyAlgorithmBasedHTTPRegistration Registration]
  * _*Blogs*_
   * [Blog_SpringCustomeNameSpaceAndTag Spring自定义标签]
-  * [Blog_XStreamNonStaticInstancePerformanceAnalysis XStream非静态化实例的性能问题分析]
   * [Blog_SubversionUsingProxy Subversion using proxy]
+  * [Blog_XStreamNonStaticInstancePerformanceAnalysis XStream非静态化实例的性能问题分析]
  * _*My Tools*_
   * [classdump]
   * [classlist]

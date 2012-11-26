@@ -1,14 +1,15 @@
 #summary Subversion using proxy
 #sidebar TableOfContents
 
-= Introduction =
+=在Mac OSX下Subversion使用代理=
 
-Add your content here.
+首先我只有通过ssh的socks5代理，没有HTTP代理，但在Subversion代理中只能配置HTTP代理。所以我们通过socks5转HTTP代理，再设置Subversion的HTTP代理。
+
+==将socks5转HTTP代理==
 
 
-= Details =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+==设置Subversion的HTTP代理==
+
+
+

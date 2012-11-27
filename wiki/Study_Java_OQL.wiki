@@ -43,7 +43,9 @@ select classof(cl).name from instanceof java.lang.ClassLoader cl
  * heap对象
  heap对象的内建函数：
   * `heap.forEachClass` -- 为每个Java类调用一次callback回调函数
+{{{
   heap.forEachClass(callback);
+}}}
   * `heap.forEachObject` -- 为每个Java对象调用callback回调函数
   heap.forEachObject(callback, clazz, includeSubtypes);
   * `heap.findClass` -- finds Java Class of given name

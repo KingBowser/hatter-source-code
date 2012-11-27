@@ -4,6 +4,7 @@
 =Object Query Language(OQL)=
 
 ==定义==
+Object Query Language 即对象查询语言，用于在JVM dump映象文件中通过一种类SQL的查询语言查找指定的对象。
 
 ==软件==
  * Sun/Oracle JDK软件自带 `jhat`

@@ -1,11 +1,30 @@
 #summary Object Query Language
 #sidebar TableOfContents
 
-=Object Query Language=
+=Object Query Language(OQL)=
 
-
+==语法==
 {{{
   select <JavaScript expression to select>
     [ from [instanceof] <class name> <identifier>
     [ where <JavaScript boolean expression to filter> ] ]
+}}}
+
+==例子==
+
+{{{
+// 查找所有长度超过100的字符串
+select s from java.lang.String s where s.count >= 100
+
+// 查找所有长度超过100的int数组
+select a from [I a where a.length >= 256
+
+// 查找所有匹配指定正则表达式的字符串
+select s.value.toString() from java.lang.String s where /java/(s.value.toString())
+
+// 查找所有文件的path
+select file.path.value.toString() from java.io.File file
+
+// 查找所有ClassLoader的名字
+select classof(cl).name from instanceof java.lang.ClassLoader cl
 }}}

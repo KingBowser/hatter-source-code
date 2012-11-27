@@ -19,7 +19,7 @@
 // 查找所有长度超过100的字符串
 select s from java.lang.String s where s.count >= 100
 
-// 查找所有长度超过100的int数组
+// 查找所有长度超过256的int数组
 select a from [I a where a.length >= 256
 
 // 查找所有匹配指定正则表达式的字符串

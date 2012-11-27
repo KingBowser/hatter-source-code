@@ -86,6 +86,20 @@ select classof(cl).name from instanceof java.lang.ClassLoader cl
   * `root(jobject)`
   * `sizeof(jobject)`
   * `toHtml(obj)`
+ * array/iterator/enumeration manipulation functions
+  * `concat(array1/enumeration1, array2/enumeration2)`
+  * `contains(array/enumeration, expression)`
+  * `count(array/enumeration, expression)`
+  * `filter(array/enumeration, expression)`
+  * `length(array/enumeration)`
+  * `map(array/enumeration, expression)`
+  * `max(array/enumeration, [expression])`
+  * `min(array/enumeration, [expression])`
+  * `sort(array/enumeration, [expression])`
+  * `sum(array/enumeration, [expression])`
+  * `toArray(array/enumeration)`
+  * `unique(array/enumeration, [expression])`
+
 
 ===参考资料===
 `[1].` jhat/oqlhelp/

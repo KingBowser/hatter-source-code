@@ -9,6 +9,8 @@
     [ from [instanceof] <class name> <identifier>
     [ where <JavaScript boolean expression to filter> ] ]
 }}}
+|| *class name* || 完整的类名（如果用接口名即使加了instanceof也似乎查不了） ||
+|| *instanceof* || 查找指定类包含其子类的实例 ||
 
 ==例子==
 

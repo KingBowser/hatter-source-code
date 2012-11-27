@@ -66,7 +66,7 @@ JVM内存主要分为：
    * 对于动态加载情况可以通过 btrace 跟踪加载情况
  * Native OOME
   * `ZipOutputStream`使用时未关闭会引起native内存无法正常释放
-  * `Font`
+  * `Font.createFont` 函数创建的Font对象会Soft引用Native内存
  * Direct Buffer OOME
  通过 `directbufferana` 查看当前JVM的 Direct Buffer 使用情况，如命令 `java -jar directbufferanaall.jar <PID>` 输出：
 {{{

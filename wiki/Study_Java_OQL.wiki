@@ -73,6 +73,19 @@ select classof(cl).name from instanceof java.lang.ClassLoader cl
    * type - descriptive type of Root (JNI Global, JNI Local, Java Static etc)
    * description - String description of the Root
    * referrer - Thread Object or Class object that is responsible for this root or null
+ * functions on individual objects
+  * `allocTrace(jobject)`
+  * `classof(jobject)`
+  * `forEachReferrer(callback, jobject)`
+  * `identical(o1, o2)`
+  * `objectid(jobject)`
+  * `reachables(jobject, excludedFields)`
+  * `referrers(jobject)`
+  * `referees(jobject)`
+  * `refers(jobject)`
+  * `root(jobject)`
+  * `sizeof(jobject)`
+  * `toHtml(obj)`
 
 ===参考资料===
 `[1].` jhat/oqlhelp/

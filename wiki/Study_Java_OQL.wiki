@@ -31,3 +31,6 @@ select file.path.value.toString() from java.io.File file
 // 查找所有ClassLoader的名字
 select classof(cl).name from instanceof java.lang.ClassLoader cl
 }}}
+
+===参考资料===
+`[1].` jhat/oqlhelp/

@@ -3,6 +3,12 @@
 
 =Object Query Language(OQL)=
 
+==定义==
+
+==软件==
+ * Sun/Oracle JDK软件自带 `jhat`
+ * Memory Analyzer (MAT) http://www.eclipse.org/mat/
+
 ==语法==
 {{{
   select <JavaScript expression to select>

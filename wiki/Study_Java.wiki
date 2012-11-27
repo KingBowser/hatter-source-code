@@ -43,6 +43,7 @@ jstat -J-Djstat.showUnsupported=true -snap <pid>
 
 ==Java Concurrent==
 [http://sourceforge.net/projects/javaconcurrenta/]
+[http://gee.cs.oswego.edu/dl/concurrency-interest/jsr166-slides.pdf]
 
 ==参考书籍==
 || 《深入Java虚拟机(原书第2版)》 || http://book.douban.com/subject/1138768/ ||

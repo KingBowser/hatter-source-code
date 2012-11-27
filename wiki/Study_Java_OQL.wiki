@@ -23,7 +23,7 @@ select s from java.lang.String s where s.count >= 100
 select a from [I a where a.length >= 256
 
 // 查找所有匹配指定正则表达式的字符串
-select s.value.toString() from java.lang.String s where /java/(s.value.toString())
+select s.value.toString() from java.lang.String s where /java/((s && s.value) ? s.value.toString(): "")
 
 // 查找所有文件的path
 select file.path.value.toString() from java.io.File file

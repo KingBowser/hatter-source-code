@@ -5,7 +5,7 @@
 
 
 {{{
-select <JavaScript expression to select>
-         [ from [instanceof] <class name> <identifier>
-         [ where <JavaScript boolean expression to filter> ] ]
+  select <JavaScript expression to select>
+    [ from [instanceof] <class name> <identifier>
+    [ where <JavaScript boolean expression to filter> ] ]
 }}}

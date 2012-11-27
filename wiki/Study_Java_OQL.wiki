@@ -39,5 +39,28 @@ select file.path.value.toString() from java.io.File file
 select classof(cl).name from instanceof java.lang.ClassLoader cl
 }}}
 
+==内建对象、函数==
+ * heap对象
+ heap对象的内建函数：
+  * `heap.forEachClass` -- 为每个Java类调用一次callback回调函数
+  heap.forEachClass(callback);
+  * `heap.forEachObject` -- 为每个Java对象调用callback回调函数
+  heap.forEachObject(callback, clazz, includeSubtypes);
+  * `heap.findClass` -- finds Java Class of given name
+  heap.findClass(className);
+  * `heap.findObject` -- finds object from given object id
+  heap.findObject(stringIdOfObject);
+  * `heap.classes` -- returns an enumeration of all Java classes
+  * `heap.objects` -- returns an enumeration of Java objects
+  `heap.objects(clazz, [includeSubtypes], [filter])`
+  * `heap.finalizables` -- returns an enumeration of Java objects that are pending to be finalized.
+  * `heap.livepaths` -- return an array of paths by which a given object is alive. This method accepts optional second parameter that is a boolean flag. This flag tells whether to include paths with weak reference(s) or not. By default, paths with weak reference(s) are not included.
+  select heap.livepaths(s) from java.lang.String s
+  * `heap.roots` -- returns an Enumeration of Roots of the heap. Each Root object has the following properties:
+   * id - String id of the object that is referred by this root
+   * type - descriptive type of Root (JNI Global, JNI Local, Java Static etc)
+   * description - String description of the Root
+   * referrer - Thread Object or Class object that is responsible for this root or null
+
 ===参考资料===
 `[1].` jhat/oqlhelp/

@@ -23,6 +23,20 @@ Load如何计算： CPU，IO etc.
 
  * Java线程占用CPU高
  通过 `jtop` 查找CPU最高的线程
+{{{
+$java -jar jtop.jar -thread 3 -stack 8 <PID>
+DefaultQuartzScheduler_Worker-8  TID=86  STATE=RUNNABLE  CPU_TIME=2110 (99.90%)  USER_TIME=2110 (99.90%) Allocted: 0
+        java.util.WeakHashMap.put(WeakHashMap.java:405)
+        org.aspectj.weaver.Dump.registerNode(Dump.java:253)
+        org.aspectj.weaver.World.<init>(World.java:150)
+        org.aspectj.weaver.reflect.ReflectionWorld.<init>(ReflectionWorld.java:50)
+        org.aspectj.weaver.tools.PointcutParser.setClassLoader(PointcutParser.java:221)
+        org.aspectj.weaver.tools.PointcutParser.<init>(PointcutParser.java:207)
+        org.aspectj.weaver.tools.PointcutParser.getPointcutParserSupportingSpecifiedPrimitivesAndUsingContextClassloaderForResolution(PointcutParser.java:128)
+        org.springframework.aop.aspectj.AspectJExpressionPointcut.<init>(AspectJExpressionPointcut.java:100)
+
+...
+}}}
  * Native线程占用CPU高
  如果排除Java线程占用CPU高，但JVM占用CPU高时则说明是JVM Native线程占用CPU高了，这时需要通过 `pstack` 或 `gdb -ex "set pagination 0" -ex "thread apply all bt" --batch -p <PID>` 来查找问题了。
 {{{

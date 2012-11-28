@@ -22,7 +22,9 @@
 Load如何计算： CPU，IO etc.
 
  * Java线程占用CPU高
+ 通过 `jtop` 查找CPU最高的线程
  * Native线程占用CPU高
+ 如果排除Java线程占用CPU高，但JVM占用CPU高时则说明是JVM Native线程占用CPU高了，这时需要通过 `pstack` 或 `` 来查找问题了
 
 ==五、应用占用内存过高，发生OOME异常==
 遇到这种问题我们首先需要判断是哪个区内存OOME。

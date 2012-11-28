@@ -30,8 +30,9 @@ $ jstack <PID> | grep 'VM Thread'
 "VM Thread" prio=10 tid=0x000000004288a000 nid=0x4b4e runnable
                                                ^-- native thread id = 19278
 }}}
-
+ 再通过 gdb 打印堆栈信息：
 {{{
+$ gdb -ex "set pagination 0" -ex "thread apply all bt" --batch -p  <PID> | grep <PID> -A 10
                                   ,-- light weight process id = 19278
 Thread 49 (Thread 0x40781940 (LWP 19278)):
 #0  0x0000003bc8a0ab00 in pthread_cond_timedwait@@GLIBC_2.3.2 () from /lib64/libpthread.so.0

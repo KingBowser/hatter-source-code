@@ -31,6 +31,20 @@ $ jstack <PID> | grep 'VM Thread'
                                                ^-- native thread id = 19278
 }}}
 
+{{{
+                                  ,-- light weight process id = 19278
+Thread 49 (Thread 0x40781940 (LWP 19278)):
+#0  0x0000003bc8a0ab00 in pthread_cond_timedwait@@GLIBC_2.3.2 () from /lib64/libpthread.so.0
+#1  0x00002ad0cd0370e6 in os::PlatformEvent::park () from /usr/alibaba/install/jdk1.6.0_25/jre/lib/amd64/server/libjvm.so
+#2  0x00002ad0cd008abb in Monitor::IWait () from /usr/alibaba/install/jdk1.6.0_25/jre/lib/amd64/server/libjvm.so
+#3  0x00002ad0cd00914e in Monitor::wait () from /usr/alibaba/install/jdk1.6.0_25/jre/lib/amd64/server/libjvm.so
+#4  0x00002ad0cd193df3 in VMThread::loop () from /usr/alibaba/install/jdk1.6.0_25/jre/lib/amd64/server/libjvm.so
+#5  0x00002ad0cd1939ee in VMThread::run () from /usr/alibaba/install/jdk1.6.0_25/jre/lib/amd64/server/libjvm.so
+#6  0x00002ad0cd03796f in java_start () from /usr/alibaba/install/jdk1.6.0_25/jre/lib/amd64/server/libjvm.so
+#7  0x0000003bc8a06367 in start_thread () from /lib64/libpthread.so.0
+#8  0x0000003bc7ed30ad in clone () from /lib64/libc.so.6
+}}}
+
 ==五、应用占用内存过高，发生OOME异常==
 遇到这种问题我们首先需要判断是哪个区内存OOME。
 

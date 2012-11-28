@@ -25,7 +25,7 @@
 JVM内存主要分为：
  # JVM管理的内存
   # Heap区内存
-  # Perm区内存(JDK8开始将不再有Perm区)
+  # Perm区内存(JDK8开始将不再有Perm区)<br>主要是由Java类和字符串常量（或调用`String.intern()`）组成
   # Direct Buffer内存<br>间接通过GC管理，即当持有对应Direct Buffer的Java对象在回收时才会对其回收
  # 非JVM管理的内存
   # Native内存

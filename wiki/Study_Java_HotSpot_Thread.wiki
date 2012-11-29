@@ -6,9 +6,9 @@
 || `vm_thread` || VMThread || `VM Thread` ||
 || `cgc_thread` || Concurrent GC thread || `Concurrent Mark-Sweep GC Thread` ||
 || `pgc_thread` || Parallel GC thread || `GC task thread#%d (ParallelGC)` ||
-|| `java_thread` || Java线程 ||  ||
-|| `compiler_thread` || 编译线程 ||  ||
-|| `watcher_thread` || 观察线程 ||  ||
+|| `java_thread` || Java线程 || `-` ||
+|| `compiler_thread` || 编译线程 || `-` ||
+|| `watcher_thread` || 观察线程 || `-` ||
 
 线程类的结构图：
 {{{

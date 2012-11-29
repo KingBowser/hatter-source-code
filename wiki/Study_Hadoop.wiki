@@ -5,7 +5,7 @@
  * `conf/masters`
  * `conf/slaves`
 
-* `-`
+ * `-`
   * namenode
   * datanode
  * `-`

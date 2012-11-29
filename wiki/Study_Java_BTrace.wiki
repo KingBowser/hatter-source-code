@@ -30,6 +30,24 @@ btrace [-I <include-path>] [-p <port>] [-cp <classpath>] <pid> <btrace-script> [
 ==工具==
 *生成简单BTrace的工具* http://hatter.me/js/btrace/
 
+==示例==
+打印所有调用 `String.intern()` 的堆栈日志：
+{{{
+import com.sun.btrace.AnyType;
+import com.sun.btrace.annotations.*;
+import static com.sun.btrace.BTraceUtils.*;
+
+@BTrace
+public class Trace {
+
+    @OnMethod(clazz = "/.*/", method = "/.*/", location = @Location(value = Kind.CALL, clazz = "java.lang.String", method = "intern"))
+    public static void m0(@ProbeClassName String clazz, @ProbeMethodName String method, @TargetInstance Object instance) {
+        println("\n==== java.lang.String#intern ====");
+        jstack();
+    }
+}
+}}}
+
 ===参考资料===
 `[1].` http://kenai.com/projects/btrace/pages/UserGuide<br>
 `[2].` http://docs.oracle.com/javase/6/docs/technotes/guides/instrumentation/index.html<br>

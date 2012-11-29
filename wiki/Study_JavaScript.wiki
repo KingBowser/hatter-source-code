@@ -72,3 +72,4 @@
 `[1].` http://en.wikipedia.org/wiki/JavaScript<br>
 `[2].` http://en.wikipedia.org/wiki/ECMAScript<br>
 `[3].` http://ejohn.org/blog/the-world-of-ecmascript/<br>
+`[4].` http://ued.alimama.com/posts/543<br>

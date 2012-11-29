@@ -4,14 +4,14 @@
 
 ==支持协程的常见的语言和平台==
 || *语言/平台* || *实现时间* || *协程名称* || *备注 ||
-|| `GoLang` || 原生支持 || goroutines ||  ||
-|| `Erlang` || 原生支持 || process || 函数式语言 ||
-|| `Scala` || 原生支持 || actor || 函数式编程 ||
-|| `Python` || 2.5版本后 || coroutine || 官方Python不完全实现<br>Stackless Python支持 ||
-|| `Perl` || 6.0版本后 || coroutine	 ||  ||
-|| `Ruby` || 1.9 版本后 || fiber ||  ||
-|| `Lua` || 原生支持 || coroutine ||  ||
-|| `C#` || .net 2.0版本后 || fiber ||  ||
+|| `GoLang` || 原生支持 || `goroutines` ||  ||
+|| `Erlang` || 原生支持 || `process` || 函数式语言 ||
+|| `Scala` || 原生支持 || `actor` || 函数式编程 ||
+|| `Python` || 2.5版本后 || `coroutine` || 官方Python不完全实现<br>Stackless Python支持 ||
+|| `Perl` || 6.0版本后 || `coroutine` ||  ||
+|| `Ruby` || 1.9 版本后 || `fiber` ||  ||
+|| `Lua` || 原生支持 || `coroutine` ||  ||
+|| `C#` || .net 2.0版本后 || `fiber` ||  ||
 
 
 

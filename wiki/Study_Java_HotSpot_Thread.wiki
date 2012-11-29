@@ -2,7 +2,7 @@
 #sidebar TableOfContents
 
 ==线程类型==
-|| *`-`* || *`-`* || *name* ||
+|| *`ThreadType`* || *说明* || *线程名* ||
 || `vm_thread` || VMThread || `VM Thread` ||
 || `cgc_thread` || Concurrent GC thread || `Concurrent Mark-Sweep GC Thread` ||
 || `pgc_thread` || Parallel GC thread || `GC task thread#%d (ParallelGC)` ||

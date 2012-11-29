@@ -27,7 +27,7 @@ Thread
  * Java-level thread ID
  * Native thread ID
 
-==HotSpot线程实例说明==
+==HotSpot线程实例说明^[2]^==
 || *线程实例名* || *线程类型* || *说明* ||
 || `Attach Listener` || ? || Attach Listener线程是负责接收到外部的命令，而对该命令进行执行的并且吧结果返回给发送者。通常我们会用一些命令去要求jvm给我们一些反馈信息，如：java -version、jmap、jstack等等。如果该线程在jvm启动的时候没有初始化，那么，则会在用户第一次执行jvm命令时，得到启动。 ||
 || `Signal Dispatcher` || ? || 前面我们提到第一个Attach Listener线程的职责是接收外部jvm命令，当命令接收成功后，会交给signal dispather线程去进行分发到各个不同的模块处理命令，并且返回处理结果。signal dispather线程也是在第一次接收外部jvm命令时，进行初始化工作。 ||

@@ -44,7 +44,7 @@ $ jstack <PID> | grep 'VM Thread'
 "VM Thread" prio=10 tid=0x000000004288a000 nid=0x4b4e runnable
 //                                             ^-- native thread id = 19278
 }}}
- 再通过 gdb 打印堆栈信息：
+ 再通过 gdb (或 pstack)打印堆栈信息：
 {{{
 $ gdb -ex "set pagination 0" -ex "thread apply all bt" --batch -p  <PID> | grep <LWPID> -A 10
 Thread 49 (Thread 0x40781940 (LWP 19278)):

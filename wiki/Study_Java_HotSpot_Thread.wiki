@@ -27,5 +27,10 @@ Thread
  * Java-level thread ID
  * Native thread ID
 
+==HotSpot线程实例说明==
+|| *线程实例名* || *说明* ||
+|| `Attach Listener` || Attach Listener线程是负责接收到外部的命令，而对该命令进行执行的并且吧结果返回给发送者。通常我们会用一些命令去要求jvm给我们一些反馈信息，如：java -version、jmap、jstack等等。如果该线程在jvm启动的时候没有初始化，那么，则会在用户第一次执行jvm命令时，得到启动。 ||
+
 ===参考资料===
 `[1].` https://gist.github.com/843622/<br>
+`[2].` http://w19995.blog.51cto.com/6194463/1052618<br>

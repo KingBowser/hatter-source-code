@@ -51,7 +51,47 @@ Dump出来的类路径如下：
                     |-- FileTxnSnapLog$PlayBackListener.class
                     `-- FileTxnSnapLog.class
 }}}
-现在你可以通过 [http://java.decompiler.free.fr/ JD|Java Decompiler] 查看源代码了。
+现在你可以通 `javap` 反编译出字节码：
+{{{
+$ javap -p -v FileHeader
+Compiled from "FileHeader.java"
+public class org.apache.zookeeper.server.persistence.FileHeader extends java.lang.Object implements org.apache.jute.Record
+  SourceFile: "FileHeader.java"
+  minor version: 0
+  major version: 49
+  Constant pool:
+const #1 = Method	#43.#112;	//  java/lang/Object."<init>":()V
+... ...
+public org.apache.zookeeper.server.persistence.FileHeader(int, int, long);
+  Code:
+   Stack=3, Locals=5, Args_size=4
+   0:	aload_0
+   1:	invokespecial	#1; //Method java/lang/Object."<init>":()V
+   4:	aload_0
+   5:	iload_1
+   6:	putfield	#2; //Field magic:I
+   9:	aload_0
+   10:	iload_2
+   11:	putfield	#3; //Field version:I
+   14:	aload_0
+   15:	lload_3
+   16:	putfield	#4; //Field dbid:J
+   19:	return
+  LineNumberTable: 
+   line 33: 0
+   line 34: 4
+   line 35: 9
+   line 36: 14
+   line 37: 19
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      20      0    this       Lorg/apache/zookeeper/server/persistence/FileHeader;
+   0      20      1    magic       I
+   0      20      2    version       I
+   0      20      3    dbid       J
+}}}
+你也可以通过 [http://java.decompiler.free.fr/ JD|Java Decompiler] 查看源代码了。
 
 ==三、应用停止处理业务逻辑==
 这种情况需要查看服务器Load是不是Load过高导致不处理正常业务逻辑，参看 `[应用Load过高]` 或 `[应用占用内存过高]` 。如果Load正常且内存占用也正常则需要通过命令 `jstack` 查看堆栈情况，分析程序未正常工作的原因。此类情况有可能是：

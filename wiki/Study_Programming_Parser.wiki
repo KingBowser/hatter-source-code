@@ -1,0 +1,7 @@
+#summary Parser
+#sidebar TableOfContents
+
+|| Bison || Bison, The YACC-compatible Parser Generator || http://dinosaur.compilertools.net/#bison ||
+|| Jison || Your friendly JavaScript parser generator || http://zaach.github.com/jison/ ||
+|| Kison || KISSY parser generator version of Bison || https://github.com/kissyteam/kissy/tree/master/src/kison ||
+

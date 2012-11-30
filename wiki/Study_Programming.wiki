@@ -4,7 +4,7 @@
 || *DATETYPE* || *LP32* || *ILP32* || *LP64* || *ILP64* || *LLP64* || *JAVA* || *C#* ||
 || `CHAR`  || 8 || 8 || 8 || 8 || 8 || 16 || 16 ||
 
- 上表中，LP64、ILP64、LLP64是64位平台上字长的数据模型，ILP32和LP32是32位平台上字长的数据模型。
+上表中，LP64、ILP64、LLP64是64位平台上字长的数据模型，ILP32和LP32是32位平台上字长的数据模型。
  * LP64指的是LONG/POINTER字长为64位；
  * ILP64指的是INT/LONG/POINT字长为64位；
  * LLP64指的是LONGLONG/POINTER字长为64位；

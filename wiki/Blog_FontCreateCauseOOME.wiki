@@ -62,8 +62,7 @@ publicclass TestTrueTypeFontLoad {
         gs.setFont(afont.deriveFont(Font.PLAIN, new AffineTransform(10, 0, 0, 10, 10, 10)));
         gs.drawString("This is font load test", 0, 0);
       }
-    }
-    catch (Exception e) {
+    } catch (Exception e) {
       e.printStackTrace();
     }
   } 
@@ -72,14 +71,14 @@ publicclass TestTrueTypeFontLoad {
 
 通过把openjdk-6中的源代码拿过来编译，然后在运行代码前加上配置 “-Dsun.boot.class.path=” 加上刚才编译出来的类 ，再通过命令 “java -verbose:class” 打印出加载的类，看到JVM加载的类的确是我编译的类。然后通过不断修改源文件打印日志并监控Java占用内存情况。
 
-终于排查出来，sun.font.Font2D会将FontStrike对象缓存到内存中，默认使用SoftReference在ConcurrentHashMap中保存对其的引用（可以通过sun.java2d.font.reftype来配置使用SoftReference或WeakReference，默认则使用SoftReference，在类sun.font.StrikeCache中），而FontStrike则包含了对Native Memory内存的引用，而通过下面的函数来释放这些Native Memory：
+终于排查出来，`sun.font.Font2D`会将FontStrike对象缓存到内存中，默认使用SoftReference在ConcurrentHashMap中保存对其的引用（可以通过`sun.java2d.font.reftype`来配置使用SoftReference或WeakReference，默认则使用SoftReference，在类`sun.font.StrikeCache`中），而FontStrike则包含了对Native Memory内存的引用，而通过下面的函数来释放这些Native Memory：
 {{{
 sun.font.StrikeCache.disposeStrike(sun.font.FontStrikeDisposer)V
 }}}
 
 于是果断在这个函数内加上System.out.println日志，但没有看到这个函数被调用，觉得非常奇怪，这个对象怎么没有被释放呢，而且他Hold的可是Native Memory啊。
 
-于是，将sun.font.Font2D的 getStrike(Lsun.font.FontStrikeDesc;J)Lsun.font.FontStrike; 函数中的 “lastFontStrike = new SoftReference(strike);” 修改为 “lastFontStrike = new WeakReference(strike);”；在启动参数上加上 “-Dsun.java2d.font.reftype=weak”，且在程序中加入“System.gc();” 触发JVM的FULL GC，再次观察内存情况，发现程序内存稳定在500M左右，到此故障排查结束。 
+于是，将`sun.font.Font2D`的 `getStrike(Lsun.font.FontStrikeDesc;J)Lsun.font.FontStrike;` 函数中的 “`lastFontStrike = new SoftReference(strike);`” 修改为 “`lastFontStrike = new WeakReference(strike);`”；在启动参数上加上 “`-Dsun.java2d.font.reftype=weak`”，且在程序中加入“`System.gc();`” 触发JVM的FULL GC，再次观察内存情况，发现程序内存稳定在500M左右，到此故障排查结束。 
 
 关于Reference，大家可以Google一下“WeakReference vs SoftReference”。
 

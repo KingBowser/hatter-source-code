@@ -1,6 +1,7 @@
 #summary Parser
 #sidebar TableOfContents
 
+Lex 和 Yacc 是 UNIX 两个非常重要的、功能强大的工具。事实上，如果你熟练掌握 Lex 和 Yacc 的话，它们的强大功能使创建 FORTRAN 和 C 的编译器如同儿戏。 ^[1]^
 || Lex || Lexical Analyzar ||
 || Yacc || Yet Another Compiler Compiler ||
 

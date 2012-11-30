@@ -19,7 +19,9 @@ Server compiler detected.
 JVM version is 20.0-b11
 [INFO] Output directory: .
 [INFO] Dump class: org.apache.zookeeper.server.persistence.FileTxnSnapLog$PlayBackListener  @ sun.misc.Launcher$AppClassLoader
+//                 ^-- 类名                                                                    ^-- 加载的ClassLoader
 [INFO]        jar: /home/admin/storm/zookeeper-3.3.5/zookeeper-3.3.5.jar
+//                 ^-- 类加载的Jar包
 [INFO] Dump class: org.apache.zookeeper.server.persistence.FileTxnLog$PositionInputStream  @ sun.misc.Launcher$AppClassLoader
 [INFO]        jar: /home/admin/storm/zookeeper-3.3.5/zookeeper-3.3.5.jar
 [INFO] Dump class: org.apache.zookeeper.server.persistence.FileTxnSnapLog  @ sun.misc.Launcher$AppClassLoader

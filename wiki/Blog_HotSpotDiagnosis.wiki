@@ -9,6 +9,30 @@ HotSpot即OpenJDK也是Sun/Oracle官方JDK标准JVM实现。所以我们最常�
 
 ==二、JVM加载的类有问题==
 常常在一个应用里有同一个jar包的不同版本，但我们无法断定当前JVM加载的是哪个版本，这时候可以通过 `classdump` 打印URLClassLoader中加载的所有jar包，并列出他们的顺序。而我们实现的使用场景中常常还会使用类增强的手段，如使用ASM、javasist等，这时候需要分析内存中的字节码，此时也可以使用 `classdump` 将对应的类输出到磁盘文件。
+{{{
+$ java -jar classdumpall.jar 23537 -filter org.apache.zookeeper.server.persistence.File*
+[INFO] Add system classloader jar url: /usr/alibaba/install/jdk1.6.0_25/lib/tools.jar
+[INFO] Add system classloader jar url: /usr/alibaba/install/jdk1.6.0_25/lib/sa-jdi.jar
+Attaching to process ID 23537, please wait...
+Debugger attached successfully.
+Server compiler detected.
+JVM version is 20.0-b11
+[INFO] Output directory: .
+[INFO] Dump class: org.apache.zookeeper.server.persistence.FileTxnSnapLog$PlayBackListener  @ sun.misc.Launcher$AppClassLoader
+[INFO]        jar: /home/admin/storm/zookeeper-3.3.5/zookeeper-3.3.5.jar
+[INFO] Dump class: org.apache.zookeeper.server.persistence.FileTxnLog$PositionInputStream  @ sun.misc.Launcher$AppClassLoader
+[INFO]        jar: /home/admin/storm/zookeeper-3.3.5/zookeeper-3.3.5.jar
+[INFO] Dump class: org.apache.zookeeper.server.persistence.FileTxnSnapLog  @ sun.misc.Launcher$AppClassLoader
+[INFO]        jar: /home/admin/storm/zookeeper-3.3.5/zookeeper-3.3.5.jar
+[INFO] Dump class: org.apache.zookeeper.server.persistence.FileTxnLog  @ sun.misc.Launcher$AppClassLoader
+[INFO]        jar: /home/admin/storm/zookeeper-3.3.5/zookeeper-3.3.5.jar
+[INFO] Dump class: org.apache.zookeeper.server.persistence.FileHeader  @ sun.misc.Launcher$AppClassLoader
+[INFO]        jar: /home/admin/storm/zookeeper-3.3.5/zookeeper-3.3.5.jar
+[INFO] Dump class: org.apache.zookeeper.server.persistence.FileSnap  @ sun.misc.Launcher$AppClassLoader
+[INFO]        jar: /home/admin/storm/zookeeper-3.3.5/zookeeper-3.3.5.jar
+[INFO] Dump class: org.apache.zookeeper.server.persistence.FileTxnLog$FileTxnIterator  @ sun.misc.Launcher$AppClassLoader
+[INFO]        jar: /home/admin/storm/zookeeper-3.3.5/zookeeper-3.3.5.jar
+}}}
 
 ==三、应用停止处理业务逻辑==
 这种情况需要查看服务器Load是不是Load过高导致不处理正常业务逻辑，参看 `[应用Load过高]` 或 `[应用占用内存过高]` 。如果Load正常且内存占用也正常则需要通过命令 `jstack` 查看堆栈情况，分析程序未正常工作的原因。此类情况有可能是：

@@ -1,6 +1,8 @@
 #summary Font.create()引发OOME问题
 #sidebar TableOfContents
 
+=Font.create()引发OOME问题=
+
 周二（2011年12月13日）中午，服务器出现问题，新上的打水印功能出现不可用情况，有大量用户投诉过来。
 
 于是我被从晋升答辩评委席拖回来处理故障。

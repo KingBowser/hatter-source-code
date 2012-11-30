@@ -35,6 +35,23 @@ JVM version is 20.0-b11
 [INFO] Dump class: org.apache.zookeeper.server.persistence.FileTxnLog$FileTxnIterator  @ sun.misc.Launcher$AppClassLoader
 [INFO]        jar: /home/admin/storm/zookeeper-3.3.5/zookeeper-3.3.5.jar
 }}}
+Dump出来的类路径如下：
+{{{
+.
+`-- org
+    `-- apache
+        `-- zookeeper
+            `-- server
+                `-- persistence
+                    |-- FileHeader.class
+                    |-- FileSnap.class
+                    |-- FileTxnLog$FileTxnIterator.class
+                    |-- FileTxnLog$PositionInputStream.class
+                    |-- FileTxnLog.class
+                    |-- FileTxnSnapLog$PlayBackListener.class
+                    `-- FileTxnSnapLog.class
+}}}
+现在你可以通过 [http://java.decompiler.free.fr/ JD|Java Decompiler] 查看源代码了。
 
 ==三、应用停止处理业务逻辑==
 这种情况需要查看服务器Load是不是Load过高导致不处理正常业务逻辑，参看 `[应用Load过高]` 或 `[应用占用内存过高]` 。如果Load正常且内存占用也正常则需要通过命令 `jstack` 查看堆栈情况，分析程序未正常工作的原因。此类情况有可能是：

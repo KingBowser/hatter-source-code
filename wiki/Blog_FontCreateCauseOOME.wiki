@@ -29,6 +29,8 @@ return File.createTempFile("+~JF", ".tmp", null);
 
 服务器Load飙高非常不正常，想了好久都没想出来为什么，后来查看监控的信息，看到内存信息非常诡异：
 
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/blog/Mem_Graph.png]
+
 看到这个图严重怀疑是Java的Native Memory内存泄漏，因为按照我们的配置，Java正常内存使用一般不会超过2.5G，而这里我们机器的内存使用了超过5G，而且还使用了Swap内存，所以这时也导致Load飙高。但为什么Java会使用这么多内存呢？
 
 然后我从Sun(Oracle)的Bug Database中找到了这个Bug：
@@ -84,3 +86,5 @@ sun.font.StrikeCache.disposeStrike(sun.font.FontStrikeDisposer)V
 可以看到WeakReference是在做Full GC时会回收，但SoftReference只在OOME前回收内存。
 
 Java内存和JVM Native内存的关系如下图表示：
+
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/blog/System_Java_Memory.png]

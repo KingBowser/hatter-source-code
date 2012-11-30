@@ -8,3 +8,6 @@
 || Bison|| http://dinosaur.compilertools.net/#bison || Bison, The YACC-compatible Parser Generator ||
 || Jison || http://zaach.github.com/jison/ || Your friendly JavaScript parser generator ||
 || Kison || https://github.com/kissyteam/kissy/tree/master/src/kison || KISSY parser generator version of Bison ||
+
+===参考资料===
+`[1].` http://www.ibm.com/developerworks/cn/linux/sdk/lex/index.html<br>

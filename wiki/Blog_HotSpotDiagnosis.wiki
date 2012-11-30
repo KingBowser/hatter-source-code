@@ -2,6 +2,7 @@
 #sidebar TableOfContents
 
 =HotSpot问题诊断=
+HotSpot即OpenJDK也是Sun/Oracle官方JDK标准JVM实现。
 查找HotSpot相关的问题需要根据现象判断，对现象简单分类如下：
 
 ==一、HotSpot异常退出==

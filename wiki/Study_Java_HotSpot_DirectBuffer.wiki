@@ -9,7 +9,8 @@
   * `HeapByteBuffer`
   * `MappedByteBuffer`
    * `MappedByteBuffer map(int mode,long position,long size); `
-    || `READ_ONLY` || 只读 || 试图修改得到的缓冲区将导致抛出 ReadOnlyBufferException ||
+   <br>
+|| `READ_ONLY` || 只读 || 试图修改得到的缓冲区将导致抛出 ReadOnlyBufferException ||
 || `READ_WRITE` || 读/写 || 对得到的缓冲区的更改最终将传播到文件；该更改对映射到同一文件的其他程序不一定是可见的 ||
 || `PRIVATE` || 专用 || 对得到的缓冲区的更改不会传播到文件，并且该更改对映射到同一文件的其他程序也不是可见的；相反，会创建缓冲区已修改部分的专用副本 ||
 

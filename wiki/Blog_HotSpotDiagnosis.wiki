@@ -10,7 +10,7 @@ HotSpot即OpenJDK也是Sun/Oracle官方JDK标准JVM实现。所以我们最常�
 ==二、JVM加载的类有问题==
 常常在一个应用里有同一个jar包的不同版本，但我们无法断定当前JVM加载的是哪个版本，这时候可以通过 `classdump` 打印URLClassLoader中加载的所有jar包，并列出他们的顺序。而我们实现的使用场景中常常还会使用类增强的手段，如使用ASM、javasist等，这时候需要分析内存中的字节码，此时也可以使用 `classdump` 将对应的类输出到磁盘文件。
 {{{
-$ java -jar classdumpall.jar 23537 -filter org.apache.zookeeper.server.persistence.File*
+$ java -jar classdumpall.jar <PID> -filter org.apache.zookeeper.server.persistence.File*
 [INFO] Add system classloader jar url: /usr/alibaba/install/jdk1.6.0_25/lib/tools.jar
 [INFO] Add system classloader jar url: /usr/alibaba/install/jdk1.6.0_25/lib/sa-jdi.jar
 Attaching to process ID 23537, please wait...

@@ -7,7 +7,7 @@ HotSpot即OpenJDK也是Sun/Oracle官方JDK标准JVM实现。所以我们最常�
 ==一、HotSpot异常退出==
 这个问题比较棘手，因为通常JVM异常退出是JVM自身的Bug，所以一般需要读懂JVM源代码才能够找到/解决这类Bug。
 
-也有非Bug引起的JVM异常退出的问题：
+也有非Bug引起的JVM异常退出的问题，例如：
  * [http://my.oschina.net/leejun2005/blog/80975 ulimit -t 引起的kill血案]
 
 ==二、JVM加载的类有问题==

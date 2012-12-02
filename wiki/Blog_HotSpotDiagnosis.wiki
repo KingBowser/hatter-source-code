@@ -8,7 +8,7 @@ HotSpot即OpenJDK也是Sun/Oracle官方JDK标准JVM实现。所以我们最常�
 这个问题比较棘手，因为通常JVM异常退出是JVM自身的Bug，所以一般需要读懂JVM源代码才能够找到/解决这类Bug。
 
 也有非Bug引起的JVM异常退出的问题，例如：
- * [http://my.oschina.net/leejun2005/blog/80975 ulimit -t 引起的kill血案]
+ * [http://blog.yufeng.info/archives/2311 ulimit -t 引起的kill血案]
 
 ==二、JVM加载的类有问题==
 常常在一个应用里有同一个jar包的不同版本，但我们无法断定当前JVM加载的是哪个版本，这时候可以通过 `classdump` 打印URLClassLoader中加载的所有jar包，并列出他们的顺序。而我们实现的使用场景中常常还会使用类增强的手段，如使用ASM、javasist等，这时候需要分析内存中的字节码，此时也可以使用 `classdump` 将对应的类输出到磁盘文件。

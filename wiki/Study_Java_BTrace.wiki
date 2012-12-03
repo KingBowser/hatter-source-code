@@ -65,6 +65,13 @@ public class Trace {
 =使用=
 
 ==Method Annotations==
+|| `@com.sun.btrace.annotations.OnMethod` ||  ||
+|| `@com.sun.btrace.annotations.OnTimer` ||  ||
+|| `@com.sun.btrace.annotations.OnError` ||  ||
+|| `@com.sun.btrace.annotations.OnExit` ||  ||
+|| `@com.sun.btrace.annotations.OnEvent` ||  ||
+|| `@com.sun.btrace.annotations.OnLowMemory` ||  ||
+|| `@com.sun.btrace.annotations.OnProbe` ||  ||
 
 ==Argument Annotations==
 || `@com.sun.btrace.annotations.Self` ||  ||

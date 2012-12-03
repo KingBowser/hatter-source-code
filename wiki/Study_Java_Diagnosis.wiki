@@ -32,5 +32,6 @@
 || Aspersa || https://code.google.com/p/aspersa/|| Aspersa has become part of Percona Toolkit, and there will be no further development or releases separate from Percona Toolkit. ||
 || Heapster || https://github.com/mariusaeriksen/heapster || Heapster provides an agent library to do heap profiling for JVM processes with output compatible with Google perftools. ||
 || OProfile  || http://oprofile.sourceforge.net/ || OProfile is a system-wide profiler for Linux systems, capable of profiling all running code at low overhead. ||
+|| java.sizeOf || http://sizeof.sourceforge.net/ || With java.SizeOf you can measure the real memory size of your Java objects. ||
 
  * http://www.ibm.com/developerworks/cn/linux/l-cn-perf1/index.html

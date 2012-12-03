@@ -64,6 +64,17 @@ public class Trace {
 
 =使用=
 
+==Method Annotations==
+
+==Argument Annotations==
+|| `@com.sun.btrace.annotations.Self` ||  ||
+|| `@com.sun.btrace.annotations.Return` ||  ||
+|| `@com.sun.btrace.annotations.ProbeClassName` ||  ||
+|| `@com.sun.btrace.annotations.ProbeMethodName` ||  ||
+|| `@com.sun.btrace.annotations.Duration` ||  ||
+|| `@com.sun.btrace.annotations.TargetInstance` ||  ||
+|| `@com.sun.btrace.annotations.TargetMethodOrField` ||  ||
+
 ===参考资料===
 `[1].` http://kenai.com/projects/btrace/pages/UserGuide<br>
 `[2].` http://docs.oracle.com/javase/6/docs/technotes/guides/instrumentation/index.html<br>

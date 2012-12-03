@@ -82,6 +82,8 @@ public class Trace {
 || `@com.sun.btrace.annotations.TargetInstance` ||  ||
 || `@com.sun.btrace.annotations.TargetMethodOrField` ||  ||
 
+当出现未打标记的参数时会通过对应类型的切面传递参数，当 *`AnyType[]`* 指定时，则会传入剩余的全部参数：
+
 ===参考资料===
 `[1].` http://kenai.com/projects/btrace/pages/UserGuide<br>
 `[2].` http://docs.oracle.com/javase/6/docs/technotes/guides/instrumentation/index.html<br>

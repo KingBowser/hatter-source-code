@@ -74,7 +74,7 @@ public class Trace {
 || `@com.sun.btrace.annotations.OnProbe` ||  ||
 
 ==Argument Annotations==
-|| `@com.sun.btrace.annotations.Self` ||  ||
+|| `@com.sun.btrace.annotations.Self` || this对象，当非static函数调用时的this对象 ||
 || `@com.sun.btrace.annotations.Return` ||  ||
 || `@com.sun.btrace.annotations.ProbeClassName` ||  ||
 || `@com.sun.btrace.annotations.ProbeMethodName` ||  ||

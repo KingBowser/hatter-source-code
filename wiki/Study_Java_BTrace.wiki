@@ -63,9 +63,9 @@ public class Trace {
 || `@com.sun.btrace.annotations.BTrace` || 标记类为BTrace脚本 ||
 
 ==Field Annotations==
-|| `@com.sun.btrace.annotations.Export` ||  ||
-|| `@com.sun.btrace.annotations.Property` ||  ||
-|| `@com.sun.btrace.annotations.TLS` ||  ||
+|| `@com.sun.btrace.annotations.Export` || 将变量导出到外部 ||
+|| `@com.sun.btrace.annotations.Property` || 将变量导出为MXBeant属性 ||
+|| `@com.sun.btrace.annotations.TLS` || 标记BTrace脚本的字段为线程安全 ||
 
 ==Method Annotations==
 || `@com.sun.btrace.annotations.OnMethod` || 通过函数触发，如是参数调用点、函数调用开始、函数调用结束等 ||
@@ -74,7 +74,7 @@ public class Trace {
 || `@com.sun.btrace.annotations.OnExit` || BTrace退出时触发 ||
 || `@com.sun.btrace.annotations.OnEvent` || 事件触发，在BTrace运行时可通过`Ctrl+C`触发事件 ||
 || `@com.sun.btrace.annotations.OnLowMemory` || 低内存时触发 ||
-|| `@com.sun.btrace.annotations.OnProbe` ||  ||
+|| `@com.sun.btrace.annotations.OnProbe` || `-` ||
 
 ==Argument Annotations==
 || `@com.sun.btrace.annotations.Self` || this对象，当非static函数调用时的this对象 ||

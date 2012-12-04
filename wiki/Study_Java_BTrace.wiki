@@ -27,17 +27,18 @@ btrace [-I <include-path>] [-p <port>] [-cp <classpath>] <pid> <btrace-script> [
 -Dcom.sun.btrace.dumpDir=.
 }}}
 
-|| `bootClassPath` || boot classpath to be used ||
-|| `systemClassPath` || system classpath to be used ||
-|| `debug` || turns on verbose debug messages (true/false) ||
-|| `unsafe` || do not check for btrace restrictions violations (true/false) ||
-|| `dumpClasses` || dump the transformed bytecode to files (true/false) ||
-|| `dumpDir` || specifies the folder where the transformed classes will be dumped to ||
-|| `stdout` || redirect the btrace output to stdout instead of writing it to an arbitrary file (true/false) ||
-|| `probeDescPath` || the path to search for probe descriptor XMLs ||
-|| `script` || the path to a script to be run at the agent startup ||
-|| `scriptdir` || the path to a directory containing scripts to be run at the agent startup ||
-|| `scriptOutputFile` || the path to a file the btrace agent will store its output ||
+|| *参数* || *默认值* || *说明* ||
+|| `bootClassPath` ||  || boot classpath to be used ||
+|| `systemClassPath` ||  || system classpath to be used ||
+|| `debug` ||  || turns on verbose debug messages (true/false) ||
+|| `unsafe` ||  || do not check for btrace restrictions violations (true/false) ||
+|| `dumpClasses` ||  || dump the transformed bytecode to files (true/false) ||
+|| `dumpDir` ||  || specifies the folder where the transformed classes will be dumped to ||
+|| `stdout` ||  || redirect the btrace output to stdout instead of writing it to an arbitrary file (true/false) ||
+|| `probeDescPath` ||  || the path to search for probe descriptor XMLs ||
+|| `script` ||  || the path to a script to be run at the agent startup ||
+|| `scriptdir` ||  || the path to a directory containing scripts to be run at the agent startup ||
+|| `scriptOutputFile` ||  || the path to a file the btrace agent will store its output ||
 
 ==工具==
 *生成简单BTrace的工具* http://hatter.me/js/btrace/

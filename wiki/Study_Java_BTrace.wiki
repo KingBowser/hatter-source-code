@@ -58,9 +58,9 @@ public class Trace {
 =使用=
 
 ==Class Annotations==
-|| `@com.sun.btrace.annotations.DTrace` ||  ||
-|| `@com.sun.btrace.annotations.DTraceRef` ||  ||
-|| `@com.sun.btrace.annotations.BTrace` ||  ||
+|| `@com.sun.btrace.annotations.DTrace` || _和`dtrace`相关，似乎不能在Linux，Mac下使用 :'( _ ||
+|| `@com.sun.btrace.annotations.DTraceRef` || _和`dtrace`相关，似乎不能在Linux，Mac下使用 :'( _ ||
+|| `@com.sun.btrace.annotations.BTrace` || 标记类为BTrace脚本 ||
 
 ==Field Annotations==
 || `@com.sun.btrace.annotations.Export` ||  ||

@@ -20,3 +20,4 @@ server.3=a1.hatter.zj.cn:2888:3888
 ===参考资料===
 `[1].` http://zookeeper.apache.org/doc/r3.3.3/zookeeperProgrammers.html<br>
 `[2].` http://bbs.zoomla.cn/archiver/showtopic-15086.aspx<br>
+`[3].` http://www.cnblogs.com/gpcuster/archive/2010/01/15/1648547.html<br>

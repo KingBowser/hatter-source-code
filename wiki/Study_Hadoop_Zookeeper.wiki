@@ -19,7 +19,7 @@ server.3=a1.hatter.zj.cn:2888:3888
 
 客户端连接到ZooKeeper服务器：
 {{{
-./zkCli.sh -server host:port
+./zkCli.sh -server host:port  // port default: 2181
 }}}
 
 ===参考资料===

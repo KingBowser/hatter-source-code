@@ -3,39 +3,19 @@
 
 下载ZooKeeper: [http://zookeeper.apache.org/releases.html]
 
-ZooKeeper中的时间<br>
-ZooKeeper中通过多种方式来表达时间：<br>
-*Zxid*<br>
-Every change to the ZooKeeper state receives a stamp in the form of a zxid (ZooKeeper Transaction Id). This exposes the total ordering of all changes to ZooKeeper. Each change will have a unique zxid and if zxid1 is smaller than zxid2 then zxid1 happened before zxid2.<br>
-*Version numbers*<br>
-Every change to a a node will cause an increase to one of the version numbers of that node. The three version numbers are version (number of changes to the data of a znode), cversion (number of changes to the children of a znode), and aversion (number of changes to the ACL of a znode).<br>
-*Ticks*<br>
-When using multi-server ZooKeeper, servers use ticks to define timing of events such as status uploads, session timeouts, connection timeouts between peers, etc. The tick time is only indirectly exposed through the minimum session timeout (2 times the tick time); if a client requests a session timeout less than the minimum session timeout, the server will tell the client that the session timeout is actually the minimum session timeout.<br>
-*Real time*<br>
-ZooKeeper doesn't use real time, or clock time, at all except to put timestamps into the stat structure on znode creation and znode modification.<br>
+{{{
+tickTime=2000
+initLimit=10
+syncLimit=5
+dataDir=/home/admin/zookeeper/data
+clientPort=2181
 
-ZooKeeper Stat Structure<br>
-The Stat structure for each znode in ZooKeeper is made up of the following fields:<br>
-*czxid*<br>
-The zxid of the change that caused this znode to be created.<br>
-*mzxid*<br>
-The zxid of the change that last modified this znode.<br>
-*ctime*<br>
-The time in milliseconds from epoch when this znode was created.<br>
-*mtime*<br>
-The time in milliseconds from epoch when this znode was last modified.<br>
-*version*<br>
-The number of changes to the data of this znode.<br>
-*cversion*<br>
-The number of changes to the children of this znode.<br>
-*aversion*<br>
-The number of changes to the ACL of this znode.<br>
-*ephemeralOwner*<br>
-The session id of the owner of this znode if the znode is an ephemeral node. If it is not an ephemeral node, it will be zero.<br>
-*dataLength*<br>
-The length of the data field of this znode.<br>
-*numChildren*<br>
-The number of children of this znode.<br>
+server.1=c1.hatter.zj.cn:2888:3888 
+server.2=b1.hatter.zj.cn:2888:3888 
+server.3=a1.hatter.zj.cn:2888:3888
+}}}
+
+在 `/home/admin/zookeeper/data` 建文件 `myid` ，写入对应的ID号。
 
 ===参考资料===
 `[1].` http://zookeeper.apache.org/doc/r3.3.3/zookeeperProgrammers.html<br>

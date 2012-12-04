@@ -1,11 +1,11 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
 
-def baseProjectName = 'jline'
+def baseProjectName = 'test-jline'
 def shellCommandName = baseProjectName
 def eclipseProjectName = baseProjectName
 def eclipseProjectComment = 'my test application'
-def jarManifestMainClass = 'me.hatter.tools.xxx.Main'
+def jarManifestMainClass = 'me.hatter.tests.jlinetest.JLineTest'
 def installTargetBin = '/usr/local/bin/'
 
 archivesBaseName = baseProjectName

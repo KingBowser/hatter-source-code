@@ -7,6 +7,7 @@ import jline.Terminal;
 import jline.TerminalFactory;
 import me.hatter.tools.commons.color.Font;
 
+// TODO
 public class Screen {
 
     private Terminal     terminal;

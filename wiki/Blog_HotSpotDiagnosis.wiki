@@ -100,6 +100,7 @@ public org.apache.zookeeper.server.persistence.FileHeader(int, int, long);
 ==三、应用停止处理业务逻辑==
 这种情况需要查看服务器Load是不是Load过高导致不处理正常业务逻辑，参看 `[应用Load过高]` 或 `[应用占用内存过高]` 。如果Load正常且内存占用也正常则需要通过命令 `jstack` 查看堆栈情况，分析程序未正常工作的原因。此类情况有可能是：
  * 数据库锁，更新/查询/删除数据未提交
+  * 大事务不提交，其它更新则需等待锁
  * 程序死锁，不恰当的使用Lock
   * 举例1：Lock顺序导致死锁
 {{{

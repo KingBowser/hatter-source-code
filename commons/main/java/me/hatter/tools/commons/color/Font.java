@@ -1,5 +1,7 @@
 package me.hatter.tools.commons.color;
 
+import me.hatter.tools.commons.screen.TermUtils;
+
 public class Font {
 
     private Position position;
@@ -41,17 +43,17 @@ public class Font {
         boolean needEndFlag = false;
         if (position != null) {
             needEndFlag = true;
-            sb.append(Color.CHAR_27 + "[" + position.getRow() + "H");
-            sb.append(Color.CHAR_27 + "[" + position.getCol() + "C");
+            sb.append(TermUtils.CHAR_27 + "[" + position.getRow() + "H");
+            sb.append(TermUtils.CHAR_27 + "[" + position.getCol() + "C");
         }
         if (Color.getColorValue(color) != null) {
             needEndFlag = true;
             String bold = isBold ? "1" : "0";
-            sb.append(Color.CHAR_27 + "[" + bold + ";" + color.getValue() + "m");
+            sb.append(TermUtils.CHAR_27 + "[" + bold + ";" + color.getValue() + "m");
         }
         sb.append(text);
         if (needEndFlag) {
-            sb.append(Color.RESET);
+            sb.append(TermUtils.RESET);
         }
         return sb.toString();
     }

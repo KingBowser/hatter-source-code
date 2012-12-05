@@ -101,6 +101,84 @@ public org.apache.zookeeper.server.persistence.FileHeader(int, int, long);
 这种情况需要查看服务器Load是不是Load过高导致不处理正常业务逻辑，参看 `[应用Load过高]` 或 `[应用占用内存过高]` 。如果Load正常且内存占用也正常则需要通过命令 `jstack` 查看堆栈情况，分析程序未正常工作的原因。此类情况有可能是：
  * 数据库锁，更新/查询/删除数据未提交
  * 程序死锁，不恰当的使用Lock
+  * 举例1：Lock顺序导致死锁
+{{{    public static void main(String[] args) {
+        final Lock lock1 = new ReentrantLock();
+        final Lock lock2 = new ReentrantLock();
+
+        Thread t1 = new Thread() {
+
+            public void run() {
+                lock1.lock();
+                try {
+                    lock2.lock();
+                    try {
+                        // code
+                    } finally {
+                        lock2.unlock();
+                    }
+                } finally {
+                    lock1.unlock();
+                }
+            }
+        };
+        Thread t2 = new Thread() {
+
+            public void run() {
+                lock2.lock();
+                try {
+                    lock1.lock();
+                    try {
+                        // code
+                    } finally {
+                        lock1.unlock();
+                    }
+                } finally {
+                    lock2.unlock();
+                }
+            }
+        };
+        t1.start();
+        t2.start();
+    }
+}}}
+  通过`jstack`可以看到：
+{{{
+Found one Java-level deadlock:
+=============================
+"Thread-2":
+  waiting for ownable synchronizer 7f31a0208, (a java.util.concurrent.locks.ReentrantLock$NonfairSync),
+  which is held by "Thread-1"
+"Thread-1":
+  waiting for ownable synchronizer 7f31a0238, (a java.util.concurrent.locks.ReentrantLock$NonfairSync),
+  which is held by "Thread-2"
+
+Java stack information for the threads listed above:
+===================================================
+"Thread-2":
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <7f31a0208> (a java.util.concurrent.locks.ReentrantLock$NonfairSync)
+	at java.util.concurrent.locks.LockSupport.park(LockSupport.java:156)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer.parkAndCheckInterrupt(AbstractQueuedSynchronizer.java:811)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer.acquireQueued(AbstractQueuedSynchronizer.java:842)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer.acquire(AbstractQueuedSynchronizer.java:1178)
+	at java.util.concurrent.locks.ReentrantLock$NonfairSync.lock(ReentrantLock.java:186)
+	at java.util.concurrent.locks.ReentrantLock.lock(ReentrantLock.java:262)
+	at me.hatter.tool.a.tests.classes.LockL$2.run(LockL.java:41)
+"Thread-1":
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <7f31a0238> (a java.util.concurrent.locks.ReentrantLock$NonfairSync)
+	at java.util.concurrent.locks.LockSupport.park(LockSupport.java:156)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer.parkAndCheckInterrupt(AbstractQueuedSynchronizer.java:811)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer.acquireQueued(AbstractQueuedSynchronizer.java:842)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer.acquire(AbstractQueuedSynchronizer.java:1178)
+	at java.util.concurrent.locks.ReentrantLock$NonfairSync.lock(ReentrantLock.java:186)
+	at java.util.concurrent.locks.ReentrantLock.lock(ReentrantLock.java:262)
+	at me.hatter.tool.a.tests.classes.LockL$1.run(LockL.java:21)
+
+Found 1 deadlock.
+}}}
+  * 举例2：共用Executor导致死锁
  * 网络IO操作未返回，如未设置超时时间且当网络异常时有可能出现超时但无法继续执行的情况<br>如：URLConnection在使用时需要同时设置 `void setConnectTimeout(int timeout)` 和 `void setReadTimeout(int timeout)`，否则有可能在使用时出现客户端等待数据但网络连接一直保持的情况。使用HttpClient时也需要设置类似的两个参数(生产环境悲剧过，大家要引以为戒)。
 
 ==四、应用Load过高==

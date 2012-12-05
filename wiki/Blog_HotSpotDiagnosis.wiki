@@ -180,6 +180,31 @@ Java stack information for the threads listed above:
 Found 1 deadlock.
 }}}
   * 举例2：共用Executor导致死锁
+{{{
+    public static void main(String[] args) {
+        final ExecutorService es = Executors.newFixedThreadPool(1);
+        es.submit(new Runnable() {
+
+            public void run() {
+                System.out.println("AAAAAA");
+                Future<?> f = es.submit(new Runnable() {
+
+                    public void run() {
+                        System.out.println("BBBBBB");
+                    }
+                });
+                try {
+                    f.get();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                System.out.println("CCCCCC");
+            }
+        });
+        System.out.println("DDDDDD");
+    }
+}}}
+  在这里的线程池被共用，但当线程池为1时，共用该线程池导致无法处理正常业务逻辑。
  * 网络IO操作未返回，如未设置超时时间且当网络异常时有可能出现超时但无法继续执行的情况<br>如：URLConnection在使用时需要同时设置 `void setConnectTimeout(int timeout)` 和 `void setReadTimeout(int timeout)`，否则有可能在使用时出现客户端等待数据但网络连接一直保持的情况。使用HttpClient时也需要设置类似的两个参数(生产环境悲剧过，大家要引以为戒)。
 
 ==四、应用Load过高==

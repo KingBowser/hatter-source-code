@@ -102,7 +102,8 @@ public org.apache.zookeeper.server.persistence.FileHeader(int, int, long);
  * 数据库锁，更新/查询/删除数据未提交
  * 程序死锁，不恰当的使用Lock
   * 举例1：Lock顺序导致死锁
-{{{    public static void main(String[] args) {
+{{{
+    public static void main(String[] args) {
         final Lock lock1 = new ReentrantLock();
         final Lock lock2 = new ReentrantLock();
 

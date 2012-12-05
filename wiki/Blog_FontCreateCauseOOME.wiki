@@ -82,7 +82,7 @@ sun.font.StrikeCache.disposeStrike(sun.font.FontStrikeDisposer)V
 
 于是，将`sun.font.Font2D`的 `getStrike(Lsun.font.FontStrikeDesc;J)Lsun.font.FontStrike;` 函数中的 “`lastFontStrike = new SoftReference(strike);`” 修改为 “`lastFontStrike = new WeakReference(strike);`”；在启动参数上加上 “`-Dsun.java2d.font.reftype=weak`”，且在程序中加入“`System.gc();`” 触发JVM的FULL GC，再次观察内存情况，发现程序内存稳定在500M左右，到此故障排查结束。 
 
-关于Reference，大家可以Google一下“WeakReference vs SoftReference”。
+关于Reference，大家可以Google一下“`WeakReference vs SoftReference`”。
 
 可以看到WeakReference是在做Full GC时会回收，但SoftReference只在OOME前回收内存。
 

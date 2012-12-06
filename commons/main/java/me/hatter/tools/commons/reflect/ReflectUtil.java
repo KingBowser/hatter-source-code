@@ -6,9 +6,31 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ReflectUtil {
+
+    private static final Map<String, Boolean> classPresentMap = new HashMap<String, Boolean>();
+
+    public static boolean isClassPresent(String className) {
+        synchronized (classPresentMap) {
+            if (classPresentMap.get(className) != null) {
+                return classPresentMap.get(className).booleanValue();
+            }
+        }
+        boolean found = true;
+        try {
+            Class.forName(className);
+        } catch (ClassNotFoundException e) {
+            found = false;
+        }
+        synchronized (classPresentMap) {
+            classPresentMap.put(className, Boolean.valueOf(found));
+        }
+        return found;
+    }
 
     @SuppressWarnings("unchecked")
     public static <T> T cast(Object obj, Class<T> interf) {

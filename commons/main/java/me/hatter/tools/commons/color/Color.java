@@ -2,7 +2,10 @@ package me.hatter.tools.commons.color;
 
 public class Color {
 
-    private Integer value;
+    public static final Color BG_RED   = getColor(101);
+    public static final Color BG_GREEN = getColor(102);
+
+    private Integer           value;
 
     public Color(Integer value) {
         this.value = value;

@@ -1,5 +1,7 @@
 package me.hatter.tools.commons.screen;
 
+// http://www.cnblogs.com/mugua/archive/2009/11/25/1610118.html
+// http://hi.baidu.com/vivo01/item/f308cf8eb9d387814514cf58
 public class TermUtils {
 
     public static final char   CHAR_27     = (char) 27;

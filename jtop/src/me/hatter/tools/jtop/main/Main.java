@@ -1,5 +1,7 @@
 package me.hatter.tools.jtop.main;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,16 +13,18 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import jline.TerminalFactory;
-
 import me.hatter.tools.commons.args.UnixArgsutil;
 import me.hatter.tools.commons.bytes.ByteUtil;
 import me.hatter.tools.commons.bytes.ByteUtil.ByteFormat;
+import me.hatter.tools.commons.classloader.ClassLoaderUtil;
 import me.hatter.tools.commons.collection.CollectionUtil;
 import me.hatter.tools.commons.color.Font;
 import me.hatter.tools.commons.color.Position;
+import me.hatter.tools.commons.io.IOUtil;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil.JDKLib;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil.JDKTarget;
+import me.hatter.tools.commons.log.LogUtil;
 import me.hatter.tools.commons.screen.TermUtils;
 import me.hatter.tools.commons.string.StringUtil;
 import me.hatter.tools.jtop.main.objects.MainOutput;
@@ -40,15 +44,26 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            HotSpotVMUtil.autoAddToolsJarDependency(JDKTarget.SYSTEM_CLASSLOADER, JDKLib.TOOLS);
             UnixArgsutil.parseGlobalArgs(args);
+            boolean advanced = UnixArgsutil.ARGS.flags().containsAny("A", "advanced");
+
+            HotSpotVMUtil.autoAddToolsJarDependency(JDKTarget.SYSTEM_CLASSLOADER, JDKLib.TOOLS);
+
+            if (advanced) {
+                File tempjline = File.createTempFile("jline-2.9", ".jar");
+                tempjline.deleteOnExit();
+                FileOutputStream fos = new FileOutputStream(tempjline);
+                IOUtil.copy(Main.class.getResourceAsStream("/jtop-resources/jline-2.9.jar"), fos);
+                fos.close();
+                LogUtil.info("Generate jline: " + tempjline);
+                ClassLoaderUtil.addURLs(ClassLoaderUtil.getSystemClassLoader(), tempjline.toURI().toURL());
+            }
 
             if (UnixArgsutil.ARGS.args().length == 0) {
                 System.out.println("[ERROR] pid is not assigned.");
                 usage();
                 System.exit(0);
             }
-            boolean advanced = UnixArgsutil.ARGS.flags().containsAny("A", "advanced");
 
             String pid = UnixArgsutil.ARGS.args()[0];
 

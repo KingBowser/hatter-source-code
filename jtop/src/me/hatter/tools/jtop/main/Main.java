@@ -1,7 +1,5 @@
 package me.hatter.tools.jtop.main;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,11 +18,9 @@ import me.hatter.tools.commons.classloader.ClassLoaderUtil;
 import me.hatter.tools.commons.collection.CollectionUtil;
 import me.hatter.tools.commons.color.Font;
 import me.hatter.tools.commons.color.Position;
-import me.hatter.tools.commons.io.IOUtil;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil.JDKLib;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil.JDKTarget;
-import me.hatter.tools.commons.log.LogUtil;
 import me.hatter.tools.commons.screen.TermUtils;
 import me.hatter.tools.commons.string.StringUtil;
 import me.hatter.tools.jtop.main.objects.MainOutput;
@@ -50,13 +46,7 @@ public class Main {
             HotSpotVMUtil.autoAddToolsJarDependency(JDKTarget.SYSTEM_CLASSLOADER, JDKLib.TOOLS);
 
             if (advanced) {
-                File tempjline = File.createTempFile("jline-2.9", ".jar");
-                tempjline.deleteOnExit();
-                FileOutputStream fos = new FileOutputStream(tempjline);
-                IOUtil.copy(Main.class.getResourceAsStream("/jtop-resources/jline-2.9.jar"), fos);
-                fos.close();
-                LogUtil.info("Generate jline: " + tempjline);
-                ClassLoaderUtil.addURLs(ClassLoaderUtil.getSystemClassLoader(), tempjline.toURI().toURL());
+                ClassLoaderUtil.addResourceToSystemClassLoader("/jtop-resources/jline-2.9.jar");
             }
 
             if (UnixArgsutil.ARGS.args().length == 0) {

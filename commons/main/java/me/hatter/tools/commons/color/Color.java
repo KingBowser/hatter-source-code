@@ -5,10 +5,7 @@ import java.util.List;
 
 public class Color {
 
-    public static final Color BG_RED   = getColor(101);
-    public static final Color BG_GREEN = getColor(102);
-
-    private List<Integer>     values;
+    private List<Integer> values;
 
     public Color(Integer... value) {
         this.values = Arrays.asList(value);

@@ -1,5 +1,7 @@
 package me.hatter.tools.commons.classloader;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.net.URL;
@@ -9,6 +11,8 @@ import java.util.List;
 
 import me.hatter.tools.commons.collection.CollectionUtil;
 import me.hatter.tools.commons.exception.ExceptionUtil;
+import me.hatter.tools.commons.io.IOUtil;
+import me.hatter.tools.commons.log.LogUtil;
 
 public class ClassLoaderUtil {
 
@@ -151,5 +155,20 @@ public class ClassLoaderUtil {
             return f;
         }
         return null;
+    }
+
+    public static void addResourceToSystemClassLoader(String resource) {
+        try {
+            String r = resource.startsWith("/") ? resource : ("/" + resource);
+            File tempjline = File.createTempFile("temp-jar", ".jar");
+            tempjline.deleteOnExit();
+            FileOutputStream fos = new FileOutputStream(tempjline);
+            IOUtil.copy(ClassLoaderUtil.class.getResourceAsStream(r), fos);
+            fos.close();
+            LogUtil.info("Generate jar and add to system class loader: " + tempjline + " (from " + r + ")");
+            ClassLoaderUtil.addURLs(ClassLoaderUtil.getSystemClassLoader(), tempjline.toURI().toURL());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

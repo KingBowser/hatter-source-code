@@ -5,9 +5,11 @@ import java.lang.management.GarbageCollectorMXBean;
 import java.lang.management.ManagementFactory;
 import java.lang.management.MemoryMXBean;
 import java.lang.management.ThreadInfo;
+import java.lang.management.ThreadMXBean;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.hatter.tools.commons.reflect.ReflectUtil;
 import me.hatter.tools.jtop.rmi.interfaces.JClassLoadingInfo;
 import me.hatter.tools.jtop.rmi.interfaces.JGCInfo;
 import me.hatter.tools.jtop.rmi.interfaces.JMemoryInfo;
@@ -53,13 +55,22 @@ public class RmiServer {
 
     @SuppressWarnings("restriction")
     public JThreadInfo[] listThreadInfos() {
-        ThreadInfo[] tis = ManagementFactory.getThreadMXBean().dumpAllThreads(false, false);
+        ThreadMXBean threadMXBean = ManagementFactory.getThreadMXBean();
+        ThreadInfo[] tis = threadMXBean.dumpAllThreads(false, false);
         JThreadInfo[] jtis = new JThreadInfo[tis.length];
         for (int i = 0; i < tis.length; i++) {
             long threadId = tis[i].getThreadId();
-            long cpuTime = ManagementFactory.getThreadMXBean().getThreadCpuTime(threadId);
-            long userTime = ManagementFactory.getThreadMXBean().getThreadUserTime(threadId);
-            long alloctedBytes = ((com.sun.management.ThreadMXBean) ManagementFactory.getThreadMXBean()).getThreadAllocatedBytes(threadId);
+            long cpuTime = 0L;
+            long userTime = 0L;
+            if (threadMXBean.isThreadCpuTimeSupported() && threadMXBean.isThreadCpuTimeEnabled()) {
+                cpuTime = ManagementFactory.getThreadMXBean().getThreadCpuTime(threadId);
+                userTime = ManagementFactory.getThreadMXBean().getThreadUserTime(threadId);
+            }
+            long alloctedBytes = 0L;
+            // only in sun/oracle JDK, OpenJDK cannot find "class com.sun.management.ThreadMXBean"
+            if (ReflectUtil.isClassPresent("com.sun.management.ThreadMXBean")) {
+                alloctedBytes = ((com.sun.management.ThreadMXBean) ManagementFactory.getThreadMXBean()).getThreadAllocatedBytes(threadId);
+            }
             jtis[i] = new JThreadInfo(tis[i], cpuTime, userTime, alloctedBytes);
         }
         return jtis;

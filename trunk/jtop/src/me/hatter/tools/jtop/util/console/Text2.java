@@ -1,30 +1,31 @@
 package me.hatter.tools.jtop.util.console;
 
+import me.hatter.tools.commons.screen.TermUtils;
 
-public class Text {
+public class Text2 {
 
-    private Font   font;
+    private Font2   font;
     private String text;
 
-    public Text(Font font, String text) {
+    public Text2(Font2 font, String text) {
         super();
         this.font = font;
         this.text = text;
     }
 
-    public static Text createText(Font font, String text) {
-        return new Text(font, text);
+    public static Text2 createText(Font2 font, String text) {
+        return new Text2(font, text);
     }
 
-    public static Text createText(Color color, String text) {
+    public static Text2 createText(Color2 color, String text) {
         return createText(color, false, text);
     }
 
-    public static Text createText(Color color, boolean isBold, String text) {
+    public static Text2 createText(Color2 color, boolean isBold, String text) {
         if (color == null) {
-            return new Text(null, text);
+            return new Text2(null, text);
         } else {
-            return new Text(Font.createFont(color, isBold), text);
+            return new Text2(Font2.createFont(color, isBold), text);
         }
     }
 
@@ -36,15 +37,15 @@ public class Text {
         if (font == null) {
             return text;
         } else {
-            return font.getFont() + text + ConsoleConstants.RESET;
+            return font.getFont() + text + TermUtils.RESET;
         }
     }
 
-    public Font getFont() {
+    public Font2 getFont() {
         return font;
     }
 
-    public void setFont(Font font) {
+    public void setFont(Font2 font) {
         this.font = font;
     }
 

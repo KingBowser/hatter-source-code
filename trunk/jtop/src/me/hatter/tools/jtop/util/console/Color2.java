@@ -1,6 +1,6 @@
 package me.hatter.tools.jtop.util.console;
 
-public enum Color {
+public enum Color2 {
 
     DEFAULT(0),
 
@@ -20,7 +20,7 @@ public enum Color {
 
     private int value;
 
-    private Color(int value) {
+    private Color2(int value) {
         this.value = value;
     }
 

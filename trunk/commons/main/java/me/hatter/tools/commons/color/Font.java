@@ -1,6 +1,10 @@
 package me.hatter.tools.commons.color;
 
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 import me.hatter.tools.commons.screen.TermUtils;
+import me.hatter.tools.commons.string.StringUtil;
 
 public class Font {
 
@@ -46,10 +50,14 @@ public class Font {
             sb.append(TermUtils.CHAR_27 + "[" + position.getRow() + "H");
             sb.append(TermUtils.CHAR_27 + "[" + position.getCol() + "C");
         }
-        if (Color.getColorValue(color) != null) {
+        if ((color != null) && (color.getValues() != null) && (color.getValues().size() > 0)) {
             needEndFlag = true;
-            String bold = isBold ? "1" : "0";
-            sb.append(TermUtils.CHAR_27 + "[" + bold + ";" + color.getValue() + "m");
+            Set<Integer> l = new LinkedHashSet<Integer>();
+            if (isBold) {
+                l.add(1);
+            }
+            l.addAll(color.getValues());
+            sb.append(TermUtils.CHAR_27 + "[" + StringUtil.join(l.toArray(), ";") + "m");
         }
         sb.append(text);
         if (needEndFlag) {

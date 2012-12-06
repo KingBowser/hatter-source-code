@@ -1,27 +1,29 @@
 package me.hatter.tools.jtop.util.console;
 
-public class Font {
+import me.hatter.tools.commons.screen.TermUtils;
 
-    private Color   color;
-    private Color   bgColor;
+public class Font2 {
+
+    private Color2   color;
+    private Color2   bgColor;
     private boolean isBold;
 
-    public Font(Color color, boolean isBold) {
+    public Font2(Color2 color, boolean isBold) {
         this(color, null, isBold);
     }
 
-    public Font(Color color, Color bgColor, boolean isBold) {
+    public Font2(Color2 color, Color2 bgColor, boolean isBold) {
         this.color = color;
         this.bgColor = bgColor;
         this.isBold = isBold;
     }
 
-    public static Font createFont(Color color, boolean isBold) {
+    public static Font2 createFont(Color2 color, boolean isBold) {
         return createFont(color, null, isBold);
     }
 
-    public static Font createFont(Color color, Color bgColor, boolean isBold) {
-        return new Font(color, bgColor, isBold);
+    public static Font2 createFont(Color2 color, Color2 bgColor, boolean isBold) {
+        return new Font2(color, bgColor, isBold);
     }
 
     // #define BLACK \"\33[22;30m\"
@@ -45,7 +47,7 @@ public class Font {
     // #define INVERT \"\33[7m\"
 
     public String getFont() {
-        return ConsoleConstants.CHAR_27 //
+        return TermUtils.CHAR_27 //
                + "[" + (isBold ? "1" : "0") //
                + ";" + color.getValue() //
                + ((bgColor == null) ? "" : ";" + bgColor.getValue()) //

@@ -35,11 +35,11 @@ public class EnvUtil {
     }
 
     public static boolean getColor() {
-        return UnixArgsutil.ARGS.flags().contains("color");
+        return UnixArgsutil.ARGS.flags().containsAny("C", "color");
     }
 
     public static boolean getSortMem() {
-        return UnixArgsutil.ARGS.flags().contains("sortmem");
+        return UnixArgsutil.ARGS.flags().containsAny("M", "sortmem");
     }
 
     public static String getStr(String key, String def) {

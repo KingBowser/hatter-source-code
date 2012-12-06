@@ -385,7 +385,7 @@ public class Main {
     }
 
     static void usage() {
-        System.out.println("Usage[b121126]:");
+        System.out.println("Usage[b121206]:");
         System.out.println("java -jar jtop.jar [options] <pid> [<interval> [<count>]]");
         System.out.println("-OR-");
         System.out.println("java -cp jtop.jar jtop [options] <pid> [<interval> [<count>]]");

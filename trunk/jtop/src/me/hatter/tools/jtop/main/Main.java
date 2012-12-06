@@ -21,6 +21,7 @@ import me.hatter.tools.commons.color.Position;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil.JDKLib;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil.JDKTarget;
+import me.hatter.tools.commons.misc.ShutdownSignal;
 import me.hatter.tools.commons.screen.TermUtils;
 import me.hatter.tools.commons.string.StringUtil;
 import me.hatter.tools.jtop.main.objects.MainOutput;
@@ -59,6 +60,7 @@ public class Main {
 
             RmiClient rc = new RmiClient(pid);
             JTopMXBean jTopMXBean = rc.getJTopMXBean();
+            ShutdownSignal shutdownSignal = new ShutdownSignal();
 
             long lastNano = System.nanoTime();
             MainOutput lastMainOutput = null;
@@ -72,12 +74,17 @@ public class Main {
                 if (lastMainOutput == null) {
                     System.out.println("[INFO] First Round");
                 } else {
-                    if (advanced) {
-                        displayRoundA(jTopMXBean, lastNano, lastMainOutput, lastJThreadInfoMap, nano, mainOutput,
-                                      jThreadInfos);
-                    } else {
-                        displayRound(jTopMXBean, lastNano, lastMainOutput, lastJThreadInfoMap, nano, mainOutput,
-                                     jThreadInfos);
+                    shutdownSignal.acquire();
+                    try {
+                        if (advanced) {
+                            displayRoundA(jTopMXBean, lastNano, lastMainOutput, lastJThreadInfoMap, nano, mainOutput,
+                                          jThreadInfos);
+                        } else {
+                            displayRound(jTopMXBean, lastNano, lastMainOutput, lastJThreadInfoMap, nano, mainOutput,
+                                         jThreadInfos);
+                        }
+                    } finally {
+                        shutdownSignal.release();
                     }
                 }
                 lastNano = nano;

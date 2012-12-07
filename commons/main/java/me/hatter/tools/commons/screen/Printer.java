@@ -4,6 +4,8 @@ import me.hatter.tools.commons.color.Text;
 
 public interface Printer {
 
+    void init();
+
     void print(String str);
 
     void print(Text text);

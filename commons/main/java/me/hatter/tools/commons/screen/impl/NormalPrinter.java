@@ -6,6 +6,10 @@ import me.hatter.tools.commons.screen.Printer;
 public class NormalPrinter implements Printer {
 
     @Override
+    public void init() {
+    }
+
+    @Override
     public void print(String str) {
         System.out.print(str);
     }

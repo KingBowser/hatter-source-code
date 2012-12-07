@@ -8,6 +8,8 @@ public interface Printer {
 
     void print(Text text);
 
+    void println();
+
     void println(String str);
 
     void println(Text text);

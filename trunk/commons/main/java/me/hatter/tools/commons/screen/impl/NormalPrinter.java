@@ -16,6 +16,11 @@ public class NormalPrinter implements Printer {
     }
 
     @Override
+    public void println() {
+        System.out.println();
+    }
+
+    @Override
     public void println(String str) {
         System.out.println(str);
     }

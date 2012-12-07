@@ -5,6 +5,7 @@ import java.util.List;
 
 import me.hatter.tools.commons.color.Text;
 import me.hatter.tools.commons.screen.Printer;
+import me.hatter.tools.commons.string.StringUtil;
 
 public class ScreenPrinter implements Printer {
 
@@ -27,6 +28,11 @@ public class ScreenPrinter implements Printer {
     @Override
     public void print(Text text) {
         printStrOrText(null, text, false);
+    }
+
+    @Override
+    public void println() {
+        printStrOrText(StringUtil.EMPTY, null, true);
     }
 
     @Override

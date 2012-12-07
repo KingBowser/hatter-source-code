@@ -3,8 +3,11 @@ package me.hatter.tools.commons.screen.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.hatter.tools.commons.color.Font;
+import me.hatter.tools.commons.color.Position;
 import me.hatter.tools.commons.color.Text;
 import me.hatter.tools.commons.screen.Printer;
+import me.hatter.tools.commons.screen.TermUtils;
 import me.hatter.tools.commons.string.StringUtil;
 
 public class ScreenPrinter implements Printer {
@@ -18,6 +21,14 @@ public class ScreenPrinter implements Printer {
     public ScreenPrinter(int width, int height) {
         this.width = width;
         this.height = height;
+    }
+
+    @Override
+    public void init() {
+        // clean screen and move to POS:1,1
+        System.out.print(TermUtils.CLEAR);
+        System.out.print(Font.createFont(Position.getPosition(1, 1), null).display(StringUtil.EMPTY));
+        System.out.print(TermUtils.MOVE_LEFT1);
     }
 
     @Override

@@ -58,7 +58,7 @@ public class ScreenPrinter implements Printer {
 
     private List<String> split(String str) {
         List<String> l = new ArrayList<String>();
-        if (chars > 0) {
+        if ((chars > 0) && (str.length() + chars > width)) {
             l.add(str.substring(0, width - chars));
             str = str.substring(width - chars);
         }
@@ -74,7 +74,7 @@ public class ScreenPrinter implements Printer {
 
     private List<Text> split(Text text) {
         List<Text> l = new ArrayList<Text>();
-        if (chars > 0) {
+        if ((chars > 0) && (text.getText().length() + chars > width)) {
             l.add(text.createText(text.getText().substring(0, width - chars)));
             text = text.createText(text.getText().substring(width - chars));
         }

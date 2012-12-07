@@ -16,6 +16,10 @@ public class Text {
         return new Text(font, text);
     }
 
+    public Text createText(String text) {
+        return new Text(this.font, text);
+    }
+
     public Font getFont() {
         return font;
     }

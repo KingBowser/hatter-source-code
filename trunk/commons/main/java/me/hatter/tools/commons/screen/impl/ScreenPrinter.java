@@ -110,7 +110,7 @@ public class ScreenPrinter implements Printer {
             if (list.size() == 1) {
                 System.out.print(list.get(0));
                 chars += list.get(0).length();
-            } else {
+            } else if (list.size() > 1) {
                 for (String s : list) {
                     lines++;
                     System.out.print(s);
@@ -125,7 +125,7 @@ public class ScreenPrinter implements Printer {
             if (list.size() == 1) {
                 System.out.print(list.get(0).toString());
                 chars += list.get(0).getText().length();
-            } else {
+            } else if (list.size() > 1) {
                 for (Text t : list) {
                     lines++;
                     System.out.print(t);

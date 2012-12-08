@@ -97,6 +97,9 @@ public class ScreenPrinter implements Printer {
             if (newLine) {
                 chars = 0;
                 lines++;
+                if (lines + 1 > height) {
+                    return;
+                }
                 System.out.println();
             }
             return;

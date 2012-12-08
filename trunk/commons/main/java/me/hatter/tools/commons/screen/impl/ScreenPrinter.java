@@ -16,7 +16,7 @@ public class ScreenPrinter implements Printer {
     private int height;
 
     private int chars = 0;
-    private int lines = 0;
+    private int lines = 1;
 
     public ScreenPrinter(int width, int height) {
         this.width = width;

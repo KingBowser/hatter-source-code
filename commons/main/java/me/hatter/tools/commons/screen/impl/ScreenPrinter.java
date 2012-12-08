@@ -150,6 +150,9 @@ public class ScreenPrinter implements Printer {
         if (chars == width) {
             chars = 0;
             lines++;
+            if (lines + 1 > height) {
+                return;
+            }
             System.out.println();
         }
         if (newLine) {

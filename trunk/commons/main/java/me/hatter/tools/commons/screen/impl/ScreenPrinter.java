@@ -110,12 +110,18 @@ public class ScreenPrinter implements Printer {
                 System.out.print(list.get(0));
                 chars += list.get(0).length();
             } else if (list.size() > 1) {
-                for (String s : list) {
-                    lines++;
-                    if (lines + 1 > height) {
-                        return;
+                for (int i = 0; i < list.size(); i++) {
+                    String s = list.get(i);
+                    if (i < (list.size() - 1)) {
+                        lines++;
+                        if (lines + 1 > height) {
+                            return;
+                        }
                     }
                     System.out.print(s);
+                    if (i < (list.size() - 1)) {
+                        System.out.println();
+                    }
                 }
                 chars = list.get(list.size() - 1).length();
             }
@@ -125,12 +131,18 @@ public class ScreenPrinter implements Printer {
                 System.out.print(list.get(0).toString());
                 chars += list.get(0).getText().length();
             } else if (list.size() > 1) {
-                for (Text t : list) {
-                    lines++;
-                    if (lines + 1 > height) {
-                        return;
+                for (int i = 0; i < list.size(); i++) {
+                    Text t = list.get(i);
+                    if (i < (list.size() - 1)) {
+                        lines++;
+                        if (lines + 1 > height) {
+                            return;
+                        }
                     }
                     System.out.print(t);
+                    if (i < (list.size() - 1)) {
+                        System.out.println();
+                    }
                 }
                 chars = list.get(list.size() - 1).getText().length();
             }
@@ -138,6 +150,7 @@ public class ScreenPrinter implements Printer {
         if (chars == width) {
             chars = 0;
             lines++;
+            System.out.println();
         }
         if (newLine) {
             chars = 0;

@@ -1,0 +1,7 @@
+#summary Linux console codes
+#sidebar TableOfContents
+
+
+
+===参数资料===
+`[1].` http://www.cnblogs.com/mugua/archive/2009/11/25/1610118.html<br>

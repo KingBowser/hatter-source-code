@@ -1,7 +1,6 @@
 package me.hatter.tools.jtop.main;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -38,6 +37,8 @@ import me.hatter.tools.jtop.rmi.interfaces.StackTraceElement;
 import me.hatter.tools.jtop.util.EnvUtil;
 
 public class Main {
+
+    private static Object term;
 
     public static void main(String[] args) {
         try {
@@ -78,8 +79,10 @@ public class Main {
                     try {
                         Printer printer = new NormalPrinter();
                         if (advanced) {
-                            Terminal term = jline.TerminalFactory.create();
-                            printer = new ScreenPrinter(term.getWidth(), term.getHeight());
+                            if (term == null) {
+                                term = jline.TerminalFactory.create();
+                            }
+                            printer = new ScreenPrinter(((Terminal) term).getWidth(), ((Terminal) term).getHeight());
                         }
                         displayRound(jTopMXBean, lastNano, lastMainOutput, lastJThreadInfoMap, nano, mainOutput,
                                      jThreadInfos, printer);
@@ -103,9 +106,11 @@ public class Main {
         }
     }
 
-    private static JMemoryInfo          oldJMemoryInfo;
-    private static JClassLoadingInfo    oldJClassLoadingInfo;
-    private static Map<String, JGCInfo> oldJGCInfoMap = new HashMap<String, JGCInfo>();
+    private static JMemoryInfo                      oldJMemoryInfo;
+    private static JClassLoadingInfo                oldJClassLoadingInfo;
+    private static Map<String, JGCInfo>             oldJGCInfoMap     = new HashMap<String, JGCInfo>();
+    private static Map<Long, JThreadInfo>           oldJThreadInfoMap = new HashMap<Long, JThreadInfo>();
+    private static Map<Thread.State, AtomicInteger> oldStateThreadMap = new HashMap<Thread.State, AtomicInteger>();
 
     private static void displayRound(JTopMXBean jTopMXBean, long lastNano, MainOutput lastMainOutput,
                                      Map<Long, JThreadInfo> lastJThreadInfoMap, long nano, MainOutput mainOutput,
@@ -132,31 +137,7 @@ public class Main {
 
         String size = EnvUtil.getSize();
 
-        DecimalFormat nf = new DecimalFormat("0.00");
-        List<String> outputs = new ArrayList<String>();
-        for (int i = 0; ((i < cJThreadInfos.length) && (i < threadtopn)); i++) {
-            JThreadInfo jThreadInfo = cJThreadInfos[i];
-            outputs.add(jThreadInfo.getThreadName() //
-                        + "  TID=" + jThreadInfo.getThreadId() //
-                        + "  STATE=" + jThreadInfo.getThreadState().name() //
-                        + "  CPU_TIME=" + TimeUnit.NANOSECONDS.toMillis(jThreadInfo.getCpuTime())//
-                        + " (" + nf.format(((double) jThreadInfo.getCpuTime()) * 100 / cost) + "%)" //
-                        + "  USER_TIME=" + TimeUnit.NANOSECONDS.toMillis(jThreadInfo.getUserTime()) //
-                        + " (" + nf.format(((double) jThreadInfo.getUserTime()) * 100 / cost) + "%)" //
-                        + " Allocted: " + toSize(jThreadInfo.getAlloctedBytes(), size));
-            int matchCount = 0;
-            for (int j = 0; ((j < jThreadInfo.getStackTrace().length) && (matchCount < stacktracetopn)); j++) {
-                StackTraceElement stackTrace = jThreadInfo.getStackTrace()[j];
-                if (isMatch(stackTrace)) {
-                    matchCount++;
-                    outputs.add("    " + stackTrace.toString());
-                }
-            }
-            if ((matchCount == 0) && (jThreadInfo.getStackTrace().length > 0)) {
-                outputs.add("    ---- all filtered ----");
-            }
-            outputs.add("");
-        }
+        DecimalFormat YFF = new DecimalFormat("0.00");
 
         Map<Thread.State, AtomicInteger> stateMap = new HashMap<Thread.State, AtomicInteger>();
         for (JThreadInfo jThreadInfo : cJThreadInfos) {
@@ -171,8 +152,9 @@ public class Main {
         if (!UnixArgsutil.ARGS.flags().contains("summaryoff")) {
             JMemoryInfo jMemoryInfo = jTopMXBean.getMemoryInfo();
             mainOutput.setjMemoryInfo(jMemoryInfo);
+            // print heap
             printer.print("Heap Memory: ");
-            if (EnvUtil.getColor() || (oldJMemoryInfo == null)) {
+            if ((!EnvUtil.getColor()) || (oldJMemoryInfo == null)) {
                 printer.print("INIT=" + toSize(jMemoryInfo.getHeap().getInit(), size));
                 printer.print("  ");
                 printer.print("USED=" + toSize(jMemoryInfo.getHeap().getUsed(), size));
@@ -198,8 +180,9 @@ public class Main {
             }
             printer.println();
 
+            // print non heap
             printer.print("NonHeap Memory: ");
-            if (EnvUtil.getColor() || (oldJMemoryInfo == null)) {
+            if ((!EnvUtil.getColor()) || (oldJMemoryInfo == null)) {
                 printer.print("INIT=" + toSize(jMemoryInfo.getNonHeap().getInit(), size));
                 printer.print("  ");
                 printer.print("USED=" + toSize(jMemoryInfo.getNonHeap().getUsed(), size));
@@ -227,6 +210,7 @@ public class Main {
             printer.println();
             oldJMemoryInfo = jMemoryInfo;
 
+            // print gc info
             JGCInfo[] jgcInfos = jTopMXBean.getGCInfos();
             for (JGCInfo jgcInfo : jgcInfos) {
                 printer.print("GC ");
@@ -237,7 +221,7 @@ public class Main {
                 printer.print(Arrays.asList(jgcInfo.getMemoryPoolNames()).toString());
                 printer.print("  ");
                 JGCInfo oldJGCInfo = oldJGCInfoMap.get(jgcInfo.getName());
-                if (EnvUtil.getColor() && (oldJGCInfo == null)) {
+                if ((!EnvUtil.getColor()) || (oldJGCInfo == null)) {
                     printer.print("GC=" + jgcInfo.getCollectionCount());
                     printer.print("  ");
                     printer.print("GCT=" + jgcInfo.getCollectionTime());
@@ -254,7 +238,7 @@ public class Main {
 
             JClassLoadingInfo jClassLoadingInfo = jTopMXBean.getClassLoadingInfo();
             printer.print("ClassLoading ");
-            if (EnvUtil.getColor() && (oldJClassLoadingInfo == null)) {
+            if ((!EnvUtil.getColor()) || (oldJClassLoadingInfo == null)) {
                 printer.print("LOADED=" + jClassLoadingInfo.getLoadedClassCount());
                 printer.print("  ");
                 printer.print("TOTAL_LOADED=" + jClassLoadingInfo.getTotalLoadedClassCount());
@@ -277,30 +261,100 @@ public class Main {
             oldJClassLoadingInfo = jClassLoadingInfo;
         }
 
+        // print thread cpu usage
         printer.print("Total threads: ");
-        printer.print(Text.createText(getFont(cJThreadInfos.length, mainOutput.getTotalThreadCount()),
-                                      String.valueOf(cJThreadInfos.length)));
-        printer.print("  ");
-        printer.print(Text.createText(getFont(totalCpu, lastMainOutput.getTotalCpuTime()),
-                                      "CPU=" + TimeUnit.NANOSECONDS.toMillis(totalCpu) + " ("
-                                              + nf.format(((double) totalCpu) * 100 / cost) + "%)"));
-        printer.print("  ");
-        printer.print(Text.createText(getFont(totalUser, lastMainOutput.getTotalUserTime()),
-                                      "USER=" + TimeUnit.NANOSECONDS.toMillis(totalUser) //
-                                              + " (" + nf.format(((double) totalUser) * 100 / cost) + "%)") //
-        );
+        if ((!EnvUtil.getColor()) || oldStateThreadMap.isEmpty()) {
+            printer.print(String.valueOf(cJThreadInfos.length));
+            printer.print("  ");
+            printer.print("CPU=" + TimeUnit.NANOSECONDS.toMillis(totalCpu) + " ("
+                          + YFF.format(((double) totalCpu) * 100 / cost) + "%)");
+            printer.print("  ");
+            printer.print("USER=" + TimeUnit.NANOSECONDS.toMillis(totalUser) + " ("
+                          + YFF.format(((double) totalUser) * 100 / cost) + "%)");
+        } else {
+            printer.print(Text.createText(getFont(cJThreadInfos.length, mainOutput.getTotalThreadCount()),
+                                          String.valueOf(cJThreadInfos.length)));
+            printer.print("  ");
+            printer.print(Text.createText(getFont(totalCpu, lastMainOutput.getTotalCpuTime()),
+                                          "CPU=" + TimeUnit.NANOSECONDS.toMillis(totalCpu) + " ("
+                                                  + YFF.format(((double) totalCpu) * 100 / cost) + "%)"));
+            printer.print("  ");
+            printer.print(Text.createText(getFont(totalUser, lastMainOutput.getTotalUserTime()),
+                                          "USER=" + TimeUnit.NANOSECONDS.toMillis(totalUser) + " ("
+                                                  + YFF.format(((double) totalUser) * 100 / cost) + "%)"));
+        }
         printer.println();
 
-        for (Thread.State state : Thread.State.values()) {
+        // print thread state count
+        for (int i = 0; i < Thread.State.values().length; i++) {
+            Thread.State state = Thread.State.values()[i];
             AtomicInteger ai = stateMap.get(state);
+            AtomicInteger oldAi = oldStateThreadMap.get(state);
             ai = (ai == null) ? new AtomicInteger(0) : ai;
-            printer.print(state + "=" + ai.get() + "  ");
+            if (EnvUtil.getColor() || (oldAi == null)) {
+                printer.print(state + "=" + ai.get());
+            } else {
+                printer.print(Text.createText(getFont(ai.get(), oldAi.get()), state + "=" + ai.get()));
+            }
+            if (i < (Thread.State.values().length - 1)) {
+                printer.print("  ");
+            }
+            oldStateThreadMap.put(state, ai);
         }
         printer.println();
-        for (String s : outputs) {
-            printer.println(s);
+        printer.println();
+
+        // print thread stack detail
+        for (int i = 0; ((i < cJThreadInfos.length) && (i < threadtopn)); i++) {
+            JThreadInfo jThreadInfo = cJThreadInfos[i];
+            JThreadInfo oldJThreadInfo = oldJThreadInfoMap.get(jThreadInfo.getThreadId());
+            printer.print(jThreadInfo.getThreadName());
+            printer.print("  ");
+            printer.print("TID=" + jThreadInfo.getThreadId());
+            printer.print("  ");
+            printer.print("STATE=" + jThreadInfo.getThreadState().name());
+            printer.print("  ");
+            if ((!EnvUtil.getColor()) || (oldJThreadInfo == null)) {
+                printer.print("CPU_TIME=" + TimeUnit.NANOSECONDS.toMillis(jThreadInfo.getCpuTime()) + " ("
+                              + YFF.format(((double) jThreadInfo.getCpuTime()) * 100 / cost) + "%)");
+                printer.print("  ");
+                printer.print("USER_TIME=" + TimeUnit.NANOSECONDS.toMillis(jThreadInfo.getUserTime()) + " ("
+                              + YFF.format(((double) jThreadInfo.getUserTime()) * 100 / cost) + "%)");
+                printer.print(" ");
+                printer.print("Allocted: " + toSize(jThreadInfo.getAlloctedBytes(), size));
+            } else {
+                printer.print(Text.createText(getFont(jThreadInfo.getCpuTime(), oldJThreadInfo.getCpuTime()),
+                                              "CPU_TIME=" + TimeUnit.NANOSECONDS.toMillis(jThreadInfo.getCpuTime())
+                                                      + " ("
+                                                      + YFF.format(((double) jThreadInfo.getCpuTime()) * 100 / cost)
+                                                      + "%)"));
+                printer.print("  ");
+                printer.print(Text.createText(getFont(jThreadInfo.getUserTime(), oldJThreadInfo.getUserTime()),
+                                              "USER_TIME=" + TimeUnit.NANOSECONDS.toMillis(jThreadInfo.getUserTime())
+                                                      + " ("
+                                                      + YFF.format(((double) jThreadInfo.getUserTime()) * 100 / cost)
+                                                      + "%)"));
+                printer.print(" ");
+                printer.print(Text.createText(getFont(jThreadInfo.getAlloctedBytes(), oldJThreadInfo.getAlloctedBytes()),
+                                              "Allocted: " + toSize(jThreadInfo.getAlloctedBytes(), size)));
+            }
+            printer.println();
+            int matchCount = 0;
+            for (int j = 0; ((j < jThreadInfo.getStackTrace().length) && (matchCount < stacktracetopn)); j++) {
+                StackTraceElement stackTrace = jThreadInfo.getStackTrace()[j];
+                if (isMatch(stackTrace)) {
+                    matchCount++;
+                    printer.println("    " + stackTrace.toString());
+                }
+            }
+            if ((matchCount == 0) && (jThreadInfo.getStackTrace().length > 0)) {
+                printer.println("    ---- all filtered ----");
+            }
+            printer.println();
+            oldJThreadInfoMap.put(jThreadInfo.getThreadId(), jThreadInfo);
         }
         printer.println();
+        printer.finish();
     }
 
     static boolean isMatch(StackTraceElement element) {
@@ -374,7 +428,7 @@ public class Main {
     }
 
     private static Font getFont(long v1, long v2) {
-        if (v2 == v1) {
+        if ((!EnvUtil.getColor()) || (v2 == v1)) {
             return Font.createFont(null);
         } else if (v2 < v1) {
             return Font.createFont(Color.getColor(TermUtils.XBack.RED));
@@ -414,7 +468,7 @@ public class Main {
     }
 
     private static void usage() {
-        System.out.println("Usage[b121206]:");
+        System.out.println("Usage[b121207]:");
         System.out.println("java -jar jtop.jar [options] <pid> [<interval> [<count>]]");
         System.out.println("-OR-");
         System.out.println("java -cp jtop.jar jtop [options] <pid> [<interval> [<count>]]");

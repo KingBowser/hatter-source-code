@@ -480,6 +480,7 @@ public class Main {
         System.out.println("    --color                       Display color (default: off)");
         System.out.println("    --sortmem                     Sort by memory allocted (default: off)");
         System.out.println("    --summaryoff                  Do not display summary (default: off)");
+        System.out.println("    --advanced                    Do display like 'top' (default: off)");
         System.out.println();
     }
 }

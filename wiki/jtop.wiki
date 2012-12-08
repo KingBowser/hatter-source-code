@@ -60,6 +60,8 @@ Poller SunPKCS11-Darwin  TID=11  STATE=TIMED_WAITING  CPU_TIME=0 (0.01%)  USER_T
 	java.lang.Thread.run(Thread.java:680)
 }}}
 
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/jtop/new_jtop.png]
+
 = Principle =
  # Connection to the PORT using RMI
  # If failed,  find VirtualMachine by PID

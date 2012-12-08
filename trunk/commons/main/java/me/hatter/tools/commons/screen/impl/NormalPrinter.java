@@ -33,4 +33,9 @@ public class NormalPrinter implements Printer {
     public void println(Text text) {
         System.out.println(text.toString());
     }
+
+    @Override
+    public void finish() {
+    }
+
 }

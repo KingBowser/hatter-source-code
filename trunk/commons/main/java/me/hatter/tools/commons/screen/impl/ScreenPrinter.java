@@ -26,6 +26,7 @@ public class ScreenPrinter implements Printer {
     @Override
     public void init() {
         // clean screen and move to POS:1,1
+        System.out.println();
         System.out.print(TermUtils.CLEAR);
         System.out.print(Font.createFont(Position.getPosition(1, 1), null).display(StringUtil.EMPTY));
         System.out.print(TermUtils.MOVE_LEFT1);
@@ -89,7 +90,7 @@ public class ScreenPrinter implements Printer {
     }
 
     private void printStrOrText(String str, Text text, boolean newLine) {
-        if (lines > height) {
+        if (lines + 1 > height) {
             return;
         }
         if ((str == null) && ((text == null) || (text.getText() == null))) {
@@ -108,10 +109,10 @@ public class ScreenPrinter implements Printer {
             } else if (list.size() > 1) {
                 for (String s : list) {
                     lines++;
-                    System.out.print(s);
-                    if (lines > height) {
+                    if (lines + 1 > height) {
                         return;
                     }
+                    System.out.print(s);
                 }
                 chars = list.get(list.size() - 1).length();
             }
@@ -123,10 +124,10 @@ public class ScreenPrinter implements Printer {
             } else if (list.size() > 1) {
                 for (Text t : list) {
                     lines++;
-                    System.out.print(t);
-                    if (lines > height) {
+                    if (lines + 1 > height) {
                         return;
                     }
+                    System.out.print(t);
                 }
                 chars = list.get(list.size() - 1).getText().length();
             }
@@ -138,11 +139,15 @@ public class ScreenPrinter implements Printer {
         if (newLine) {
             chars = 0;
             lines++;
+            if (lines + 1 > height) {
+                return;
+            }
             System.out.println();
         }
     }
 
     @Override
     public void finish() {
+        System.out.println();
     }
 }

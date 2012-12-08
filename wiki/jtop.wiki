@@ -60,6 +60,7 @@ Poller SunPKCS11-Darwin  TID=11  STATE=TIMED_WAITING  CPU_TIME=0 (0.01%)  USER_T
 	java.lang.Thread.run(Thread.java:680)
 }}}
 
+Output like 'top' use arguemnt `--A` or `--advanced`:
 {{{
 $ java -jar jtop.jar --C --A 387
 }}}

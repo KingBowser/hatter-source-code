@@ -89,15 +89,10 @@ public class ScreenPrinter implements Printer {
     }
 
     private void printStrOrText(String str, Text text, boolean newLine) {
-        if ((str == null) && ((text == null) || (text.getText() == null))) {
-            if (newLine) {
-                chars = 0;
-                lines++;
-                System.out.println();
-            }
+        if (lines >= height) {
             return;
         }
-        if (lines >= height) {
+        if ((str == null) && ((text == null) || (text.getText() == null))) {
             if (newLine) {
                 chars = 0;
                 lines++;
@@ -145,5 +140,9 @@ public class ScreenPrinter implements Printer {
             lines++;
             System.out.println();
         }
+    }
+
+    @Override
+    public void finish() {
     }
 }

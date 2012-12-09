@@ -167,6 +167,9 @@ public class ScreenPrinter implements Printer {
 
     @Override
     public void finish() {
+        while (lines + 1 <= height) {
+            println();
+        }
         System.out.println();
     }
 }

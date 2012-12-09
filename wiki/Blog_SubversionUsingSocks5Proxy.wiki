@@ -1,7 +1,7 @@
 #summary Subversion using socks5 proxy
 #sidebar TableOfContents
 
-=在Mac OSX下Subversion使用代理=
+=在Mac OSX下Subversion使用socks5代理=
 
 首先我只有通过ssh的socks5代理，没有HTTP代理，但在Subversion代理中只能配置HTTP代理。所以我们通过socks5转HTTP代理，再设置Subversion的HTTP代理。
 

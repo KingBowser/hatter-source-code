@@ -23,7 +23,7 @@ public class EnvUtil {
     }
 
     public static int getThreadTopN() {
-        return getInt("thread", 5);
+        return getInt("thread", (getAdvanced() ? Integer.MAX_VALUE : 5));
     }
 
     public static int getStacktraceTopN() {
@@ -32,6 +32,10 @@ public class EnvUtil {
 
     public static String getSize() {
         return getStr("size", "b");
+    }
+
+    public static boolean getAdvanced() {
+        return UnixArgsutil.ARGS.flags().containsAny("A", "advanced");
     }
 
     public static boolean getColor() {

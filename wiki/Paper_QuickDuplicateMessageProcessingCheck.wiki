@@ -1,4 +1,5 @@
 #summary Quick Duplicate Message Processing Check
+#sidebar TableOfContents
 
 =一种高效的重复消息检查方法【草稿】=
 

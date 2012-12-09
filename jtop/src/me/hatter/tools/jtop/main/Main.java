@@ -43,7 +43,7 @@ public class Main {
     public static void main(String[] args) {
         try {
             UnixArgsutil.parseGlobalArgs(args);
-            boolean advanced = UnixArgsutil.ARGS.flags().containsAny("A", "advanced");
+            boolean advanced = EnvUtil.getAdvanced();
 
             HotSpotVMUtil.autoAddToolsJarDependency(JDKTarget.SYSTEM_CLASSLOADER, JDKLib.TOOLS);
 

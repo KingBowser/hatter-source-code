@@ -8,7 +8,7 @@ Linux控制台实现了VT102和ECMA-48/ISO 6429/ANSI X3.64终端控制的子集�
 echo -e '\033[1;4;101mabc\033[0m'
 }}}
 
-[http://hatter-source-code.googlecode.com/svn/trunk/commons/main/java/me/hatter/tools/commons/screen/impl/ScreenPrinter.java ScreenPrinter.java]
+当前屏幕清屏并输出的Java程序示例：[http://hatter-source-code.googlecode.com/svn/trunk/commons/main/java/me/hatter/tools/commons/screen/impl/ScreenPrinter.java ScreenPrinter.java]
 
 ===参数资料===
 `[1].` http://www.cnblogs.com/mugua/archive/2009/11/25/1610118.html<br>

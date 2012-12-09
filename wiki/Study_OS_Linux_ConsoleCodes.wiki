@@ -11,11 +11,6 @@ echo -e '\033[1;4;101mabc\033[0m'
 ||   `-`   || OCT || HEX || DEC ||
 || `ESC` || `33` || `1B` || `27` ||
 
-控制特殊符号：
-{{{
-char   CHAR_27     = (char) 27
-}}}
-
 当前屏幕清屏并输出的Java程序示例：[http://hatter-source-code.googlecode.com/svn/trunk/commons/main/java/me/hatter/tools/commons/screen/impl/ScreenPrinter.java ScreenPrinter.java]
 
 ===参数资料===

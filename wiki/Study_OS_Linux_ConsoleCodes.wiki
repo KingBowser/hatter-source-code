@@ -15,3 +15,4 @@ echo -e '\033[1;4;101mabc\033[0m'
 
 ===参数资料===
 `[1].` http://www.cnblogs.com/mugua/archive/2009/11/25/1610118.html<br>
+`[2].` http://www.kernel.org/doc/man-pages/online/pages/man4/console_codes.4.html<br>

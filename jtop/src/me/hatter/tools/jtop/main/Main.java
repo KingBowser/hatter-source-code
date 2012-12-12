@@ -24,8 +24,8 @@ import me.hatter.tools.commons.jvm.HotSpotVMUtil.JDKTarget;
 import me.hatter.tools.commons.misc.ShutdownSignal;
 import me.hatter.tools.commons.screen.Printer;
 import me.hatter.tools.commons.screen.TermUtils;
+import me.hatter.tools.commons.screen.impl.BatchOutputScreenPrinter;
 import me.hatter.tools.commons.screen.impl.NormalPrinter;
-import me.hatter.tools.commons.screen.impl.ScreenPrinter;
 import me.hatter.tools.jtop.main.objects.MainOutput;
 import me.hatter.tools.jtop.management.JTopMXBean;
 import me.hatter.tools.jtop.rmi.RmiClient;
@@ -82,7 +82,9 @@ public class Main {
                             if (term == null) {
                                 term = jline.TerminalFactory.create();
                             }
-                            printer = new ScreenPrinter(((Terminal) term).getWidth(), ((Terminal) term).getHeight());
+                            // printer = new ScreenPrinter(((Terminal) term).getWidth(), ((Terminal) term).getHeight());
+                            printer = new BatchOutputScreenPrinter(((Terminal) term).getWidth(),
+                                                                   ((Terminal) term).getHeight());
                         }
                         displayRound(jTopMXBean, lastNano, lastMainOutput, lastJThreadInfoMap, nano, mainOutput,
                                      jThreadInfos, printer);

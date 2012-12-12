@@ -313,3 +313,4 @@ NIO direct memory: (in bytes)
 `[1].` [Study_Java_HotSpot_OOME]<br>
 `[2].` [Study_Java_HotSpot_Arguments]<br>
 `[3].` http://java.decompiler.free.fr/<br>
+`[4].` http://www.oracle.com/technetwork/java/javase/gc-tuning-6-140523.html<br>

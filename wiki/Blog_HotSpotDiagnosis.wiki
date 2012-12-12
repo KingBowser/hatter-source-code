@@ -265,6 +265,11 @@ JVM内存主要分为：
    # 线程创建占用的内存
    # JNI程序占用的内存
 
+通过为JVM增加参数，可以在JVM发生OOM的时候将内部数据Dump到文件，输出同命令 `jmap` :
+{{{
+-XX:+HeapDumpOnOutOfMemoryError
+}}}
+
 可以通过 `jstat -gcutil` 查找各个代的使用情况。
 || `O + E + S0/1` || 表示Heap区 ||
 || P || 表示Perm区||
@@ -315,3 +320,4 @@ NIO direct memory: (in bytes)
 `[2].` [Study_Java_HotSpot_Arguments]<br>
 `[3].` http://java.decompiler.free.fr/<br>
 `[4].` http://www.oracle.com/technetwork/java/javase/gc-tuning-6-140523.html<br>
+`[5].` http://www.oracle.com/technetwork/java/example-141412.html<br>

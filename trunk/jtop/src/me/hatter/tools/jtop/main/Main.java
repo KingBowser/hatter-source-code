@@ -82,7 +82,6 @@ public class Main {
                             if (term == null) {
                                 term = jline.TerminalFactory.create();
                             }
-                            // printer = new ScreenPrinter(((Terminal) term).getWidth(), ((Terminal) term).getHeight());
                             printer = new BatchOutputScreenPrinter(((Terminal) term).getWidth(),
                                                                    ((Terminal) term).getHeight());
                         }

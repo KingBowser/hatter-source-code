@@ -1,5 +1,6 @@
 package me.hatter.tools.commons.screen.impl;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,13 +13,20 @@ import me.hatter.tools.commons.string.StringUtil;
 
 public class ScreenPrinter implements Printer {
 
-    private int width;
-    private int height;
+    private PrintStream out;
 
-    private int chars = 0;
-    private int lines = 1;
+    private int         width;
+    private int         height;
+
+    private int         chars = 0;
+    private int         lines = 1;
 
     public ScreenPrinter(int width, int height) {
+        this(System.out, width, height);
+    }
+
+    public ScreenPrinter(PrintStream out, int width, int height) {
+        this.out = out;
         this.width = width;
         this.height = height;
     }
@@ -26,10 +34,10 @@ public class ScreenPrinter implements Printer {
     @Override
     public void init() {
         // clean screen and move to POS:1,1
-        System.out.println();
-        System.out.print(TermUtils.CLEAR);
-        System.out.print(Font.createFont(Position.getPosition(1, 1), null).display(StringUtil.EMPTY));
-        System.out.print(TermUtils.MOVE_LEFT1);
+        out.println();
+        out.print(TermUtils.CLEAR);
+        out.print(Font.createFont(Position.getPosition(1, 1), null).display(StringUtil.EMPTY));
+        out.print(TermUtils.MOVE_LEFT1);
     }
 
     @Override
@@ -100,14 +108,14 @@ public class ScreenPrinter implements Printer {
                 if (lines + 1 > height) {
                     return;
                 }
-                System.out.println();
+                out.println();
             }
             return;
         }
         if (str != null) {
             List<String> list = split(str);
             if (list.size() == 1) {
-                System.out.print(list.get(0));
+                out.print(list.get(0));
                 chars += list.get(0).length();
             } else if (list.size() > 1) {
                 for (int i = 0; i < list.size(); i++) {
@@ -118,9 +126,9 @@ public class ScreenPrinter implements Printer {
                             return;
                         }
                     }
-                    System.out.print(s);
+                    out.print(s);
                     if (i < (list.size() - 1)) {
-                        System.out.println();
+                        out.println();
                     }
                 }
                 chars = list.get(list.size() - 1).length();
@@ -128,7 +136,7 @@ public class ScreenPrinter implements Printer {
         } else {
             List<Text> list = split(text);
             if (list.size() == 1) {
-                System.out.print(list.get(0).toString());
+                out.print(list.get(0).toString());
                 chars += list.get(0).getText().length();
             } else if (list.size() > 1) {
                 for (int i = 0; i < list.size(); i++) {
@@ -139,9 +147,9 @@ public class ScreenPrinter implements Printer {
                             return;
                         }
                     }
-                    System.out.print(t);
+                    out.print(t);
                     if (i < (list.size() - 1)) {
-                        System.out.println();
+                        out.println();
                     }
                 }
                 chars = list.get(list.size() - 1).getText().length();
@@ -153,7 +161,7 @@ public class ScreenPrinter implements Printer {
             if (lines + 1 > height) {
                 return;
             }
-            System.out.println();
+            out.println();
         }
         if (newLine) {
             chars = 0;
@@ -161,7 +169,7 @@ public class ScreenPrinter implements Printer {
             if (lines + 1 > height) {
                 return;
             }
-            System.out.println();
+            out.println();
         }
     }
 
@@ -170,6 +178,7 @@ public class ScreenPrinter implements Printer {
         while (lines + 1 <= height) {
             println();
         }
-        System.out.println();
+        out.println();
+        out.flush();
     }
 }

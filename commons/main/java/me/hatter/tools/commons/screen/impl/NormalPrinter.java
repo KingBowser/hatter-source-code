@@ -1,9 +1,21 @@
 package me.hatter.tools.commons.screen.impl;
 
+import java.io.PrintStream;
+
 import me.hatter.tools.commons.color.Text;
 import me.hatter.tools.commons.screen.Printer;
 
 public class NormalPrinter implements Printer {
+
+    private PrintStream out;
+
+    public NormalPrinter() {
+        this(System.out);
+    }
+
+    public NormalPrinter(PrintStream out) {
+        this.out = out;
+    }
 
     @Override
     public void init() {
@@ -11,31 +23,31 @@ public class NormalPrinter implements Printer {
 
     @Override
     public void print(String str) {
-        System.out.print(str);
+        out.print(str);
     }
 
     @Override
     public void print(Text text) {
-        System.out.print(text.toString());
+        out.print(text.toString());
     }
 
     @Override
     public void println() {
-        System.out.println();
+        out.println();
     }
 
     @Override
     public void println(String str) {
-        System.out.println(str);
+        out.println(str);
     }
 
     @Override
     public void println(Text text) {
-        System.out.println(text.toString());
+        out.println(text.toString());
     }
 
     @Override
     public void finish() {
+        out.flush();
     }
-
 }

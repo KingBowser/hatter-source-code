@@ -1,2 +1,37 @@
 #summary Cobar+Druid No F5
 #sidebar TableOfContents
+
+
+
+{{{
+[INFO] Round: 0
+[WARN] Add server: c2.hatter.zj.cn:8066
+[WARN] Add server: c1.hatter.zj.cn:8066
+[INFO] 1:hatter
+[INFO] Round: 1
+[INFO] 1:hatter
+[INFO] Round: 2
+[INFO] 1:hatter
+[WARN] Remove server: c2.hatter.zj.cn:8066
+[INFO] Round: 3
+[INFO] 1:hatter
+[INFO] Round: 4
+[INFO] 1:hatter
+[WARN] Add server: c2.hatter.zj.cn:8066
+[INFO] Round: 5
+[INFO] 1:hatter
+[INFO] Round: 6
+[INFO] 1:hatter
+[INFO] Round: 7
+[ERROR] Query execution was interrupted // 主备切换，产生一个错误
+[INFO] Round: 8
+[INFO] 1:jiang
+[INFO] Round: 9
+[INFO] 1:jiang
+[INFO] Round: 10
+[INFO] 1:jiang
+[INFO] Round: 11
+[INFO] 1:jiang
+[INFO] Round: 12
+[INFO] 1:jiang
+}}}

@@ -13,6 +13,25 @@ mysql> desc test;
 }}}
 
 {{{
+// 数据库A, Schema: dbtest1
+mysql> select * from test;
++----+--------+
+| id | value  |
++----+--------+
+| 1  | hatter |
++----+--------+
+
+// 数据库B, Schema: dbtest1
+mysql> select * from test;
++----+-------+
+| id | value |
++----+-------+
+| 1  | jiang |
++----+-------+
+}}}
+
+
+{{{
     <property name="zkConfig">c1.hatter.zj.cn:2181,b1.hatter.zj.cn:2181,a1.hatter.zj.cn:2181/</property>
     <property name="clusterName">cluster1</property>
     <property name="ipAndPort">c1.hatter.zj.cn:8066</property>

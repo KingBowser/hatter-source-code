@@ -9,6 +9,43 @@
 }}}
 
 {{{
+<cobar:schema xmlns:cobar="http://cobar.alibaba.com/">
+
+  <schema name="dbtest" dataNode="dnTest1">
+    <table name="test" dataNode="dnTest1,dnTest2" rule="rule1" />
+  </schema>
+
+  <dataNode name="dnTest1">
+    <property name="dataSource">
+      <dataSourceRef>dsTest[0]</dataSourceRef>
+      <dataSourceRef>dsTest[2]</dataSourceRef>
+    </property>
+    <property name="heartbeat">select 1</property>
+  </dataNode>
+  <dataNode name="dnTest2">
+    <property name="dataSource">
+      <dataSourceRef>dsTest[1]</dataSourceRef>
+      <dataSourceRef>dsTest[3]</dataSourceRef>
+    </property>
+    <property name="heartbeat">select 1</property>
+  </dataNode>
+
+  <dataSource name="dsTest" type="mysql">
+    <property name="location">
+      <location>a2.hatter.zj.cn:3306/dbtest1</location>
+      <location>a2.hatter.zj.cn:3306/dbtest2</location>
+      <location>a3.hatter.zj.cn:3306/dbtest1</location>
+      <location>a3.hatter.zj.cn:3306/dbtest2</location>
+    </property>
+    <property name="user">test</property>
+    <property name="password">test</property>
+    <property name="sqlMode">STRICT_TRANS_TABLES</property>
+  </dataSource>
+
+</cobar:schema>
+}}}
+
+{{{
 public class ZookeeperCobarDruidDatasourceTest {
 
     public static void main(String[] args) {

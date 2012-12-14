@@ -58,4 +58,134 @@ mysql> select * from test;
   </schema>
 
   <dataNode name="dnTest1">
-    <property name="data
+    <property name="dataSource">
+      <dataSourceRef>dsTest[0]</dataSourceRef>
+      <dataSourceRef>dsTest[2]</dataSourceRef>
+    </property>
+    <property name="heartbeat">select 1</property>
+  </dataNode>
+  <dataNode name="dnTest2">
+    <property name="dataSource">
+      <dataSourceRef>dsTest[1]</dataSourceRef>
+      <dataSourceRef>dsTest[3]</dataSourceRef>
+    </property>
+    <property name="heartbeat">select 1</property>
+  </dataNode>
+
+  <dataSource name="dsTest" type="mysql">
+    <property name="location">
+      <location>a2.hatter.zj.cn:3306/dbtest1</location>
+      <location>a2.hatter.zj.cn:3306/dbtest2</location>
+      <location>a3.hatter.zj.cn:3306/dbtest1</location>
+      <location>a3.hatter.zj.cn:3306/dbtest2</location>
+    </property>
+    <property name="user">test</property>
+    <property name="password">test</property>
+    <property name="sqlMode">STRICT_TRANS_TABLES</property>
+  </dataSource>
+
+</cobar:schema>
+}}}
+
+{{{
+public class ZookeeperCobarDruidDatasourceTest {
+
+    public static void main(String[] args) {
+        ZookeeperCobarDruidDataSource dataSource = new ZookeeperCobarDruidDataSource();
+        dataSource.setUrl("jdbc:cobarzk://c1.hatter.zj.cn:2181,b1.hatter.zj.cn:2181/;cluster1:dbtest");
+        dataSource.setUsername("admin");
+        dataSource.setPassword("admin");
+
+        for (int i = 0; i < 1000; i++) {
+            try {
+                System.out.println("[INFO] Round: " + i);
+                Connection conn = dataSource.getConnection();
+                PreparedStatement ps = conn.prepareStatement("select * from test");
+                ps.execute();
+                ResultSet rs = ps.getResultSet();
+                while (rs.next()) {
+                    System.out.println("[INFO] " + rs.getLong("id") + ":" + rs.getString("value"));
+                }
+            } catch (Exception e) {
+                System.out.println("[ERROR] " + e.getMessage());
+            }
+            try {
+                Thread.sleep(6000);
+            } catch (InterruptedException e) {
+            }
+        }
+    }
+}
+}}}
+
+
+{{{
+19:37:17,460 INFO  ZK cobar cluster path: /cobar/cluster1
+19:37:17,485 INFO  Register server: /cobar/cluster1/servers/server0000000036, value: c1.hatter.zj.cn:8066
+19:37:17,493 INFO  /cobar/cluster1/servers: [server0000000035, server0000000036]/ /cobar/cluster1/servers/server0000000036
+19:37:17,493 INFO  UPDATE ROLE: FOLLOWER
+19:37:24,388 INFO  /cobar/cluster1/servers: [server0000000036]/ /cobar/cluster1/servers/server0000000036
+19:37:24,388 INFO  UPDATE ROLE: LEADER
+}}}
+
+{{{
+'-+cobar
+  '-+cluster1
+    '-+databases
+      '-+dnTest1
+      '-+dnTest2
+    '-+servers
+      '-+server0000000036
+      '-+server0000000038
+}}}
+
+{{{
+// 启动备机
+#service mysql start
+Starting MySQL..                                           [  OK  ]
+
+// 停主机
+#service mysql stop 
+Shutting down MySQL....                                    [  OK  ]
+}}}
+
+{{{
+19:40:07,407 ERROR #!DN_SWITCH#[name=dnTest2,result=[0->1],reason=SYNC LEADER]
+19:40:07,407 ERROR #!DN_SWITCH#[name=dnTest2,result=[0->1],reason=SYNC LEADER]
+19:40:07,409 INFO  Data node switch: dnTest1 to: 1 for running sync leader
+19:40:07,409 ERROR #!DN_SWITCH#[name=dnTest1,result=[0->1],reason=SYNC LEADER]
+19:40:07,409 ERROR #!DN_SWITCH#[name=dnTest1,result=[0->1],reason=SYNC LEADER]
+}}}
+
+{{{
+[INFO] Round: 0
+[WARN] Add server: c2.hatter.zj.cn:8066
+[WARN] Add server: c1.hatter.zj.cn:8066
+[INFO] 1:hatter
+[INFO] Round: 1
+[INFO] 1:hatter
+[INFO] Round: 2
+[INFO] 1:hatter
+[WARN] Remove server: c2.hatter.zj.cn:8066
+[INFO] Round: 3
+[INFO] 1:hatter
+[INFO] Round: 4
+[INFO] 1:hatter
+[WARN] Add server: c2.hatter.zj.cn:8066
+[INFO] Round: 5
+[INFO] 1:hatter
+[INFO] Round: 6
+[INFO] 1:hatter
+[INFO] Round: 7
+[ERROR] Query execution was interrupted // 主备切换，产生一个错误
+[INFO] Round: 8
+[INFO] 1:jiang
+[INFO] Round: 9
+[INFO] 1:jiang
+[INFO] Round: 10
+[INFO] 1:jiang
+[INFO] Round: 11
+[INFO] 1:jiang
+[INFO] Round: 12
+[INFO] 1:jiang
+}}}

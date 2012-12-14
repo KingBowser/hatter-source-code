@@ -266,6 +266,11 @@ JVM内存主要分为：
    # 线程创建占用的内存
    # JNI程序占用的内存
 
+通过增加以下JVM参数，打开GC的相关详细信息到文件：
+{{{
+-Xloggc:gc.log -XX:+PrintGCDetails -XX:+PrintGCTimeStamps
+}}}
+
 通过为JVM增加参数，可以在JVM发生OOM的时候将内部数据Dump到文件，输出同命令 `jmap` :
 {{{
 -XX:+HeapDumpOnOutOfMemoryError

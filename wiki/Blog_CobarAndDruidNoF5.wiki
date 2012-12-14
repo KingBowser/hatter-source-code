@@ -128,6 +128,8 @@ public class ZookeeperCobarDruidDatasourceTest {
 }
 }}}
 
+=程序输出=
+==Cobar选举Leader输出==
 另一台Cobar服务器关闭，当前Cobar服务器切换状态，从FOLLOWER变成了LEADER：
 {{{
 19:37:17,460 INFO  ZK cobar cluster path: /cobar/cluster1
@@ -138,6 +140,7 @@ public class ZookeeperCobarDruidDatasourceTest {
 19:37:24,388 INFO  UPDATE ROLE: LEADER // 当前状态变成了LEADER
 }}}
 
+==Zookeeper数据==
 两台Cobar正常服务时Zookeeper中的结构：
 {{{
 '-+cobar
@@ -150,6 +153,7 @@ public class ZookeeperCobarDruidDatasourceTest {
       '-+server0000000038
 }}}
 
+==启停MySQL==
 {{{
 // 启动备机
 #service mysql start
@@ -160,6 +164,7 @@ Starting MySQL..                                           [  OK  ]
 Shutting down MySQL....                                    [  OK  ]
 }}}
 
+==Cobar切换主/备输出==
 主机关闭时Cobar服务器接收到主/备切换消息，此时该Cobar集群的服务器都收到该方法：
 {{{
 19:40:07,407 ERROR #!DN_SWITCH#[name=dnTest2,result=[0->1],reason=SYNC LEADER]
@@ -169,6 +174,7 @@ Shutting down MySQL....                                    [  OK  ]
 19:40:07,409 ERROR #!DN_SWITCH#[name=dnTest1,result=[0->1],reason=SYNC LEADER]
 }}}
 
+==客户测试程序输出==
 客户端测试程序打印的日志：
 {{{
 [INFO] Round: 0

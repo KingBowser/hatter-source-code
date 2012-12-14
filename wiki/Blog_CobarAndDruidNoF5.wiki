@@ -213,7 +213,7 @@ Shutting down MySQL....                                    [  OK  ]
 
 ===代码清单===
 `[1].` [http://code.google.com/p/hatter-source-code/downloads/detail?name=cobar-server-1.2.6-hatter.tar.gz&can=2 cobar-server-1.2.6-hatter.tar.gz] 测试用的Cobar服务器<br>
-`[2].` [http://code.google.com/p/hatter-source-code/downloads/detail?name=cobar-1.2.6-hatter-sources.tar.gz&can=2 cobar-1.2.6-hatter-sources.tar.gz] 修改后的源代码<br>
+`[2].` [http://code.google.com/p/hatter-source-code/downloads/detail?name=cobar-1.2.6-hatter-sources.tar.gz&can=2 cobar-1.2.6-hatter-sources.tar.gz] 修改后的源代码【代码写的很挫，仅用于实验/测试目的】<br>
 `[3].` [http://hatter-source-code.googlecode.com/svn/trunk/tests/zookeeper/src/main/java/me/hatter/tests/datasource/ZookeeperCobarConfigLoader.java ZookeeperCobarConfigLoader.java]<br>
 `[4].` [http://hatter-source-code.googlecode.com/svn/trunk/tests/zookeeper/src/main/java/me/hatter/tests/datasource/ZookeeperCobarDruidDataSource.java ZookeeperCobarDruidDataSource.java]<br>
 `[5].` [http://hatter-source-code.googlecode.com/svn/trunk/tests/zookeeper/src/main/java/me/hatter/tests/datasource/ZookeeperCobarDruidDatasourceTest.java ZookeeperCobarDruidDatasourceTest.java]<br>

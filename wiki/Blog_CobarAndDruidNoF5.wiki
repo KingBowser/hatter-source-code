@@ -34,7 +34,7 @@ mysql> desc test;
 +-------+---------------------+------+-----+---------+-------+
 }}}
 
-==数据库数据==
+==数据库数据【未配置数据库同步】==
 {{{
 // 数据库A, Schema: dbtest1
 mysql> select * from test;
@@ -54,7 +54,7 @@ mysql> select * from test;
 }}}
 
 =Cobar配置=
-==server.xml配置==
+==server.xml配置【修改代码后新增加的，Cobar版本为1.2.6】==
 {{{
     <!-- Zookeeper配置 -->
     <property name="zkConfig">c1.hatter.zj.cn:2181,b1.hatter.zj.cn:2181,a1.hatter.zj.cn:2181/</property>

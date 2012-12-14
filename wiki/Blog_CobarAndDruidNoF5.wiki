@@ -3,6 +3,16 @@
 
 
 {{{
+mysql> desc test;
++-------+---------------------+------+-----+---------+-------+
+| Field | Type                | Null | Key | Default | Extra |
++-------+---------------------+------+-----+---------+-------+
+| id    | bigint(20) unsigned | NO   | PRI | 0       |       |
+| value | varchar(1000)       | YES  |     | NULL    |       |
++-------+---------------------+------+-----+---------+-------+
+}}}
+
+{{{
     <property name="zkConfig">c1.hatter.zj.cn:2181,b1.hatter.zj.cn:2181,a1.hatter.zj.cn:2181/</property>
     <property name="clusterName">cluster1</property>
     <property name="ipAndPort">c1.hatter.zj.cn:8066</property>

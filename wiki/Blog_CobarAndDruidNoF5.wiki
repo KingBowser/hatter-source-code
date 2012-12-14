@@ -118,24 +118,25 @@ public class ZookeeperCobarDruidDatasourceTest {
 }
 }}}
 
-
+另一台Cobar服务器关闭，当前Cobar服务器切换状态，从FOLLOWER变成了LEADER：
 {{{
 19:37:17,460 INFO  ZK cobar cluster path: /cobar/cluster1
 19:37:17,485 INFO  Register server: /cobar/cluster1/servers/server0000000036, value: c1.hatter.zj.cn:8066
 19:37:17,493 INFO  /cobar/cluster1/servers: [server0000000035, server0000000036]/ /cobar/cluster1/servers/server0000000036
-19:37:17,493 INFO  UPDATE ROLE: FOLLOWER
+19:37:17,493 INFO  UPDATE ROLE: FOLLOWER // 当前状态为FOLLOWER
 19:37:24,388 INFO  /cobar/cluster1/servers: [server0000000036]/ /cobar/cluster1/servers/server0000000036
-19:37:24,388 INFO  UPDATE ROLE: LEADER
+19:37:24,388 INFO  UPDATE ROLE: LEADER // 当前状态变成了LEADER
 }}}
 
+两台Cobar正常服务时Zookeeper中的结构：
 {{{
 '-+cobar
   '-+cluster1
     '-+databases
-      '-+dnTest1
+      '-+dnTest1 // DataNode，结点包含当前的主机序号
       '-+dnTest2
     '-+servers
-      '-+server0000000036
+      '-+server0000000036 // CobarNode，结点包含当前的Cobar服务器的IP地址和端口号
       '-+server0000000038
 }}}
 
@@ -149,6 +150,7 @@ Starting MySQL..                                           [  OK  ]
 Shutting down MySQL....                                    [  OK  ]
 }}}
 
+主机关闭时Cobar服务器接收到主/备切换消息，此时该Cobar集群的服务器都收到该方法：
 {{{
 19:40:07,407 ERROR #!DN_SWITCH#[name=dnTest2,result=[0->1],reason=SYNC LEADER]
 19:40:07,407 ERROR #!DN_SWITCH#[name=dnTest2,result=[0->1],reason=SYNC LEADER]
@@ -157,6 +159,7 @@ Shutting down MySQL....                                    [  OK  ]
 19:40:07,409 ERROR #!DN_SWITCH#[name=dnTest1,result=[0->1],reason=SYNC LEADER]
 }}}
 
+客户端测试程序打印的日志：
 {{{
 [INFO] Round: 0
 [WARN] Add server: c2.hatter.zj.cn:8066 // 初始化时找到了两台Cobar服务器
@@ -177,7 +180,7 @@ Shutting down MySQL....                                    [  OK  ]
 [INFO] Round: 6
 [INFO] 1:hatter
 [INFO] Round: 7
-[ERROR] Query execution was interrupted // 主备切换，产生一个错误
+[ERROR] Query execution was interrupted // 主备切换过程中产生了一个错误
 [INFO] Round: 8
 [INFO] 1:jiang // 读到的B数据库的数据
 [INFO] Round: 9

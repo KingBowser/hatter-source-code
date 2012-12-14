@@ -1,7 +1,9 @@
 #summary Cobar+Druid No F5 or LVS
 #sidebar TableOfContents
 
-=Cobar/F5/Cobar的架构=
+最近接手一个应用，该用使用Cobar连接数据库的架构，平时相处相当和谐，但由于Cobar设计的一个问题带来了悲剧，当使用多台Cobar服务器连接数据库时，每台Cobar服务器都各自和连接的数据之前做心跳检测，所以在某些特殊场景下多台Cobar连接的主/备数据库不一致【见下图】。
+
+=Client/F5/Cobar的架构=
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/cobar/client-f5-cobar-db.png]
 
 =去F5 增加Zookeeper后的架构=

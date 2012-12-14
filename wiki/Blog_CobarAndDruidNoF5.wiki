@@ -7,7 +7,7 @@ public class ZookeeperCobarDruidDatasourceTest {
 
     public static void main(String[] args) {
         ZookeeperCobarDruidDataSource dataSource = new ZookeeperCobarDruidDataSource();
-        dataSource.setUrl("jdbc:cobarzk://c1.hatter.zj.cn:2181,b1.hatter.zj.cn:2181,a1.hatter.zj.cn:2181/;cluster1:dbtest");
+        dataSource.setUrl("jdbc:cobarzk://c1.hatter.zj.cn:2181,b1.hatter.zj.cn:2181/;cluster1:dbtest");
         dataSource.setUsername("admin");
         dataSource.setPassword("admin");
 

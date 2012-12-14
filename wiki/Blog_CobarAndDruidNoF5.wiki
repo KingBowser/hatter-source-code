@@ -3,6 +3,16 @@
 
 
 {{{
+// 启动备机
+#service mysql start
+Starting MySQL..                                           [  OK  ]
+
+// 停主机
+#service mysql stop 
+Shutting down MySQL....                                    [  OK  ]
+}}}
+
+{{{
 19:40:07,407 ERROR #!DN_SWITCH#[name=dnTest2,result=[0->1],reason=SYNC LEADER]
 19:40:07,407 ERROR #!DN_SWITCH#[name=dnTest2,result=[0->1],reason=SYNC LEADER]
 19:40:07,409 INFO  Data node switch: dnTest1 to: 1 for running sync leader

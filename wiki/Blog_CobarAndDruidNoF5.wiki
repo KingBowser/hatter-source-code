@@ -208,3 +208,10 @@ Shutting down MySQL....                                    [  OK  ]
 [INFO] Round: 12
 [INFO] 1:jiang
 }}}
+
+===代码清单===
+`[1].` [https://code.google.com/p/hatter-source-code/downloads/detail?name=cobar-server-1.2.6-hatter.tar.gz&can=2 cobar-server-1.2.6-hatter.tar.gz]<br>
+`[2].` [https://code.google.com/p/hatter-source-code/downloads/detail?name=cobar-1.2.6-hatter-sources.tar.gz&can=2 cobar-1.2.6-hatter-sources.tar.gz]<br>
+`[3].` [http://hatter-source-code.googlecode.com/svn/trunk/tests/zookeeper/src/main/java/me/hatter/tests/datasource/ZookeeperCobarConfigLoader.java ZookeeperCobarConfigLoader.java]<br>
+`[4].` [http://hatter-source-code.googlecode.com/svn/trunk/tests/zookeeper/src/main/java/me/hatter/tests/datasource/ZookeeperCobarDruidDataSource.java ZookeeperCobarDruidDataSource.java]<br>
+`[5].` [http://hatter-source-code.googlecode.com/svn/trunk/tests/zookeeper/src/main/java/me/hatter/tests/datasource/ZookeeperCobarDruidDatasourceTest.java ZookeeperCobarDruidDatasourceTest.java]<br>

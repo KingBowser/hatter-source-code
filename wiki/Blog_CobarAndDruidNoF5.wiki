@@ -5,6 +5,8 @@
 
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/cobar/zk-client-cobar-db.png]
 
+=数据库配置=
+==建表及用户SQL==
 {{{
 create schema dbtest1;
 create schema dbtest2;
@@ -15,6 +17,7 @@ grant select,insert,update,delete on dbtest1.* to test@'%' identified by  'test'
 grant select,insert,update,delete on dbtest2.* to test@'%' identified by  'test';
 }}}
 
+==表结构==
 {{{
 mysql> desc test;
 +-------+---------------------+------+-----+---------+-------+
@@ -25,6 +28,7 @@ mysql> desc test;
 +-------+---------------------+------+-----+---------+-------+
 }}}
 
+==数据库数据==
 {{{
 // 数据库A, Schema: dbtest1
 mysql> select * from test;
@@ -43,13 +47,18 @@ mysql> select * from test;
 +----+-------+
 }}}
 
-
+=Cobar配置=
+==server.xml配置==
 {{{
+    <!-- Zookeeper配置 -->
     <property name="zkConfig">c1.hatter.zj.cn:2181,b1.hatter.zj.cn:2181,a1.hatter.zj.cn:2181/</property>
+    <!-- 当前Cobar集群名 -->
     <property name="clusterName">cluster1</property>
+    <!-- 当前Cobar的IP及端口号 -->
     <property name="ipAndPort">c1.hatter.zj.cn:8066</property>
 }}}
 
+==schema.xml配置==
 {{{
 <cobar:schema xmlns:cobar="http://cobar.alibaba.com/">
 
@@ -59,8 +68,8 @@ mysql> select * from test;
 
   <dataNode name="dnTest1">
     <property name="dataSource">
-      <dataSourceRef>dsTest[0]</dataSourceRef>
-      <dataSourceRef>dsTest[2]</dataSourceRef>
+      <dataSourceRef>dsTest[0]</dataSourceRef> <!-- 主库 -->
+      <dataSourceRef>dsTest[2]</dataSourceRef> <!-- 备库 -->
     </property>
     <property name="heartbeat">select 1</property>
   </dataNode>
@@ -87,6 +96,7 @@ mysql> select * from test;
 </cobar:schema>
 }}}
 
+==测试代码==
 {{{
 public class ZookeeperCobarDruidDatasourceTest {
 

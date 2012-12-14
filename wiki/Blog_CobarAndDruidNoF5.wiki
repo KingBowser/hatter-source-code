@@ -3,6 +3,8 @@
 
 最近接手一个应用，该用使用Cobar连接数据库的架构，平时相处相当和谐，但由于Cobar设计的一个问题带来了悲剧，当使用多台Cobar服务器连接数据库时，每台Cobar服务器都各自和连接的数据之前做心跳检测，所以在某些特殊场景下多台Cobar连接的主/备数据库不一致【见下图】。
 
+然而，我们可以使用[http://zookeeper.apache.org/ Zookeeper]协调Cobar服务器之间的状态，也可以扩展客户端数据源直接接到Zookeeper集群，从而抛弃F5/LVS设备。【P.S. F5设备超贵，即使走F5也带来不必要的性能损耗】
+
 =Client/F5/Cobar的架构=
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/cobar/client-f5-cobar-db.png]
 

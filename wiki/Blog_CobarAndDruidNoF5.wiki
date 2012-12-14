@@ -159,19 +159,19 @@ Shutting down MySQL....                                    [  OK  ]
 
 {{{
 [INFO] Round: 0
-[WARN] Add server: c2.hatter.zj.cn:8066
+[WARN] Add server: c2.hatter.zj.cn:8066 // 初始化时找到了两台Cobar服务器
 [WARN] Add server: c1.hatter.zj.cn:8066
-[INFO] 1:hatter
+[INFO] 1:hatter // 读到的A数据库的数据
 [INFO] Round: 1
 [INFO] 1:hatter
 [INFO] Round: 2
 [INFO] 1:hatter
-[WARN] Remove server: c2.hatter.zj.cn:8066
+[WARN] Remove server: c2.hatter.zj.cn:8066 // 关闭了一台Cobar服务器
 [INFO] Round: 3
 [INFO] 1:hatter
 [INFO] Round: 4
 [INFO] 1:hatter
-[WARN] Add server: c2.hatter.zj.cn:8066
+[WARN] Add server: c2.hatter.zj.cn:8066 // 重装启动了刚才关闭的Cobar服务器
 [INFO] Round: 5
 [INFO] 1:hatter
 [INFO] Round: 6
@@ -179,7 +179,7 @@ Shutting down MySQL....                                    [  OK  ]
 [INFO] Round: 7
 [ERROR] Query execution was interrupted // 主备切换，产生一个错误
 [INFO] Round: 8
-[INFO] 1:jiang
+[INFO] 1:jiang // 读到的B数据库的数据
 [INFO] Round: 9
 [INFO] 1:jiang
 [INFO] Round: 10

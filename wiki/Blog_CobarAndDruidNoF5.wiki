@@ -1,6 +1,15 @@
 #summary Cobar+Druid No F5 or LVS
 #sidebar TableOfContents
 
+{{{
+create schema dbtest1;
+create schema dbtest2;
+
+create table test (id bigint unsigned, value varchar(1000), primary key (id));
+
+grant select,insert,update,delete on dbtest1.* to test@'%' identified by  'test'; 
+grant select,insert,update,delete on dbtest2.* to test@'%' identified by  'test';
+}}}
 
 {{{
 mysql> desc test;

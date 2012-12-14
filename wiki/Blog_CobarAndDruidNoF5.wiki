@@ -1,6 +1,8 @@
 #summary Cobar+Druid No F5 or LVS
 #sidebar TableOfContents
 
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/cobar/client-f5-cobar-db.png]
+
 {{{
 create schema dbtest1;
 create schema dbtest2;

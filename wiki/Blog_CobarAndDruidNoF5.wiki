@@ -33,6 +33,18 @@ public class ZookeeperCobarDruidDatasourceTest {
 }
 }}}
 
+
+{{{
+'-+cobar
+  '-+cluster1
+    '-+databases
+      '-+dnTest1
+      '-+dnTest2
+    '-+servers
+      '-+server0000000036
+      '-+server0000000038
+}}}
+
 {{{
 // 启动备机
 #service mysql start

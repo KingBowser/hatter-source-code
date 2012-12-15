@@ -196,7 +196,7 @@ Shutting down MySQL....                                    [  OK  ]
 [INFO] 1:hatter
 [INFO] Round: 4
 [INFO] 1:hatter
-[WARN] Add server: c2.hatter.zj.cn:8066 // 重装启动了刚才关闭的Cobar服务器
+[WARN] Add server: c2.hatter.zj.cn:8066 // 重新启动了刚才关闭的Cobar服务器
 [INFO] Round: 5
 [INFO] 1:hatter
 [INFO] Round: 6

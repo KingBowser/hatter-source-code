@@ -3,6 +3,16 @@
 
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/pdfs/mysql/B+Tree_Indexes_and_InnoDB.pdf B+ Tree Indexes and InnoDB]
 
+==安装==
+{{{
+// 安装
+rpm -ivh MySQL_server_X.X.XX.linux2.6.x86_64.rpm
+// 启动
+service mysql start
+// 停止
+service mysql stop
+}}}
+
 ==维护==
  * 查看有哪些用户 `select * from mysql.user`
 

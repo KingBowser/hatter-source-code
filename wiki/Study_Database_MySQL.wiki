@@ -12,6 +12,8 @@ service mysql start
 // 停止
 service mysql stop
 
+service mysql {start|stop|restart|reload|force-reload|status}
+
 mysql -u root
 }}}
 

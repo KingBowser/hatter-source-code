@@ -1,7 +1,8 @@
 #summary SQLite Study
 #sidebar TableOfContents
 
-http://www.sqlite.org/
+==官方网站==
+|| `SQLite` || http://www.sqlite.org/ || SQLite is a software library that implements a self-contained, serverless, zero-configuration, transactional SQL database engine ||
 
 ==扩展和工具==
 || `SQLCipher ` || http://sqlcipher.net/ || SQLCipher is an open source extension to SQLite that provides transparent 256-bit AES encryption of database files ||

@@ -11,6 +11,8 @@ rpm -ivh MySQL_server_X.X.XX.linux2.6.x86_64.rpm
 service mysql start
 // 停止
 service mysql stop
+
+mysql -u root
 }}}
 
 ==维护==

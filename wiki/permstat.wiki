@@ -18,7 +18,7 @@ Usage:
 
 Sample:
 {{{
-$ sudo java -jar permstatall.jar 1022 -size h 1000
+$ java -jar permstatall.jar 1022 -size h 1000
 [INFO] Add system classloader jar url: /System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/sa-jdi.jar
 Attaching to process ID 1022, please wait...
 Debugger attached successfully.

@@ -4,6 +4,7 @@ import org.I0Itec.zkclient.ZkClient;
 
 public class ZkCommonClient {
 
+    private boolean  isClosed;
     private ZkClient zkClient;
 
     public ZkCommonClient(String serverstring) {
@@ -16,9 +17,15 @@ public class ZkCommonClient {
         Runtime.getRuntime().addShutdownHook(new Thread() {
 
             public void run() {
-                ZkCommonClient.this.zkClient.close();
+                close();
             }
         });
+    }
+
+    synchronized public void close() {
+        if (isClosed) return;
+        isClosed = true;
+        zkClient.close();
     }
 
     public ZkClient getZkClient() {

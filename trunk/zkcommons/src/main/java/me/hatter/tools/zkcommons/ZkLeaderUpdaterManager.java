@@ -9,23 +9,21 @@ import me.hatter.tools.zkcommons.util.ZkCommonUtil;
 import org.I0Itec.zkclient.IZkChildListener;
 import org.I0Itec.zkclient.ZkClient;
 
-public abstract class ZkLeaderUpdaterManager {
+public class ZkLeaderUpdaterManager {
 
+    private ZkClient              zkClient;
+    private String                basePath;
+    private String                nodeName;
+    private Object                data;
     private String                thisNodeFullName;
     private ZkLeaderStatus        status   = null;
     private List<ZkLeaderUpdater> updaters = new ArrayList<ZkLeaderUpdater>();
 
     public ZkLeaderUpdaterManager(ZkClient zkClient, String basePath, String nodeName, Object data) {
-        ZkCommonUtil.createPersistent(zkClient, basePath);
-        this.thisNodeFullName = zkClient.createEphemeralSequential(basePath + "/" + nodeName, data);
-        zkClient.subscribeChildChanges(basePath, new IZkChildListener() {
-
-            public void handleChildChange(String parentPath, List<String> currentChilds) throws Exception {
-                update(parentPath, currentChilds);
-            }
-        });
-        List<String> childs = zkClient.getChildren(basePath);
-        update(basePath, childs);
+        this.zkClient = zkClient;
+        this.basePath = basePath;
+        this.nodeName = nodeName;
+        this.data = data;
     }
 
     public List<ZkLeaderUpdater> getUpdaters() {
@@ -38,6 +36,19 @@ public abstract class ZkLeaderUpdaterManager {
 
     public void addUpdater(ZkLeaderUpdater updater) {
         updaters.add(updater);
+    }
+
+    public void start() {
+        ZkCommonUtil.createPersistent(zkClient, basePath);
+        this.thisNodeFullName = zkClient.createEphemeralSequential(basePath + "/" + nodeName, data);
+        zkClient.subscribeChildChanges(basePath, new IZkChildListener() {
+
+            public void handleChildChange(String parentPath, List<String> currentChilds) throws Exception {
+                update(parentPath, currentChilds);
+            }
+        });
+        List<String> childs = zkClient.getChildren(basePath);
+        update(basePath, childs);
     }
 
     synchronized public void update(String parentPath, List<String> nodes) {

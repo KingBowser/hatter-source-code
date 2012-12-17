@@ -41,10 +41,12 @@ mysql -u root
  * 不可重复读：就是假如A查上来一个数据叫张三，另一个人把张三改成了李四，A刷新，数据变成了李四，重复读取数据不对了，张三变成李四了，这就是不可重复读
  * 幻读：比如A查询age<20的记录，查询到5条，再次刷新，记录变成了10条，这是因为期间别人又录入了5条
 
-Mysql 默认是可重复读。
+MySQL 默认是可重复读。
 {{{
+// 查看事务隔离级别
 select @@tx_isolation;
 
+// 设置事务隔离级别
 set session transaction isolation level READ UNCOMMITTED;
 }}}
 

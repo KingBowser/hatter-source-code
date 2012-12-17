@@ -68,9 +68,10 @@ INSERT INTO `insert_table` (`datetime`, `uid`, `content`, `type`) VALUES
 || 10万 || 1m52.204s || 0m2.271s ||
 || 100万 || 18m31.317s || 0m23.332s ||
 
-
+==MySQL特殊点==
 MySQL在执行UPDATE时，如果更新前和更新后数据一样时不会产生binlog日志，Oracle会产生日志
 
+==用户/权限==
 {{{
 SHOW GRANTS FOR 用户名@域名或IP
   show grants for username;

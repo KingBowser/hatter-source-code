@@ -2,12 +2,21 @@
 #sidebar TableOfContents
 
 =配置大页=
+
+==配置sysctl.conf==
 {{{
 # vi /etc/sysctl.conf
-kernel.shmmax = 7516192768
-vm.nr_hugepages = 3072
+kernel.shmmax = <share memory max>
+vm.nr_hugepages = <huge page count>
 
 # sysctl -p
+}}}
+
+==写Linux内存文件==
+{{{
+# echo <share memory max> > /proc/sys/kernel/shmmax
+
+# echo <huge page count> > /proc/sys/vm/nr_hugepages
 }}}
 
 

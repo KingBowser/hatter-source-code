@@ -6,7 +6,7 @@
 ==配置sysctl.conf==
 {{{
 # vi /etc/sysctl.conf
-kernel.shmmax = <share memory max>
+kernel.shmmax = <share memory max in bytes>
 vm.nr_hugepages = <huge page count>
 
 # sysctl -p
@@ -14,7 +14,7 @@ vm.nr_hugepages = <huge page count>
 
 ==写Linux内存文件==
 {{{
-# echo <share memory max> > /proc/sys/kernel/shmmax
+# echo <share memory max in bytes> > /proc/sys/kernel/shmmax
 
 # echo <huge page count> > /proc/sys/vm/nr_hugepages
 }}}

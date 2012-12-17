@@ -29,6 +29,14 @@ mysql -u root
  * MySQL drop table可能会导致全库hang住，所以删除大表，最好是通过硬链接的方式，为物理文件建立一个硬链接，然后从数据库中删除后，最后再删除物理文件。
  * 并发插入数据导致死锁 ^[3]^
 
+==事务隔离级别==
+
+|| *隔离级别* || *是否脏读* || *是否不可重复读* || *是否幻读* ||
+|| 未提交读 (Read uncommit ) || Y || Y || Y ||
+|| 提交读 (Read Committed) || N || Y || Y ||
+|| 可重复读 (Repeatable Read) || N || N || Y ||
+|| 序列化读 (Serializable Read) || N || N || N ||
+
 ==性能==
 MySQL INSERT性能优化，将多条INSERT语句合并成一条INSERT语句，在事务中处理也会有性能提升。
 {{{
@@ -68,3 +76,4 @@ show full processlist;
 `[1].` http://firedragonpzy.iteye.com/blog/1388562<br>
 `[2].` http://blog.jobbole.com/29432/<br>
 `[3].` http://thushw.blogspot.com/2010/11/mysql-deadlocks-with-concurrent-inserts.html<br>
+`[4].` http://www.zhurouyoudu.com/index.php/archives/735/<br>

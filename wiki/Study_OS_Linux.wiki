@@ -15,6 +15,10 @@ rsync -auvz --delete .. ..
 wget --mirror --directory-prefix=<your directory> http://www.example.com
 }}}
 
+iconv
+{{{
+iconv -f GBK -t utf-8 a.txt > b.txt
+}}}
 
 Alias commands:
 {{{

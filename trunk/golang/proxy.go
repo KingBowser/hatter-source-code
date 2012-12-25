@@ -21,7 +21,7 @@ func main() {
 	}
 	fmt.Printf("[INFO] \tProxy server start up:\n\tPort: %v\n\tTarget URL: %v\n", *listenPort, targetUrl)
 	var proxy = httputil.NewSingleHostReverseProxy(targetUrl)
-    listenErr := http.ListenAndServe(fmt.Sprintf(":%v", *listenPort), proxy)
+	listenErr := http.ListenAndServe(fmt.Sprintf(":%v", *listenPort), proxy)
 	if listenErr != nil {
 		fmt.Println("[ERROR]", listenErr)
 		return

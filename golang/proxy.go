@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 	"flag"
-    "net/url"
-    "net/http"
-    "net/http/httputil"
+	"net/url"
+	"net/http"
+	"net/http/httputil"
 )
 
 var (

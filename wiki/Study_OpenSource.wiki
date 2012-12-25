@@ -3,8 +3,8 @@
 
 ==My Started Software==
 
-|| *Name* || *URL* || *Description* ||
-|| `Pencil ` || http://pencil.evolus.vn/Default.html || Pencil is built for the purpose of providing a free and open-source GUI prototyping tool that people can easily install and use to create mockups in popular desktop platforms ||
+|| *Name* || *URL* || *Platform* || *Remark* || *Description* ||
+|| `Pencil ` || http://pencil.evolus.vn/Default.html || Multiple || `****` || Pencil is built for the purpose of providing a free and open-source GUI prototyping tool that people can easily install and use to create mockups in popular desktop platforms ||
 
 ==Open Source Library/Software==
 

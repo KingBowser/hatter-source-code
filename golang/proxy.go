@@ -14,6 +14,7 @@ var (
 )
 
 func main() {
+	flag.Parse()
 	targetUrl, targetUrlErr := url.Parse(*proxyURL)
 	if targetUrlErr != nil {
 		fmt.Println("[ERROR]", targetUrlErr)

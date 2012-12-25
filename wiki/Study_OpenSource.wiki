@@ -6,6 +6,7 @@
 || *Name* || *URL* || *Platform* || *Remark* || *Description* ||
 || `Pencil ` || http://pencil.evolus.vn/Default.html || Multiple || `****` || Pencil is built for the purpose of providing a free and open-source GUI prototyping tool that people can easily install and use to create mockups in popular desktop platforms ||
 || `Eclipse` || http://www.eclipse.org/ || Multiple || `*****` || Eclipse IDE ||
+|| `Sequel Pro` || http://www.sequelpro.com/ || Mac OS || `***` || Sequel Pro is a fast, easy-to-use Mac database management application for working with MySQL databases ||
 
 ==Open Source Library/Software==
 

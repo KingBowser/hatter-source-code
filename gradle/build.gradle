@@ -12,6 +12,10 @@ archivesBaseName = baseProjectName
 sourceCompatibility = 1.5
 targetCompatibility = 1.5
 
+tasks.withType(Compile) {  
+  options.encoding = "UTF-8"  
+}
+
 task initapp << {
   file('lib').mkdirs()
   file('src/main/java').mkdirs()

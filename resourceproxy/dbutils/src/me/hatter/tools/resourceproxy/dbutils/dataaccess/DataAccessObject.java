@@ -227,6 +227,10 @@ public class DataAccessObject {
             preparedStatement.setString(index, (String) o);
         } else if (type == Integer.class) {
             preparedStatement.setInt(index, (Integer) o);
+        } else if (type == Long.class) {
+            preparedStatement.setLong(index, (Long) o);
+        } else if (type == Double.class) {
+            preparedStatement.setDouble(index, (Double) o);
         } else if (type == Date.class) {
             preparedStatement.setDate(index, new java.sql.Date(((Date) o).getTime()));
         } else {

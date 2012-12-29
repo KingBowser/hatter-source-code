@@ -11,12 +11,6 @@ import org.springframework.validation.BindException;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 
-/**
- * (created at 2010-7-20)
- * 
- * @author <a href="mailto:shuo.qius@alibaba-inc.com">QIU Shuo</a>
- * @author wenfeng.cenwf 2011-4-7
- */
 public class TestAction extends SimpleFormController implements InitializingBean {
 
     @SuppressWarnings("unused")

@@ -1,6 +1,7 @@
 package me.hatter.tools.resourceproxy.dbutils.dataaccess;
 
 import java.lang.reflect.Field;
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -227,12 +228,20 @@ public class DataAccessObject {
             preparedStatement.setString(index, (String) o);
         } else if (type == Integer.class) {
             preparedStatement.setInt(index, (Integer) o);
+        } else if (type == Byte.class) {
+            preparedStatement.setByte(index, (Byte) o);
+        } else if (type == Short.class) {
+            preparedStatement.setShort(index, (Short) o);
         } else if (type == Long.class) {
             preparedStatement.setLong(index, (Long) o);
+        } else if (type == Float.class) {
+            preparedStatement.setFloat(index, (Float) o);
         } else if (type == Double.class) {
             preparedStatement.setDouble(index, (Double) o);
         } else if (type == Date.class) {
             preparedStatement.setDate(index, new java.sql.Date(((Date) o).getTime()));
+        } else if (type == BigDecimal.class) {
+            preparedStatement.setBigDecimal(index, (BigDecimal) o);
         } else {
             throw new RuntimeException("Unsupoorted type: " + type);
         }

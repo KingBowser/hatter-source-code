@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="GBK"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+  xmlns:tx="http://www.springframework.org/schema/tx"
+  xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+  <bean id="propertyConfigurerServlet" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <property name="locations">
+      <list>
+        <value>WEB-INF/velocity.properties</value>
+      </list>
+    </property>
+  </bean>
+
+  <bean id="handlerMapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping">
+    <property name="interceptors">
+      <list>
+        <ref bean="authenticationInterceptor" />
+      </list>
+    </property>
+  </bean>
+
+  <bean id="velocifyConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+    <property name="resourceLoaderPath" value="/" />
+    <property name="velocityProperties">
+      <props>
+        <prop key="input.encoding">UTF-8</prop>
+        <prop key="output.encoding">UTF-8</prop>
+        <prop key="contentType">text/html;charset=UTF-8</prop>
+      </props>
+    </property>
+  </bean>
+
+  <bean id="viewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+    <property name="contentType" value="text/html;charset=UTF-8" />
+    <property name="prefix" value="template/" />
+    <property name="suffix" value=".vm" />
+  </bean>
+
+  <bean id="authenticationInterceptor" class="me.hatter.test.springmvcproject.web.AuthenticationInterceptor">
+  </bean>
+  
+  <bean name="/testAjax.ajax" class="me.hatter.test.springmvcproject.web.ajax.TestAjax"></bean>
+
+  <bean name="/testPage.htm" class="me.hatter.test.springmvcproject.web.screen.TestPage"></bean>
+
+  <bean name="/testAction.do" class="me.hatter.test.springmvcproject.web.action.TestAction"></bean>
+</beans>

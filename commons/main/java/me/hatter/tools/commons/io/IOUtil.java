@@ -9,6 +9,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Reader;
 import java.io.Writer;
+import java.util.ArrayList;
+import java.util.List;
 
 import me.hatter.tools.commons.exception.ExceptionUtil;
 
@@ -58,6 +60,25 @@ public class IOUtil {
         } catch (IOException e) {
             throw ExceptionUtil.wrapRuntimeException(e);
         }
+    }
+
+    public static List<String> readToList(String text) {
+        List<String> list = new ArrayList<String>();
+        StringBufferedReader reader = new StringBufferedReader(text);
+        for (String line; ((line = reader.readOneLine()) != null);) {
+            list.add(line);
+        }
+        return list;
+    }
+
+    public static String writeFromList(List<String> list) {
+        StringPrintWriter writer = new StringPrintWriter();
+        if (list != null) {
+            for (String line : list) {
+                writer.println(line);
+            }
+        }
+        return writer.toString();
     }
 
     public static byte[] readToBytesAndClose(InputStream inputStream) {

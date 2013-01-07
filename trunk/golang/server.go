@@ -461,7 +461,7 @@ func HandleNotFound(w http.ResponseWriter, r *http.Request, requestURL string) b
 	// GONGYI
 	fmt.Fprint(w, "<html>\n")
 	fmt.Fprint(w, "<head>")
-	fmt.Fprint(w, "404 - Page not found!")
+	fmt.Fprint(w, "<title>404 - Page not found!</title>")
 	fmt.Fprint(w, "</head>\n")
 	fmt.Fprint(w, "<body>\n")
 	fmt.Fprint(w, "<center>")

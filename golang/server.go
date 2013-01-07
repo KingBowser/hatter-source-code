@@ -454,8 +454,24 @@ func HandleDomainSetting(w http.ResponseWriter, r *http.Request, setting *Domain
 
 func HandleNotFound(w http.ResponseWriter, r *http.Request, requestURL string) bool {
 	w.WriteHeader(404)
+	/*
 	fmt.Fprint(w, "Resource not found: ")
 	fmt.Fprint(w, requestURL)
+	*/
+	// GONGYI
+	fmt.Fprint(w, "<html>\n")
+	fmt.Fprint(w, "<head>")
+	fmt.Fprint(w, "404 - Page not found!")
+	fmt.Fprint(w, "</head>\n")
+	fmt.Fprint(w, "<body>\n")
+	fmt.Fprint(w, "<center>")
+	fmt.Fprint(w, "<h1>404 - Page not found!</h1>\n")
+	fmt.Fprint(w, "<iframe scrolling='no' frameborder='0'")
+	fmt.Fprint(w, " src='http://yibo.iyiyun.com/js/yibo404'")
+	fmt.Fprint(w, " width='735' height='700' style='display:block;'></iframe>")
+	fmt.Fprint(w, "</center>\n")
+	fmt.Fprint(w, "</body>\n")
+	fmt.Fprint(w, "</html>\n")
 	log.Println("Resource not found: ", requestURL)
 	return false
 }

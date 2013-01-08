@@ -1,4 +1,5 @@
 <%action.doAction("sample.TestAction")%>
+<%!=control.jssp("_head.jssp").param("title", "Test page!")%>
 <table border="1px">
 <tr><th>key</th><th>value</th></tr>
 <% var keyList = new java.util.ArrayList(java.lang.System.getProperties().keySet());%>
@@ -11,3 +12,4 @@
 <% if (app_context.get("ip")) { %>
 IP: <%= app_context.get("ip") %>
 <% } %>
+<%!=control.jssp("_foot.jssp")%>

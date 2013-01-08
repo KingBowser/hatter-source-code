@@ -1,0 +1,5 @@
+<html>
+<head>
+<title><%if(app_context.get("title")) {%><%=app_context.get("title")%><%} else {%>test<%}%></title>
+</head>
+<body>

@@ -1,3 +1,4 @@
+<%action.doAction("sample.TestAction")%>
 <table border="1px">
 <tr><th>key</th><th>value</th></tr>
 <% var keyList = new java.util.ArrayList(java.lang.System.getProperties().keySet());%>

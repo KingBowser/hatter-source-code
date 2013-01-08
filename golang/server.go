@@ -62,6 +62,10 @@ var hatterMeDomainSetting = DomainSetting {
 	LOCATION, "", "/root/hatter.me", "utf-8",
 }
 
+var jiangchenhaoDomainSetting = DomainSetting {
+	LOCATION, "", "/root/hatter.me/jiangchenhao", "utf-8",
+}
+
 var hatterMeRedirectDomainSetting = DomainSetting {
 	REDIRECT, "http://hatter.me/", "", "",
 }
@@ -72,6 +76,10 @@ var quickDomainSettingMap = map[string]*DomainSetting {
 	"www.aprilsoft.cn": &hatterMeRedirectDomainSetting,
 	"iwebsky.com": &hatterMeRedirectDomainSetting,
 	"www.iwebsky.com": &hatterMeRedirectDomainSetting,
+	"jiangchenhao.me": &jiangchenhaoDomainSetting,
+	"www.jiangchenhao.me": &jiangchenhaoDomainSetting,
+	"jiangchenhao.com": &jiangchenhaoDomainSetting,
+	"www.jiangchenhao.com": &jiangchenhaoDomainSetting,
 	"blog.hatter.me": &DomainSetting {
 		REDIRECT, "http://aprilsoft.cn/blog/", "", "",
 	},

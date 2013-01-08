@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import me.hatter.tools.jsspserver.action.Action;
+import me.hatter.tools.jsspserver.action.Action.DoAction;
 import me.hatter.tools.resourceproxy.commons.resource.Resource;
 import me.hatter.tools.resourceproxy.commons.resource.Resources;
 import me.hatter.tools.resourceproxy.jsspexec.JsspExecutor;
@@ -99,11 +100,16 @@ public class JSSPFilter implements Filter {
                     }
                 }
 
+                String explainedContent = jsspResource.getExplainedContent(JSSP_DEBUG);
+
                 BufferWriter bw = new BufferWriter();
                 Map<String, Object> addContext = new HashMap<String, Object>();
-                addContext.put("request", request);
-                JsspExecutor.executeExplained(new StringReader(jsspResource.getExplainedContent(JSSP_DEBUG)), context,
-                                              addContext, jsspReader, bw, jsspResource.getResource());
+                addContext.put("request", httpRequest);
+                addContext.put("response", httpResponse);
+                addContext.put("action", new DoAction(httpRequest, httpResponse, context));
+
+                JsspExecutor.executeExplained(new StringReader(explainedContent), context, addContext, jsspReader, bw,
+                                              jsspResource.getResource());
 
                 httpResponse.setContentType(ContentTypes.HTML_CONTENT_TYPE);
                 httpResponse.setCharacterEncoding(ContentTypes.UTF8_CHARSET);

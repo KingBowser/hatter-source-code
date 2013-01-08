@@ -103,7 +103,7 @@ public class JSSPFilter implements Filter {
                 Map<String, Object> addContext = new HashMap<String, Object>();
                 addContext.put("request", request);
                 JsspExecutor.executeExplained(new StringReader(jsspResource.getExplainedContent(JSSP_DEBUG)), context,
-                                              addContext, jsspReader, bw);
+                                              addContext, jsspReader, bw, jsspResource.getResource());
 
                 httpResponse.setContentType(ContentTypes.HTML_CONTENT_TYPE);
                 httpResponse.setCharacterEncoding(ContentTypes.UTF8_CHARSET);

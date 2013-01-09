@@ -73,7 +73,7 @@ function getDateCount(yyyy, mm) {
   if (dc != null) {
     return dc;
   }
-  if (((year % 100 != 0) && (year % 4 == 0)) || (year % 400 == 0)) {
+  if (((yyyy % 100 != 0) && (yyyy % 4 == 0)) || (yyyy % 400 == 0)) {
     return 29;
   } else {
     return 28;

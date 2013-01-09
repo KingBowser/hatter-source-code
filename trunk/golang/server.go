@@ -49,25 +49,24 @@ type DomainSettingType int
 
 type DomainSetting struct {
 	SettingType DomainSettingType
-	RedirectURL string
-	LocationPath string
+	Target string
 	Charset string
 }
 
 var defaultDomainSetting = DomainSetting {
-	LOCATION, "", "", "", // default startup path
+	LOCATION, "", "", // default startup path
 }
 
 var hatterMeDomainSetting = DomainSetting {
-	LOCATION, "", "/root/hatter.me", "utf-8",
+	LOCATION, "/root/hatter.me", "utf-8",
 }
 
 var jiangchenhaoDomainSetting = DomainSetting {
-	LOCATION, "", "/root/hatter.me/jiangchenhao", "utf-8",
+	LOCATION, "/root/hatter.me/jiangchenhao", "utf-8",
 }
 
 var hatterMeRedirectDomainSetting = DomainSetting {
-	REDIRECT, "http://hatter.me/", "", "",
+	REDIRECT, "http://hatter.me/", "",
 }
 
 var quickDomainSettingMap = map[string]*DomainSetting {
@@ -81,25 +80,25 @@ var quickDomainSettingMap = map[string]*DomainSetting {
 	"jiangchenhao.com": &jiangchenhaoDomainSetting,
 	"www.jiangchenhao.com": &jiangchenhaoDomainSetting,
 	"blog.hatter.me": &DomainSetting {
-		REDIRECT, "http://aprilsoft.cn/blog/", "", "",
+		REDIRECT, "http://aprilsoft.cn/blog/", "",
 	},
 	"code.hatter.me": &DomainSetting {
-		REDIRECT, "https://code.google.com/p/hatter-source-code/", "", "",
+		REDIRECT, "https://code.google.com/p/hatter-source-code/", "",
 	},
 	"svn.hatter.me": &DomainSetting {
-		PROXY, "", "https://hatter-source-code.googlecode.com/svn/trunk/", "",
+		PROXY, "https://hatter-source-code.googlecode.com/svn/trunk/", "",
 	},
 	"go.hatter.me": &DomainSetting {
-		PROXY, "", "http://golang.org", "",
+		PROXY, "http://golang.org", "",
 	},
 	"playgo.hatter.me": &DomainSetting {
-		PROXY, "", "http://play.golang.org", "",
+		PROXY, "http://play.golang.org", "",
 	},
 	"mail.hatter.me": &DomainSetting {
-		REDIRECT, "https://www.google.com/a/hatterjiang.com", "", "",
+		REDIRECT, "https://www.google.com/a/hatterjiang.com", "",
 	},
 	"tinyencrypt.hatter.me": &DomainSetting {
-		REDIRECT, "https://jshtaframework.googlecode.com/svn/trunk/jshtaframework/src/application/TinyEncrypt/EmtpyApplication.hta", "", "",
+		REDIRECT, "https://jshtaframework.googlecode.com/svn/trunk/jshtaframework/src/application/TinyEncrypt/EmtpyApplication.hta", "",
 	},
 }
 
@@ -248,8 +247,8 @@ func DomainPathGoCompileHandle(w http.ResponseWriter, r *http.Request) bool {
 }
 
 func HandleRedirectDomainSetting(w http.ResponseWriter, r *http.Request, setting *DomainSetting) bool {
-	log.Println("Redirect to url:", setting.RedirectURL)
-	lib.RedirectURL(w, setting.RedirectURL)
+	log.Println("Redirect to url:", setting.Target)
+	lib.RedirectURL(w, setting.Target)
 	return true
 }
 
@@ -360,7 +359,7 @@ func HandleFileDomainSetting(w http.ResponseWriter, r *http.Request, filePath st
 }
 
 func HandleDirFileDomainSetting(w http.ResponseWriter, r *http.Request, setting *DomainSetting) bool {
-	locationPath := setting.LocationPath
+	locationPath := setting.Target
 	charset := setting.Charset
 	if locationPath == "" {
 		locationPath = *serverPath
@@ -383,7 +382,7 @@ func HandleDirFileDomainSetting(w http.ResponseWriter, r *http.Request, setting 
 
 
 func HandleProxyDomainSetting(w http.ResponseWriter, r *http.Request, setting *DomainSetting) bool {
-	proxyFullURL := lib.JoinURLPath(setting.LocationPath, r.RequestURI)
+	proxyFullURL := lib.JoinURLPath(setting.Target, r.RequestURI)
 	return HandleProxyDomainURL(w, r, proxyFullURL)
 }
 

@@ -167,15 +167,7 @@ public class DataAccessObject {
     }
 
     public <T> List<T> listObjects(final Class<T> clazz, String where, final List<Object> objectList) {
-        String sql = null;
-        if (where.trim().toUpperCase().startsWith("SELECT")) {
-            sql = where;
-        } else if (where.trim().toUpperCase().startsWith("SHOW")) {
-            sql = where;
-        } else {
-            sql = "select * from " + DBUtil.getTableName(clazz) + " where " + where;
-        }
-        final String runSql = sql;
+        final String runSql = makeSQL(clazz, where);
         return execute(new Execute<List<T>>() {
 
             @Override
@@ -211,13 +203,7 @@ public class DataAccessObject {
 
     public <T> void iterateObjects(final Class<T> clazz, String where, final List<Object> objectList,
                                    final RecordProcessor<T> recordProcessor) {
-        String sql = null;
-        if (where.trim().toUpperCase().startsWith("SELECT")) {
-            sql = where;
-        } else {
-            sql = "select * from " + DBUtil.getTableName(clazz) + " where " + where;
-        }
-        final String runSql = sql;
+        final String runSql = makeSQL(clazz, where);
         execute(new Execute<List<T>>() {
 
             @Override
@@ -252,6 +238,50 @@ public class DataAccessObject {
             }
 
         });
+    }
+
+    public void iterateResultSet(final Class<?> clazz, String where, final List<Object> objectList,
+                                 final RecordProcessor<ResultSet> recordProcessor) {
+        final String runSql = makeSQL(clazz, where);
+        execute(new Execute<List<?>>() {
+
+            @Override
+            public List<?> execute(Connection connection) throws Exception {
+                System.out.println("[INFO] query sql: " + runSql);
+                PreparedStatement preparedStatement = connection.prepareStatement(runSql);
+                if (objectList != null) {
+                    for (int i = 0; i < objectList.size(); i++) {
+                        int index = i + 1;
+                        Object o = objectList.get(i);
+                        System.out.println("[INFO] object @" + index + "=" + o);
+                        Class<?> type = (o == null) ? null : o.getClass();
+                        setPreparedStatmentByValue(preparedStatement, index, type, o);
+                    }
+                }
+                List<?> result = new ArrayList<Object>();
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                int index = 0;
+                while (resultSet.next()) {
+                    recordProcessor.process(index, resultSet);
+                    index++;
+                }
+                return result;
+            }
+
+        });
+    }
+
+    private String makeSQL(final Class<?> clazz, String where) {
+        String sql;
+        if (where.trim().toUpperCase().startsWith("SELECT")) {
+            sql = where;
+        } else if (where.trim().toUpperCase().startsWith("!")) {
+            sql = where.substring(1);
+        } else {
+            sql = "select * from " + DBUtil.getTableName(clazz) + " where " + where;
+        }
+        return sql;
     }
 
     private static void setPreparedStatmentValues(PreparedStatement preparedStatement, Class<?> clazz, Object object,

@@ -161,7 +161,7 @@ public class DataAccessObject {
     }
 
     public <T> int countObject(Class<T> clazz, String where, List<Object> objectList) {
-        String sql = "select count(*) count from " + DBUtil.getTableName(clazz) + " where " + where;
+        String sql = makeCountSQL(clazz, where);
         List<Count> countList = listObjects(Count.class, sql, objectList);
         return ((countList == null) || countList.isEmpty()) ? 0 : countList.get(0).getCount().intValue();
     }
@@ -270,6 +270,14 @@ public class DataAccessObject {
             }
 
         });
+    }
+
+    private <T> String makeCountSQL(Class<T> clazz, String where) {
+        String sql = "select count(*) count from " + DBUtil.getTableName(clazz);
+        if (where.trim().length() > 0) {
+            sql += " where " + where;
+        }
+        return sql;
     }
 
     private String makeSQL(final Class<?> clazz, String where) {

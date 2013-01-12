@@ -6,11 +6,11 @@ import java.io.StringReader;
 import java.util.Map;
 
 import me.hatter.tools.resourceproxy.commons.util.StringUtil;
-import me.hatter.tools.resourceproxy.dbutils.dataaccess.DataAccessObject;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HostConfig;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpRequest;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpResponse;
 import me.hatter.tools.resourceproxy.jsspserver.action.BaseAction;
+import me.hatter.tools.resourceproxy.proxyserver.util.ResourceProxyDataAccesObjectInstance;
 
 public class SaveHosts extends BaseAction {
 
@@ -32,10 +32,10 @@ public class SaveHosts extends BaseAction {
                                 hostConfig.setDomain(domain);
                                 hostConfig.setAccessAddress(request.getIp());
                                 hostConfig.setTargetIp(ip);
-                                if (DataAccessObject.selectObject(hostConfig) == null) {
-                                    DataAccessObject.insertObject(hostConfig);
+                                if (ResourceProxyDataAccesObjectInstance.DATA_ACCESS_OBJECT.selectObject(hostConfig) == null) {
+                                    ResourceProxyDataAccesObjectInstance.DATA_ACCESS_OBJECT.insertObject(hostConfig);
                                 } else {
-                                    DataAccessObject.updateObject(hostConfig);
+                                    ResourceProxyDataAccesObjectInstance.DATA_ACCESS_OBJECT.updateObject(hostConfig);
                                 }
                             }
                         } else {

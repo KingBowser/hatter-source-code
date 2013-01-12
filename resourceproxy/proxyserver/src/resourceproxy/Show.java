@@ -5,13 +5,13 @@ import java.util.Map;
 
 import me.hatter.tools.resourceproxy.commons.util.CollUtil;
 import me.hatter.tools.resourceproxy.commons.util.StringUtil;
-import me.hatter.tools.resourceproxy.dbutils.dataaccess.DataAccessObject;
 import me.hatter.tools.resourceproxy.dbutils.util.DBUtil;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpObject;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpRequest;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpResponse;
 import me.hatter.tools.resourceproxy.httpobjects.util.HttpResponseUtil;
 import me.hatter.tools.resourceproxy.jsspserver.action.BaseAction;
+import me.hatter.tools.resourceproxy.proxyserver.util.ResourceProxyDataAccesObjectInstance;
 
 public class Show extends BaseAction {
 
@@ -21,7 +21,7 @@ public class Show extends BaseAction {
         String charset = request.getQueryValue("charset");
         HttpObject httpObject = null;
         if (StringUtil.isNotEmpty(id)) {
-            httpObject = CollUtil.firstObject(DataAccessObject.listObjects(HttpObject.class, "id = ?",
+            httpObject = CollUtil.firstObject(ResourceProxyDataAccesObjectInstance.DATA_ACCESS_OBJECT.listObjects(HttpObject.class, "id = ?",
                                                                            DBUtil.objects(id)));
         }
         if (StringUtil.isNotEmpty(charset) && HttpResponseUtil.isTextContentType(httpObject.getContentType())

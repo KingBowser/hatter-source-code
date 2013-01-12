@@ -14,27 +14,34 @@ import java.util.concurrent.atomic.AtomicReference;
 import me.hatter.tools.resourceproxy.commons.util.CollUtil;
 import me.hatter.tools.resourceproxy.commons.util.ReflectUtil;
 import me.hatter.tools.resourceproxy.commons.util.StringUtil;
+import me.hatter.tools.resourceproxy.dbutils.config.PropertyConfig;
+import me.hatter.tools.resourceproxy.dbutils.factory.ConnectionFactory;
 import me.hatter.tools.resourceproxy.dbutils.factory.ConnectionPool;
 import me.hatter.tools.resourceproxy.dbutils.util.DBUtil;
 
 //
 public class DataAccessObject {
 
-    private static final ConnectionPool connectionPool = new ConnectionPool();
+    private ConnectionPool connectionPool;
 
-    // public static void main(String[] args) {
-    // AccessItem ai = getAccessItem("1.1.1.1", "http://sample.com/");
-    // System.out.println(ai.getId());
-    // System.out.println(ai.getContent());
-    // System.out.println(ai.getHeader());
-    // }
-    //
+    public DataAccessObject(ConnectionPool connectionPool) {
+        this.connectionPool = connectionPool;
+    }
+
+    public DataAccessObject(ConnectionFactory connectionFactory) {
+        this(new ConnectionPool(connectionFactory));
+    }
+
+    public DataAccessObject(PropertyConfig propertyConfig) {
+        this(new ConnectionFactory(propertyConfig));
+    }
+
     public static interface Execute<T> {
 
         T execute(Connection connection) throws Exception;
     }
 
-    protected static <T> T execute(Execute<T> execute) {
+    protected <T> T execute(Execute<T> execute) {
         Connection connection = connectionPool.borrowConnection();
         boolean hasError = false;
         try {
@@ -56,7 +63,7 @@ public class DataAccessObject {
         }
     }
 
-    public static void insertObject(final Object object) {
+    public void insertObject(final Object object) {
         final Class<?> clazz = object.getClass();
         final List<String> refFieldList = new ArrayList<String>();
         final String sql = DBUtil.generateInsertSQL(clazz, refFieldList);
@@ -74,7 +81,7 @@ public class DataAccessObject {
         });
     }
 
-    public static void updateObject(final Object object) {
+    public void updateObject(final Object object) {
         final Class<?> clazz = object.getClass();
         final List<String> refFieldList = new ArrayList<String>();
         final String sql = DBUtil.generateUpdateSQL(clazz, refFieldList);
@@ -92,7 +99,7 @@ public class DataAccessObject {
         });
     }
 
-    public static void deleteObject(final Object object) {
+    public void deleteObject(final Object object) {
         final Class<?> clazz = object.getClass();
         final List<String> refFieldList = new ArrayList<String>();
         final String sql = DBUtil.generateDeleteSQL(clazz, refFieldList);
@@ -111,7 +118,7 @@ public class DataAccessObject {
     }
 
     @SuppressWarnings("unchecked")
-    public static <T> T selectObject(final T object) {
+    public <T> T selectObject(final T object) {
         final Class<T> clazz = (Class<T>) object.getClass();
         List<String> pkList = DBUtil.getPkList(clazz);
         final List<Object> pkVList = new ArrayList<Object>();
@@ -132,7 +139,7 @@ public class DataAccessObject {
         return resultList.get(0);
     }
 
-    public static int executeSql(final String sql, final List<Object> objectList) {
+    public int executeSql(final String sql, final List<Object> objectList) {
         return execute(new Execute<Integer>() {
 
             @Override
@@ -153,13 +160,13 @@ public class DataAccessObject {
         });
     }
 
-    public static <T> int countObject(Class<T> clazz, String where, List<Object> objectList) {
+    public <T> int countObject(Class<T> clazz, String where, List<Object> objectList) {
         String sql = "select count(*) count from " + DBUtil.getTableName(clazz) + " where " + where;
         List<Count> countList = listObjects(Count.class, sql, objectList);
         return ((countList == null) || countList.isEmpty()) ? 0 : countList.get(0).getCount().intValue();
     }
 
-    public static <T> List<T> listObjects(final Class<T> clazz, String where, final List<Object> objectList) {
+    public <T> List<T> listObjects(final Class<T> clazz, String where, final List<Object> objectList) {
         String sql = null;
         if (where.trim().toUpperCase().startsWith("SELECT")) {
             sql = where;
@@ -191,21 +198,57 @@ public class DataAccessObject {
                     for (String f : fieldList) {
                         Field field = ReflectUtil.getField(clazz, StringUtil.toCamel(f));
                         field.setAccessible(true);
-                        if (field.getType() == String.class) {
-                            field.set(o, resultSet.getString(f));
-                        } else if (field.getType() == Integer.class) {
-                            field.set(o, resultSet.getInt(f));
-                        } else if (field.getType() == Date.class) {
-                            java.sql.Date d = resultSet.getDate(f);
-                            field.set(o, (d == null) ? null : new Date(d.getTime()));
-                        } else {
-                            throw new RuntimeException("Unsupoort ed type: " + field.getType());
-                        }
+                        setFiledByResultSet(resultSet, o, f, field);
                     }
                     result.add(o);
                 }
                 return result;
             }
+        });
+    }
+
+    public <T> void iterateObjects(final Class<T> clazz, String where, final List<Object> objectList,
+                                   final RecordProcessor<T> recordProcessor) {
+        String sql = null;
+        if (where.trim().toUpperCase().startsWith("SELECT")) {
+            sql = where;
+        } else {
+            sql = "select * from " + DBUtil.getTableName(clazz) + " where " + where;
+        }
+        final String runSql = sql;
+        execute(new Execute<List<T>>() {
+
+            @Override
+            public List<T> execute(Connection connection) throws Exception {
+                System.out.println("[INFO] query sql: " + runSql);
+                PreparedStatement preparedStatement = connection.prepareStatement(runSql);
+                if (objectList != null) {
+                    for (int i = 0; i < objectList.size(); i++) {
+                        int index = i + 1;
+                        Object o = objectList.get(i);
+                        System.out.println("[INFO] object @" + index + "=" + o);
+                        Class<?> type = (o == null) ? null : o.getClass();
+                        setPreparedStatmentByValue(preparedStatement, index, type, o);
+                    }
+                }
+                List<T> result = new ArrayList<T>();
+                List<String> fieldList = DBUtil.getTableFields(clazz);
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                int index = 0;
+                while (resultSet.next()) {
+                    T o = clazz.newInstance();
+                    for (String f : fieldList) {
+                        Field field = ReflectUtil.getField(clazz, StringUtil.toCamel(f));
+                        field.setAccessible(true);
+                        setFiledByResultSet(resultSet, o, f, field);
+                    }
+                    recordProcessor.process(index, o);
+                    index++;
+                }
+                return result;
+            }
+
         });
     }
 
@@ -217,6 +260,33 @@ public class DataAccessObject {
             Object o = ReflectUtil.getFieldValue(clazz, object, StringUtil.toCamel(refFieldList.get(i)), refType);
             System.out.println("[INFO] object @" + index + "=" + o);
             setPreparedStatmentByValue(preparedStatement, index, refType.get(), o);
+        }
+    }
+
+    private static void setFiledByResultSet(ResultSet resultSet, Object o, String f, Field field)
+                                                                                                 throws IllegalAccessException,
+                                                                                                 SQLException {
+        if (field.getType() == String.class) {
+            field.set(o, resultSet.getString(f));
+        } else if (field.getType() == Integer.class) {
+            field.set(o, resultSet.getInt(f));
+        } else if (field.getType() == Byte.class) {
+            field.set(o, resultSet.getByte(f));
+        } else if (field.getType() == Short.class) {
+            field.set(o, resultSet.getShort(f));
+        } else if (field.getType() == Long.class) {
+            field.set(o, resultSet.getLong(f));
+        } else if (field.getType() == Float.class) {
+            field.set(o, resultSet.getFloat(f));
+        } else if (field.getType() == Double.class) {
+            field.set(o, resultSet.getDouble(f));
+        } else if (field.getType() == Date.class) {
+            java.sql.Date d = resultSet.getDate(f);
+            field.set(o, (d == null) ? null : new Date(d.getTime()));
+        } else if (field.getType() == BigDecimal.class) {
+            field.set(o, resultSet.getBigDecimal(f));
+        } else {
+            throw new RuntimeException("Unsupoorted type: " + field.getType());
         }
     }
 

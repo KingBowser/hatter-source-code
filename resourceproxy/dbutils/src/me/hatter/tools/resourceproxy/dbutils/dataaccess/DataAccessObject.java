@@ -281,7 +281,7 @@ public class DataAccessObject {
             sql = where.substring(1);
         } else {
             sql = "select * from " + DBUtil.getTableName(clazz);
-            if (sql.trim().length() > 0) {
+            if (where.trim().length() > 0) {
                 sql += " where " + where;
             }
         }

@@ -9,7 +9,7 @@ public class PropertyConfig {
 
     private static final String CONFIG_FILE = "config.xml";
 
-    private static Properties   properties  = new Properties();
+    private Properties          properties  = new Properties();
 
     private PropertyConfig() {
     }
@@ -23,7 +23,7 @@ public class PropertyConfig {
         InputStream is = null;
         try {
             is = new FileInputStream(f);
-            properties.loadFromXML(is);
+            propertyConfig.properties.loadFromXML(is);
         } catch (Exception e) {
             throw new RuntimeException(e);
         } finally {
@@ -34,6 +34,12 @@ public class PropertyConfig {
                 }
             }
         }
+        return propertyConfig;
+    }
+
+    public static PropertyConfig createPropertyConfig(Properties properties) {
+        PropertyConfig propertyConfig = new PropertyConfig();
+        propertyConfig.properties.putAll(properties);
         return propertyConfig;
     }
 

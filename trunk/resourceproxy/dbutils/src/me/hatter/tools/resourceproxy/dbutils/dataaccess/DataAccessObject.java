@@ -170,6 +170,8 @@ public class DataAccessObject {
         String sql = null;
         if (where.trim().toUpperCase().startsWith("SELECT")) {
             sql = where;
+        } else if (where.trim().toUpperCase().startsWith("SHOW")) {
+            sql = where;
         } else {
             sql = "select * from " + DBUtil.getTableName(clazz) + " where " + where;
         }

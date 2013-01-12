@@ -274,12 +274,16 @@ public class DataAccessObject {
 
     private String makeSQL(final Class<?> clazz, String where) {
         String sql;
+        where = (where == null) ? "" : where;
         if (where.trim().toUpperCase().startsWith("SELECT")) {
             sql = where;
         } else if (where.trim().toUpperCase().startsWith("!")) {
             sql = where.substring(1);
         } else {
-            sql = "select * from " + DBUtil.getTableName(clazz) + " where " + where;
+            sql = "select * from " + DBUtil.getTableName(clazz);
+            if (sql.trim().length() > 0) {
+                sql += " where " + where;
+            }
         }
         return sql;
     }

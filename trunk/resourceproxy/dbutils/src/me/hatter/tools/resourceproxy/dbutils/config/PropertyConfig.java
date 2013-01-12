@@ -11,10 +11,18 @@ public class PropertyConfig {
 
     private static Properties   properties  = new Properties();
 
-    static {
+    private PropertyConfig() {
+    }
+
+    public static PropertyConfig createDefaultPropertyConfig() {
+        return createPropertyConfig(new File(System.getProperty("user.dir"), CONFIG_FILE));
+    }
+
+    public static PropertyConfig createPropertyConfig(File f) {
+        PropertyConfig propertyConfig = new PropertyConfig();
         InputStream is = null;
         try {
-            is = new FileInputStream(new File(System.getProperty("user.dir"), CONFIG_FILE));
+            is = new FileInputStream(f);
             properties.loadFromXML(is);
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -26,25 +34,26 @@ public class PropertyConfig {
                 }
             }
         }
+        return propertyConfig;
     }
 
     /**
      * Oracle: oracle.jdbc.OracleDriver<br>
      * SQLite: org.sqlite.JDBC
      */
-    public static String getDriver() {
+    public String getDriver() {
         return properties.getProperty("jdbc.driver");
     }
 
-    public static String getJdbcUrl() {
+    public String getJdbcUrl() {
         return properties.getProperty("jdbc.url");
     }
 
-    public static String getUserName() {
+    public String getUserName() {
         return properties.getProperty("jdbc.username");
     }
 
-    public static String getPassword() {
+    public String getPassword() {
         return properties.getProperty("jdbc.password");
     }
 }

@@ -12,7 +12,6 @@ import java.util.Properties;
 
 import me.hatter.tools.resourceproxy.commons.util.IOUtil;
 import me.hatter.tools.resourceproxy.commons.util.StringUtil;
-import me.hatter.tools.resourceproxy.dbutils.dataaccess.DataAccessObject;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HostConfig;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpObject;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpRequest;
@@ -24,6 +23,7 @@ import me.hatter.tools.resourceproxy.jsspserver.filter.ResourceFilter;
 import me.hatter.tools.resourceproxy.jsspserver.filter.ResourceFilterChain;
 import me.hatter.tools.resourceproxy.jsspserver.util.HttpConstants;
 import me.hatter.tools.resourceproxy.proxyserver.main.ProxyServer;
+import me.hatter.tools.resourceproxy.proxyserver.util.ResourceProxyDataAccesObjectInstance;
 import sun.net.www.MessageHeader;
 
 public class NetworkFilter implements ResourceFilter {
@@ -81,7 +81,7 @@ public class NetworkFilter implements ResourceFilter {
             HostConfig hostConfig = new HostConfig();
             hostConfig.setDomain(host);
             hostConfig.setAccessAddress(request.getIp());
-            HostConfig hostConfigFromDB = DataAccessObject.selectObject(hostConfig);
+            HostConfig hostConfigFromDB = ResourceProxyDataAccesObjectInstance.DATA_ACCESS_OBJECT.selectObject(hostConfig);
             if (hostConfigFromDB != null) {
                 realHost = host;
                 System.out.println("[INFO] Send message to host: " + realHost + " redirected to ip: "
@@ -146,25 +146,25 @@ public class NetworkFilter implements ResourceFilter {
     private String getUserAgent(HttpRequest request) {
         UserConfig userConfig = new UserConfig();
         userConfig.setAccessAddress(request.getIp());
-        UserConfig userConfigFromDB = DataAccessObject.selectObject(userConfig);
+        UserConfig userConfigFromDB = ResourceProxyDataAccesObjectInstance.DATA_ACCESS_OBJECT.selectObject(userConfig);
         return StringUtil.trimToNull((userConfigFromDB == null) ? null : userConfigFromDB.getUserAgent());
     }
 
     private void saveOrUpdateResponse(HttpRequest request, HttpResponse response) {
         if (request.isGET()) { // POST cannot proxy, so currently only proxy GET request
             HttpObject httpObject = HttpObjectUtil.frHttpRequest(request, response);
-            HttpObject httpObjectFromDB = DataAccessObject.selectObject(httpObject);
+            HttpObject httpObjectFromDB = ResourceProxyDataAccesObjectInstance.DATA_ACCESS_OBJECT.selectObject(httpObject);
             if (httpObjectFromDB == null) {
                 System.out.println("[INFO] Http Object from db is null.");
                 try {
-                    DataAccessObject.insertObject(httpObject);
+                    ResourceProxyDataAccesObjectInstance.DATA_ACCESS_OBJECT.insertObject(httpObject);
                 } catch (Exception e) {
                     System.out.println("[ERROR] insert data error " + httpObject.getUrl() + " @"
                                        + httpObject.getAccessAddress() + " /" + e.getMessage() + " "
                                        + StringUtil.printStackTrace(e));
                 }
             } else {
-                DataAccessObject.updateObject(httpObject);
+                ResourceProxyDataAccesObjectInstance.DATA_ACCESS_OBJECT.updateObject(httpObject);
             }
         }
     }

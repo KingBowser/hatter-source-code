@@ -11,26 +11,30 @@ import me.hatter.tools.resourceproxy.dbutils.conn.TimeBasedValidConnection;
 
 public class ConnectionFactory {
 
-    static {
+    private PropertyConfig propertyConfig;
+
+    public ConnectionFactory(PropertyConfig propertyConfig) {
+        this.propertyConfig = propertyConfig;
         try {
-            Class.forName(PropertyConfig.getDriver());
+            Class.forName(propertyConfig.getDriver());
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+
     }
 
-    public static Connection getConnection() {
+    public Connection getConnection() {
         try {
-            Connection connection = DriverManager.getConnection(PropertyConfig.getJdbcUrl(),
-                                                                PropertyConfig.getUserName(),
-                                                                PropertyConfig.getPassword());
+            Connection connection = DriverManager.getConnection(propertyConfig.getJdbcUrl(),
+                                                                propertyConfig.getUserName(),
+                                                                propertyConfig.getPassword());
             return new TimeBasedValidConnection(connection, TimeUnit.MINUTES.toMillis(3));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public static boolean validConnection(Connection connection) {
+    public boolean validConnection(Connection connection) {
         if (connection == null) {
             return false;
         }
@@ -40,7 +44,7 @@ public class ConnectionFactory {
         return true;
     }
 
-    public static void destoryConnection(Connection connection) {
+    public void destoryConnection(Connection connection) {
         try {
             connection.close();
         } catch (SQLException e) {

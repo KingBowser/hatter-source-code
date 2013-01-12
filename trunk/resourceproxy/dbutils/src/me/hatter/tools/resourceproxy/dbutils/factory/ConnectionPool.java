@@ -7,8 +7,10 @@ public class ConnectionPool {
 
     private int               poolSize        = 5;
     private Stack<Connection> connectionStack = new Stack<Connection>();
+    private ConnectionFactory connectionFactory;
 
-    public ConnectionPool() {
+    public ConnectionPool(ConnectionFactory connectionFactory) {
+        this.connectionFactory = connectionFactory;
     }
 
     public Connection borrowConnection() {
@@ -17,23 +19,23 @@ public class ConnectionPool {
                 return connectionStack.pop();
             }
         }
-        return ConnectionFactory.getConnection();
+        return connectionFactory.getConnection();
     }
 
     public void returnConnection(Connection connection) {
         boolean returnedToPool = false;
         synchronized (connectionStack) {
-            if ((connectionStack.size() < poolSize) && ConnectionFactory.validConnection(connection)) {
+            if ((connectionStack.size() < poolSize) && connectionFactory.validConnection(connection)) {
                 connectionStack.push(connection);
                 returnedToPool = true;
             }
         }
         if (!returnedToPool) {
-            ConnectionFactory.destoryConnection(connection);
+            connectionFactory.destoryConnection(connection);
         }
     }
 
     public void returnConnectionWithError(Connection connection) {
-        ConnectionFactory.destoryConnection(connection);
+        connectionFactory.destoryConnection(connection);
     }
 }

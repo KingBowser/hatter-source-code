@@ -4,7 +4,6 @@ import java.util.Map;
 
 import me.hatter.tools.resourceproxy.commons.util.CollUtil;
 import me.hatter.tools.resourceproxy.commons.util.StringUtil;
-import me.hatter.tools.resourceproxy.dbutils.dataaccess.DataAccessObject;
 import me.hatter.tools.resourceproxy.dbutils.util.DBUtil;
 import me.hatter.tools.resourceproxy.dbutils.util.SQL;
 import me.hatter.tools.resourceproxy.dbutils.util.SQL.Cmd;
@@ -15,6 +14,7 @@ import me.hatter.tools.resourceproxy.httpobjects.util.HttpResponseUtil;
 import me.hatter.tools.resourceproxy.jsspserver.action.BaseAction;
 import me.hatter.tools.resourceproxy.jsspserver.util.ContentTypes;
 import me.hatter.tools.resourceproxy.jsspserver.util.HttpConstants;
+import me.hatter.tools.resourceproxy.proxyserver.util.ResourceProxyDataAccesObjectInstance;
 
 public class AsynSave extends BaseAction {
 
@@ -26,9 +26,9 @@ public class AsynSave extends BaseAction {
         String source = request.getQueryValue("source");
 
         boolean success = false;
-        HttpObject httpObject = CollUtil.firstObject(DataAccessObject.listObjects(HttpObject.class,
-                                                                                  SQL.sql(Cmd.SELECT).table(HttpObject.class).where("id = ?").get(),
-                                                                                  DBUtil.objects(id)));
+        HttpObject httpObject = CollUtil.firstObject(ResourceProxyDataAccesObjectInstance.DATA_ACCESS_OBJECT.listObjects(HttpObject.class,
+                                                                                                                         SQL.sql(Cmd.SELECT).table(HttpObject.class).where("id = ?").get(),
+                                                                                                                         DBUtil.objects(id)));
         if ((httpObject != null) && HttpResponseUtil.isTextContentType(httpObject.getContentType())) {
             if ((httpObject.getCharset() == null) && (StringUtil.isNotEmpty(charset))) {
                 httpObject.setCharset(charset);
@@ -36,7 +36,7 @@ public class AsynSave extends BaseAction {
             httpObject.setBytes(null);
             httpObject.setString(source);
             httpObject.setIsUpdated("Y");
-            DataAccessObject.updateObject(httpObject);
+            ResourceProxyDataAccesObjectInstance.DATA_ACCESS_OBJECT.updateObject(httpObject);
             success = true;
         }
         response.setContentType(ContentTypes.JAVASCRIPT_CONTENT_TYPE);

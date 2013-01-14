@@ -87,6 +87,11 @@ public class DataAccessObject {
         }
     }
 
+    public Connection getConnection() {
+        if (_connection == null) throw new RuntimeException("Not run in connection pin mode.");
+        return _connection;
+    }
+
     public void insertObject(final Object object) {
         final Class<?> clazz = object.getClass();
         final List<String> refFieldList = new ArrayList<String>();

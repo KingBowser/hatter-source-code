@@ -37,6 +37,43 @@ alias mct='mvn clean test'
 alias mee='mvn eclipse:clean eclipse:eclipse'
 }}}
 
+for-in
+{{{
+for i in {1..5}
+do
+   echo "Welcome $i times"
+done
+
+for i in {0..10..2}
+  do
+     echo "Welcome $i times"
+ done
+
+for i in $(seq 1 2 20)
+do
+   echo "Welcome $i times"
+done
+
+for (( EXP1; EXP2; EXP3 ))
+do
+	command1
+	command2
+	command3
+done
+
+for (( c=1; c<=5; c++ ))
+do
+   echo "Welcome $c times"
+done
+
+for OUTPUT in $(Linux-Or-Unix-Command-Here)
+do
+	command1 on $OUTPUT
+	command2 on $OUTPUT
+	commandN
+done
+}}}
+
 
 X11 DISPLAY ^[1]^
 {{{

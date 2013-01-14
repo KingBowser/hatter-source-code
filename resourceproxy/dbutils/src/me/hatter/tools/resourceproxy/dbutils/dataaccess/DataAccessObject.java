@@ -23,6 +23,8 @@ import me.hatter.tools.resourceproxy.dbutils.util.DBUtil;
 public class DataAccessObject {
 
     private ConnectionPool connectionPool;
+    private Connection     _connection;
+    private Exception      _connectionError;
 
     public DataAccessObject(ConnectionPool connectionPool) {
         this.connectionPool = connectionPool;
@@ -42,24 +44,46 @@ public class DataAccessObject {
     }
 
     protected <T> T execute(Execute<T> execute) {
-        Connection connection = connectionPool.borrowConnection();
+        Connection connection = (_connection != null) ? _connection : connectionPool.borrowConnection();
         boolean hasError = false;
         try {
             return execute.execute(connection);
         } catch (Exception e) {
+            if ((_connection != null) && (_connectionError == null)) {
+                _connectionError = e;
+            }
             hasError = true;
             throw new RuntimeException(e);
         } finally {
-            try {
-                if (hasError) {
-                    connectionPool.returnConnectionWithError(connection);
-                } else {
-                    connectionPool.returnConnection(connection);
+            if (_connection == null) {
+                try {
+                    if (hasError) {
+                        connectionPool.returnConnectionWithError(connection);
+                    } else {
+                        connectionPool.returnConnection(connection);
+                    }
+                } catch (Exception ex) {
+                    System.out.println("[ERROR] error when return connection with flag: " + hasError + " "
+                                       + StringUtil.printStackTrace(ex));
                 }
-            } catch (Exception ex) {
-                System.out.println("[ERROR] error when return connection with flag: " + hasError + " "
-                                   + StringUtil.printStackTrace(ex));
             }
+        }
+    }
+
+    public DataAccessObject borrowAsDataAccessObject() {
+        DataAccessObject dataAccessObject = new DataAccessObject(this.connectionPool);
+        dataAccessObject._connection = this.connectionPool.borrowConnection();
+        return dataAccessObject;
+    }
+
+    public void returnDataAccessObject() {
+        if (this._connection != null) {
+            if (this._connectionError != null) {
+                this.connectionPool.returnConnectionWithError(_connection);
+            } else {
+                this.connectionPool.returnConnection(_connection);
+            }
+            this._connectionError = null;
         }
     }
 

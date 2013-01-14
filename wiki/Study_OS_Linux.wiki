@@ -15,6 +15,11 @@ rsync -auvz --delete .. ..
 wget --mirror --directory-prefix=<your directory> http://www.example.com
 }}}
 
+date
+{{{
+date +%Y%m%d
+}}}
+
 iconv
 {{{
 iconv -f GBK -t utf-8 a.txt > b.txt
@@ -37,7 +42,7 @@ alias mct='mvn clean test'
 alias mee='mvn eclipse:clean eclipse:eclipse'
 }}}
 
-for-in
+for-in  [http://www.cyberciti.biz/faq/bash-for-loop/]
 {{{
 for i in {1..5}
 do

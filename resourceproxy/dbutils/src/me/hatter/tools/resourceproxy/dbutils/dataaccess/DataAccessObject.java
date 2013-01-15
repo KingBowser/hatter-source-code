@@ -105,6 +105,32 @@ public class DataAccessObject {
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 setPreparedStatmentValues(preparedStatement, clazz, object, refFieldList);
                 preparedStatement.execute();
+                preparedStatement.close();
+                return null;
+            }
+        });
+    }
+
+    public void insertObjectList(final List<? extends Object> objectList) {
+        if ((objectList == null) || (objectList.isEmpty())) return;
+        final Class<?> clazz = objectList.get(0).getClass();
+        final List<String> refFieldList = new ArrayList<String>();
+        final String sql = DBUtil.generateInsertSQL(clazz, refFieldList);
+
+        execute(new Execute<Void>() {
+
+            @Override
+            public Void execute(Connection connection) throws Exception {
+                System.out.println("[INFO] insert sql: " + sql);
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                for (Object object : objectList) {
+                    if (clazz != object.getClass()) {
+                        throw new RuntimeException("Class not match: " + clazz.getName() + " & " + object.getClass());
+                    }
+                    setPreparedStatmentValues(preparedStatement, clazz, object, refFieldList);
+                    preparedStatement.execute();
+                }
+                preparedStatement.close();
                 return null;
             }
         });
@@ -123,6 +149,32 @@ public class DataAccessObject {
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 setPreparedStatmentValues(preparedStatement, clazz, object, refFieldList);
                 preparedStatement.execute();
+                preparedStatement.close();
+                return null;
+            }
+        });
+    }
+
+    public void updateObjectList(final List<? extends Object> objectList) {
+        if ((objectList == null) || (objectList.isEmpty())) return;
+        final Class<?> clazz = objectList.get(0).getClass();
+        final List<String> refFieldList = new ArrayList<String>();
+        final String sql = DBUtil.generateUpdateSQL(clazz, refFieldList);
+
+        execute(new Execute<Void>() {
+
+            @Override
+            public Void execute(Connection connection) throws Exception {
+                System.out.println("[INFO] update sql: " + sql);
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                for (Object object : objectList) {
+                    if (clazz != object.getClass()) {
+                        throw new RuntimeException("Class not match: " + clazz.getName() + " & " + object.getClass());
+                    }
+                    setPreparedStatmentValues(preparedStatement, clazz, object, refFieldList);
+                    preparedStatement.execute();
+                }
+                preparedStatement.close();
                 return null;
             }
         });
@@ -141,6 +193,32 @@ public class DataAccessObject {
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 setPreparedStatmentValues(preparedStatement, clazz, object, refFieldList);
                 preparedStatement.execute();
+                preparedStatement.close();
+                return null;
+            }
+        });
+    }
+
+    public void deleteObjectList(final List<? extends Object> objectList) {
+        if ((objectList == null) || (objectList.isEmpty())) return;
+        final Class<?> clazz = objectList.get(0).getClass();
+        final List<String> refFieldList = new ArrayList<String>();
+        final String sql = DBUtil.generateDeleteSQL(clazz, refFieldList);
+
+        execute(new Execute<Void>() {
+
+            @Override
+            public Void execute(Connection connection) throws Exception {
+                System.out.println("[INFO] delete sql: " + sql);
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                for (Object object : objectList) {
+                    if (clazz != object.getClass()) {
+                        throw new RuntimeException("Class not match: " + clazz.getName() + " & " + object.getClass());
+                    }
+                    setPreparedStatmentValues(preparedStatement, clazz, object, refFieldList);
+                    preparedStatement.execute();
+                }
+                preparedStatement.close();
                 return null;
             }
         });
@@ -184,7 +262,9 @@ public class DataAccessObject {
                         setPreparedStatmentByValue(preparedStatement, index, type, o);
                     }
                 }
-                return preparedStatement.executeUpdate();
+                int result = preparedStatement.executeUpdate();
+                preparedStatement.close();
+                return result;
             }
         });
     }
@@ -225,6 +305,8 @@ public class DataAccessObject {
                     }
                     result.add(o);
                 }
+                resultSet.close();
+                preparedStatement.close();
                 return result;
             }
         });
@@ -263,6 +345,8 @@ public class DataAccessObject {
                     recordProcessor.process(index, o);
                     index++;
                 }
+                resultSet.close();
+                preparedStatement.close();
                 return result;
             }
 
@@ -295,6 +379,7 @@ public class DataAccessObject {
                     recordProcessor.process(index, resultSet);
                     index++;
                 }
+                preparedStatement.close();
                 return result;
             }
 

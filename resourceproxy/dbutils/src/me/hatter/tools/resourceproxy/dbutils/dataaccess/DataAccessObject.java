@@ -25,6 +25,7 @@ public class DataAccessObject {
     private ConnectionPool connectionPool;
     private Connection     _connection;
     private Exception      _connectionError;
+    private boolean        logging = true;
 
     public DataAccessObject(ConnectionPool connectionPool) {
         this.connectionPool = connectionPool;
@@ -36,6 +37,14 @@ public class DataAccessObject {
 
     public DataAccessObject(PropertyConfig propertyConfig) {
         this(new ConnectionFactory(propertyConfig));
+    }
+
+    public boolean isLogging() {
+        return logging;
+    }
+
+    public void setLogging(boolean logging) {
+        this.logging = logging;
     }
 
     public static interface Execute<T> {
@@ -101,7 +110,7 @@ public class DataAccessObject {
 
             @Override
             public Void execute(Connection connection) throws Exception {
-                System.out.println("[INFO] insert sql: " + sql);
+                if (logging) System.out.println("[INFO] insert sql: " + sql);
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 setPreparedStatmentValues(preparedStatement, clazz, object, refFieldList);
                 preparedStatement.execute();
@@ -121,7 +130,7 @@ public class DataAccessObject {
 
             @Override
             public Void execute(Connection connection) throws Exception {
-                System.out.println("[INFO] insert sql: " + sql);
+                if (logging) System.out.println("[INFO] insert sql: " + sql);
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 for (Object object : objectList) {
                     if (clazz != object.getClass()) {
@@ -145,7 +154,7 @@ public class DataAccessObject {
 
             @Override
             public Void execute(Connection connection) throws Exception {
-                System.out.println("[INFO] update sql: " + sql);
+                if (logging) System.out.println("[INFO] update sql: " + sql);
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 setPreparedStatmentValues(preparedStatement, clazz, object, refFieldList);
                 preparedStatement.execute();
@@ -165,7 +174,7 @@ public class DataAccessObject {
 
             @Override
             public Void execute(Connection connection) throws Exception {
-                System.out.println("[INFO] update sql: " + sql);
+                if (logging) System.out.println("[INFO] update sql: " + sql);
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 for (Object object : objectList) {
                     if (clazz != object.getClass()) {
@@ -189,7 +198,7 @@ public class DataAccessObject {
 
             @Override
             public Void execute(Connection connection) throws Exception {
-                System.out.println("[INFO] delete sql: " + sql);
+                if (logging) System.out.println("[INFO] delete sql: " + sql);
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 setPreparedStatmentValues(preparedStatement, clazz, object, refFieldList);
                 preparedStatement.execute();
@@ -209,7 +218,7 @@ public class DataAccessObject {
 
             @Override
             public Void execute(Connection connection) throws Exception {
-                System.out.println("[INFO] delete sql: " + sql);
+                if (logging) System.out.println("[INFO] delete sql: " + sql);
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 for (Object object : objectList) {
                     if (clazz != object.getClass()) {
@@ -251,7 +260,7 @@ public class DataAccessObject {
 
             @Override
             public Integer execute(Connection connection) throws Exception {
-                System.out.println("[INFO] query sql: " + sql);
+                if (logging) System.out.println("[INFO] query sql: " + sql);
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 if (objectList != null) {
                     for (int i = 0; i < objectList.size(); i++) {
@@ -281,13 +290,13 @@ public class DataAccessObject {
 
             @Override
             public List<T> execute(Connection connection) throws Exception {
-                System.out.println("[INFO] query sql: " + runSql);
+                if (logging) System.out.println("[INFO] query sql: " + runSql);
                 PreparedStatement preparedStatement = connection.prepareStatement(runSql);
                 if (objectList != null) {
                     for (int i = 0; i < objectList.size(); i++) {
                         int index = i + 1;
                         Object o = objectList.get(i);
-                        System.out.println("[INFO] object @" + index + "=" + o);
+                        if (logging) System.out.println("[INFO] object @" + index + "=" + o);
                         Class<?> type = (o == null) ? null : o.getClass();
                         setPreparedStatmentByValue(preparedStatement, index, type, o);
                     }
@@ -319,13 +328,13 @@ public class DataAccessObject {
 
             @Override
             public List<T> execute(Connection connection) throws Exception {
-                System.out.println("[INFO] query sql: " + runSql);
+                if (logging) System.out.println("[INFO] query sql: " + runSql);
                 PreparedStatement preparedStatement = connection.prepareStatement(runSql);
                 if (objectList != null) {
                     for (int i = 0; i < objectList.size(); i++) {
                         int index = i + 1;
                         Object o = objectList.get(i);
-                        System.out.println("[INFO] object @" + index + "=" + o);
+                        if (logging) System.out.println("[INFO] object @" + index + "=" + o);
                         Class<?> type = (o == null) ? null : o.getClass();
                         setPreparedStatmentByValue(preparedStatement, index, type, o);
                     }
@@ -360,13 +369,13 @@ public class DataAccessObject {
 
             @Override
             public List<?> execute(Connection connection) throws Exception {
-                System.out.println("[INFO] query sql: " + runSql);
+                if (logging) System.out.println("[INFO] query sql: " + runSql);
                 PreparedStatement preparedStatement = connection.prepareStatement(runSql);
                 if (objectList != null) {
                     for (int i = 0; i < objectList.size(); i++) {
                         int index = i + 1;
                         Object o = objectList.get(i);
-                        System.out.println("[INFO] object @" + index + "=" + o);
+                        if (logging) System.out.println("[INFO] object @" + index + "=" + o);
                         Class<?> type = (o == null) ? null : o.getClass();
                         setPreparedStatmentByValue(preparedStatement, index, type, o);
                     }
@@ -409,20 +418,20 @@ public class DataAccessObject {
         return sql;
     }
 
-    private static void setPreparedStatmentValues(PreparedStatement preparedStatement, Class<?> clazz, Object object,
-                                                  List<String> refFieldList) throws Exception {
+    private void setPreparedStatmentValues(PreparedStatement preparedStatement, Class<?> clazz, Object object,
+                                           List<String> refFieldList) throws Exception {
         for (int i = 0; i < refFieldList.size(); i++) {
             int index = i + 1;
             AtomicReference<Class<?>> refType = new AtomicReference<Class<?>>();
             Object o = ReflectUtil.getFieldValue(clazz, object, StringUtil.toCamel(refFieldList.get(i)), refType);
-            System.out.println("[INFO] object @" + index + "=" + o);
+            if (logging) System.out.println("[INFO] object @" + index + "=" + o);
             setPreparedStatmentByValue(preparedStatement, index, refType.get(), o);
         }
     }
 
-    private static void setFiledByResultSet(ResultSet resultSet, Object o, String f, Field field)
-                                                                                                 throws IllegalAccessException,
-                                                                                                 SQLException {
+    private void setFiledByResultSet(ResultSet resultSet, Object o, String f, Field field)
+                                                                                          throws IllegalAccessException,
+                                                                                          SQLException {
         if (field.getType() == String.class) {
             field.set(o, resultSet.getString(f));
         } else if (field.getType() == Integer.class) {

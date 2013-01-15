@@ -4,6 +4,8 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class ReflectUtil {
@@ -28,7 +30,28 @@ public class ReflectUtil {
         }
     }
 
+    private static ConcurrentMap<Class<?>, ConcurrentMap<String, Field>> fieldClassMap = new ConcurrentHashMap<Class<?>, ConcurrentMap<String, Field>>();
+
     public static Field getField(Class<?> clazz, String field) {
+        if (clazz == null) {
+            return null;
+        }
+        if (clazz == Object.class) {
+            return null;
+        }
+        ConcurrentMap<String, Field> fieldMap = fieldClassMap.get(clazz);
+        if (fieldMap != null) {
+            if (fieldMap.containsKey(field)) {
+                return fieldMap.get(field);
+            }
+        }
+        Field result = internalGetField(clazz, field);
+        fieldClassMap.putIfAbsent(clazz, new ConcurrentHashMap<String, Field>());
+        fieldClassMap.get(clazz).put(field, result);
+        return result;
+    }
+
+    private static Field internalGetField(Class<?> clazz, String field) {
         if (clazz == null) {
             return null;
         }

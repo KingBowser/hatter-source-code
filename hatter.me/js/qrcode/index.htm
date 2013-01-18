@@ -14,6 +14,7 @@
   <td>
     Select: <select id="type" style="margin-bottom:10px;width: 200px;" onchange="changeType();">
       <option value="t_text">Text</option>
+      <option value="t_contact">Contact</option>
       <option value="t_sms">SMS</option>
       <option value="t_wifi">WIFI</option>
       <option value="t_cal">Calendar event</option>
@@ -34,6 +35,16 @@
 <td valign="top">
   <div class="t_" id="t_text">
     <textarea name="input" style="width:100%;height:180px;font-size:18px;"></textarea>
+  </div>
+  <div class="t_" id="t_contact" style="display:none;">
+    Name:<input type="text" name="n" style="width:300px;"><br>
+    Nickname:<input type="text" name="nickname" style="width:300px;"><br>
+    Telphone:<input type="text" name="tel" style="width:300px;"><br>
+    E-Mail:<input type="text" name="email" style="width:300px;"><br>
+    Birthday(yyyyMMdd):<input type="text" name="bday" style="width:300px;"><br>
+    Address:<input type="text" name="adr" style="width:300px;"><br>
+    URL:<input type="text" name="url" style="width:300px;"><br>
+    Memo:<input type="text" name="memo" style="width:300px;"><br>
   </div>
   <div class="t_" id="t_sms" style="display:none;">
     Phone No: <input type="text" name="no" style="width:300px;"><br>
@@ -226,6 +237,53 @@ function toGMT(yyyy, mm, dd, hh, mi, ss) {
 qrStrJoinMap = {
   "t_text": function() {
     return item("input").value;
+  },
+  "t_contact": function() {
+    var n = item("n").value;
+    var nickname = item("nickname").value;
+    var tel = item("tel").value;
+    var email = item("email").value;
+    var bday = item("bday").value;
+    var adr = item("adr").value;
+    var url = item("url").value;
+    var memo = item("memo").value;
+    var b = [];
+    b.push("MECARD:");
+    if (n != "") {
+      b.push("N:" + n + ";");
+    }
+    if (nickname != "") {
+      b.push("NICKNAME:" + nickname + ";");
+    }
+    if (tel != "") {
+      var tels = tel.split(";");
+      for (var i = 0; i < tels.length; i++) {
+        b.push("TEL:" + tels[i] + ";");
+      }
+    }
+    if (email != "") {
+      var emails = email.split(";");
+      for (var i = 0; i < emails.length; i++) {
+        b.push("EMAIL:" + emails[i] + ";");
+      }
+    }
+    if (bday != "") {
+      b.push("BDAY:" + bday + ";");
+    }
+    if (adr != "") {
+      b.push("ADR:" + adr + ";");
+    }
+    if (url != "") {
+      var urls = url.split(";");
+      for (var i = 0; i < urls.length; i++) {
+        b.push("URL:" + urls[i] + ";");
+      }
+    }
+    if (memo != "") {
+      b.push("MEMO:" + memo + ";");
+    }
+    b.push(";");
+    return b.join("\r\n");
   },
   "t_sms": function() {
     var no = item("no").value;

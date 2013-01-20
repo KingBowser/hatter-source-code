@@ -43,8 +43,8 @@ func main() {
 || 2009 || TIOBE "Language of the year" ||
 
 ==安装FAQ==
- * CentOS 6 安装时提示：/lib/ld-linux.so.2: bad ELF interpreter: No such file or directory
- 尝试安装：yum install glibc.i686
+ * CentOS 6 安装时提示：`/lib/ld-linux.so.2: bad ELF interpreter: No such file or directory`
+ 尝试安装：`yum install glibc.i686`
 
 ==IDE==
 || `LiteIDE` || http://code.google.com/p/golangide/ || Go语言写的跨平台Go语言IDE ||

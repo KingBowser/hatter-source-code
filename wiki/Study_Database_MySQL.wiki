@@ -15,6 +15,7 @@ service mysql stop
 service mysql {start|stop|restart|reload|force-reload|status}
 
 mysql -u root
+mysql -h IP -u username -p
 }}}
 
 ==维护==

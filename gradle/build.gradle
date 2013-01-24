@@ -68,6 +68,30 @@ task packall << {
   ant.delete(file: packtempmanifest)
 }
 
+task packall2 << {
+  def packtempclasses = "packtempclasses"
+  def packtempmanifest = "packtempmanifest"
+  def libresources = "libresources"
+  def jars = ant.path {
+    fileset(dir: 'build/libs', includes: '*.jar')
+  }
+  jars.list().each {
+    ant.unzip(dest: packtempclasses, src: it) 
+  }
+  file(packtempclasses + "/" + libresources).mkdirs()
+  ant.copy(todir: packtempclasses + "/" + libresources) {
+    fileset(dir: 'lib', includes: '*.jar')
+  }
+  def antmanifest = ant.manifest(file: packtempmanifest) {
+    attribute(name: 'Main-Class', value: jarManifestMainClass)
+  }
+  ant.jar(destfile: "${baseProjectName}all.jar", manifest: packtempmanifest) {
+    fileset(dir: packtempclasses, includes: '**/*.*')
+  }
+  ant.delete(dir: packtempclasses)
+  ant.delete(file: packtempmanifest)
+}
+
 dependencies {
     compile files(fileTree(dir: 'lib', includes: ['*.jar'], excludes: ['*-sources.jar', '*-javadoc.jar']))
     // compile files(file(System.properties['java.home'].replaceAll('\\/jre(\\/)?$', "") + "/lib/sa-jdi.jar"))

@@ -172,7 +172,9 @@ public class ClassLoaderUtil {
             FileOutputStream fos = new FileOutputStream(tempjline);
             IOUtil.copy(ClassLoaderUtil.class.getResourceAsStream(r), fos);
             fos.close();
-            LogUtil.info("Generate jar and add to system class loader: " + tempjline + " (from " + r + ")");
+            if (isPrintLog) {
+                LogUtil.info("Generate jar and add to system class loader: " + tempjline + " (from " + r + ")");
+            }
             ClassLoaderUtil.addURLs(ClassLoaderUtil.getSystemClassLoader(), tempjline.toURI().toURL());
         } catch (Exception e) {
             throw new RuntimeException(e);

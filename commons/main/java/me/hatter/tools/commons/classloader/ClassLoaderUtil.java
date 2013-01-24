@@ -1,7 +1,10 @@
 package me.hatter.tools.commons.classloader;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.StringReader;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.net.URL;
@@ -158,6 +161,10 @@ public class ClassLoaderUtil {
     }
 
     public static void addResourceToSystemClassLoader(String resource) {
+        addResourceToSystemClassLoader(resource, true);
+    }
+
+    public static void addResourceToSystemClassLoader(String resource, boolean isPrintLog) {
         try {
             String r = resource.startsWith("/") ? resource : ("/" + resource);
             File tempjline = File.createTempFile("temp-jar", ".jar");
@@ -168,6 +175,21 @@ public class ClassLoaderUtil {
             LogUtil.info("Generate jar and add to system class loader: " + tempjline + " (from " + r + ")");
             ClassLoaderUtil.addURLs(ClassLoaderUtil.getSystemClassLoader(), tempjline.toURI().toURL());
         } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void initLibResources() {
+        String libresourcesJars = IOUtil.readResourceToString(ClassLoaderUtil.class, "/libresources_jars.txt");
+        BufferedReader br = new BufferedReader(new StringReader(libresourcesJars));
+        try {
+            for (String line; ((line = br.readLine()) != null);) {
+                if (!line.trim().isEmpty()) {
+                    addResourceToSystemClassLoader("/libresources/" + line.trim(),
+                                                   Boolean.getBoolean("printInitLibResourcesLog"));
+                }
+            }
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }

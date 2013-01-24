@@ -72,6 +72,9 @@ task packall2 << {
   def packtempclasses = "packtempclasses"
   def packtempmanifest = "packtempmanifest"
   def libresources = "libresources"
+  def libs = ant.path {
+    fileset(dir: 'lib', includes: '*.jar', excludes: '*-sources.jar')
+  }
   def jars = ant.path {
     fileset(dir: 'build/libs', includes: '*.jar')
   }
@@ -80,8 +83,14 @@ task packall2 << {
   }
   file(packtempclasses + "/" + libresources).mkdirs()
   ant.copy(todir: packtempclasses + "/" + libresources) {
-    fileset(dir: 'lib', includes: '*.jar')
+    fileset(dir: 'lib', includes: '*.jar', excludes: '*-sources.jar')
   }
+  def libresourcesfile = new File(packtempclasses + "/" + libresources + "_jars.txt")
+  def libstr = "";
+  libs.list().each {
+    libstr += it.substring(it.lastIndexOf("/") + 1) + "\n";
+  }
+  libresourcesfile.write(libstr, "UTF-8");
   def antmanifest = ant.manifest(file: packtempmanifest) {
     attribute(name: 'Main-Class', value: jarManifestMainClass)
   }

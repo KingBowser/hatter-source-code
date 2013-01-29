@@ -1,0 +1,1 @@
+java -cp test-localdnscacheall.jar -Dsun.net.spi.nameservice.provider.1=dns,localDnsCache me.hatter.tests.localdnscache.LocalDnsCacheTest

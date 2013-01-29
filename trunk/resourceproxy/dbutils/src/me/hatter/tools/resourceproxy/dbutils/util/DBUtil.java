@@ -46,6 +46,8 @@ public class DBUtil {
                     type = "TEXT";
                 } else if (f.getType() == Integer.class) {
                     type = "INTEGER";
+                } else if (f.getType() == Long.class) {
+                    type = "LONG";
                 } else if (f.getType() == Date.class) {
                     type = "TEXT";
                 } else {

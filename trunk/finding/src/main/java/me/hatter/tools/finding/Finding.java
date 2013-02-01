@@ -3,7 +3,9 @@ package me.hatter.tools.finding;
 import java.io.File;
 import java.io.FileFilter;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.atomic.AtomicLong;
@@ -20,11 +22,24 @@ import me.hatter.tools.commons.string.StringUtil;
 
 public class Finding {
 
-    public static final char    CHAR_27    = (char) 27;
-    public static final String  RESET      = CHAR_27 + "[0m";
-    private static final Object sysOutLock = new Object();
+    public static final char          CHAR_27    = (char) 27;
+    public static final String        RESET      = CHAR_27 + "[0m";
+    private static final Object       sysOutLock = new Object();
 
-    public interface MatchFileFilter extends FileFilter {
+    private static List<MatchPattern> ffList     = new ArrayList<MatchPattern>();
+
+    public static class MatchPattern {
+
+        public boolean      isInclude;
+        public RegexMatcher matcher;
+
+        public MatchPattern(boolean isInclude, RegexMatcher matcher) {
+            this.isInclude = isInclude;
+            this.matcher = matcher;
+        }
+    }
+
+    public static interface MatchFileFilter extends FileFilter {
 
         void matchFile(File file);
     }
@@ -38,6 +53,20 @@ public class Finding {
         final Set<String> extSet = getExtSet();
         final String search = UnixArgsutil.ARGS.args()[0];
         final Matcher matcher = getMatcher(search);
+
+        List<String> ffs = UnixArgsutil.ARGS.kvalues("ff");
+        if ((ffs != null) && (!ffs.isEmpty())) {
+            for (String ff : ffs) {
+                if ((ff != null) && (!ff.isEmpty())) {
+                    if (ff.startsWith("~")) {
+                        ffList.add(new MatchPattern(false, new RegexMatcher(null, ff.substring(1), true)));
+                    } else {
+                        ffList.add(new MatchPattern(true, new RegexMatcher(null, ff, true)));
+                    }
+                }
+            }
+        }
+
         final boolean is_0 = UnixArgsutil.ARGS.flags().contains("0");
         final boolean is_1 = UnixArgsutil.ARGS.flags().contains("1");
         final boolean is_s = UnixArgsutil.ARGS.flags().contains("s");
@@ -67,6 +96,9 @@ public class Finding {
                     if (!extSet.contains(ext.toLowerCase())) {
                         return;
                     }
+                }
+                if (!isFileMattch(file)) {
+                    return;
                 }
 
                 fileCount.incrementAndGet();
@@ -190,6 +222,25 @@ public class Finding {
         }
     }
 
+    private static boolean isFileMattch(File file) {
+        if (ffList.isEmpty()) {
+            return true;
+        }
+        String fstr = file.toString();
+        for (MatchPattern matchPattern : ffList) {
+            if (matchPattern.isInclude) {
+                if (!matchPattern.matcher.match(fstr)) {
+                    return false;
+                }
+            } else {
+                if (matchPattern.matcher.match(fstr)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     private static Matcher getMatcher(String search) {
         boolean is_i = UnixArgsutil.ARGS.flags().contains("i");
         boolean is_E = UnixArgsutil.ARGS.flags().contains("E");
@@ -299,6 +350,7 @@ public class Finding {
         System.out.println("       java                      .java file(s)");
         System.out.println("    -I <file>                    file name(s) from input file");
         System.out.println("    -has <symbol>                only the line has symbol(case insensitive, -HAS case sensitive)");
+        System.out.println("    -ff <filter>                 file and path filter(regex)");
         System.out.println("    -CC                          concurrent thread(s) count");
         System.out.println("    --i                          ignore case contains");
         System.out.println("    --E                          regex");

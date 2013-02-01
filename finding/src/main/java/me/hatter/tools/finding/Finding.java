@@ -350,7 +350,7 @@ public class Finding {
         System.out.println("       java                      .java file(s)");
         System.out.println("    -I <file>                    file name(s) from input file");
         System.out.println("    -has <symbol>                only the line has symbol(case insensitive, -HAS case sensitive)");
-        System.out.println("    -ff <filter>                 file and path filter(regex)");
+        System.out.println("    -ff <filter>                 file and path filter(regex, starts with '~' means exclude)");
         System.out.println("    -CC                          concurrent thread(s) count");
         System.out.println("    --i                          ignore case contains");
         System.out.println("    --E                          regex");

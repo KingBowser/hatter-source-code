@@ -110,6 +110,7 @@ var domainPathHandlerMap = map[string]RequestCallFunc {
 	"hatter.me/gocompile": DomainPathGoCompileHandle,
 	"hatter.me/goformat": DomainPathGoFormatHandle,
 	"hatter.me/apps": DomainPathAppsHandle,
+	"hatter.me/p": DomainPathPHandle,
 }
 
 var domainFilters = map[string][]RequestCallFunc {
@@ -174,6 +175,20 @@ func DomainPathWikiFilter(w http.ResponseWriter, r *http.Request) bool {
 	}
 	proxyFullURL := "http://code.google.com/p/hatter-source-code/wiki/" + wikiName + "?show=content"
 	return HandleProxyDomainURL(w, r, proxyFullURL)
+}
+
+func DomainPathPHandle(w http.ResponseWriter, r *http.Request) bool {
+	parseError := r.ParseForm()
+	if parseError != nil {
+		log.Println("Parse form failed:", parseError)
+		return false
+	}
+	proxyUrl := r.FormValue("url")
+	if proxyUrl == "" {
+		log.Println("Form url is empty.")
+		return false;
+	}
+	return HandleProxyDomainURL(w, r, proxyUrl)
 }
 
 func DomainPathAppsHandle(w http.ResponseWriter, r *http.Request) bool {

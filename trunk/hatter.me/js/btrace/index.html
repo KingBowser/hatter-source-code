@@ -106,8 +106,8 @@ function doGenerateBtraceScript() {
 }
 </script>
 </head>
-<body>
-  <table style="width:1000px;" border="1">
+<body style="margin: 0px 0px 0px 0px; padding: 0px 0px 0px 0px;">
+  <table style="width:100%;" border="1">
     <tr>
       <td style="width:120px;">类名:</td>
       <td>
@@ -147,14 +147,14 @@ function doGenerateBtraceScript() {
       </td>
     </tr>
     <tr>
-      <td colspan="2">
+      <td colspan="2" style="font-size:12px;">
         <textarea id="s_code" name="s_code" style="height:400px;font-family:courier new;font-size:16px;"></textarea>
         <link rel="stylesheet" href="codemirror.css">
         <script src="codemirror.js"></script>
         <script src="matchbrackets.js"></script>
         <script src="clike.js"></script>
         <link rel="stylesheet" href="docs.css">
-        <script>
+        <script type="text/javascript">
         var editor = CodeMirror.fromTextArea(document.getElementById("s_code"), {
           textWrapping: true,
           lineNumbers: true,

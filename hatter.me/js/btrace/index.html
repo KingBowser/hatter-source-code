@@ -101,7 +101,8 @@ function doGenerateBtraceScript() {
   }
   buf.push("    }");
   buf.push("}");
-  $value("s_code", buf.join("\n"));
+  //$value("s_code", buf.join("\n"));
+  editor.setValue(buf.join("\n"));
 }
 </script>
 </head>
@@ -146,8 +147,20 @@ function doGenerateBtraceScript() {
       </td>
     </tr>
     <tr>
-      <td colspan="2">
-        <textarea id="s_code" style="height:400px;width:100%;font-family:courier new;font-size:16px;"></textarea>
+      <td colspan="2" style="overflow:scroll;width:900px;">
+        <textarea id="s_code" name="s_code" style="height:400px;width:100%;font-family:courier new;font-size:16px;"></textarea>
+        <link rel="stylesheet" href="codemirror.css">
+        <script src="codemirror.js"></script>
+        <script src="matchbrackets.js"></script>
+        <script src="clike.js"></script>
+        <link rel="stylesheet" href="docs.css">
+        <script>
+        var editor = CodeMirror.fromTextArea(document.getElementById("s_code"), {
+          lineNumbers: true,
+          matchBrackets: true,
+          mode: "text/x-java"
+        });
+        </script>
       </td>
     </tr>
   </table>

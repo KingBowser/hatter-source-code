@@ -115,6 +115,10 @@ var domainPathHandlerMap = map[string]RequestCallFunc {
 	"hatter.me/goformat": DomainPathGoFormatHandle,
 	"hatter.me/apps": DomainPathAppsHandle,
 	"hatter.me/p": DomainPathPHandle,
+	"jiangchenhao.me/p": DomainPathPHandle,
+	"www.jiangchenhao.me/p": DomainPathPHandle,
+	"jiangchenhao.com/p": DomainPathPHandle,
+	"www.jiangchenhao.com/p": DomainPathPHandle,
 }
 
 var domainFilters = map[string][]RequestCallFunc {

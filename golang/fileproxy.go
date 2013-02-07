@@ -47,7 +47,7 @@ func (callback *CopingCallbackImpl) Coping(len int64) {
 	diffTimeMillis := currTimeMillis - callback.downloadTimeStart - downloadingTime
 	atomic.AddInt64(&downloadingTime, diffTimeMillis)
 	atomic.AddInt64(&downloadingSize, len)
-	callback.downloadingTime += diffTimeMillis;
+	callback.downloadingTime += diffTimeMillis
 	callback.downloadingSize += len
 }
 
@@ -86,7 +86,7 @@ func DownloadGet(url, basePath string) (int64, error) {
 	if copyError != nil {
 		return 0, copyError
 	}
-	timeEnd := lib.GetCurrentTimeMillis();
+	timeEnd := lib.GetCurrentTimeMillis()
 	atomic.AddInt64(&downloadedSize, copyCount)
 	atomic.AddInt64(&downloadedSuccCount, 1)
 	atomic.AddInt64(&downloadedTime, (timeEnd - timeStart))

@@ -573,6 +573,7 @@ func main() {
 	if err != nil {
 		log.Fatal("Listen and serve faled:", err)
 	}
+	log.Println("Check use tls: %v", *serverUseTLS)
 	if *serverUseTLS {
 		log.Println("Sarting server at port:", *serverTLSPort)
 		tlsErr := http.ListenAndServeTLS(fmt.Sprintf(":%v", *serverTLSPort), *serverTLSCert, *serverTLSKey, nil)

@@ -4,17 +4,17 @@
 {{{
 sudo openssl req -new -x509 -days 3650 -nodes -out cert.pem -keyout key.pem
 
- * `openssl req -new`
+* openssl req -new
 用 OpenSSL 套件生成新的证书请求
- * `-x509`
+* -x509
 使用 X.509（PEM 编码的一种实现）
- * `-days 3650`
+* -days 3650
 有效期是十年，可以自己改
- * `-nodes`
+* -nodes
 这个不是英文单词 “nodes”，而是 “No DES” 的意思，代表不用 DES 加密私钥，否则私钥默认是用 DES 加密的，每次启动 Apache 要输入密码
- * `-out`
+* -out
 证书（包括证书信息和公钥）的文件名
- * `-keyout`
+* -keyout
 私钥的文件名，如果此项和上一项同名的话，那么公钥和私钥是合并在同一文件里的（正如上面所贴的）
 }}}
 

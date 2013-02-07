@@ -13,6 +13,10 @@ In wget, this can be fixed by specifying --secure-protocol=sslv3 option
 
 In curl, this can be fixed by specifying -sslv3 option
 
+----
+wget --secure-protocol=sslv3 --no-check-certificate <URL>
+
+curl -k <URL>
 
 ===参考资料===
 `[1].` https://wzyboy.im/post/799.html

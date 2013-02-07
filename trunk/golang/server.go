@@ -526,6 +526,12 @@ func HandleRequest(w http.ResponseWriter, r *http.Request) {
 	}
 	// TODO
 	log.Println("XXX: ", r.URL)
+	log.Println("XXX: ", r.URL.Scheme)
+	log.Println("XXX: ", r.URL.Opaque)
+	log.Println("XXX: ", r.URL.User)
+	log.Println("XXX: ", r.URL.Host)
+	log.Println("XXX: ", r.URL.Path)
+	log.Println("XXX: ", r.URL.RawQuery)
 	scheme := r.URL.Scheme
 	domainAndPort := lib.ToDomainAndPort(hostDomain, hostPort)
 	domainAndPortPath := domainAndPort + r.URL.Path

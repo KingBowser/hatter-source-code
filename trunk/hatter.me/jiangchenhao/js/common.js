@@ -10,7 +10,7 @@
         		return;
         	}
         	var oldHref = a.href;
-          a.href = "http://hatter.me/redirect?url=" + encodeURIComponent(a.href);
+          a.href = "/redirect?url=" + encodeURIComponent(a.href);
           setTimeout(function() {
           	if (/.*\/redirect\?.*/.test(a.href)) {
           	  a.href = oldHref;
@@ -28,7 +28,7 @@
 	var dsq = document.createElement('script');
 	dsq.type = 'text/javascript';
 	dsq.async = true;
-	dsq.src = ('https:' == document.location.protocol ? "https://hatter.me/p?url=": "") + 'http://hatterjiangswebsite.disqus.com/embed.js';
+	dsq.src = ('https:' == document.location.protocol ? "/p?url=": "") + 'http://hatterjiangswebsite.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 })();
 // <!-- COMMENT SCRIPT ENDED -->

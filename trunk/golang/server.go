@@ -179,7 +179,7 @@ func DomainPathWikiFilter(w http.ResponseWriter, r *http.Request) bool {
 		wikiName = "WikiIndex"
 	}
 	if strings.Contains(wikiName, "/") {
-		return false;
+		return false
 	}
 	proxyFullURL := "http://code.google.com/p/hatter-source-code/wiki/" + wikiName + "?show=content"
 	return HandleProxyDomainURL(w, r, proxyFullURL)
@@ -194,7 +194,7 @@ func DomainPathPHandle(w http.ResponseWriter, r *http.Request) bool {
 	proxyUrl := r.FormValue("url")
 	if proxyUrl == "" {
 		log.Println("Form url is empty.")
-		return false;
+		return false
 	}
 	return HandleProxyDomainURL(w, r, proxyUrl)
 }
@@ -217,7 +217,7 @@ func DomainPathRedirectHandle(w http.ResponseWriter, r *http.Request) bool {
 	formUrl := r.FormValue("url")
 	if formUrl == "" {
 		log.Println("Form url is empty.")
-		return false;
+		return false
 	}
 	lib.RedirectURL(w, formUrl)
 	return true
@@ -243,7 +243,7 @@ func DomainPathGoFormatHandle(w http.ResponseWriter, r *http.Request) bool {
 			fmt.Fprint(w, string(postResponseBody))
 		}
 	}
-	return true;
+	return true
 }
 
 func DomainPathGoCompileHandle(w http.ResponseWriter, r *http.Request) bool {
@@ -266,7 +266,7 @@ func DomainPathGoCompileHandle(w http.ResponseWriter, r *http.Request) bool {
 			fmt.Fprint(w, string(postResponseBody))
 		}
 	}
-	return true;
+	return true
 }
 
 func HandleRedirectDomainSetting(w http.ResponseWriter, r *http.Request, setting *DomainSetting) bool {

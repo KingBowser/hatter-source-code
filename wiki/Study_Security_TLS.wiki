@@ -16,7 +16,7 @@ In curl, this can be fixed by specifying -sslv3 option
 ----
 {{{
 wget --secure-protocol=sslv3 --no-check-certificate <URL>
-curl -k <URL>
+curl -sslv3 -k <URL>
 }}}
 
 ===参考资料===

@@ -4,7 +4,6 @@ package main
 import (
 	"./lib"
 	"os"
-	"log"
 	"fmt"
 	"flag"
 	"path"
@@ -197,19 +196,19 @@ func main() {
 	fmt.Println("Start up at port:", *appHttpServerPort)
 	var h HttpServerHandle
 	
-	log.Println("Check use tls:", *serverUseTLS)
+	fmt.Println("Check use tls:", *serverUseTLS)
 	if *serverUseTLS {
 		go func() {
-			log.Println("Sart up at port:", *serverTLSPort)
+			fmt.Println("Sart up at port:", *serverTLSPort)
 			tlsErr := http.ListenAndServeTLS(fmt.Sprintf(":%v", *serverTLSPort), *serverTLSCert, *serverTLSKey, h)
 			if tlsErr != nil {
-				log.Fatal("Listen and serve faled:", tlsErr)
+				fmt.Println("Listen and serve faled:", tlsErr)
 			}
 		}()
 	}
 	
 	listenAndServeError := http.ListenAndServe(fmt.Sprintf(":%v", *appHttpServerPort), h)
 	if listenAndServeError != nil {
-		fmt.Println(listenAndServeError)
+		fmt.Println("Listen and serve faled:", listenAndServeError)
 	}
 }

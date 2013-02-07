@@ -526,6 +526,7 @@ func HandleRequest(w http.ResponseWriter, r *http.Request) {
 	}
 	scheme := "http"
 	log.Println("XXXX:", r.Host)
+	log.Println("XXXX:", r.TLS)
 	domainAndPort := lib.ToDomainAndPort(hostDomain, hostPort)
 	domainAndPortPath := domainAndPort + r.URL.Path
 	requestURL := fmt.Sprintf("%v://%v%v", scheme, domainAndPort, r.RequestURI)

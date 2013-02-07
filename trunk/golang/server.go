@@ -30,6 +30,10 @@ var (
 	serverSysPath, _ = os.Getwd()
 	serverPath = flag.String("path", "serverSysPath", "server path")
 	serverPort = flag.Int("port", 8888, "listen port")
+	serverUseTLS = flag.Bool("usetls", false, "use tls")
+	serverTLSPort = flag.Int("tlsport", 443, "tls port")
+	serverTLSCert = flag.String("tlscert", "cert.pem", "tls cert")
+	serverTLSKey = flag.String("tlskey", "key.pem", "tls key")
 	serverListDir = flag.Bool("listdir", true, "list dir")
 	serverUseDefault = flag.Bool("usedefault", true, "list dir")
 	
@@ -568,5 +572,12 @@ func main() {
 	err := http.ListenAndServe(fmt.Sprintf(":%v", *serverPort), nil)
 	if err != nil {
 		log.Fatal("Listen and serve faled:", err)
+	}
+	if *serverUseTLS {
+		log.Println("Sarting server at port:", *serverTLSPort)
+		tlsErr = http.ListenAndServeTLS(fmt.Sprintf(":%v", *serverTLSPort), *serverTLSCert, *serverTLSKey, nil)
+		if tlsErr != nil {
+			log.Fatal("Listen and serve faled:", tlsErr)
+		}
 	}
 }

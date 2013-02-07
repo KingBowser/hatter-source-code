@@ -526,7 +526,7 @@ func HandleRequest(w http.ResponseWriter, r *http.Request) {
 	}
 	domainAndPort := lib.ToDomainAndPort(hostDomain, hostPort)
 	domainAndPortPath := domainAndPort + r.URL.Path
-	requestURL := fmt.Sprintf("http://%v%v", domainAndPort, r.RequestURI)
+	requestURL := fmt.Sprintf("%v://%v%v", r.URL.Scheme, domainAndPort, r.RequestURI)
 	log.Println("Request url:", requestURL)
 	if r.Referer() != "" {
 		log.Println("---- Referer:", r.Referer())

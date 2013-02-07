@@ -4,6 +4,7 @@ package main
 import (
 	"./lib"
 	"os"
+	"log"
 	"fmt"
 	"flag"
 	"path"
@@ -177,7 +178,13 @@ func (h HttpServerHandle) ServeHTTP (
 	fmt.Fprint(w, "<br>", "<a href=\"/\">&lt;&lt;&lt;&lt;BACK&lt;&lt;&lt;&lt;</a>")
 }
 
-var appHttpServerPort = flag.Int("port", 8000, "listen port")
+var (
+	appHttpServerPort = flag.Int("port", 8000, "listen port")
+	serverUseTLS = flag.Bool("usetls", false, "use tls")
+	serverTLSPort = flag.Int("tlsport", 8443, "tls port")
+	serverTLSCert = flag.String("tlscert", "cert.pem", "tls cert")
+	serverTLSKey = flag.String("tlskey", "key.pem", "tls key")
+	)
 var appHttpServerPath, _ = os.Getwd()
 
 func main() {
@@ -189,6 +196,18 @@ func main() {
 	fmt.Println("Base path: ", appHttpServerPath)
 	fmt.Println("Start up at port:", *appHttpServerPort)
 	var h HttpServerHandle
+	
+	log.Println("Check use tls:", *serverUseTLS)
+	if *serverUseTLS {
+		go func() {
+			log.Println("Sart up at port:", *serverTLSPort)
+			tlsErr := http.ListenAndServeTLS(fmt.Sprintf(":%v", *serverTLSPort), *serverTLSCert, *serverTLSKey, h)
+			if tlsErr != nil {
+				log.Fatal("Listen and serve faled:", tlsErr)
+			}
+		}()
+	}
+	
 	listenAndServeError := http.ListenAndServe(fmt.Sprintf(":%v", *appHttpServerPort), h)
 	if listenAndServeError != nil {
 		fmt.Println(listenAndServeError)

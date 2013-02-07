@@ -524,9 +524,12 @@ func HandleRequest(w http.ResponseWriter, r *http.Request) {
 		log.Println(fmt.Sprintf("Parse host failed: %T %v", hostError, hostError))
 		return
 	}
+	// TODO
+	log.Println("XXX: ", r.URL)
+	scheme := r.URL.Scheme
 	domainAndPort := lib.ToDomainAndPort(hostDomain, hostPort)
 	domainAndPortPath := domainAndPort + r.URL.Path
-	requestURL := fmt.Sprintf("%v://%v%v", r.URL.Scheme, domainAndPort, r.RequestURI)
+	requestURL := fmt.Sprintf("%v://%v%v", scheme, domainAndPort, r.RequestURI)
 	log.Println("Request url:", requestURL)
 	if r.Referer() != "" {
 		log.Println("---- Referer:", r.Referer())

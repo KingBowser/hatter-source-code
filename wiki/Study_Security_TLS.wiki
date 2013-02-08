@@ -86,3 +86,4 @@ curl -sslv3 -k <URL>
 `[2].` http://golang.org/pkg/net/http/#ListenAndServeTLS<br>
 `[3].` http://www.xinotes.org/notes/note/1094/<br>
 `[4].` https://help.ubuntu.com/10.04/serverguide/certificates-and-security.html<br>
+`[5].` http://blog.roodo.com/rocksaying/archives/16158079.html<br>

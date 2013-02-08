@@ -81,9 +81,16 @@ wget --secure-protocol=sslv3 --no-check-certificate <URL>
 curl -sslv3 -k <URL>
 }}}
 
+----
+OpenSSL Command-Line HOWTO:
+{{{
+http://www.madboa.com/geek/openssl/
+}}}
+
 ===参考资料===
 `[1].` https://wzyboy.im/post/799.html<br>
 `[2].` http://golang.org/pkg/net/http/#ListenAndServeTLS<br>
 `[3].` http://www.xinotes.org/notes/note/1094/<br>
 `[4].` https://help.ubuntu.com/10.04/serverguide/certificates-and-security.html<br>
 `[5].` http://blog.roodo.com/rocksaying/archives/16158079.html<br>
+`[6].` http://www.madboa.com/geek/openssl/<br>

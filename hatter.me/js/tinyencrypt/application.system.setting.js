@@ -1,5 +1,5 @@
 // application name
-APPLICATION_NAME = "Application Name";
+APPLICATION_NAME = "Tiny Encrypt";
 
 // application library path
 APPLICATION_LIBRARY_PATH = "jsapp/";

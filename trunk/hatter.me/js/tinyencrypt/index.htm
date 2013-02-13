@@ -1,0 +1,63 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" contect="text/html;charset=UTF-8">
+<script type="text/javascript" src="application.system.setting.js"></script>
+<script type="text/javascript">document.write("<title>" + APPLICATION_NAME + "</title>");</script>
+<script type="text/javascript">document.write(GET_HTML_APPLICATION_SETTING());</script>
+<link rel="stylesheet" type="text/css" href="application.stylesheet.css"> 
+</head>
+<body bgcolor="#ece9d8" style="overflow:auto;" 
+marginwidth="0" marginheight="0" leftmargin="0" topmargin="0" 
+rightmargin="0" bottommargin="0" 
+onload="application_body_onload();" onunload="application_body_onunload();" >
+<script type="text/javascript">
+document.write('<script type="text/javascript" src="');
+document.write(APPLICATION_LIBRARY_PATH);
+document.write('cn.aprilsoft.jsapp.core.js">' + '</' + 'script>');
+</script>
+<!-- Application include,import,genectrl,application -->
+<script type="text/javascript" src="application.include.js"></script>
+<script type="text/javascript" src="application.import.js"></script>
+<script type="text/javascript" src="application.createctrl.js"></script>
+<script type="text/javascript" src="application.other.include.js"></script>
+<script type="text/javascript" src="application.startup.js"></script>
+
+<!-- HTML BLOCK -->
+
+<table class="full">
+  <tr>
+    <td style="height: 50px; font-size: 30px;" align="center">
+      Tiny Encrypt
+    <td>
+  </tr>
+  <tr>
+    <td style="height: 30px;">
+      <input class="full_width" type="password" id="input_password" />
+    <td>
+  </tr>
+  <tr>
+    <td style="height: 30px;">
+      <input class="full_width" type="password" id="input_password2" />
+    <td>
+  </tr>
+  <tr>
+    <td>
+      <textarea class="full" id="text_input"></textarea>
+    <td>
+  </tr>
+  <tr>
+    <td style="height: 50px;" align="right">
+      <button class="full_height" style="width: 200px; font-size: 36px;" onclick="encrypt();">[Encrypt]</button>
+      &nbsp;
+      <button class="full_height" style="width: 200px; font-size: 36px;" onclick="decrypt();">[Decrypt]</button>
+    <td>
+  </tr>
+  <tr>
+    <td>
+      <textarea class="full" id="text_output"></textarea>
+    <td>
+  </tr>
+</table>
+
+</body>
+</html>

@@ -19,7 +19,7 @@ function encrypt()
     return;
   }
   var aes = new AES();
-  $value("text_output", "-----BEGIN ENCRYPT-----\n" + aes.encrypt($value("input_password"), $value("text_input")) + "\m-----END ENCRYPT-----");
+  $value("text_output", "-----BEGIN ENCRYPT-----\n" + aes.encrypt($value("input_password"), $value("text_input")) + "\n-----END ENCRYPT-----");
 }
 
 function decrypt()

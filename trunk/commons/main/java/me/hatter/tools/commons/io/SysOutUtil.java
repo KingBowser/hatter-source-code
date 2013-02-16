@@ -45,6 +45,9 @@ public class SysOutUtil {
                                               } else {
                                                   try {
                                                       System.out.write(toBytes(str));
+                                                      if (str.indexOf('\n') >= 0) {
+                                                          System.out.flush();
+                                                      }
                                                   } catch (IOException e) {
                                                       throw new RuntimeException(e);
                                                   }
@@ -61,6 +64,9 @@ public class SysOutUtil {
                                               } else {
                                                   try {
                                                       System.err.write(toBytes(str));
+                                                      if (str.indexOf('\n') >= 0) {
+                                                          System.err.flush();
+                                                      }
                                                   } catch (IOException e) {
                                                       throw new RuntimeException(e);
                                                   }

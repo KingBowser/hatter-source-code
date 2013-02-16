@@ -2,6 +2,7 @@ package me.hatter.tools.finding;
 
 import java.io.File;
 import java.io.FileFilter;
+import java.io.UnsupportedEncodingException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -17,6 +18,8 @@ import me.hatter.tools.commons.environment.Environment;
 import me.hatter.tools.commons.file.FileUtil;
 import me.hatter.tools.commons.io.StringBufferedReader;
 import me.hatter.tools.commons.io.StringPrintWriter;
+import me.hatter.tools.commons.io.SysOutUtil;
+import me.hatter.tools.commons.log.LogUtil;
 import me.hatter.tools.commons.number.IntegerUtil;
 import me.hatter.tools.commons.string.StringUtil;
 
@@ -48,6 +51,16 @@ public class Finding {
         UnixArgsutil.parseGlobalArgs(args);
         if (UnixArgsutil.ARGS.args().length == 0) {
             usage();
+        }
+
+        final String o = UnixArgsutil.ARGS.kvalue("o");
+        if ((o != null) && (!o.isEmpty())) {
+            try {
+                "test".getBytes(o);
+                SysOutUtil.setOutputCharset(o);
+            } catch (UnsupportedEncodingException e) {
+                LogUtil.warn("Charset is not supported: " + o);
+            }
         }
 
         final Set<String> extSet = getExtSet();
@@ -161,7 +174,7 @@ public class Finding {
                             printWriter.println();
                         }
                         synchronized (sysOutLock) {
-                            System.out.print(printWriter.toString());
+                          SysOutUtil.stdout.print(printWriter.toString());
                         }
 
                         if (is_0 || is_1) {
@@ -349,6 +362,7 @@ public class Finding {
         System.out.println("       hpp                       .hpp file(s)");
         System.out.println("       java                      .java file(s)");
         System.out.println("    -I <file>                    file name(s) from input file");
+        System.out.println("    -o <charset>                 console output charset");
         System.out.println("    -has <symbol>                only the line has symbol(case insensitive, -HAS case sensitive)");
         System.out.println("    -ff <filter>                 file and path filter(regex, starts with '~' means exclude)");
         System.out.println("    -CC                          concurrent thread(s) count");

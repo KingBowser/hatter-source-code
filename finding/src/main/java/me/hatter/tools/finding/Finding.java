@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.regex.Pattern;
 
@@ -174,7 +175,7 @@ public class Finding {
                             printWriter.println();
                         }
                         synchronized (sysOutLock) {
-                          SysOutUtil.stdout.print(printWriter.toString());
+                            SysOutUtil.stdout.print(printWriter.toString());
                         }
 
                         if (is_0 || is_1) {
@@ -225,13 +226,19 @@ public class Finding {
         }
 
         executor.shutdown();
+        try {
+            executor.awaitTermination(Long.MAX_VALUE, TimeUnit.MILLISECONDS);
+        } catch (InterruptedException e) {
+            LogUtil.error("Waite all thread(s) finish failed: ", e);
+        }
 
         final long endMillis = System.currentTimeMillis();
         DecimalFormat format = new DecimalFormat("#,###,###");
         synchronized (sysOutLock) {
-            System.out.println("Finish, Total: " + format.format(totalCount.get()) + ", Ext Match: "
-                               + format.format(fileCount.get()) + ", Txt Match: " + format.format(matchCount.get())
-                               + ", Cost: " + format.format(endMillis - startMillis) + " ms");
+            SysOutUtil.stdout.println("Finish, Total: " + format.format(totalCount.get()) + ", Ext Match: "
+                                      + format.format(fileCount.get()) + ", Txt Match: "
+                                      + format.format(matchCount.get()) + ", Cost: "
+                                      + format.format(endMillis - startMillis) + " ms");
         }
     }
 

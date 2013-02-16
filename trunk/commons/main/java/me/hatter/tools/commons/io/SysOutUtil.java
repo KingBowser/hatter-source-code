@@ -10,11 +10,17 @@ public class SysOutUtil {
 
     private static volatile String OUTPUT_CHARSET = null;
 
-    public static interface Output {
+    public static abstract class Output {
 
-        void print(String str);
+        public void print(char c) {
+            print(String.valueOf(c));
+        }
 
-        void println(String str);
+        public void println(String str) {
+            print(str + Environment.LINE_SEPARATOR);
+        }
+
+        abstract public void print(String str);
     }
 
     public static void setOutputCharset(String charset) {
@@ -25,16 +31,16 @@ public class SysOutUtil {
         OUTPUT_CHARSET = charset;
     }
 
+    private static String getOutputCharset() {
+        if (OUTPUT_CHARSET != null) return OUTPUT_CHARSET;
+        return System.getProperty("hatter.commons.output.charset");
+    }
+
     public static final Output stdout = new Output() {
 
                                           @Override
-                                          public void println(String str) {
-                                              print(str + Environment.LINE_SEPARATOR);
-                                          }
-
-                                          @Override
                                           public void print(String str) {
-                                              if (OUTPUT_CHARSET == null) {
+                                              if (getOutputCharset() == null) {
                                                   System.out.print(str);
                                               } else {
                                                   try {
@@ -49,13 +55,8 @@ public class SysOutUtil {
     public static final Output errout = new Output() {
 
                                           @Override
-                                          public void println(String str) {
-                                              print(str + Environment.LINE_SEPARATOR);
-                                          }
-
-                                          @Override
                                           public void print(String str) {
-                                              if (OUTPUT_CHARSET == null) {
+                                              if (getOutputCharset() == null) {
                                                   System.err.print(str);
                                               } else {
                                                   try {

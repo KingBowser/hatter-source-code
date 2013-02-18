@@ -1,0 +1,20 @@
+{
+  "name": "P2Hatter",
+  "description": "P2Hatter.",
+  "version": "1.0.0",
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "icons": { "128": "icon_128x128.png" },
+  "permissions": [
+    "tabs", "http://*/*", "https://*/*"
+  ],
+  "browser_action": {
+    "default_title": "P to Hatter",
+    "default_icon": "icon_16x16.png"
+  },
+
+  "manifest_version": 2
+}
+

@@ -1,5 +1,5 @@
-
-
+#summary Browser
+#sidebar TableOfContents
 
 =Chrome=
 http://developer.chrome.com/extensions/samples.html

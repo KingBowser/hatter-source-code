@@ -117,7 +117,7 @@ var domainPathHandlerMap = map[string]RequestCallFunc {
 	"hatter.me/gocompile": DomainPathGoCompileHandle,
 	"hatter.me/goformat": DomainPathGoFormatHandle,
 	"hatter.me/apps": DomainPathAppsHandle,
-	"source.hatter.me": DomainPathSourceHandle,
+	"source.hatter.me/": DomainPathSourceHandle,
 	"hatter.me/p": DomainPathPHandle,
 	"jiangchenhao.me/p": DomainPathPHandle,
 	"www.jiangchenhao.me/p": DomainPathPHandle,

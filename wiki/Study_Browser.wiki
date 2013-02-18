@@ -2,7 +2,8 @@
 #sidebar TableOfContents
 
 =Chrome=
-我的Sample：https://hatter-source-code.googlecode.com/svn/trunk/tests/p2hatter
+我的Sample：[https://hatter-source-code.googlecode.com/svn/trunk/tests/p2hatter]
+
 http://developer.chrome.com/extensions/samples.html
 
 =FireFox=

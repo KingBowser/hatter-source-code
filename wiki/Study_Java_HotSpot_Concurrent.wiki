@@ -144,7 +144,19 @@ java.util.concurrent.lock 中的 Lock 框架是锁定的一个抽象，它允许
 ===排队自旋锁(FIFO Ticket Spinlock)`[Linux]`===
 排队自旋锁(FIFO Ticket Spinlock)是 Linux 内核 2.6.25 版本引入的一种新型自旋锁，它通过保存执行线程申请锁的顺序信息解决了传统自旋锁的“不公平”问题。排队自旋锁的代码由 Linux 内核开发者 Nick Piggin 实现，目前只针对 x86 体系结构(包括 IA32 和 x86_64)。 ^[23]^
 
-=并发框架=
+=并发支持=
+
+==JVM==
+`@Contented` Sample:
+{{{
+@Contended
+    public static class ContendedTest2 {
+        private Object plainField1;
+        private Object plainField2;
+        private Object plainField3;
+        private Object plainField4;
+    }
+}}}
 
 ==JUC(`java.util.concurrent`)==
 JDK自带 rt.jar(或classes.jar)<br>
@@ -184,3 +196,5 @@ High Performance Inter-Thread Messaging Library<br>
 `[25].` http://qconlondon.com/dl/qcon-london-2012/slides/MartinThompson_and_MichaelBarker_LockFreeAlgorithmsForUltimatePerformance.pdf<br>
 `[26].` http://www.tektalk.org/2011/07/11/cache%E4%B8%80%E8%87%B4%E6%80%A7%E5%8D%8F%E8%AE%AE%E4%B8%8Emesi2/<br>
 `[27].` https://blogs.oracle.com/dave/entry/biased_locking_in_hotspot<br>
+`[28].` https://blogs.oracle.com/dave/entry/java_contented_annotation_to_help<br>
+`[29].` http://mail.openjdk.java.net/pipermail/hotspot-dev/2012-November/007309.html<br>

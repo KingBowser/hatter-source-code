@@ -89,6 +89,9 @@ var quickDomainSettingMap = map[string]*DomainSetting {
 	"code.hatter.me": &DomainSetting {
 		REDIRECT, "https://code.google.com/p/hatter-source-code/", "",
 	},
+	"source.hatter.me": &DomainSetting {
+		PROXY, "https://code.google.com/", "",
+	},
 	"svn.hatter.me": &DomainSetting {
 		PROXY, "https://hatter-source-code.googlecode.com/svn/trunk/", "",
 	},
@@ -114,6 +117,7 @@ var domainPathHandlerMap = map[string]RequestCallFunc {
 	"hatter.me/gocompile": DomainPathGoCompileHandle,
 	"hatter.me/goformat": DomainPathGoFormatHandle,
 	"hatter.me/apps": DomainPathAppsHandle,
+	"source.hatter.me": DomainPathSourceHandle,
 	"hatter.me/p": DomainPathPHandle,
 	"jiangchenhao.me/p": DomainPathPHandle,
 	"www.jiangchenhao.me/p": DomainPathPHandle,
@@ -197,6 +201,10 @@ func DomainPathPHandle(w http.ResponseWriter, r *http.Request) bool {
 		return false
 	}
 	return HandleProxyDomainURL(w, r, proxyUrl)
+}
+
+func DomainPathSourceHandle(w http.ResponseWriter, r *http.Request) bool {
+	return HandleProxyDomainURL(w, r, "https://code.google.com/p/hatter-source-code/")
 }
 
 func DomainPathAppsHandle(w http.ResponseWriter, r *http.Request) bool {

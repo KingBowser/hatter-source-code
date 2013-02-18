@@ -3,6 +3,7 @@
  * [Study_Android Android]
  * [Study_AugmentedBNF Augmented BNF]
  * [Study_BarCode BarCode]
+ * [Study_Browser]
  * [Study_Build Build]
   * [Study_Build_Ant Ant]
   * [Study_Build_Gradle Gradle]

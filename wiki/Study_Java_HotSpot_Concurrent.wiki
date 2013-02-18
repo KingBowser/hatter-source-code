@@ -149,7 +149,8 @@ java.util.concurrent.lock 中的 Lock 框架是锁定的一个抽象，它允许
 ==JVM==
 `@Contented` Sample: ^[28][29]^
 {{{
-@Contended
+.
+    @Contended
     public static class ContendedTest2 {
         private Object plainField1;
         private Object plainField2;

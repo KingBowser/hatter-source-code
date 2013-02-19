@@ -2,6 +2,14 @@
 #sidebar TableOfContents
 
 {{{
+$ which tail
+/usr/bin/tail
+$ dpkg -S /usr/bin/tail
+coreutils: /usr/bin/tail
+$ apt-get source coreutils
+}}}
+
+{{{
 python -m SimpleHTTPServer
 }}}
 

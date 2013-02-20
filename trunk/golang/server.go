@@ -144,8 +144,14 @@ func SourceHatterMeFilter(w http.ResponseWriter, r *http.Request) bool {
 	if path == "/" {
 		return HandleProxyDomainURL(w, r, "https://code.google.com/p/hatter-source-code/")
 	}
-	if strings.HasPrefix(path, "/p/hatter-source-code") {
-		return HandleProxyDomainURL(w, r, lib.JoinURLPath("https://code.google.com/", r.RequestURI))
+	whiteList := []string {
+		"/p/hatter-source-code",
+		"/chart?",
+	}
+	for _, white := range whiteList {
+		if strings.HasPrefix(path, white) {
+			return HandleProxyDomainURL(w, r, lib.JoinURLPath("https://code.google.com/", r.RequestURI))
+		}
 	}
 	return HandleNotFound(w, r, path)
 }

@@ -146,7 +146,6 @@ func SourceHatterMeFilter(w http.ResponseWriter, r *http.Request) bool {
 	}
 	whiteList := []string {
 		"/p/hatter-source-code",
-		"/chart?",
 	}
 	for _, white := range whiteList {
 		if strings.HasPrefix(path, white) {

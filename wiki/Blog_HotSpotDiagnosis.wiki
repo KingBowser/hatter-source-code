@@ -321,6 +321,10 @@ NIO direct memory: (in bytes)
   malloc'd size = 0.014001 MB (14681 bytes)
 }}}
 
+==进一步学习==
+ * http://docs.oracle.com/javase/7/docs/webnotes/tsg/TSG-VM/html/toc.html
+ * http://docs.oracle.com/javase/7/docs/webnotes/tsg/
+
 ===参考资料===
 `[1].` [Study_Java_HotSpot_OOME]<br>
 `[2].` [Study_Java_HotSpot_Arguments]<br>

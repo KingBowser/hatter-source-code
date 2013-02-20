@@ -89,9 +89,6 @@ var quickDomainSettingMap = map[string]*DomainSetting {
 	"code.hatter.me": &DomainSetting {
 		REDIRECT, "https://code.google.com/p/hatter-source-code/", "",
 	},
-	"source.hatter.me": &DomainSetting {
-		PROXY, "https://code.google.com/", "",
-	},
 	"svn.hatter.me": &DomainSetting {
 		PROXY, "https://hatter-source-code.googlecode.com/svn/trunk/", "",
 	},
@@ -117,7 +114,6 @@ var domainPathHandlerMap = map[string]RequestCallFunc {
 	"hatter.me/gocompile": DomainPathGoCompileHandle,
 	"hatter.me/goformat": DomainPathGoFormatHandle,
 	"hatter.me/apps": DomainPathAppsHandle,
-	"source.hatter.me/": DomainPathSourceHandle,
 	"hatter.me/p": DomainPathPHandle,
 	"jiangchenhao.me/p": DomainPathPHandle,
 	"www.jiangchenhao.me/p": DomainPathPHandle,
@@ -129,6 +125,9 @@ var domainFilters = map[string][]RequestCallFunc {
 	"hatter.me": []RequestCallFunc {
 		DomainPathWikiFilter,
 	},
+	"source.hatter.me": []RequestCallFunc {
+		SourceHatterMeFilter,
+	},
 	"aprilsoft.cn": []RequestCallFunc {
 		HatterJiangHeadFilter,
 	},
@@ -137,6 +136,19 @@ var domainFilters = map[string][]RequestCallFunc {
 	},
 }
 
+func SourceHatterMeFilter(w http.ResponseWriter, r *http.Request) bool {
+	if r.Method != "GET" {
+		return false
+	}
+	path := r.URL.Path
+	if path == "/" {
+		return HandleProxyDomainURL(w, r, "https://code.google.com/p/hatter-source-code/")
+	}
+	if strings.HasPrefix(path, "/p/hatter-source-code") {
+		return HandleProxyDomainURL(w, r, lib.JoinURLPath("https://code.google.com/", r.RequestURI))
+	}
+	return HandleNotFound(w, r, path)
+}
 
 func HatterJiangHeadFilter(w http.ResponseWriter, r *http.Request) bool {
 	if r.Method != "GET" {
@@ -201,10 +213,6 @@ func DomainPathPHandle(w http.ResponseWriter, r *http.Request) bool {
 		return false
 	}
 	return HandleProxyDomainURL(w, r, proxyUrl)
-}
-
-func DomainPathSourceHandle(w http.ResponseWriter, r *http.Request) bool {
-	return HandleProxyDomainURL(w, r, "https://code.google.com/p/hatter-source-code/")
 }
 
 func DomainPathAppsHandle(w http.ResponseWriter, r *http.Request) bool {

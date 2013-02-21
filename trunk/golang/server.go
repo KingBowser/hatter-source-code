@@ -116,6 +116,7 @@ var domainPathHandlerMap = map[string]RequestCallFunc {
 	"hatter.me/apps": DomainPathAppsHandle,
 	"hatter.me/p": DomainPathPHandle,
 	"hatter.me/url": DomainPathUrlHandle,
+	"hatter.me/search": DomainPathSearchHandle,
 	"jiangchenhao.me/p": DomainPathPHandle,
 	"www.jiangchenhao.me/p": DomainPathPHandle,
 	"jiangchenhao.com/p": DomainPathPHandle,
@@ -235,6 +236,10 @@ func DomainPathUrlHandle(w http.ResponseWriter, r *http.Request) bool {
 	log.Println("Redirect to url(url):", q)
 	lib.RedirectURL(w, q)
 	return true
+}
+
+func DomainPathSearchHandle(w http.ResponseWriter, r *http.Request) bool {
+	return HandleProxyDomainURL(w, r, "https://www.google.com/")
 }
 
 func DomainPathAppsHandle(w http.ResponseWriter, r *http.Request) bool {

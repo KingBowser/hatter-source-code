@@ -115,6 +115,7 @@ var domainPathHandlerMap = map[string]RequestCallFunc {
 	"hatter.me/goformat": DomainPathGoFormatHandle,
 	"hatter.me/apps": DomainPathAppsHandle,
 	"hatter.me/p": DomainPathPHandle,
+	"hatter.me/url": DomainPathUrlHandle,
 	"jiangchenhao.me/p": DomainPathPHandle,
 	"www.jiangchenhao.me/p": DomainPathPHandle,
 	"jiangchenhao.com/p": DomainPathPHandle,
@@ -218,6 +219,22 @@ func DomainPathPHandle(w http.ResponseWriter, r *http.Request) bool {
 		return false
 	}
 	return HandleProxyDomainURL(w, r, proxyUrl)
+}
+
+func DomainPathUrlHandle(w http.ResponseWriter, r *http.Request) bool {
+	parseError := r.ParseForm()
+	if parseError != nil {
+		log.Println("Parse form failed:", parseError)
+		return false
+	}
+	q := r.FormValue("q")
+	if q == "" {
+		log.Println("Form url is empty.")
+		return false
+	}
+	log.Println("Redirect to url(url):", q)
+	lib.RedirectURL(w, q)
+	return true
 }
 
 func DomainPathAppsHandle(w http.ResponseWriter, r *http.Request) bool {

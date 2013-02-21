@@ -239,7 +239,7 @@ func DomainPathUrlHandle(w http.ResponseWriter, r *http.Request) bool {
 }
 
 func DomainPathSearchHandle(w http.ResponseWriter, r *http.Request) bool {
-	return HandleProxyDomainURL(w, r, "https://www.google.com/")
+	return HandleProxyDomainURL(w, r, lib.JoinURLPath("https://www.google.com/", r.RequestURI))
 }
 
 func DomainPathAppsHandle(w http.ResponseWriter, r *http.Request) bool {

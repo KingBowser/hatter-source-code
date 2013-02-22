@@ -29,8 +29,8 @@ __asm__ volatile ("lock; addl $0,0(%%esp)" : : : "cc", "memory");
 
 那Java内存模型中据说的线程内存是什么呢？<br>
 我的理解是，首先“线程内存”是一个虚拟的概念，而承载这个概念主要是两部分：<br>
-    1. 编译器<br>
-    2. 微架构<br>
+    `1.` 编译器<br>
+    `2.` 微架构<br>
 
 作为编译器肯定是执行速度越快越好，所以作为编译器应当尽量减少从内存读数据，如果一个数据在寄存器中，那么直接使用寄存器中的值无疑性能是最高的，但同时这也会导致可能读不到最新的值，这里我们通过在Java语言中为变量加上“volatile”强制告诉编译器这个变量一定要从内存获得，这时编译器即不会做此类优化【案例见参考资料5（是一个.Net的例子）】。
 
@@ -55,8 +55,8 @@ _注2：不同的微架构的内存模型都会有一些差别，本文中都是
 
 
 ===参考资料：===
-`[1.]` 《Intel® 64 and IA-32 Architectures Software Developer’s Manual  Volume 3A: System Programming Guide, Part 1》<br>
-`[2.]` http://en.wikipedia.org/wiki/MESI_protocol<br>
-`[3.]` http://www.javaol.net/2010/10/java-memory-model/<br>
-`[4.]` http://gee.cs.oswego.edu/dl/jmm/cookbook.html<br>
-`[5.]` http://igoro.com/archive/volatile-keyword-in-c-memory-model-explained/<br>
+`[1].` 《Intel® 64 and IA-32 Architectures Software Developer’s Manual  Volume 3A: System Programming Guide, Part 1》<br>
+`[2].` http://en.wikipedia.org/wiki/MESI_protocol<br>
+`[3].` http://www.javaol.net/2010/10/java-memory-model/<br>
+`[4].` http://gee.cs.oswego.edu/dl/jmm/cookbook.html<br>
+`[5].` http://igoro.com/archive/volatile-keyword-in-c-memory-model-explained/<br>

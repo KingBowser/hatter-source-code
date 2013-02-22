@@ -50,6 +50,8 @@ j = y;
 上面的代码i和j的值会是多少呢？答案是：“00， 01， 10， 11”都是有可能的。<br>
 对于这种情况，如果我们想得到确定的结果则需要通过“synchronized”（或者j.c.u.locks）来做线程间同步。
 
+所以，我个人对Java内存模型的理解是：在编译器各种优化及多种类型的微架构平台上，Java语言规范制定者试图创建一个虚拟的概念并传递到Java程序员，让他们能够在这个虚拟的概念上写出线程安全的程序来，而编译器实现者会根据Java语言规范中的各种约束在不同的平台上达到Java程序员所需要的线程安全这个目的。
+
 _注1：关于“lock”前缀的详细说明可以查看这个文档《Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A: System Programming Guide, Part 1》的 这个章节“CHAPTER 8 MULTIPLE-PROCESSOR MANAGEMENT”。_<br>
 _注2：不同的微架构的内存模型都会有一些差别，本文中都是指x86/x64，如果想了解更多的微架构是如何处理的可以参考这个文档：http://gee.cs.oswego.edu/dl/jmm/cookbook.html _
 

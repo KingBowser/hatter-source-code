@@ -535,6 +535,7 @@ func HandleXProxyDomainSetting(w http.ResponseWriter, r *http.Request, setting *
 			if urlError != nil {
 				log.Println("Parse url error:", url, urlError)
 			} else {
+				log.Println("Create url proxy:", url)
 				reverseProxy = httputil.NewSingleHostReverseProxy(url)
 				domainReverseProxyMap[setting.Target] = reverseProxy
 			}

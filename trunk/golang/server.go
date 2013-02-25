@@ -9,6 +9,7 @@ import (
 	"flag"
 	"path"
 	"time"
+	"sync"
 	"bytes"
 	"strconv"
 	"strings"
@@ -16,6 +17,7 @@ import (
 	"io/ioutil"
 	"net/url"
 	"net/http"
+	"net/http/httputil"
 )
 
 const (
@@ -46,7 +48,8 @@ var (
 const (
 	REDIRECT = 0
 	LOCATION = 1
-	PROXY =2
+	PROXY = 2
+	XPROXY = 3
 )
 
 type DomainSettingType int
@@ -92,6 +95,9 @@ var quickDomainSettingMap = map[string]*DomainSetting {
 	"svn.hatter.me": &DomainSetting {
 		PROXY, "https://hatter-source-code.googlecode.com/svn/trunk/", "",
 	},
+	"xsvn.hatter.me": &DomainSetting {
+		XPROXY, "https://hatter-source-code.googlecode.com/", "",
+	},
 	"go.hatter.me": &DomainSetting {
 		PROXY, "http://golang.org", "",
 	},
@@ -105,6 +111,10 @@ var quickDomainSettingMap = map[string]*DomainSetting {
 		REDIRECT, "https://jshtaframework.googlecode.com/svn/trunk/jshtaframework/src/application/TinyEncrypt/EmtpyApplication.hta", "",
 	},
 }
+
+var domainReverseProxyMapMutex sync.Mutex
+var domainReverseProxyMap = map[string]*httputil.ReverseProxy {
+};
 
 type RequestCallFunc func (w http.ResponseWriter, r *http.Request) bool
 
@@ -512,7 +522,30 @@ func HandleProxyDomainURL(w http.ResponseWriter, r *http.Request, proxyFullURL s
 	return true
 }
 
-func HandleDomainSetting(w http.ResponseWriter, r *http.Request, setting *DomainSetting) bool {
+func HandleXProxyDomainSetting(w http.ResponseWriter, r *http.Request, setting *DomainSetting) bool {
+	reverseProxy := domainReverseProxyMap[setting.Target]
+	if reverseProxy == nil {
+		domainReverseProxyMapMutex.Lock()
+		reverseProxy = domainReverseProxyMap[setting.Target]
+		if reverseProxy == nil {
+			url, urlError := url.Parse(setting.Target)
+			if urlError != nil {
+				log.Println("Parse url error:", url, urlError)
+			} else {
+				reverseProxy = httputil.NewSingleHostReverseProxy(url)
+				domainReverseProxyMap[setting.Target] = reverseProxy
+			}
+		}
+		domainReverseProxyMapMutex.Unlock()
+		if reverseProxy == nil {
+			return false
+		}
+	}
+	reverseProxy.ServeHTTP(w, r)
+	return true
+}
+
+func HandleDomainSetting(w http.ResponseWriter, r *http.Request, domainAndPort string, setting *DomainSetting) bool {
 	if setting.SettingType == REDIRECT {
 		return HandleRedirectDomainSetting(w, r, setting)
 	}
@@ -521,6 +554,9 @@ func HandleDomainSetting(w http.ResponseWriter, r *http.Request, setting *Domain
 	}
 	if setting.SettingType == PROXY {
 		return HandleProxyDomainSetting(w, r, setting)
+	}
+	if setting.SettingType == XPROXY {
+		return HandleXProxyDomainSetting(w, r, setting)
 	}
 	return false
 }
@@ -601,7 +637,7 @@ func HandleRequest(w http.ResponseWriter, r *http.Request) {
 	setting := quickDomainSettingMap[domainAndPort]
 	handleResult := false
 	if setting != nil {
-		handleResult = HandleDomainSetting(w, r, setting)
+		handleResult = HandleDomainSetting(w, r, domainAndPort, setting)
 		if handleResult {
 			return
 		}

@@ -140,6 +140,7 @@ var domainPathHandlerMap = map[string]RequestCallFunc {
 
 var domainFilters = map[string][]RequestCallFunc {
 	"hatter.me": []RequestCallFunc {
+		DomainPathPProxyRefFilter,
 		DomainPathWikiFilter,
 	},
 	"source.hatter.me": []RequestCallFunc {
@@ -180,6 +181,38 @@ func HatterJiangHeadFilter(w http.ResponseWriter, r *http.Request) bool {
 		return HandleFileDomainSetting(w, r, "/root/hatter.me/hatterjiang_head.jpg", "")
 	}
 	return false
+}
+
+func DomainPathPProxyRefFilter(w http.ResponseWriter, r *http.Request) bool { // TODO
+	if r.Referer() == "" {
+		return false
+	}
+	if !strings.Contains(r.Referer(), "hatter.me/p?url=") {
+		return false
+	}
+	referer, refererError := url.Parse(r.Referer())
+	if refererError != nil {
+		log.Println("Parse hatter.me referer url error:", r.Referer(), refererError)
+		return false
+	}
+	query := referer.Query()
+	if query == nil {
+		return false
+	}
+	urls := query["url"]
+	if urls == nil || len(urls) == 0 {
+		return false
+	}
+	target, targetError := url.Parse(urls[0])
+	if targetError == nil {
+		log.Println("Parse hatter.me url error:", urls[0], targetError)
+		return false
+	}
+	targetUrl := lib.JoinURLPath(target.Scheme + "://" + target.Host, r.RequestURI)
+	redirectUrl := lib.JoinURLPath("https://hatter.me/p?", url.Values{"url": {targetUrl}}.Encode())
+	log.Println("Referer hatter.me redirect to:", redirectUrl)
+	lib.RedirectURL(w, redirectUrl)
+	return true
 }
 
 func DomainPathWikiFilter(w http.ResponseWriter, r *http.Request) bool {

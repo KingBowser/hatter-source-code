@@ -183,7 +183,7 @@ func HatterJiangHeadFilter(w http.ResponseWriter, r *http.Request) bool {
 	return false
 }
 
-func DomainPathPProxyRefFilter(w http.ResponseWriter, r *http.Request) bool { // TODO
+func DomainPathPProxyRefFilter(w http.ResponseWriter, r *http.Request) bool {
 	if r.Referer() == "" {
 		return false
 	}

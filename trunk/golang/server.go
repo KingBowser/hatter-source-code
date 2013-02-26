@@ -214,10 +214,7 @@ func DomainPathPProxyRefFilter(w http.ResponseWriter, r *http.Request) bool { //
 	}
 	targetUrl := lib.JoinURLPath(target.Scheme + "://" + target.Host, r.RequestURI)
 	targetQuery := url.Values{"url": {targetUrl}}.Encode()
-	if strings.HasPrefix(targetQuery, "/") {
-		targetQuery = targetQuery[1:]
-	}
-	redirectUrl := lib.JoinURLPath("https://hatter.me/p?", targetQuery)
+	redirectUrl := "https://hatter.me/p?" + targetQuery
 	log.Println("Referer hatter.me redirect to:", redirectUrl)
 	lib.RedirectURL(w, redirectUrl)
 	return true

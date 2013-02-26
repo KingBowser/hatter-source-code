@@ -190,6 +190,9 @@ func DomainPathPProxyRefFilter(w http.ResponseWriter, r *http.Request) bool { //
 	if strings.HasPrefix(r.RequestURI, "/p?") {
 		return false
 	}
+	if strings.HasPrefix(r.RequestURI, "/url?") {
+		return false
+	}
 	if !strings.Contains(r.Referer(), "hatter.me/p?url=") {
 		return false
 	}

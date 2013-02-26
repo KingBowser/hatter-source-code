@@ -140,7 +140,7 @@ var domainPathHandlerMap = map[string]RequestCallFunc {
 
 var domainFilters = map[string][]RequestCallFunc {
 	"hatter.me": []RequestCallFunc {
-		// DomainPathPProxyRefFilter,
+		DomainPathPProxyRefFilter,
 		DomainPathWikiFilter,
 	},
 	"source.hatter.me": []RequestCallFunc {
@@ -187,9 +187,13 @@ func DomainPathPProxyRefFilter(w http.ResponseWriter, r *http.Request) bool { //
 	if r.Referer() == "" {
 		return false
 	}
+	if strings.HasPrefix(r.RequestURI, "/p?") {
+		return fasle
+	}
 	if !strings.Contains(r.Referer(), "hatter.me/p?url=") {
 		return false
 	}
+	log.Println(">> AccessPath:", r.RequestURI, ", Referer:", r.Referer())
 	referer, refererError := url.Parse(r.Referer())
 	if refererError != nil {
 		log.Println("Parse hatter.me referer url error:", r.Referer(), refererError)

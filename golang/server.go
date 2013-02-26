@@ -208,7 +208,7 @@ func DomainPathPProxyRefFilter(w http.ResponseWriter, r *http.Request) bool { //
 		return false
 	}
 	target, targetError := url.Parse(urls[0])
-	if targetError == nil {
+	if targetError != nil {
 		log.Println("Parse hatter.me url error:", urls[0], targetError)
 		return false
 	}

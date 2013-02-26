@@ -95,7 +95,7 @@ var quickDomainSettingMap = map[string]*DomainSetting {
 	"svn.hatter.me": &DomainSetting {
 		PROXY, "https://hatter-source-code.googlecode.com/svn/trunk/", "",
 	},
-	/**
+	//**
 	"svn.hatter.in": &DomainSetting {
 		XPROXY, "https://hatter-source-code.googlecode.com/", "",
 	},
@@ -117,8 +117,13 @@ var quickDomainSettingMap = map[string]*DomainSetting {
 	},
 }
 
+type UrlAndReverseProxy struct {
+	Url *url.URL
+	ReverseProxy *httputil.ReverseProxy
+}
+
 var domainReverseProxyMapMutex sync.Mutex
-var domainReverseProxyMap = map[string]*httputil.ReverseProxy {
+var domainReverseProxyMap = map[string]*UrlAndReverseProxy {
 };
 
 type RequestCallFunc func (w http.ResponseWriter, r *http.Request) bool
@@ -579,7 +584,7 @@ func HandleXProxyDomainSetting(w http.ResponseWriter, r *http.Request, setting *
 				log.Println("Parse url error:", url, urlError)
 			} else {
 				log.Println("Create url proxy:", url)
-				reverseProxy = httputil.NewSingleHostReverseProxy(url)
+				reverseProxy = &UrlAndReverseProxy{url, httputil.NewSingleHostReverseProxy(url)}
 				domainReverseProxyMap[setting.Target] = reverseProxy
 			}
 		}
@@ -588,7 +593,8 @@ func HandleXProxyDomainSetting(w http.ResponseWriter, r *http.Request, setting *
 			return false
 		}
 	}
-	reverseProxy.ServeHTTP(w, r)
+	r.Header.Set("Host", reverseProxy.Url.Host)
+	reverseProxy.ReverseProxy.ServeHTTP(w, r)
 	return true
 }
 

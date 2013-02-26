@@ -593,6 +593,7 @@ func HandleXProxyDomainSetting(w http.ResponseWriter, r *http.Request, setting *
 			return false
 		}
 	}
+	log.Println("XProxy to: ", setting.Target, reverseProxy.Url.Host, r.Header.Get("Host"))
 	r.Header.Set("Host", reverseProxy.Url.Host)
 	reverseProxy.ReverseProxy.ServeHTTP(w, r)
 	return true

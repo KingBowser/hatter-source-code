@@ -95,7 +95,7 @@ var quickDomainSettingMap = map[string]*DomainSetting {
 	"svn.hatter.me": &DomainSetting {
 		PROXY, "https://hatter-source-code.googlecode.com/svn/trunk/", "",
 	},
-	//**
+	/**
 	"svn.hatter.in": &DomainSetting {
 		XPROXY, "https://hatter-source-code.googlecode.com/", "",
 	},

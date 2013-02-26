@@ -95,7 +95,7 @@ var quickDomainSettingMap = map[string]*DomainSetting {
 	"svn.hatter.me": &DomainSetting {
 		PROXY, "https://hatter-source-code.googlecode.com/svn/trunk/", "",
 	},
-	/**
+	//**
 	"svn.hatter.in": &DomainSetting {
 		XPROXY, "https://hatter-source-code.googlecode.com/", "",
 	},
@@ -594,6 +594,7 @@ func HandleXProxyDomainSetting(w http.ResponseWriter, r *http.Request, setting *
 		}
 	}
 	log.Println("XProxy to: ", setting.Target, r.RequestURI, reverseProxy.Url)
+	r.Host = reverseProxy.Url.Host
 	reverseProxy.ReverseProxy.ServeHTTP(w, r)
 	return true
 }

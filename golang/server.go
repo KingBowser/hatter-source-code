@@ -140,7 +140,7 @@ var domainPathHandlerMap = map[string]RequestCallFunc {
 
 var domainFilters = map[string][]RequestCallFunc {
 	"hatter.me": []RequestCallFunc {
-		DomainPathPProxyRefFilter,
+		// DomainPathPProxyRefFilter,
 		DomainPathWikiFilter,
 	},
 	"source.hatter.me": []RequestCallFunc {

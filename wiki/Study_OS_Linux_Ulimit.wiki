@@ -2,7 +2,7 @@
 #sidebar TableOfContents
 
 ==ulimit 参数说明==
-| 选项 [options] | 含义| 例子 |
+|| 选项 [options] || 含义 || 例子 ||
 -H	 设置硬资源限制，一旦设置不能增加。	 ulimit – Hs 64；限制硬资源，线程栈大小为 64K。
 -S	 设置软资源限制，设置后可以增加，但是不能超过硬资源设置。	 ulimit – Sn 32；限制软资源，32 个文件描述符。
 -a	 显示当前所有的 limit 信息。	 ulimit – a；显示当前所有的 limit 信息。

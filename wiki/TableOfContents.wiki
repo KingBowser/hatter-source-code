@@ -62,7 +62,7 @@
   * [Study_OS_Linux_Perftools Perftools]
   * [Study_OS_Linux_SSH SSH]
   * [Study_OS_Linux_Signal Signal]
-  * [Study_OS_Linux_ULimit ULimit]
+  * [Study_OS_Linux_Ulimit Ulimit]
   * [Study_OS_Linux_VmStat VmStat]
  * [Study_Programming Programming]
   * [Study_CSS CSS]

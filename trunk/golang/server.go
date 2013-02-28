@@ -151,12 +151,29 @@ var domainFilters = map[string][]RequestCallFunc {
 	"source.hatter.me": []RequestCallFunc {
 		SourceHatterMeFilter,
 	},
+	"svn.hatter.in": []RequestCallFunc {
+		SvnHatterMeFilter,
+	},
+	"xsvn.hatter.me": []RequestCallFunc {
+		SvnHatterMeFilter,
+	},
 	"aprilsoft.cn": []RequestCallFunc {
 		HatterJiangHeadFilter,
 	},
 	"www.aprilsoft.cn": []RequestCallFunc {
 		HatterJiangHeadFilter,
 	},
+}
+
+func SvnHatterMeFilter(w http.ResponseWriter, r *http.Request) bool {
+	if r.Method != "GET" {
+		return false
+	}
+	if r.URL.Path == "/" {
+		lib.RedirectURL(w, "https://svn.hatter.in/svn/")
+		return true
+	}
+	return false
 }
 
 func SourceHatterMeFilter(w http.ResponseWriter, r *http.Request) bool {

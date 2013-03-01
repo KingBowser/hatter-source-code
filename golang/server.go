@@ -176,7 +176,7 @@ func AllDomainPFilter(w http.ResponseWriter, r *http.Request) bool {
 	if hostError != nil {
 		return false
 	}
-	if r.RequestURI != "/p" {
+	if r.URL.Path != "/p" {
 		return false
 	}
 	if hostDomain == "hatter.me" || hostDomain == "jiangchenhao.me" || hostDomain == "www.jiangchenhao.me" || hostDomain == "jiangchenhao.com" || hostDomain == "www.jiangchenhao.com" {

@@ -144,6 +144,9 @@ var domainPathHandlerMap = map[string]RequestCallFunc {
 }
 
 var domainFilters = map[string][]RequestCallFunc {
+	"*": []RequestCallFunc {
+		AllDomainPFilter,
+	},
 	"hatter.me": []RequestCallFunc {
 		DomainPathPProxyRefFilter,
 		DomainPathWikiFilter,
@@ -163,6 +166,24 @@ var domainFilters = map[string][]RequestCallFunc {
 	"www.aprilsoft.cn": []RequestCallFunc {
 		HatterJiangHeadFilter,
 	},
+}
+
+func AllDomainPFilter(w http.ResponseWriter, r *http.Request) bool {
+	if r.TLS != nil {
+		return false
+	}
+	hostDomain, _, hostError := lib.ParseHost(r.Host)
+	if hostError != nil {
+		return false
+	}
+	if r.RequestURI != "/p" {
+		return false
+	}
+	if hostDomain == "hatter.me" || hostDomain == "jiangchenhao.me" || hostDomain == "www.jiangchenhao.me" || hostDomain == "jiangchenhao.com" || hostDomain == "www.jiangchenhao.com" {
+		lib.RedirectURL(w, lib.JoinURLPath("https://" + hostDomain, r.RequestURI))
+		return true
+	}
+	return false
 }
 
 func SvnHatterMeFilter(w http.ResponseWriter, r *http.Request) bool {
@@ -691,6 +712,14 @@ func HandleRequest(w http.ResponseWriter, r *http.Request) {
 	}
 	if r.RemoteAddr != "" {
 		log.Println("---- Remote addr:", lib.GetRemoteAddrIP(r.RemoteAddr))
+	}
+	allRequestCallFuncs := domainFilters["*"]
+	if allRequestCallFuncs != nil {
+		for _, requestCallFunc := range allRequestCallFuncs {
+			if requestCallFunc(w, r) { // call filter
+				return
+			}
+		}
 	}
 	requestCallFuncs := domainFilters[domainAndPort]
 	if requestCallFuncs != nil {

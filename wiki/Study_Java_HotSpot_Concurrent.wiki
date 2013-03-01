@@ -134,6 +134,16 @@ public Point moveNW (Point p) {
 ===锁削除(Lock Elision through Escape Analysis)===
 锁削除是指虚拟机即时编译器在运行时，对一些代码上要求同步，但是被检测到不可能存在共享数据竞争的锁进行削除。锁削除的主要判定依据来源于逃逸分析（参数：-XX:+DoEscapeAnalysis）的数据支持，如果判断到一段代码中，在堆上的所有数据都不会逃逸出去被其他线程访问到，那就可以把它们当作栈上数据对待，认为它们是线程私有的，同步加锁自然就无须进行。 ^[14][21]^
 
+===嵌套锁削除(Eliminate nested locks of the same object)^[30]^====
+对于嵌套锁同一个对象时，因为我们都是可重入锁，所以里面的锁其实是可以削除的，而嵌套锁削除则是对这种场景进行优化。如代码：
+{{{
+    synchronized (reader) { // 同步对象，持有锁：reader
+    if (reader.getCount() > 0) { // 调用同步方法：getCount()，但程序已经持有该锁：reader
+       reader.incrementReserveCount(1);
+    }
+}}}
+显然上例中“reader.getCount()”的锁是可以忽略掉的。参数：-XX:+EliminateNestedLocks。
+
 ===自旋锁与自适应自旋(Spinning Locking & Adaptive Spinning)===
 互斥同步对性能最大的影响是阻塞的实现，挂起线程和恢复线程的操作都需要转入内核态中完成，这些操作给系统的并发性能带来了很大的压力。同时，虚拟机的开发团队也注意到在许多应用上，共享数据的锁定状态只会持续很短的一段时间，为了这段时间去挂起和恢复线程并不值得。如果物理机器有一个以上的处理器，能让两个或以上的线程同时并行执行，我们就可以让后面请求锁的那个线程“稍等一会”，但不放弃处理器的执行时 间，看看持有锁的线程是否很快就会释放锁。为了让线程等待，我们只须让线程执行一个忙循环（自旋），这项技术就是所谓的自旋锁。 <br>
 在JDK 1.6中引入了自适应的自旋锁。自适应意味着自旋的时间不再固定了，而是由前一次在同一个锁上的自旋时间及锁的拥有者的状态来决定。如果在同一个锁对象上，自旋等待刚刚成功获得过锁，并且持有锁的线程正在运行中，那么虚拟机就会认为这次自旋也很有可能再次成功，进而它将允许自旋等待持续相对更长的时间， 比如100个循环。另一方面，如果对于某个锁，自旋很少成功获得过，那在以后要获取这个锁时将可能省略掉自旋过程，以避免浪费处理器资源。有了自适应自旋，随着程序运行和性能监控信息的不断完善，虚拟机对程序锁的状况预测就会越来越准确，虚拟机就会变得越来越“聪明”了。 ^[20]^
@@ -199,3 +209,4 @@ High Performance Inter-Thread Messaging Library<br>
 `[27].` https://blogs.oracle.com/dave/entry/biased_locking_in_hotspot<br>
 `[28].` https://blogs.oracle.com/dave/entry/java_contented_annotation_to_help<br>
 `[29].` http://mail.openjdk.java.net/pipermail/hotspot-dev/2012-November/007309.html<br>
+`[30].` http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=7125896<br>

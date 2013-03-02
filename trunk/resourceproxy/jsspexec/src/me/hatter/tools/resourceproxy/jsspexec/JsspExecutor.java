@@ -101,6 +101,7 @@ public class JsspExecutor {
         }
         b.put("stringUtil", StringUtil.INSTANCE);
         b.put("app_context", context);
+        b.put("ac", context);
         b.put("out", out);
 
         String explainedSource = IOUtil.readToString(reader);

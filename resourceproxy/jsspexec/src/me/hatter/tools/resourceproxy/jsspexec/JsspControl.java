@@ -19,6 +19,10 @@ public class JsspControl {
         this.jsspReader = jsspReader;
     }
 
+    public JsspControl j(String path) {
+        return jssp(path);
+    }
+
     public JsspControl jssp(String path) {
         jssp = path;
         context = new HashMap<String, Object>();
@@ -28,6 +32,10 @@ public class JsspControl {
     public JsspControl parameter(String key, Object value) {
         context.put(key, value);
         return this;
+    }
+
+    public JsspControl p(String key, Object value) {
+        return parameter(key, value);
     }
 
     public JsspControl param(String key, Object value) {

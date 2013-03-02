@@ -284,8 +284,20 @@ public class DataAccessObject {
         return ((countList == null) || countList.isEmpty()) ? 0 : countList.get(0).getCount().intValue();
     }
 
+    public <T> List<T> listObjects(final Class<T> clazz) {
+        return listObjects(clazz, null, null);
+    }
+
+    public <T> List<T> listObjects(final Class<T> clazz, String orderBy) {
+        return listObjects(clazz, null, orderBy, null);
+    }
+
     public <T> List<T> listObjects(final Class<T> clazz, String where, final List<Object> objectList) {
-        final String runSql = makeSQL(clazz, where);
+        return listObjects(clazz, where, null, objectList);
+    }
+
+    public <T> List<T> listObjects(final Class<T> clazz, String where, String orderBy, final List<Object> objectList) {
+        final String runSql = makeSQL(clazz, where, orderBy);
         return execute(new Execute<List<T>>() {
 
             @Override
@@ -323,7 +335,12 @@ public class DataAccessObject {
 
     public <T> void iterateObjects(final Class<T> clazz, String where, final List<Object> objectList,
                                    final RecordProcessor<T> recordProcessor) {
-        final String runSql = makeSQL(clazz, where);
+        iterateObjects(clazz, where, null, objectList, recordProcessor);
+    }
+
+    public <T> void iterateObjects(final Class<T> clazz, String where, String orderBy, final List<Object> objectList,
+                                   final RecordProcessor<T> recordProcessor) {
+        final String runSql = makeSQL(clazz, where, orderBy);
         execute(new Execute<List<T>>() {
 
             @Override
@@ -364,7 +381,12 @@ public class DataAccessObject {
 
     public void iterateResultSet(final Class<?> clazz, String where, final List<Object> objectList,
                                  final RecordProcessor<ResultSet> recordProcessor) {
-        final String runSql = makeSQL(clazz, where);
+        iterateResultSet(clazz, where, null, objectList, recordProcessor);
+    }
+
+    public void iterateResultSet(final Class<?> clazz, String where, String orderBy, final List<Object> objectList,
+                                 final RecordProcessor<ResultSet> recordProcessor) {
+        final String runSql = makeSQL(clazz, where, orderBy);
         execute(new Execute<List<?>>() {
 
             @Override
@@ -403,7 +425,7 @@ public class DataAccessObject {
         return sql;
     }
 
-    private String makeSQL(Class<?> clazz, String where) {
+    private String makeSQL(Class<?> clazz, String where, String orderBy) {
         if (where != null) {
             if (where.trim().toUpperCase().startsWith("SELECT")) {
                 return where;
@@ -414,6 +436,9 @@ public class DataAccessObject {
         String sql = "select * from " + DBUtil.getTableName(clazz);
         if ((where != null) && (where.trim().length() > 0)) {
             sql += " where " + where;
+        }
+        if ((orderBy != null) && (orderBy.trim().length() > 0)) {
+            sql += " order by " + orderBy;
         }
         return sql;
     }

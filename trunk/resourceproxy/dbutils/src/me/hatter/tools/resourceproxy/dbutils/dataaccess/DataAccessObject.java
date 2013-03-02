@@ -284,16 +284,32 @@ public class DataAccessObject {
         return ((countList == null) || countList.isEmpty()) ? 0 : countList.get(0).getCount().intValue();
     }
 
+    public <T> T findObject(final Class<T> clazz) {
+        return first(listObjects(clazz));
+    }
+
     public <T> List<T> listObjects(final Class<T> clazz) {
         return listObjects(clazz, null, null);
+    }
+
+    public <T> T findObject(final Class<T> clazz, String orderBy) {
+        return first(listObjects(clazz, orderBy));
     }
 
     public <T> List<T> listObjects(final Class<T> clazz, String orderBy) {
         return listObjects(clazz, null, orderBy, null);
     }
 
+    public <T> T findObject(final Class<T> clazz, String where, final List<Object> objectList) {
+        return first(listObjects(clazz, where, objectList));
+    }
+
     public <T> List<T> listObjects(final Class<T> clazz, String where, final List<Object> objectList) {
         return listObjects(clazz, where, null, objectList);
+    }
+
+    public <T> T findObject(final Class<T> clazz, String where, String orderBy, final List<Object> objectList) {
+        return first(listObjects(clazz, where, orderBy, objectList));
     }
 
     public <T> List<T> listObjects(final Class<T> clazz, String where, String orderBy, final List<Object> objectList) {
@@ -441,6 +457,13 @@ public class DataAccessObject {
             sql += " order by " + orderBy;
         }
         return sql;
+    }
+
+    private <T> T first(List<T> list) {
+        if ((list == null) || list.isEmpty()) {
+            return null;
+        }
+        return list.get(0);
     }
 
     private void setPreparedStatmentValues(PreparedStatement preparedStatement, Class<?> clazz, Object object,

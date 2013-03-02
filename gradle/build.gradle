@@ -115,6 +115,21 @@ task packall2 << {
   ant.delete(file: packtempmanifest)
 }
 
+task packwar << {
+  copy {
+    from ('lib')
+    into "war/WEB-INF/lib/"
+    include '*.jar'
+  }
+  ant.delete(dir: 'war/WEB-INF/classes')
+  file('war/WEB-INF/classes').mkdirs()
+  copy {
+    from ('build/classes/main')
+    into "war/WEB-INF/classes/"
+    include '**/*.*'
+  }
+}
+
 dependencies {
     compile files(fileTree(dir: 'lib', includes: ['*.jar'], excludes: ['*-sources.jar', '*-javadoc.jar']))
     // compile files(file(System.properties['java.home'].replaceAll('\\/jre(\\/)?$', "") + "/lib/sa-jdi.jar"))

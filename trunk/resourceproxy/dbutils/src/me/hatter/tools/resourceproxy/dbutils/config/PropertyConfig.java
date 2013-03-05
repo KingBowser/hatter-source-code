@@ -7,6 +7,11 @@ import java.util.Properties;
 
 public class PropertyConfig {
 
+    public static interface Driver {
+
+        String SQLITE = "org.sqlite.JDBC";
+    }
+
     private static final String CONFIG_FILE = "config.xml";
 
     private Properties          properties  = new Properties();
@@ -41,6 +46,13 @@ public class PropertyConfig {
         PropertyConfig propertyConfig = new PropertyConfig();
         propertyConfig.properties.putAll(properties);
         return propertyConfig;
+    }
+
+    public static PropertyConfig createSqliteConfig(String sqliteFile) {
+        Properties properties = new Properties();
+        properties.setProperty("jdbc.driver", Driver.SQLITE);
+        properties.setProperty("jdbc.url", "jdbc:sqlite:" + sqliteFile);
+        return createPropertyConfig(properties);
     }
 
     /**

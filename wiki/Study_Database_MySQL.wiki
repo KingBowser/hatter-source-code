@@ -27,6 +27,8 @@ mysql -h <IP> -u <USERNAME> -p
 
 {{{
 create database databasename;
+
+drop table if exists tablename;
 }}}
 
 ==锁==

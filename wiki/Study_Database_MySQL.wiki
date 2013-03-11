@@ -84,7 +84,7 @@ GRANT 权限列表 ON 数据库名.表名 TO 用户名@来源地址 [IDENTIFIED 
 REVOKE 权限列表 ON 数据库名.表名 FROM 用户名@域名或IP
   revoke ALL on schema.* from username@'%';
 
-grant ALL PRIVILEGES on *.* to username@'%' indentified by 'password' [WITH GRANT OPTION].
+grant ALL PRIVILEGES on *.* to username@'%' identified by 'password' [WITH GRANT OPTION].
 
 FLUSH PRIVILEGES;
 

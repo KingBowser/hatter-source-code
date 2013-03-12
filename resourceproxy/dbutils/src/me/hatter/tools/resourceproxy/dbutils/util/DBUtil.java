@@ -38,6 +38,7 @@ public class DBUtil {
         sql.append(" ( ");
         sql.append(StringUtil.join(CollUtil.transform(fieldList, new CollUtil.Transformer<String, String>() {
 
+            // http://www.sqlite.org/datatype3.html#2.2 Affinity Name Examples
             @Override
             public String transform(String object) {
                 Field f = ReflectUtil.getField(clazz, StringUtil.toCamel(object));
@@ -50,6 +51,8 @@ public class DBUtil {
                     type = "LONG";
                 } else if (f.getType() == Date.class) {
                     type = "TEXT";
+                } else if (f.getType() == Boolean.class) {
+                    type = "NUMERIC";
                 } else {
                     throw new RuntimeException("Unsupoort ed type: " + type);
                 }

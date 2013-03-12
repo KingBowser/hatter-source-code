@@ -499,6 +499,8 @@ public class DataAccessObject {
             field.set(o, (d == null) ? null : new Date(d.getTime()));
         } else if (field.getType() == BigDecimal.class) {
             field.set(o, resultSet.getBigDecimal(f));
+        } else if (field.getType() == Boolean.class) {
+            field.set(o, resultSet.getBoolean(f));
         } else {
             throw new RuntimeException("Unsupoorted type: " + field.getType());
         }
@@ -526,6 +528,8 @@ public class DataAccessObject {
             preparedStatement.setDate(index, new java.sql.Date(((Date) o).getTime()));
         } else if (type == BigDecimal.class) {
             preparedStatement.setBigDecimal(index, (BigDecimal) o);
+        } else if (type == Boolean.class) {
+            preparedStatement.setBoolean(index, (Boolean) o);
         } else {
             throw new RuntimeException("Unsupoorted type: " + type);
         }

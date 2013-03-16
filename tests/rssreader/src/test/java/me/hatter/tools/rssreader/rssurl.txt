@@ -1,0 +1,5 @@
+http://blog.yufeng.info/feed
+http://www.7yue.com/rss.xml
+http://blog.csdn.net/aimingoo/rss.aspx
+http://agapple.iteye.com/rss
+http://feed.feedsky.com/bluedavy

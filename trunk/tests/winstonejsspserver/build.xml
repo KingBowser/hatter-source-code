@@ -20,6 +20,8 @@
 	<target name="compile" depends="prepare">
 		<unzip src="lib/commons-1.0.jar" dest="${classes.dir}"/>
 		<unzip src="lib/jsspserver-1.0.jar" dest="${classes.dir}"/>
+                <unzip src="lib/winstone-jsspserver.jar" dest="${classes.dir}"/>
+                <unzip src="lib/fastjson-1.1.24.jar" dest="${classes.dir}"/>
 		<javac srcdir="${src.dir}" destdir="${classes.dir}" source="1.6" target="1.6" debug="true" debuglevel="lines,vars,source">
 			<classpath>
 				<path refid="classpath" />

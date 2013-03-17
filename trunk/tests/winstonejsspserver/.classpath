@@ -6,5 +6,6 @@
 	<classpathentry kind="lib" path="lib/commons-1.0.jar"/>
 	<classpathentry kind="lib" path="lib/jsspserver-1.0.jar"/>
 	<classpathentry kind="lib" path="lib/winstone-0.9.10.jar" sourcepath="lib/winstone-sources-0.9.10.jar"/>
+	<classpathentry kind="lib" path="lib/winstone-jsspserver.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

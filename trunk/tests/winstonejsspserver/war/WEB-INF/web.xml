@@ -9,10 +9,18 @@
 		<filter-name>jssp</filter-name>
 		<filter-class>me.hatter.tools.jsspserver.filter.JSSPFilter</filter-class>
 	</filter>
+	<filter>
+		<filter-name>jsonp</filter-name>
+		<filter-class>me.hatter.tools.jsspserver.filter.JSONFilter</filter-class>
+	</filter>
 
 	<filter-mapping>
 		<filter-name>jssp</filter-name>
 		<url-pattern>*.jssp</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>jsonp</filter-name>
+		<url-pattern>*.jsonp</url-pattern>
 	</filter-mapping>
 
 	<welcome-file-list>

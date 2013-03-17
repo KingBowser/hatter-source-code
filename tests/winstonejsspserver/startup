@@ -3,4 +3,4 @@ java \
    -Djssp.path=war/jssp \
    -Djsspdebug=true \
    -jar lib/winstone-0.9.10.jar \
-   --webroot war
+   --webroot=war

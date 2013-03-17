@@ -48,6 +48,23 @@ task install << {
   ant.chmod(file: "${installTargetBin}${shellCommandName}", perm: 'a+x')
 }
 
+task packjar << {
+  def packtempclasses = "packtempclasses"
+  def libs = ant.path {
+     fileset(dir: 'build/libs', includes: '*.jar')
+  }
+  libs.list().each {
+    ant.unzip(dest: packtempclasses, src: it)
+  }
+  ant.copy(todir: packtempclasses) {
+    fileset(dir: 'src/main/java', includes: '**/*.java')
+  }
+  ant.jar(destfile: "${baseProjectName}.jar") {
+    fileset(dir: packtempclasses, includes: '**/*.*')
+  }
+  ant.delete(dir: packtempclasses)
+}
+
 task packall << {
   def packtempclasses = "packtempclasses"
   def packtempmanifest = "packtempmanifest"

@@ -3,8 +3,10 @@ package me.hatter.tools.commons.collection;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class CollectionUtil {
@@ -17,6 +19,11 @@ public class CollectionUtil {
     public interface Transformer<T, D> {
 
         D transform(T object);
+    }
+
+    public interface KeyGetter<O, K> {
+
+        K getKey(O object);
     }
 
     public class NotNullFilter<T> implements Filter<T> {
@@ -102,6 +109,16 @@ public class CollectionUtil {
         return result;
     }
 
+    public static <O, K> Map<K, O> toMap(Collection<O> list, KeyGetter<O, K> keyGetter) {
+        Map<K, O> result = new HashMap<K, O>();
+        if (list != null) {
+            for (O o : list) {
+                result.put(keyGetter.getKey(o), o);
+            }
+        }
+        return result;
+    }
+
     public static <T> T firstObject(List<T> list) {
         return ((list == null) || list.isEmpty()) ? null : list.get(0);
     }
@@ -109,5 +126,14 @@ public class CollectionUtil {
     @SuppressWarnings("unchecked")
     public static <T> List<T> objectToList(T object) {
         return new ArrayList<T>(Arrays.asList(object));
+    }
+
+    public static List<Object> asList(Object obj, Object... objects) {
+        List<Object> list = new ArrayList<Object>(1 + objects.length);
+        list.add(obj);
+        for (Object o : objects) {
+            list.add(o);
+        }
+        return list;
     }
 }

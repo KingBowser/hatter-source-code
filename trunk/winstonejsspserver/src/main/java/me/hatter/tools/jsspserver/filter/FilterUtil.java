@@ -8,7 +8,9 @@ import me.hatter.tools.resourceproxy.jsspexec.JsspExecutor;
 
 public class FilterUtil {
 
-    public static final boolean JSSP_DEBUG = Boolean.valueOf(System.getProperty("jsspdebug"));
+    public static final String  DEFAULT_CHARACTER_ENCODING = "UTF-8";
+
+    public static final boolean JSSP_DEBUG                 = Boolean.valueOf(System.getProperty("jsspdebug"));
 
     public static File          JSSP_PATH;
     static {
@@ -19,7 +21,7 @@ public class FilterUtil {
             JSSP_PATH = new File(jsspPath);
         }
     }
-    public static Resources     RESOURCES  = new Resources(JSSP_PATH);
+    public static Resources     RESOURCES                  = new Resources(JSSP_PATH);
 
     static {
         JsspExecutor.initJsspWork();

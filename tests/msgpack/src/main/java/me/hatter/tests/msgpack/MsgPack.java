@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import me.hatter.tools.commons.misc.Base64;
+
 import org.msgpack.MessagePack;
 
 public class MsgPack {
@@ -18,6 +20,8 @@ public class MsgPack {
 
         MessagePack pack = new MessagePack();
         byte[] bytes = pack.write(m);
+
+        System.out.println(Base64.byteArrayToBase64(bytes));
 
         Object o = pack.read(bytes);
         System.out.println(o.getClass().getName());

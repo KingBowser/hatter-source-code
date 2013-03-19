@@ -34,8 +34,8 @@ public class JSONFilter implements Filter {
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException,
                                                                                              ServletException {
+        request.setCharacterEncoding(FilterUtil.DEFAULT_CHARACTER_ENCODING);
         HttpServletRequest httpRequest = (HttpServletRequest) request;
-        httpRequest.setCharacterEncoding("UTF-8");
         HttpServletResponse httpResponse = (HttpServletResponse) response;
 
         String fpath = httpRequest.getServletPath();

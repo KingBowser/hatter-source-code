@@ -167,6 +167,12 @@ whois
 tcpdump
 }}}
 
+系统操作日志：
+{{{
+/var/log/sysadmin.log
+}}}
+
+
 `/etc/fstab`
 `http://smilejay.com/2011/03/fstab/`
 

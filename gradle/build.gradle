@@ -25,6 +25,15 @@ task initapp << {
   println 'Init app finished [lib, src/main/java|resources, src/test/java|resources].'
 }
 
+task initwar << {
+  file('war').mkdirs();
+  file('war/jssp').mkdirs();
+  file('war/WEB-INF').mkdirs();
+  file('war/WEB-INF/lib').mkdirs();
+  file('war/WEB-INF/classes').mkdirs();
+  file('war/WEB-INF/web.xml').createNewFile();
+}
+
 task install << {
   def installBinDirLib = "${baseProjectName}_lib"
   if (!file("${installTargetBin}${installBinDirLib}").exists()) {

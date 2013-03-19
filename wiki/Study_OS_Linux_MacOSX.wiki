@@ -1,0 +1,7 @@
+#summary mac os x
+#sidebar TableOfContents
+
+清理MacOS X中右键菜单中的重复的应用名称：
+{{{
+/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user
+}}}

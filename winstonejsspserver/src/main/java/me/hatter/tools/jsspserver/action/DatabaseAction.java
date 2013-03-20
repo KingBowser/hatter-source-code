@@ -8,7 +8,7 @@ import me.hatter.tools.resourceproxy.dbutils.dataaccess.DataAccessObject;
 
 public abstract class DatabaseAction extends BaseAction {
 
-    protected static final DataAccessObject DAO;
+    public static final DataAccessObject DAO;
     static {
         String dbconfigdir = Environment.getStrProperty("dbconfigdir", Environment.USER_DIR);
         DAO = new DataAccessObject(PropertyConfig.createPropertyConfig(new File(dbconfigdir, "dbconfig.xml")));

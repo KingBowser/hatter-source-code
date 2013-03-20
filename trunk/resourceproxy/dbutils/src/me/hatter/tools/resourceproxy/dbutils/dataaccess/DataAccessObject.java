@@ -189,6 +189,21 @@ public class DataAccessObject {
         });
     }
 
+    public <T> void clearTable(final Class<T> clazz) {
+        final String sql = "delete from " + DBUtil.getTableName(clazz);
+        execute(new Execute<Void>() {
+
+            @Override
+            public Void execute(Connection connection) throws Exception {
+                if (logging) System.out.println("[INFO] delete sql: " + sql);
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.execute();
+                preparedStatement.close();
+                return null;
+            }
+        });
+    }
+
     public void deleteObject(final Object object) {
         final Class<?> clazz = object.getClass();
         final List<String> refFieldList = new ArrayList<String>();

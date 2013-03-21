@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -26,10 +27,17 @@ public class CollectionUtil {
         K getKey(O object);
     }
 
-    public class NotNullFilter<T> implements Filter<T> {
+    public static class NotNullFilter<T> implements Filter<T> {
 
         public boolean accept(T object) {
             return (object != null);
+        }
+    }
+
+    public static class StringNotEmpty implements Filter<String> {
+
+        public boolean accept(String object) {
+            return ((object != null) && (!object.isEmpty()));
         }
     }
 
@@ -46,6 +54,14 @@ public class CollectionUtil {
         @Override
         public String transform(String object) {
             return (object == null) ? null : object.toLowerCase();
+        }
+    }
+
+    public static class StringTrim implements Transformer<String, String> {
+
+        @Override
+        public String transform(String object) {
+            return (object == null) ? null : object.trim();
         }
     }
 
@@ -117,6 +133,13 @@ public class CollectionUtil {
             }
         }
         return result;
+    }
+
+    public static <T> List<T> distinct(List<T> list) {
+        if (list == null) {
+            return list;
+        }
+        return new ArrayList<T>(new LinkedHashSet<T>(list));
     }
 
     public static <T> T firstObject(List<T> list) {

@@ -293,6 +293,12 @@ public class DataAccessObject {
         });
     }
 
+    public int getSqliteLastId() {
+        String sql = "select last_insert_rowid() id";
+        LastId lastId = findObject(LastId.class, sql, null);
+        return (lastId == null) ? 0 : lastId.getId().intValue();
+    }
+
     public <T> int countObject(Class<T> clazz, String where, List<Object> objectList) {
         String sql = makeCountSQL(clazz, where);
         List<Count> countList = listObjects(Count.class, sql, objectList);

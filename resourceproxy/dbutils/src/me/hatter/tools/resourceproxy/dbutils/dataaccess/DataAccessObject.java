@@ -454,6 +454,27 @@ public class DataAccessObject {
         });
     }
 
+    public static interface BatchExecute {
+
+        void execute(DataAccessObject dao);
+    }
+
+    public void batchExecute(BatchExecute batchExecute) {
+        DataAccessObject _dao = this.borrowAsDataAccessObject();
+        try {
+            _dao.getConnection().setAutoCommit(false);
+
+            batchExecute.execute(_dao);
+
+            _dao.getConnection().commit();
+            _dao.getConnection().setAutoCommit(true);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            _dao.returnDataAccessObject();
+        }
+    }
+
     private <T> String makeCountSQL(Class<T> clazz, String where) {
         String sql = "select count(*) count from " + DBUtil.getTableName(clazz);
         if ((where != null) && (where.trim().length() > 0)) {

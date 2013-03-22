@@ -454,6 +454,22 @@ public class DataAccessObject {
         });
     }
 
+    abstract public static class AbstractBatchExecute implements BatchExecute {
+
+        private int count = 0;
+
+        protected void updateConnection(DataAccessObject dao) {
+            count++;
+            if (count % 100 == 0) {
+                try {
+                    dao.getConnection().commit();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+    }
+
     public static interface BatchExecute {
 
         void execute(DataAccessObject dao);

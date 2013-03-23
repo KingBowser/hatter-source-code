@@ -135,6 +135,49 @@ public class CollectionUtil {
         return result;
     }
 
+    public static <O, K, X> Map<K, X> toMap(Collection<O> list, KeyGetter<O, K> keyGetter, Transformer<O, X> transformer) {
+        Map<K, X> result = new HashMap<K, X>();
+        if (list != null) {
+            for (O o : list) {
+                result.put(keyGetter.getKey(o), transformer.transform(o));
+            }
+        }
+        return result;
+    }
+
+    public static <O, K> Map<K, List<O>> toMapList(Collection<O> list, KeyGetter<O, K> keyGetter) {
+        Map<K, List<O>> result = new HashMap<K, List<O>>();
+        if (list != null) {
+            for (O o : list) {
+                K k = keyGetter.getKey(o);
+                List<O> l = result.get(k);
+                if (l == null) {
+                    l = new ArrayList<O>();
+                    result.put(k, l);
+                }
+                l.add(o);
+            }
+        }
+        return result;
+    }
+
+    public static <O, K, X> Map<K, List<X>> toMapList(Collection<O> list, KeyGetter<O, K> keyGetter,
+                                                      Transformer<O, X> transformer) {
+        Map<K, List<X>> result = new HashMap<K, List<X>>();
+        if (list != null) {
+            for (O o : list) {
+                K k = keyGetter.getKey(o);
+                List<X> l = result.get(k);
+                if (l == null) {
+                    l = new ArrayList<X>();
+                    result.put(k, l);
+                }
+                l.add(transformer.transform(o));
+            }
+        }
+        return result;
+    }
+
     public static <T> List<T> distinct(List<T> list) {
         if (list == null) {
             return list;

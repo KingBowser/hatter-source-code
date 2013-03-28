@@ -75,6 +75,7 @@
   * [Study_GO Go Lang]
   * [Study_JavaScript JavaScript]
    * [Study_JavaScript_Application Application]
+   * [Study_JavaScript_Charts Charts]
   * [Study_Programming_Parser Parser]
  * [Study_RFC RFC]
  * [Study_SCM SCM]

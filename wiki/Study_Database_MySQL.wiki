@@ -98,7 +98,7 @@ FLUSH PRIVILEGES;
 
 show full processlist;
 
-show variables;
+show variables; //  查看MySQL参数
 }}}
 
 

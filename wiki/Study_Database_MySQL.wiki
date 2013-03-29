@@ -97,6 +97,8 @@ grant ALL PRIVILEGES on *.* to username@'%' identified by 'password' [WITH GRANT
 FLUSH PRIVILEGES;
 
 show full processlist;
+
+show variables;
 }}}
 
 

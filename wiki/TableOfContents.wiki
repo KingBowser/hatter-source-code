@@ -78,6 +78,7 @@
    * [Study_JavaScript_Charts Charts]
   * [Study_Programming_Parser Parser]
  * [Study_Network Network]
+  * [Study_Network_LocalTriangulation Local Triangulation]
  * [Study_RFC RFC]
  * [Study_SCM SCM]
   * [Study_SCM_Git Git]

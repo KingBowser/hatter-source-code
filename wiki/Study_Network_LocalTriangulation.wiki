@@ -2,6 +2,7 @@
 #sidebar TableOfContents
 
 
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/network/BIGIP_LTM_Local_Triangulation.pdf Local Triangulation]
 
 
 ===参考资料===

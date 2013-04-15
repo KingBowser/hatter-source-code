@@ -2,7 +2,7 @@
 #sidebar TableOfContents
 
 
-影响TCP性能的协议因素：
+影响TCP性能的协议因素：^[1]^
 {{{
 （1）TCP连接建立握手
 （2）TCP慢启动拥塞控制；

@@ -27,7 +27,7 @@ public class MessyCodeDetector {
         normalBlocks.add(UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_B);
     }
 
-    public static int countTestMessyCode(String text) {
+    public static int countMessyCode(String text) {
         if (text == null) {
             return 0;
         }

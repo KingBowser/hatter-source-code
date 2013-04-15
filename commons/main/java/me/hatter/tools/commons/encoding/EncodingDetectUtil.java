@@ -14,7 +14,7 @@ public class EncodingDetectUtil {
         try {
             String defaultCode = new String(bytes, defaultEncoding);
 
-            int defaultMessyCodeCount = MessyCodeDetector.countTestMessyCode(defaultCode);
+            int defaultMessyCodeCount = MessyCodeDetector.countMessyCode(defaultCode);
 
             if (defaultMessyCodeCount == 0) {
                 if (outEncoding != null) {
@@ -28,7 +28,7 @@ public class EncodingDetectUtil {
 
             for (String enc : encodings) {
                 String code = new String(bytes, enc);
-                int encMessyCodeCount = MessyCodeDetector.countTestMessyCode(code);
+                int encMessyCodeCount = MessyCodeDetector.countMessyCode(code);
                 if (encMessyCodeCount == 0) {
                     if (outEncoding != null) {
                         outEncoding.setValue(enc);

@@ -16,5 +16,36 @@ Sample:
 {{{
 $ java -jar findingall.jar ---NCL Pattern
 }}}
+
+Arguments description:
+{{{
+$ finding 
+Usage:
+  java -jar findingall.jar [options] <text>
+    -f <option>                  option(default [c,h,cpp,hpp,java])
+       ALL                       all file(s)
+       c                         .c file(s)
+       h                         .h file(s)
+       cpp                       .cpp file(s)
+       hpp                       .hpp file(s)
+       java                      .java file(s)
+    -I <file>                    file name(s) from input file
+    -o <charset>                 console output charset
+    -has <symbol>                only the line has symbol(case insensitive, -HAS case sensitive)
+    -ff <filter>                 file and path filter(regex, starts with '~' means exclude)
+    -CC <thread count>           concurrent thread(s) count
+    --i                          ignore case contains
+    --E                          regex
+    --e                          ignore case regex
+    --0                          only print file name
+    --1                          one file matches only one time
+    --s                          print simple file name
+    --F                          print full file name
+    --N                          print match at new line
+    --C                          color print
+    --L                          line number print
+    --J                          match jar and zip file(s)
+}}}
+
 Outputs:<br>
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/finding/finding.png]

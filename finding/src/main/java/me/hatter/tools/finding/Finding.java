@@ -169,11 +169,14 @@ public class Finding {
                             fn = resource.getResourceName();
                         } else {
                             fn = resource.getResourceId();
-                            if (fn.replace("file:" + Environment.USER_DIR, StringUtil.EMPTY).length() != fn.length()) {
-                                fn = "." + fn.replace("file:" + Environment.USER_DIR, StringUtil.EMPTY);
-                            }
                             if (fn.startsWith("file:")) {
                                 fn = fn.substring(5);
+                            }
+                            if (fn.startsWith(Environment.USER_HOME)) {
+                                fn = "~" + fn.substring(Environment.USER_HOME.length());
+                            }
+                            if (fn.startsWith(Environment.USER_DIR)) {
+                                fn = "." + fn.substring(Environment.USER_DIR.length());
                             }
                             fn = (fn.startsWith("././")) ? fn.substring(2) : fn;
                         }

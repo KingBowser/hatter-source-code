@@ -33,7 +33,8 @@ public class SysOutUtil {
 
     private static String getOutputCharset() {
         if (OUTPUT_CHARSET != null) return OUTPUT_CHARSET;
-        return System.getProperty("hatter.commons.output.charset");
+        OUTPUT_CHARSET = System.getProperty("hatter.commons.output.charset");
+        return OUTPUT_CHARSET;
     }
 
     public static final Output stdout = new Output() {

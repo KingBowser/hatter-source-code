@@ -137,7 +137,17 @@ public class UnixArgsutil {
                     vs.add(arg);
                     lastk = null;
                 } else {
-                    if (arg.startsWith("---")) {
+                    if (arg.startsWith("-J-D")) {
+                        String ar = arg.substring(4);
+                        int indexOfEq = ar.indexOf('=');
+                        if (indexOfEq == 0) {
+                            // IGNORE
+                        } else if (indexOfEq < 0) {
+                            System.setProperty(ar, null);
+                        } else {
+                            System.setProperty(ar.substring(0, indexOfEq), ar.substring(indexOfEq + 1));
+                        }
+                    } else if (arg.startsWith("---")) {
                         String ar = arg.substring(3);
                         for (char c : ar.toCharArray()) {
                             unixArgs.flags.add(new String(new char[] { c }));

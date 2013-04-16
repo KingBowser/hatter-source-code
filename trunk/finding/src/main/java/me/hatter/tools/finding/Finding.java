@@ -102,6 +102,7 @@ public class Finding {
         final AtomicLong totalCount = new AtomicLong(0);
         final AtomicLong fileCount = new AtomicLong(0);
         final AtomicLong matchCount = new AtomicLong(0);
+        final Set<String> processedResourceIdSet = new HashSet<String>();
 
         final ExecutorService executor = ExecutorUtil.getCPULikeExecutor(IntegerUtil.tryParse(UnixArgsutil.ARGS.kvalue("CC")));
 
@@ -146,6 +147,13 @@ public class Finding {
                         LogUtil.error("Read zip file failed: " + ((FileResource) resource).getFile().toString(), e);
                     }
                     return; // SKIP NEXT
+                }
+
+                // check the resource should be processed once
+                String resourceId = resource.getResourceId();
+                synchronized (processedResourceIdSet) {
+                    if (processedResourceIdSet.contains(resourceId)) return;
+                    processedResourceIdSet.add(resourceId);
                 }
 
                 fileCount.incrementAndGet();
@@ -483,7 +491,7 @@ public class Finding {
         System.out.println("    -o <charset>                 console output charset");
         System.out.println("    -has <symbol>                only the line has symbol(case insensitive, -HAS case sensitive)");
         System.out.println("    -ff <filter>                 file and path filter(regex, starts with '~' means exclude)");
-        System.out.println("    -CC                          concurrent thread(s) count");
+        System.out.println("    -CC <thread count>           concurrent thread(s) count");
         System.out.println("    --i                          ignore case contains");
         System.out.println("    --E                          regex");
         System.out.println("    --e                          ignore case regex");

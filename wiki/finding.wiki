@@ -11,9 +11,14 @@ Java programmer's grep. Finding can grep in '.classpath', jar/war/zip files and 
 wget https://hatter-source-code.googlecode.com/svn/trunk/finding/findingall.jar
 }}}
 
-Sample:
+Usage:
 {{{
 $ java -jar findingall.jar ---NCL Pattern
+
+OR
+
+$ alias finding='java -jar /ABSTRACT_PATH_OF_findingall.jar ---NCL'
+$ finding Pattern
 }}}
 
 Arguments description:

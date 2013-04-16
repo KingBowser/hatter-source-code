@@ -17,7 +17,7 @@ $ java -jar findingall.jar ---NCL Pattern
 
 OR
 
-$ alias finding='java -jar /ABSTRACT_PATH_OF_findingall.jar ---NCL'
+$ alias finding='java -jar /ABSTRACT_PATH_OF_findingall.jar -o UTF-8 ---NCL'
 $ finding Pattern
 }}}
 

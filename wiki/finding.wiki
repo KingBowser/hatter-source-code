@@ -54,6 +54,9 @@ Usage:
 Outputs:<br>
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/finding/finding.png]
 
+Find in jar with argument '--J':<br>
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/finding/finding-in-jar-and-ignorecase.png]
+
 Through '.classpath' file and find in jar and chinese output:<br>
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/finding/finding-in-jar-and-chinese.png]
 

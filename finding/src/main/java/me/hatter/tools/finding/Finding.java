@@ -172,11 +172,11 @@ public class Finding {
                             if (fn.startsWith("file:")) {
                                 fn = fn.substring(5);
                             }
-                            if (fn.startsWith(Environment.USER_HOME)) {
-                                fn = "~" + fn.substring(Environment.USER_HOME.length());
-                            }
                             if (fn.startsWith(Environment.USER_DIR)) {
                                 fn = "." + fn.substring(Environment.USER_DIR.length());
+                            }
+                            if (fn.startsWith(Environment.USER_HOME)) {
+                                fn = "~" + fn.substring(Environment.USER_HOME.length());
                             }
                             fn = (fn.startsWith("././")) ? fn.substring(2) : fn;
                         }

@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 import me.hatter.tools.commons.resource.Resource;
+import me.hatter.tools.commons.string.StringUtil;
 
 public class FileResource implements Resource {
 
@@ -21,9 +22,24 @@ public class FileResource implements Resource {
         this.resId = resId;
     }
 
+    public File getFile() {
+        return file;
+    }
+
     @Override
     public String getResourceId() {
         return resId;
+    }
+
+    @Override
+    public String getResourceName() {
+        String name = resId;
+        if (name.contains("/")) {
+            name = StringUtil.substringAfterLast(name, "/");
+        } else if (name.contains("\\")) {
+            name = StringUtil.substringAfterLast(name, "\\");
+        }
+        return name;
     }
 
     @Override

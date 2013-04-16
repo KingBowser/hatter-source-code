@@ -6,6 +6,8 @@ public interface Resource {
 
     String getResourceId();
 
+    String getResourceName();
+
     InputStream openInputStream();
 
     boolean exists();

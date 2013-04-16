@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.net.URL;
 
 import me.hatter.tools.commons.resource.Resource;
+import me.hatter.tools.commons.string.StringUtil;
 
 public class ClassPathResource implements Resource {
 
@@ -13,6 +14,10 @@ public class ClassPathResource implements Resource {
     private URL         url;
     private String      resId;
     private long        lastModified;
+
+    public ClassPathResource(URL url) {
+        this(url, url.toString());
+    }
 
     public ClassPathResource(URL url, String resId) {
         this.url = url;
@@ -26,9 +31,24 @@ public class ClassPathResource implements Resource {
         this.lastModified = lastModified;
     }
 
+    public URL getURL() {
+        return url;
+    }
+
     @Override
     public String getResourceId() {
         return resId;
+    }
+
+    @Override
+    public String getResourceName() {
+        String name = resId;
+        if (name.contains("/")) {
+            name = StringUtil.substringAfterLast(name, "/");
+        } else if (name.contains("\\")) {
+            name = StringUtil.substringAfterLast(name, "\\");
+        }
+        return name;
     }
 
     @Override

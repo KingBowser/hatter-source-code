@@ -264,12 +264,22 @@ public class Finding {
             StringBufferedReader reader = new StringBufferedReader(files);
             for (String file; ((file = reader.readOneLine()) != null);) {
                 final File f_file = new File(file);
-                executor.submit(new Runnable() {
+                if (!f_file.exists()) continue;
+                if (f_file.isFile()) {
+                    executor.submit(new Runnable() {
 
-                    public void run() {
-                        matchResourceFilter.matchResource(new FileResource(f_file));
-                    }
-                });
+                        public void run() {
+                            matchResourceFilter.matchResource(new FileResource(f_file));
+                        }
+                    });
+                } else {
+                    FileUtil.listFiles(f_file, new FileFilter() {
+
+                        public boolean accept(File pathname) {
+                            return matchResourceFilter.accept(new FileResource(pathname));
+                        }
+                    }, null);
+                }
             }
         } else {
             FileUtil.listFiles(((inf == null) ? dir : inf), new FileFilter() {

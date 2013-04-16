@@ -54,6 +54,9 @@ Usage:
 Outputs:<br>
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/finding/finding.png]
 
+Find in jar and chinese output:<br>
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/finding/finding-in-jar-and-chinese.png]
+
 Shell offen accept UTF-8 ouput, so you can add this argument: 
 {{{
 -o UTF-8

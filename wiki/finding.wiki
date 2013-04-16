@@ -3,8 +3,7 @@
 
 = Introduction =
 
-Find ind source code
-
+Java programmer's grep. Finding can grep in '.classpath', jar/war/zip files and normal source files, and output the result in color.
 
 = Details =
 

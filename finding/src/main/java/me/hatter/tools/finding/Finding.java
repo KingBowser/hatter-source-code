@@ -2,12 +2,15 @@ package me.hatter.tools.finding;
 
 import java.io.File;
 import java.io.FileFilter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
@@ -31,6 +34,10 @@ import me.hatter.tools.commons.resource.Resource;
 import me.hatter.tools.commons.resource.impl.FileResource;
 import me.hatter.tools.commons.resource.impl.ZipEntryResource;
 import me.hatter.tools.commons.string.StringUtil;
+import me.hatter.tools.commons.xml.XmlParser;
+
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 public class Finding {
 
@@ -161,8 +168,13 @@ public class Finding {
                         } else if (is_s) {
                             fn = resource.getResourceName();
                         } else {
-                            fn = "."
-                                 + resource.getResourceId().replace("file:" + Environment.USER_DIR, StringUtil.EMPTY);
+                            fn = resource.getResourceId();
+                            if (fn.replace("file:" + Environment.USER_DIR, StringUtil.EMPTY).length() != fn.length()) {
+                                fn = "." + fn.replace("file:" + Environment.USER_DIR, StringUtil.EMPTY);
+                            }
+                            if (fn.startsWith("file:")) {
+                                fn = fn.substring(5);
+                            }
                             fn = (fn.startsWith("././")) ? fn.substring(2) : fn;
                         }
                         fn = fileColorSt + fn + colorEd;
@@ -236,10 +248,18 @@ public class Finding {
         };
 
         final File dir = new File(Environment.USER_DIR);
+        File inf = null;
+        if (UnixArgsutil.ARGS.kvalue("I") != null) {
+            inf = new File(resolveUserPath(UnixArgsutil.ARGS.kvalue("I")));
+        }
 
-        if (UnixArgsutil.ARGS.keys().contains("I")) {
-            File inf = new File(UnixArgsutil.ARGS.kvalue("I"));
-            String files = FileUtil.readFileToString(inf);
+        if ((inf != null) && (!inf.exists())) {
+            LogUtil.error("File or Directory not found: " + inf.toString());
+            System.exit(-1);
+        }
+
+        if ((inf != null) && inf.isFile()) {
+            String files = readFileToStringCheckClasspathFile(inf);
 
             StringBufferedReader reader = new StringBufferedReader(files);
             for (String file; ((file = reader.readOneLine()) != null);) {
@@ -252,7 +272,7 @@ public class Finding {
                 });
             }
         } else {
-            FileUtil.listFiles(dir, new FileFilter() {
+            FileUtil.listFiles(((inf == null) ? dir : inf), new FileFilter() {
 
                 public boolean accept(File pathname) {
                     return matchResourceFilter.accept(new FileResource(pathname));
@@ -275,6 +295,89 @@ public class Finding {
                                       + format.format(matchCount.get()) + ", Cost: "
                                       + format.format(endMillis - startMillis) + " ms");
         }
+    }
+
+    private static String readFileToStringCheckClasspathFile(File inf) {
+        String content = FileUtil.readFileToString(inf);
+        if (inf.toString().endsWith(".classpath") && content.contains("classpath")
+            && content.contains("classpathentry")) {
+            XmlParser xmlParser;
+            try {
+                xmlParser = new XmlParser(new FileInputStream(inf));
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+            File basePath = inf.getParentFile();
+            Set<String> resultFileSet = new LinkedHashSet<String>();
+            NodeList nodeList = xmlParser.parseXpathNodes("//classpathentry");
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                Node node = nodeList.item(i);
+                if (node.getAttributes().getNamedItem("kind") == null) continue;
+                String kind = node.getAttributes().getNamedItem("kind").getNodeValue();
+                if ("src".equals(kind)) {
+                    if (node.getAttributes().getNamedItem("path") != null) {
+                        resultFileSet.add(new File(basePath, node.getAttributes().getNamedItem("path").getNodeValue()).getAbsolutePath());
+                    }
+                } else if ("var".equals(kind)) {
+                    if (node.getAttributes().getNamedItem("path") != null) {
+                        resultFileSet.add(resolveVariantPath(node.getAttributes().getNamedItem("path").getNodeValue()));
+                    }
+                    if (node.getAttributes().getNamedItem("sourcepath") != null) {
+                        resultFileSet.add(resolveVariantPath(node.getAttributes().getNamedItem("sourcepath").getNodeValue()));
+                    }
+                } else if ("lib".equals(kind)) {
+                    if (node.getAttributes().getNamedItem("path") != null) {
+                        resultFileSet.add(new File(basePath, node.getAttributes().getNamedItem("path").getNodeValue()).getAbsolutePath());
+                    }
+                } else if ("con".equals(kind)) {
+                    // IGNORE
+                } else if ("output".equals(kind)) {
+                    // IGNORE
+                } else {
+                    LogUtil.warn("Not supported kind: " + kind);
+                }
+            }
+            return StringUtil.join(resultFileSet, Environment.LINE_SEPARATOR);
+        } else {
+            return content;
+        }
+    }
+
+    private static String resolveVariantPath(String path) {
+        if (path.startsWith("file:")) return path;
+        if (path.startsWith("/")) return path;
+
+        int indexOfLeftSlash = path.indexOf('/');
+        int indexOfRightSlash = path.indexOf('\\');
+
+        if (indexOfLeftSlash < 0 && indexOfRightSlash < 0) return path;
+
+        int inexOfFirstSlash = Math.min(indexOfLeftSlash, indexOfRightSlash);
+        if (inexOfFirstSlash < 0) {
+            inexOfFirstSlash = Math.max(indexOfLeftSlash, indexOfRightSlash);
+        }
+
+        String variant = path.substring(0, inexOfFirstSlash);
+        path = path.substring(variant.length() + 1);
+        File variantValue;
+        if ("M2_REPO".equals(variant)) {
+            variantValue = new File(Environment.USER_HOME, ".m2/repository");
+        } else {
+            String vv = UnixArgsutil.ARGS.kvalue("X" + variant);
+            if (vv == null) {
+                throw new RuntimeException("Variant '" + variant + "' cannot found!f");
+            }
+            variantValue = new File(resolveUserPath(vv));
+        }
+        return new File(variantValue, path).getAbsolutePath();
+    }
+
+    private static String resolveUserPath(String path) {
+        if (path == null) return path;
+        if (path.startsWith("~")) {
+            path = Environment.USER_HOME + path.substring(1);
+        }
+        return path;
     }
 
     private static boolean isPathMattch(Resource resource) {
@@ -343,7 +446,8 @@ public class Finding {
                 extSet.add(ff);
             }
         }
-        if (UnixArgsutil.ARGS.flags().contains("J")) {
+        if (UnixArgsutil.ARGS.flags().contains("J")
+            || StringUtil.notNull(UnixArgsutil.ARGS.kvalue("I")).endsWith(".classpath")) {
             extSet.add("jar");
             extSet.add("war");
             extSet.add("sar");

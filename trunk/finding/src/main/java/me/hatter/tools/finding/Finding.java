@@ -5,23 +5,31 @@ import java.io.FileFilter;
 import java.io.UnsupportedEncodingException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
-import java.util.regex.Pattern;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 
 import me.hatter.tools.commons.args.UnixArgsutil;
 import me.hatter.tools.commons.concurrent.ExecutorUtil;
+import me.hatter.tools.commons.encoding.EncodingDetectUtil;
 import me.hatter.tools.commons.environment.Environment;
 import me.hatter.tools.commons.file.FileUtil;
+import me.hatter.tools.commons.io.IOUtil;
 import me.hatter.tools.commons.io.StringBufferedReader;
 import me.hatter.tools.commons.io.StringPrintWriter;
 import me.hatter.tools.commons.io.SysOutUtil;
 import me.hatter.tools.commons.log.LogUtil;
 import me.hatter.tools.commons.number.IntegerUtil;
+import me.hatter.tools.commons.resource.Resource;
+import me.hatter.tools.commons.resource.impl.FileResource;
+import me.hatter.tools.commons.resource.impl.ZipEntryResource;
 import me.hatter.tools.commons.string.StringUtil;
 
 public class Finding {
@@ -41,11 +49,6 @@ public class Finding {
             this.isInclude = isInclude;
             this.matcher = matcher;
         }
-    }
-
-    public static interface MatchFileFilter extends FileFilter {
-
-        void matchFile(File file);
     }
 
     public static void main(String[] args) {
@@ -95,30 +98,54 @@ public class Finding {
 
         final ExecutorService executor = ExecutorUtil.getCPULikeExecutor(IntegerUtil.tryParse(UnixArgsutil.ARGS.kvalue("CC")));
 
-        final MatchFileFilter matchFileFilter = new MatchFileFilter() {
+        final MatchResourceFilter matchResourceFilter = new MatchResourceFilter() {
 
-            public void matchFile(File file) {
+            public void matchResource(Resource resource) {
 
-                if (file.isDirectory()) {
-                    return; // only match file
+                if (resource instanceof FileResource) {
+                    if (((FileResource) resource).getFile().isDirectory()) {
+                        return; // only match file
+                    }
                 }
+                boolean isPackageResource = false;
                 if (extSet != null) {
-                    String ext = StringUtil.substringAfterLast(file.getAbsolutePath(), ".");
+                    String ext = StringUtil.substringAfterLast(resource.getResourceId(), ".");
                     if (ext == null) {
                         return;
                     }
                     if (!extSet.contains(ext.toLowerCase())) {
                         return;
                     }
+                    isPackageResource = Arrays.asList("jar", "war", "sar", "zip").contains(ext.toLowerCase());
                 }
-                if (!isFileMattch(file)) {
+                if (!isPathMattch(resource)) {
                     return;
+                }
+                if (isPackageResource && (resource instanceof ZipEntryResource)) {
+                    return; // SKIP JAR IN JAR
+                }
+                if (isPackageResource) {
+                    ZipFile zipFile;
+                    try {
+                        zipFile = new ZipFile(((FileResource) resource).getFile());
+                        Enumeration<? extends ZipEntry> entries = zipFile.entries();
+                        while (entries.hasMoreElements()) {
+                            ZipEntry zipEntry = entries.nextElement();
+                            if (!zipEntry.getName().endsWith("/")) {
+                                matchResource(new ZipEntryResource(zipFile, zipEntry));
+                            }
+                        }
+                    } catch (Exception e) {
+                        LogUtil.error("Read zip file failed: " + ((FileResource) resource).getFile().toString(), e);
+                    }
+                    return; // SKIP NEXT
                 }
 
                 fileCount.incrementAndGet();
                 int mcount = 0;
                 int linenumber = 0;
-                String text = FileUtil.readFileToString(file);
+                String text = EncodingDetectUtil.detectString(IOUtil.readToBytesAndClose(resource.openInputStream()),
+                                                              null, "UTF-8", "GB18030"); // auto detect encoding
                 StringBufferedReader reader = new StringBufferedReader(text);
                 for (String line; ((line = reader.readOneLine()) != null);) {
                     String ln = line.trim();
@@ -130,11 +157,12 @@ public class Finding {
                         String colorEd = is_C ? RESET : "";
                         String fn;
                         if (is_F) {
-                            fn = file.getAbsolutePath();
+                            fn = resource.getResourceId();
                         } else if (is_s) {
-                            fn = file.getName();
+                            fn = resource.getResourceName();
                         } else {
-                            fn = "." + file.getAbsolutePath().replace(Environment.USER_DIR, StringUtil.EMPTY);
+                            fn = "."
+                                 + resource.getResourceId().replace("file:" + Environment.USER_DIR, StringUtil.EMPTY);
                             fn = (fn.startsWith("././")) ? fn.substring(2) : fn;
                         }
                         fn = fileColorSt + fn + colorEd;
@@ -190,15 +218,17 @@ public class Finding {
                 }
             }
 
-            public boolean accept(final File file) {
+            public boolean accept(final Resource resource) {
 
-                if (file.isDirectory()) {
-                    return (!file.toString().contains(".svn"));
+                if (resource instanceof FileResource) {
+                    if (((FileResource) resource).getFile().isDirectory()) {
+                        return (!((FileResource) resource).getFile().toString().contains(".svn"));
+                    }
                 }
                 executor.submit(new Runnable() {
 
                     public void run() {
-                        matchFile(file);
+                        matchResource(resource);
                     }
                 });
                 return false;
@@ -217,12 +247,17 @@ public class Finding {
                 executor.submit(new Runnable() {
 
                     public void run() {
-                        matchFileFilter.matchFile(f_file);
+                        matchResourceFilter.matchResource(new FileResource(f_file));
                     }
                 });
             }
         } else {
-            FileUtil.listFiles(dir, matchFileFilter, null);
+            FileUtil.listFiles(dir, new FileFilter() {
+
+                public boolean accept(File pathname) {
+                    return matchResourceFilter.accept(new FileResource(pathname));
+                }
+            }, null);
         }
 
         executor.shutdown();
@@ -242,11 +277,11 @@ public class Finding {
         }
     }
 
-    private static boolean isFileMattch(File file) {
+    private static boolean isPathMattch(Resource resource) {
         if (ffList.isEmpty()) {
             return true;
         }
-        String fstr = file.toString();
+        String fstr = resource.getResourceId().toString();
         for (MatchPattern matchPattern : ffList) {
             if (matchPattern.isInclude) {
                 if (!matchPattern.matcher.match(fstr)) {
@@ -292,53 +327,6 @@ public class Finding {
         return (is_E) ? new RegexMatcher(parent, search, is_i) : new ContainsMatcher(parent, search, is_i);
     }
 
-    public static interface Matcher {
-
-        boolean match(String line);
-    }
-
-    public static class ContainsMatcher implements Matcher {
-
-        private Matcher parent;
-        private String  search;
-        private boolean ignoreCase;
-
-        public ContainsMatcher(Matcher parent, String search, boolean ignoreCase) {
-            this.parent = parent;
-            this.search = ignoreCase ? search.toLowerCase() : search;
-            this.ignoreCase = ignoreCase;
-        }
-
-        public boolean match(String line) {
-            if (line == null) return false;
-            if ((parent != null) && (!parent.match(line))) return false;
-            return (ignoreCase) ? line.toLowerCase().contains(search) : line.contains(search);
-        }
-    }
-
-    public static class RegexMatcher implements Matcher {
-
-        private Matcher parent;
-        private Pattern search;
-
-        public RegexMatcher(Matcher parent, String regex, boolean ignoreCase) {
-            this.parent = parent;
-            regex = (regex.startsWith("^")) ? regex : (".*" + regex);
-            regex = (regex.endsWith("$")) ? regex : (regex + ".*");
-            if (ignoreCase) {
-                this.search = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
-            } else {
-                this.search = Pattern.compile(regex);
-            }
-        }
-
-        public boolean match(String line) {
-            if (line == null) return false;
-            if ((parent != null) && (!parent.match(line))) return false;
-            return search.matcher(line).matches();
-        }
-    }
-
     private static Set<String> getExtSet() {
         String f = UnixArgsutil.ARGS.kvalue("f");
         if ("ALL".equals(f)) {
@@ -354,6 +342,12 @@ public class Finding {
             if (!ff.isEmpty()) {
                 extSet.add(ff);
             }
+        }
+        if (UnixArgsutil.ARGS.flags().contains("J")) {
+            extSet.add("jar");
+            extSet.add("war");
+            extSet.add("sar");
+            extSet.add("zip");
         }
         return extSet;
     }
@@ -383,6 +377,7 @@ public class Finding {
         System.out.println("    --N                          print match at new line");
         System.out.println("    --C                          color print");
         System.out.println("    --L                          line number print");
+        System.out.println("    --J                          match jar and zip file(s)");
         System.exit(0);
     }
 }

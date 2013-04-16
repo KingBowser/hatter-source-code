@@ -41,3 +41,10 @@ pom.xml exclude gid/aid:
   </exclusions>
 </dependency>
 }}}
+
+
+使用 maven shade plugin 解决 jar 或类的多版本冲突 ^[1]^
+
+
+===参考资料===
+`[1].` http://kiminotes.iteye.com/blog/1695344<br>

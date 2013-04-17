@@ -26,6 +26,7 @@ import sun.security.x509.X509CertInfo;
 // https://github.com/pcarrier/identify
 // http://www.gibraltar.at/create-x509-certs-in-java
 // http://www.bouncycastle.org/wiki/display/JA1/X.509+Public+Key+Certificate+and+Certification+Request+Generation
+// http://repo2.maven.org/maven2/org/bouncycastle/
 public class X509Test {
 
     public static void main(String[] args) throws Exception {

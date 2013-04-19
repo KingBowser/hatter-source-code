@@ -101,6 +101,11 @@ show full processlist;
 show variables; //  查看MySQL参数
 }}}
 
+==函数==
+{{{
+STR_TO_DATE('2013-04-10 00:00:00', '%Y-%m-%d %H:%i:%s')
+}}}
+
 
 ===参考资料===
 `[1].` http://firedragonpzy.iteye.com/blog/1388562<br>

@@ -36,6 +36,7 @@ import me.hatter.tools.commons.resource.impl.ZipEntryResource;
 import me.hatter.tools.commons.string.StringUtil;
 import me.hatter.tools.commons.xml.XmlParser;
 
+import org.objectweb.asm.ClassReader;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -159,8 +160,7 @@ public class Finding {
                 fileCount.incrementAndGet();
                 int mcount = 0;
                 int linenumber = 0;
-                String text = EncodingDetectUtil.detectString(IOUtil.readToBytesAndClose(resource.openInputStream()),
-                                                              null, "UTF-8", "GB18030"); // auto detect encoding
+                String text = readResourceContent(resource);
                 StringBufferedReader reader = new StringBufferedReader(text);
                 for (String line; ((line = reader.readOneLine()) != null);) {
                     String ln = line.trim();
@@ -238,6 +238,18 @@ public class Finding {
                         mcount++;
                     }
                     linenumber++;
+                }
+            }
+
+            private String readResourceContent(Resource resource) {
+                String ext = StringUtil.substringAfterLast(resource.getResourceId(), ".");
+                if ("class".equals(ext.toLowerCase())) {
+                    byte[] bytes = IOUtil.readToBytes(resource.openInputStream());
+                    ClassReader classReader = new ClassReader(bytes); // TODO
+                    return "";
+                } else {
+                    return EncodingDetectUtil.detectString(IOUtil.readToBytesAndClose(resource.openInputStream()),
+                                                           null, "UTF-8", "GB18030"); // auto detect encoding
                 }
             }
 
@@ -474,6 +486,9 @@ public class Finding {
             extSet.add("sar");
             extSet.add("zip");
         }
+        if (UnixArgsutil.ARGS.flags().contains("c")) {
+            extSet.add("class");
+        }
         return extSet;
     }
 
@@ -503,6 +518,7 @@ public class Finding {
         System.out.println("    --C                          color print");
         System.out.println("    --L                          line number print");
         System.out.println("    --J                          match jar and zip file(s)");
+        System.out.println("    --c                          match .class file(s)");
         System.exit(0);
     }
 }

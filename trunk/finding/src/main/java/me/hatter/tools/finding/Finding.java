@@ -37,6 +37,16 @@ import me.hatter.tools.commons.string.StringUtil;
 import me.hatter.tools.commons.xml.XmlParser;
 
 import org.objectweb.asm.ClassReader;
+import org.objectweb.asm.MethodVisitor;
+import org.objectweb.asm.tree.AbstractInsnNode;
+import org.objectweb.asm.tree.ClassNode;
+import org.objectweb.asm.tree.MethodNode;
+import org.objectweb.asm.tree.analysis.Analyzer;
+import org.objectweb.asm.tree.analysis.BasicValue;
+import org.objectweb.asm.tree.analysis.BasicVerifier;
+import org.objectweb.asm.tree.analysis.Frame;
+import org.objectweb.asm.util.Textifier;
+import org.objectweb.asm.util.TraceMethodVisitor;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -160,7 +170,13 @@ public class Finding {
                 fileCount.incrementAndGet();
                 int mcount = 0;
                 int linenumber = 0;
-                String text = readResourceContent(resource);
+                String text;
+                try {
+                    text = readResourceContent(resource);
+                } catch (Exception e) {
+                    LogUtil.error("Read resource failed: " + resource, e);
+                    return;
+                }
                 StringBufferedReader reader = new StringBufferedReader(text);
                 for (String line; ((line = reader.readOneLine()) != null);) {
                     String ln = line.trim();
@@ -245,12 +261,55 @@ public class Finding {
                 String ext = StringUtil.substringAfterLast(resource.getResourceId(), ".");
                 if ("class".equals(ext.toLowerCase())) {
                     byte[] bytes = IOUtil.readToBytes(resource.openInputStream());
-                    ClassReader classReader = new ClassReader(bytes); // TODO
-                    return "";
+                    ClassReader classReader = new ClassReader(bytes);
+                    return readClassContent(classReader);
                 } else {
                     return EncodingDetectUtil.detectString(IOUtil.readToBytesAndClose(resource.openInputStream()),
                                                            null, "UTF-8", "GB18030"); // auto detect encoding
                 }
+            }
+
+            private String readClassContent(ClassReader cr) {
+                ClassNode cn = new ClassNode();
+                cr.accept(cn, ClassReader.SKIP_DEBUG);
+
+                final List<String> resultList = new ArrayList<String>();
+                resultList.add("CLASS " + cn.name);
+                List<MethodNode> methods = cn.methods;
+                for (int i = 0; i < methods.size(); ++i) {
+                    MethodNode method = methods.get(i);
+                    resultList.add("METHOD " + " " + method.name + method.desc + " " + method.exceptions);
+                    if (method.instructions.size() > 0) {
+                        Analyzer<?> a = new Analyzer<BasicValue>(new BasicVerifier());
+                        try {
+                            a.analyze(cn.name, method);
+                        } catch (Exception ignored) {
+                        }
+                        final Frame<?>[] frames = a.getFrames();
+
+                        Textifier t = new Textifier() {
+
+                            @Override
+                            public void visitMaxs(final int maxStack, final int maxLocals) {
+                                for (int i = 0; i < text.size(); ++i) {
+                                    StringBuffer s = new StringBuffer(frames[i] == null ? "null" : frames[i].toString());
+                                    while (s.length() < Math.max(20, maxStack + maxLocals + 1)) {
+                                        s.append(' ');
+                                    }
+                                    resultList.add(Integer.toString(i + 10000).substring(1) + " : " + text.get(i));
+                                }
+                                resultList.add("");
+                            }
+                        };
+                        MethodVisitor mv = new TraceMethodVisitor(t);
+                        for (int j = 0; j < method.instructions.size(); ++j) {
+                            Object insn = method.instructions.get(j);
+                            ((AbstractInsnNode) insn).accept(mv);
+                        }
+                        mv.visitMaxs(0, 0);
+                    }
+                }
+                return StringUtil.join(resultList, Environment.LINE_SEPARATOR);
             }
 
             public boolean accept(final Resource resource) {

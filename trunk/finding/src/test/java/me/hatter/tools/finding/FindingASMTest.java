@@ -21,9 +21,11 @@ public class FindingASMTest {
         ClassNode cn = new ClassNode();
         cr.accept(cn, ClassReader.SKIP_DEBUG);
 
+        System.err.println("CLASS " + cn.name);
         List<MethodNode> methods = cn.methods;
         for (int i = 0; i < methods.size(); ++i) {
             MethodNode method = methods.get(i);
+            System.err.println("METHOD " + " " + method.name + method.desc + " " + method.exceptions);
             if (method.instructions.size() > 0) {
                 Analyzer<?> a = new Analyzer<BasicValue>(new BasicVerifier());
                 try {
@@ -41,7 +43,9 @@ public class FindingASMTest {
                             while (s.length() < Math.max(20, maxStack + maxLocals + 1)) {
                                 s.append(' ');
                             }
-                            System.err.print(Integer.toString(i + 1000).substring(1) + " " + s + " : " + text.get(i));
+                            // System.err.print(Integer.toString(i + 1000).substring(1) + " " + s + " : " +
+                            // text.get(i));
+                            System.err.print(Integer.toString(i + 10000).substring(1) + " : " + text.get(i));
                         }
                         System.err.println();
                     }
@@ -55,5 +59,4 @@ public class FindingASMTest {
             }
         }
     }
-
 }

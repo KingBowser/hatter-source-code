@@ -18,6 +18,11 @@ mysql -u root
 mysql -h <IP> -u <USERNAME> -p
 }}}
 
+==存储引擎==
+|| MyISAM ||
+|| InnoDB ||
+|| TokuDB ||
+
 ==维护==
  * 查看有哪些用户 `select * from mysql.user`
 

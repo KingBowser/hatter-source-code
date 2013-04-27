@@ -54,6 +54,7 @@ task packall << {
   libs.list().each {
     ant.unzip(dest: packtempclasses, src: it) 
   }
+  new File(packtempclasses + "/commons-version-build.txt").write(new Date().format("yyyyMMdd"), "UTF-8")
   def antmanifest = ant.manifest(file: packtempmanifest) {
     attribute(name: 'Main-Class', value: jarManifestMainClass)
   }

@@ -34,6 +34,7 @@ import me.hatter.tools.commons.resource.Resource;
 import me.hatter.tools.commons.resource.impl.FileResource;
 import me.hatter.tools.commons.resource.impl.ZipEntryResource;
 import me.hatter.tools.commons.string.StringUtil;
+import me.hatter.tools.commons.util.VersionBuildUtil;
 import me.hatter.tools.commons.xml.XmlParser;
 
 import org.objectweb.asm.ClassReader;
@@ -554,6 +555,7 @@ public class Finding {
 
     private static void usage() {
         System.out.println("Usage:");
+        System.out.println("  Version: 1.0 (b" + VersionBuildUtil.getVersionBuild() + ")");
         System.out.println("  java -jar findingall.jar [options] <text>");
         System.out.println("    -f <option>                  option(default [c,h,cpp,hpp,java])");
         System.out.println("       ALL                       all file(s)");

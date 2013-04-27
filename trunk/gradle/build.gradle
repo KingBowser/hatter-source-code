@@ -68,6 +68,7 @@ task packjar << {
   ant.copy(todir: packtempclasses) {
     fileset(dir: 'src/main/java', includes: '**/*.java')
   }
+  new File(packtempclasses + "/commons-version-build.txt").write(new Date().format("yyyyMMdd"), "UTF-8")
   ant.jar(destfile: "${baseProjectName}.jar") {
     fileset(dir: packtempclasses, includes: '**/*.*')
   }
@@ -84,6 +85,7 @@ task packall << {
   libs.list().each {
     ant.unzip(dest: packtempclasses, src: it) 
   }
+  new File(packtempclasses + "/commons-version-build.txt").write(new Date().format("yyyyMMdd"), "UTF-8")
   def antmanifest = ant.manifest(file: packtempmanifest) {
     attribute(name: 'Main-Class', value: jarManifestMainClass)
   }
@@ -131,6 +133,7 @@ task packall2 << {
     libstr += it.substring(it.lastIndexOf("/") + 1) + "\n";
   }
   libresourcesfile.write(libstr, "UTF-8");
+  new File(packtempclasses + "/commons-version-build.txt").write(new Date().format("yyyyMMdd"), "UTF-8")
   def antmanifest = ant.manifest(file: packtempmanifest) {
     attribute(name: 'Main-Class', value: jarManifestMainClass)
   }
@@ -151,6 +154,11 @@ task packwar << {
   file('war/WEB-INF/classes').mkdirs()
   copy {
     from ('build/classes/main')
+    into "war/WEB-INF/classes/"
+    include '**/*.*'
+  }
+  copy {
+    from ('src/main/resources')
     into "war/WEB-INF/classes/"
     include '**/*.*'
   }

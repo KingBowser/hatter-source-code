@@ -477,10 +477,11 @@ public class Finding {
             return true;
         }
         String fstr = resource.getResourceId().toString();
+        boolean hasMatch = false;
         for (MatchPattern matchPattern : ffList) {
             if (matchPattern.isInclude) {
-                if (!matchPattern.matcher.match(fstr)) {
-                    return false;
+                if (matchPattern.matcher.match(fstr)) {
+                    hasMatch = true;
                 }
             } else {
                 if (matchPattern.matcher.match(fstr)) {
@@ -488,7 +489,7 @@ public class Finding {
                 }
             }
         }
-        return true;
+        return hasMatch;
     }
 
     private static Matcher getMatcher(String search) {

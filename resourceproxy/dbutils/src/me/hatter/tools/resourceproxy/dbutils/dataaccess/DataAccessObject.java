@@ -101,6 +101,28 @@ public class DataAccessObject {
         return _connection;
     }
 
+    public void insertOrUpdateObject(final Object object) {
+        final Class<?> clazz = object.getClass();
+        List<String> pkList = DBUtil.getPkList(clazz);
+        if ((pkList == null) || pkList.isEmpty()) {
+            throw new RuntimeException("No PK found in class: " + clazz);
+        }
+        if (selectObject(object) == null) {
+            insertObject(object);
+        } else {
+            updateObject(object);
+        }
+    }
+
+    public void insertOrUpdateObjectList(final List<? extends Object> objectList) {
+        if ((objectList == null) || objectList.isEmpty()) {
+            return;
+        }
+        for (Object object : objectList) {
+            insertObject(object);
+        }
+    }
+
     public void insertObject(final Object object) {
         final Class<?> clazz = object.getClass();
         final List<String> refFieldList = new ArrayList<String>();

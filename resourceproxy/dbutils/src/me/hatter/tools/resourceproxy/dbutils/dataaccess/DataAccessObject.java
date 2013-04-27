@@ -123,6 +123,43 @@ public class DataAccessObject {
         }
     }
 
+    public Integer insertObjectAndGetSqliteLastId(final Object object) {
+        final Class<?> clazz = object.getClass();
+        final List<String> refFieldList = new ArrayList<String>();
+        final String sql = DBUtil.generateInsertSQL(clazz, refFieldList);
+
+        return execute(new Execute<Integer>() {
+
+            @Override
+            public Integer execute(Connection connection) throws Exception {
+                if (logging) System.out.println("[INFO] insert sql: " + sql);
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                try {
+                    setPreparedStatmentValues(preparedStatement, clazz, object, refFieldList);
+                    preparedStatement.execute();
+                } finally {
+                    preparedStatement.close();
+                }
+
+                PreparedStatement lastInsertRowidPreparedStatement = connection.prepareStatement("select last_insert_rowid() id");
+                Integer lastId = null;
+                try {
+                    ResultSet resultSet = lastInsertRowidPreparedStatement.executeQuery();
+                    try {
+                        if (resultSet.next()) {
+                            lastId = resultSet.getInt("id");
+                        }
+                    } finally {
+                        resultSet.close();
+                    }
+                } finally {
+                    lastInsertRowidPreparedStatement.close();
+                }
+                return lastId;
+            }
+        });
+    }
+
     public void insertObject(final Object object) {
         final Class<?> clazz = object.getClass();
         final List<String> refFieldList = new ArrayList<String>();
@@ -134,9 +171,12 @@ public class DataAccessObject {
             public Void execute(Connection connection) throws Exception {
                 if (logging) System.out.println("[INFO] insert sql: " + sql);
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
-                setPreparedStatmentValues(preparedStatement, clazz, object, refFieldList);
-                preparedStatement.execute();
-                preparedStatement.close();
+                try {
+                    setPreparedStatmentValues(preparedStatement, clazz, object, refFieldList);
+                    preparedStatement.execute();
+                } finally {
+                    preparedStatement.close();
+                }
                 return null;
             }
         });
@@ -154,14 +194,18 @@ public class DataAccessObject {
             public Void execute(Connection connection) throws Exception {
                 if (logging) System.out.println("[INFO] insert sql: " + sql);
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
-                for (Object object : objectList) {
-                    if (clazz != object.getClass()) {
-                        throw new RuntimeException("Class not match: " + clazz.getName() + " & " + object.getClass());
+                try {
+                    for (Object object : objectList) {
+                        if (clazz != object.getClass()) {
+                            throw new RuntimeException("Class not match: " + clazz.getName() + " & "
+                                                       + object.getClass());
+                        }
+                        setPreparedStatmentValues(preparedStatement, clazz, object, refFieldList);
+                        preparedStatement.execute();
                     }
-                    setPreparedStatmentValues(preparedStatement, clazz, object, refFieldList);
-                    preparedStatement.execute();
+                } finally {
+                    preparedStatement.close();
                 }
-                preparedStatement.close();
                 return null;
             }
         });
@@ -178,9 +222,12 @@ public class DataAccessObject {
             public Void execute(Connection connection) throws Exception {
                 if (logging) System.out.println("[INFO] update sql: " + sql);
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
-                setPreparedStatmentValues(preparedStatement, clazz, object, refFieldList);
-                preparedStatement.execute();
-                preparedStatement.close();
+                try {
+                    setPreparedStatmentValues(preparedStatement, clazz, object, refFieldList);
+                    preparedStatement.execute();
+                } finally {
+                    preparedStatement.close();
+                }
                 return null;
             }
         });
@@ -219,8 +266,11 @@ public class DataAccessObject {
             public Void execute(Connection connection) throws Exception {
                 if (logging) System.out.println("[INFO] delete sql: " + sql);
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
-                preparedStatement.execute();
-                preparedStatement.close();
+                try {
+                    preparedStatement.execute();
+                } finally {
+                    preparedStatement.close();
+                }
                 return null;
             }
         });
@@ -237,9 +287,12 @@ public class DataAccessObject {
             public Void execute(Connection connection) throws Exception {
                 if (logging) System.out.println("[INFO] delete sql: " + sql);
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
-                setPreparedStatmentValues(preparedStatement, clazz, object, refFieldList);
-                preparedStatement.execute();
-                preparedStatement.close();
+                try {
+                    setPreparedStatmentValues(preparedStatement, clazz, object, refFieldList);
+                    preparedStatement.execute();
+                } finally {
+                    preparedStatement.close();
+                }
                 return null;
             }
         });
@@ -257,14 +310,18 @@ public class DataAccessObject {
             public Void execute(Connection connection) throws Exception {
                 if (logging) System.out.println("[INFO] delete sql: " + sql);
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
-                for (Object object : objectList) {
-                    if (clazz != object.getClass()) {
-                        throw new RuntimeException("Class not match: " + clazz.getName() + " & " + object.getClass());
+                try {
+                    for (Object object : objectList) {
+                        if (clazz != object.getClass()) {
+                            throw new RuntimeException("Class not match: " + clazz.getName() + " & "
+                                                       + object.getClass());
+                        }
+                        setPreparedStatmentValues(preparedStatement, clazz, object, refFieldList);
+                        preparedStatement.execute();
                     }
-                    setPreparedStatmentValues(preparedStatement, clazz, object, refFieldList);
-                    preparedStatement.execute();
+                } finally {
+                    preparedStatement.close();
                 }
-                preparedStatement.close();
                 return null;
             }
         });
@@ -299,17 +356,21 @@ public class DataAccessObject {
             public Integer execute(Connection connection) throws Exception {
                 if (logging) System.out.println("[INFO] query sql: " + sql);
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
-                if (objectList != null) {
-                    for (int i = 0; i < objectList.size(); i++) {
-                        int index = i + 1;
-                        Object o = objectList.get(i);
-                        System.out.println("[INFO] object @" + index + "=" + o);
-                        Class<?> type = (o == null) ? null : o.getClass();
-                        setPreparedStatmentByValue(preparedStatement, index, type, o);
+                int result = 0;
+                try {
+                    if (objectList != null) {
+                        for (int i = 0; i < objectList.size(); i++) {
+                            int index = i + 1;
+                            Object o = objectList.get(i);
+                            System.out.println("[INFO] object @" + index + "=" + o);
+                            Class<?> type = (o == null) ? null : o.getClass();
+                            setPreparedStatmentByValue(preparedStatement, index, type, o);
+                        }
                     }
+                    result = preparedStatement.executeUpdate();
+                } finally {
+                    preparedStatement.close();
                 }
-                int result = preparedStatement.executeUpdate();
-                preparedStatement.close();
                 return result;
             }
         });
@@ -363,30 +424,36 @@ public class DataAccessObject {
             public List<T> execute(Connection connection) throws Exception {
                 if (logging) System.out.println("[INFO] query sql: " + runSql);
                 PreparedStatement preparedStatement = connection.prepareStatement(runSql);
-                if (objectList != null) {
-                    for (int i = 0; i < objectList.size(); i++) {
-                        int index = i + 1;
-                        Object o = objectList.get(i);
-                        if (logging) System.out.println("[INFO] object @" + index + "=" + o);
-                        Class<?> type = (o == null) ? null : o.getClass();
-                        setPreparedStatmentByValue(preparedStatement, index, type, o);
+                List<T> result = null;
+                try {
+                    if (objectList != null) {
+                        for (int i = 0; i < objectList.size(); i++) {
+                            int index = i + 1;
+                            Object o = objectList.get(i);
+                            if (logging) System.out.println("[INFO] object @" + index + "=" + o);
+                            Class<?> type = (o == null) ? null : o.getClass();
+                            setPreparedStatmentByValue(preparedStatement, index, type, o);
+                        }
                     }
-                }
-                List<T> result = new ArrayList<T>();
-                List<String> fieldList = DBUtil.getTableFields(clazz);
-                ResultSet resultSet = preparedStatement.executeQuery();
-
-                while (resultSet.next()) {
-                    T o = clazz.newInstance();
-                    for (String f : fieldList) {
-                        Field field = ReflectUtil.getField(clazz, StringUtil.toCamel(f));
-                        field.setAccessible(true);
-                        setFiledByResultSet(resultSet, o, f, field);
+                    result = new ArrayList<T>();
+                    List<String> fieldList = DBUtil.getTableFields(clazz);
+                    ResultSet resultSet = preparedStatement.executeQuery();
+                    try {
+                        while (resultSet.next()) {
+                            T o = clazz.newInstance();
+                            for (String f : fieldList) {
+                                Field field = ReflectUtil.getField(clazz, StringUtil.toCamel(f));
+                                field.setAccessible(true);
+                                setFiledByResultSet(resultSet, o, f, field);
+                            }
+                            result.add(o);
+                        }
+                    } finally {
+                        resultSet.close();
                     }
-                    result.add(o);
+                } finally {
+                    preparedStatement.close();
                 }
-                resultSet.close();
-                preparedStatement.close();
                 return result;
             }
         });
@@ -406,32 +473,38 @@ public class DataAccessObject {
             public List<T> execute(Connection connection) throws Exception {
                 if (logging) System.out.println("[INFO] query sql: " + runSql);
                 PreparedStatement preparedStatement = connection.prepareStatement(runSql);
-                if (objectList != null) {
-                    for (int i = 0; i < objectList.size(); i++) {
-                        int index = i + 1;
-                        Object o = objectList.get(i);
-                        if (logging) System.out.println("[INFO] object @" + index + "=" + o);
-                        Class<?> type = (o == null) ? null : o.getClass();
-                        setPreparedStatmentByValue(preparedStatement, index, type, o);
+                List<T> result = null;
+                try {
+                    if (objectList != null) {
+                        for (int i = 0; i < objectList.size(); i++) {
+                            int index = i + 1;
+                            Object o = objectList.get(i);
+                            if (logging) System.out.println("[INFO] object @" + index + "=" + o);
+                            Class<?> type = (o == null) ? null : o.getClass();
+                            setPreparedStatmentByValue(preparedStatement, index, type, o);
+                        }
                     }
-                }
-                List<T> result = new ArrayList<T>();
-                List<String> fieldList = DBUtil.getTableFields(clazz);
-                ResultSet resultSet = preparedStatement.executeQuery();
-
-                int index = 0;
-                while (resultSet.next()) {
-                    T o = clazz.newInstance();
-                    for (String f : fieldList) {
-                        Field field = ReflectUtil.getField(clazz, StringUtil.toCamel(f));
-                        field.setAccessible(true);
-                        setFiledByResultSet(resultSet, o, f, field);
+                    result = new ArrayList<T>();
+                    List<String> fieldList = DBUtil.getTableFields(clazz);
+                    ResultSet resultSet = preparedStatement.executeQuery();
+                    try {
+                        int index = 0;
+                        while (resultSet.next()) {
+                            T o = clazz.newInstance();
+                            for (String f : fieldList) {
+                                Field field = ReflectUtil.getField(clazz, StringUtil.toCamel(f));
+                                field.setAccessible(true);
+                                setFiledByResultSet(resultSet, o, f, field);
+                            }
+                            recordProcessor.process(index, o);
+                            index++;
+                        }
+                    } finally {
+                        resultSet.close();
                     }
-                    recordProcessor.process(index, o);
-                    index++;
+                } finally {
+                    preparedStatement.close();
                 }
-                resultSet.close();
-                preparedStatement.close();
                 return result;
             }
 
@@ -452,24 +525,31 @@ public class DataAccessObject {
             public List<?> execute(Connection connection) throws Exception {
                 if (logging) System.out.println("[INFO] query sql: " + runSql);
                 PreparedStatement preparedStatement = connection.prepareStatement(runSql);
-                if (objectList != null) {
-                    for (int i = 0; i < objectList.size(); i++) {
-                        int index = i + 1;
-                        Object o = objectList.get(i);
-                        if (logging) System.out.println("[INFO] object @" + index + "=" + o);
-                        Class<?> type = (o == null) ? null : o.getClass();
-                        setPreparedStatmentByValue(preparedStatement, index, type, o);
+                List<?> result = null;
+                try {
+                    if (objectList != null) {
+                        for (int i = 0; i < objectList.size(); i++) {
+                            int index = i + 1;
+                            Object o = objectList.get(i);
+                            if (logging) System.out.println("[INFO] object @" + index + "=" + o);
+                            Class<?> type = (o == null) ? null : o.getClass();
+                            setPreparedStatmentByValue(preparedStatement, index, type, o);
+                        }
                     }
+                    result = new ArrayList<Object>();
+                    ResultSet resultSet = preparedStatement.executeQuery();
+                    try {
+                        int index = 0;
+                        while (resultSet.next()) {
+                            recordProcessor.process(index, resultSet);
+                            index++;
+                        }
+                    } finally {
+                        resultSet.close();
+                    }
+                } finally {
+                    preparedStatement.close();
                 }
-                List<?> result = new ArrayList<Object>();
-                ResultSet resultSet = preparedStatement.executeQuery();
-
-                int index = 0;
-                while (resultSet.next()) {
-                    recordProcessor.process(index, resultSet);
-                    index++;
-                }
-                preparedStatement.close();
                 return result;
             }
 

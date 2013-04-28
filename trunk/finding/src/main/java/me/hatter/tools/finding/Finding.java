@@ -33,6 +33,7 @@ import me.hatter.tools.commons.number.IntegerUtil;
 import me.hatter.tools.commons.resource.Resource;
 import me.hatter.tools.commons.resource.impl.FileResource;
 import me.hatter.tools.commons.resource.impl.ZipEntryResource;
+import me.hatter.tools.commons.screen.TermUtils;
 import me.hatter.tools.commons.string.StringUtil;
 import me.hatter.tools.commons.util.VersionBuildUtil;
 import me.hatter.tools.commons.xml.XmlParser;
@@ -116,6 +117,21 @@ public class Finding {
         final AtomicLong matchCount = new AtomicLong(0);
         final Set<String> processedResourceIdSet = new HashSet<String>();
 
+        String cs = UnixArgsutil.ARGS.kvalue("cs");
+        int fileColor = TermUtils.XBack.GREEN;
+        int matchColor = TermUtils.XBack.RED;
+        if (StringUtil.isNotBlank(cs)) {
+            if ("c1".equalsIgnoreCase(cs)) {
+                fileColor = TermUtils.Fore.BLUE;
+                matchColor = TermUtils.Fore.RED;
+            } else if ("c2".equalsIgnoreCase(cs)) {
+                fileColor = TermUtils.XFore.GREEN;
+                matchColor = TermUtils.XFore.RED;
+            }
+        }
+        final int fFileColor = fileColor;
+        final int fMatchColor = matchColor;
+
         final ExecutorService executor = ExecutorUtil.getCPULikeExecutor(IntegerUtil.tryParse(UnixArgsutil.ARGS.kvalue("CC")));
 
         final MatchResourceFilter matchResourceFilter = new MatchResourceFilter() {
@@ -184,8 +200,8 @@ public class Finding {
                     totalCount.incrementAndGet();
                     boolean is_match = matcher.match(ln);
                     if (is_match) {
-                        String fileColorSt = is_C ? (CHAR_27 + "[;102m") : "";
-                        String matchColorSt = is_C ? (CHAR_27 + "[;101m") : "";
+                        String fileColorSt = is_C ? (CHAR_27 + "[;" + fFileColor + "m") : "";
+                        String matchColorSt = is_C ? (CHAR_27 + "[;" + fMatchColor + "m") : "";
                         String colorEd = is_C ? RESET : "";
                         String fn;
                         if (is_F) {
@@ -265,8 +281,20 @@ public class Finding {
                     ClassReader classReader = new ClassReader(bytes);
                     return readClassContent(classReader);
                 } else {
+                    String r = UnixArgsutil.ARGS.kvalue("r");
+                    if ((r == null) || StringUtil.isBlank(r)) { // DEFAULT
+                        return EncodingDetectUtil.detectString(IOUtil.readToBytesAndClose(resource.openInputStream()),
+                                                               null, "UTF-8", "GB18030"); // auto detect encoding
+                    }
+                    String[] charsets = r.split(",");
+                    String defaultCharset = charsets[0].trim();
+                    List<String> otherCharsetList = new ArrayList<String>();
+                    for (int i = 1; i < charsets.length; i++) {
+                        otherCharsetList.add(charsets[i].trim());
+                    }
                     return EncodingDetectUtil.detectString(IOUtil.readToBytesAndClose(resource.openInputStream()),
-                                                           null, "UTF-8", "GB18030"); // auto detect encoding
+                                                           null, defaultCharset,
+                                                           otherCharsetList.toArray(new String[0]));
                 }
             }
 
@@ -566,9 +594,13 @@ public class Finding {
         System.out.println("       java                      .java file(s)");
         System.out.println("    -I <file>                    file name(s) from input file");
         System.out.println("    -o <charset>                 console output charset");
+        System.out.println("    -r <charset[,charset]>       input charset(s), deafult is: UTF-8,GB18030");
         System.out.println("    -has <symbol>                only the line has symbol(case insensitive, -HAS case sensitive)");
         System.out.println("    -ff <filter>                 file and path filter(regex, starts with '~' means exclude)");
         System.out.println("    -CC <thread count>           concurrent thread(s) count");
+        System.out.println("    -cs <option>                 color schema");
+        System.out.println("        c1                       schema 1");
+        System.out.println("        c2                       schema 2");
         System.out.println("    --i                          ignore case contains");
         System.out.println("    --E                          regex");
         System.out.println("    --e                          ignore case regex");

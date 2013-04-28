@@ -25,8 +25,9 @@ Arguments description:
 {{{
 $ finding 
 Usage:
+  Version: 1.0 (b20130428)
   java -jar findingall.jar [options] <text>
-    -f <option>                  option(default [c,h,cpp,hpp,java])
+    -f <option>                  option(default [c,h,cpp,hpp,java,xml])
        ALL                       all file(s)
        c                         .c file(s)
        h                         .h file(s)
@@ -35,9 +36,13 @@ Usage:
        java                      .java file(s)
     -I <file>                    file name(s) from input file
     -o <charset>                 console output charset
+    -r <charset[,charset]>       input charset(s), deafult is: UTF-8,GB18030
     -has <symbol>                only the line has symbol(case insensitive, -HAS case sensitive)
     -ff <filter>                 file and path filter(regex, starts with '~' means exclude)
     -CC <thread count>           concurrent thread(s) count
+    -cs <option>                 color schema
+        c1                       schema 1
+        c2                       schema 2
     --i                          ignore case contains
     --E                          regex
     --e                          ignore case regex
@@ -49,6 +54,7 @@ Usage:
     --C                          color print
     --L                          line number print
     --J                          match jar and zip file(s)
+    --c                          match .class file(s)
 }}}
 
 Outputs:<br>

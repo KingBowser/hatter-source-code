@@ -70,3 +70,10 @@ Shell offen accept UTF-8 ouput, so you can add this argument:
 {{{
 -o UTF-8
 }}}
+
+Find all java.lang.Long.intValue() and int intValue = (int) longValue:
+{{{
+finding --J --c -ff ".jar$" -ff '.class$' 'java/lang/Long.intValue'
+
+finding --J --c -ff ".jar$" -ff '.class$' 'L2I'
+}}}

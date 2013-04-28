@@ -558,7 +558,7 @@ public class Finding {
             return null;
         }
 
-        f = ((f == null) || f.trim().isEmpty()) ? "c,h,hpp,cpp,java" : f;
+        f = ((f == null) || f.trim().isEmpty()) ? "c,h,hpp,cpp,java,xml" : f;
 
         Set<String> extSet = new HashSet<String>();
         String[] fs = f.split(",");
@@ -585,7 +585,7 @@ public class Finding {
         System.out.println("Usage:");
         System.out.println("  Version: 1.0 (b" + VersionBuildUtil.getVersionBuild() + ")");
         System.out.println("  java -jar findingall.jar [options] <text>");
-        System.out.println("    -f <option>                  option(default [c,h,cpp,hpp,java])");
+        System.out.println("    -f <option>                  option(default [c,h,cpp,hpp,java,xml])");
         System.out.println("       ALL                       all file(s)");
         System.out.println("       c                         .c file(s)");
         System.out.println("       h                         .h file(s)");

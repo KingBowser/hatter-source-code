@@ -112,6 +112,14 @@ show variables; //  查看MySQL参数
 STR_TO_DATE('2013-04-10 00:00:00', '%Y-%m-%d %H:%i:%s')
 }}}
 
+==自增长ID==
+MySQL中可以通过环境变量设置自增长ID的生成步长及起始值：
+{{{
+SHOW VARIABLES LIKE 'auto_inc%';
+auto_increment_increment
+auto_increment_offset
+}}}
+
 
 ===参考资料===
 `[1].` http://firedragonpzy.iteye.com/blog/1388562<br>

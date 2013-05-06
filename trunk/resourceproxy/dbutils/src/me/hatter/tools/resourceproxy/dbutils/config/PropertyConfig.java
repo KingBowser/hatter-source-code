@@ -10,6 +10,8 @@ public class PropertyConfig {
     public static interface Driver {
 
         String SQLITE = "org.sqlite.JDBC";
+        String MYSQL  = "com.mysql.jdbc.Driver";
+        String ORACLE = "oracle.jdbc.OracleDriver";
     }
 
     private static final String CONFIG_FILE = "config.xml";
@@ -52,6 +54,25 @@ public class PropertyConfig {
         Properties properties = new Properties();
         properties.setProperty("jdbc.driver", Driver.SQLITE);
         properties.setProperty("jdbc.url", "jdbc:sqlite:" + sqliteFile);
+        return createPropertyConfig(properties);
+    }
+
+    public static PropertyConfig createMySQLConfig(String host, String sid, String userName, String password) {
+        Properties properties = new Properties();
+        properties.setProperty("jdbc.driver", Driver.MYSQL);
+        properties.setProperty("jdbc.url", "jdbc:mysql://" + host + "/" + sid
+                                           + "?useUnicode= yes&characterEncoding=UTF-8");
+        properties.setProperty("jdbc.username", userName);
+        properties.setProperty("jdbc.password", password);
+        return createPropertyConfig(properties);
+    }
+
+    public static PropertyConfig createOracleConfig(String host, String sid, String userName, String password) {
+        Properties properties = new Properties();
+        properties.setProperty("jdbc.driver", Driver.ORACLE);
+        properties.setProperty("jdbc.url", "jdbc:oracle:thin:@" + host + ":1521:" + sid);
+        properties.setProperty("jdbc.username", userName);
+        properties.setProperty("jdbc.password", password);
         return createPropertyConfig(properties);
     }
 

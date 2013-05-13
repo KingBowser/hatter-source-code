@@ -1,5 +1,6 @@
 package me.hatter.tools.resourceproxy.dbutils.dataaccess;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -9,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
 import me.hatter.tools.resourceproxy.commons.util.CollUtil;
@@ -22,10 +24,11 @@ import me.hatter.tools.resourceproxy.dbutils.util.DBUtil;
 //
 public class DataAccessObject {
 
-    private ConnectionPool connectionPool;
-    private Connection     _connection;
-    private Exception      _connectionError;
-    private boolean        logging = true;
+    protected ConnectionPool         connectionPool;
+    protected Connection             _connection;
+    protected volatile AtomicInteger _connectionExecCount = new AtomicInteger(0);
+    protected Exception              _connectionError;
+    protected boolean                logging              = true;
 
     public DataAccessObject(ConnectionPool connectionPool) {
         this.connectionPool = connectionPool;
@@ -75,6 +78,8 @@ public class DataAccessObject {
                     System.out.println("[ERROR] error when return connection with flag: " + hasError + " "
                                        + StringUtil.printStackTrace(ex));
                 }
+            } else {
+                _connectionExecCount.incrementAndGet();
             }
         }
     }
@@ -83,6 +88,19 @@ public class DataAccessObject {
         DataAccessObject dataAccessObject = new DataAccessObject(this.connectionPool);
         dataAccessObject._connection = this.connectionPool.borrowConnection();
         return dataAccessObject;
+    }
+
+    public <T extends DataAccessObject> T borrowAsDataAccessObject(Class<T> daoClass) {
+        try {
+            Constructor<T> daoConstructor = daoClass.getConstructor(new Class[] { ConnectionPool.class });
+            T dao = daoConstructor.newInstance(new Object[] { this.connectionPool });
+            Field _connection = DataAccessObject.class.getDeclaredField("_connection");
+            _connection.setAccessible(true);
+            _connection.set(dao, this.connectionPool.borrowConnection());
+            return dao;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void returnDataAccessObject() {
@@ -99,6 +117,10 @@ public class DataAccessObject {
     public Connection getConnection() {
         if (_connection == null) throw new RuntimeException("Not run in connection pin mode.");
         return _connection;
+    }
+
+    public int getConnectionExecCount() {
+        return _connectionExecCount.intValue();
     }
 
     public void insertOrUpdateObject(final Object object) {
@@ -556,6 +578,11 @@ public class DataAccessObject {
         });
     }
 
+    public static interface BatchExecute {
+
+        void execute(DataAccessObject dao);
+    }
+
     abstract public static class AbstractBatchExecute implements BatchExecute {
 
         private int count = 0;
@@ -572,15 +599,57 @@ public class DataAccessObject {
         }
     }
 
-    public static interface BatchExecute {
+    public static class WithBatchUpdateDataAccessObject extends DataAccessObject {
 
-        void execute(DataAccessObject dao);
+        private int commitCount = 100;
+
+        public WithBatchUpdateDataAccessObject(ConnectionPool connectionPool) {
+            super(connectionPool);
+        }
+
+        public void setCommitCount(int commitCount) {
+            this.commitCount = commitCount;
+        }
+
+        protected <T> T execute(Execute<T> execute) {
+            T result = super.execute(execute);
+
+            int execCount = getConnectionExecCount();
+            if ((execCount > 0) && (execCount % commitCount == 0)) {
+                if (_connection != null) {
+                    try {
+                        _connection.commit();
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+
+            return result;
+        }
     }
 
     public void batchExecute(BatchExecute batchExecute) {
         DataAccessObject _dao = this.borrowAsDataAccessObject();
         try {
             _dao.getConnection().setAutoCommit(false);
+
+            batchExecute.execute(_dao);
+
+            _dao.getConnection().commit();
+            _dao.getConnection().setAutoCommit(true);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            _dao.returnDataAccessObject();
+        }
+    }
+
+    public void batchExecuteWithAutoCommit(BatchExecute batchExecute, int commitCount) {
+        WithBatchUpdateDataAccessObject _dao = this.borrowAsDataAccessObject(WithBatchUpdateDataAccessObject.class);
+        try {
+            _dao.getConnection().setAutoCommit(false);
+            _dao.setCommitCount(commitCount);
 
             batchExecute.execute(_dao);
 

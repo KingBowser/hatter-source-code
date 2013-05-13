@@ -645,6 +645,10 @@ public class DataAccessObject {
         }
     }
 
+    public void batchExecuteWithAutoCommit(BatchExecute batchExecute) {
+        batchExecuteWithAutoCommit(batchExecute, 100);
+    }
+
     public void batchExecuteWithAutoCommit(BatchExecute batchExecute, int commitCount) {
         WithBatchUpdateDataAccessObject _dao = this.borrowAsDataAccessObject(WithBatchUpdateDataAccessObject.class);
         try {

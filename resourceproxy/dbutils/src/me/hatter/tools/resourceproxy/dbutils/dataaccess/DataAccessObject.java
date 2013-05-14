@@ -75,7 +75,7 @@ public class DataAccessObject {
             long end = System.currentTimeMillis();
             long cost = end - start;
             if (cost >= loggingMillis) {
-                System.out.println("[WARN] Sql runing too long, total cost millis: " + cost + ", borrow cost millis: "
+                System.out.println("[WARN] Sql runing too long; total cost millis: " + cost + ", borrow cost millis: "
                                    + (borrowEnd - start) + ", sql execute cost millis: " + (end - borrowEnd));
             }
             return result;

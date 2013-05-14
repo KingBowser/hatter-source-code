@@ -24,11 +24,13 @@ import me.hatter.tools.resourceproxy.dbutils.util.DBUtil;
 //
 public class DataAccessObject {
 
-    protected ConnectionPool         connectionPool;
-    protected Connection             _connection;
-    protected volatile AtomicInteger _connectionExecCount = new AtomicInteger(0);
-    protected Exception              _connectionError;
-    protected boolean                logging              = true;
+    protected ConnectionPool connectionPool;
+    protected Connection     _connection;
+    protected AtomicInteger  _connectionExecCount = new AtomicInteger(0);
+    protected Exception      _connectionError;
+    protected boolean        logging              = !"false".equalsIgnoreCase(System.getProperty("dataAccessObject.logging"));
+    protected long           loggingMillis        = Long.parseLong(System.getProperty("dataAccessObject.loggingMillis",
+                                                                                      "200"));
 
     public DataAccessObject(ConnectionPool connectionPool) {
         this.connectionPool = connectionPool;
@@ -40,6 +42,14 @@ public class DataAccessObject {
 
     public DataAccessObject(PropertyConfig propertyConfig) {
         this(new ConnectionFactory(propertyConfig));
+    }
+
+    public long getLoggingMillis() {
+        return loggingMillis;
+    }
+
+    public void setLoggingMillis(long loggingMillis) {
+        this.loggingMillis = loggingMillis;
     }
 
     public boolean isLogging() {
@@ -56,10 +66,19 @@ public class DataAccessObject {
     }
 
     protected <T> T execute(Execute<T> execute) {
+        long start = System.currentTimeMillis();
         Connection connection = (_connection != null) ? _connection : connectionPool.borrowConnection();
+        long borrowEnd = System.currentTimeMillis();
         boolean hasError = false;
         try {
-            return execute.execute(connection);
+            T result = execute.execute(connection);
+            long end = System.currentTimeMillis();
+            long cost = end - start;
+            if (cost >= loggingMillis) {
+                System.out.println("[WARN] Sql runing too long, total cost millis: " + cost + ", borrow cost millis: "
+                                   + (borrowEnd - start) + ", sql execute cost millis: " + (end - borrowEnd));
+            }
+            return result;
         } catch (Exception e) {
             if ((_connection != null) && (_connectionError == null)) {
                 _connectionError = e;
@@ -86,6 +105,8 @@ public class DataAccessObject {
 
     public DataAccessObject borrowAsDataAccessObject() {
         DataAccessObject dataAccessObject = new DataAccessObject(this.connectionPool);
+        dataAccessObject.setLogging(dataAccessObject.isLogging());
+        dataAccessObject.setLoggingMillis(dataAccessObject.getLoggingMillis());
         dataAccessObject._connection = this.connectionPool.borrowConnection();
         return dataAccessObject;
     }
@@ -94,6 +115,8 @@ public class DataAccessObject {
         try {
             Constructor<T> daoConstructor = daoClass.getConstructor(new Class[] { ConnectionPool.class });
             T dao = daoConstructor.newInstance(new Object[] { this.connectionPool });
+            dao.setLogging(this.isLogging());
+            dao.setLoggingMillis(this.getLoggingMillis());
             Field _connection = DataAccessObject.class.getDeclaredField("_connection");
             _connection.setAccessible(true);
             _connection.set(dao, this.connectionPool.borrowConnection());
@@ -666,7 +689,7 @@ public class DataAccessObject {
         }
     }
 
-    private <T> String makeCountSQL(Class<T> clazz, String where) {
+    protected <T> String makeCountSQL(Class<T> clazz, String where) {
         String sql = "select count(*) count from " + DBUtil.getTableName(clazz);
         if ((where != null) && (where.trim().length() > 0)) {
             sql += " where " + where;
@@ -674,7 +697,7 @@ public class DataAccessObject {
         return sql;
     }
 
-    private String makeSQL(Class<?> clazz, String where, String orderBy) {
+    protected String makeSQL(Class<?> clazz, String where, String orderBy) {
         if (where != null) {
             if (where.trim().toUpperCase().startsWith("SELECT")) {
                 return where;
@@ -692,15 +715,15 @@ public class DataAccessObject {
         return sql;
     }
 
-    private <T> T first(List<T> list) {
+    protected <T> T first(List<T> list) {
         if ((list == null) || list.isEmpty()) {
             return null;
         }
         return list.get(0);
     }
 
-    private void setPreparedStatmentValues(PreparedStatement preparedStatement, Class<?> clazz, Object object,
-                                           List<String> refFieldList) throws Exception {
+    protected void setPreparedStatmentValues(PreparedStatement preparedStatement, Class<?> clazz, Object object,
+                                             List<String> refFieldList) throws Exception {
         for (int i = 0; i < refFieldList.size(); i++) {
             int index = i + 1;
             AtomicReference<Class<?>> refType = new AtomicReference<Class<?>>();
@@ -710,9 +733,9 @@ public class DataAccessObject {
         }
     }
 
-    private void setFiledByResultSet(ResultSet resultSet, Object o, String f, Field field)
-                                                                                          throws IllegalAccessException,
-                                                                                          SQLException {
+    protected void setFiledByResultSet(ResultSet resultSet, Object o, String f, Field field)
+                                                                                            throws IllegalAccessException,
+                                                                                            SQLException {
         if (field.getType() == String.class) {
             field.set(o, resultSet.getString(f));
         } else if (field.getType() == Integer.class) {
@@ -739,8 +762,8 @@ public class DataAccessObject {
         }
     }
 
-    private static void setPreparedStatmentByValue(PreparedStatement preparedStatement, int index, Class<?> type,
-                                                   Object o) throws SQLException {
+    protected static void setPreparedStatmentByValue(PreparedStatement preparedStatement, int index, Class<?> type,
+                                                     Object o) throws SQLException {
         if (o == null) {
             preparedStatement.setObject(index, null);
         } else if (type == String.class) {

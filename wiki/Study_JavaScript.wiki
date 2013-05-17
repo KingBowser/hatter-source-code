@@ -39,6 +39,7 @@ _[http://www.ecma-international.org/publications/standards/Ecma-262-arch.htm]_
 || `Self` || http://selflanguage.org/ || Self is a prototype-based dynamic object-oriented programming language, environment, and virtual machine centered around the principles of simplicity, uniformity, concreteness, and liveness ||
 || `Scheme` || http://www.schemers.org/ || Scheme is a functional programming language and one of the two main dialects of the programming language Lisp ||
 
+借鉴部分 ^[5]^： 
 || `Java` || 语言名字、语法 ||
 || `Self` || 没有类的面向对象，基于原型的继承 ||
 || `Perl` || 正则表达式 ||

@@ -1,0 +1,28 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+sourceCompatibility = 1.5
+version = '1.0'
+
+repositories {
+    maven {
+        url "http://example.com/repositiry/"
+    }
+    mavenCentral()
+}
+
+dependencies {
+    compile 'GID:AID:VERSION'
+}
+
+eclipse {
+  project {
+    name = 'sample'
+    comment = 'sample'
+  }
+  classpath {
+    defaultOutputDir = file('classes')
+  }
+}
+
+

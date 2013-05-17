@@ -9,7 +9,7 @@
 || `Ecma262 3rd` || https://code.google.com/p/hatter-source-code/downloads/detail?name=Ecma-262-3rd.pdf || Dec 1999 ||  ||
 || `Ecma262 4th` || `-` || `-` || 已废弃 ||
 || `Ecma262 5th` || https://code.google.com/p/hatter-source-code/downloads/detail?name=Ecma-262-5th.pdf || Dec 2009 ||  ||
-|| `Ecma262 5th-r1` || https://code.google.com/p/hatter-source-code/downloads/detail?name=Ecma-262-5th-r1.pdf || Jun 2011 ||  ||
+|| `Ecma262 5th-r1` || https://code.google.com/p/hatter-source-code/downloads/detail?name=Ecma-262-5th-r1.pdf || Jun 2011 ||  [http://code.google.com/p/hatter-source-code/downloads/detail?name=Ecma-262-5th-r1-zh_CN.pdf | 中文版] ||
 
 _[http://www.ecma-international.org/publications/standards/Ecma-262-arch.htm]_
 

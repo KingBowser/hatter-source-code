@@ -14,5 +14,7 @@ Check the box “Open in 32-bit mode”.
 }}}
 
 Make APP:
+{{{
 PNG 128*128
 make app url: http://hatter-source-code.googlecode.com/svn/trunk/macosx/makeapp.sh
+}}}

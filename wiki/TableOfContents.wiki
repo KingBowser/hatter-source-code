@@ -80,6 +80,7 @@
  * [Study_Network Network]
   * [Study_Network_LocalTriangulation Local Triangulation]
  * [Study_RFC RFC]
+  * [Study_RFC_Misc Misc]
  * [Study_SCM SCM]
   * [Study_SCM_Git Git]
   * [Study_SCM_Mercurial Mercurial]

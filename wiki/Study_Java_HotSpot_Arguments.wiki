@@ -623,7 +623,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_
 || `JavaPriority9_To_OSPriority` || `` || `` || ||
 || `JavaPriority10_To_OSPriority` || `` || `` || ||
 || `StarvationMonitorInterval` || `` || `` || ||
-|| `CompileThreshold` || `` || `` || ||
+|| `CompileThreshold` || `intx` || `product_pd` || 触发JIT的阈值，函数被解释执行的次数 ||
 || `BackEdgeThreshold` || `` || `` || ||
 || `Tier0InvokeNotifyFreqLog` || `` || `` || ||
 || `Tier2InvokeNotifyFreqLog` || `` || `` || ||

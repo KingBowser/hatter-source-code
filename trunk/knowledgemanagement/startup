@@ -1,0 +1,10 @@
+java \
+   -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=4567,suspend=n \
+   -Xmx1G \
+   -Djssp.path=war/jssp \
+   -Djsspdebug=true \
+   -jar lib/winstone-0.9.10.jar \
+   --httpPort=8888 \
+   --ajp13Port=-1 \
+   --webroot=war
+

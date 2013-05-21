@@ -29,10 +29,12 @@ task initwar << {
   file('war').mkdirs();
   file('war/jssp').mkdirs();
   file('war/WEB-INF').mkdirs();
-  file('war/WEB-INF/lib').mkdirs();
-  file('war/WEB-INF/classes').mkdirs();
+  // file('war/WEB-INF/lib').mkdirs();
+  // file('war/WEB-INF/classes').mkdirs();
   file('war/WEB-INF/web.xml').createNewFile();
 }
+
+initwar.dependsOn initapp
 
 task install << {
   def installBinDirLib = "${baseProjectName}_lib"
@@ -75,6 +77,8 @@ task packjar << {
   ant.delete(dir: packtempclasses)
 }
 
+packjar.dependsOn build
+
 task packall << {
   def packtempclasses = "packtempclasses"
   def packtempmanifest = "packtempmanifest"
@@ -95,6 +99,8 @@ task packall << {
   ant.delete(dir: packtempclasses)
   ant.delete(file: packtempmanifest)
 }
+
+packall.dependsOn build
 
 task packall2 << {
   def packtempclasses = "packtempclasses"
@@ -144,6 +150,8 @@ task packall2 << {
   ant.delete(file: packtempmanifest)
 }
 
+packall2.dependsOn build
+
 task packwar << {
   copy {
     from ('lib')
@@ -163,6 +171,8 @@ task packwar << {
     include '**/*.*'
   }
 }
+
+packwar.dependsOn build
 
 dependencies {
     compile files(fileTree(dir: 'lib', includes: ['*.jar'], excludes: ['*-sources.jar', '*-javadoc.jar']))

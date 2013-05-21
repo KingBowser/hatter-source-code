@@ -1,4 +1,4 @@
-<%action.doAction("me.hatter.apps.knowledgemanagement.action.IndexAction");%>
+<%action.doAction("me.hatter.apps.knowledgemanagement.action.GlobalSettingAction");%>
 <%!=control.j("control/head.jssp")%>
 
 <h1><i>Knowledge management system</i></h1>

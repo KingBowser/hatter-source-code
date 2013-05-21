@@ -1,0 +1,14 @@
+<html>
+<head>
+<% if (app_context.get("subject")) { %>
+  <title><%=app_context.get("subject")%></title>
+<% } else { %>
+  <title>Knowledge management system</title>
+<% } %>
+  <link href="/css/bootstrap.css" rel="stylesheet">
+  <script src="/js/jquery.js"></script>
+  <script src="/js/bootstrap.js"></script>
+</head>
+<body>
+<a href="/index.jssp">[Home]</a>
+<hr style="margin-top:6px;">

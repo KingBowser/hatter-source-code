@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import me.hatter.tools.commons.exception.ExceptionUtil;
 import me.hatter.tools.commons.log.LogUtil;
+import me.hatter.tools.jsspserver.exception.JSONException;
+import me.hatter.tools.jsspserver.exception.RedirectException;
 import me.hatter.tools.jsspserver.filter.JSONFilter;
 
 public abstract class BaseAction implements Action {
@@ -24,6 +26,10 @@ public abstract class BaseAction implements Action {
             localResponse.set(response);
             localContext.set(context);
             doAction(request, response, context);
+        } catch (RedirectException e) {
+            sendRedirect(e.getUrl());
+        } catch (JSONException e) {
+            returnJson(e.getObject());
         } catch (Exception e) {
             LogUtil.error("Invoke action error: " + this.getClass().getName(), e);
             throw new RuntimeException(e);
@@ -33,6 +39,14 @@ public abstract class BaseAction implements Action {
             localContext.remove();
         }
         return context;
+    }
+
+    protected void doRedirect(String url) {
+        throw new RedirectException(url);
+    }
+
+    protected void doJson(Object json) {
+        throw new JSONException(json);
     }
 
     // can be called in doAction

@@ -64,6 +64,7 @@ task packjar << {
   }
   ant.delete(dir: packtempclasses)
 }
+packjar.dependsOn build
 
 task packall << {
   def packtempclasses = "packtempclasses"
@@ -130,21 +131,6 @@ task packall2 << {
   }
   ant.delete(dir: packtempclasses)
   ant.delete(file: packtempmanifest)
-}
-
-task packwar << {
-  copy {
-    from ('lib')
-    into "war/WEB-INF/lib/"
-    include '*.jar'
-  }
-  ant.delete(dir: 'war/WEB-INF/classes')
-  file('war/WEB-INF/classes').mkdirs()
-  copy {
-    from ('build/classes/main')
-    into "war/WEB-INF/classes/"
-    include '**/*.*'
-  }
 }
 
 dependencies {

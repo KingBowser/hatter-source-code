@@ -1,0 +1,5 @@
+<%action.doAction("me.hatter.apps.resplookup.action.IndexAction");%>
+<%!=control.j("control/head.jssp")
+
+
+<%!=control.j("control/foot.jssp")%>

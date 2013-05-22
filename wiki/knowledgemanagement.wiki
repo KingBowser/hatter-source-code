@@ -1,2 +1,7 @@
 #summary Resource Proxy
 #sidebar TableOfContents
+
+
+{{{
+{{@http://www.example.com}}
+}}}

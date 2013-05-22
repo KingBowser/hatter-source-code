@@ -9,5 +9,5 @@
 
 * Include
 {{{
-{{#pagename or id}}
+{{#pagename or table name}}
 }}}

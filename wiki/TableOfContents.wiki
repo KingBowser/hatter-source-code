@@ -119,6 +119,7 @@
   * [jsspserver]
   * [jtop]
    * [Apps_jtop_Case01 Case01]
+  * [knowledgemanagement]
   * [permstat]
   * [resourceproxy]
 

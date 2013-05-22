@@ -18,3 +18,4 @@ Markdown?  :http://daringfireball.net/projects/markdown/syntax/
  * https://github.com/rjeschke/txtmark
  * https://github.com/sirthias/pegdown
  * https://github.com/evilstreak/markdown-js
+online editor: http://www.ctrlshift.net/project/markdowneditor/

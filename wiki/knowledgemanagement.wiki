@@ -1,7 +1,7 @@
 #summary Resource Proxy
 #sidebar TableOfContents
 
-==
+=My Syntax=
 * Reference
 {{{
 {{@http://www.example.com}}

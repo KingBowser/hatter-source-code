@@ -1,7 +1,7 @@
 #summary Resource Proxy
 #sidebar TableOfContents
 
-
+==
 * Reference
 {{{
 {{@http://www.example.com}}
@@ -11,3 +11,9 @@
 {{{
 {{#pagename or table name}}
 }}}
+
+=Markdown=
+Markdown?  :http://daringfireball.net/projects/markdown/syntax/
+  http://code.google.com/p/markdownj/
+  https://github.com/rjeschke/txtmark
+  https://github.com/sirthias/pegdown

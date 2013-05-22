@@ -2,6 +2,12 @@
 #sidebar TableOfContents
 
 
+* Reference
 {{{
 {{@http://www.example.com}}
+}}}
+
+* Include
+{{{
+{{#pagename or id}}
 }}}

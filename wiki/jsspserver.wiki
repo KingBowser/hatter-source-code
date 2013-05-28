@@ -22,3 +22,7 @@ Sample:
 {{{
 svn co http://hatter-source-code.googlecode.com/svn/trunk/hostsmanager/ hostsmanager
 }}}
+
+== Programming with winstone(servlet container) ==
+* http://winstone.sourceforge.net/
+* https://hatter-source-code.googlecode.com/svn/trunk/winstonejsspserver

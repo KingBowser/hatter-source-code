@@ -35,7 +35,6 @@ web.xml sample:
 	xsi:schemaLocation="
         http://java.sun.com/xml/ns/j2ee  http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd
     ">
-    
 	<filter>
 		<filter-name>welcome</filter-name>
 		<filter-class>filter.welcome</filter-class>
@@ -65,6 +64,5 @@ web.xml sample:
 	<welcome-file-list>
 		<welcome-file>/index.jssp</welcome-file>
 	</welcome-file-list>
-
 </web-app>
 }}}

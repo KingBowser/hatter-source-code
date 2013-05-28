@@ -24,5 +24,5 @@ svn co http://hatter-source-code.googlecode.com/svn/trunk/hostsmanager/ hostsman
 }}}
 
 == Programming with winstone(servlet container) ==
-* http://winstone.sourceforge.net/
-* https://hatter-source-code.googlecode.com/svn/trunk/winstonejsspserver
+ * http://winstone.sourceforge.net/
+ * https://hatter-source-code.googlecode.com/svn/trunk/winstonejsspserver

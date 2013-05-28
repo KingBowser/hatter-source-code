@@ -12,6 +12,8 @@ archivesBaseName = baseProjectName
 sourceCompatibility = 1.5
 targetCompatibility = 1.5
 
+defaultTasks 'packall'
+
 task initapp << {
   file('lib').mkdirs()
   file('src/main/java').mkdirs()
@@ -64,6 +66,7 @@ task packall << {
   ant.delete(dir: packtempclasses)
   ant.delete(file: packtempmanifest)
 }
+packall.dependsOn build
 
 dependencies {
     compile files(fileTree(dir: 'lib', includes: ['*.jar']))

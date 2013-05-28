@@ -186,6 +186,12 @@ eclipse {
   }
 }
 
+eclipseJdt << {
+  File f = file('.settings/org.eclipse.core.resources.prefs')
+  f.write('eclipse.preferences.version=1\n')
+  f.append('encoding/<project>=utf-8')
+}
+
 jar {
   manifest {
     attributes('Main-Class': jarManifestMainClass)

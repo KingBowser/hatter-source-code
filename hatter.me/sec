@@ -1,0 +1,2 @@
+wget --secure-protocol=sslv3 --no-check-certificate <URL>
+curl -sslv3 -k <URL>

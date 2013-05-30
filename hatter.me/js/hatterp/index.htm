@@ -1,0 +1,39 @@
+<html>
+<head>
+<title>Wget/Curl by hatterp</title>
+  <link href="//hatter.me/bootstrap/css/bootstrap.css" rel="stylesheet">
+  <script src="//hatter.me/bootstrap/js/jquery.js"></script>
+  <script src="//hatter.me/bootstrap/js/bootstrap.js"></script>
+</head>
+<body>
+
+<script type="text/javascript">
+
+function updateCode() {
+  var url = document.getElementById("targetUrl").value;
+  if (url.length == 0) {
+    document.getElementById("codeCurl").value = "";
+    document.getElementById("codeWget").value = "";
+  } else {
+  	var u = [];
+  	u.push("https://");
+  	u.push("hatter.me");
+  	u.push("/p");
+  	u.push("?url=");
+  	u.push(encodeURIComponent(url));
+    document.getElementById("codeCurl").value = "wget --secure-protocol=sslv3 --no-check-certificate " + u.join("");
+    document.getElementById("codeWget").value = "curl -sslv3 -k " + u.join("");
+  }
+}
+
+</script>
+
+<div class="container" style="width:900px;">
+  <input type="text" class="input-block-level" id="targetUrl" placeholder="Please input target url ..." onchange="updateCode();"><br>
+  CURL:<code id="codeCurl"></code> <br>
+  WGET:<code id="codeWget"></code> <br>
+</div>
+
+
+</body>
+</html>

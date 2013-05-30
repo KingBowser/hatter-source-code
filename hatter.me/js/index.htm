@@ -81,6 +81,11 @@
     { url: "https://www.dnspod.cn/Tools", title: "DNSPod 域名健康诊断(^)", newwin: true }
   ];
   
+  if (document.location != null && document.location.search != null && /a=a/.test(document.location.search)) {
+    itemList.push({ url: "hatterp", title: "Hatter's P" + "r" + "oxy" });
+    itemList.push({ url: "pass", title: "Password manager" });
+  }
+  
   var firFoxPluginList = [
     {url: "https://addons.mozilla.org/zh-cn/firefox/addon/6647/", title: "HttpFox"},
     {url: "https://addons.mozilla.org/en-US/firefox/addon/1843/", title: "FireBug"}

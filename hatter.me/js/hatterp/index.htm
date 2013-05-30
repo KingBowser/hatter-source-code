@@ -12,8 +12,8 @@
 function updateCode() {
   var url = document.getElementById("targetUrl").value;
   if (url.length == 0) {
-    document.getElementById("codeCurl").value = "";
-    document.getElementById("codeWget").value = "";
+    document.getElementById("codeCurl").innerHTML = "";
+    document.getElementById("codeWget").innerHTML = "";
   } else {
   	var u = [];
   	u.push("https://");
@@ -21,8 +21,8 @@ function updateCode() {
   	u.push("/p");
   	u.push("?url=");
   	u.push(encodeURIComponent(url));
-    document.getElementById("codeCurl").value = "wget --secure-protocol=sslv3 --no-check-certificate " + u.join("");
-    document.getElementById("codeWget").value = "curl -sslv3 -k " + u.join("");
+    document.getElementById("codeCurl").innerHTML = "wget --secure-protocol=sslv3 --no-check-certificate " + u.join("");
+    document.getElementById("codeWget").innerHTML = "curl -sslv3 -k " + u.join("");
   }
 }
 

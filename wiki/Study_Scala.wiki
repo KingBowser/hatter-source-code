@@ -1,0 +1,2 @@
+#summary Scala Study
+#sidebar TableOfContents

@@ -40,10 +40,10 @@ _[http://www.ecma-international.org/publications/standards/Ecma-262-arch.htm]_
 || `Scheme` || http://www.schemers.org/ || Scheme is a functional programming language and one of the two main dialects of the programming language Lisp ||
 
 借鉴部分 ^[5]^： 
-|| `Java` || 语言名字、语法 ||
 || `Self` || 没有类的面向对象，基于原型的继承 ||
-|| `Perl` || 正则表达式 ||
 || `Schema` || 高阶函数，闭包 ||
+|| `Java` || 语言名字、语法 ||
+|| `Perl` || 正则表达式 ||
 
 ===四、JavaScript工具====
 [http://hatter.me/js Hatter's JavaScript tools]<br>

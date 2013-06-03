@@ -1,3 +1,6 @@
 #summary Haskell Study
 #sidebar TableOfContents
 
+http://shuklan.com/haskell/index.html
+
+http://learnyouahaskell.com/chapters

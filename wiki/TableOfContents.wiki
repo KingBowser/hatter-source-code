@@ -75,6 +75,7 @@
    * [Study_DotNet_CSharp CSharp]
   * [Study_GO Go Lang]
   * [Study_Groovy Groovy]
+  * [Study_Haskell Haskell]
   * [Study_JavaScript JavaScript]
    * [Study_JavaScript_Application Application]
    * [Study_JavaScript_Charts Charts]

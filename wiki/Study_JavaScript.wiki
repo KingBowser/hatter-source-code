@@ -78,9 +78,9 @@ _[http://www.ecma-international.org/publications/standards/Ecma-262-arch.htm]_
 
 ===五、在服务器端应用===
 
-|| `ASP/ASP.NET` ||
-|| `node.js` ||
-|| `jssp` ||
+|| `ASP/ASP.NET` ||  ||  ||
+|| `node.js` || http://nodejs.org/ || Node.js is a platform built on Chrome's JavaScript runtime for easily building fast, scalable network applications. ||
+|| `jssp` || http://jssp.sourceforge.net/ || JSSP - JavaScript Server Pages ||
 
 ===六、相关网站===
 || The HTML5 test || http://html5test.com/ || The HTML5 test score is an indication of how well your browser supports the upcoming HTML5 standard and related specifications ||

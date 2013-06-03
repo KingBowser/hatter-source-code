@@ -1,0 +1,4 @@
+#summary FSharp Study
+#sidebar TableOfContents
+
+http://fsharp.org/

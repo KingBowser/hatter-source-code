@@ -73,6 +73,7 @@
    * [Study_DotNet_CLI CLI]
     * [Study_DotNet_CLI_MemoryModel Memory Model]
    * [Study_DotNet_CSharp CSharp]
+   * [Study_DotNet_FSharp FSharp]
   * [Study_GO Go Lang]
   * [Study_Groovy Groovy]
   * [Study_Haskell Haskell]

@@ -11,3 +11,8 @@
 || `Sublime Text 2` || Commercial || http://www.sublimetext.com/ || Sublime Text is a sophisticated text editor for code, markup and prose. ||
 || `IntelliJ IDEA` || Commercial || http://www.jetbrains.com/idea/ || The Best Java and Polyglot IDE ||
 || `Smultron ` || Commercial || http://www.peterborgapps.com/smultron/ || An elegant and powerful text editor that is easy to use. ||
+
+
+|| *Name* || *License* || *Web site* || *Description* ||
+|| `StarUML` ||  || http://staruml.sourceforge.net/en/ || StarUML is an open source project to develop fast, flexible, extensible, featureful, and freely-available UML/MDA platform running on Win32 platform. ||
+|| `yEd` ||  || http://www.yworks.com/en/products_yed_about.html || yEd is a powerful desktop application that can be used to quickly and effectively generate high-quality diagrams. Create diagrams manually, or import your external data for analysis. ||

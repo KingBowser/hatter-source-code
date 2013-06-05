@@ -3,10 +3,11 @@
 
 || *Name* || *License* || *Web site* || *Description* ||
 || `Fraise` || Apache 2.0 || https://github.com/jfmoy/Fraise ||  ||
-|| `Aptana` || GPL || http://www.aptana.com/ ||  ||
+|| `Aptana` || GPL || http://www.aptana.com/ || The world’s most powerful open-source web development IDE ||
 || `Eclipse` ||  ||  ||  ||
 || `Notepad++` ||  ||  ||  ||
 || `LiteIDE` ||  ||  ||  ||
 || `OpenOffice` ||  ||  ||  ||
-|| `Sublime Text 2` || Commercial || http://www.sublimetext.com/ ||  ||
+|| `Sublime Text 2` || Commercial || http://www.sublimetext.com/ || Sublime Text is a sophisticated text editor for code, markup and prose. ||
 || `IntelliJ IDEA` || Commercial || http://www.jetbrains.com/idea/ || The Best Java and Polyglot IDE ||
+|| `Smultron ` || Commercial || http://www.peterborgapps.com/smultron/ || An elegant and powerful text editor that is easy to use. ||

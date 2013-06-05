@@ -6,9 +6,8 @@
 
 ==Try clojure==
 
-[http://tryclj.com/ Try Clojure]
-
-[http://himera.herokuapp.com/index.html Himera]
+ * [http://tryclj.com/ Try Clojure]
+ * [http://himera.herokuapp.com/index.html Himera]
 
 ==The Clojure Toolbox==
 [http://www.clojure-toolbox.com/]

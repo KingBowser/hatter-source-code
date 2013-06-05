@@ -1,7 +1,7 @@
 #summary Editor Study
 #sidebar TableOfContents
 
-|| *Name* || *License* || *Site* ||
+|| *Name* || *License* || *Web site* ||
 || `Fraise` || Apache 2.0 || https://github.com/jfmoy/Fraise ||
 || `Aptana` ||  ||  ||
 || `Eclipse` ||  ||  ||

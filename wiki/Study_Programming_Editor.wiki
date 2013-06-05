@@ -1,6 +1,7 @@
 #summary Editor Study
 #sidebar TableOfContents
 
+==文本编辑软件==
 || *Name* || *License* || *Web site* || *Description* ||
 || `Fraise` || Apache 2.0 || https://github.com/jfmoy/Fraise ||  ||
 || `Aptana` || GPL || http://www.aptana.com/ || The world’s most powerful open-source web development IDE ||
@@ -12,7 +13,7 @@
 || `IntelliJ IDEA` || Commercial || http://www.jetbrains.com/idea/ || The Best Java and Polyglot IDE ||
 || `Smultron ` || Commercial || http://www.peterborgapps.com/smultron/ || An elegant and powerful text editor that is easy to use. ||
 
-
+==图形编程软件==
 || *Name* || *License* || *Web site* || *Description* ||
 || `StarUML` ||  || http://staruml.sourceforge.net/en/ || StarUML is an open source project to develop fast, flexible, extensible, featureful, and freely-available UML/MDA platform running on Win32 platform. ||
 || `yEd` ||  || http://www.yworks.com/en/products_yed_about.html || yEd is a powerful desktop application that can be used to quickly and effectively generate high-quality diagrams. Create diagrams manually, or import your external data for analysis. ||

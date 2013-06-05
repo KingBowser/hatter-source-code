@@ -1,12 +1,12 @@
 #summary Editor Study
 #sidebar TableOfContents
 
-
-|| `Sublime Text 2` ||
-|| `Fraise` ||
-|| `Aptana` ||
-|| `Eclipse` ||
-|| `IDEA` ||
-|| `Notepad++` ||
-|| `LiteIDE` ||
-|| `OpenOffice` ||
+|| *Name* || *License* || *Site* ||
+|| `Fraise` || Apache 2.0 || https://github.com/jfmoy/Fraise ||
+|| `Aptana` ||  ||  ||
+|| `Eclipse` ||  ||  ||
+|| `IDEA` ||  ||  ||
+|| `Notepad++` ||  ||  ||
+|| `LiteIDE` ||  ||  ||
+|| `OpenOffice` ||  ||  ||
+|| `Sublime Text 2` || Commercial || http://www.sublimetext.com/ ||

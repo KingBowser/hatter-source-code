@@ -15,6 +15,6 @@
 
 ==图形编辑软件==
 || *Name* || *License* || *Web site* || *Description* ||
-|| `astah community` || Free || http://astah.net/ || A free UML editor - that is ready to use the instant you download it, allowing your UML diagrams to be quickly and easily enhanced.  ||
+|| `astah community` || Free || http://astah.net/editions/community || A free UML editor - that is ready to use the instant you download it, allowing your UML diagrams to be quickly and easily enhanced.  ||
 || `StarUML` ||  || http://staruml.sourceforge.net/en/ || StarUML is an open source project to develop fast, flexible, extensible, featureful, and freely-available UML/MDA platform running on Win32 platform. ||
 || `yEd` ||  || http://www.yworks.com/en/products_yed_about.html || yEd is a powerful desktop application that can be used to quickly and effectively generate high-quality diagrams. Create diagrams manually, or import your external data for analysis. ||

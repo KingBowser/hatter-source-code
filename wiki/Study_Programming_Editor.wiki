@@ -1,12 +1,12 @@
 #summary Editor Study
 #sidebar TableOfContents
 
-|| *Name* || *License* || *Web site* ||
-|| `Fraise` || Apache 2.0 || https://github.com/jfmoy/Fraise ||
-|| `Aptana` ||  ||  ||
-|| `Eclipse` ||  ||  ||
-|| `IDEA` ||  ||  ||
-|| `Notepad++` ||  ||  ||
-|| `LiteIDE` ||  ||  ||
-|| `OpenOffice` ||  ||  ||
-|| `Sublime Text 2` || Commercial || http://www.sublimetext.com/ ||
+|| *Name* || *License* || *Web site* || *Description* ||
+|| `Fraise` || Apache 2.0 || https://github.com/jfmoy/Fraise ||  ||
+|| `Aptana` || GPL || http://www.aptana.com/ ||  ||
+|| `Eclipse` ||  ||  ||  ||
+|| `Notepad++` ||  ||  ||  ||
+|| `LiteIDE` ||  ||  ||  ||
+|| `OpenOffice` ||  ||  ||  ||
+|| `Sublime Text 2` || Commercial || http://www.sublimetext.com/ ||  ||
+|| `IntelliJ IDEA` || Commercial || http://www.jetbrains.com/idea/ || The Best Java and Polyglot IDE ||

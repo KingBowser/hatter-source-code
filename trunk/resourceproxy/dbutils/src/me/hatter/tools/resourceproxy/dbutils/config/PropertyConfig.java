@@ -61,7 +61,7 @@ public class PropertyConfig {
         Properties properties = new Properties();
         properties.setProperty("jdbc.driver", Driver.MYSQL);
         properties.setProperty("jdbc.url", "jdbc:mysql://" + host + "/" + sid
-                                           + "?useUnicode= yes&characterEncoding=UTF-8");
+                                           + "?useUnicode=yes&characterEncoding=UTF-8");
         properties.setProperty("jdbc.username", userName);
         properties.setProperty("jdbc.password", password);
         return createPropertyConfig(properties);

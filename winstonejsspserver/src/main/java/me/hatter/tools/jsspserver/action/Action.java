@@ -37,6 +37,7 @@ public interface Action {
     }
 
     public static final String JSSP_ACTION = "jsspaction";
+    public static final String JSSP_TYPE   = "jssptype";
 
     Map<String, Object> doAction(HttpServletRequest request, HttpServletResponse response);
 }

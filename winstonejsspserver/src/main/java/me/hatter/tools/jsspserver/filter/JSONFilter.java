@@ -39,11 +39,11 @@ public class JSONFilter implements Filter {
         HttpServletResponse httpResponse = (HttpServletResponse) response;
 
         String fpath = httpRequest.getServletPath();
-        if (fpath.toLowerCase().endsWith(".jsonp")) {
+        if (fpath.toLowerCase().endsWith(".jsonp") || fpath.toLowerCase().endsWith(".ajax")) {
             JsspResource jsonpResource = JsspResourceManager.getJsspResource(FilterUtil.getResource(fpath));
 
             if (jsonpResource.exists()) {
-                System.out.println("[INFO] Found jsonp resource: " + jsonpResource.getResource());
+                System.out.println("[INFO] Found jsonp/ajax resource: " + jsonpResource.getResource());
 
                 Map<String, Object> context = new HashMap<String, Object>();
                 String jsonpAction = StringUtil.trimToNull(IOUtil.readToString(jsonpResource.getResource().openInputStream()));
@@ -51,7 +51,7 @@ public class JSONFilter implements Filter {
                 if (jsonpAction != null) {
                     try {
                         Class<?> jsonpActionClazz = Class.forName(jsonpAction);
-                        System.out.println("[INFO] Found jsonp action: " + jsonpActionClazz);
+                        System.out.println("[INFO] Found jsonp/ajax action: " + jsonpActionClazz);
                         if (Action.class.isAssignableFrom(jsonpActionClazz)) {
                             Action a = ((Action) jsonpActionClazz.newInstance());
                             context = a.doAction(httpRequest, httpResponse);

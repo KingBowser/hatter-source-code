@@ -14,6 +14,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import me.hatter.tools.commons.string.StringUtil;
 import me.hatter.tools.jsspserver.action.Action;
 import me.hatter.tools.jsspserver.action.Action.DoAction;
 import me.hatter.tools.resourceproxy.commons.resource.Resource;
@@ -90,9 +91,11 @@ public class JSSPFilter implements Filter {
                 JsspExecutor.executeExplained(new StringReader(explainedContent), context, addContext, jsspReader, bw,
                                               jsspResource.getResource());
 
+                String jsspType = StringUtil.toLowerCase(request.getParameter(Action.JSSP_TYPE));
+
                 httpResponse.setCharacterEncoding(ContentTypes.UTF8_CHARSET);
                 httpResponse.setStatus(HttpConstants.STATUS_SUCCESS);
-                httpResponse.setContentType(ContentTypes.HTML_AND_UTF8);
+                httpResponse.setContentType(("text".equals(jsspType) || "txt".equals(jsspType)) ? ContentTypes.PLAIN_AND_UTF8 : ContentTypes.HTML_AND_UTF8);
                 httpResponse.getWriter().print(bw.getBufferedString());
             } else {
                 // response.set

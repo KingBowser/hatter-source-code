@@ -21,7 +21,7 @@ cat a b b | sort | uniq -u > c   # c 是a和b的不同
 cat x | sort | uniq -c | sort -rn
 
 汇总一个文本内容里第三列数字的和(这个方法要比用Python来做快3倍并只需1/3的代码量)：
-awk ‘{ x += $3 } END { print x }’ myfile
+awk '{ x += $3 } END { print x }' myfile
 }}}
 
 

@@ -13,6 +13,17 @@ $ apt-get source coreutils
 python -m SimpleHTTPServer
 }}}
 
+{{{
+cat a b | sort | uniq > c   # c 是a和b的合集
+cat a b | sort | uniq -d > c   # c 是a和b的交集
+cat a b b | sort | uniq -u > c   # c 是a和b的不同
+
+cat x | sort | uniq -c | sort -rn
+
+汇总一个文本内容里第三列数字的和(这个方法要比用Python来做快3倍并只需1/3的代码量)：
+awk ‘{ x += $3 } END { print x }’ myfile
+}}}
+
 
 {{{
 rsync -vrlHpgtSe ssh --exclude=.svn --delete /localdir/ name@host:/remotedir/
@@ -181,3 +192,4 @@ tcpdump
 `[1].` http://www.hungry.com/~jamie/xexport.html<br>
 `[2].` http://smilejay.com/2011/03/fstab/<br>
 `[3].` http://www.cnblogs.com/liuhao/archive/2012/11/13/2768898.html<br>
+`[4].` http://www.aqee.net/what-are-the-most-useful-swiss-army-knife-one-liners-on-unix/<br>

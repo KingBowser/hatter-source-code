@@ -21,8 +21,8 @@ function updateCode() {
   	u.push("/p");
   	u.push("?url=");
   	u.push(encodeURIComponent(url));
-    document.getElementById("codeCurl").innerHTML = "wget --secure-protocol=sslv3 --no-check-certificate " + u.join("");
-    document.getElementById("codeWget").innerHTML = "curl -sslv3 -k " + u.join("");
+    document.getElementById("codeWget").innerHTML = "wget --secure-protocol=sslv3 --no-check-certificate \"" + u.join("") + "\"";
+    document.getElementById("codeCurl").innerHTML = "curl -sslv3 -k \"" + u.join("") + "\"";
   }
 }
 

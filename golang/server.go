@@ -124,7 +124,7 @@ type UrlAndReverseProxy struct {
 
 var domainReverseProxyMapMutex sync.Mutex
 var domainReverseProxyMap = map[string]*UrlAndReverseProxy {
-};
+}
 
 type RequestCallFunc func (w http.ResponseWriter, r *http.Request) bool
 

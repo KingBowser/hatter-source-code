@@ -101,6 +101,7 @@
  * [ReportedBugList Reported Bug List]
  * [Study_Others Others]
   * [Study_Others_Icon Icon]
+  * [Study_Others_Plastic Plastic]
  * _*Papers*_
   * [Paper_QuickDuplicateMessageProcessingCheck Message Processing Check]
   * [Paper_SymmetricKeyAlgorithmBasedHTTPAuthentication Authentication]

@@ -102,6 +102,9 @@ var quickDomainSettingMap = map[string]*DomainSetting {
 	"xsvn.hatter.me": &DomainSetting {
 		XPROXY, "https://hatter-source-code.googlecode.com/", "",
 	},
+	"reader.hatter.me": &DomainSetting {
+		XPROXY, "http://hatter.me:8090/", "",
+	},
 	// **/
 	"go.hatter.me": &DomainSetting {
 		PROXY, "http://golang.org", "",
@@ -160,12 +163,24 @@ var domainFilters = map[string][]RequestCallFunc {
 	"xsvn.hatter.me": []RequestCallFunc {
 		SvnHatterMeFilter,
 	},
+	"reader.hatter.me": []RequestCallFunc {
+		ReaderSecureFilter,
+	},
 	"aprilsoft.cn": []RequestCallFunc {
 		HatterJiangHeadFilter,
 	},
 	"www.aprilsoft.cn": []RequestCallFunc {
 		HatterJiangHeadFilter,
 	},
+}
+
+
+func ReaderSecureFilter(w http.ResponseWriter, r *http.Request) bool {
+	if r.TLS != nil {
+		lib.RedirectURL(w, "https://reader.hatter.me/")
+		return true
+	}
+	return false
 }
 
 func AllDomainPFilter(w http.ResponseWriter, r *http.Request) bool {

@@ -176,7 +176,7 @@ var domainFilters = map[string][]RequestCallFunc {
 
 
 func ReaderSecureFilter(w http.ResponseWriter, r *http.Request) bool {
-	if r.TLS != nil {
+	if r.TLS == nil {
 		lib.RedirectURL(w, "https://reader.hatter.me/")
 		return true
 	}

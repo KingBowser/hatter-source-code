@@ -110,6 +110,9 @@ show variables; //  查看MySQL参数
 ==函数==
 {{{
 STR_TO_DATE('2013-04-10 00:00:00', '%Y-%m-%d %H:%i:%s')
+
+String 转数字：
+cast(table_field as signed)
 }}}
 
 ==自增长ID==

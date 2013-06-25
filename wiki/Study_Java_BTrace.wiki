@@ -97,6 +97,7 @@ public class Trace {
 
 ==常用脚本==
 || [https://hatter-source-code.googlecode.com/svn/trunk/btracescripts/main/src/ClassLoaderDefine.java ClassLoaderDefine.java] || 类加载 ||
+|| [https://hatter-source-code.googlecode.com/svn/trunk/btracescripts/main/src/StringInternTrace.java StringInternTrace.java] || String.intern() ||
 
 ===参考资料===
 `[1].` http://kenai.com/projects/btrace/pages/UserGuide<br>

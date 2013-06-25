@@ -95,6 +95,9 @@ public class Trace {
 || *`Kind.NEW`* || the class name ||
 || *`Kind.ERROR`* || the thrown exception ||
 
+==常用脚本==
+|| [https://hatter-source-code.googlecode.com/svn/trunk/btracescripts/main/src/ClassLoaderDefine.java ClassLoaderDefine.java] || 类加载 ||
+
 ===参考资料===
 `[1].` http://kenai.com/projects/btrace/pages/UserGuide<br>
 `[2].` http://docs.oracle.com/javase/6/docs/technotes/guides/instrumentation/index.html<br>

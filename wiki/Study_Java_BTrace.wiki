@@ -96,8 +96,8 @@ public class Trace {
 || *`Kind.ERROR`* || the thrown exception ||
 
 ==常用脚本==
-|| [https://hatter-source-code.googlecode.com/svn/trunk/btracescripts/main/src/ClassLoaderDefine.java ClassLoaderDefine.java] || 类加载 ||
-|| [https://hatter-source-code.googlecode.com/svn/trunk/btracescripts/main/src/StringInternTrace.java StringInternTrace.java] || String.intern() ||
+|| [https://hatter-source-code.googlecode.com/svn/trunk/btracescripts/main/src/ClassLoaderDefine.java ClassLoaderDefine.java] || 打印类加载时的Stacktrace ||
+|| [https://hatter-source-code.googlecode.com/svn/trunk/btracescripts/main/src/StringInternTrace.java StringInternTrace.java] || 打印调用`String.intern()`的Stacktrace ||
 
 ===参考资料===
 `[1].` http://kenai.com/projects/btrace/pages/UserGuide<br>

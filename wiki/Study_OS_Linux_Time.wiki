@@ -3,5 +3,19 @@
 
 ==时间更新==
 
+===和时间服务器时间同步===
+{{{
+rdate -s time.nist.gov
+}}}
+
+===NTP===
+{{{
+配置文： /etc/ntp.conf
+
+service ntpd start
+}}}
+
+
 ==时间介绍==
+
 ===[Study_Time]===

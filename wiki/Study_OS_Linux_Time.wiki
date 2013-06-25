@@ -20,7 +20,7 @@ service ntpd start
 
 ===[Study_Time]===
 
-\\ \\
 
+----
 ===参考资料===
 `[1].` http://blueicer.blog.51cto.com/395686/116426<br>

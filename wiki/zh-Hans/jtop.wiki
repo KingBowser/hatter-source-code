@@ -3,16 +3,16 @@
 
 = 概要 =
 
-The java edition command of top.
+Java版的`top`工具。
 
 = 如何使用 =
 
-Get jtop:
+获得jtop:
 {{{
 wget https://hatter-source-code.googlecode.com/svn/trunk/jtop/jtop.jar
 }}}
 
-Usage: 
+使用帮助: 
 {{{
 $ java -jar jtop.jar 
 [ERROR] pid is not assigned.

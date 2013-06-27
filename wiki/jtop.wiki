@@ -67,7 +67,9 @@ Poller SunPKCS11-Darwin  TID=11  STATE=TIMED_WAITING  CPU_TIME=0 (0.01%)  USER_T
 
 Output like 'top' use arguemnt `--A` or `--advanced`:
 {{{
-$ java -jar jtop.jar --C --A 387
+$ java -jar jtop.jar --A --C 387
+-OR-
+$ java -jar jtop.jar ---AC 387
 }}}
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/jtop/new_jtop.png]
 

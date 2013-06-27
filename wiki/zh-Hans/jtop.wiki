@@ -32,12 +32,12 @@ java -cp jtop.jar jtop [options] <pid> [<interval> [<count>]]
 
 }}}
 
-Use this command to view the eclipse's top:
+使用下面命令得到eclipse的top信息:
 {{{
 $ java -jar jtop.jar -size h -thread 3 -stack 4 387
 }}}
 
-You would see:
+你将会看到以下信息:
 {{{
 NEW ROUND ================================================== 
 Heap Memory: INIT=40.00M  USED=145.16M  COMMITED=278.57M  MAX=379.88M
@@ -65,7 +65,7 @@ Poller SunPKCS11-Darwin  TID=11  STATE=TIMED_WAITING  CPU_TIME=0 (0.01%)  USER_T
 	java.lang.Thread.run(Thread.java:680)
 }}}
 
-Output like 'top' use arguemnt `--A` or `--advanced`:
+你也可以使用参数`--A`或`--advanced`像top一样输出:
 {{{
 $ java -jar jtop.jar --A --C 387
 -OR-
@@ -73,11 +73,12 @@ $ java -jar jtop.jar ---AC 387
 }}}
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/jtop/new_jtop.png]
 
-= 原理 =
- # Connection to the PORT using RMI
+= 原理介绍 =
+ # 通过[http://docs.oracle.com/javase/6/docs/technotes/guides/management/agent.html 本地JMX]连接到需要查看的JVM
  # If failed,  find VirtualMachine by PID
    # Attach the agent to the VM
    # Start RMI service in agent
  # Use RMI, connect to VM, then get MXBean
  # Sort and display
-Detail see: [HowDoesJtopWork]
+详细参见: [HowDoesJtopWork]
+

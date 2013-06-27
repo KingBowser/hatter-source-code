@@ -74,11 +74,8 @@ $ java -jar jtop.jar ---AC 387
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/jtop/new_jtop.png]
 
 = 原理介绍 =
+ # 通过[http://docs.oracle.com/javase/6/docs/jdk/api/attach/spec/com/sun/tools/attach/VirtualMachine.html VirtualMachine].loadAgent加载JTopMXBean到JVM中
  # 通过[http://docs.oracle.com/javase/6/docs/technotes/guides/management/agent.html 本地JMX]连接到需要查看的JVM
- # If failed,  find VirtualMachine by PID
-   # Attach the agent to the VM
-   # Start RMI service in agent
- # Use RMI, connect to VM, then get MXBean
- # Sort and display
+ # 处理并排序输出内容
 详细参见: [HowDoesJtopWork]
 

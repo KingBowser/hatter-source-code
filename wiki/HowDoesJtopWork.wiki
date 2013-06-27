@@ -1,6 +1,6 @@
 #summary One-sentence summary of this page.
 
-= Introduction <g:plusone size="medium"></g:plusone> =
+= Introduction =
 
 Introduce how does jtop work.
 

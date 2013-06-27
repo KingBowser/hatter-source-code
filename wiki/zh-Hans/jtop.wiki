@@ -1,11 +1,11 @@
 #summary Java edition TOP.
 #sidebar TableOfContents
 
-= Introduction =
+= 概要 =
 
 The java edition command of top.
 
-= Usage =
+= 如何使用 =
 
 Get jtop:
 {{{
@@ -73,7 +73,7 @@ $ java -jar jtop.jar ---AC 387
 }}}
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/jtop/new_jtop.png]
 
-= Principle =
+= 原理 =
  # Connection to the PORT using RMI
  # If failed,  find VirtualMachine by PID
    # Attach the agent to the VM

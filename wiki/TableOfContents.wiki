@@ -104,6 +104,7 @@
  * [Study_Others Others]
   * [Study_Others_Icon Icon]
   * [Study_Others_Plastic Plastic]
+  * [Study_Others_Reader Reader]
  * _*Papers*_
   * [Paper_QuickDuplicateMessageProcessingCheck Message Processing Check]
   * [Paper_SymmetricKeyAlgorithmBasedHTTPAuthentication Authentication]

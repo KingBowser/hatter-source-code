@@ -1,4 +1,6 @@
 #summary Build tool leiningen
 #sidebar TableOfContents
 
+http://leiningen.org/
+
 https://github.com/technomancy/leiningen

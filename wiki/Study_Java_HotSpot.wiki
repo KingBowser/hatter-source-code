@@ -12,6 +12,10 @@
 {{{
 hg clone http://hg.openjdk.java.net/jdk7/hotspot/hotspot
 }}}
+* Launcher
+{{{
+hotspot/src/os/linux/launcher/java.c
+}}}
  * 打开JavaLauncher的Verbose信息：
 {{{
 export _JAVA_LAUNCHER_DEBUG=1

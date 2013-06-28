@@ -3,8 +3,9 @@
 
 
 ==国外==
-  * http://reader.aol.com/
  * https://slickreader.com/
+ * http://reader.aol.com/
+ * http://cloud.feedly.com/
 
 
 ==国内==

@@ -4,3 +4,6 @@
 
 http://phonegap.com/
 
+http://monodevelop.com/Download/Mono_For_Android
+
+http://developer.android.com/sdk/installing/studio.html

@@ -6,6 +6,15 @@
  # 在Linux上将文件 linux-hsdis-amd64.so 改名为 libhsdis-amd64.so
  # 复制文件到目录： $JAVA_HOME/jre/lib/amd64/server
 
+==使用==
+通过下面命令：
+{{{
+java -XX:+UnlockDiagnosticVMOptions -XX:+PrintAssembly InterThreadLatency
+}}}
+或
+{{{
+java -XX:+UnlockDiagnosticVMOptions '-XX:CompileCommand=print,*PongRunner.run' InterThreadLatency
+}}}
 
 
 ===参考资料===

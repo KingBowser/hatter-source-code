@@ -12,7 +12,7 @@
 {{{
 hg clone http://hg.openjdk.java.net/jdk7/hotspot/hotspot
 }}}
-* Launcher
+ * Launcher
 {{{
 hotspot/src/os/linux/launcher/java.c
 }}}

@@ -10,3 +10,7 @@
 
 ==国内==
  * http://xianguo.com/
+
+==开源==
+ * http://selfoss.aditu.de/
+ * http://tt-rss.org/redmine/projects/tt-rss/wiki

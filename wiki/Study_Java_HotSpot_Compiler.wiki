@@ -1,0 +1,12 @@
+#summary Compiler in Java, HotSpot
+#sidebar TableOfContents
+
+==安装==
+ # 下载二进制文件，或源代码自行编译：https://kenai.com/projects/base-hsdis/downloads
+ # 在Linux上将文件 linux-hsdis-amd64.so 改名为 libhsdis-amd64.so
+ # 复制文件到目录： $JAVA_HOME/jre/lib/amd64/server
+
+
+
+===参考资料===
+`[1].` http://mechanical-sympathy.blogspot.com/2013/06/printing-generated-assembly-code-from.html<br>

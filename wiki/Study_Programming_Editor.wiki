@@ -8,7 +8,7 @@
 || `IntelliJ IDEA Community Edition` || Apache 2.0 || http://www.jetbrains.org/ || IntelliJ IDEA Community Edition is the open source version of IntelliJ IDEA, a premier IDE (Integrated Development Environment) for Java, Groovy and other programming languages such as Scala or Clojure. ||
 || `Eclipse` ||  ||  ||  ||
 || `Notepad++` ||  ||  ||  ||
-|| `LiteIDE` ||  ||  ||  ||
+|| `LiteIDE` || LGPL || http://code.google.com/p/liteide/ || LiteIDE is a simple, open source, cross-platform Go IDE. ||
 || `OpenOffice` ||  ||  ||  ||
 || `Sublime Text 2` || Commercial || http://www.sublimetext.com/ || Sublime Text is a sophisticated text editor for code, markup and prose. ||
 || `Smultron ` || Commercial || http://www.peterborgapps.com/smultron/ || An elegant and powerful text editor that is easy to use. ||

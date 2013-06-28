@@ -7,6 +7,7 @@
  * [Study_Build Build]
   * [Study_Build_Ant Ant]
   * [Study_Build_Gradle Gradle]
+  * [Study_Build_Leiningen Leiningen]
   * [Study_Build_Maven Maven]
  * [Study_CPU CPU]
   * [Study_CPU_Intel Intel]
@@ -36,6 +37,7 @@
   * [Study_Java_HotSpot HotSpot]
    * [Study_Java_HotSpot_Arguments Arguments]
    * [Study_Java_HotSpot_ClassLayout ClassLayout]
+   * [Study_Java_HotSpot_Compiler Compiler]
    * [Study_Java_HotSpot_Concurrent Concurrent]
    * [Study_Java_HotSpot_DirectBuffer DirectBuffer]
    * [Study_Java_HotSpot_Error Error]
@@ -104,6 +106,7 @@
  * [Study_Others Others]
   * [Study_Others_Icon Icon]
   * [Study_Others_Plastic Plastic]
+  * [Study_Others_Reader Reader]
  * _*Papers*_
   * [Paper_QuickDuplicateMessageProcessingCheck Message Processing Check]
   * [Paper_SymmetricKeyAlgorithmBasedHTTPAuthentication Authentication]

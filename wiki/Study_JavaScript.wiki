@@ -75,24 +75,35 @@ _[http://www.ecma-international.org/publications/standards/Ecma-262-arch.htm]_
 || `node.js` || http://nodejs.org/ || Node.js is a platform built on Chrome's JavaScript runtime for easily building fast, scalable network applications.  ||
 || `Grunt` || http://gruntjs.com/ || Grunt: The JavaScript Task Runner ||
 
+===五、MVC MVVM框架 ^[6]^===
+|| `Backbone` || http://backbonejs.org/ ||
+|| `Meteor` || http://www.meteor.com/ ||
+|| `Ember` || http://emberjs.com/ ||
+|| `AngularJS` || http://angularjs.org/ ||
+|| `Knockout` || http://knockoutjs.com/ ||
+|| `Spine` || http://spinejs.com/ ||
+|| `Batman` || http://batmanjs.org/ ||
+|| `CanJS` || http://canjs.us/ ||
+|| `Avalon` || http://rubylouvre.github.io/mvvm/ ||
 
-===五、在服务器端应用===
+===六、在服务器端应用===
 
 || `ASP/ASP.NET` ||  ||  ||
 || `node.js` || http://nodejs.org/ || Node.js is a platform built on Chrome's JavaScript runtime for easily building fast, scalable network applications. ||
 || `jssp` || http://jssp.sourceforge.net/ || JSSP - JavaScript Server Pages ||
 
-===六、相关网站===
+===七、相关网站===
 || The HTML5 test || http://html5test.com/ || The HTML5 test score is an indication of how well your browser supports the upcoming HTML5 standard and related specifications ||
 || OpenAjax || http://www.openajax.org/ || The OpenAjax Alliance is an organization of leading vendors, open source projects, and companies using Ajax that are dedicated to the successful adoption of open and interoperable Ajax-based Web technologies. ||
 
-===七、友情连接===
+===八、友情连接===
 || ECMAScript5.1中文版 || http://www.ecmascript.cn/ || ECMAScript5.1中文版 ||
 || 开源中国在线工具-OSCTools || http://www.ostools.net/ || 开源中国在线工具,osctools为开发设计人员提供在线工具，提供jsbin在线 CSS、JS 调试，在线 Java API文档,在线 PHP API文档,在线 Node.js API文档,Less CSS编译器，MarkDown编译器等其他在线工具 ||
 
-===八、参考资料===
+===九、参考资料===
 `[1].` http://en.wikipedia.org/wiki/JavaScript<br>
 `[2].` http://en.wikipedia.org/wiki/ECMAScript<br>
 `[3].` http://ejohn.org/blog/the-world-of-ecmascript/<br>
 `[4].` http://ued.alimama.com/posts/543<br>
 `[5].` http://www.daimi.au.dk/~amoeller/VM/javascript-VM.pdf<br>
+`[6].` http://www.cnblogs.com/aaronjs/p/3149402.html<br>

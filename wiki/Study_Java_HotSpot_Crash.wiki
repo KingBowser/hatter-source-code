@@ -86,6 +86,27 @@ Current thread (0x0805ac88):  JavaThread "main" [_thread_in_native, id=21139]
 wget http://hatter-source-code.googlecode.com/svn/trunk/hserranalysis/hserranalysisall.jar
 }}}
 
+{{{
+$ java -jar hserranalysisall.jar x86disassemble
+[INFO] Add system classloader jar url: /System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/sa-jdi.jar
+X86DisassemblerAnalysiser :
+> 0x417789c7:   ec 14 e8 72 ff ff ff 81 c3 f2 13 00 00 8b 45 08
+ 0x417789c7:  inb	%al
+ 0x417789c8:  adcb	%al, 0xe8
+ 0x417789ca:  jb	0x417789cb
+ 0x417789cc:  bad opcode
+ 0x417789cd:  incl	1307331[%ecx]
+ 0x417789d3:  addb	2117[%ebx], %cl
+> 0x417789d7:   0f b6 00 88 45 fb 8d 83 6f ee ff ff 89 04 24 e8
+ 0x417789d7:  movzbl	%eax, [%eax]
+ 0x417789da:  movb	-5[%ebp], %al
+ 0x417789dd:  leal	%eax, -4497[%ebx]
+ 0x417789e3:  movl	[%esp], %eax
+ 0x417789e6:  call	0x417789eb
+> exit
+Exit!
+}}}
+
 ===参考资料===
 `[1].` http://rednaxelafx.iteye.com/blog/729214<br>
 `[2].` http://hllvm.group.iteye.com/group/topic/34848<br>

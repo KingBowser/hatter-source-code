@@ -7,6 +7,12 @@
 || `EXCEPTION_ACCESS_VIOLATION` || 一般是空指针引起 ||
 
 
+|| `C`  ||本地C帧 ||
+|| `j` || 解释的Java帧 ||
+|| `V` || 虚拟机帧 ||
+|| `v` || 虚拟机生成的存根栈帧 ||
+|| `J` || 其他帧类型，包括编译后的Java帧 ||
+
 ===参考资料===
 `[1].` http://rednaxelafx.iteye.com/blog/729214<br>
 `[2].` http://hllvm.group.iteye.com/group/topic/34848<br>

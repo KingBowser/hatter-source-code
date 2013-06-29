@@ -40,9 +40,9 @@ Sample:
 
 ==标准参数？==
 || *参数* || *具体参数* || *说明* ||
-|| `-verbose:[class/gc/jni]` || `-verbose:class` || `+TraceClassLoading,+TraceClassUnloading` ||
-|| `-` || `-verbose:gc` || `+PrintGC` ||
-|| `-` || `-verbose:jni` || `+PrintJNIResolving` ||
+|| `-verbose:[class/gc/jni]` || `-verbose:class` || `-XX:+TraceClassLoading,-XX:+TraceClassUnloading` ||
+|| `-` || `-verbose:gc` || `-XX:+PrintGC` ||
+|| `-` || `-verbose:jni` || `-XX:+PrintJNIResolving` ||
 || `-Xbootclasspath[/a/p]:` || `-Xbootclasspath:` || 指定系统基本的需要的类库（包括rt.jar等），指定以分隔符分隔^注1^的文件夹，Jar包或Zip包 ^[8][9]^ ||
 || `-` || `-Xbootclasspath/a:` || 在`bootclasspath`*后*追加 ||
 || `-` || `-Xbootclasspath/p:` || 在`bootclasspath`*前*追加 ||

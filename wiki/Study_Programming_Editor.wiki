@@ -6,7 +6,7 @@
 || `Fraise` || Apache 2.0 || https://github.com/jfmoy/Fraise ||  ||
 || `Aptana` || GPL || http://www.aptana.com/ || The world’s most powerful open-source web development IDE ||
 || `IntelliJ IDEA Community Edition` || Apache 2.0 || http://www.jetbrains.org/ || IntelliJ IDEA Community Edition is the open source version of IntelliJ IDEA, a premier IDE (Integrated Development Environment) for Java, Groovy and other programming languages such as Scala or Clojure. ||
-|| `Eclipse` ||  ||  ||  ||
+|| `Eclipse` || EPL || http://www.eclipse.org/ || Eclipse ||
 || `Notepad++` || GPL || http://notepad-plus-plus.org/ || Notepad++ is a free (as in "free speech" and also as in "free beer") source code editor and Notepad replacement that supports several languages. ||
 || `LiteIDE` || LGPL || http://code.google.com/p/liteide/ || LiteIDE is a simple, open source, cross-platform Go IDE. ||
 || `OpenOffice` || Apache || http://www.openoffice.org/ || The Free and Open Productivity Suite ||

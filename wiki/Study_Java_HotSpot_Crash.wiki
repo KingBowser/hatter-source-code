@@ -19,6 +19,48 @@ java -XX:ErrorFile=/var/log/java/java_error%p.log
  # Environment variables
  # Details about the operating system and CPU
 
+文件头格式：
+{{{
+#
+# An unexpected error has been detected by Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0x417789d7, pid=21139, tid=1024
+#
+# Java VM: Java HotSpot(TM) Client VM (1.6.0-rc-b63 mixed mode, sharing)
+# Problematic frame:
+# C  [libNativeSEGV.so+0x9d7]
+
+#
+# If you would like to submit a bug report, please visit:
+#   http://java.sun.com/webapps/bugreport/crash.jsp
+#
+
+This example shows that the VM crashed on an unexpected signal. The next line describes the signal type, program counter (pc) that caused the signal, process ID and thread ID, as follows.
+
+#  SIGSEGV (0xb) at pc=0x417789d7, pid=21139, tid=1024
+      |      |           |             |         +--- thread id
+      |      |           |             +------------- process id
+      |      |           +--------------------------- program counter
+      |      |                                        (instruction pointer)
+      |      +--------------------------------------- signal number
+      +---------------------------------------------- signal name
+The next line contains the VM version (Client VM or Server VM), an indication whether the application was run in mixed or interpreted mode, and an indication whether class file sharing was enabled.
+
+# Java VM: Java HotSpot(TM) Client VM (1.6.0-rc-b63 mixed mode, sharing)
+The next information is the function frame that caused the crash, as follows.
+
+# Problematic frame:
+# C  [libNativeSEGV.so+0x9d7]
+  |              +-- Same as pc, but represented as library name and offset.
+  |                  For position-independent libraries (JVM and most shared
+  |                  libraries), it is possible to inspect the instructions
+  |                  that caused the crash without a debugger or core file
+  |                  by using a disassembler to dump instructions near the
+  |                  offset.
+  +----------------- Frame type
+In this example, the “C” frame type indicates a native C frame. The following table shows the possible frame types.
+}}}
+
 错误信号详见：[Study_OS_Linux_Signal]
 
 

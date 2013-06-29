@@ -3,6 +3,11 @@
 
 =`hs_err_pid*.log`=
 
+Crash文件默认在当前路径下生成，也可以通过参数指定：
+{{{
+java -XX:ErrorFile=/var/log/java/java_error%p.log
+}}}
+
 错误信号详见：[Study_OS_Linux_Signal]
 
 

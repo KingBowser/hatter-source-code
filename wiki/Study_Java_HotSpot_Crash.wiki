@@ -1,0 +1,11 @@
+#summary Crash in Java, HotSpot
+#sidebar TableOfContents
+
+=`hs_err_pid*.log`=
+
+|| `EXCEPTION_ACCESS_VIOLATION` || 一般是空指针引起 ||
+
+
+===参考资料===
+`[1].` http://rednaxelafx.iteye.com/blog/729214<br>
+`[2].` http://hllvm.group.iteye.com/group/topic/34848<br>

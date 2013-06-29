@@ -35,7 +35,8 @@ java -XX:ErrorFile=/var/log/java/java_error%p.log
 #   http://java.sun.com/webapps/bugreport/crash.jsp
 #
 
-This example shows that the VM crashed on an unexpected signal. The next line describes the signal type, program counter (pc) that caused the signal, process ID and thread ID, as follows.
+This example shows that the VM crashed on an unexpected signal. The next line describes the signal type, program counter
+ (pc) that caused the signal, process ID and thread ID, as follows.
 
 #  SIGSEGV (0xb) at pc=0x417789d7, pid=21139, tid=1024
       |      |           |             |         +--- thread id
@@ -44,7 +45,8 @@ This example shows that the VM crashed on an unexpected signal. The next line de
       |      |                                        (instruction pointer)
       |      +--------------------------------------- signal number
       +---------------------------------------------- signal name
-The next line contains the VM version (Client VM or Server VM), an indication whether the application was run in mixed or interpreted mode, and an indication whether class file sharing was enabled.
+The next line contains the VM version (Client VM or Server VM), an indication whether the application was run in mixed
+ or interpreted mode, and an indication whether class file sharing was enabled.
 
 # Java VM: Java HotSpot(TM) Client VM (1.6.0-rc-b63 mixed mode, sharing)
 The next information is the function frame that caused the crash, as follows.

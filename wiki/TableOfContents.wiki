@@ -38,6 +38,7 @@
   * [Study_Java_HotSpot HotSpot]
    * [Study_Java_HotSpot_Arguments Arguments]
    * [Study_Java_HotSpot_ClassLayout ClassLayout]
+   * [Study_Java_HotSpot_Crash Crash]
    * [Study_Java_HotSpot_Compiler Compiler]
    * [Study_Java_HotSpot_Concurrent Concurrent]
    * [Study_Java_HotSpot_DirectBuffer DirectBuffer]

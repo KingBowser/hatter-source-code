@@ -9,7 +9,7 @@
 || `Eclipse` ||  ||  ||  ||
 || `Notepad++` || GPL || http://notepad-plus-plus.org/ || Notepad++ is a free (as in "free speech" and also as in "free beer") source code editor and Notepad replacement that supports several languages. ||
 || `LiteIDE` || LGPL || http://code.google.com/p/liteide/ || LiteIDE is a simple, open source, cross-platform Go IDE. ||
-|| `OpenOffice` ||  ||  ||  ||
+|| `OpenOffice` || Apache || http://www.openoffice.org/ || The Free and Open Productivity Suite ||
 || `Sublime Text 2` || Commercial || http://www.sublimetext.com/ || Sublime Text is a sophisticated text editor for code, markup and prose. ||
 || `Smultron ` || Commercial || http://www.peterborgapps.com/smultron/ || An elegant and powerful text editor that is easy to use. ||
 

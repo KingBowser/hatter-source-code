@@ -3,6 +3,7 @@
 
 =`hs_err_pid*.log`=
 
+|| `SIGSEGV` || 段错误 ||
 || `EXCEPTION_ACCESS_VIOLATION` || 一般是空指针引起 ||
 
 

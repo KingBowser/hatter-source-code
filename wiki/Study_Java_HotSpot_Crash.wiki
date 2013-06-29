@@ -8,6 +8,17 @@ Crash文件默认在当前路径下生成，也可以通过参数指定：
 java -XX:ErrorFile=/var/log/java/java_error%p.log
 }}}
 
+产生该文件可能的错误：
+ # The operating exception or signal that provoked the fatal error
+ # Version and configuration information
+ # Details on the thread that provoked the fatal error and thread's stack trace
+ # The list of running threads and their state
+ # Summary information about the heap
+ # The list of native libraries loaded
+ # Command line arguments
+ # Environment variables
+ # Details about the operating system and CPU
+
 错误信号详见：[Study_OS_Linux_Signal]
 
 

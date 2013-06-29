@@ -65,12 +65,22 @@ In this example, the “C” frame type indicates a native C frame. The followin
 
 错误信号详见：[Study_OS_Linux_Signal]
 
-
 || `C`  ||本地C帧 ||
 || `j` || 解释的Java帧 ||
 || `V` || 虚拟机帧 ||
 || `v` || 虚拟机生成的存根栈帧 ||
 || `J` || 其他帧类型，包括编译后的Java帧 ||
+
+线程信息：
+{{{
+Current thread (0x0805ac88):  JavaThread "main" [_thread_in_native, id=21139]
+                    |             |         |            |          +-- ID
+                    |             |         |            +------------- state
+                    |             |         +-------------------------- name
+                    |             +------------------------------------ type
+                    +-------------------------------------------------- pointer
+}}}
+
 
 ===参考资料===
 `[1].` http://rednaxelafx.iteye.com/blog/729214<br>

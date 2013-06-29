@@ -58,8 +58,10 @@ public class X86DisassemblerAnalysiser {
 
         long startPc;
         byte[] code;
+
+        String[] codes = new String[] {};
         try {
-            String[] codes = addrAndCode[1].trim().split(" ");
+            codes = addrAndCode[1].trim().split(" ");
 
             String addr = (addrAndCode[0].startsWith("0x") ? addrAndCode[0].substring(2) : addrAndCode[0]);
             startPc = Long.parseLong(addr, 16);
@@ -69,6 +71,7 @@ public class X86DisassemblerAnalysiser {
             }
         } catch (Exception e) {
             LogUtil.error("Format error: " + input + "; " + e.getMessage());
+            LogUtil.error("Codes: " + Arrays.asList(codes));
             return null;
         }
 

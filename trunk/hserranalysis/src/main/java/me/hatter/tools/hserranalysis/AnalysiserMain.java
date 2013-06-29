@@ -17,7 +17,7 @@ public class AnalysiserMain {
         if (UnixArgsutil.ARGS.args().length > 0) {
             printUsage = false;
 
-            if ("disassemble".equals(UnixArgsutil.ARGS.args()[0])) {
+            if ("x86disassemble".equals(UnixArgsutil.ARGS.args()[0])) {
                 (new X86DisassemblerAnalysiser()).analysis();
             } else {
                 printUsage = true;
@@ -34,7 +34,7 @@ public class AnalysiserMain {
         System.out.println("Usage:");
         System.out.println("  java -jar hserranalysisall.jar [options] <command>");
         System.out.println("  Commands:");
-        System.out.println("    disassemble         Disassembler");
+        System.out.println("    x86disassemble         Disassembler");
         System.out.println();
     }
 }

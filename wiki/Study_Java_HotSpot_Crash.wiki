@@ -1,7 +1,7 @@
 #summary Crash in Java, HotSpot
 #sidebar TableOfContents
 
-=`hs_err_pid*.log`=
+=`hs_err_pid*.log`文件格式=
 
 Crash文件默认在当前路径下生成，也可以通过参数指定：
 {{{
@@ -81,6 +81,10 @@ Current thread (0x0805ac88):  JavaThread "main" [_thread_in_native, id=21139]
                     +-------------------------------------------------- pointer
 }}}
 
+=对指令反编译=
+{{{
+wget http://hatter-source-code.googlecode.com/svn/trunk/hserranalysis/hserranalysisall.jar
+}}}
 
 ===参考资料===
 `[1].` http://rednaxelafx.iteye.com/blog/729214<br>

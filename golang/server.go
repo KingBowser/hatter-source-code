@@ -86,6 +86,9 @@ var quickDomainSettingMap = map[string]*DomainSetting {
 	"www.jiangchenhao.me": &jiangchenhaoDomainSetting,
 	"jiangchenhao.com": &jiangchenhaoDomainSetting,
 	"www.jiangchenhao.com": &jiangchenhaoDomainSetting,
+        "chenhao.me": &jiangchenhaoDomainSetting,
+        "www.chenhao.me": &jiangchenhaoDomainSetting,
+        "jiang.chenhao.me": &jiangchenhaoDomainSetting,
 	"blog.hatter.me": &DomainSetting {
 		REDIRECT, "http://aprilsoft.cn/blog/", "",
 	},

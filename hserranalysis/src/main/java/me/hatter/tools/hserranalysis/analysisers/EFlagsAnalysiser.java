@@ -11,7 +11,7 @@ import me.hatter.tools.commons.log.LogUtil;
 import me.hatter.tools.commons.string.StringUtil;
 
 /**
- * @see http://rednaxelafx.iteye.com/blog/729214
+ * @see http://en.wikipedia.org/wiki/FLAGS_register
  * @author hatterjiang
  */
 public class EFlagsAnalysiser {

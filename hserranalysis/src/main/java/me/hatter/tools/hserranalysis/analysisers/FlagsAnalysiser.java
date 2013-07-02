@@ -14,10 +14,10 @@ import me.hatter.tools.commons.string.StringUtil;
  * @see http://en.wikipedia.org/wiki/FLAGS_register
  * @author hatterjiang
  */
-public class EFlagsAnalysiser {
+public class FlagsAnalysiser {
 
     public static void main(String[] args) {
-        new EFlagsAnalysiser().analysis();
+        new FlagsAnalysiser().analysis();
     }
 
     public static enum Category {
@@ -41,6 +41,7 @@ public class EFlagsAnalysiser {
 
     private static Map<Integer, EFlag> bitFlagMap = new HashMap<Integer, EFlag>();
     static {
+        // FLAGS
         bitFlagMap.put(0, new EFlag("Carry flag", "CF", Category.Status, null));
         bitFlagMap.put(1, new EFlag("Reserved", "1", null, null));
         bitFlagMap.put(2, new EFlag("Parity flag", "PF", Category.Status, null));
@@ -60,6 +61,7 @@ public class EFlagsAnalysiser {
         bitFlagMap.put(14,
                        new EFlag("Nested task flag", "NT", Category.System, "(286+ only), always 1 on 8086 and 186"));
         bitFlagMap.put(15, new EFlag("Reserved", "0", null, "always 1 on 8086 and 186, always 0 on later models"));
+        // EFLAGS
         bitFlagMap.put(16, new EFlag("Resume flag", "RF", Category.System, "(386+ only)"));
         bitFlagMap.put(17, new EFlag("Virtual 8086 mode flag", "VM", Category.System, "(386+ only)"));
         bitFlagMap.put(18, new EFlag("Alignment check", "AC", Category.System, "(486SX+ only)"));
@@ -69,10 +71,11 @@ public class EFlagsAnalysiser {
         for (int i = 22; i < 64; i++) {
             bitFlagMap.put(i, new EFlag("Reserved", "0", null, null));
         }
+        // 32-63 RFLAGS
     }
 
     public void analysis() {
-        System.out.println(EFlagsAnalysiser.class.getSimpleName() + " :");
+        System.out.println(FlagsAnalysiser.class.getSimpleName() + " :");
 
         String line;
         System.out.print("> ");

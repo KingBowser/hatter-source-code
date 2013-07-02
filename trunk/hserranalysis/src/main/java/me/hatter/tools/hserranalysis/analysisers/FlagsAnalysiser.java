@@ -101,7 +101,7 @@ public class FlagsAnalysiser {
         List<String> out = new ArrayList<String>();
         out.add(StringUtil.paddingSpaceRight("IDX", 3) + " " + StringUtil.paddingSpaceRight("NAME", 35) + " "
                 + StringUtil.paddingSpaceRight("ABBR", 5) + " " + StringUtil.paddingSpaceRight("VAL", 3) + " "
-                + "DESCRIPTION");
+                + StringUtil.paddingSpaceRight("CATE", 8) + " " + "DESCRIPTION");
         long eflag;
         try {
             eflag = Long.parseLong((input.startsWith("0x") ? input.substring(2) : input), 16);
@@ -114,7 +114,9 @@ public class FlagsAnalysiser {
             boolean f = ((eflag & (1L << i)) != 0);
             out.add(StringUtil.paddingSpaceRight(String.valueOf(i), 3) + " "
                     + StringUtil.paddingSpaceRight(ef.name, 35) + " " + StringUtil.paddingSpaceRight(ef.abbrName, 5)
-                    + " " + StringUtil.paddingSpaceRight((f ? "1" : "0"), 3) + " " + StringUtil.notNull(ef.descrition));
+                    + " " + StringUtil.paddingSpaceRight((f ? "1" : "0"), 3) + " "
+                    + StringUtil.paddingSpaceRight((ef.category == null) ? "" : ef.category.name(), 8) + " "
+                    + StringUtil.notNull(ef.descrition));
         }
         return out;
     }

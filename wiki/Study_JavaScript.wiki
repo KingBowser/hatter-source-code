@@ -86,13 +86,12 @@ _[http://www.ecma-international.org/publications/standards/Ecma-262-arch.htm]_
 || `Avalon` || http://rubylouvre.github.io/mvvm/ ||
 
 ===六、在服务器端应用===
-
 || `ASP/ASP.NET` ||  ||  ||
 || `node.js` || http://nodejs.org/ || Node.js is a platform built on Chrome's JavaScript runtime for easily building fast, scalable network applications. ||
 || `jssp` || http://jssp.sourceforge.net/ || JSSP - JavaScript Server Pages ||
 
 ===七、调试工具===
-
+|| `Firebug` || http://getfirebug.com/ || The most popular and powerful web development tool ||
 || `Firebug Lite` || http://getfirebug.com/firebuglite || Firebug Lite: doing the Firebug way, anywhere ||
 || `leak-finder-for-javascript` || http://code.google.com/p/leak-finder-for-javascript/ || Tool for finding memory leaks in JavaScript programs ||
 || `jsdt` || http://code.google.com/p/jsdt/ || Javascript Debug Toolkit is a software can debug javascript in ie,firefox,safari,chrome,opera,mobile ie browser,mobile opera browser and so on ||

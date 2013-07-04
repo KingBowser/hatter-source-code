@@ -19,6 +19,11 @@
 || `StarUML` || GPL || http://staruml.sourceforge.net/en/ || StarUML is an open source project to develop fast, flexible, extensible, featureful, and freely-available UML/MDA platform running on Win32 platform. ||
 || `yEd` || Free || http://www.yworks.com/en/products_yed_about.html || yEd is a powerful desktop application that can be used to quickly and effectively generate high-quality diagrams. Create diagrams manually, or import your external data for analysis. ||
 
+==脑图软件==
+|| *Name* || *License* || *Web site* || *Description* ||
+|| `FreeMind` || GPL || http://freemind.sourceforge.net/ || FreeMind is a premier free mind-mapping software written in Java ||
+|| `XMind` || LGPL || http://www.xmind.net/ || Professional & Powerful Mind Mapping Software ||
+
 ==格式转换软件==
 || *Name* || *License* || *Web site* || *Description* ||
 || `pandoc` || LGPL || http://johnmacfarlane.net/pandoc/ || a universal document converter ||

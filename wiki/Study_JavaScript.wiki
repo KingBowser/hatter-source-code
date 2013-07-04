@@ -94,10 +94,8 @@ _[http://www.ecma-international.org/publications/standards/Ecma-262-arch.htm]_
 ===七、调试工具===
 
 || `Firebug Lite` || http://getfirebug.com/firebuglite || Firebug Lite: doing the Firebug way, anywhere ||
-
-http://code.google.com/p/leak-finder-for-javascript/
-
-http://code.google.com/p/jsdt/
+|| `leak-finder-for-javascript` || http://code.google.com/p/leak-finder-for-javascript/ || Tool for finding memory leaks in JavaScript programs ||
+|| `jsdt` || http://code.google.com/p/jsdt/ || Javascript Debug Toolkit is a software can debug javascript in ie,firefox,safari,chrome,opera,mobile ie browser,mobile opera browser and so on ||
 
 ===八、相关网站===
 || The HTML5 test || http://html5test.com/ || The HTML5 test score is an indication of how well your browser supports the upcoming HTML5 standard and related specifications ||

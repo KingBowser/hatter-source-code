@@ -86,9 +86,12 @@ var quickDomainSettingMap = map[string]*DomainSetting {
 	"www.jiangchenhao.me": &jiangchenhaoDomainSetting,
 	"jiangchenhao.com": &jiangchenhaoDomainSetting,
 	"www.jiangchenhao.com": &jiangchenhaoDomainSetting,
-        "chenhao.me": &jiangchenhaoDomainSetting,
-        "www.chenhao.me": &jiangchenhaoDomainSetting,
-        "jiang.chenhao.me": &jiangchenhaoDomainSetting,
+    "chenhao.me": &jiangchenhaoDomainSetting,
+    "www.chenhao.me": &jiangchenhaoDomainSetting,
+    "jiang.chenhao.me": &jiangchenhaoDomainSetting,
+	"niu.chenhao.me": &DomainSetting {
+		LOCATION, "/root/niuchenhao", "utf-8",
+	},
 	"blog.hatter.me": &DomainSetting {
 		REDIRECT, "http://aprilsoft.cn/blog/", "",
 	},

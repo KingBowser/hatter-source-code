@@ -62,7 +62,6 @@ _[http://www.ecma-international.org/publications/standards/Ecma-262-arch.htm]_
 || `Real-time HTML Editor` || http://htmledit.squarefree.com/ || Real-time HTML Editor ||
 || `Pretty Diff` || http://prettydiff.com/ || Pretty Diff - The difference tool ||
 || `Closure Compiler` || http://closure-compiler.appspot.com/home || Closure Compiler Service ||
-|| `Firebug Lite` || http://getfirebug.com/firebuglite || Firebug Lite: doing the Firebug way, anywhere ||
 || `Jash` || http://www.billyreisinger.com/jash/ || Jash: JavaScript Shell ||
 || `jsFiddle ` || http://jsfiddle.net/ || mootools shell, easy test you snippets before implementing ||
 || `JS Bin` || http://jsbin.com/ || JS Bin - Collaborative JavaScript Debugging ||
@@ -92,15 +91,23 @@ _[http://www.ecma-international.org/publications/standards/Ecma-262-arch.htm]_
 || `node.js` || http://nodejs.org/ || Node.js is a platform built on Chrome's JavaScript runtime for easily building fast, scalable network applications. ||
 || `jssp` || http://jssp.sourceforge.net/ || JSSP - JavaScript Server Pages ||
 
-===七、相关网站===
+===七、调试工具===
+
+|| `Firebug Lite` || http://getfirebug.com/firebuglite || Firebug Lite: doing the Firebug way, anywhere ||
+
+http://code.google.com/p/leak-finder-for-javascript/
+
+http://code.google.com/p/jsdt/
+
+===八、相关网站===
 || The HTML5 test || http://html5test.com/ || The HTML5 test score is an indication of how well your browser supports the upcoming HTML5 standard and related specifications ||
 || OpenAjax || http://www.openajax.org/ || The OpenAjax Alliance is an organization of leading vendors, open source projects, and companies using Ajax that are dedicated to the successful adoption of open and interoperable Ajax-based Web technologies. ||
 
-===八、友情连接===
+===九、友情连接===
 || ECMAScript5.1中文版 || http://www.ecmascript.cn/ || ECMAScript5.1中文版 ||
 || 开源中国在线工具-OSCTools || http://www.ostools.net/ || 开源中国在线工具,osctools为开发设计人员提供在线工具，提供jsbin在线 CSS、JS 调试，在线 Java API文档,在线 PHP API文档,在线 Node.js API文档,Less CSS编译器，MarkDown编译器等其他在线工具 ||
 
-===九、参考资料===
+===十、参考资料===
 `[1].` http://en.wikipedia.org/wiki/JavaScript<br>
 `[2].` http://en.wikipedia.org/wiki/ECMAScript<br>
 `[3].` http://ejohn.org/blog/the-world-of-ecmascript/<br>

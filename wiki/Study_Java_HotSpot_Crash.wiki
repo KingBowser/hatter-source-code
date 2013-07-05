@@ -120,6 +120,7 @@ gdb -c core.xxxx <exec>
 
 info threads
 bt/where
+bt full
 }}}
 
 ===参考资料===

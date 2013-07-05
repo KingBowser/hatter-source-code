@@ -4,6 +4,7 @@ import me.hatter.tools.commons.args.UnixArgsutil;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil.JDKLib;
 import me.hatter.tools.commons.jvm.HotSpotVMUtil.JDKTarget;
+import me.hatter.tools.commons.util.VersionBuildUtil;
 import me.hatter.tools.hserranalysis.analysisers.ELFFileAnalysiser;
 import me.hatter.tools.hserranalysis.analysisers.FlagsAnalysiser;
 import me.hatter.tools.hserranalysis.analysisers.X86DisassemblerAnalysiser;
@@ -37,7 +38,7 @@ public class AnalysiserMain {
     }
 
     private static void printUsage() {
-        System.out.println("Usage:");
+        System.out.println("Usage[b" + VersionBuildUtil.getVersionBuild() + "]:");
         System.out.println("  java -jar hserranalysisall.jar [options] <command>");
         System.out.println("  Commands:");
         System.out.println("    x86disassemble              Disassembler");

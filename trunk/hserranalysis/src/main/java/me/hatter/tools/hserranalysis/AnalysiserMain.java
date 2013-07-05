@@ -43,7 +43,7 @@ public class AnalysiserMain {
         System.out.println("    x86disassemble              Disassembler");
         System.out.println("    flags                       Flags");
         System.out.println("    elffile [options] <file>    ELFFile");
-        System.out.println("            --v                 Verbose(--verbose)");
+        System.out.println("      --v                       Verbose(--verbose)");
         System.out.println();
     }
 }

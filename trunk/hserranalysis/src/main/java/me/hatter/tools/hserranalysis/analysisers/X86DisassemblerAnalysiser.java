@@ -58,12 +58,13 @@ public class X86DisassemblerAnalysiser {
 
         long startPc;
         byte[] code;
+        String addr;
 
         String[] codes = new String[] {};
         try {
             codes = addrAndCode[1].trim().split(" ");
 
-            String addr = (addrAndCode[0].startsWith("0x") ? addrAndCode[0].substring(2) : addrAndCode[0]);
+            addr = (addrAndCode[0].startsWith("0x") ? addrAndCode[0].substring(2) : addrAndCode[0]);
             startPc = Long.parseLong(addr, 16);
             code = new byte[codes.length];
             for (int i = 0; i < codes.length; i++) {
@@ -78,17 +79,19 @@ public class X86DisassemblerAnalysiser {
         Disassembler dasm = cpuHelper.createDisassembler(startPc, code);
 
         List<String> out = new ArrayList<String>();
-        dasm.decode(new RawCodeVisitor(out));
+        dasm.decode(new RawCodeVisitor(out, addr.length()));
 
         return out;
     }
 
     private static class RawCodeVisitor implements InstructionVisitor {
 
+        private final int          addrLen;
         private final List<String> out;
         private final SymbolFinder symFinder = new DummySymbolFinder();
 
-        public RawCodeVisitor(List<String> out) {
+        public RawCodeVisitor(List<String> out, int addrLen) {
+            this.addrLen = addrLen;
             this.out = out;
         }
 
@@ -101,7 +104,8 @@ public class X86DisassemblerAnalysiser {
         }
 
         public void visit(long currentPc, Instruction instr) {
-            out.add("0x" + Long.toHexString(currentPc) + ":  " + instr.asString(currentPc, symFinder));
+            out.add("0x" + StringUtil.repeat("0", (addrLen - Long.toHexString(currentPc).length()))
+                    + Long.toHexString(currentPc) + ":  " + instr.asString(currentPc, symFinder));
         }
 
     }

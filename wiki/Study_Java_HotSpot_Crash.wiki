@@ -115,6 +115,13 @@ $ file core.12989
 core.12989: ELF 64-bit LSB core file AMD x86-64, version 1 (SYSV), SVR4-style, from 'jconsole'
 }}}
 
+{{{
+gdb -c core.xxxx <exec>
+
+info threads
+bt/where
+}}}
+
 ===参考资料===
 `[1].` http://rednaxelafx.iteye.com/blog/729214<br>
 `[2].` http://hllvm.group.iteye.com/group/topic/34848<br>

@@ -175,7 +175,15 @@ ping
 nslookup
 dig
 whois
-tcpdump
+
+ldd xxx.so  查看依赖关系
+nm 查看符号表信息
+pmap 打印地址空间映射
+pwdx 打开工作目录
+pstack
+strings
+objdump
+http://valgrind.org/docs/manual/manual.html
 }}}
 
 系统操作日志：

@@ -36,6 +36,14 @@
 
 `4) SIGILL`<br>
 执行了非法指令. 通常是因为可执行文件本身出现错误, 或者试图执行数据段. 堆栈溢出时也有可能产生这个信号。
+|| ILL_ILLOPC || 非法opcode ||
+|| ILL_ILLOPN || 非法操作数 ||
+|| ILL_ADR || 非法寻址模式 ||
+|| ILL_ILLTRP || 非法陷井 ||
+|| ILL_PRVOPC || 特许的opcode ||
+|| ILL_PRVREG || 特许的记数器 ||
+|| ILL_COPROC || coprocessor 错误 ||
+|| ILL_BADSTK || 内部堆错误 ||
 
 `5) SIGTRAP`<br>
 由断点指令或其它trap指令产生. 由debugger使用。

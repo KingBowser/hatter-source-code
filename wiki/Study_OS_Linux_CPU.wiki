@@ -1,2 +1,7 @@
 #summary cpu
 #sidebar TableOfContents
+
+
+
+===参考资料===
+`[1].` http://www.richweb.com/cpu_info<br>

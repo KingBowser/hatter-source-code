@@ -12,6 +12,10 @@ archivesBaseName = baseProjectName
 sourceCompatibility = 1.5
 targetCompatibility = 1.5
 
+// repositories {
+//   mavenCentral()
+// }
+
 tasks.withType(Compile) {  
   options.encoding = "UTF-8"  
 }

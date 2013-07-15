@@ -1,0 +1,4 @@
+#summary google perftools
+#sidebar TableOfContents
+
+http://www.thegeekstuff.com/2008/11/overview-of-ramfs-and-tmpfs-on-linux/

@@ -12,25 +12,28 @@ When a vital process becomes drastically slow because of disk writes, you can ch
 Both tmpfs and ramfs mount will give you the power of fast reading and writing files from and to the primary memory. When you test this on a small file, you may not see a huge difference. You’ll notice the difference only when you write large amount of data to a file with some other processing overhead such as network.
 
 1. How to mount Tmpfs
-
+{{{
 # mkdir -p /mnt/tmp
 
 # mount -t tmpfs -o size=20m tmpfs /mnt/tmp
+}}}
 The last line in the following df -k shows the above mounted /mnt/tmp tmpfs file system.
-
+{{{
 # df -k
 Filesystem      1K-blocks  Used     Available Use%  Mounted on
 /dev/sda2       32705400   5002488  26041576  17%   /
 /dev/sda1       194442     18567    165836    11%   /boot
 tmpfs           517320     0        517320    0%    /dev/shm
 tmpfs           20480      0        20480     0%    /mnt/tmp
+}}}
 2. How to mount Ramfs
-
+{{{
 # mkdir -p /mnt/ram
 
 # mount -t ramfs -o size=20m ramfs /mnt/ram
+}}}
 The last line in the following mount command shows the above mounted /mnt/ram ramfs file system.
-
+{{{
 # mount
 /dev/sda2 on / type ext3 (rw)
 proc on /proc type proc (rw)
@@ -43,6 +46,7 @@ sunrpc on /var/lib/nfs/rpc_pipefs type rpc_pipefs (rw)
 fusectl on /sys/fs/fuse/connections type fusectl (rw)
 tmpfs on /mnt/tmp type tmpfs (rw,size=20m)
 ramfs on /mnt/ram type ramfs (rw,size=20m)
+}}}
 You can mount ramfs and tmpfs during boot time by adding an entry to the /etc/fstab.
 
 3. Ramfs vs Tmpfs

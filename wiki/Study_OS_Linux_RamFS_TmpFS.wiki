@@ -1,8 +1,6 @@
 #summary google perftools
 #sidebar TableOfContents
 
-http://www.thegeekstuff.com/2008/11/overview-of-ramfs-and-tmpfs-on-linux/
-
 
 Using ramfs or tmpfs you can allocate part of the physical memory to be used as a partition. You can mount this partition and start writing and reading files like a hard disk partition. Since you’ll be reading and writing to the RAM, it will be faster.
 
@@ -69,3 +67,7 @@ Uses Swap	Yes	No
 Volatile Storage	Yes	Yes
 
 If you want your process to write faster, opting for tmpfs is a better choice with precautions about the system crash.
+
+
+===参考资料===
+`[1].` http://www.thegeekstuff.com/2008/11/overview-of-ramfs-and-tmpfs-on-linux/<br>

@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Callable;
 
 public class ReflectUtil {
 
@@ -56,6 +57,49 @@ public class ReflectUtil {
                 }
                 if (!m.isAccessible()) m.setAccessible(true);
                 return m.invoke((fIsClazz ? null : fObj), args);
+            }
+        });
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <T> T cast(Object obj, Class<T> interf, final Object filter) {
+        Class<?> clazz;
+        boolean isClazz = (obj instanceof Class);
+        if (obj instanceof Class) {
+            clazz = (Class<?>) obj;
+        } else {
+            clazz = obj.getClass();
+        }
+        final Object fObj = obj;
+        final Class<?> fClazz = clazz;
+        final boolean fIsClazz = isClazz;
+
+        return (T) Proxy.newProxyInstance(interf.getClassLoader(), new Class<?>[] { interf }, new InvocationHandler() {
+
+            @Override
+            public Object invoke(Object proxy, Method method, final Object[] args) throws Throwable {
+                Method mw = getDeclaredMethod(filter.getClass(), "____filter", new Class<?>[] { Object[].class,
+                        Callable.class });
+                Method mf = getDeclaredMethod(filter.getClass(), method.getName(), method.getParameterTypes());
+
+                final Method m = ((mf != null) ? mf : getDeclaredMethod(fClazz, method.getName(),
+                                                                        method.getParameterTypes()));
+                if (m == null) {
+                    throw new RuntimeException("Method '" + fClazz.getName() + "." + method.getName() + "("
+                                               + method.getParameterTypes() + ")' not found.");
+                }
+                if (!m.isAccessible()) m.setAccessible(true);
+                if (mw == null) {
+                    return m.invoke((fIsClazz ? null : fObj), args);
+                } else {
+                    if (!mw.isAccessible()) mw.setAccessible(true);
+                    return mw.invoke(filter, new Object[] { args, new Callable<Object>() {
+
+                        public Object call() throws Exception {
+                            return m.invoke((fIsClazz ? null : fObj), args);
+                        }
+                    } });
+                }
             }
         });
     }

@@ -108,6 +108,8 @@ var quickDomainSettingMap = map[string]*DomainSetting {
 	"xsvn.hatter.me": &DomainSetting {
 		XPROXY, "https://hatter-source-code.googlecode.com/", "",
 	},
+	// **/
+	/**
 	"reader.hatter.me": &DomainSetting {
 		XPROXY, "http://hatter.me:8090/", "",
 	},

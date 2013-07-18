@@ -180,6 +180,7 @@ dependencies {
     compile files(file(System.properties['java.home'].replaceAll('\\/jre(\\/)?$', "") + "/lib/sa-jdi.jar"))
     // compile files(file(System.properties['java.home'].replaceAll('\\/jre(\\/)?$', "") + "/lib/tools.jar"))
     compile "org.unix4j:unix4j-command:0.3"
+    compile "com.google.guava:guava:14.0.1"
 }
 
 eclipse {

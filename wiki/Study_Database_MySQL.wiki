@@ -124,6 +124,10 @@ auto_increment_offset
 }}}
 
 
+Google MySQL: 
+https://code.google.com/p/google-mysql/
+
+
 ===参考资料===
 `[1].` http://firedragonpzy.iteye.com/blog/1388562<br>
 `[2].` http://blog.jobbole.com/29432/<br>

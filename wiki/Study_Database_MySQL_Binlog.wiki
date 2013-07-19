@@ -1,12 +1,13 @@
 #summary MySQL Binlog
 #sidebar TableOfContents
 
-=打开binlog=
+==打开binlog==
 文件 `my.cnf` :
 {{{
 log-bin=master-bin
 log-bin-index=master-bin.index
 }}}
+
 
 {{{
 show master status;

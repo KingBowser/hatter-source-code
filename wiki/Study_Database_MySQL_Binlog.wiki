@@ -13,6 +13,8 @@ log-bin-index=master-bin.index
 show master status;
 
 show slave status;
+
+show slave hosts;
 }}}
 
 {{{

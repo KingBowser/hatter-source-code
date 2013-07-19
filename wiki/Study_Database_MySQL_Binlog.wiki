@@ -18,7 +18,7 @@ show slave hosts;
 }}}
 
 {{{
-show binlog events [in 'mysqlbin-bin.000001'];
+show binlog events [in 'mysqlbin-bin.000001'] [limit 10];
 
 $ mysqlbinlog mysql-bin.000001
 }}}

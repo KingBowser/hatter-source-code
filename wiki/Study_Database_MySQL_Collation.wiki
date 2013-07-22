@@ -2,9 +2,16 @@
 #sidebar TableOfContents
 
 
+=Collation:=
+{{{
+charset_[chiese|japanese|general|...]_[ci|cs|...]
+}}}
+
+====`ci|cs|...`====
  * ci 不区分大小写
  * cs 区分大小写
 
+==如何查看：==
  * 查看支持哪些collation:
  `show collation [like '%utf%'];`
  * 查看表的默认collation:

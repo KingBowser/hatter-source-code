@@ -1,0 +1,11 @@
+#summary MySQL Collation
+#sidebar TableOfContents
+
+
+ * ci 不区分大小写
+ * cs 区分大小写
+
+ * 查看支持哪些collation:
+ `show collation [like '%utf%'];`
+ * 查看表的默认collation:
+ `show table status [like '%table_name%'];`

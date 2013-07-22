@@ -19,5 +19,5 @@ charset_[chiese|japanese|general|...]_[ci|cs|...]
  * 查看字段的collation:
  {{{
 SELECT TABLE_CATALOG, TABLE_SCHEMA, TABLE_NAME, COLUMN_NAME, COLLATION_NAME
-    FROM INFORMATION_SCHEMA.COLUMNS [where table_name ='table_name'];
+FROM INFORMATION_SCHEMA.COLUMNS [where table_name ='table_name'];
 }}}

@@ -194,6 +194,45 @@ public class CollectionUtil {
         return new ArrayList<T>(Arrays.asList(object));
     }
 
+    public static <T> boolean contains(Collection<T> coll, T object) {
+        if (coll == null) {
+            return false;
+        }
+        return coll.contains(object);
+    }
+
+    public static <T> boolean containsAll(Collection<T> coll, Collection<T> sub) {
+        if (coll == null) {
+            return false;
+        }
+        if ((sub == null) || (sub.isEmpty())) {
+            return true;
+        }
+        HashSet<T> coll2 = new HashSet<T>(coll);
+        for (T object : sub) {
+            if (!coll2.contains(object)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static <T> boolean containsAny(Collection<T> coll, Collection<T> sub) {
+        if (coll == null) {
+            return false;
+        }
+        if ((sub == null) || (sub.isEmpty())) {
+            return true;
+        }
+        HashSet<T> coll2 = new HashSet<T>(coll);
+        for (T object : sub) {
+            if (coll2.contains(object)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static List<Object> asList(Object obj, Object... objects) {
         List<Object> list = new ArrayList<Object>(1 + objects.length);
         list.add(obj);

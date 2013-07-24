@@ -2,5 +2,12 @@
 #sidebar TableOfContents
 
 {{{
+/lib64
+
+/usr/lib64
+}}}
+
+
+{{{
 yum provides libssl.so.6
 }}}

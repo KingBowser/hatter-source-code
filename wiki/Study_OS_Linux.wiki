@@ -192,9 +192,12 @@ http://valgrind.org/docs/manual/manual.html
 }}}
 
 
+普通用户以root权限跑程序：
 {{{
-rwsr-s--x
+rwsr-s--x root root
 
+chgrp root _file_name_
+chown root _file_name_
 chmod 6751 _file_name_
 }}}
 

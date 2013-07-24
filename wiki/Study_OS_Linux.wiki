@@ -192,6 +192,13 @@ http://valgrind.org/docs/manual/manual.html
 }}}
 
 
+{{{
+rwsr-s--x
+
+chmod 6751 _file_name_
+}}}
+
+
 `/etc/fstab`
 `http://smilejay.com/2011/03/fstab/`
 

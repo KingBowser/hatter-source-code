@@ -4,6 +4,12 @@
 下载ZooKeeper: [http://zookeeper.apache.org/releases.html]
 
 {{{
+@conf
+
+cp zoo_sample.cfg zoo.cfg
+}}}
+
+{{{
 tickTime=2000
 initLimit=10
 syncLimit=5

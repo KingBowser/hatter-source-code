@@ -10,6 +10,12 @@ log-bin=master-bin
 log-bin-index=master-bin.index
 }}}
 
+{{{
+SHOW VARIABLES LIKE 'binlog_format';
+
+SHOW VARIABLES LIKE "server_id";
+}}}
+
 
 {{{
 show master status;

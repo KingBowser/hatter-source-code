@@ -4,6 +4,8 @@
 ==打开binlog==
 文件 `my.cnf` :
 {{{
+binlog-format=(mixed|row|statement)
+
 log-bin=master-bin
 log-bin-index=master-bin.index
 }}}
@@ -26,3 +28,4 @@ $ mysqlbinlog mysql-bin.000001
 
 ===参考资料===
 `[1].` http://www.taobaodba.com/html/474_mysqls-binary-log_details.html<br>
+`[2].` http://www.packtpub.com/article/setting-up-mysql-replication-for-high-availability<br>

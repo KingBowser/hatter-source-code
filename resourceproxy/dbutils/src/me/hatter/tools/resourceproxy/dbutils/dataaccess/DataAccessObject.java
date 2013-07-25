@@ -21,7 +21,6 @@ import me.hatter.tools.resourceproxy.dbutils.factory.ConnectionFactory;
 import me.hatter.tools.resourceproxy.dbutils.factory.ConnectionPool;
 import me.hatter.tools.resourceproxy.dbutils.util.DBUtil;
 
-//
 public class DataAccessObject {
 
     protected ConnectionPool connectionPool;
@@ -105,8 +104,8 @@ public class DataAccessObject {
 
     public DataAccessObject borrowAsDataAccessObject() {
         DataAccessObject dataAccessObject = new DataAccessObject(this.connectionPool);
-        dataAccessObject.setLogging(dataAccessObject.isLogging());
-        dataAccessObject.setLoggingMillis(dataAccessObject.getLoggingMillis());
+        dataAccessObject.setLogging(this.isLogging());
+        dataAccessObject.setLoggingMillis(this.getLoggingMillis());
         dataAccessObject._connection = this.connectionPool.borrowConnection();
         return dataAccessObject;
     }

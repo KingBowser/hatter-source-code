@@ -2,17 +2,18 @@
 #sidebar TableOfContents
 
 =`show xxx;` commands=
-|| _*show variables*_ || 查看MySQL变量 ||
-|| _*show processlist*_ || 查询登陆到MySQL的用户及执行中的SQL ||
-|| _*show master status*_ || 查询binlog位点信息 ||
-|| _*show slave status*_ || ||
-|| _*show table status*_ || 查询表的统计信息 ||
-|| _*show databases*_ || 查询有哪些库 ||
-|| _*show tables*_ || 查询当前库有哪些表 ||
-|| _*show binary logs*_ || 查询当前有哪些binlog ||
+|| _`show variables`_ || 查看MySQL变量 ||
+|| _`show processlist`_ || 查询登陆到MySQL的用户及执行中的SQL ||
+|| _`show master status`_ || 查询binlog位点信息 ||
+|| _`show slave status`_ || ||
+|| _`show table status`_ || 查询表的统计信息 ||
+|| _`show databases`_ || 查询有哪些库 ||
+|| _`show tables`_ || 查询当前库有哪些表 ||
+|| _`show binary logs`_ || 查询当前有哪些binlog ||
 || _`show binlog events [limit N]`_ || 查看binlog日志【注意不加limit可能会卡死】 ||
-|| _* *_ ||  ||
-|| _* *_ ||  ||
-|| _* *_ ||  ||
-|| _* *_ ||  ||
-|| _* *_ ||  ||
+|| _``_ ||  ||
+|| _``_ ||  ||
+|| _``_ ||  ||
+|| _``_ ||  ||
+|| _``_ ||  ||
+|| _``_ ||  ||

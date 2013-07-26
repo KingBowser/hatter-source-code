@@ -2,6 +2,7 @@
 #sidebar TableOfContents
 
 =`show xxx;` commands=
-|| *show variables* || ||
-|| *show master status* || ||
+|| *show variables* || 查看MySQL变量 ||
+|| *show processlist* || 查询登陆到MySQL的用户及执行中的SQL ||
+|| *show master status* || 查询binlog位点信息 ||
 || *show slave status* || ||

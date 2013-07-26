@@ -10,7 +10,7 @@
 || _*show databases*_ || 查询有哪些库 ||
 || _*show tables*_ || 查询当前库有哪些表 ||
 || _*show binary logs*_ || 查询当前有哪些binlog ||
-|| _*`show binlog events [limit N]`*_ || 查看binlog日志【注意不加limit可能会卡死】 ||
+|| _`show binlog events [limit N]`_ || 查看binlog日志【注意不加limit可能会卡死】 ||
 || _* *_ ||  ||
 || _* *_ ||  ||
 || _* *_ ||  ||

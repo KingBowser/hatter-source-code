@@ -17,3 +17,7 @@
 || _``_ ||  ||
 || _``_ ||  ||
 || _``_ ||  ||
+
+
+===参考资料===
+`[1].` http://dev.mysql.com/doc/refman/5.5/en/show.html<br>

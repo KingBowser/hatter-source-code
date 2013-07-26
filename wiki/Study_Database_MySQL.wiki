@@ -125,6 +125,11 @@ auto_increment_increment
 auto_increment_offset
 }}}
 
+==独立表空间==
+{{{
+innodb_file_per_table=1
+}}}
+
 
 Google MySQL: 
 https://code.google.com/p/google-mysql/
@@ -135,3 +140,4 @@ https://code.google.com/p/google-mysql/
 `[2].` http://blog.jobbole.com/29432/<br>
 `[3].` http://thushw.blogspot.com/2010/11/mysql-deadlocks-with-concurrent-inserts.html<br>
 `[4].` http://www.zhurouyoudu.com/index.php/archives/735/<br>
+`[5].` http://dev.mysql.com/doc/refman/5.5/en/innodb-parameters.html<br>

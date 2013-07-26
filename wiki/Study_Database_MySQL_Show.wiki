@@ -7,3 +7,12 @@
 || _*show master status*_ || 查询binlog位点信息 ||
 || _*show slave status*_ || ||
 || _*show table status*_ || 查询表的统计信息 ||
+|| _*show databases*_ || 查询有哪些库 ||
+|| _*show tables*_ || 查询当前库有哪些表 ||
+|| _* *_ ||  ||
+|| _* *_ ||  ||
+|| _* *_ ||  ||
+|| _* *_ ||  ||
+|| _* *_ ||  ||
+|| _* *_ ||  ||
+|| _* *_ ||  ||

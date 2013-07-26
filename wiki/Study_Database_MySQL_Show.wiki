@@ -1,0 +1,7 @@
+#summary MySQL Show
+#sidebar TableOfContents
+
+=`show xxx;` commands=
+|| *show variables* || ||
+|| *show master status* || ||
+|| *show slave status* || ||

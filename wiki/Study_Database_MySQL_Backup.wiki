@@ -2,7 +2,7 @@
 #sidebar TableOfContents
 
 =热备=
-HA
+XtraBackup
 
 =冷备=
 拷贝数据库相关文件，包括：frm文件、共享表空间文件、独立表空间文件（*.ibd）、重做日志文件及配置文件my.cnf

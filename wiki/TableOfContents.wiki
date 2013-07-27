@@ -21,6 +21,7 @@
    * [Study_Database_MySQL_Binlog Binlog]
    * [Study_Database_MySQL_Collation Collation]
    * [Study_Database_MySQL_Explain Explain]
+   * [Study_Database_MySQL_InnoDB InnoDB]
    * [Study_Database_MySQL_Show Show]
   * [Study_Database_NoSQL NoSQL]
   * [Study_Database_Oracle Oracle]

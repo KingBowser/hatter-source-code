@@ -7,11 +7,11 @@
     
 	<servlet>
 		<servlet-name>if</servlet-name>
-		<servlet-class>me.hatter.tests.servlet.ForeverIfrmeServlet</servlet-class>
+		<servlet-class>me.hatter.tests.servlet.ForeverFrameServlet</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>if</servlet-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>/foreverframe</url-pattern>
 	</servlet-mapping>
 </web-app>

@@ -18,6 +18,8 @@ service mysql {start|stop|restart|reload|force-reload|status}
 
 mysql -u root
 mysql -h <IP> -u <USERNAME> -p
+
+查看版本: select version();
 }}}
 
 ==存储引擎==

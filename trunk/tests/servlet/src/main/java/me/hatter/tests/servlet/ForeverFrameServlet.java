@@ -9,11 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ForeverIfrmeServlet extends HttpServlet {
+public class ForeverFrameServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("!" + req.getRequestURI());
         resp.setHeader("Transfer-Encoding", "chunked");
         OutputStream out = resp.getOutputStream();
 
@@ -29,11 +30,12 @@ public class ForeverIfrmeServlet extends HttpServlet {
             byte[] b = ("@" + i + "<br><hr>").getBytes("UTF-8");
             writeChunked(out, b, 0, b.length);
             try {
-                Thread.sleep(TimeUnit.SECONDS.toMillis(5));
+                Thread.sleep(TimeUnit.SECONDS.toMillis(2));
             } catch (InterruptedException e) {
             }
         }
         writeChunked(out, new byte[] {}, 0, 0);
+        out.close();
     }
 
     private static final byte[] crlf = { 13, 10 };

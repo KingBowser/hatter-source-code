@@ -18,6 +18,11 @@ public class ForeverIfrmeServlet extends HttpServlet {
         OutputStream out = resp.getOutputStream();
         ChunkedOutputStream cos = new ChunkedOutputStream(out);
 
+        {
+            byte[] b = ("@This is a for-ever frame test:<br><hr>").getBytes("UTF-8");
+            cos.writeBuf(b, 0, b.length);
+        }
+
         System.out.println("@@@");
         for (int i = 0; i < 10; i++) {
             System.out.println("@@#" + i);
@@ -25,7 +30,7 @@ public class ForeverIfrmeServlet extends HttpServlet {
             byte[] b = ("@" + i + "<br><hr>").getBytes("UTF-8");
             cos.writeBuf(b, 0, b.length);
             try {
-                Thread.sleep(TimeUnit.SECONDS.toMillis(10));
+                Thread.sleep(TimeUnit.SECONDS.toMillis(5));
             } catch (InterruptedException e) {
             }
         }

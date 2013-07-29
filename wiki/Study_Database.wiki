@@ -51,4 +51,4 @@ http://neo4j.org/<br>
 Neo4j is a high-performance, NOSQL graph database with all the features of a mature and robust database. 
 
 
-取消数据库元数据信息： http://db.apache.org/ddlutils/
+取数据库元数据信息： http://db.apache.org/ddlutils/

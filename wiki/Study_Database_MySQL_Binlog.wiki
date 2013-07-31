@@ -31,6 +31,10 @@ show binlog events [in 'mysqlbin-bin.000001'] [limit 10];
 $ mysqlbinlog mysql-bin.000001
 }}}
 
+{{{
+purge binary logs to 'binglogfilename';  // 当前指定的版本是不删除的
+}}}
+
 
 ===参考资料===
 `[1].` http://www.taobaodba.com/html/474_mysqls-binary-log_details.html<br>

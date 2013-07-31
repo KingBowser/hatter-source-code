@@ -3,6 +3,7 @@
 
 =`show xxx;` commands=
 || _`show variables`_ || 查看MySQL变量 ||
+|| _`show status`_ || ||
 || _`show processlist`_ || 查询登陆到MySQL的用户及执行中的SQL ||
 || _`show master status`_ || 查询binlog位点信息 ||
 || _`show slave status`_ || ||

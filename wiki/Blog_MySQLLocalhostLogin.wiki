@@ -1,7 +1,11 @@
 #summary MySQL
 #sidebar TableOfContents
 
-
+{code}
+# mysql -u fileserver -h localhost -p 
+Enter password: 
+ERROR 1045 (28000): Access denied for user 'fileserver'@'localhost' (using password: YES)
+{code}
 
 
 ===参考资料===

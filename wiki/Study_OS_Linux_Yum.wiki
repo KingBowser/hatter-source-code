@@ -7,6 +7,10 @@
 /usr/lib64
 }}}
 
+{{{
+yum list
+}}}
+
 
 {{{
 yum provides libssl.so.6

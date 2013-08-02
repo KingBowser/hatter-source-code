@@ -1,6 +1,9 @@
 #summary MySQL为什么无法使用localhost连接
 #sidebar TableOfContents
 
+今天建了一个MySQL数据库，并创建了一个用户，但用户在登陆的时候提示没有权限 `Access denied for user 'samplename'@'localhost' (using password: YES)`。
+
+但我已经做过grant操作了，命令如下：
 {{{
 mysql> show grants for samplename;
 +-----------------------------------------------------------------------------------------------------------+
@@ -11,17 +14,20 @@ mysql> show grants for samplename;
 +-----------------------------------------------------------------------------------------------------------+
 }}}
 
+登陆提示如下：
 {{{
 # mysql -u samplename -h localhost -p 
 Enter password: 
 ERROR 1045 (28000): Access denied for user 'samplename'@'localhost' (using password: YES)
 }}}
 
+经过查找资料发现应该再做以下grant操作：
 {{{
 mysql> GRANT ALL PRIVILEGES ON `samplename_dev`.* TO 'samplename'@'localhost';
 Query OK, 0 rows affected (0.00 sec)
 }}}
 
+但登陆时还是报错，查看user表：
 {{{
 mysql> SELECT user,host,password FROM mysql.user;
 +------------+-----------------+-------------------------------------------+
@@ -32,6 +38,7 @@ mysql> SELECT user,host,password FROM mysql.user;
 +------------+-----------------+-------------------------------------------+
 }}}
 
+发现 `samplename@'localhost'` 这个账号没有设置密码，通过set password设置密码：
 {{{
 mysql> SELECT user,host,password FROM mysql.user;
 +------------+-----------------+-------------------------------------------+
@@ -42,6 +49,7 @@ mysql> SELECT user,host,password FROM mysql.user;
 +------------+-----------------+-------------------------------------------+
 }}}
 
+现次登陆OK：
 {{{
 # mysql -u samplename -h localhost -p
 Enter password: 

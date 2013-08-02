@@ -1,3 +1,10 @@
 #summary MySQL
 #sidebar TableOfContents
 
+
+
+
+===参考资料===
+`[1].` http://stackoverflow.com/questions/10299148/mysql-error-1045-28000-access-denied-for-user-billlocalhost-using-passw <br>
+`[2].` http://dev.mysql.com/doc/refman//5.5/en/set-password.html<br>
+`[3].` http://dev.mysql.com/doc/refman/5.0/en/drop-user.html<br>

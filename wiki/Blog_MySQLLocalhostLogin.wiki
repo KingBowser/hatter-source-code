@@ -8,6 +8,38 @@ ERROR 1045 (28000): Access denied for user 'fileserver'@'localhost' (using passw
 }}}
 
 
+{{{
+mysql> SELECT user,host,password FROM mysql.user;
++------------+-----------------+-------------------------------------------+
+| user       | host            | password                                  |
++------------+-----------------+-------------------------------------------+
+| root       | localhost       |                                           |
+| root       | d4.hatter.zj.cn |                                           |
+| root       | 127.0.0.1       |                                           |
+| fileserver | %               | *24C6553FA59884E1FA2C2AE57DD73AB2311DC649 |
+| hatter     | %               | *4D4026AD7F6ECF3D6180E4F624F4A45C5ED4BEC5 |
+| fileserver | localhost       |                                           |
+| fileserver | 127.0.0.1       |                                           |
++------------+-----------------+-------------------------------------------+
+7 rows in set (0.00 sec)
+}}}
+
+{{{
+mysql> SELECT user,host,password FROM mysql.user;
++------------+-----------------+-------------------------------------------+
+| user       | host            | password                                  |
++------------+-----------------+-------------------------------------------+
+| root       | localhost       |                                           |
+| root       | d4.hatter.zj.cn |                                           |
+| root       | 127.0.0.1       |                                           |
+| fileserver | %               | *24C6553FA59884E1FA2C2AE57DD73AB2311DC649 |
+| hatter     | %               | *4D4026AD7F6ECF3D6180E4F624F4A45C5ED4BEC5 |
+| fileserver | localhost       | *24C6553FA59884E1FA2C2AE57DD73AB2311DC649 |
+| fileserver | 127.0.0.1       |                                           |
++------------+-----------------+-------------------------------------------+
+7 rows in set (0.00 sec)
+}}}
+
 ===参考资料===
 `[1].` http://stackoverflow.com/questions/10299148/mysql-error-1045-28000-access-denied-for-user-billlocalhost-using-passw <br>
 `[2].` http://dev.mysql.com/doc/refman//5.5/en/set-password.html<br>

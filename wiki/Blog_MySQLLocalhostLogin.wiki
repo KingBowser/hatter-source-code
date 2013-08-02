@@ -2,6 +2,16 @@
 #sidebar TableOfContents
 
 {{{
+mysql> show grants for fileserver;
++-----------------------------------------------------------------------------------------------------------+
+| Grants for fileserver@%                                                                                   |
++-----------------------------------------------------------------------------------------------------------+
+| GRANT USAGE ON *.* TO 'fileserver'@'%' IDENTIFIED BY PASSWORD '*24C6553FA59884E1FA2C2AE57DD73AB2311DC649' |
+| GRANT ALL PRIVILEGES ON `fileserver_dev`.* TO 'fileserver'@'%'                                            |
++-----------------------------------------------------------------------------------------------------------+
+}}}
+
+{{{
 # mysql -u fileserver -h localhost -p 
 Enter password: 
 ERROR 1045 (28000): Access denied for user 'fileserver'@'localhost' (using password: YES)

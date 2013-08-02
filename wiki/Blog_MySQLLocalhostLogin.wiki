@@ -28,7 +28,6 @@ mysql> SELECT user,host,password FROM mysql.user;
 | user       | host            | password                                  |
 +------------+-----------------+-------------------------------------------+
 | samplename | %               | *24C6553FA59884E1FA2C2AE57DD73AB2311DC649 |
-| hatter     | %               | *4D4026AD7F6ECF3D6180E4F624F4A45C5ED4BEC5 |
 | samplename | localhost       |                                           |
 +------------+-----------------+-------------------------------------------+
 }}}
@@ -39,7 +38,6 @@ mysql> SELECT user,host,password FROM mysql.user;
 | user       | host            | password                                  |
 +------------+-----------------+-------------------------------------------+
 | samplename | %               | *24C6553FA59884E1FA2C2AE57DD73AB2311DC649 |
-| hatter     | %               | *4D4026AD7F6ECF3D6180E4F624F4A45C5ED4BEC5 |
 | samplename | localhost       | *24C6553FA59884E1FA2C2AE57DD73AB2311DC649 |
 +------------+-----------------+-------------------------------------------+
 }}}

@@ -128,6 +128,7 @@
   * [Blog_FontCreateCauseOOME Font.create()引发OOME问题]
   * [Blog_HotSpotDiagnosis HotSpot问题诊断]
   * [Blog_JavaMemoryModel 聊聊我对Java内存模型的理解]
+  * [Blog_MySQLLocalhostLogin MySQL为什么无法使用localhost连接]
   * [Blog_SpringCustomeNameSpaceAndTag Spring自定义标签]
   * [Blog_SubversionUsingSocks5Proxy Subversion using socks5 proxy]
   * [Blog_XStreamNonStaticInstancePerformanceAnalysis XStream非静态化实例的性能问题分析]

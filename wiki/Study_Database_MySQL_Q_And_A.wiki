@@ -2,4 +2,4 @@
 #sidebar TableOfContents
 
 
- # [Study_Database_MySQL_Q_And_A_BingLogDeleteSync 为什么删除了主库BINLOG，同步依然正常？]
+ # [Study_Database_MySQL_Q_And_A_BinLogDeleteSync 为什么删除了主库BINLOG，同步依然正常？]

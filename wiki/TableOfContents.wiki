@@ -25,7 +25,7 @@
    * [Study_Database_MySQL_InnoDB InnoDB]
    * [Study_Database_MySQL_Show Show]
    * [Study_Database_MySQL_Q_And_A Question&Answer]
-    * [Study_Database_MySQL_Q_And_A_BingLogDeleteSync BinLogDeleteSync]
+    * [Study_Database_MySQL_Q_And_A_BinLogDeleteSync BinLogDeleteSync]
   * [Study_Database_NoSQL NoSQL]
   * [Study_Database_Oracle Oracle]
    * [Study_Database_Oracle_Hint Hint]

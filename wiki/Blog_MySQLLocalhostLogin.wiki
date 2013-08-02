@@ -60,6 +60,9 @@ Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 mysql> 
 }}}
 
+==结论==
+在MySQL中`@'localhost'`是一种特殊的逻辑，即`samplename@'%'` 和 `samplename@'localhost'` 是两个不同的用户，包括密钥和权限都是相互独立的。
+
 ===参考资料===
 `[1].` http://stackoverflow.com/questions/10299148/mysql-error-1045-28000-access-denied-for-user-billlocalhost-using-passw <br>
 `[2].` http://dev.mysql.com/doc/refman//5.5/en/set-password.html<br>

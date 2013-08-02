@@ -1,4 +1,4 @@
-#summary MySQL
+#summary MySQL为什么无法使用localhost连接
 #sidebar TableOfContents
 
 {{{

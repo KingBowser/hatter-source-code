@@ -19,6 +19,9 @@ clientPort=2181
 server.1=c1.hatter.zj.cn:2888:3888 
 server.2=b1.hatter.zj.cn:2888:3888 
 server.3=a1.hatter.zj.cn:2888:3888
+
+// 观察者，无投票权
+server.4=d1.hatter.zj.cn:2888:3888:observer
 }}}
 
 在 `/home/admin/zookeeper/data` 建文件 `myid` ，写入对应的ID号。再通过 `./zkServer.sh start` 挨个启动即可。

@@ -1,3 +1,6 @@
+#summary 为什么删除了主库BINLOG，同步依然正常？
+#sidebar TableOfContents
+
 =为什么删除了主库BINLOG，同步依然正常？=
 
 ==测试场景如下：==

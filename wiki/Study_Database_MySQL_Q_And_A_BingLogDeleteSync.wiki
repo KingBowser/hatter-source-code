@@ -18,3 +18,7 @@
 每次写binlog的时候，binlog dump线程都会将对应的event信息发给备库。<br>
 在linux操作系统上，如果一个进程打开了binlog文件，只要这个进程没有关闭文件，那么就算你在另外的窗口删除掉了这个文件，这个文件此时并不会真正的删除。<br>
 如果mysqld进程打开了binlog文件，就算你删除了，mysqld仍然可以写数据进去(用lsof仍然可以看到mysqld进程打开了那个binlog文件)，直到mysqld完成这个binlog，切换到下一个，这个binlog才真正的被物理删除。所以在此期间，binlog dump线程一直可以把binlog的events发给备库，备库也一直能够保持跟主库的同步。
+
+
+===参考资料===
+`[1].` http://www.woqutech.com/?p=812<br>

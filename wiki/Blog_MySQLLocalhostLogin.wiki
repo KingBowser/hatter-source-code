@@ -2,23 +2,23 @@
 #sidebar TableOfContents
 
 {{{
-mysql> show grants for fileserver;
+mysql> show grants for samplename;
 +-----------------------------------------------------------------------------------------------------------+
-| Grants for fileserver@%                                                                                   |
+| Grants for samplename@%                                                                                   |
 +-----------------------------------------------------------------------------------------------------------+
-| GRANT USAGE ON *.* TO 'fileserver'@'%' IDENTIFIED BY PASSWORD '*24C6553FA59884E1FA2C2AE57DD73AB2311DC649' |
-| GRANT ALL PRIVILEGES ON `fileserver_dev`.* TO 'fileserver'@'%'                                            |
+| GRANT USAGE ON *.* TO 'samplename'@'%' IDENTIFIED BY PASSWORD '*24C6553FA59884E1FA2C2AE57DD73AB2311DC649' |
+| GRANT ALL PRIVILEGES ON `samplename_dev`.* TO 'samplename'@'%'                                            |
 +-----------------------------------------------------------------------------------------------------------+
 }}}
 
 {{{
-# mysql -u fileserver -h localhost -p 
+# mysql -u samplename -h localhost -p 
 Enter password: 
-ERROR 1045 (28000): Access denied for user 'fileserver'@'localhost' (using password: YES)
+ERROR 1045 (28000): Access denied for user 'samplename'@'localhost' (using password: YES)
 }}}
 
 {{{
-mysql> GRANT ALL PRIVILEGES ON `fileserver_dev`.* TO 'fileserver'@'localhost';
+mysql> GRANT ALL PRIVILEGES ON `samplename_dev`.* TO 'samplename'@'localhost';
 Query OK, 0 rows affected (0.00 sec)
 }}}
 
@@ -27,9 +27,9 @@ mysql> SELECT user,host,password FROM mysql.user;
 +------------+-----------------+-------------------------------------------+
 | user       | host            | password                                  |
 +------------+-----------------+-------------------------------------------+
-| fileserver | %               | *24C6553FA59884E1FA2C2AE57DD73AB2311DC649 |
+| samplename | %               | *24C6553FA59884E1FA2C2AE57DD73AB2311DC649 |
 | hatter     | %               | *4D4026AD7F6ECF3D6180E4F624F4A45C5ED4BEC5 |
-| fileserver | localhost       |                                           |
+| samplename | localhost       |                                           |
 +------------+-----------------+-------------------------------------------+
 }}}
 
@@ -38,14 +38,14 @@ mysql> SELECT user,host,password FROM mysql.user;
 +------------+-----------------+-------------------------------------------+
 | user       | host            | password                                  |
 +------------+-----------------+-------------------------------------------+
-| fileserver | %               | *24C6553FA59884E1FA2C2AE57DD73AB2311DC649 |
+| samplename | %               | *24C6553FA59884E1FA2C2AE57DD73AB2311DC649 |
 | hatter     | %               | *4D4026AD7F6ECF3D6180E4F624F4A45C5ED4BEC5 |
-| fileserver | localhost       | *24C6553FA59884E1FA2C2AE57DD73AB2311DC649 |
+| samplename | localhost       | *24C6553FA59884E1FA2C2AE57DD73AB2311DC649 |
 +------------+-----------------+-------------------------------------------+
 }}}
 
 {{{
-# mysql -u fileserver -h localhost -p
+# mysql -u samplename -h localhost -p
 Enter password: 
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 330

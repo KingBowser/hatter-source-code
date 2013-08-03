@@ -95,6 +95,12 @@ var quickDomainSettingMap = map[string]*DomainSetting {
 	"blog.hatter.me": &DomainSetting {
 		REDIRECT, "http://aprilsoft.cn/blog/", "",
 	},
+	"hatter.in": &DomainSetting {
+		REDIRECT, "http://code.google.com/p/hatter-source-code/", "",
+	},
+	"www.hatter.in": &DomainSetting {
+		REDIRECT, "http://code.google.com/p/hatter-source-code/", "",
+	},
 	"code.hatter.me": &DomainSetting {
 		REDIRECT, "https://code.google.com/p/hatter-source-code/", "",
 	},

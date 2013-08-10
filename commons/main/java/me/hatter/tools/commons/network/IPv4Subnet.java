@@ -20,6 +20,16 @@ public class IPv4Subnet {
         System.out.println(new IPv4Subnet("192.168.0.0:255.255.255.0").matches("192.168.1.1"));
     }
 
+    public IPv4Subnet(String ip, int mask) {
+        this.ip = IPv4Addr.ipToInts(ip);
+        this.mask = IPv4Mask.maskIntToIpInts(mask);
+    }
+
+    public IPv4Subnet(IPv4Addr ip, int mask) {
+        this.ip = ip.getInts();
+        this.mask = IPv4Mask.maskIntToIpInts(mask);
+    }
+
     public IPv4Subnet(String ipmask) {
         ipmask = (ipmask == null) ? null : ipmask.trim();
         if ((ipmask == null) || ipmask.isEmpty()) {

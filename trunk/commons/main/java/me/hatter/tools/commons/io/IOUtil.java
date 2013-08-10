@@ -12,6 +12,7 @@ import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.hatter.tools.commons.classloader.ClassLoaderUtil;
 import me.hatter.tools.commons.exception.ExceptionUtil;
 
 public class IOUtil {
@@ -21,6 +22,10 @@ public class IOUtil {
     public static final int    GB           = MB * KB;
     public static final int    TB           = GB * KB;
     public static final String CHARSET_UTF8 = "UTF-8";
+
+    public static String readResourceBySystemClassloaderToString(String resourceName) {
+        return readResourceToString(ClassLoaderUtil.getSystemClassLoader(), resourceName);
+    }
 
     public static String readResourceToString(Class<?> clazz, String resourceName) {
         InputStream is = clazz.getResourceAsStream(resourceName);

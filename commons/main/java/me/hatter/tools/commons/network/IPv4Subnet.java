@@ -57,6 +57,10 @@ public class IPv4Subnet {
         return IPv4Addr.intsEquals(ip, IPv4Mask.mask(ips, mask));
     }
 
+    public boolean matches(IPv4Addr targetIP) {
+        return IPv4Addr.intsEquals(ip, IPv4Mask.mask(targetIP.getInts(), mask));
+    }
+
     public int hashCode() {
         int hashCode = 1;
         if (ip != null) {

@@ -57,6 +57,29 @@ public class IPv4Subnet {
         return IPv4Addr.intsEquals(ip, IPv4Mask.mask(ips, mask));
     }
 
+    public int hashCode() {
+        int hashCode = 1;
+        if (ip != null) {
+            for (int i = 0; i < ip.length; i++) {
+                hashCode = 31 * hashCode + ip[i];
+            }
+        }
+        if (mask != null) {
+            for (int i = 0; i < mask.length; i++) {
+                hashCode = 31 * hashCode + mask[i];
+            }
+        }
+        return hashCode;
+    }
+
+    public boolean equals(Object object) {
+        if ((object == null) || (object.getClass() != IPv4Subnet.class)) {
+            return false;
+        }
+        IPv4Subnet another = (IPv4Subnet) object;
+        return (IPv4Addr.intsEquals(this.ip, another.ip) && IPv4Addr.intsEquals(this.mask, another.mask));
+    }
+
     public String toString() {
         return IPv4Addr.intsToString(ip) + "/" + IPv4Mask.ipIntsToMaskInt(mask);
     }

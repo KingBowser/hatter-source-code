@@ -16,6 +16,24 @@ public class IPv4Addr {
         return copiedIp;
     }
 
+    public int hashCode() {
+        int hashCode = 1;
+        if (ip != null) {
+            for (int i = 0; i < ip.length; i++) {
+                hashCode = 31 * hashCode + ip[i];
+            }
+        }
+        return hashCode;
+    }
+
+    public boolean equals(Object object) {
+        if ((object == null) || (object.getClass() != IPv4Addr.class)) {
+            return false;
+        }
+        IPv4Addr another = (IPv4Addr) object;
+        return intsEquals(this.ip, another.ip);
+    }
+
     public String toString() {
         return intsToString(this.ip);
     }

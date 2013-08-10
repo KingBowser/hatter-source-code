@@ -154,6 +154,14 @@ public class StringUtil {
         return sb.toString();
     }
 
+    public static String paddingzero(int i, int len) {
+        return paddingZeroLeft(String.valueOf(i), len);
+    }
+
+    public static String paddingzero(long i, int len) {
+        return paddingZeroLeft(String.valueOf(i), len);
+    }
+
     public static String paddingZeroLeft(String str, int len) {
         return padding(str, len, '0', true);
     }

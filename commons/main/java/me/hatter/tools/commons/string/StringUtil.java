@@ -154,6 +154,10 @@ public class StringUtil {
         return sb.toString();
     }
 
+    public static String paddingZeroLeft(String str, int len) {
+        return padding(str, len, '0', true);
+    }
+
     public static String paddingSpaceLeft(String str, int len) {
         return padding(str, len, ' ', true);
     }
@@ -166,6 +170,57 @@ public class StringUtil {
         String s = notNull(str);
         String rc = repeat(new String(new char[] { c }), (len - s.length()));
         return (isLeft ? rc + s : s + rc);
+    }
+
+    public static boolean contains(String str, String substr) {
+        if (str == null) {
+            return false;
+        }
+        if (substr == null) {
+            return true;
+        }
+        return str.contains(str);
+    }
+
+    public static boolean containsAny(String str, String substr, String... substrs) {
+        if (str == null) {
+            return false;
+        }
+        if (substr == null) {
+            return true;
+        }
+        if (str.contains(str)) {
+            return true;
+        }
+        if (substrs != null) {
+            for (String ss : substrs) {
+                if (str.contains(ss)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public static boolean containsAll(String str, String substr, String... substrs) {
+        if (str == null) {
+            return false;
+        }
+        if (!str.contains(str)) {
+            return false;
+        }
+        if (substrs != null) {
+            for (String ss : substrs) {
+                if (!str.contains(ss)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public static boolean containsIgnoreCase(String str, String substr) {
+        return contains(toLowerCase(str), toLowerCase(substr));
     }
 
     public static String substringBefore(String str, String split) {

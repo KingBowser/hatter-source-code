@@ -9,6 +9,8 @@
 
 {{{
 yum list
+
+yum -b current list
 }}}
 
 

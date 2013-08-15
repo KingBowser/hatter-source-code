@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringReader;
+import java.lang.management.ManagementFactory;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -327,8 +328,24 @@ public class JsspExecutor {
         pw.write("\r\n");
     }
 
-    private static File getJsspWorkDir() {
-        File work = new File(System.getProperty("user.dir"), "_jssp_work_dir");
-        return work;
+    private static File __jsspWorkDir = null;
+
+    synchronized private static File getJsspWorkDir() {
+        if (__jsspWorkDir != null) {
+            return __jsspWorkDir;
+        }
+        __jsspWorkDir = new File(new File(System.getProperty("java.io.tmpdir"), "_jssp_work_dir"),
+                                 getProcessSpecialId());
+        return __jsspWorkDir;
+    }
+
+    private static String getProcessSpecialId() {
+        try {
+            String nameOfRunningVM = ManagementFactory.getRuntimeMXBean().getName();
+            int p = nameOfRunningVM.indexOf('@');
+            return nameOfRunningVM.substring(0, p);
+        } catch (Exception e) {
+            return String.valueOf(System.currentTimeMillis());
+        }
     }
 }

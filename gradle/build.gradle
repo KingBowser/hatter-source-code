@@ -175,6 +175,13 @@ task packwar << {
 }
 packwar.dependsOn build
 
+task packwar2 << {
+  ant.jar(destfile: "web.war") {
+    fileset(dir: "war", includes: '**/*.*')
+  }
+}
+packwar2.dependsOn packwar
+
 dependencies {
     compile files(fileTree(dir: 'lib', includes: ['*.jar'], excludes: ['*-sources.jar', '*-javadoc.jar']))
     // compile files(file(System.properties['java.home'].replaceAll('\\/jre(\\/)?$', "") + "/lib/sa-jdi.jar"))

@@ -3,6 +3,7 @@ https://hatter-source-code.googlecode.com/svn/trunk/btracescripts/btrace/btrace-
 https://hatter-source-code.googlecode.com/svn/trunk/crsh/crsh-1.0.0.tar.gz
 https://hatter-source-code.googlecode.com/svn/trunk/gradle/gradle-1.0-all.zip
 https://hatter-source-code.googlecode.com/svn/trunk/winstonejsspserver/lib/winstone-0.9.10.jar
+http://hatter-source-code.googlecode.com/svn/trunk/tools/jmxterm-1.0-alpha-4-uber.jar
 
 https://hatter-source-code.googlecode.com/svn/trunk/bigpom/bigpomall.jar
 https://hatter-source-code.googlecode.com/svn/trunk/classdump/classdumpall.jar

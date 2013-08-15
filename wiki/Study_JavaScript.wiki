@@ -99,6 +99,7 @@ _[http://www.ecma-international.org/publications/standards/Ecma-262-arch.htm]_
 ===八、相关网站===
 || The HTML5 test || http://html5test.com/ || The HTML5 test score is an indication of how well your browser supports the upcoming HTML5 standard and related specifications ||
 || OpenAjax || http://www.openajax.org/ || The OpenAjax Alliance is an organization of leading vendors, open source projects, and companies using Ajax that are dedicated to the successful adoption of open and interoperable Ajax-based Web technologies. ||
+|| Command Line API || http://getfirebug.com/wiki/index.php/Command_Line_API || The Firebug Command Line provides these special functions for your convenience. ||
 
 ===九、友情连接===
 || ECMAScript5.1中文版 || http://www.ecmascript.cn/ || ECMAScript5.1中文版 ||

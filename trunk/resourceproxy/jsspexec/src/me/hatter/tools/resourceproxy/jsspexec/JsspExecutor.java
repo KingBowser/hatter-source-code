@@ -25,6 +25,7 @@ import me.hatter.tools.resourceproxy.commons.resource.FileResource;
 import me.hatter.tools.resourceproxy.commons.resource.Resource;
 import me.hatter.tools.resourceproxy.commons.resource.TextResource;
 import me.hatter.tools.resourceproxy.commons.util.IOUtil;
+import me.hatter.tools.resourceproxy.commons.util.JavaUtil;
 import me.hatter.tools.resourceproxy.commons.util.StringUtil;
 import me.hatter.tools.resourceproxy.jsspexec.exception.JsspEvalException;
 import me.hatter.tools.resourceproxy.jsspexec.jsspreader.SimpleJsspReader;
@@ -100,6 +101,7 @@ public class JsspExecutor {
             b.put("control", control);
         }
         b.put("stringUtil", StringUtil.INSTANCE);
+        b.put("javaUtil", JavaUtil.INSTANCE);
         b.put("app_context", context);
         b.put("ac", context);
         b.put("out", out);

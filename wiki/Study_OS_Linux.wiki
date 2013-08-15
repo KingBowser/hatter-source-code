@@ -202,6 +202,14 @@ chmod 6751 _file_name_
 }}}
 
 
+{{{
+sync  同步cache
+
+释放cache
+echo 3 > /proc/sys/vm/drop_caches
+}}}
+
+
 `/etc/fstab`
 `http://smilejay.com/2011/03/fstab/`
 
@@ -211,3 +219,4 @@ chmod 6751 _file_name_
 `[2].` http://smilejay.com/2011/03/fstab/<br>
 `[3].` http://www.cnblogs.com/liuhao/archive/2012/11/13/2768898.html<br>
 `[4].` http://www.aqee.net/what-are-the-most-useful-swiss-army-knife-one-liners-on-unix/<br>
+`[5].` http://linux.cn/portal-view-aid-211.html<br>

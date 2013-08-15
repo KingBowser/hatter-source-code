@@ -26,7 +26,7 @@ public class WelcomeFilter implements Filter {
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException,
                                                                                                    ServletException {
-        request.setCharacterEncoding(FilterUtil.DEFAULT_CHARACTER_ENCODING);
+        request.setCharacterEncoding(FilterTool.DEFAULT_CHARACTER_ENCODING);
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         if ("/".equals(httpRequest.getServletPath())) {

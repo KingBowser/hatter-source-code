@@ -31,27 +31,28 @@ import winstone.WinstoneResponse;
 public class JSSPFilter implements Filter {
 
     public void init(FilterConfig filterConfig) throws ServletException {
+        FilterTool.initDefaultInstance(filterConfig.getServletContext().getRealPath("jssp"));
     }
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException,
                                                                                              ServletException {
-        request.setCharacterEncoding(FilterUtil.DEFAULT_CHARACTER_ENCODING);
+        request.setCharacterEncoding(FilterTool.DEFAULT_CHARACTER_ENCODING);
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
 
         String fpath = httpRequest.getServletPath();
         if (fpath.toLowerCase().endsWith(".jssp")) {
-            JsspResource jsspResource = JsspResourceManager.getJsspResource(FilterUtil.getResource(fpath));
+            JsspResource jsspResource = JsspResourceManager.getJsspResource(FilterTool.defaultInstance().getResource(fpath));
 
             JsspReader jsspReader = new ExplainedJsspReader() {
 
                 public String readExplained(String path) {
-                    Resource resource = FilterUtil.getResource(path);
+                    Resource resource = FilterTool.defaultInstance().getResource(path);
                     if (!resource.exists()) {
                         throw new RuntimeException("Resource not found: " + path);
                     }
                     JsspResource jsspResource = JsspResourceManager.getJsspResource(resource);
-                    return jsspResource.getExplainedContent(FilterUtil.JSSP_DEBUG);
+                    return jsspResource.getExplainedContent(FilterTool.JSSP_DEBUG);
                 }
             };
 
@@ -80,7 +81,7 @@ public class JSSPFilter implements Filter {
                     }
                 }
 
-                String explainedContent = jsspResource.getExplainedContent(FilterUtil.JSSP_DEBUG);
+                String explainedContent = jsspResource.getExplainedContent(FilterTool.JSSP_DEBUG);
 
                 BufferWriter bw = new BufferWriter();
                 Map<String, Object> addContext = new HashMap<String, Object>();

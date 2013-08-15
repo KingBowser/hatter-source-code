@@ -30,17 +30,18 @@ public class JSONFilter implements Filter {
     public static final String JSON_KEY = "__json_key__";
 
     public void init(FilterConfig filterConfig) throws ServletException {
+        FilterTool.initDefaultInstance(filterConfig.getServletContext().getRealPath("jssp"));
     }
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException,
                                                                                              ServletException {
-        request.setCharacterEncoding(FilterUtil.DEFAULT_CHARACTER_ENCODING);
+        request.setCharacterEncoding(FilterTool.DEFAULT_CHARACTER_ENCODING);
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
 
         String fpath = httpRequest.getServletPath();
         if (fpath.toLowerCase().endsWith(".jsonp") || fpath.toLowerCase().endsWith(".ajax")) {
-            JsspResource jsonpResource = JsspResourceManager.getJsspResource(FilterUtil.getResource(fpath));
+            JsspResource jsonpResource = JsspResourceManager.getJsspResource(FilterTool.defaultInstance().getResource(fpath));
 
             if (jsonpResource.exists()) {
                 System.out.println("[INFO] Found jsonp/ajax resource: " + jsonpResource.getResource());

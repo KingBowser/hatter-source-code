@@ -182,17 +182,29 @@ public class ClassLoaderUtil {
     }
 
     public static void initLibResources() {
-        String libresourcesJars = IOUtil.readResourceToString(ClassLoaderUtil.class, "/libresources_jars.txt");
-        BufferedReader br = new BufferedReader(new StringReader(libresourcesJars));
+        initLibResources(true);
+    }
+
+    public static void initLibResources(boolean abortOnError) {
         try {
-            for (String line; ((line = br.readLine()) != null);) {
-                if (!line.trim().isEmpty()) {
-                    addResourceToSystemClassLoader("/libresources/" + line.trim(),
-                                                   Boolean.getBoolean("printInitLibResourcesLog"));
+            String libresourcesJars = IOUtil.readResourceToString(ClassLoaderUtil.class, "/libresources_jars.txt");
+            BufferedReader br = new BufferedReader(new StringReader(libresourcesJars));
+            try {
+                for (String line; ((line = br.readLine()) != null);) {
+                    if (!line.trim().isEmpty()) {
+                        addResourceToSystemClassLoader("/libresources/" + line.trim(),
+                                                       Boolean.getBoolean("printInitLibResourcesLog"));
+                    }
                 }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (RuntimeException ex) {
+            if (abortOnError) {
+                throw ex;
+            } else {
+                LogUtil.warn("Ignore init lib resources error: " + ex.getMessage());
+            }
         }
     }
 }

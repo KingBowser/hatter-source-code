@@ -357,6 +357,18 @@ function makeQrCode() {
     };
   }
 }
+
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+if (getParameterByName("qr") != null && getParameterByName("qr") != "") {
+  item("input").value = getParameterByName("qr");
+  makeQrCode();
+}
 </script>
 
 </body>

@@ -187,7 +187,7 @@ public class StringUtil {
         if (substr == null) {
             return true;
         }
-        return str.contains(str);
+        return str.contains(substr);
     }
 
     public static boolean containsAny(String str, String substr, String... substrs) {
@@ -197,7 +197,7 @@ public class StringUtil {
         if (substr == null) {
             return true;
         }
-        if (str.contains(str)) {
+        if (str.contains(substr)) {
             return true;
         }
         if (substrs != null) {
@@ -214,7 +214,7 @@ public class StringUtil {
         if (str == null) {
             return false;
         }
-        if (!str.contains(str)) {
+        if (!str.contains(substr)) {
             return false;
         }
         if (substrs != null) {

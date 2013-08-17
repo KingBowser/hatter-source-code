@@ -2,6 +2,7 @@ package me.hatter.tests.xmpp;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.Collection;
 
 import me.hatter.tools.commons.environment.Environment;
 import me.hatter.tools.commons.file.FileUtil;
@@ -9,12 +10,15 @@ import me.hatter.tools.commons.log.LogUtil;
 import me.hatter.tools.commons.string.StringUtil;
 
 import org.jivesoftware.smack.Chat;
+import org.jivesoftware.smack.ChatManagerListener;
 import org.jivesoftware.smack.Connection;
 import org.jivesoftware.smack.ConnectionListener;
-import org.jivesoftware.smack.MessageListener;
+import org.jivesoftware.smack.Roster;
+import org.jivesoftware.smack.Roster.SubscriptionMode;
+import org.jivesoftware.smack.RosterEntry;
+import org.jivesoftware.smack.RosterListener;
 import org.jivesoftware.smack.XMPPConnection;
-import org.jivesoftware.smack.XMPPException;
-import org.jivesoftware.smack.packet.Message;
+import org.jivesoftware.smack.packet.Presence;
 
 public class XmppTest {
 
@@ -38,6 +42,26 @@ public class XmppTest {
         Connection connection = new XMPPConnection(TALK);
         connection.connect();
         connection.login(userName, password);
+        connection.getRoster().addRosterListener(new RosterListener() {
+
+            public void presenceChanged(Presence presence) {
+                LogUtil.info("presenceChanged:"
+                             + Arrays.<Object> asList(presence.getFrom(), presence.getTo(), presence.getMode(),
+                                                      presence.getStatus(), presence.getType()));
+            }
+
+            public void entriesUpdated(Collection<String> entries) {
+                LogUtil.info("entriesUpdated:" + entries);
+            }
+
+            public void entriesDeleted(Collection<String> entries) {
+                LogUtil.info("entriesDeleted:" + entries);
+            }
+
+            public void entriesAdded(Collection<String> entries) {
+                LogUtil.info("entriesAdded:" + entries);
+            }
+        });
         connection.addConnectionListener(new ConnectionListener() {
 
             public void reconnectionSuccessful() {
@@ -60,22 +84,25 @@ public class XmppTest {
                 LogUtil.info("connectionClosed");
             }
         });
-        Chat chat = connection.getChatManager().createChat("jht5945@gmail.com", new MessageListener() {
+        connection.getChatManager().addChatListener(new ChatManagerListener() {
 
-            public void processMessage(Chat chat, Message message) {
-                System.out.println("Received message: "
-                                   + Arrays.<Object> asList(message.getType(), message.getSubject(), message.getBody()));
-                if (message.getBody() != null) {
-                    try {
-                        chat.sendMessage("You wrote: " + message.getBody());
-                    } catch (XMPPException e) {
-                        e.printStackTrace();
-                    }
+            public void chatCreated(Chat chat, boolean createLocally) {
+                if (!createLocally) {
+                    chat.addMessageListener(new DefaultMessageListener());
                 }
             }
         });
-        chat.sendMessage("hello !!" + System.currentTimeMillis());
-
-        Thread.sleep(100000L);
+        Roster roster = connection.getRoster();
+        roster.setSubscriptionMode(SubscriptionMode.accept_all);
+        // roster.createEntry("jht5945@gmail.com", "Hatter Jinag@G", null);
+        System.out.println("Total: " + roster.getEntryCount());
+        Collection<RosterEntry> entries = roster.getEntries();
+        for (RosterEntry entry : entries) {
+            System.out.println("    "
+                               + Arrays.asList(entry.getType(), entry.getUser(), entry.getName(), entry.getStatus()));
+        }
+        // Chat chat = connection.getChatManager().createChat("jht5945@gmail.com", new DefaultMessageListener());
+        // chat.sendMessage("test message !");
+        Thread.sleep(10000000);
     }
 }

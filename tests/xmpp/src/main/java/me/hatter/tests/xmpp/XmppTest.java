@@ -2,7 +2,6 @@ package me.hatter.tests.xmpp;
 
 import java.io.File;
 import java.util.Arrays;
-import java.util.Collection;
 
 import me.hatter.tools.commons.environment.Environment;
 import me.hatter.tools.commons.file.FileUtil;
@@ -19,7 +18,7 @@ import org.jivesoftware.smack.XMPPConnection;
 // http://julipedia.meroh.net/2012/07/getting-rid-of-publictalkgooglecom.html
 public class XmppTest {
 
-    private static final String TALK = "talk.l.google.com";
+    private static final String SERVER = "talk.l.google.com";
 
     private static String       userName;
     private static String       password;
@@ -31,12 +30,7 @@ public class XmppTest {
 
     public static void main(String[] args) throws Exception {
 
-        // ConnectionConfiguration config = new ConnectionConfiguration(TALK);
-        // config.setCompressionEnabled(true);
-        // config.setSASLAuthenticationEnabled(true);
-        // config.setSecurityMode(SecurityMode.enabled);
-
-        Connection connection = new XMPPConnection(TALK);
+        Connection connection = new XMPPConnection(SERVER);
         connection.connect();
         connection.login(userName, password);
         connection.getRoster().setSubscriptionMode(SubscriptionMode.accept_all);
@@ -53,11 +47,14 @@ public class XmppTest {
         Roster roster = connection.getRoster();
         // roster.createEntry("jht5945@gmail.com", "Hatter Jinag@G", null);
         System.out.println("Total: " + roster.getEntryCount());
-        Collection<RosterEntry> entries = roster.getEntries();
-        for (RosterEntry entry : entries) {
+        for (RosterEntry entry : roster.getEntries()) {
             System.out.println("    "
                                + Arrays.asList(entry.getType(), entry.getUser(), entry.getName(), entry.getStatus()));
         }
+        System.out.println("Has no group entry count: " + roster.getUnfiledEntryCount());
+        System.out.println("Is secure connection: " + connection.isSecureConnection());
+        System.out.println("Is using compression: " + connection.isUsingCompression());
+
         Thread.sleep(10000000);
     }
 }

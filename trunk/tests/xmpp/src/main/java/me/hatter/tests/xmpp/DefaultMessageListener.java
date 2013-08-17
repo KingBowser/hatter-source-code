@@ -10,6 +10,8 @@ import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smack.packet.Message;
 import org.jivesoftware.smack.packet.Message.Type;
 
+import com.alibaba.fastjson.JSON;
+
 public class DefaultMessageListener implements MessageListener {
 
     public void processMessage(Chat chat, Message message) {
@@ -17,6 +19,7 @@ public class DefaultMessageListener implements MessageListener {
         LogUtil.info("Received message: "
                      + Arrays.<Object> asList(message.getType(), message.getFrom(), message.getSubject(),
                                               message.getBody()));
+        LogUtil.info("Detail message: \n  " + JSON.toJSONString(message));
         if (message.getType() == Type.error) {
             return;
         }

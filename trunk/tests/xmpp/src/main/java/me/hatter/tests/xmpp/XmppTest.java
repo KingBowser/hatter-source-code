@@ -5,6 +5,7 @@ import java.util.Arrays;
 
 import me.hatter.tools.commons.environment.Environment;
 import me.hatter.tools.commons.file.FileUtil;
+import me.hatter.tools.commons.log.LogUtil;
 import me.hatter.tools.commons.string.StringUtil;
 
 import org.jivesoftware.smack.Chat;
@@ -32,7 +33,20 @@ public class XmppTest {
 
         Connection connection = new XMPPConnection(SERVER);
         connection.connect();
+        LogUtil.info("Summary: "
+                     + Arrays.asList(connection.isConnected(), connection.isAuthenticated(), connection.isAnonymous()));
+        LogUtil.info("Host and port: " + Arrays.<Object> asList(connection.getHost(), connection.getPort()));
+        LogUtil.info("Is secure connection: " + connection.isSecureConnection());
+        LogUtil.info("Is using compression: " + connection.isUsingCompression());
+        LogUtil.info("Service capsnode/name: "
+                     + Arrays.asList(connection.getServiceCapsNode(), connection.getServiceName()));
+
         connection.login(userName, password);
+        LogUtil.info("Summary2: "
+                     + Arrays.asList(connection.isConnected(), connection.isAuthenticated(), connection.isAnonymous()));
+
+        // LogUtil.info("Supports account creation: " + connection.getAccountManager().supportsAccountCreation());
+
         connection.getRoster().setSubscriptionMode(SubscriptionMode.accept_all);
         connection.getRoster().addRosterListener(new DefaultRosterListener());
         connection.addConnectionListener(new DefaultConnectionListener());
@@ -46,14 +60,11 @@ public class XmppTest {
         });
         Roster roster = connection.getRoster();
         // roster.createEntry("jht5945@gmail.com", "Hatter Jinag@G", null);
-        System.out.println("Total: " + roster.getEntryCount());
+        LogUtil.info("Total: " + roster.getEntryCount());
         for (RosterEntry entry : roster.getEntries()) {
-            System.out.println("    "
-                               + Arrays.asList(entry.getType(), entry.getUser(), entry.getName(), entry.getStatus()));
+            LogUtil.info("    " + Arrays.asList(entry.getType(), entry.getUser(), entry.getName(), entry.getStatus()));
         }
-        System.out.println("Has no group entry count: " + roster.getUnfiledEntryCount());
-        System.out.println("Is secure connection: " + connection.isSecureConnection());
-        System.out.println("Is using compression: " + connection.isUsingCompression());
+        LogUtil.info("Has no group entry count: " + roster.getUnfiledEntryCount());
 
         Thread.sleep(10000000);
     }

@@ -1,15 +1,18 @@
 package me.hatter.tools.totp;
 
 import java.lang.reflect.UndeclaredThrowableException;
+import java.math.BigInteger;
 import java.security.GeneralSecurityException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
-import java.math.BigInteger;
 import java.util.TimeZone;
 
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+
+// otpauth://totp/Example:alice@google.com?secret=JBSWY3DPEHPK3PXP&issuer=Example
+// https://code.google.com/p/google-authenticator/
 public class TOTP {
 
     private static byte[] hmac_sha(String crypto, byte[] keyBytes, byte[] text) {
@@ -53,6 +56,10 @@ public class TOTP {
     }
 
     public static String generateTOTP(String key, String time, String returnDigits, String crypto) {
+        return generateTOTP(hexStr2Bytes(key), time, returnDigits, crypto);
+    }
+
+    public static String generateTOTP(byte[] key, String time, String returnDigits, String crypto) {
         int codeDigits = Integer.decode(returnDigits).intValue();
         String result = null;
 
@@ -64,8 +71,7 @@ public class TOTP {
 
         // Get the HEX in a Byte[]
         byte[] msg = hexStr2Bytes(time);
-        byte[] k = hexStr2Bytes(key);
-        byte[] hash = hmac_sha(crypto, k, msg);
+        byte[] hash = hmac_sha(crypto, key, msg);
 
         // put selected bytes into result int
         int offset = hash[hash.length - 1] & 0xf;

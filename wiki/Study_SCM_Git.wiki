@@ -10,4 +10,10 @@
 || GitHub || https://github.com/ ||
 || Google Code || https://code.google.com/hosting/ ||
 
+
+github:
+{{{
+fixed issue NUM #NUM , comment
+}}}
+
 ===参考资料===

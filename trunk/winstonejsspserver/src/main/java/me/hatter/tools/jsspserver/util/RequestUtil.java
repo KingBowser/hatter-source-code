@@ -59,10 +59,10 @@ public class RequestUtil {
                     field.setAccessible(true);
                 }
                 String fn = StringUtil.toUnder(field.getName());
-                if (ConverterUtil.isClassMultiple(field.getClass())) {
-                    field.set(obj, ConverterUtil.convertToFit(getter.getValues(fn), field));
-                } else {
-                    field.set(obj, ConverterUtil.convertToFit(getter.getValue(fn), field));
+                Object oriVal = (ConverterUtil.isClassMultiple(field.getClass())) ? getter.getValues(fn) : getter.getValue(fn);
+                Object val = ConverterUtil.convertToFit(oriVal, field);
+                if (val != null) {
+                    field.set(obj, val);
                 }
             }
             return obj;

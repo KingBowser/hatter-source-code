@@ -11,6 +11,7 @@ public class FilterTool {
     public static final String  DEFAULT_CHARACTER_ENCODING = "UTF-8";
 
     public static final boolean JSSP_DEBUG                 = Boolean.valueOf(System.getProperty("jsspdebug"));
+    public static final String  JSSP_PATH                  = System.getProperty("jssp.path");
 
     public File                 jsspPath;
     public Resources            resources;
@@ -18,7 +19,7 @@ public class FilterTool {
     private static FilterTool   defaultInstance;
 
     synchronized public static void initDefaultInstance(File jsspPath) {
-        if (defaultInstance == null) {
+        if ((JSSP_PATH == null) && (defaultInstance == null)) {
             defaultInstance = new FilterTool(jsspPath);
         }
     }
@@ -36,11 +37,10 @@ public class FilterTool {
     }
 
     public FilterTool() {
-        String jsspPath = System.getProperty("jssp.path");
-        if (jsspPath == null) {
+        if (JSSP_PATH == null) {
             this.jsspPath = new File(System.getProperty("user.dir"), "_jssp");
         } else {
-            this.jsspPath = new File(jsspPath);
+            this.jsspPath = new File(JSSP_PATH);
         }
         this.resources = new Resources(this.jsspPath);
     }

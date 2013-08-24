@@ -53,12 +53,20 @@ public class RequestUtil {
     public static <T> T parse(ValueGetter getter, Class<T> clazz) {
         try {
             T obj = clazz.newInstance();
-            List<Field> fields = ReflectUtil.getDeclaredFields(clazz);
+            return fill(getter, obj);
+        } catch (Exception e) {
+            throw ExceptionUtil.wrapRuntimeException(e);
+        }
+    }
+
+    public static <T> T fill(ValueGetter getter, T obj) {
+        try {
+            List<Field> fields = ReflectUtil.getDeclaredFields(obj.getClass());
             for (Field field : fields) {
                 if (!field.isAccessible()) {
                     field.setAccessible(true);
                 }
-                String fn = StringUtil.toUnder(field.getName());
+                String fn = field.getName();
                 Object oriVal = (ConverterUtil.isClassMultiple(field.getClass())) ? getter.getValues(fn) : getter.getValue(fn);
                 Object val = ConverterUtil.convertToFit(oriVal, field);
                 if (val != null) {

@@ -168,6 +168,14 @@ public class DataAccessObject {
     }
 
     public Integer insertObjectAndGetSqliteLastId(final Object object) {
+        return insertObjectAndGetLastId(object, "select last_insert_rowid() id");
+    }
+
+    public Integer insertObjectAndGetMySQLLastId(final Object object) {
+        return insertObjectAndGetLastId(object, "select last_insert_id() id");
+    }
+
+    public Integer insertObjectAndGetLastId(final Object object, final String lastIdQuery) {
         final Class<?> clazz = object.getClass();
         final List<String> refFieldList = new ArrayList<String>();
         final String sql = DBUtil.generateInsertSQL(clazz, refFieldList);
@@ -185,7 +193,7 @@ public class DataAccessObject {
                     preparedStatement.close();
                 }
 
-                PreparedStatement lastInsertRowidPreparedStatement = connection.prepareStatement("select last_insert_rowid() id");
+                PreparedStatement lastInsertRowidPreparedStatement = connection.prepareStatement(lastIdQuery);
                 Integer lastId = null;
                 try {
                     ResultSet resultSet = lastInsertRowidPreparedStatement.executeQuery();

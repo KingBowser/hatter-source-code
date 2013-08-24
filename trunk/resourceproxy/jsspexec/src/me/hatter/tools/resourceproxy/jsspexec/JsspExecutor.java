@@ -336,6 +336,20 @@ public class JsspExecutor {
         }
         __jsspWorkDir = new File(new File(System.getProperty("java.io.tmpdir"), "_jssp_work_dir"),
                                  getProcessSpecialId());
+        System.out.println("[INFO] JSSP work dir: " + __jsspWorkDir);
+        Runtime.getRuntime().addShutdownHook(new Thread() {
+
+            public void run() {
+                System.out.println("[INFO] Clear JSSP work dir: " + __jsspWorkDir);
+                File[] files = __jsspWorkDir.listFiles();
+                if (files != null) {
+                    for (File f : files) {
+                        f.delete();
+                    }
+                }
+                __jsspWorkDir.delete();
+            }
+        });
         return __jsspWorkDir;
     }
 

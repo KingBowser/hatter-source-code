@@ -79,7 +79,11 @@ public class ConverterUtil {
             if (obj instanceof Boolean) {
                 return (Boolean) obj;
             }
-            return Arrays.asList("1", "on", "yes", "true").contains(StringUtil.toLowerCase(String.valueOf(obj)));
+            String sval = String.valueOf(obj);
+            if (StringUtil.isBlank(sval)) {
+                return null;
+            }
+            return Arrays.asList("1", "on", "yes", "true").contains(StringUtil.toLowerCase(sval));
         }
         if ((clazz == int.class) || (clazz == Integer.class)) {
             if (obj instanceof Number) {

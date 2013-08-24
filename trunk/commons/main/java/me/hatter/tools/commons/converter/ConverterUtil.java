@@ -3,6 +3,7 @@ package me.hatter.tools.commons.converter;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 import me.hatter.tools.commons.exception.ExceptionUtil;
+import me.hatter.tools.commons.string.StringUtil;
 
 public class ConverterUtil {
 
@@ -73,29 +75,51 @@ public class ConverterUtil {
         if (clazz == String.class) {
             return String.valueOf(obj);
         }
+        if ((clazz == boolean.class) || (clazz == Boolean.class)) {
+            if (obj instanceof Boolean) {
+                return (Boolean) obj;
+            }
+            return Arrays.asList("1", "on", "yes", "true").contains(StringUtil.toLowerCase(String.valueOf(obj)));
+        }
         if ((clazz == int.class) || (clazz == Integer.class)) {
             if (obj instanceof Number) {
                 return Integer.valueOf(((Number) obj).intValue());
             }
-            return Integer.valueOf(String.valueOf(obj));
+            String sval = String.valueOf(obj);
+            if (StringUtil.isBlank(sval)) {
+                return null;
+            }
+            return Integer.valueOf(sval);
         }
         if ((clazz == long.class) || (clazz == Long.class)) {
             if (obj instanceof Number) {
                 return Long.valueOf(((Number) obj).longValue());
             }
-            return Long.valueOf(String.valueOf(obj));
+            String sval = String.valueOf(obj);
+            if (StringUtil.isBlank(sval)) {
+                return null;
+            }
+            return Long.valueOf(sval);
         }
         if ((clazz == float.class) || (clazz == Float.class)) {
             if (obj instanceof Number) {
                 return Float.valueOf(((Number) obj).floatValue());
             }
-            return Float.valueOf(String.valueOf(obj));
+            String sval = String.valueOf(obj);
+            if (StringUtil.isBlank(sval)) {
+                return null;
+            }
+            return Float.valueOf(sval);
         }
         if ((clazz == double.class) || (clazz == Double.class)) {
             if (obj instanceof Number) {
                 return Double.valueOf(((Number) obj).doubleValue());
             }
-            return Double.valueOf(String.valueOf(obj));
+            String sval = String.valueOf(obj);
+            if (StringUtil.isBlank(sval)) {
+                return null;
+            }
+            return Double.valueOf(sval);
         }
 
         throw new RuntimeException("Cannot convert value: '" + obj + "' to class: " + clazz);

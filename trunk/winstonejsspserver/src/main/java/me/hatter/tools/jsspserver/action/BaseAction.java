@@ -36,6 +36,8 @@ public abstract class BaseAction implements Action {
                     if (!Arrays.asList(authMark.value()).contains((String) sessionAuth)) {
                         throw new RedirectException("/noAuth.jssp");
                     }
+                } else {
+                    throw new RedirectException("/noAuth.jssp");
                 }
             }
 

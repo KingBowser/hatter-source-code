@@ -1,6 +1,7 @@
 package me.hatter.tools.jsspserver.action;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import me.hatter.tools.commons.exception.ExceptionUtil;
 import me.hatter.tools.commons.log.LogUtil;
+import me.hatter.tools.jsspserver.auth.AuthMark;
 import me.hatter.tools.jsspserver.exception.JSONException;
 import me.hatter.tools.jsspserver.exception.RedirectException;
 import me.hatter.tools.jsspserver.filter.JSONFilter;
@@ -25,6 +27,19 @@ public abstract class BaseAction implements Action {
             localRequest.set(request);
             localResponse.set(response);
             localContext.set(context);
+
+            // auth check
+            AuthMark authMark = this.getClass().getAnnotation(AuthMark.class);
+            if (authMark != null) {
+                Object sessionAuth = request.getSession().getAttribute(AuthMark.SESSION_AUTH_KEY);
+                if ((sessionAuth != null) && (sessionAuth instanceof String)) {
+                    if (!Arrays.asList(authMark.value()).contains((String) sessionAuth)) {
+                        throw new RedirectException("/noAuth.jssp");
+                    }
+                }
+            }
+
+            // do real action
             doAction(request, response, context);
         } catch (RedirectException e) {
             sendRedirect(e.getUrl());

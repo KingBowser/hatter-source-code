@@ -46,6 +46,9 @@ public class ReflectUtil {
             }
         }
         Field result = internalGetField(clazz, field);
+        if (result == null) {
+            throw new IllegalStateException("Field: `" + field + "` not found in class: `" + clazz + "`");
+        }
         fieldClassMap.putIfAbsent(clazz, new ConcurrentHashMap<String, Field>());
         fieldClassMap.get(clazz).put(field, result);
         return result;

@@ -714,16 +714,19 @@ public class DataAccessObject {
 
     protected String makeSQL(Class<?> clazz, String where, String orderBy) {
         where = StringUtil.trim(where);
+        String sql = null;
         if (where != null) {
             if (where.toUpperCase().startsWith("SELECT")) {
-                return where;
+                sql = where;
             } else if (where.startsWith("!")) {
-                return where.substring(1);
+                sql = where.substring(1);
             }
         }
-        String sql = "select * from " + DBUtil.getTableName(clazz);
-        if ((where != null) && (where.length() > 0)) {
-            sql += " where " + where;
+        if (sql == null) {
+            sql = "select * from " + DBUtil.getTableName(clazz);
+            if ((where != null) && (where.length() > 0)) {
+                sql += " where " + where;
+            }
         }
         if ((orderBy != null) && (orderBy.trim().length() > 0)) {
             sql += " order by " + orderBy;

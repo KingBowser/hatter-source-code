@@ -14,9 +14,15 @@ public class JsspControl {
     private JsspReader          jsspReader;
     private String              jssp;
     private Map<String, Object> context;
+    private Map<String, Object> addContext;
 
     public JsspControl(JsspReader jsspReader) {
         this.jsspReader = jsspReader;
+    }
+
+    public JsspControl(JsspReader jsspReader, Map<String, Object> addContext) {
+        this.jsspReader = jsspReader;
+        this.addContext = addContext;
     }
 
     public JsspControl j(String path) {
@@ -73,7 +79,7 @@ public class JsspControl {
                 throw new RuntimeException("Unknow jssp reader type: " + jsspReader.getClass().getName());
             }
             BufferWriter out = new BufferWriter();
-            JsspExecutor.executeExplained(new StringReader(explainedJssp), context, null, jsspReader, out, source);
+            JsspExecutor.executeExplained(new StringReader(explainedJssp), context, addContext, jsspReader, out, source);
             return out.getBufferedString();
         } catch (Exception e) {
             throw new RuntimeException("Error in explain and execute jssp: " + jssp, e);

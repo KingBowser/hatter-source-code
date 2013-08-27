@@ -697,23 +697,32 @@ public class DataAccessObject {
     }
 
     protected <T> String makeCountSQL(Class<T> clazz, String where) {
+        where = StringUtil.trim(where);
+        if (where != null) {
+            if (where.toUpperCase().startsWith("SELECT")) {
+                return where;
+            } else if (where.startsWith("!")) {
+                return where.substring(1);
+            }
+        }
         String sql = "select count(*) count from " + DBUtil.getTableName(clazz);
-        if ((where != null) && (where.trim().length() > 0)) {
+        if ((where != null) && (where.length() > 0)) {
             sql += " where " + where;
         }
         return sql;
     }
 
     protected String makeSQL(Class<?> clazz, String where, String orderBy) {
+        where = StringUtil.trim(where);
         if (where != null) {
-            if (where.trim().toUpperCase().startsWith("SELECT")) {
+            if (where.toUpperCase().startsWith("SELECT")) {
                 return where;
-            } else if (where.trim().toUpperCase().startsWith("!")) {
+            } else if (where.startsWith("!")) {
                 return where.substring(1);
             }
         }
         String sql = "select * from " + DBUtil.getTableName(clazz);
-        if ((where != null) && (where.trim().length() > 0)) {
+        if ((where != null) && (where.length() > 0)) {
             sql += " where " + where;
         }
         if ((orderBy != null) && (orderBy.trim().length() > 0)) {

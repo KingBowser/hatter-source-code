@@ -98,7 +98,7 @@ public class JsspExecutor {
             }
         }
         if (jsspReader != null) {
-            JsspControl control = new JsspControl(jsspReader);
+            JsspControl control = new JsspControl(jsspReader, addContext);
             b.put("control", control);
         }
         b.put("stringUtil", StringUtil.INSTANCE);

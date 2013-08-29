@@ -40,6 +40,7 @@
  * [Study_Java Java]
   * [Study_Java_BTrace BTrace]
   * [Study_Java_ByteCode ByteCode]
+  * [Study_Java_Compress Compress]
   * [Study_Java_Coverage Coverage]
   * [Study_Java_Diagnosis Diagnosis]
   * [Study_Java_HotSpot HotSpot]

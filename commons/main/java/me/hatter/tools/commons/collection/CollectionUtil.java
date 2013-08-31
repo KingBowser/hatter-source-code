@@ -233,6 +233,14 @@ public class CollectionUtil {
         return false;
     }
 
+    public static <T> List<T> repeat(T obj, int count) {
+        List<T> list = new ArrayList<T>();
+        for (int i = 0; i < count; i++) {
+            list.add(obj);
+        }
+        return list;
+    }
+
     public static List<Object> asList(Object obj, Object... objects) {
         List<Object> list = new ArrayList<Object>(1 + objects.length);
         list.add(obj);

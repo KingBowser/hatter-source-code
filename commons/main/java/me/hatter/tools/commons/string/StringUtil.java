@@ -2,6 +2,8 @@ package me.hatter.tools.commons.string;
 
 import java.util.Collection;
 
+import me.hatter.tools.commons.collection.CollectionUtil;
+
 public class StringUtil {
 
     public static final String EMPTY = "";
@@ -152,6 +154,10 @@ public class StringUtil {
             sb.append(s);
         }
         return sb.toString();
+    }
+
+    public static String repeat(String s, String sep, int count) {
+        return join(CollectionUtil.repeat(s, count), sep);
     }
 
     public static String paddingzero(int i, int len) {

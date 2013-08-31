@@ -2,9 +2,12 @@ package me.hatter.tools.commons.converter;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -95,6 +98,26 @@ public class ConverterUtil {
             }
             return Integer.valueOf(sval);
         }
+        if ((clazz == byte.class) || (clazz == Byte.class)) {
+            if (obj instanceof Number) {
+                return Byte.valueOf(((Number) obj).byteValue());
+            }
+            String sval = String.valueOf(obj);
+            if (StringUtil.isBlank(sval)) {
+                return null;
+            }
+            return Byte.valueOf(sval);
+        }
+        if ((clazz == short.class) || (clazz == Short.class)) {
+            if (obj instanceof Number) {
+                return Short.valueOf(((Number) obj).shortValue());
+            }
+            String sval = String.valueOf(obj);
+            if (StringUtil.isBlank(sval)) {
+                return null;
+            }
+            return Short.valueOf(sval);
+        }
         if ((clazz == long.class) || (clazz == Long.class)) {
             if (obj instanceof Number) {
                 return Long.valueOf(((Number) obj).longValue());
@@ -124,6 +147,41 @@ public class ConverterUtil {
                 return null;
             }
             return Double.valueOf(sval);
+        }
+        if (clazz == Date.class) {
+            if (obj instanceof java.sql.Date) {
+                return new Date(((java.sql.Date) obj).getTime());
+            }
+            if (obj instanceof java.sql.Time) {
+                return new Date(((java.sql.Time) obj).getTime());
+            }
+            if (obj instanceof java.sql.Timestamp) {
+                return new Date(((java.sql.Timestamp) obj).getTime());
+            }
+            String sval = String.valueOf(obj);
+            if (StringUtil.isBlank(sval)) {
+                return null;
+            }
+            List<String> formats = Arrays.asList(null,//
+                                                 "yyyy/MM/dd HH:mm:ss",//
+                                                 "yyyy-MM-dd HH:mm:ss", //
+                                                 "yyyy/MM/dd HH:mm",//
+                                                 "yyyy-MM-dd HH:mm", //
+                                                 "yyyy/MM/dd HH",//
+                                                 "yyyy-MM-dd HH", //
+                                                 "yyyy/MM/dd", //
+                                                 "yyyy-MM-dd",//
+                                                 null);
+            for (String f : formats) {
+                if (f != null) {
+                    try {
+                        return new SimpleDateFormat(f).parse(sval);
+                    } catch (ParseException e) {
+                        // DO NOTHING
+                    }
+                }
+            }
+            // if reaches here means convert fails
         }
 
         throw new RuntimeException("Cannot convert value: '" + obj + "' to class: " + clazz);

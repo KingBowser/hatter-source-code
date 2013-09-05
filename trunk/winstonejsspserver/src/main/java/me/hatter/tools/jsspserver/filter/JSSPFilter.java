@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import me.hatter.tools.commons.string.StringUtil;
 import me.hatter.tools.jsspserver.action.Action;
 import me.hatter.tools.jsspserver.action.Action.DoAction;
+import me.hatter.tools.jsspserver.util.ResponseUtil;
 import me.hatter.tools.resourceproxy.commons.resource.Resource;
 import me.hatter.tools.resourceproxy.jsspexec.JsspExecutor;
 import me.hatter.tools.resourceproxy.jsspexec.JsspReader;
@@ -26,7 +27,6 @@ import me.hatter.tools.resourceproxy.jsspserver.util.ContentTypes;
 import me.hatter.tools.resourceproxy.jsspserver.util.HttpConstants;
 import me.hatter.tools.resourceproxy.jsspserver.util.JsspResource;
 import me.hatter.tools.resourceproxy.jsspserver.util.JsspResourceManager;
-import winstone.WinstoneResponse;
 
 public class JSSPFilter implements Filter {
 
@@ -73,12 +73,11 @@ public class JSSPFilter implements Filter {
                         throw new RuntimeException(e);
                     }
                 }
-                if (httpResponse instanceof WinstoneResponse) {
-                    int status = ((WinstoneResponse) httpResponse).getStatus();
-                    if ((status == HttpServletResponse.SC_MOVED_PERMANENTLY)
-                        || (status == HttpServletResponse.SC_MOVED_TEMPORARILY)) {
-                        return; // redirected
-                    }
+
+                int status = ResponseUtil.getIntResponseStatus(httpResponse);
+                if ((status == HttpServletResponse.SC_MOVED_PERMANENTLY)
+                    || (status == HttpServletResponse.SC_MOVED_TEMPORARILY)) {
+                    return; // redirected
                 }
 
                 String explainedContent = jsspResource.getExplainedContent(FilterTool.JSSP_DEBUG);

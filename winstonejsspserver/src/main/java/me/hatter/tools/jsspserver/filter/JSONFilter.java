@@ -16,12 +16,12 @@ import javax.servlet.http.HttpServletResponse;
 import me.hatter.tools.commons.io.IOUtil;
 import me.hatter.tools.commons.string.StringUtil;
 import me.hatter.tools.jsspserver.action.Action;
+import me.hatter.tools.jsspserver.util.ResponseUtil;
 import me.hatter.tools.resourceproxy.jsspexec.utl.BufferWriter;
 import me.hatter.tools.resourceproxy.jsspserver.util.ContentTypes;
 import me.hatter.tools.resourceproxy.jsspserver.util.HttpConstants;
 import me.hatter.tools.resourceproxy.jsspserver.util.JsspResource;
 import me.hatter.tools.resourceproxy.jsspserver.util.JsspResourceManager;
-import winstone.WinstoneResponse;
 
 import com.alibaba.fastjson.JSON;
 
@@ -67,12 +67,10 @@ public class JSONFilter implements Filter {
                     return;
                 }
 
-                if (httpResponse instanceof WinstoneResponse) {
-                    int status = ((WinstoneResponse) httpResponse).getStatus();
-                    if ((status == HttpServletResponse.SC_MOVED_PERMANENTLY)
-                        || (status == HttpServletResponse.SC_MOVED_TEMPORARILY)) {
-                        return; // redirected
-                    }
+                int status = ResponseUtil.getIntResponseStatus(httpResponse);
+                if ((status == HttpServletResponse.SC_MOVED_PERMANENTLY)
+                    || (status == HttpServletResponse.SC_MOVED_TEMPORARILY)) {
+                    return; // redirected
                 }
 
                 String callback = StringUtil.trimToNull(httpRequest.getParameter("callback"));

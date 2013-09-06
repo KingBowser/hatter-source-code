@@ -39,7 +39,13 @@ $ mysqlbinlog mysql-bin.000001
 purge binary logs to 'binglogfilename';  // 当前指定的版本是不删除的
 }}}
 
+slave记录relaylog的binlog ^[3]^：
+{{{
+ --log-slave-updates
+}}}
+
 
 ===参考资料===
 `[1].` http://www.taobaodba.com/html/474_mysqls-binary-log_details.html<br>
 `[2].` http://www.packtpub.com/article/setting-up-mysql-replication-for-high-availability<br>
+`[3].` http://dev.mysql.com/doc/refman/5.0/en/replication-options-slave.html<br>

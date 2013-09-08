@@ -6,10 +6,13 @@ import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -509,6 +512,68 @@ public class DataAccessObject {
                 return result;
             }
         });
+    }
+
+    public <T> T findSingleObject(final Class<T> clazz, String query, final List<Object> objectList) {
+        return first(listSingleObjects(clazz, query, objectList));
+    }
+
+    public <T> List<T> listSingleObjects(final Class<T> clazz, String query, final List<Object> objectList) {
+        if (StringUtil.isEmpty(query)) {
+            throw new IllegalArgumentException("Query cannot be empty.");
+        }
+        final List<T> list = new ArrayList<T>();
+        iterateResultSet(null, query, objectList, new RecordProcessor<ResultSet>() {
+
+            @Override
+            public void process(int index, ResultSet record) throws Exception {
+                if (clazz == String.class) {
+                    list.add(clazz.cast(record.getString(0)));
+                } else if (clazz == Integer.class) {
+                    list.add(clazz.cast(record.getInt(0)));
+                } else if (clazz == Byte.class) {
+                    list.add(clazz.cast(record.getByte(0)));
+                } else if (clazz == Short.class) {
+                    list.add(clazz.cast(record.getShort(0)));
+                } else if (clazz == Long.class) {
+                    list.add(clazz.cast(record.getLong(0)));
+                } else if (clazz == Float.class) {
+                    list.add(clazz.cast(record.getFloat(0)));
+                } else if (clazz == Double.class) {
+                    list.add(clazz.cast(record.getDouble(0)));
+                } else if (clazz == Date.class) {
+                    java.sql.Date d = record.getDate(0);
+                    list.add(clazz.cast((d == null) ? null : new Date(d.getTime())));
+                } else if (clazz == BigDecimal.class) {
+                    list.add(clazz.cast(record.getBigDecimal(0)));
+                } else if (clazz == Boolean.class) {
+                    list.add(clazz.cast(record.getBoolean(0)));
+                } else {
+                    throw new RuntimeException("Unsupoorted type: " + clazz);
+                }
+            }
+        });
+        return list;
+    }
+
+    public List<Map<String, Object>> listMapList(String query, final List<Object> objectList) {
+        if (StringUtil.isEmpty(query)) {
+            throw new IllegalArgumentException("Query cannot be empty.");
+        }
+        final List<Map<String, Object>> mapList = new ArrayList<Map<String, Object>>();
+        iterateResultSet(null, query, objectList, new RecordProcessor<ResultSet>() {
+
+            @Override
+            public void process(int index, ResultSet record) throws Exception {
+                Map<String, Object> map = new HashMap<String, Object>();
+                ResultSetMetaData metaData = record.getMetaData();
+                for (int i = 0; i < metaData.getColumnCount(); i++) {
+                    map.put(metaData.getColumnName(i), record.getObject(i));
+                }
+                mapList.add(map);
+            }
+        });
+        return mapList;
     }
 
     public <T> void iterateObjects(final Class<T> clazz, String where, final List<Object> objectList,

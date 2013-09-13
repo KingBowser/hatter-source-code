@@ -1,5 +1,6 @@
 package me.hatter.tools.commons.reflect;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -9,7 +10,13 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.concurrent.Callable;
+
+import me.hatter.tools.commons.collection.CollectionUtil;
+import me.hatter.tools.commons.collection.CollectionUtil.KeyGetter;
+import me.hatter.tools.commons.converter.ConverterUtil;
+import me.hatter.tools.commons.exception.ExceptionUtil;
 
 public class ReflectUtil {
 
@@ -102,6 +109,68 @@ public class ReflectUtil {
                 }
             }
         });
+    }
+
+    public static <T> T copyToObject(Object src, Class<T> clazz) {
+        try {
+            T dest = clazz.newInstance();
+            copyObjectFields(src, dest);
+            return dest;
+        } catch (Exception e) {
+            throw ExceptionUtil.wrapRuntimeException(e);
+        }
+    }
+
+    public static void copyObjectFields(Object src, Object dest) {
+        List<Field> srcFields = getDeclaredFields(src.getClass());
+        List<Field> destFields = getDeclaredFields(dest.getClass());
+
+        Map<String, Field> srcFieldMap = CollectionUtil.toMap(srcFields, new KeyGetter<Field, String>() {
+
+            @Override
+            public String getKey(Field object) {
+                return object.getName();
+            }
+        });
+        Map<String, Field> destFieldMap = CollectionUtil.toMap(destFields, new KeyGetter<Field, String>() {
+
+            @Override
+            public String getKey(Field object) {
+                return object.getName();
+            }
+        });
+
+        for (Entry<String, Field> srcFieldMapEntry : srcFieldMap.entrySet()) {
+            Field srcField = srcFieldMapEntry.getValue();
+            Field destField = destFieldMap.get(srcFieldMapEntry.getKey());
+            if (destField != null) {
+                makeAccessiable(srcField);
+                makeAccessiable(destField);
+                try {
+                    destField.set(dest, ConverterUtil.convertToFit(srcField.get(src), destField));
+                } catch (Exception e) {
+                    throw ExceptionUtil.wrapRuntimeException(e);
+                }
+            }
+        }
+    }
+
+    public static void makeAccessiable(Field field) {
+        if ((field != null) && (!field.isAccessible())) {
+            field.setAccessible(true);
+        }
+    }
+
+    public static void makeAccessiable(Method method) {
+        if ((method != null) && (!method.isAccessible())) {
+            method.setAccessible(true);
+        }
+    }
+
+    public static void makeAccessiable(Constructor<?> constructor) {
+        if ((constructor != null) && (!constructor.isAccessible())) {
+            constructor.setAccessible(true);
+        }
     }
 
     public static Class<?> classForName(String className) {

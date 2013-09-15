@@ -10,6 +10,18 @@ import java.util.concurrent.TimeUnit;
 
 public class ExecutorUtil {
 
+    public static void sleep(long time, TimeUnit unit) {
+        sleep(unit.toMillis(time));
+    }
+
+    public static void sleep(long millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            // IGNORE
+        }
+    }
+
     public static ExecutorService getCPULikeExecutor(Integer count) {
         int processorCount = (count != null) ? count.intValue() : ManagementFactory.getOperatingSystemMXBean().getAvailableProcessors();
         ExecutorService executor;

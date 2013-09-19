@@ -267,6 +267,13 @@ public class StringUtil {
         return new SimpleDateFormat("yyyy-MM-dd").format(date);
     }
 
+    public static String formatDateTime(Date date) {
+        if (date == null) {
+            return "";
+        }
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
+    }
+
     public static String formatDateMMDD(Date date) {
         if (date == null) {
             return "";

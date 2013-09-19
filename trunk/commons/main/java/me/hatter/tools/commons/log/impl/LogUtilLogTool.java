@@ -3,6 +3,7 @@ package me.hatter.tools.commons.log.impl;
 import me.hatter.tools.commons.log.LogTool;
 import me.hatter.tools.commons.log.LogUtil;
 
+@SuppressWarnings("deprecation")
 public class LogUtilLogTool implements LogTool {
 
     @Override

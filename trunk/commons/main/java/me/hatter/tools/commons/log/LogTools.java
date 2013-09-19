@@ -11,6 +11,7 @@ import java.util.ServiceLoader;
 import me.hatter.tools.commons.log.impl.LogUtilLogTool;
 import me.hatter.tools.commons.log.spi.LogToolProvider;
 
+@SuppressWarnings("deprecation")
 public class LogTools {
 
     public static final String                        LOGTOOL_PROVIDER       = "logtool.provider";

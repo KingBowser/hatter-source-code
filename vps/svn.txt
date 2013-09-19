@@ -1,0 +1,31 @@
+[root@26460399 golang]# pwd
+/root/golang
+[root@26460399 golang]# svn info
+Path: .
+URL: https://hatter-source-code.googlecode.com/svn/trunk/golang
+Repository Root: https://hatter-source-code.googlecode.com/svn
+Repository UUID: dd6f9e7e-b4fe-0bd6-ab9c-0ed876a8e821
+Revision: 3589
+Node Kind: directory
+Schedule: normal
+Last Changed Author: jht5945@gmail.com
+Last Changed Rev: 3589
+Last Changed Date: 2013-08-02 22:52:11 -0400 (Fri, 02 Aug 2013)
+
+
+[root@26460399 hatter.me]# pwd
+/root/hatter.me
+[root@26460399 hatter.me]# svn info
+Path: .
+URL: https://hatter-source-code.googlecode.com/svn/trunk/hatter.me
+Repository Root: https://hatter-source-code.googlecode.com/svn
+Repository UUID: dd6f9e7e-b4fe-0bd6-ab9c-0ed876a8e821
+Revision: 3623
+Node Kind: directory
+Schedule: normal
+Last Changed Author: jht5945@gmail.com
+Last Changed Rev: 3623
+Last Changed Date: 2013-08-16 07:11:57 -0400 (Fri, 16 Aug 2013)
+
+
+

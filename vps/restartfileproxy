@@ -1,0 +1,8 @@
+echo "kill all fileproxy"
+killall fileproxy
+echo "compile fileproxy"
+cd /root/golang
+go build fileproxy.go
+cd /root
+echo "run fileproxy"
+golang/fileproxy  -usetls=true -tlsport=8443 -tlscert=/root/cert.pem -tlskey=/root/key.pem -port=8000 /root/pdf >> fileproxy.log 2>&1 &

@@ -835,8 +835,8 @@ public class DataAccessObject {
         } else if (field.getType() == Double.class) {
             field.set(o, resultSet.getDouble(f));
         } else if (field.getType() == Date.class) {
-            java.sql.Date d = resultSet.getDate(f);
-            field.set(o, (d == null) ? null : new Date(d.getTime()));
+            java.sql.Timestamp t = resultSet.getTimestamp(f);
+            field.set(o, (t == null) ? null : new Date(t.getTime()));
         } else if (field.getType() == BigDecimal.class) {
             field.set(o, resultSet.getBigDecimal(f));
         } else if (field.getType() == Boolean.class) {

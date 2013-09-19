@@ -11,11 +11,14 @@ import java.util.Set;
 import me.hatter.tools.commons.classloader.ClassLoaderUtil;
 import me.hatter.tools.commons.environment.Environment;
 import me.hatter.tools.commons.environment.Environment.JavaVendor;
-import me.hatter.tools.commons.log.LogUtil;
+import me.hatter.tools.commons.log.LogTool;
+import me.hatter.tools.commons.log.LogTools;
 import me.hatter.tools.commons.os.OSUtil;
 import me.hatter.tools.commons.os.OSUtil.OS;
 
 public class HotSpotVMUtil {
+
+    private static final LogTool logTool = LogTools.getLogTool(HotSpotVMUtil.class);
 
     public static enum JDKLib {
 
@@ -74,11 +77,11 @@ public class HotSpotVMUtil {
             && jdkLib.getSupportedOS().contains(OSUtil.getOS())) {
             File toolsJar = new File(Environment.JDK_HOME, "lib/" + jdkLib.getName()).getAbsoluteFile();
             if (!toolsJar.exists()) {
-                LogUtil.error("JDK " + jdkLib.getName() + " not found: " + toolsJar.getPath());
+                logTool.error("JDK " + jdkLib.getName() + " not found: " + toolsJar.getPath());
                 return;
             }
             try {
-                LogUtil.info("Add " + ((target == JDKTarget.SYSTEM_CLASSLOADER) ? "system" : "bootstrp")
+                logTool.info("Add " + ((target == JDKTarget.SYSTEM_CLASSLOADER) ? "system" : "bootstrp")
                              + " classloader jar url: " + toolsJar);
                 if (target == JDKTarget.SYSTEM_CLASSLOADER) {
                     ClassLoaderUtil.addURLs(ClassLoaderUtil.getSystemClassLoader(), toolsJar.toURI().toURL());

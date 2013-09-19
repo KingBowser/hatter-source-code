@@ -3,29 +3,32 @@ package me.hatter.tools.commons.environment;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.hatter.tools.commons.log.LogUtil;
+import me.hatter.tools.commons.log.LogTool;
+import me.hatter.tools.commons.log.LogTools;
 
 public class Environment {
 
-    public static final String DEFAULT_SEPARATER = ",";
+    private static final LogTool logTool           = LogTools.getLogTool(Environment.class);
 
-    public static final String OS_NAME           = System.getProperty("os.name");
-    public static final String OS_ARCH           = System.getProperty("os.arch");
-    public static final String OS_VERSION        = System.getProperty("os.version");
-    public static final String JAVA_VENDOR       = System.getProperty("java.vendor");
+    public static final String   DEFAULT_SEPARATER = ",";
 
-    public static final String JAVA_HOME         = System.getProperty("java.home");
-    public static final String USER_DIR          = System.getProperty("user.dir");
-    public static final String USER_NAME         = System.getProperty("user.name");
-    public static final String USER_HOME         = System.getProperty("user.home");
-    public static final String JDK_HOME          = Environment.JAVA_HOME.replaceAll("\\/jre(\\/)?$", "");
+    public static final String   OS_NAME           = System.getProperty("os.name");
+    public static final String   OS_ARCH           = System.getProperty("os.arch");
+    public static final String   OS_VERSION        = System.getProperty("os.version");
+    public static final String   JAVA_VENDOR       = System.getProperty("java.vendor");
+
+    public static final String   JAVA_HOME         = System.getProperty("java.home");
+    public static final String   USER_DIR          = System.getProperty("user.dir");
+    public static final String   USER_NAME         = System.getProperty("user.name");
+    public static final String   USER_HOME         = System.getProperty("user.home");
+    public static final String   JDK_HOME          = Environment.JAVA_HOME.replaceAll("\\/jre(\\/)?$", "");
 
     // File separator ("/" on UNIX)
-    public static final String FILE_SEPARATOR    = System.getProperty("file.separator");
+    public static final String   FILE_SEPARATOR    = System.getProperty("file.separator");
     // Path separator (":" on UNIX)
-    public static final String PATH_SEPARATOR    = System.getProperty("path.separator");
+    public static final String   PATH_SEPARATOR    = System.getProperty("path.separator");
     // Line separator ("\n" on UNIX)
-    public static final String LINE_SEPARATOR    = System.getProperty("line.separator");
+    public static final String   LINE_SEPARATOR    = System.getProperty("line.separator");
 
     public static enum JavaVendor {
         Apple("Apple"),
@@ -64,10 +67,10 @@ public class Environment {
     public static String getStrPropertyOrDie(String key) {
         String value = System.getProperty(key);
         if (value == null) {
-            LogUtil.error("Property not exists: " + key);
+            logTool.error("Property not exists: " + key);
             System.exit(-1);
         }
-        LogUtil.trace("Property " + key + " is: " + value);
+        logTool.trace("Property " + key + " is: " + value);
         return value;
     }
 
@@ -94,7 +97,7 @@ public class Environment {
     public static List<String> getStrPropertyList(String key, String regexSeparater, List<String> defaultValue) {
         List<String> result = getInnerStrPropertyList(key, regexSeparater);
         result = (result == null) ? defaultValue : result;
-        LogUtil.trace("Property list " + key + " is: " + result);
+        logTool.trace("Property list " + key + " is: " + result);
         return result;
     }
 
@@ -116,7 +119,7 @@ public class Environment {
             }
         }
         intListResult = intListResult.isEmpty() ? defaultValue : intListResult;
-        LogUtil.trace("Property list " + key + " is: " + intListResult);
+        logTool.trace("Property list " + key + " is: " + intListResult);
         return intListResult;
     }
 
@@ -138,7 +141,7 @@ public class Environment {
             }
         }
         longListResult = longListResult.isEmpty() ? defaultValue : longListResult;
-        LogUtil.trace("Property list " + key + " is: " + longListResult);
+        logTool.trace("Property list " + key + " is: " + longListResult);
         return longListResult;
     }
 
@@ -160,42 +163,42 @@ public class Environment {
             }
         }
         doubleListResult = doubleListResult.isEmpty() ? defaultValue : doubleListResult;
-        LogUtil.trace("Property list " + key + " is: " + doubleListResult);
+        logTool.trace("Property list " + key + " is: " + doubleListResult);
         return doubleListResult;
     }
 
     public static String getStrProperty(String key, String defaultValue) {
         String value = System.getProperty(key);
         String s = (value == null) ? defaultValue : value;
-        LogUtil.trace("Property " + key + " is: " + s);
+        logTool.trace("Property " + key + " is: " + s);
         return s;
     }
 
     public static int getIntProperty(String key, int defaultValue) {
         String value = System.getProperty(key);
         int i = (value == null) ? defaultValue : Integer.parseInt(value);
-        LogUtil.trace("Property " + key + " is: " + i);
+        logTool.trace("Property " + key + " is: " + i);
         return i;
     }
 
     public static long getLongProperty(String key, long defaultValue) {
         String value = System.getProperty(key);
         long l = (value == null) ? defaultValue : Long.parseLong(value);
-        LogUtil.trace("Property " + key + " is: " + l);
+        logTool.trace("Property " + key + " is: " + l);
         return l;
     }
 
     public static double getDoubleProperty(String key, double defaultValue) {
         String value = System.getProperty(key);
         double d = (value == null) ? defaultValue : Double.parseDouble(value);
-        LogUtil.trace("Property " + key + " is: " + d);
+        logTool.trace("Property " + key + " is: " + d);
         return d;
     }
 
     public static boolean getBoolProperty(String key, boolean defaultValue) {
         String value = System.getProperty(key);
         boolean b = (value == null) ? defaultValue : Boolean.parseBoolean(value);
-        LogUtil.trace("Property " + key + " is: " + b);
+        logTool.trace("Property " + key + " is: " + b);
         return b;
     }
 

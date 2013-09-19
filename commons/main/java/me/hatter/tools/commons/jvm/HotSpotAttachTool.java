@@ -4,15 +4,18 @@ import java.io.IOException;
 import java.util.concurrent.atomic.AtomicReference;
 
 import me.hatter.tools.commons.exception.ExceptionUtil;
-import me.hatter.tools.commons.log.LogUtil;
+import me.hatter.tools.commons.log.LogTool;
+import me.hatter.tools.commons.log.LogTools;
 
 import com.sun.tools.attach.VirtualMachine;
 
 @SuppressWarnings("restriction")
 public class HotSpotAttachTool {
 
+    private static final LogTool                  logTool = LogTools.getLogTool(HotSpotAttachTool.class);
+
     private String                                pid;
-    private final AtomicReference<VirtualMachine> refVM = new AtomicReference<VirtualMachine>(null);
+    private final AtomicReference<VirtualMachine> refVM   = new AtomicReference<VirtualMachine>(null);
 
     public HotSpotAttachTool(String pid) {
         this.pid = pid;
@@ -24,7 +27,7 @@ public class HotSpotAttachTool {
 
     public void attach() {
         try {
-            LogUtil.info("Attach to vm: " + pid);
+            logTool.info("Attach to vm: " + pid);
             refVM.set(VirtualMachine.attach(pid));
             Runtime.getRuntime().addShutdownHook(new Thread() {
 
@@ -44,10 +47,10 @@ public class HotSpotAttachTool {
                 VirtualMachine vm = refVM.get();
                 refVM.set(null);
                 try {
-                    LogUtil.info("Detach from vm.");
+                    logTool.info("Detach from vm.");
                     vm.detach();
                 } catch (IOException e) {
-                    LogUtil.error("Detach from vm failed: " + ExceptionUtil.printStackTrace(e));
+                    logTool.error("Detach from vm failed: " + ExceptionUtil.printStackTrace(e));
                 }
             }
         }

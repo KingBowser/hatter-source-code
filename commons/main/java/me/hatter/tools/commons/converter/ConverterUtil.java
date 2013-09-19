@@ -1,7 +1,10 @@
 package me.hatter.tools.commons.converter;
 
+import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -10,6 +13,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -75,7 +79,7 @@ public class ConverterUtil {
             return converter.convert(obj);
         }
         // buildin
-        if (clazz == String.class) {
+        if ((clazz == String.class) || (clazz == CharSequence.class)) {
             return String.valueOf(obj);
         }
         if ((clazz == boolean.class) || (clazz == Boolean.class)) {
@@ -182,6 +186,43 @@ public class ConverterUtil {
                 }
             }
             // if reaches here means convert fails
+        }
+        if (clazz == Locale.class) {
+            String sval = String.valueOf(obj);
+            if (StringUtil.isBlank(sval)) {
+                return null;
+            }
+            for (Locale locale : Locale.getAvailableLocales()) {
+                if (locale.toString().equalsIgnoreCase(sval)) {
+                    return locale;
+                }
+            }
+            String[] slocales = sval.split("_");
+            if (slocales.length == 1) {
+                return new Locale(slocales[0]);
+            }
+            if (slocales.length == 2) {
+                return new Locale(slocales[0], slocales[1]);
+            }
+            return new Locale(slocales[0], slocales[1], slocales[2]);
+        }
+        if (clazz == File.class) {
+            String sval = String.valueOf(obj);
+            if (StringUtil.isBlank(sval)) {
+                return null;
+            }
+            return new File(sval);
+        }
+        if (clazz == URL.class) {
+            String sval = String.valueOf(obj);
+            if (StringUtil.isBlank(sval)) {
+                return null;
+            }
+            try {
+                return new URL(sval);
+            } catch (MalformedURLException e) {
+                throw new RuntimeException(e);
+            }
         }
 
         throw new RuntimeException("Cannot convert value: '" + obj + "' to class: " + clazz);

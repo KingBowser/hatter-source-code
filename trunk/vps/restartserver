@@ -1,0 +1,8 @@
+echo "kill all server"
+killall server
+echo "compile server"
+cd /root/golang
+go build server.go
+cd /root
+echo "run server"
+golang/server -usetls=true -tlsport=443 -tlscert=/root/cert.pem -tlskey=/root/key.pem -port=80 -path="/root/pdf" >> server.log 2>&1 &

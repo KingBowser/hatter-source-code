@@ -9,6 +9,8 @@ import java.util.Set;
 
 import me.hatter.tools.commons.exception.ExceptionUtil;
 
+// USE LOGTOOL INSTAND
+@Deprecated
 public class LogUtil {
 
     public static enum LogType {

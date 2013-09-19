@@ -4,9 +4,12 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 import me.hatter.tools.commons.environment.Environment;
-import me.hatter.tools.commons.log.LogUtil;
+import me.hatter.tools.commons.log.LogTool;
+import me.hatter.tools.commons.log.LogTools;
 
 public class SysOutUtil {
+
+    private static final LogTool   logTool        = LogTools.getLogTool(SysOutUtil.class);
 
     private static volatile String OUTPUT_CHARSET = null;
 
@@ -25,7 +28,7 @@ public class SysOutUtil {
 
     public static void setOutputCharset(String charset) {
         if (OUTPUT_CHARSET != null) {
-            LogUtil.warn("Output charset is alreadly set!");
+            logTool.warn("Output charset is alreadly set!");
             return;
         }
         OUTPUT_CHARSET = charset;

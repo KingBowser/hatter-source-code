@@ -15,9 +15,12 @@ import java.util.List;
 import me.hatter.tools.commons.collection.CollectionUtil;
 import me.hatter.tools.commons.exception.ExceptionUtil;
 import me.hatter.tools.commons.io.IOUtil;
-import me.hatter.tools.commons.log.LogUtil;
+import me.hatter.tools.commons.log.LogTool;
+import me.hatter.tools.commons.log.LogTools;
 
 public class ClassLoaderUtil {
+
+    private static final LogTool logTool = LogTools.getLogTool(ClassLoaderUtil.class);
 
     public static URLClassLoader getSystemClassLoader() {
         ClassLoader cl = ClassLoader.getSystemClassLoader();
@@ -173,7 +176,7 @@ public class ClassLoaderUtil {
             IOUtil.copy(ClassLoaderUtil.class.getResourceAsStream(r), fos);
             fos.close();
             if (isPrintLog) {
-                LogUtil.info("Generate jar and add to system class loader: " + tempjline + " (from " + r + ")");
+                logTool.info("Generate jar and add to system class loader: " + tempjline + " (from " + r + ")");
             }
             ClassLoaderUtil.addURLs(ClassLoaderUtil.getSystemClassLoader(), tempjline.toURI().toURL());
         } catch (Exception e) {
@@ -203,7 +206,7 @@ public class ClassLoaderUtil {
             if (abortOnError) {
                 throw ex;
             } else {
-                LogUtil.warn("Ignore init lib resources error: " + ex.getMessage());
+                logTool.warn("Ignore init lib resources error: " + ex.getMessage());
             }
         }
     }

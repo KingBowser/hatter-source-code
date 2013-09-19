@@ -74,16 +74,32 @@ public class LogUtil {
         message(LogType.TRACE, message);
     }
 
+    synchronized public static void trace(String message, Throwable t) {
+        message(LogType.TRACE, message + ", exception: " + ExceptionUtil.printStackTrace(t));
+    }
+
     synchronized public static void debug(String message) {
         message(LogType.DEBUG, message);
+    }
+
+    synchronized public static void debug(String message, Throwable t) {
+        message(LogType.DEBUG, message + ", exception: " + ExceptionUtil.printStackTrace(t));
     }
 
     synchronized public static void info(String message) {
         message(LogType.INFO, message);
     }
 
+    synchronized public static void info(String message, Throwable t) {
+        message(LogType.INFO, message + ", exception: " + ExceptionUtil.printStackTrace(t));
+    }
+
     synchronized public static void warn(String message) {
         message(LogType.WARN, message);
+    }
+
+    synchronized public static void warn(String message, Throwable t) {
+        message(LogType.WARN, message + ", exception: " + ExceptionUtil.printStackTrace(t));
     }
 
     synchronized public static void error(String message) {

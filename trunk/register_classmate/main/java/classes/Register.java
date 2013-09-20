@@ -3,7 +3,6 @@ package classes;
 import java.util.Map;
 
 import me.hatter.tools.registerclassmate.objects.ClassMate;
-import me.hatter.tools.resourceproxy.dbutils.dataaccess.DataAccessObject;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpRequest;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpResponse;
 import me.hatter.tools.resourceproxy.jsspserver.action.BaseAction;
@@ -27,7 +26,7 @@ public class Register extends BaseAction {
         cm.setSchool(request.getQueryValue("p.school"));
         cm.setWork(request.getQueryValue("p.work"));
         cm.setMemo(request.getQueryValue("p.memo"));
-        DataAccessObject.insertObject(cm);
+        me.hatter.tools.registerclassmate.main.Main._DAO.insertObject(cm);
 
         response.redirect("success.jssp");
     }

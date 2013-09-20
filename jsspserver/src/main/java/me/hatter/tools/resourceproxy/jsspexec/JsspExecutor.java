@@ -22,6 +22,8 @@ import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 import javax.script.SimpleBindings;
 
+import me.hatter.tools.commons.log.LogTool;
+import me.hatter.tools.commons.log.LogTools;
 import me.hatter.tools.resourceproxy.commons.resource.FileResource;
 import me.hatter.tools.resourceproxy.commons.resource.Resource;
 import me.hatter.tools.resourceproxy.commons.resource.TextResource;
@@ -34,6 +36,8 @@ import me.hatter.tools.resourceproxy.jsspexec.utl.BufferWriter;
 import me.hatter.tools.resourceproxy.jsspexec.utl.LineNumberWriter;
 
 public class JsspExecutor {
+
+    private static final LogTool             logTool              = LogTools.getLogTool(JsspExecutor.class);
 
     public static String                     DEFAULT_CHARSET      = "UTF-8";
     public static String                     JSSP_EXPLAINED_EXT   = ".jssp_explain";
@@ -61,7 +65,7 @@ public class JsspExecutor {
 
         executeJssp(new FileResource(f), context, null, jr, bw);
 
-        System.out.println(bw.getBufferedString());
+        logTool.info(bw.getBufferedString());
     }
 
     public static void initJsspWork() {
@@ -336,11 +340,15 @@ public class JsspExecutor {
         }
         __jsspWorkDir = new File(new File(System.getProperty("java.io.tmpdir"), "_jssp_work_dir"),
                                  getProcessSpecialId());
-        System.out.println("[INFO] JSSP work dir: " + __jsspWorkDir);
+        if (logTool.isInfoEnable()) {
+            logTool.info("JSSP work dir: " + __jsspWorkDir);
+        }
         Runtime.getRuntime().addShutdownHook(new Thread() {
 
             public void run() {
-                System.out.println("[INFO] Clear JSSP work dir: " + __jsspWorkDir);
+                if (logTool.isInfoEnable()) {
+                    logTool.info("Clear JSSP work dir: " + __jsspWorkDir);
+                }
                 File[] files = __jsspWorkDir.listFiles();
                 if (files != null) {
                     for (File f : files) {

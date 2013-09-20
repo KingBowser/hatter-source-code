@@ -18,27 +18,33 @@ import java.util.zip.GZIPInputStream;
 import java.util.zip.Inflater;
 import java.util.zip.InflaterInputStream;
 
+import me.hatter.tools.commons.log.LogTool;
+import me.hatter.tools.commons.log.LogTools;
 import me.hatter.tools.resourceproxy.commons.util.CollUtil;
 import me.hatter.tools.resourceproxy.commons.util.IOUtil;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpResponse;
 
 public class HttpResponseUtil {
 
-    private static Set<Integer> NO_CONTENT_STATUS         = new HashSet<Integer>(Arrays.asList(301, 302, 304));
-    private static Set<String>  IGNORE_HEADER_SET         = new HashSet<String>(
-                                                                                CollUtil.toUpperCase(Arrays.asList("Transfer-Encoding", // ,
-                                                                                                                   "Content-Encoding", // ,
-                                                                                                                   "Content-Length", // ,
-                                                                                                                   "Cache-Control", // ,
-                                                                                                                   "Expires")));
-    private static Set<String>  STRINGFY_CONTENT_TYPE_SET = new HashSet<String>(
-                                                                                CollUtil.toUpperCase(Arrays.asList("application/javascript",
-                                                                                                                   "application/x-javascript",
-                                                                                                                   "application/json",
-                                                                                                                   "application/xml")));
+    private static final LogTool logTool                   = LogTools.getLogTool(HttpResponseUtil.class);
+
+    private static Set<Integer>  NO_CONTENT_STATUS         = new HashSet<Integer>(Arrays.asList(301, 302, 304));
+    private static Set<String>   IGNORE_HEADER_SET         = new HashSet<String>(
+                                                                                 CollUtil.toUpperCase(Arrays.asList("Transfer-Encoding", // ,
+                                                                                                                    "Content-Encoding", // ,
+                                                                                                                    "Content-Length", // ,
+                                                                                                                    "Cache-Control", // ,
+                                                                                                                    "Expires")));
+    private static Set<String>   STRINGFY_CONTENT_TYPE_SET = new HashSet<String>(
+                                                                                 CollUtil.toUpperCase(Arrays.asList("application/javascript",
+                                                                                                                    "application/x-javascript",
+                                                                                                                    "application/json",
+                                                                                                                    "application/xml")));
 
     public static HttpResponse build(HttpURLConnection httpURLConnection) throws IOException {
-        System.out.println("[INFO] Response conent length: " + httpURLConnection.getContentLength());
+        if (logTool.isInfoEnable()) {
+            logTool.info("Response conent length: " + httpURLConnection.getContentLength());
+        }
         HttpResponse response = new HttpResponse();
         response.setEncoding(httpURLConnection.getContentEncoding());
         Map<String, List<String>> headFields = httpURLConnection.getHeaderFields();
@@ -70,8 +76,9 @@ public class HttpResponseUtil {
         }
 
         if (NO_CONTENT_STATUS.contains(response.getStatus())) {
-            System.out.println("[INFO] Response status code is: " + response.getStatus() + " "
-                               + response.getStatusMessage());
+            if (logTool.isInfoEnable()) {
+                logTool.info("Response status code is: " + response.getStatus() + " " + response.getStatusMessage());
+            }
         }
 
         InputStream inputStream = httpURLConnection.getInputStream();
@@ -88,7 +95,9 @@ public class HttpResponseUtil {
                 IOUtil.copy(new InflaterInputStream(new ByteArrayInputStream(bytes), new Inflater(true)), decodebaos);
                 bytes = decodebaos.toByteArray();
             } else {
-                System.out.println("Unknow content encoding: " + response.getEncoding());
+                if (logTool.isWarnEnable()) {
+                    logTool.warn("Unknow content encoding: " + response.getEncoding());
+                }
             }
         }
         response.setBytes(bytes);

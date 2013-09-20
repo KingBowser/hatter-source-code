@@ -81,10 +81,22 @@ public class CollectionUtil {
         return transform(list, new CollectionUtil.StringToLowerCase());
     }
 
+    public static <T> Collection<T> notNull(Collection<T> coll) {
+        return (coll == null) ? new ArrayList<T>(0) : coll;
+    }
+
+    public static <T> int size(Collection<T> coll) {
+        return (coll == null) ? 0 : coll.size();
+    }
+
     public static <T> List<T> add(Collection<T> list, Collection<T> addList) {
-        List<T> newList = new ArrayList<T>();
-        newList.addAll(list);
-        newList.addAll(addList);
+        List<T> newList = new ArrayList<T>(size(list) + size(addList));
+        if (list != null) {
+            newList.addAll(list);
+        }
+        if (addList != null) {
+            newList.addAll(addList);
+        }
         return newList;
     }
 

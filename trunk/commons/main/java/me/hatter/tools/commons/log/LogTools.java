@@ -6,10 +6,12 @@ import java.lang.reflect.Proxy;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.ServiceLoader;
 
 import me.hatter.tools.commons.log.impl.LogUtilLogTool;
 import me.hatter.tools.commons.log.spi.LogToolProvider;
+import me.hatter.tools.commons.string.StringUtil;
 
 @SuppressWarnings("deprecation")
 public class LogTools {
@@ -32,16 +34,35 @@ public class LogTools {
 
     static {
         try {
-            String logtoolProvider = System.getProperty(LOGTOOL_PROVIDER);
+            String logtoolProviderProperty = System.getProperty(LOGTOOL_PROVIDER);
             ServiceLoader<LogToolProvider> logTools = ServiceLoader.load(LogToolProvider.class);
             synchronized (LogTools.class) {
                 Iterator<LogToolProvider> logToolProviderIterator = logTools.iterator();
                 while (logToolProviderIterator.hasNext()) {
                     LogToolProvider logToolProvider = logToolProviderIterator.next();
-                    LogUtil.info("Find log tool provider: " + logtoolProvider.getClass().getName());
+                    LogUtil.info("Find log tool provider: " + logToolProvider.getClass().getName());
                     logToolMap.put(logToolProvider.getClass().getName(), logToolProvider);
-                    if (logtoolProvider.getClass().getName().equalsIgnoreCase(logtoolProvider)) {
+                    if (logToolProvider.getClass().getName().equalsIgnoreCase(logtoolProviderProperty)) {
                         defaultLogToolProvider = logToolProvider;
+                    }
+                }
+            }
+            FIND_DLTP_ROUND: if ((logtoolProviderProperty != null) && (defaultLogToolProvider == null)
+                                 && (!logToolMap.isEmpty())) {
+                // second round match
+                for (Entry<String, LogToolProvider> logToolEntry : logToolMap.entrySet()) {
+                    String shortClassName = StringUtil.substringAfterLast(logToolEntry.getKey(), ".");
+                    if (shortClassName.equalsIgnoreCase(logtoolProviderProperty)) {
+                        defaultLogToolProvider = logToolEntry.getValue();
+                        break FIND_DLTP_ROUND;
+                    }
+                }
+                // third round match
+                for (Entry<String, LogToolProvider> logToolEntry : logToolMap.entrySet()) {
+                    String shortClassName = StringUtil.substringAfterLast(logToolEntry.getKey(), ".");
+                    if (shortClassName.toLowerCase().startsWith(logtoolProviderProperty.toLowerCase())) {
+                        defaultLogToolProvider = logToolEntry.getValue();
+                        break FIND_DLTP_ROUND;
                     }
                 }
             }

@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import me.hatter.tools.commons.io.IOUtil;
+import me.hatter.tools.commons.log.LogTool;
+import me.hatter.tools.commons.log.LogTools;
 import me.hatter.tools.commons.string.StringUtil;
 import me.hatter.tools.jsspserver.action.Action;
 import me.hatter.tools.jsspserver.util.ResponseUtil;
@@ -27,7 +29,9 @@ import com.alibaba.fastjson.JSON;
 
 public class JSONFilter implements Filter {
 
-    public static final String JSON_KEY = "__json_key__";
+    private static final LogTool logTool  = LogTools.getLogTool(JSONFilter.class);
+
+    public static final String   JSON_KEY = "__json_key__";
 
     public void init(FilterConfig filterConfig) throws ServletException {
         FilterTool.initDefaultInstance(filterConfig.getServletContext().getRealPath("jssp"));
@@ -44,7 +48,9 @@ public class JSONFilter implements Filter {
             JsspResource jsonpResource = JsspResourceManager.getJsspResource(FilterTool.defaultInstance().getResource(fpath));
 
             if (jsonpResource.exists()) {
-                System.out.println("[INFO] Found jsonp/ajax resource: " + jsonpResource.getResource());
+                if (logTool.isInfoEnable()) {
+                    logTool.info("Found jsonp/ajax resource: " + jsonpResource.getResource());
+                }
 
                 Map<String, Object> context = new HashMap<String, Object>();
                 String jsonpAction = StringUtil.trimToNull(IOUtil.readToString(jsonpResource.getResource().openInputStream()));
@@ -52,7 +58,9 @@ public class JSONFilter implements Filter {
                 if (jsonpAction != null) {
                     try {
                         Class<?> jsonpActionClazz = Class.forName(jsonpAction);
-                        System.out.println("[INFO] Found jsonp/ajax action: " + jsonpActionClazz);
+                        if (logTool.isInfoEnable()) {
+                            logTool.info("Found jsonp/ajax action: " + jsonpActionClazz);
+                        }
                         if (Action.class.isAssignableFrom(jsonpActionClazz)) {
                             Action a = ((Action) jsonpActionClazz.newInstance());
                             context = a.doAction(httpRequest, httpResponse);

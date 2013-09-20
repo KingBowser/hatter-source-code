@@ -14,6 +14,8 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import me.hatter.tools.commons.log.LogTool;
+import me.hatter.tools.commons.log.LogTools;
 import me.hatter.tools.commons.string.StringUtil;
 import me.hatter.tools.jsspserver.action.Action;
 import me.hatter.tools.jsspserver.action.Action.DoAction;
@@ -29,6 +31,8 @@ import me.hatter.tools.resourceproxy.jsspserver.util.JsspResource;
 import me.hatter.tools.resourceproxy.jsspserver.util.JsspResourceManager;
 
 public class JSSPFilter implements Filter {
+
+    private static final LogTool logTool = LogTools.getLogTool(JSSPFilter.class);
 
     public void init(FilterConfig filterConfig) throws ServletException {
         FilterTool.initDefaultInstance(filterConfig.getServletContext().getRealPath("jssp"));
@@ -57,14 +61,18 @@ public class JSSPFilter implements Filter {
             };
 
             if (jsspResource.exists()) {
-                System.out.println("[INFO] Found jssp resource: " + jsspResource.getResource());
+                if (logTool.isInfoEnable()) {
+                    logTool.info("Found jssp resource: " + jsspResource.getResource());
+                }
 
                 Map<String, Object> context = new HashMap<String, Object>();
                 String jsspAction = httpRequest.getParameter(Action.JSSP_ACTION);
                 if (jsspAction != null) {
                     try {
                         Class<?> jsspActionClazz = Class.forName(jsspAction);
-                        System.out.println("[INFO] Found jssp action: " + jsspActionClazz);
+                        if (logTool.isInfoEnable()) {
+                            logTool.info("Found jssp action: " + jsspActionClazz);
+                        }
                         if (Action.class.isAssignableFrom(jsspActionClazz)) {
                             Action a = ((Action) jsspActionClazz.newInstance());
                             context = a.doAction(httpRequest, httpResponse);

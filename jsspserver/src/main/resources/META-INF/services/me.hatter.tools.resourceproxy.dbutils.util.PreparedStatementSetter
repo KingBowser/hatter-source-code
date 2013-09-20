@@ -1,0 +1,3 @@
+me.hatter.tools.resourceproxy.dbutils.util.setter.DatePreparedStatementSetter
+me.hatter.tools.resourceproxy.dbutils.util.setter.IntegerPreparedStatementSetter
+me.hatter.tools.resourceproxy.dbutils.util.setter.StringPreparedStatementSetter

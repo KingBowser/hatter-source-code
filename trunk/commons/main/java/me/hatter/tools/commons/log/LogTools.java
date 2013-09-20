@@ -3,12 +3,15 @@ package me.hatter.tools.commons.log;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.ServiceLoader;
 
+import me.hatter.tools.commons.log.annotation.AutoInit;
 import me.hatter.tools.commons.log.impl.LogUtilLogTool;
 import me.hatter.tools.commons.log.spi.LogToolProvider;
 import me.hatter.tools.commons.string.StringUtil;
@@ -36,14 +39,22 @@ public class LogTools {
         try {
             String logtoolProviderProperty = System.getProperty(LOGTOOL_PROVIDER);
             ServiceLoader<LogToolProvider> logTools = ServiceLoader.load(LogToolProvider.class);
+            List<LogToolProvider> autoInitLogToolsProviderList = new ArrayList<LogToolProvider>();
+
             synchronized (LogTools.class) {
                 Iterator<LogToolProvider> logToolProviderIterator = logTools.iterator();
                 while (logToolProviderIterator.hasNext()) {
                     LogToolProvider logToolProvider = logToolProviderIterator.next();
-                    LogUtil.info("Find log tool provider: " + logToolProvider.getClass().getName());
+                    boolean autoInit = logToolProvider.getClass().isAnnotationPresent(AutoInit.class);
+
+                    LogUtil.info("Find log tool provider: " + logToolProvider.getClass().getName() + ", auto init: "
+                                 + autoInit);
                     logToolMap.put(logToolProvider.getClass().getName(), logToolProvider);
                     if (logToolProvider.getClass().getName().equalsIgnoreCase(logtoolProviderProperty)) {
                         defaultLogToolProvider = logToolProvider;
+                    }
+                    if (autoInit) {
+                        autoInitLogToolsProviderList.add(logToolProvider);
                     }
                 }
             }
@@ -65,6 +76,12 @@ public class LogTools {
                         break FIND_DLTP_ROUND;
                     }
                 }
+            }
+            if ((defaultLogToolProvider == null) && (!autoInitLogToolsProviderList.isEmpty())) {
+                if (autoInitLogToolsProviderList.size() > 1) {
+                    LogUtil.warn("More than one auto init log tool providers: " + autoInitLogToolsProviderList.size());
+                }
+                defaultLogToolProvider = autoInitLogToolsProviderList.get(0);
             }
             if (defaultLogToolProvider == null) {
                 LogUtil.info("Not match log tool provider found, use buildin log util!");

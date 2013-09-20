@@ -3,10 +3,14 @@ package me.hatter.tools.resourceproxy.jsspserver.util;
 import java.io.IOException;
 import java.util.Properties;
 
+import me.hatter.tools.commons.log.LogTool;
+import me.hatter.tools.commons.log.LogTools;
 import me.hatter.tools.resourceproxy.commons.util.StringUtil;
 import me.hatter.tools.resourceproxy.jsspserver.filter.impl.DefaultFileFilter;
 
 public class ContentTypes {
+
+    private static final LogTool    logTool                 = LogTools.getLogTool(ContentTypes.class);
 
     public static final String      DEFAULT_CONTENT_TYPE    = "application/octet-stream";
     public static final String      HTML_CONTENT_TYPE       = "text/html";
@@ -25,7 +29,7 @@ public class ContentTypes {
         try {
             CONTENT_TYPE_PROPERTIES.load(DefaultFileFilter.class.getResourceAsStream("/content-type.properties"));
         } catch (IOException e) {
-            System.err.println("[ERROR] Error in load content-type.properties: " + StringUtil.printStackTrace(e));
+            logTool.error("Error in load content-type.properties: ", e);
         }
     }
 

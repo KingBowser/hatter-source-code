@@ -5,6 +5,8 @@ import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
+import me.hatter.tools.commons.log.LogTool;
+import me.hatter.tools.commons.log.LogTools;
 import me.hatter.tools.resourceproxy.commons.util.StringUtil;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpRequest;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpResponse;
@@ -17,22 +19,25 @@ import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
-@SuppressWarnings("restriction")
 public class HttpServerHandler implements HttpHandler {
 
-    public static int STATUS_SUCCESS = 500;
-    public static int STATUS_ERROR   = 500;
+    private static final LogTool logTool        = LogTools.getLogTool(HttpServerHandler.class);
+
+    public static int            STATUS_SUCCESS = 500;
+    public static int            STATUS_ERROR   = 500;
 
     public void handle(HttpExchange exchange) throws IOException {
         try {
             HttpRequest request = HttpRequestUtil.build(exchange);
-            System.out.println("[INFO] Request: " + request.getMethod() + " " + request.getFullUrl() + " #"
-                               + request.getRemoteAddress());
+            if (logTool.isInfoEnable()) {
+                logTool.info("Request: " + request.getMethod() + " " + request.getFullUrl() + " #"
+                             + request.getRemoteAddress());
+            }
 
             HttpResponse response = DefaultResourceFilterChain.filterChain(request);
             writeResponse(exchange, response);
         } catch (Throwable t) {
-            System.out.println("[ERROR] Exception occured: " + StringUtil.printStackTrace(t));
+            logTool.error("Exception occured: ", t);
             writeThrowableAndClose(exchange, t);
         }
     }

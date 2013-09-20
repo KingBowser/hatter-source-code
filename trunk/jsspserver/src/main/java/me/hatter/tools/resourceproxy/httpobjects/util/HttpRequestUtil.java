@@ -23,7 +23,6 @@ public class HttpRequestUtil {
                                                                        CollUtil.toUpperCase(Arrays.asList("If-modified-since", // ,
                                                                                                           "If-none-match")));
 
-    @SuppressWarnings("restriction")
     public static HttpRequest build(HttpExchange exchange) {
         int uploadCount = 0;
         HttpRequest request = new HttpRequest();

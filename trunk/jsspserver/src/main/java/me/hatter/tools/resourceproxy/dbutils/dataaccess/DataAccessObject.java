@@ -16,6 +16,8 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
+import me.hatter.tools.commons.log.LogTool;
+import me.hatter.tools.commons.log.LogTools;
 import me.hatter.tools.resourceproxy.commons.util.CollUtil;
 import me.hatter.tools.resourceproxy.commons.util.ReflectUtil;
 import me.hatter.tools.resourceproxy.commons.util.StringUtil;
@@ -26,13 +28,15 @@ import me.hatter.tools.resourceproxy.dbutils.util.DBUtil;
 
 public class DataAccessObject {
 
-    protected ConnectionPool connectionPool;
-    protected Connection     _connection;
-    protected AtomicInteger  _connectionExecCount = new AtomicInteger(0);
-    protected Exception      _connectionError;
-    protected boolean        logging              = !"false".equalsIgnoreCase(System.getProperty("dataAccessObject.logging"));
-    protected long           loggingMillis        = Long.parseLong(System.getProperty("dataAccessObject.loggingMillis",
-                                                                                      "200"));
+    private static final LogTool logTool              = LogTools.getLogTool(DataAccessObject.class);
+
+    protected ConnectionPool     connectionPool;
+    protected Connection         _connection;
+    protected AtomicInteger      _connectionExecCount = new AtomicInteger(0);
+    protected Exception          _connectionError;
+    protected boolean            logging              = !"false".equalsIgnoreCase(System.getProperty("dataAccessObject.logging"));
+    protected long               loggingMillis        = Long.parseLong(System.getProperty("dataAccessObject.loggingMillis",
+                                                                                          "200"));
 
     public DataAccessObject(ConnectionPool connectionPool) {
         this.connectionPool = connectionPool;
@@ -77,8 +81,10 @@ public class DataAccessObject {
             long end = System.currentTimeMillis();
             long cost = end - start;
             if (cost >= loggingMillis) {
-                System.out.println("[WARN] Sql runing too long; total cost millis: " + cost + ", borrow cost millis: "
-                                   + (borrowEnd - start) + ", sql execute cost millis: " + (end - borrowEnd));
+                if (logTool.isWarnEnable()) {
+                    logTool.warn("Sql runing too long; total cost millis: " + cost + ", borrow cost millis: "
+                                 + (borrowEnd - start) + ", sql execute cost millis: " + (end - borrowEnd));
+                }
             }
             return result;
         } catch (Exception e) {
@@ -96,8 +102,7 @@ public class DataAccessObject {
                         connectionPool.returnConnection(connection);
                     }
                 } catch (Exception ex) {
-                    System.out.println("[ERROR] error when return connection with flag: " + hasError + " "
-                                       + StringUtil.printStackTrace(ex));
+                    logTool.error("error when return connection with flag: " + hasError, ex);
                 }
             } else {
                 _connectionExecCount.incrementAndGet();
@@ -187,7 +192,7 @@ public class DataAccessObject {
 
             // @Override
             public Integer execute(Connection connection) throws Exception {
-                if (logging) System.out.println("[INFO] insert sql: " + sql);
+                if (logging && logTool.isInfoEnable()) logTool.info("Insert sql: " + sql);
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 try {
                     setPreparedStatmentValues(preparedStatement, clazz, object, refFieldList);
@@ -224,7 +229,7 @@ public class DataAccessObject {
 
             // @Override
             public Void execute(Connection connection) throws Exception {
-                if (logging) System.out.println("[INFO] insert sql: " + sql);
+                if (logging && logTool.isInfoEnable()) logTool.info("Insert sql: " + sql);
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 try {
                     setPreparedStatmentValues(preparedStatement, clazz, object, refFieldList);
@@ -247,7 +252,7 @@ public class DataAccessObject {
 
             // @Override
             public Void execute(Connection connection) throws Exception {
-                if (logging) System.out.println("[INFO] insert sql: " + sql);
+                if (logging && logTool.isInfoEnable()) logTool.info("Insert sql: " + sql);
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 try {
                     for (Object object : objectList) {
@@ -275,7 +280,7 @@ public class DataAccessObject {
 
             // @Override
             public Void execute(Connection connection) throws Exception {
-                if (logging) System.out.println("[INFO] update sql: " + sql);
+                if (logging && logTool.isInfoEnable()) logTool.info("Update sql: " + sql);
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 try {
                     setPreparedStatmentValues(preparedStatement, clazz, object, refFieldList);
@@ -298,7 +303,7 @@ public class DataAccessObject {
 
             // @Override
             public Void execute(Connection connection) throws Exception {
-                if (logging) System.out.println("[INFO] update sql: " + sql);
+                if (logging && logTool.isInfoEnable()) logTool.info("Update sql: " + sql);
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 for (Object object : objectList) {
                     if (clazz != object.getClass()) {
@@ -319,7 +324,7 @@ public class DataAccessObject {
 
             // @Override
             public Void execute(Connection connection) throws Exception {
-                if (logging) System.out.println("[INFO] delete sql: " + sql);
+                if (logging && logTool.isInfoEnable()) logTool.info("Delete sql: " + sql);
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 try {
                     preparedStatement.execute();
@@ -340,7 +345,7 @@ public class DataAccessObject {
 
             // @Override
             public Void execute(Connection connection) throws Exception {
-                if (logging) System.out.println("[INFO] delete sql: " + sql);
+                if (logging && logTool.isInfoEnable()) logTool.info("Delete sql: " + sql);
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 try {
                     setPreparedStatmentValues(preparedStatement, clazz, object, refFieldList);
@@ -363,7 +368,7 @@ public class DataAccessObject {
 
             // @Override
             public Void execute(Connection connection) throws Exception {
-                if (logging) System.out.println("[INFO] delete sql: " + sql);
+                if (logging && logTool.isInfoEnable()) logTool.info("Delete sql: " + sql);
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 try {
                     for (Object object : objectList) {
@@ -409,7 +414,7 @@ public class DataAccessObject {
 
             // @Override
             public Integer execute(Connection connection) throws Exception {
-                if (logging) System.out.println("[INFO] query sql: " + sql);
+                if (logging && logTool.isInfoEnable()) logTool.info("Query sql: " + sql);
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 int result = 0;
                 try {
@@ -417,7 +422,7 @@ public class DataAccessObject {
                         for (int i = 0; i < objectList.size(); i++) {
                             int index = i + 1;
                             Object o = objectList.get(i);
-                            System.out.println("[INFO] object @" + index + "=" + o);
+                            if (logging && logTool.isInfoEnable()) logTool.info("Object @" + index + "=" + o);
                             Class<?> type = (o == null) ? null : o.getClass();
                             setPreparedStatmentByValue(preparedStatement, index, type, o);
                         }
@@ -477,7 +482,7 @@ public class DataAccessObject {
 
             // @Override
             public List<T> execute(Connection connection) throws Exception {
-                if (logging) System.out.println("[INFO] query sql: " + runSql);
+                if (logging && logTool.isInfoEnable()) logTool.info("Query sql: " + runSql);
                 PreparedStatement preparedStatement = connection.prepareStatement(runSql);
                 List<T> result = null;
                 try {
@@ -485,7 +490,7 @@ public class DataAccessObject {
                         for (int i = 0; i < objectList.size(); i++) {
                             int index = i + 1;
                             Object o = objectList.get(i);
-                            if (logging) System.out.println("[INFO] object @" + index + "=" + o);
+                            if (logging && logTool.isInfoEnable()) logTool.info("Object @" + index + "=" + o);
                             Class<?> type = (o == null) ? null : o.getClass();
                             setPreparedStatmentByValue(preparedStatement, index, type, o);
                         }
@@ -588,7 +593,7 @@ public class DataAccessObject {
 
             // @Override
             public List<T> execute(Connection connection) throws Exception {
-                if (logging) System.out.println("[INFO] query sql: " + runSql);
+                if (logging && logTool.isInfoEnable()) logTool.info("Query sql: " + runSql);
                 PreparedStatement preparedStatement = connection.prepareStatement(runSql);
                 List<T> result = null;
                 try {
@@ -596,7 +601,7 @@ public class DataAccessObject {
                         for (int i = 0; i < objectList.size(); i++) {
                             int index = i + 1;
                             Object o = objectList.get(i);
-                            if (logging) System.out.println("[INFO] object @" + index + "=" + o);
+                            if (logging && logTool.isInfoEnable()) logTool.info("Object @" + index + "=" + o);
                             Class<?> type = (o == null) ? null : o.getClass();
                             setPreparedStatmentByValue(preparedStatement, index, type, o);
                         }
@@ -640,7 +645,7 @@ public class DataAccessObject {
 
             // @Override
             public List<?> execute(Connection connection) throws Exception {
-                if (logging) System.out.println("[INFO] query sql: " + runSql);
+                if (logging && logTool.isInfoEnable()) logTool.info("Query sql: " + runSql);
                 PreparedStatement preparedStatement = connection.prepareStatement(runSql);
                 List<?> result = null;
                 try {
@@ -648,7 +653,7 @@ public class DataAccessObject {
                         for (int i = 0; i < objectList.size(); i++) {
                             int index = i + 1;
                             Object o = objectList.get(i);
-                            if (logging) System.out.println("[INFO] object @" + index + "=" + o);
+                            if (logging && logTool.isInfoEnable()) logTool.info("Object @" + index + "=" + o);
                             Class<?> type = (o == null) ? null : o.getClass();
                             setPreparedStatmentByValue(preparedStatement, index, type, o);
                         }
@@ -812,7 +817,7 @@ public class DataAccessObject {
             int index = i + 1;
             AtomicReference<Class<?>> refType = new AtomicReference<Class<?>>();
             Object o = ReflectUtil.getFieldValue(clazz, object, StringUtil.toCamel(refFieldList.get(i)), refType);
-            if (logging) System.out.println("[INFO] object @" + index + "=" + o);
+            if (logging && logTool.isInfoEnable()) logTool.info("Object @" + index + "=" + o);
             setPreparedStatmentByValue(preparedStatement, index, refType.get(), o);
         }
     }

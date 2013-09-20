@@ -7,16 +7,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
 
+import me.hatter.tools.commons.log.LogTool;
+import me.hatter.tools.commons.log.LogTools;
 import me.hatter.tools.resourceproxy.commons.util.StringUtil;
 
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 
-@SuppressWarnings("restriction")
 public class MainHttpServer implements Runnable {
 
-    private List<Integer> ports;
-    private HttpHandler   httpHandler;
+    private static final LogTool logTool = LogTools.getLogTool(MainHttpServer.class);
+
+    private List<Integer>        ports;
+    private HttpHandler          httpHandler;
 
     public MainHttpServer(HttpHandler httpHandler, List<Integer> ports) {
         this.httpHandler = httpHandler;
@@ -36,12 +39,14 @@ public class MainHttpServer implements Runnable {
                 httpServer.start();
                 successPorts.add(port);
             } catch (BindException be) {
-                System.out.println("[ERROR] Bind port failed: " + port);
+                logTool.error("Bind port failed: " + port);
             } catch (IOException e) {
-                System.out.println("[ERROR] Exception occured: " + StringUtil.printStackTrace(e));
+                logTool.error("Exception occured: " + StringUtil.printStackTrace(e));
             }
         }
-        System.out.println("[INFO] Start HttpServer on: " + successPorts + " cost: "
-                           + (System.currentTimeMillis() - start) + " ms");
+        if (logTool.isInfoEnable()) {
+            logTool.info("Start HttpServer on: " + successPorts + " cost: " + (System.currentTimeMillis() - start)
+                         + " ms");
+        }
     }
 }

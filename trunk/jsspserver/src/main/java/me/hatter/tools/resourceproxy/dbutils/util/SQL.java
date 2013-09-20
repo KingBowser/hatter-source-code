@@ -3,19 +3,23 @@ package me.hatter.tools.resourceproxy.dbutils.util;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.hatter.tools.commons.log.LogTool;
+import me.hatter.tools.commons.log.LogTools;
 import me.hatter.tools.resourceproxy.commons.util.StringUtil;
 import me.hatter.tools.resourceproxy.dbutils.objects.Test;
 
 public class SQL {
 
+    private static final LogTool logTool = LogTools.getLogTool(SQL.class);
+
     public static void main(String[] a) {
-        System.out.println(SQL.sql(Cmd.DELETE).table(Test.class).where("id=?").get());
-        System.out.println(SQL.sql(Cmd.SELECT).table(Test.class).where("id=?").get());
-        System.out.println(SQL.sql(Cmd.UPDATE).table(Test.class).update("name=?").where("id=?").get());
-        System.out.println(SQL.deleteQuery(Test.class).where("id=?").get());
-        System.out.println(SQL.selectQuery(Test.class).where("id=?").get());
-        System.out.println(SQL.updateQuery(Test.class).update("name=?").where("id=?").get());
-        System.out.println(SQL.updateQuery(Test.class).update("name=?").update("sex=?").where("id=?").get());
+        logTool.info(SQL.sql(Cmd.DELETE).table(Test.class).where("id=?").get());
+        logTool.info(SQL.sql(Cmd.SELECT).table(Test.class).where("id=?").get());
+        logTool.info(SQL.sql(Cmd.UPDATE).table(Test.class).update("name=?").where("id=?").get());
+        logTool.info(SQL.deleteQuery(Test.class).where("id=?").get());
+        logTool.info(SQL.selectQuery(Test.class).where("id=?").get());
+        logTool.info(SQL.updateQuery(Test.class).update("name=?").where("id=?").get());
+        logTool.info(SQL.updateQuery(Test.class).update("name=?").update("sex=?").where("id=?").get());
     }
 
     public static enum Cmd {

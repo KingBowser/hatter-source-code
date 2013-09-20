@@ -5,6 +5,8 @@ import java.io.StringReader;
 import java.util.HashMap;
 import java.util.Map;
 
+import me.hatter.tools.commons.log.LogTool;
+import me.hatter.tools.commons.log.LogTools;
 import me.hatter.tools.resourceproxy.commons.resource.Resource;
 import me.hatter.tools.resourceproxy.commons.resource.Resources;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpRequest;
@@ -23,9 +25,11 @@ import me.hatter.tools.resourceproxy.jsspserver.util.JsspResourceManager;
 
 public class JsspFilter implements ResourceFilter {
 
-    public static final boolean JSSP_DEBUG = Boolean.valueOf(System.getProperty("jsspdebug"));
+    private static final LogTool logTool    = LogTools.getLogTool(JsspFilter.class);
 
-    public static File          JSSP_PATH;
+    public static final boolean  JSSP_DEBUG = Boolean.valueOf(System.getProperty("jsspdebug"));
+
+    public static File           JSSP_PATH;
     static {
         String jsspPath = System.getProperty("jssp.path");
         if (jsspPath == null) {
@@ -34,7 +38,7 @@ public class JsspFilter implements ResourceFilter {
             JSSP_PATH = new File(jsspPath);
         }
     }
-    public static Resources     RESOURCES  = new Resources(JSSP_PATH);
+    public static Resources      RESOURCES  = new Resources(JSSP_PATH);
 
     static {
         JsspExecutor.initJsspWork();
@@ -60,7 +64,9 @@ public class JsspFilter implements ResourceFilter {
             };
 
             if (jsspResource.exists()) {
-                System.out.println("[INFO] Found jssp resource: " + jsspResource.getResource());
+                if (logTool.isInfoEnable()) {
+                    logTool.info("Found jssp resource: " + jsspResource.getResource());
+                }
 
                 HttpResponse response = new HttpResponse();
                 Map<String, Object> context = new HashMap<String, Object>();
@@ -68,7 +74,9 @@ public class JsspFilter implements ResourceFilter {
                 if (jsspAction != null) {
                     try {
                         Class<?> jsspActionClazz = Class.forName(jsspAction);
-                        System.out.println("[INFO] Found jssp action: " + jsspActionClazz);
+                        if (logTool.isInfoEnable()) {
+                            logTool.info("Found jssp action: " + jsspActionClazz);
+                        }
                         if (Action.class.isAssignableFrom(jsspActionClazz)) {
                             Action a = ((Action) jsspActionClazz.newInstance());
                             context = a.doAction(request, response);

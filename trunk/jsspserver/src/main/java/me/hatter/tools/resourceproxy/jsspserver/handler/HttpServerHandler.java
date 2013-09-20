@@ -55,7 +55,7 @@ public class HttpServerHandler implements HttpHandler {
             responseBody.write((message).getBytes(ContentTypes.UTF8_CHARSET));
             responseBody.close();
         } catch (Exception e) {
-            System.out.println("[ERROR] Write error to response failed. " + StringUtil.printStackTrace(e));
+            logTool.error("Write error to response failed. ", e);
         }
     }
 

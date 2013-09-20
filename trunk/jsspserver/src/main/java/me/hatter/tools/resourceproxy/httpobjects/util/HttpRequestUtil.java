@@ -8,6 +8,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import me.hatter.tools.commons.log.LogTool;
+import me.hatter.tools.commons.log.LogTools;
 import me.hatter.tools.resourceproxy.commons.util.CollUtil;
 import me.hatter.tools.resourceproxy.commons.util.IOUtil;
 import me.hatter.tools.resourceproxy.commons.util.KeyValueListMap;
@@ -19,9 +21,11 @@ import com.sun.net.httpserver.HttpExchange;
 
 public class HttpRequestUtil {
 
-    private static Set<String> IGNORE_HEADER_SET = new HashSet<String>(
-                                                                       CollUtil.toUpperCase(Arrays.asList("If-modified-since", // ,
-                                                                                                          "If-none-match")));
+    private static final LogTool logTool           = LogTools.getLogTool(HttpRequestUtil.class);
+
+    private static Set<String>   IGNORE_HEADER_SET = new HashSet<String>(
+                                                                         CollUtil.toUpperCase(Arrays.asList("If-modified-since", // ,
+                                                                                                            "If-none-match")));
 
     public static HttpRequest build(HttpExchange exchange) {
         int uploadCount = 0;
@@ -66,7 +70,9 @@ public class HttpRequestUtil {
                 IOUtil.copy(exchange.getRequestBody(), baos);
                 request.setPostBytes(baos.toByteArray());
                 if (isMultipartFormData) {
-                    System.out.println("[WARN] The request is multiplepart/form-data: " + request.getFullUrl());
+                    if (logTool.isWarnEnable()) {
+                        logTool.warn("The request is multiplepart/form-data: " + request.getFullUrl());
+                    }
                 } else {
                     String post = new String(baos.toByteArray(), "UTF-8");
                     parseKVListMap(request.getPostMap(), post);

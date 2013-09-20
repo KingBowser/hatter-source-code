@@ -76,7 +76,7 @@ task packjar << {
   ant.copy(todir: packtempclasses) {
     fileset(dir: 'src/main/java', includes: '**/*.java')
   }
-  new File(packtempclasses + "/commons-version-build.txt").write(new Date().format("yyyyMMdd"), "UTF-8")
+  // new File(packtempclasses + "/commons-version-build.txt").write(new Date().format("yyyyMMdd"), "UTF-8")
   ant.jar(destfile: "${baseProjectName}.jar") {
     fileset(dir: packtempclasses, includes: '**/*.*')
   }

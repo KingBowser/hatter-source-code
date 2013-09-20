@@ -5,13 +5,18 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import me.hatter.tools.commons.log.LogTool;
+import me.hatter.tools.commons.log.LogTools;
+
 public interface Action {
 
     public static class DoAction {
 
-        HttpServletRequest  request;
-        HttpServletResponse response;
-        Map<String, Object> context;
+        private static final LogTool logTool = LogTools.getLogTool(DoAction.class);
+
+        HttpServletRequest           request;
+        HttpServletResponse          response;
+        Map<String, Object>          context;
 
         public DoAction(HttpServletRequest request, HttpServletResponse response, Map<String, Object> context) {
             this.request = request;
@@ -22,7 +27,9 @@ public interface Action {
         public void doAction(String clazz) {
             try {
                 Class<?> jsspActionClazz = Class.forName(clazz);
-                System.out.println("[INFO] Found jssp action: " + jsspActionClazz);
+                if (logTool.isInfoEnable()) {
+                    logTool.info("Found jssp action: " + jsspActionClazz);
+                }
                 if (Action.class.isAssignableFrom(jsspActionClazz)) {
                     Action a = ((Action) jsspActionClazz.newInstance());
                     Map<String, Object> c = a.doAction(request, response);

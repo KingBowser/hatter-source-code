@@ -11,14 +11,17 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import me.hatter.tools.commons.log.LogUtil;
+import me.hatter.tools.commons.log.LogTool;
+import me.hatter.tools.commons.log.LogTools;
 import me.hatter.tools.commons.string.StringUtil;
 
 public class WelcomeFilter implements Filter {
 
-    public static final String DEFAULT_WELCOME_PAGE = "/index.jssp";
-    private String             welcomePage          = DEFAULT_WELCOME_PAGE;
-    private FilterConfig       filterConfig;
+    private static final LogTool logTool              = LogTools.getLogTool(WelcomeFilter.class);
+
+    public static final String   DEFAULT_WELCOME_PAGE = "/index.jssp";
+    private String               welcomePage          = DEFAULT_WELCOME_PAGE;
+    private FilterConfig         filterConfig;
 
     public void destroy() {
         filterConfig = null;
@@ -42,6 +45,8 @@ public class WelcomeFilter implements Filter {
         if (StringUtil.isNotEmpty(wp)) {
             this.welcomePage = wp;
         }
-        LogUtil.info("Welcome page: " + this.welcomePage);
+        if (logTool.isInfoEnable()) {
+            logTool.info("Welcome page: " + this.welcomePage);
+        }
     }
 }

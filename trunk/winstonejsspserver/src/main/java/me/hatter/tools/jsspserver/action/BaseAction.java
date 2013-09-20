@@ -9,13 +9,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import me.hatter.tools.commons.exception.ExceptionUtil;
-import me.hatter.tools.commons.log.LogUtil;
+import me.hatter.tools.commons.log.LogTool;
+import me.hatter.tools.commons.log.LogTools;
 import me.hatter.tools.jsspserver.auth.AuthMark;
 import me.hatter.tools.jsspserver.exception.JSONException;
 import me.hatter.tools.jsspserver.exception.RedirectException;
 import me.hatter.tools.jsspserver.filter.JSONFilter;
 
 public abstract class BaseAction implements Action {
+
+    private static final LogTool                    logTool       = LogTools.getLogTool(BaseAction.class);
 
     private static ThreadLocal<HttpServletRequest>  localRequest  = new ThreadLocal<HttpServletRequest>();
     private static ThreadLocal<HttpServletResponse> localResponse = new ThreadLocal<HttpServletResponse>();
@@ -48,7 +51,7 @@ public abstract class BaseAction implements Action {
         } catch (JSONException e) {
             returnJson(e.getObject());
         } catch (Exception e) {
-            LogUtil.error("Invoke action error: " + this.getClass().getName(), e);
+            logTool.error("Invoke action error: " + this.getClass().getName(), e);
             throw new RuntimeException(e);
         } finally {
             localRequest.remove();

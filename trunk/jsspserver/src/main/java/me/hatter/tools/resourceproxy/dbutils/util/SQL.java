@@ -33,6 +33,14 @@ public class SQL {
     private String       order;
     private List<Object> params  = new ArrayList<Object>();
 
+    public static ResourceSQL resource() {
+        return new ResourceSQL("sql.xml");
+    }
+
+    public static ResourceSQL resource(String resource) {
+        return new ResourceSQL(resource);
+    }
+
     public static SQL sql(Cmd command) {
         SQL sql = new SQL();
         sql.command = command.name();

@@ -39,7 +39,8 @@ public class RequestUtil {
         }
 
         public List<String> getValues(String key) {
-            return Arrays.asList(request.getParameterValues(makeKey(key)));
+            String[] values = request.getParameterValues(makeKey(key));
+            return (values == null) ? null : Arrays.asList(values);
         }
 
         private String makeKey(String key) {

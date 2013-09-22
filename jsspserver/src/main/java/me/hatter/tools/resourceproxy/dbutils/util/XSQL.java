@@ -38,12 +38,28 @@ public class XSQL {
         this.rawSql = this.refProperties.getProperty(this.id);
     }
 
+    public static ResourceSQL res() {
+        return resource();
+    }
+
+    public static ResourceSQL res(String resource) {
+        return resource(resource);
+    }
+
     public static ResourceSQL resource() {
         return new ResourceSQL("sql.xml");
     }
 
     public static ResourceSQL resource(String resource) {
         return new ResourceSQL(resource);
+    }
+
+    public XSQL var(String rep, int quots) {
+        return variable(rep, quots);
+    }
+
+    public XSQL var(String rep, String val) {
+        return variable(rep, val);
     }
 
     public XSQL variable(String rep, int quots) {
@@ -56,6 +72,10 @@ public class XSQL {
         }
         context.put(rep, val);
         return this;
+    }
+
+    public String sql() {
+        return generateSql();
     }
 
     public String generateSql() {

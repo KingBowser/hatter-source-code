@@ -75,7 +75,7 @@ public class RequestUtil {
                     field.setAccessible(true);
                 }
                 String fn = field.getName();
-                Object oriVal = (ConverterUtil.isClassMultiple(field.getClass())) ? getter.getValues(fn) : getter.getValue(fn);
+                Object oriVal = (ConverterUtil.isClassMultiple(field.getType())) ? getter.getValues(fn) : getter.getValue(fn);
                 Object val = ConverterUtil.convertToFit(oriVal, field);
                 if (val != null) {
                     field.set(obj, val);

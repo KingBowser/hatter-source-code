@@ -55,7 +55,14 @@ public class ConverterUtil {
                         collection.add(convert(o, collectionClazz));
                     }
                 } else {
-                    collection.add(convert(obj, collectionClazz));
+                    if (StringUtil.isNotEmpty(converterMark.separator())) {
+                        String[] values = ((String) convert(obj, String.class)).split(converterMark.separator());
+                        for (String s : values) {
+                            collection.add(convert(s, collectionClazz));
+                        }
+                    } else {
+                        collection.add(convert(obj, collectionClazz));
+                    }
                 }
                 return collection;
             }

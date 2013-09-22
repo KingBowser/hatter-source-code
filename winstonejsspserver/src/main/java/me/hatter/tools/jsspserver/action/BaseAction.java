@@ -61,6 +61,18 @@ public abstract class BaseAction implements Action {
         return context;
     }
 
+    protected HttpServletRequest getRequest() {
+        return localRequest.get();
+    }
+
+    protected HttpServletResponse getResponse() {
+        return localResponse.get();
+    }
+
+    protected Map<String, Object> getContext() {
+        return localContext.get();
+    }
+
     protected void doRedirect(String url) {
         throw new RedirectException(url);
     }

@@ -52,7 +52,15 @@ public class ConverterUtil {
                 if (obj instanceof Collection) {
                     Collection<?> coll = (Collection<?>) obj;
                     for (Object o : coll) {
-                        collection.add(convert(o, collectionClazz));
+                        if (StringUtil.isNotEmpty(converterMark.separator())) {
+                            String[] values = ((String) convert(o, String.class)).split(converterMark.separator());
+                            for (String s : values) {
+                                collection.add(convert(s, collectionClazz));
+                            }
+                        } else {
+                            collection.add(convert(o, collectionClazz));
+                        }
+
                     }
                 } else {
                     if (StringUtil.isNotEmpty(converterMark.separator())) {

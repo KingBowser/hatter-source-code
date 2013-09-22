@@ -396,7 +396,7 @@ public class DataAccessObject {
 
             // @Override
             public String transform(String object2) {
-                Object o = ReflectUtil.getFieldValue(clazz, object, StringUtil.toCamel(object2),
+                Object o = ReflectUtil.getFieldValue(clazz, object, DBUtil.getClassFieldByDbName(clazz, object2),
                                                      new AtomicReference<Class<?>>());
                 pkVList.add(o);
                 return object2 + " = ?";
@@ -502,7 +502,7 @@ public class DataAccessObject {
                         while (resultSet.next()) {
                             T o = clazz.newInstance();
                             for (String f : fieldList) {
-                                Field field = ReflectUtil.getField(clazz, StringUtil.toCamel(f));
+                                Field field = DBUtil.getClassFieldByDbName(clazz, f);
                                 field.setAccessible(true);
                                 setFiledByResultSet(resultSet, o, f, field);
                             }
@@ -614,7 +614,7 @@ public class DataAccessObject {
                         while (resultSet.next()) {
                             T o = clazz.newInstance();
                             for (String f : fieldList) {
-                                Field field = ReflectUtil.getField(clazz, StringUtil.toCamel(f));
+                                Field field = DBUtil.getClassFieldByDbName(clazz, f);
                                 field.setAccessible(true);
                                 setFiledByResultSet(resultSet, o, f, field);
                             }
@@ -816,7 +816,8 @@ public class DataAccessObject {
         for (int i = 0; i < refFieldList.size(); i++) {
             int index = i + 1;
             AtomicReference<Class<?>> refType = new AtomicReference<Class<?>>();
-            Object o = ReflectUtil.getFieldValue(clazz, object, StringUtil.toCamel(refFieldList.get(i)), refType);
+            Object o = ReflectUtil.getFieldValue(clazz, object,
+                                                 DBUtil.getClassFieldByDbName(clazz, refFieldList.get(i)), refType);
             if (logging && logTool.isInfoEnable()) logTool.info("Object @" + index + "=" + o);
             setPreparedStatmentByValue(preparedStatement, index, refType.get(), o);
         }

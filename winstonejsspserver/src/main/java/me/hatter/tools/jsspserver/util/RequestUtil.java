@@ -50,6 +50,10 @@ public class RequestUtil {
         }
     }
 
+    public static <T> T parse(ServletRequest request, Class<T> clazz) {
+        return parse(new RequestValueGetter(request), clazz);
+    }
+
     public static <T> T parse(ValueGetter getter, Class<T> clazz) {
         try {
             T obj = clazz.newInstance();
@@ -57,6 +61,10 @@ public class RequestUtil {
         } catch (Exception e) {
             throw ExceptionUtil.wrapRuntimeException(e);
         }
+    }
+
+    public static <T> T fill(ServletRequest request, T obj) {
+        return fill(new RequestValueGetter(request), obj);
     }
 
     public static <T> T fill(ValueGetter getter, T obj) {

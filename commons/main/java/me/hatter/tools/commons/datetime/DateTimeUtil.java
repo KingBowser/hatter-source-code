@@ -32,11 +32,19 @@ public class DateTimeUtil {
         return new Date(currentMillis());
     }
 
-    public static Date afterDate(long time, TimeUnit unit) {
+    public static Date after(long millis) {
+        return new Date(currentMillis() + millis);
+    }
+
+    public static Date before(long millis) {
+        return new Date(currentMillis() - millis);
+    }
+
+    public static Date after(long time, TimeUnit unit) {
         return new Date(currentMillis() + unit.toMillis(time));
     }
 
-    public static Date beforeDate(long time, TimeUnit unit) {
+    public static Date before(long time, TimeUnit unit) {
         return new Date(currentMillis() - unit.toMillis(time));
     }
 

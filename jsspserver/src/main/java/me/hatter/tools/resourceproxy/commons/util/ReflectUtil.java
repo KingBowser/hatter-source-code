@@ -13,6 +13,18 @@ public class ReflectUtil {
     public static Object getFieldValue(Object object, String field, AtomicReference<Class<?>> refType) {
         return getFieldValue(object.getClass(), object, field, refType);
     }
+    
+    public static Object getFieldValue(Class<?> clazz, Object object, Field field, AtomicReference<Class<?>> refType) {
+        refType.set(field.getType());
+        field.setAccessible(true);
+        try {
+            return field.get(object);
+        } catch (IllegalArgumentException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public static Object getFieldValue(Class<?> clazz, Object object, String field, AtomicReference<Class<?>> refType) {
         Field f = getField(clazz, field);

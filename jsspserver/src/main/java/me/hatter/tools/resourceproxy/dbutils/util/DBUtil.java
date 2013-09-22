@@ -18,10 +18,11 @@ import me.hatter.tools.resourceproxy.dbutils.annotation.UpdateIgnore;
 
 public class DBUtil {
 
-    private static Map<Class<?>, String>       tableNameMap         = new HashMap<Class<?>, String>();
-    private static Map<Class<?>, List<String>> fieldListMap         = new HashMap<Class<?>, List<String>>();
-    private static Map<Class<?>, List<String>> fieldPkListMap       = new HashMap<Class<?>, List<String>>();
-    private static Map<Class<?>, List<String>> fieldUpIgnoreListMap = new HashMap<Class<?>, List<String>>();
+    private static Map<Class<?>, String>             tableNameMap         = new HashMap<Class<?>, String>();
+    private static Map<Class<?>, List<String>>       fieldListMap         = new HashMap<Class<?>, List<String>>();
+    private static Map<Class<?>, List<String>>       fieldPkListMap       = new HashMap<Class<?>, List<String>>();
+    private static Map<Class<?>, List<String>>       fieldUpIgnoreListMap = new HashMap<Class<?>, List<String>>();
+    private static Map<Class<?>, Map<String, Field>> databaseNameFileMap  = new HashMap<Class<?>, Map<String, Field>>();
 
     public static List<Object> objects(Object... objects) {
         return Arrays.asList(objects);
@@ -235,6 +236,21 @@ public class DBUtil {
         return fieldList;
     }
 
+    synchronized public static Field getClassFieldByDbName(Class<?> clazz, String databaseFieldName) {
+        Map<String, Field> dbNameToField = databaseNameFileMap.get(clazz);
+        if (dbNameToField == null) {
+            List<Field> fieldTypeList = getDatabaseTableFields(clazz);
+            dbNameToField = transformToDatabaseNameToFieldMapping(fieldTypeList);
+            databaseNameFileMap.put(clazz, dbNameToField);
+        }
+        Field field = dbNameToField.get(StringUtil.toLowerCase(databaseFieldName));
+        if (field == null) {
+            throw new IllegalStateException("Cannot find database field name: " + databaseFieldName + " from clazz: "
+                                            + clazz);
+        }
+        return field;
+    }
+
     private static <T> List<String> transformToQuesList(List<T> list) {
         return CollUtil.transform(list, new CollUtil.Transformer<T, String>() {
 
@@ -243,6 +259,27 @@ public class DBUtil {
                 return "?";
             }
         });
+    }
+
+    private static Map<String, Field> transformToDatabaseNameToFieldMapping(List<Field> fieldTypeList) {
+        List<Object[]> dbNameToFieldList;
+        dbNameToFieldList = CollUtil.transform(fieldTypeList, new CollUtil.Transformer<Field, Object[]>() {
+
+            // @Override
+            public Object[] transform(Field object) {
+                me.hatter.tools.resourceproxy.dbutils.annotation.Field f = object.getAnnotation(me.hatter.tools.resourceproxy.dbutils.annotation.Field.class);
+                if ((f != null) && (!f.name().isEmpty())) {
+                    return new Object[] { f.name(), object };
+                } else {
+                    return new Object[] { StringUtil.toUnder(object.getName()), object };
+                }
+            }
+        });
+        Map<String, Field> dbNameToFiledMapping = new HashMap<String, Field>();
+        for (Object[] dbNameToField : dbNameToFieldList) {
+            dbNameToFiledMapping.put((String) dbNameToField[0], (Field) dbNameToField[1]);
+        }
+        return dbNameToFiledMapping;
     }
 
     private static List<String> transformToDatabaseName(List<Field> fieldTypeList) {

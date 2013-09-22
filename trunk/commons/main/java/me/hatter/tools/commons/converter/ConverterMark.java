@@ -10,4 +10,6 @@ import java.lang.annotation.Target;
 public @interface ConverterMark {
 
     Class<?> type() default Object.class;
+
+    String separator() default "";
 }

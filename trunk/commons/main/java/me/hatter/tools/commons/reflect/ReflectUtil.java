@@ -20,6 +20,13 @@ import me.hatter.tools.commons.exception.ExceptionUtil;
 
 public class ReflectUtil {
 
+    public static interface ValueGetter {
+
+        String getValue(String key);
+
+        List<String> getValues(String key);
+    }
+
     private static final Map<String, Boolean> classPresentMap = new HashMap<String, Boolean>();
 
     public static boolean isClassPresent(String className) {
@@ -193,6 +200,35 @@ public class ReflectUtil {
             } else {
                 return getDeclaredMethod(clazz.getSuperclass(), methodName, parameterTypes);
             }
+        }
+    }
+
+    public static <T> T parse(ValueGetter getter, Class<T> clazz) {
+        try {
+            T obj = clazz.newInstance();
+            return fill(getter, obj);
+        } catch (Exception e) {
+            throw ExceptionUtil.wrapRuntimeException(e);
+        }
+    }
+
+    public static <T> T fill(ValueGetter getter, T obj) {
+        try {
+            List<Field> fields = ReflectUtil.getDeclaredFields(obj.getClass());
+            for (Field field : fields) {
+                if (!field.isAccessible()) {
+                    field.setAccessible(true);
+                }
+                String fn = field.getName();
+                Object oriVal = (ConverterUtil.isClassMultiple(field.getType())) ? getter.getValues(fn) : getter.getValue(fn);
+                Object val = ConverterUtil.convertToFit(oriVal, field);
+                if (val != null) {
+                    field.set(obj, val);
+                }
+            }
+            return obj;
+        } catch (Exception e) {
+            throw ExceptionUtil.wrapRuntimeException(e);
         }
     }
 

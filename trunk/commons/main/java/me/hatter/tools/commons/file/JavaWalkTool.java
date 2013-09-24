@@ -126,7 +126,7 @@ public class JavaWalkTool {
                             try {
                                 walker.readInputStream(is, file, jarEntry.getName(), AcceptType.Entry);
                             } finally {
-                                IOUtil.closeQuitely(is);
+                                IOUtil.closeQuietly(is);
                             }
                         }
                     }
@@ -139,7 +139,7 @@ public class JavaWalkTool {
                     try {
                         walker.readInputStream(is, file, file.getName(), AcceptType.File);
                     } finally {
-                        IOUtil.closeQuitely(is);
+                        IOUtil.closeQuietly(is);
                     }
                 } catch (FileNotFoundException e) {
                     throw new RuntimeException(e);

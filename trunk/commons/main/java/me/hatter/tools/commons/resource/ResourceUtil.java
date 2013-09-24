@@ -34,7 +34,7 @@ public class ResourceUtil {
         try {
             return IOUtil.readToBytes(is);
         } finally {
-            IOUtil.closeQuitely(is);
+            IOUtil.closeQuietly(is);
         }
     }
 
@@ -43,7 +43,7 @@ public class ResourceUtil {
         try {
             return IOUtil.readToString(is, charset);
         } finally {
-            IOUtil.closeQuitely(is);
+            IOUtil.closeQuietly(is);
         }
     }
 }

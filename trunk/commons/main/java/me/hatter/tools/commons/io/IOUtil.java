@@ -51,7 +51,7 @@ public class IOUtil {
         try {
             return readToString(inputStream, charset);
         } finally {
-            closeQuitely(inputStream);
+            closeQuietly(inputStream);
         }
     }
 
@@ -90,7 +90,7 @@ public class IOUtil {
         try {
             return readToBytes(inputStream);
         } finally {
-            closeQuitely(inputStream);
+            closeQuietly(inputStream);
         }
     }
 
@@ -113,7 +113,7 @@ public class IOUtil {
         try {
             writeString(outputStream, content, charset);
         } finally {
-            closeQuitely(outputStream);
+            closeQuietly(outputStream);
         }
     }
 
@@ -133,7 +133,7 @@ public class IOUtil {
         try {
             writeBytes(outputStream, bytes);
         } finally {
-            closeQuitely(outputStream);
+            closeQuietly(outputStream);
         }
     }
 
@@ -202,7 +202,7 @@ public class IOUtil {
         return total;
     }
 
-    public static void closeQuitely(Closeable closeable) {
+    public static void closeQuietly(Closeable closeable) {
         try {
             if (closeable != null) {
                 closeable.close();

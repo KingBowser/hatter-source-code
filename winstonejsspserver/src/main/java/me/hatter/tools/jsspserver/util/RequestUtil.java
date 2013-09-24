@@ -1,24 +1,15 @@
 package me.hatter.tools.jsspserver.util;
 
-import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.ServletRequest;
 
-import me.hatter.tools.commons.converter.ConverterUtil;
-import me.hatter.tools.commons.exception.ExceptionUtil;
 import me.hatter.tools.commons.reflect.ReflectUtil;
+import me.hatter.tools.commons.reflect.ReflectUtil.ValueGetter;
 import me.hatter.tools.commons.string.StringUtil;
 
 public class RequestUtil {
-
-    public static interface ValueGetter {
-
-        String getValue(String key);
-
-        List<String> getValues(String key);
-    }
 
     public static class RequestValueGetter implements ValueGetter {
 
@@ -56,12 +47,7 @@ public class RequestUtil {
     }
 
     public static <T> T parse(ValueGetter getter, Class<T> clazz) {
-        try {
-            T obj = clazz.newInstance();
-            return fill(getter, obj);
-        } catch (Exception e) {
-            throw ExceptionUtil.wrapRuntimeException(e);
-        }
+        return ReflectUtil.parse(getter, clazz);
     }
 
     public static <T> T fill(ServletRequest request, T obj) {
@@ -69,22 +55,6 @@ public class RequestUtil {
     }
 
     public static <T> T fill(ValueGetter getter, T obj) {
-        try {
-            List<Field> fields = ReflectUtil.getDeclaredFields(obj.getClass());
-            for (Field field : fields) {
-                if (!field.isAccessible()) {
-                    field.setAccessible(true);
-                }
-                String fn = field.getName();
-                Object oriVal = (ConverterUtil.isClassMultiple(field.getType())) ? getter.getValues(fn) : getter.getValue(fn);
-                Object val = ConverterUtil.convertToFit(oriVal, field);
-                if (val != null) {
-                    field.set(obj, val);
-                }
-            }
-            return obj;
-        } catch (Exception e) {
-            throw ExceptionUtil.wrapRuntimeException(e);
-        }
+        return ReflectUtil.fill(getter, obj);
     }
 }

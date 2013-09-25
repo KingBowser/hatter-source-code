@@ -54,6 +54,10 @@ public class XSQL {
         return new ResourceSQL(resource);
     }
 
+    public static XSQL sql(String id) {
+        return res().sql(id);
+    }
+
     public XSQL var(String rep, int quots) {
         return variable(rep, quots);
     }

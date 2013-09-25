@@ -25,6 +25,7 @@ import me.hatter.tools.resourceproxy.dbutils.config.PropertyConfig;
 import me.hatter.tools.resourceproxy.dbutils.factory.ConnectionFactory;
 import me.hatter.tools.resourceproxy.dbutils.factory.ConnectionPool;
 import me.hatter.tools.resourceproxy.dbutils.util.DBUtil;
+import me.hatter.tools.resourceproxy.dbutils.util.XSQL;
 
 public class DataAccessObject {
 
@@ -453,7 +454,7 @@ public class DataAccessObject {
     }
 
     public <T> List<T> listObjects(final Class<T> clazz) {
-        return listObjects(clazz, null, null);
+        return listObjects(clazz, (String) null, null);
     }
 
     public <T> T findObject(final Class<T> clazz, String orderBy) {
@@ -464,8 +465,24 @@ public class DataAccessObject {
         return listObjects(clazz, null, orderBy, null);
     }
 
+    public <T> T findObject(final Class<T> clazz, XSQL sql) {
+        return findObject(clazz, sql, null);
+    }
+
+    public <T> T findObject(final Class<T> clazz, XSQL sql, final List<Object> objectList) {
+        return findObject(clazz, sql.generateSql(), objectList);
+    }
+
     public <T> T findObject(final Class<T> clazz, String where, final List<Object> objectList) {
         return first(listObjects(clazz, where, objectList));
+    }
+
+    public <T> List<T> listObjects(final Class<T> clazz, XSQL sql) {
+        return listObjects(clazz, sql, null);
+    }
+
+    public <T> List<T> listObjects(final Class<T> clazz, XSQL sql, final List<Object> objectList) {
+        return listObjects(clazz, sql.generateSql(), objectList);
     }
 
     public <T> List<T> listObjects(final Class<T> clazz, String where, final List<Object> objectList) {

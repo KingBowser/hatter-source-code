@@ -1,5 +1,6 @@
 package me.hatter.tools.commons.collection;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -9,6 +10,8 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import me.hatter.tools.commons.reflect.ReflectUtil;
 
 public class CollectionUtil {
 
@@ -62,6 +65,28 @@ public class CollectionUtil {
         @Override
         public String transform(String object) {
             return (object == null) ? null : object.trim();
+        }
+    }
+
+    public static class FieldKeyGetter<O, K> implements KeyGetter<O, K> {
+
+        private String fieldName;
+
+        public FieldKeyGetter(String fieldName) {
+            this.fieldName = fieldName;
+        }
+
+        @SuppressWarnings("unchecked")
+        @Override
+        public K getKey(O object) {
+            if (object == null) return null;
+            Field field = ReflectUtil.getDeclaredField(object.getClass(), fieldName);
+            ReflectUtil.makeAccessiable(field);
+            try {
+                return (K) field.get(object);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 

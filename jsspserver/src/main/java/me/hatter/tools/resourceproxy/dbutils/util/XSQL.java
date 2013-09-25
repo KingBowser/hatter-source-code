@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.regex.Pattern;
 
+import me.hatter.tools.commons.assertion.AssertUtil;
 import me.hatter.tools.commons.string.StringUtil;
 
 public class XSQL {
@@ -26,6 +27,7 @@ public class XSQL {
         System.out.println(resolveSqlToken(a, b, tr));
     }
 
+    private Class<?>            clazz;
     private String              id;
     private String              rawSql;
     private String              sql     = null;
@@ -58,6 +60,11 @@ public class XSQL {
         return res().sql(id);
     }
 
+    public XSQL clazz(Class<?> clazz) {
+        this.clazz = clazz;
+        return this;
+    }
+
     public XSQL var(String rep, int quots) {
         return variable(rep, quots);
     }
@@ -76,6 +83,11 @@ public class XSQL {
         }
         context.put(rep, val);
         return this;
+    }
+
+    public Class<?> getClazz() {
+        AssertUtil.isNotNull(this.clazz);
+        return this.clazz;
     }
 
     public String sql() {

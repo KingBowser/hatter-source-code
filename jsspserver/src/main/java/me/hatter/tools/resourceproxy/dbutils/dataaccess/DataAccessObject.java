@@ -536,8 +536,24 @@ public class DataAccessObject {
         });
     }
 
+    public <T> T findSingleObject(final Class<T> clazz, XSQL sql) {
+        return findSingleObject(clazz, sql, null);
+    }
+
+    public <T> T findSingleObject(final Class<T> clazz, XSQL sql, final List<Object> objectList) {
+        return findSingleObject(clazz, sql.generateSql(), objectList);
+    }
+
     public <T> T findSingleObject(final Class<T> clazz, String query, final List<Object> objectList) {
         return first(listSingleObjects(clazz, query, objectList));
+    }
+
+    public <T> List<T> listSingleObjects(final Class<T> clazz, XSQL sql) {
+        return listSingleObjects(clazz, sql, null);
+    }
+
+    public <T> List<T> listSingleObjects(final Class<T> clazz, XSQL sql, final List<Object> objectList) {
+        return listSingleObjects(clazz, sql.generateSql(), objectList);
     }
 
     public <T> List<T> listSingleObjects(final Class<T> clazz, String query, final List<Object> objectList) {

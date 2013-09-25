@@ -232,6 +232,24 @@ public class ReflectUtil {
         }
     }
 
+    public static Object getFieldValue(Field field, Object object) {
+        makeAccessiable(field);
+        try {
+            return field.get(object);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static Object invokeMethod(Method method, Object object, Object... args) {
+        makeAccessiable(method);
+        try {
+            return method.invoke(object, args);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static Field getDeclaredField(Class<?> clazz, String field) {
         if (clazz == null) {
             return null;

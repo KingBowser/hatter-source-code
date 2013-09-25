@@ -22,7 +22,7 @@ public class ResourceSQL {
         try {
             resourceProperties.loadFromXML(is);
         } catch (Exception e) {
-            IOUtil.closeQuitely(is);
+            IOUtil.closeQuietly(is);
             throw ExceptionUtil.wrapRuntimeException(e);
         }
     }

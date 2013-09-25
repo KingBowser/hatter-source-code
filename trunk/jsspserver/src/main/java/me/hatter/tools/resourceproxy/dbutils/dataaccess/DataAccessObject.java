@@ -533,26 +533,26 @@ public class DataAccessObject {
             // @Override
             public void process(int index, ResultSet record) throws Exception {
                 if (clazz == String.class) {
-                    list.add(clazz.cast(record.getString(0)));
+                    list.add(clazz.cast(record.getString(1)));
                 } else if (clazz == Integer.class) {
-                    list.add(clazz.cast(record.getInt(0)));
+                    list.add(clazz.cast(record.getInt(1)));
                 } else if (clazz == Byte.class) {
-                    list.add(clazz.cast(record.getByte(0)));
+                    list.add(clazz.cast(record.getByte(1)));
                 } else if (clazz == Short.class) {
-                    list.add(clazz.cast(record.getShort(0)));
+                    list.add(clazz.cast(record.getShort(1)));
                 } else if (clazz == Long.class) {
-                    list.add(clazz.cast(record.getLong(0)));
+                    list.add(clazz.cast(record.getLong(1)));
                 } else if (clazz == Float.class) {
-                    list.add(clazz.cast(record.getFloat(0)));
+                    list.add(clazz.cast(record.getFloat(1)));
                 } else if (clazz == Double.class) {
-                    list.add(clazz.cast(record.getDouble(0)));
+                    list.add(clazz.cast(record.getDouble(1)));
                 } else if (clazz == Date.class) {
-                    java.sql.Date d = record.getDate(0);
+                    java.sql.Date d = record.getDate(1);
                     list.add(clazz.cast((d == null) ? null : new Date(d.getTime())));
                 } else if (clazz == BigDecimal.class) {
-                    list.add(clazz.cast(record.getBigDecimal(0)));
+                    list.add(clazz.cast(record.getBigDecimal(1)));
                 } else if (clazz == Boolean.class) {
-                    list.add(clazz.cast(record.getBoolean(0)));
+                    list.add(clazz.cast(record.getBoolean(1)));
                 } else {
                     throw new RuntimeException("Unsupoorted type: " + clazz);
                 }

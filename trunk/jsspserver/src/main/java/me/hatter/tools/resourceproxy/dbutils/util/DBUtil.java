@@ -24,6 +24,10 @@ public class DBUtil {
     private static Map<Class<?>, List<String>>       fieldUpIgnoreListMap = new HashMap<Class<?>, List<String>>();
     private static Map<Class<?>, Map<String, Field>> databaseNameFileMap  = new HashMap<Class<?>, Map<String, Field>>();
 
+    public static List<Object> objs(Object... objects) {
+        return objects(objects);
+    }
+
     public static List<Object> objects(Object... objects) {
         return Arrays.asList(objects);
     }

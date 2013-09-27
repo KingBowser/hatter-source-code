@@ -9,9 +9,8 @@ A light weight JSSP container.
 
 Get JsspServer:
 {{{
-svn co http://hatter-source-code.googlecode.com/svn/trunk/resourceproxy/ resourceproxy
-cd resourceproxy
-ant jsspserver
+svn co http://hatter-source-code.googlecode.com/svn/trunk/jsspserver/
+gradle
 }}}
 
 Then you will get `jsspserver-N.N.jar`.

@@ -34,8 +34,10 @@ btrace [-I <include-path>] [-p <port>] [-cp <classpath>] <pid> <btrace-script> [
 || `scriptdir` ||  || the path to a directory containing scripts to be run at the agent startup ||
 || `scriptOutputFile` ||  || the path to a file the btrace agent will store its output ||
 
+在启动时指定btrace脚本：
 {{{
-java -javaagent:btrace-agent.jar=script=<pre-compiled-btrace-script1>[,<pre-compiled-btrace-script1>]* <MainClass> <AppArguments>
+java -javaagent:btrace-agent.jar=script=<pre-compiled-btrace-script1>[,<pre-compiled-btrace-script1>]* 
+      <MainClass> <AppArguments>
 }}}
 
 ==工具==
@@ -99,7 +101,7 @@ public class Trace {
 || *`Kind.NEW`* || the class name ||
 || *`Kind.ERROR`* || the thrown exception ||
 
-==常用脚本==
+==常用脚本^[4]^==
 || [https://hatter-source-code.googlecode.com/svn/trunk/btracescripts/main/src/ClassLoaderDefine.java ClassLoaderDefine.java] || 打印类加载时的Stacktrace ||
 || [https://hatter-source-code.googlecode.com/svn/trunk/btracescripts/main/src/StringInternTrace.java StringInternTrace.java] || 打印调用`String.intern()`的Stacktrace ||
 
@@ -107,3 +109,4 @@ public class Trace {
 `[1].` http://kenai.com/projects/btrace/pages/UserGuide<br>
 `[2].` http://docs.oracle.com/javase/6/docs/technotes/guides/instrumentation/index.html<br>
 `[3].` http://kenai.com/projects/btrace/sources/btrace2/show<br>
+`[4].` http://macrochen.iteye.com/blog/838920<br>

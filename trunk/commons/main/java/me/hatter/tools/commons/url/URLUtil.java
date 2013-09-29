@@ -16,7 +16,7 @@ public class URLUtil {
 
     public static String encode(String url, String enc) {
         try {
-            return URLEncoder.encode(url, enc);
+            return (enc == null) ? encode(url) : URLEncoder.encode(url, enc);
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException(e);
         }

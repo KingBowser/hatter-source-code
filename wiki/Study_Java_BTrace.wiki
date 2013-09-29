@@ -34,6 +34,10 @@ btrace [-I <include-path>] [-p <port>] [-cp <classpath>] <pid> <btrace-script> [
 || `scriptdir` ||  || the path to a directory containing scripts to be run at the agent startup ||
 || `scriptOutputFile` ||  || the path to a file the btrace agent will store its output ||
 
+{{{
+java -javaagent:btrace-agent.jar=script=<pre-compiled-btrace-script1>[,<pre-compiled-btrace-script1>]* <MainClass> <AppArguments>
+}}}
+
 ==工具==
 *生成简单BTrace的工具* http://hatter.me/js/btrace/
 

@@ -34,8 +34,16 @@ public class AssertUtil {
         isTrue(obj == null, message);
     }
 
+    public static void notNull(Object obj) {
+        isNotNull(obj);
+    }
+
     public static void isNotNull(Object obj) {
         isNotNull(obj, null);
+    }
+
+    public static void notNull(Object obj, String message) {
+        isNotNull(obj, message);
     }
 
     public static void isNotNull(Object obj, String message) {
@@ -50,8 +58,16 @@ public class AssertUtil {
         isTrue(StringUtil.isEmpty(str), message);
     }
 
+    public static void notEmpty(String str) {
+        isNotEmpty(str);
+    }
+
     public static void isNotEmpty(String str) {
         isNotEmpty(str, null);
+    }
+
+    public static void notEmpty(String str, String message) {
+        isNotEmpty(str);
     }
 
     public static void isNotEmpty(String str, String message) {
@@ -66,8 +82,16 @@ public class AssertUtil {
         isTrue(StringUtil.isBlank(str), message);
     }
 
+    public static void notBlank(String str) {
+        isNotBlank(str);
+    }
+
     public static void isNotBlank(String str) {
         isNotBlank(str, null);
+    }
+
+    public static void notBlank(String str, String message) {
+        isNotBlank(str, message);
     }
 
     public static void isNotBlank(String str, String message) {
@@ -82,8 +106,16 @@ public class AssertUtil {
         isTrue(CollectionUtil.isEmpty(coll), message);
     }
 
+    public static void notEmpty(Collection<?> coll) {
+        isNotEmpty(coll);
+    }
+
     public static void isNotEmpty(Collection<?> coll) {
         isNotEmpty(coll, null);
+    }
+
+    public static void notEmpty(Collection<?> coll, String message) {
+        isNotEmpty(coll, message);
     }
 
     public static void isNotEmpty(Collection<?> coll, String message) {
@@ -98,8 +130,16 @@ public class AssertUtil {
         isTrue(((map == null) || map.isEmpty()), message);
     }
 
+    public static void notEmpty(Map<?, ?> map) {
+        isNotEmpty(map);
+    }
+
     public static void isNotEmpty(Map<?, ?> map) {
         isNotEmpty(map, null);
+    }
+
+    public static void notEmpty(Map<?, ?> map, String message) {
+        isNotEmpty(map, message);
     }
 
     public static void isNotEmpty(Map<?, ?> map, String message) {

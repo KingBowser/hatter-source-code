@@ -766,14 +766,15 @@ public class WebAppConfiguration implements ServletContext, Comparator {
         this.filterPatternsInclude = (Mapping[]) lfpInclude.toArray(new Mapping[0]);
         this.filterPatternsError = (Mapping[]) lfpError.toArray(new Mapping[0]);
 
-        if (this.filterPatternsRequest.length > 0)
-            Arrays.sort(this.filterPatternsRequest, this.filterPatternsRequest[0]);
-        if (this.filterPatternsForward.length > 0)
-            Arrays.sort(this.filterPatternsForward, this.filterPatternsForward[0]);
-        if (this.filterPatternsInclude.length > 0)
-            Arrays.sort(this.filterPatternsInclude, this.filterPatternsInclude[0]);
-        if (this.filterPatternsError.length > 0)
-            Arrays.sort(this.filterPatternsError, this.filterPatternsError[0]);
+        // BY HATTER: keep original filter order 
+        // if (this.filterPatternsRequest.length > 0)
+        // Arrays.sort(this.filterPatternsRequest, this.filterPatternsRequest[0]);
+        // if (this.filterPatternsForward.length > 0)
+        // Arrays.sort(this.filterPatternsForward, this.filterPatternsForward[0]);
+        // if (this.filterPatternsInclude.length > 0)
+        // Arrays.sort(this.filterPatternsInclude, this.filterPatternsInclude[0]);
+        // if (this.filterPatternsError.length > 0)
+        // Arrays.sort(this.filterPatternsError, this.filterPatternsError[0]);
 
         this.welcomeFiles = (String[]) localWelcomeFiles.toArray(new String[0]);
         this.errorPagesByExceptionKeysSorted = (Class[]) localErrorPagesByExceptionList

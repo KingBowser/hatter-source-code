@@ -467,4 +467,16 @@ public class WinstoneDataSource implements DataSource, Runnable {
                 "" + this.usedRealConnections.size(), 
                 "" + this.unusedRealConnections.size()});
     }
+
+    public boolean isWrapperFor(Class arg0) throws SQLException {
+        return this.getClass().isAssignableFrom(arg0);
+    }
+
+    public Object unwrap(Class arg0) throws SQLException {
+        try {
+            return this;
+        } catch (Exception e) {
+            throw new SQLException(e);
+        }
+    }
 }

@@ -1,0 +1,2 @@
+MD5 (winstone-0.9.10-sources.jar) = 97a72fbd0754ca2d261c6f598c46ed8f
+MD5 (winstone-0.9.10.jar) = 3b20a923baa9c8b1c9a00d1efbb86a7e

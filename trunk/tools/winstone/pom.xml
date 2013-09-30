@@ -1,4 +1,5 @@
 <project>
+  <!-- mvn clean compile jar:jar source:jar -->
   <modelVersion>4.0.0</modelVersion>
   <groupId>net.sourceforge.winstone</groupId>
   <artifactId>winstone</artifactId>

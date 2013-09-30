@@ -42,7 +42,6 @@ public class JSONFilter implements Filter {
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException,
                                                                                              ServletException {
-        request.setCharacterEncoding(FilterTool.DEFAULT_CHARACTER_ENCODING);
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
 

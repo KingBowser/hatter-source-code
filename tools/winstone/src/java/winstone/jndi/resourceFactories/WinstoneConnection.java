@@ -6,15 +6,23 @@
  */
 package winstone.jndi.resourceFactories;
 
+import java.sql.Array;
+import java.sql.Blob;
 import java.sql.CallableStatement;
+import java.sql.Clob;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
+import java.sql.NClob;
 import java.sql.PreparedStatement;
+import java.sql.SQLClientInfoException;
 import java.sql.SQLException;
 import java.sql.SQLWarning;
+import java.sql.SQLXML;
 import java.sql.Savepoint;
 import java.sql.Statement;
+import java.sql.Struct;
 import java.util.Map;
+import java.util.Properties;
 
 import winstone.Logger;
 
@@ -221,5 +229,57 @@ public class WinstoneConnection implements Connection {
     public PreparedStatement prepareStatement(String sql, String[] columnNames)
             throws SQLException {
         return this.realConnection.prepareStatement(sql, columnNames);
+    }
+
+    public boolean isWrapperFor(Class arg0) throws SQLException {
+        return this.realConnection.isWrapperFor(arg0);
+    }
+
+    public Object unwrap(Class arg0) throws SQLException {
+        return this.realConnection.unwrap(arg0);
+    }
+
+    public Clob createClob() throws SQLException {
+        return this.realConnection.createClob();
+    }
+
+    public Blob createBlob() throws SQLException {
+        return this.realConnection.createBlob();
+    }
+
+    public NClob createNClob() throws SQLException {
+        return this.realConnection.createNClob();
+    }
+
+    public SQLXML createSQLXML() throws SQLException {
+        return this.realConnection.createSQLXML();
+    }
+
+    public boolean isValid(int timeout) throws SQLException {
+        return this.realConnection.isValid(timeout);
+    }
+
+    public void setClientInfo(String name, String value) throws SQLClientInfoException {
+        this.realConnection.setClientInfo(name, value);
+    }
+
+    public void setClientInfo(Properties properties) throws SQLClientInfoException {
+        this.realConnection.setClientInfo(properties);
+    }
+
+    public String getClientInfo(String name) throws SQLException {
+        return this.realConnection.getClientInfo(name);
+    }
+
+    public Properties getClientInfo() throws SQLException {
+        return this.realConnection.getClientInfo();
+    }
+
+    public Array createArrayOf(String typeName, Object[] elements) throws SQLException {
+        return this.realConnection.createArrayOf(typeName, elements);
+    }
+
+    public Struct createStruct(String typeName, Object[] attributes) throws SQLException {
+        return this.realConnection.createStruct(typeName, attributes);
     }
 }

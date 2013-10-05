@@ -104,6 +104,7 @@ _[http://www.ecma-international.org/publications/standards/Ecma-262-arch.htm]_
 ===九、友情连接===
 || ECMAScript5.1中文版 || http://www.ecmascript.cn/ || ECMAScript5.1中文版 ||
 || 开源中国在线工具-OSCTools || http://www.ostools.net/ || 开源中国在线工具,osctools为开发设计人员提供在线工具，提供jsbin在线 CSS、JS 调试，在线 Java API文档,在线 PHP API文档,在线 Node.js API文档,Less CSS编译器，MarkDown编译器等其他在线工具 ||
+|| JSDB.io || http://jsdb.io/ || JSDB.io - The Database of JavaScript Libraries ||
 
 ===十、参考资料===
 `[1].` http://en.wikipedia.org/wiki/JavaScript<br>

@@ -18,6 +18,8 @@ http://www.lighttpd.net/
 
 =Jetty=
 
+=GlassFish=
+
 =Winstone=
 
 ===参考资料===

@@ -15,3 +15,6 @@
 
 ==4. Storm==
  * https://github.com/nathanmarz/storm/issues/608
+
+==5. Winstone==
+ * https://code.google.com/p/winstone/issues/detail?id=18

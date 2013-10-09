@@ -18,3 +18,4 @@
 
 ==5. Winstone==
  * https://code.google.com/p/winstone/issues/detail?id=18
+ * https://code.google.com/p/winstone/issues/detail?id=19

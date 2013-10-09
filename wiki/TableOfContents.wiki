@@ -118,7 +118,7 @@
  * [Study_Software Software]
  * [Study_Time Time]
  * [Study_VPS VPS]
- * [ReportedBugList Reported Bug List]
+ * [ReportedBugList Reported Bug(Issue) List]
  * [Study_Others Others]
   * [Study_Others_Icon Icon]
   * [Study_Others_Plastic Plastic]

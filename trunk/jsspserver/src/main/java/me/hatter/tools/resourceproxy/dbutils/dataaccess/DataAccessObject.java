@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -904,7 +905,7 @@ public class DataAccessObject {
         } else if (type == Double.class) {
             preparedStatement.setDouble(index, (Double) o);
         } else if (type == Date.class) {
-            preparedStatement.setDate(index, new java.sql.Date(((Date) o).getTime()));
+            preparedStatement.setTimestamp(index, new Timestamp(((Date) o).getTime()));
         } else if (type == BigDecimal.class) {
             preparedStatement.setBigDecimal(index, (BigDecimal) o);
         } else if (type == Boolean.class) {

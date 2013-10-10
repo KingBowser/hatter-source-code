@@ -326,6 +326,12 @@ public class JsspExecutor {
             pw.write("out.writePreText(");
             pw.write(expression);
             pw.write(");");
+        } else if (script.trim().startsWith("U=")) {
+            int equal = script.indexOf('U');
+            String expression = script.substring(equal + 2);
+            pw.write("out.writeEncodeUrl(");
+            pw.write(expression);
+            pw.write(");");
         } else {
             pw.write(script);
         }

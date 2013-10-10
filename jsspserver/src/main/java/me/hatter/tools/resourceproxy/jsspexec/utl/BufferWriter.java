@@ -7,6 +7,7 @@ import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 
+import me.hatter.tools.commons.url.URLUtil;
 import me.hatter.tools.resourceproxy.commons.util.StringUtil;
 
 public class BufferWriter {
@@ -33,6 +34,10 @@ public class BufferWriter {
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void writeEncodeUrl(String o) {
+        pw.write(URLUtil.encode(objectToString(o)));
     }
 
     public void writeEscape(Object o) {

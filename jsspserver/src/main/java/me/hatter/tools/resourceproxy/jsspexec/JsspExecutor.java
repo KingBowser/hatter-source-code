@@ -338,8 +338,10 @@ public class JsspExecutor {
         if (__jsspWorkDir != null) {
             return __jsspWorkDir;
         }
-        __jsspWorkDir = new File(new File(System.getProperty("java.io.tmpdir"), "_jssp_work_dir"),
-                                 getProcessSpecialId());
+        String tmpdir = System.getProperty("java.io.tmpdir");
+        String jsspExplainDir = System.getProperty("jssp.explain");
+        File jsspWorkPath = (jsspExplainDir == null) ? new File(tmpdir, "_jssp_work_dir") : new File(jsspExplainDir);
+        __jsspWorkDir = new File(jsspWorkPath, getProcessSpecialId());
         if (logTool.isInfoEnable()) {
             logTool.info("JSSP work dir: " + __jsspWorkDir);
         }

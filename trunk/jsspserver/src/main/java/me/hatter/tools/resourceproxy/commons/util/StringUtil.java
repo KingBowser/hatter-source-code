@@ -14,6 +14,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import me.hatter.tools.commons.misc.Base64;
+
 public class StringUtil {
 
     public static final StringUtil INSTANCE = new StringUtil();

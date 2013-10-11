@@ -7,7 +7,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import me.hatter.tools.resourceproxy.commons.util.IOUtil;
+import me.hatter.tools.commons.io.IOUtil;
 
 public class Resources {
 
@@ -70,7 +70,7 @@ public class Resources {
         try {
             return IOUtil.readToBytes(is);
         } finally {
-            IOUtil.closeQuitely(is);
+            IOUtil.closeQuietly(is);
         }
     }
 
@@ -81,7 +81,7 @@ public class Resources {
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException(e);
         } finally {
-            IOUtil.closeQuitely(is);
+            IOUtil.closeQuietly(is);
         }
     }
 }

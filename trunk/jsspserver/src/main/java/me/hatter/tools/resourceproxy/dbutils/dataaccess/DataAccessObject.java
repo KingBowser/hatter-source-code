@@ -17,9 +17,9 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
+import me.hatter.tools.commons.collection.CollectionUtil;
 import me.hatter.tools.commons.log.LogTool;
 import me.hatter.tools.commons.log.LogTools;
-import me.hatter.tools.resourceproxy.commons.util.CollUtil;
 import me.hatter.tools.resourceproxy.commons.util.ReflectUtil;
 import me.hatter.tools.resourceproxy.commons.util.StringUtil;
 import me.hatter.tools.resourceproxy.dbutils.config.PropertyConfig;
@@ -405,16 +405,20 @@ public class DataAccessObject {
         final Class<T> clazz = (Class<T>) object.getClass();
         List<String> pkList = DBUtil.getPkList(clazz);
         final List<Object> pkVList = new ArrayList<Object>();
-        String where = StringUtil.join(CollUtil.transform(pkList, new CollUtil.Transformer<String, String>() {
+        String where = StringUtil.join(CollectionUtil.transform(pkList,
+                                                                new CollectionUtil.Transformer<String, String>() {
 
-            // @Override
-            public String transform(String object2) {
-                Object o = ReflectUtil.getFieldValue(clazz, object, DBUtil.getClassFieldByDbName(clazz, object2),
-                                                     new AtomicReference<Class<?>>());
-                pkVList.add(o);
-                return object2 + " = ?";
-            }
-        }), " and ");
+                                                                    // @Override
+                                                                    public String transform(String object2) {
+                                                                        Object o = ReflectUtil.getFieldValue(clazz,
+                                                                                                             object,
+                                                                                                             DBUtil.getClassFieldByDbName(clazz,
+                                                                                                                                          object2),
+                                                                                                             new AtomicReference<Class<?>>());
+                                                                        pkVList.add(o);
+                                                                        return object2 + " = ?";
+                                                                    }
+                                                                }), " and ");
         List<T> resultList = listObjects(clazz, where, pkVList);
         if ((resultList == null) || (resultList.isEmpty())) {
             return null;

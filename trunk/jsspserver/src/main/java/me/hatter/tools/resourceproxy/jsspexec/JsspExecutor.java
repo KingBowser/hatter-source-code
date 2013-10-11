@@ -22,12 +22,12 @@ import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 import javax.script.SimpleBindings;
 
+import me.hatter.tools.commons.io.IOUtil;
 import me.hatter.tools.commons.log.LogTool;
 import me.hatter.tools.commons.log.LogTools;
 import me.hatter.tools.resourceproxy.commons.resource.FileResource;
 import me.hatter.tools.resourceproxy.commons.resource.Resource;
 import me.hatter.tools.resourceproxy.commons.resource.TextResource;
-import me.hatter.tools.resourceproxy.commons.util.IOUtil;
 import me.hatter.tools.resourceproxy.commons.util.JavaUtil;
 import me.hatter.tools.resourceproxy.commons.util.StringUtil;
 import me.hatter.tools.resourceproxy.jsspexec.exception.JsspEvalException;
@@ -148,7 +148,7 @@ public class JsspExecutor {
                                 } catch (IOException ex) {
                                     // IGNORE
                                 }
-                                IOUtil.closeQuitely(br);
+                                IOUtil.closeQuietly(br);
                             }
                             throw new JsspEvalException("Jssp execute error at line: " + sc + ", the source is: "
                                                         + theSourceLine, e);
@@ -169,7 +169,7 @@ public class JsspExecutor {
             try {
                 return IOUtil.readToString(isr);
             } finally {
-                IOUtil.closeQuitely(isr);
+                IOUtil.closeQuietly(isr);
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -279,7 +279,7 @@ public class JsspExecutor {
                 pw.close();
             }
         } finally {
-            IOUtil.closeQuitely(fis);
+            IOUtil.closeQuietly(fis);
         }
 
         return new FileResource(explainedFile);

@@ -438,6 +438,7 @@ public class DataAccessObject {
         });
     }
 
+    @Deprecated
     public int getSqliteLastId() {
         String sql = "select last_insert_rowid() id";
         LastId lastId = findObject(LastId.class, sql, null);

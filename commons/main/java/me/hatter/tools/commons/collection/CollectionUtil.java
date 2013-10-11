@@ -184,7 +184,7 @@ public class CollectionUtil {
                 list = filter(list, filter);
             }
         }
-        return (List<T>) list; // TODO
+        return collectionAsList(list);
     }
 
     public static <T, D> List<D> transform(Collection<T> list, Transformer<T, D> transformer) {
@@ -203,7 +203,7 @@ public class CollectionUtil {
                 list = transform(list, transformer);
             }
         }
-        return (List<T>) list; // TODO
+        return collectionAsList(list);
     }
 
     public static <O, K> Map<K, O> toMap(Collection<O> list, KeyGetter<O, K> keyGetter) {

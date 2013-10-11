@@ -30,6 +30,32 @@ public class CollectionUtil {
         K getKey(O object);
     }
 
+    public static class Filters {
+
+        public static <T> Filter<T> objectNotNull() {
+            return new NotNullFilter<T>();
+        }
+
+        public static Filter<String> stringNotEmpty() {
+            return new StringNotEmpty();
+        }
+    }
+
+    public static class Transformers {
+
+        public static Transformer<String, String> stringToUpperCase() {
+            return new StringToUpperCase();
+        }
+
+        public static Transformer<String, String> stringToLowerCase() {
+            return new StringToLowerCase();
+        }
+
+        public static Transformer<String, String> stringTrim() {
+            return new StringTrim();
+        }
+    }
+
     public static class NotNullFilter<T> implements Filter<T> {
 
         public boolean accept(T object) {
@@ -152,6 +178,15 @@ public class CollectionUtil {
         return result;
     }
 
+    public static <T> List<T> filterAll(Collection<T> list, Filter<T>... filters) {
+        if ((filters != null) && (filters.length > 0)) {
+            for (Filter<T> filter : filters) {
+                list = filter(list, filter);
+            }
+        }
+        return (List<T>) list; // TODO
+    }
+
     public static <T, D> List<D> transform(Collection<T> list, Transformer<T, D> transformer) {
         List<D> result = new ArrayList<D>();
         if (list != null) {
@@ -160,6 +195,15 @@ public class CollectionUtil {
             }
         }
         return result;
+    }
+
+    public static <T> List<T> transformAll(Collection<T> list, Transformer<T, T>... transformers) {
+        if ((transformers != null) && (transformers.length > 0)) {
+            for (Transformer<T, T> transformer : transformers) {
+                list = transform(list, transformer);
+            }
+        }
+        return (List<T>) list; // TODO
     }
 
     public static <O, K> Map<K, O> toMap(Collection<O> list, KeyGetter<O, K> keyGetter) {
@@ -276,6 +320,20 @@ public class CollectionUtil {
             list.add(obj);
         }
         return list;
+    }
+
+    public static <T> List<T> collectionAsList(Collection<T> coll) {
+        if (coll == null) {
+            return null;
+        }
+        return (coll instanceof List) ? ((List<T>) coll) : new ArrayList<T>(coll);
+    }
+
+    public static <T> Set<T> collectionAsSet(Collection<T> coll) {
+        if (coll == null) {
+            return null;
+        }
+        return (coll instanceof Set) ? ((Set<T>) coll) : new HashSet<T>(coll);
     }
 
     public static List<Object> asList(Object obj, Object... objects) {

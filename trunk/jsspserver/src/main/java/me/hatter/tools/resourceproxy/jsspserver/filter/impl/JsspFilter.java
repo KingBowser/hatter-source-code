@@ -7,8 +7,8 @@ import java.util.Map;
 
 import me.hatter.tools.commons.log.LogTool;
 import me.hatter.tools.commons.log.LogTools;
-import me.hatter.tools.resourceproxy.commons.resource.Resource;
-import me.hatter.tools.resourceproxy.commons.resource.Resources;
+import me.hatter.tools.commons.resource.Resource;
+import me.hatter.tools.commons.resource.Resources;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpRequest;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpResponse;
 import me.hatter.tools.resourceproxy.jsspexec.JsspExecutor;

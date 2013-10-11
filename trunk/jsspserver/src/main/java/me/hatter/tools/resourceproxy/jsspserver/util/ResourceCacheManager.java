@@ -7,8 +7,8 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import me.hatter.tools.resourceproxy.commons.resource.Resource;
-import me.hatter.tools.resourceproxy.commons.resource.Resources;
+import me.hatter.tools.commons.resource.Resource;
+import me.hatter.tools.commons.resource.Resources;
 
 public class ResourceCacheManager {
 
@@ -23,9 +23,9 @@ public class ResourceCacheManager {
         }
     }
 
-    private static final long                      CACHE_BYTES    = 300 * 1024;
-    private static final long                      CACHE_SIZE     = 1000;
-    private static final long                      CACHE_MILLS    = TimeUnit.MINUTES.toMillis(5);
+    private static final long                      CACHE_BYTES        = 300 * 1024;
+    private static final long                      CACHE_SIZE         = 1000;
+    private static final long                      CACHE_MILLS        = TimeUnit.MINUTES.toMillis(5);
     private static BlockingQueue<Resource>         resourceCacheQueue = new LinkedBlockingQueue<Resource>();
     private static Map<Resource, TimeControlBytes> resourceCacheMap   = new WeakHashMap<Resource, TimeControlBytes>();
 

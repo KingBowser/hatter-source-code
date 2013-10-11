@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Set;
 
 import me.hatter.tools.commons.collection.CollectionUtil;
-import me.hatter.tools.commons.collection.CollectionUtil.StringToUpperCase;
 import me.hatter.tools.commons.io.IOUtil;
 import me.hatter.tools.commons.log.LogTool;
 import me.hatter.tools.commons.log.LogTools;
@@ -27,7 +26,7 @@ public class HttpRequestUtil {
     private static Set<String>   IGNORE_HEADER_SET = new HashSet<String>(
                                                                          CollectionUtil.transform(Arrays.asList("If-modified-since", // ,
                                                                                                                 "If-none-match"),
-                                                                                                  new StringToUpperCase()));
+                                                                                                  CollectionUtil.Transformers.stringToUpperCase()));
 
     public static HttpRequest build(HttpExchange exchange) {
         int uploadCount = 0;

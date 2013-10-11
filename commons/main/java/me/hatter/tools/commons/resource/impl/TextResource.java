@@ -1,23 +1,20 @@
 package me.hatter.tools.commons.resource.impl;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 
 import me.hatter.tools.commons.resource.Resource;
 
-public class FileResource implements Resource {
+public class TextResource implements Resource {
 
-    private File   file;
-    private String resId;
+    private static long INIT_MILLIS = System.currentTimeMillis();
 
-    public FileResource(File file) {
-        this(file, "file:" + file.getPath());
-    }
+    private String      text;
+    private String      resId;
 
-    public FileResource(File file, String resId) {
-        this.file = file;
+    public TextResource(String text, String resId) {
+        this.text = text;
         this.resId = resId;
     }
 
@@ -28,19 +25,19 @@ public class FileResource implements Resource {
 
     // @Override
     public boolean exists() {
-        return file.exists();
+        return true;
     }
 
     // @Override
     public long lastModified() {
-        return file.lastModified();
+        return INIT_MILLIS;
     }
 
     // @Override
     public InputStream openInputStream() {
         try {
-            return new FileInputStream(file);
-        } catch (FileNotFoundException e) {
+            return new ByteArrayInputStream(text.getBytes("UTF-8"));
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -55,10 +52,10 @@ public class FileResource implements Resource {
         if (obj == null) {
             return false;
         }
-        if (obj.getClass() != FileResource.class) {
+        if (obj.getClass() != TextResource.class) {
             return false;
         }
-        FileResource another = (FileResource) obj;
+        TextResource another = (TextResource) obj;
         if (this.resId == null) {
             return (another.resId == null);
         }
@@ -67,6 +64,6 @@ public class FileResource implements Resource {
 
     @Override
     public String toString() {
-        return FileResource.class.getSimpleName() + "{resId=" + resId + ", file:" + file + "}";
+        return TextResource.class.getSimpleName() + "{resId=" + resId + ", text:" + text + "}";
     }
 }

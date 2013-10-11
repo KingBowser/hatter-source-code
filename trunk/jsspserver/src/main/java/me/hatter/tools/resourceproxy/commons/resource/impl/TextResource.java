@@ -1,27 +1,21 @@
-package me.hatter.tools.resourceproxy.commons.resource;
+package me.hatter.tools.resourceproxy.commons.resource.impl;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 
-public class URLResource implements Resource {
+import me.hatter.tools.resourceproxy.commons.resource.Resource;
+
+public class TextResource implements Resource {
 
     private static long INIT_MILLIS = System.currentTimeMillis();
 
-    private URL         url;
+    private String      text;
     private String      resId;
-    private long        lastModified;
 
-    public URLResource(URL url, String resId) {
-        this.url = url;
+    public TextResource(String text, String resId) {
+        this.text = text;
         this.resId = resId;
-        this.lastModified = INIT_MILLIS;
-    }
-
-    public URLResource(URL url, String resId, long lastModified) {
-        this.url = url;
-        this.resId = resId;
-        this.lastModified = lastModified;
     }
 
     // @Override
@@ -31,18 +25,18 @@ public class URLResource implements Resource {
 
     // @Override
     public boolean exists() {
-        return (url != null);
+        return true;
     }
 
     // @Override
     public long lastModified() {
-        return lastModified;
+        return INIT_MILLIS;
     }
 
     // @Override
     public InputStream openInputStream() {
         try {
-            return url.openStream();
+            return new ByteArrayInputStream(text.getBytes("UTF-8"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -58,10 +52,10 @@ public class URLResource implements Resource {
         if (obj == null) {
             return false;
         }
-        if (obj.getClass() != URLResource.class) {
+        if (obj.getClass() != TextResource.class) {
             return false;
         }
-        URLResource another = (URLResource) obj;
+        TextResource another = (TextResource) obj;
         if (this.resId == null) {
             return (another.resId == null);
         }
@@ -70,6 +64,6 @@ public class URLResource implements Resource {
 
     @Override
     public String toString() {
-        return URLResource.class.getSimpleName() + "{resId=" + resId + ", url:" + url + "}";
+        return TextResource.class.getSimpleName() + "{resId=" + resId + ", text:" + text + "}";
     }
 }

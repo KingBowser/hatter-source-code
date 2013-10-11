@@ -1,9 +1,11 @@
-package me.hatter.tools.resourceproxy.commons.resource;
+package me.hatter.tools.resourceproxy.commons.resource.impl;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+
+import me.hatter.tools.resourceproxy.commons.resource.Resource;
 
 public class FileResource implements Resource {
 

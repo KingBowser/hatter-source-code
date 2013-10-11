@@ -4,13 +4,17 @@ import java.io.InputStream;
 
 public interface Resource {
 
-    String getResourceId();
+    int hashCode();
 
-    String getResourceName();
+    boolean equals(Object obj);
 
-    InputStream openInputStream();
+    String toString();
+
+    String getResId();
 
     boolean exists();
 
     long lastModified();
+
+    InputStream openInputStream();
 }

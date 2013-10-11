@@ -5,9 +5,8 @@ import java.io.InputStream;
 import java.net.URL;
 
 import me.hatter.tools.commons.resource.Resource;
-import me.hatter.tools.commons.string.StringUtil;
 
-public class ClassPathResource implements Resource {
+public class URLResource implements Resource {
 
     private static long INIT_MILLIS = System.currentTimeMillis();
 
@@ -15,53 +14,34 @@ public class ClassPathResource implements Resource {
     private String      resId;
     private long        lastModified;
 
-    public ClassPathResource(URL url) {
-        this(url, url.toString());
-    }
-
-    public ClassPathResource(URL url, String resId) {
+    public URLResource(URL url, String resId) {
         this.url = url;
         this.resId = resId;
         this.lastModified = INIT_MILLIS;
     }
 
-    public ClassPathResource(URL url, String resId, long lastModified) {
+    public URLResource(URL url, String resId, long lastModified) {
         this.url = url;
         this.resId = resId;
         this.lastModified = lastModified;
     }
 
-    public URL getURL() {
-        return url;
-    }
-
-    @Override
-    public String getResourceId() {
+    // @Override
+    public String getResId() {
         return resId;
     }
 
-    @Override
-    public String getResourceName() {
-        String name = resId;
-        if (name.contains("/")) {
-            name = StringUtil.substringAfterLast(name, "/");
-        } else if (name.contains("\\")) {
-            name = StringUtil.substringAfterLast(name, "\\");
-        }
-        return name;
-    }
-
-    @Override
+    // @Override
     public boolean exists() {
         return (url != null);
     }
 
-    @Override
+    // @Override
     public long lastModified() {
         return lastModified;
     }
 
-    @Override
+    // @Override
     public InputStream openInputStream() {
         try {
             return url.openStream();
@@ -80,10 +60,10 @@ public class ClassPathResource implements Resource {
         if (obj == null) {
             return false;
         }
-        if (obj.getClass() != ClassPathResource.class) {
+        if (obj.getClass() != URLResource.class) {
             return false;
         }
-        ClassPathResource another = (ClassPathResource) obj;
+        URLResource another = (URLResource) obj;
         if (this.resId == null) {
             return (another.resId == null);
         }
@@ -92,6 +72,6 @@ public class ClassPathResource implements Resource {
 
     @Override
     public String toString() {
-        return ClassPathResource.class.getSimpleName() + "{resId=" + resId + ", url:" + url + "}";
+        return URLResource.class.getSimpleName() + "{resId=" + resId + ", url:" + url + "}";
     }
 }

@@ -19,7 +19,6 @@ import java.util.zip.Inflater;
 import java.util.zip.InflaterInputStream;
 
 import me.hatter.tools.commons.collection.CollectionUtil;
-import me.hatter.tools.commons.collection.CollectionUtil.StringToUpperCase;
 import me.hatter.tools.commons.io.IOUtil;
 import me.hatter.tools.commons.log.LogTool;
 import me.hatter.tools.commons.log.LogTools;
@@ -36,13 +35,13 @@ public class HttpResponseUtil {
                                                                                                                         "Content-Length", // ,
                                                                                                                         "Cache-Control", // ,
                                                                                                                         "Expires"),
-                                                                                                          new StringToUpperCase()));
+                                                                                                          CollectionUtil.Transformers.stringToUpperCase()));
     private static Set<String>   STRINGFY_CONTENT_TYPE_SET = new HashSet<String>(
                                                                                  CollectionUtil.transform(Arrays.asList("application/javascript",
                                                                                                                         "application/x-javascript",
                                                                                                                         "application/json",
                                                                                                                         "application/xml"),
-                                                                                                          new StringToUpperCase()));
+                                                                                                          CollectionUtil.Transformers.stringToUpperCase()));
 
     public static HttpResponse build(HttpURLConnection httpURLConnection) throws IOException {
         if (logTool.isInfoEnable()) {

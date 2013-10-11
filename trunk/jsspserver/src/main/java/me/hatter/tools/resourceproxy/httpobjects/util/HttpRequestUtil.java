@@ -8,10 +8,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import me.hatter.tools.commons.collection.CollectionUtil;
+import me.hatter.tools.commons.collection.CollectionUtil.StringToUpperCase;
 import me.hatter.tools.commons.io.IOUtil;
 import me.hatter.tools.commons.log.LogTool;
 import me.hatter.tools.commons.log.LogTools;
-import me.hatter.tools.resourceproxy.commons.util.CollUtil;
 import me.hatter.tools.resourceproxy.commons.util.KeyValueListMap;
 import me.hatter.tools.resourceproxy.commons.util.StringUtil;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpRequest;
@@ -24,8 +25,9 @@ public class HttpRequestUtil {
     private static final LogTool logTool           = LogTools.getLogTool(HttpRequestUtil.class);
 
     private static Set<String>   IGNORE_HEADER_SET = new HashSet<String>(
-                                                                         CollUtil.toUpperCase(Arrays.asList("If-modified-since", // ,
-                                                                                                            "If-none-match")));
+                                                                         CollectionUtil.transform(Arrays.asList("If-modified-since", // ,
+                                                                                                                "If-none-match"),
+                                                                                                  new StringToUpperCase()));
 
     public static HttpRequest build(HttpExchange exchange) {
         int uploadCount = 0;

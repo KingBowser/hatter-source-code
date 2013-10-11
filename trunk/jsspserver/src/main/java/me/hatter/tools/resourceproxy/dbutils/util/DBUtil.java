@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import me.hatter.tools.resourceproxy.commons.util.CollUtil;
+import me.hatter.tools.commons.collection.CollectionUtil;
 import me.hatter.tools.resourceproxy.commons.util.ReflectUtil;
 import me.hatter.tools.resourceproxy.commons.util.StringUtil;
 import me.hatter.tools.resourceproxy.dbutils.annotation.NonField;
@@ -41,29 +41,37 @@ public class DBUtil {
         sql.append("create table ");
         sql.append(tableName);
         sql.append(" ( ");
-        sql.append(StringUtil.join(CollUtil.transform(fieldList, new CollUtil.Transformer<String, String>() {
+        sql.append(StringUtil.join(CollectionUtil.transform(fieldList,
+                                                            new CollectionUtil.Transformer<String, String>() {
 
-            // http://www.sqlite.org/datatype3.html#2.2 Affinity Name Examples
-            // @Override
-            public String transform(String object) {
-                Field f = ReflectUtil.getField(clazz, StringUtil.toCamel(object));
-                String type = null;
-                if (f.getType() == String.class) {
-                    type = "TEXT";
-                } else if (f.getType() == Integer.class) {
-                    type = "INTEGER";
-                } else if (f.getType() == Long.class) {
-                    type = "LONG";
-                } else if (f.getType() == Date.class) {
-                    type = "TEXT";
-                } else if (f.getType() == Boolean.class) {
-                    type = "NUMERIC";
-                } else {
-                    throw new RuntimeException("Unsupoort ed type: " + type);
-                }
-                return object + " " + type + ((pkSet.contains(object)) ? " PRIMARY KEY" : "");
-            }
-        }), ", "));
+                                                                // http://www.sqlite.org/datatype3.html#2.2 Affinity
+                                                                // Name Examples
+                                                                // @Override
+                                                                public String transform(String object) {
+                                                                    Field f = ReflectUtil.getField(clazz,
+                                                                                                   StringUtil.toCamel(object));
+                                                                    String type = null;
+                                                                    if (f.getType() == String.class) {
+                                                                        type = "TEXT";
+                                                                    } else if (f.getType() == Integer.class) {
+                                                                        type = "INTEGER";
+                                                                    } else if (f.getType() == Long.class) {
+                                                                        type = "LONG";
+                                                                    } else if (f.getType() == Date.class) {
+                                                                        type = "TEXT";
+                                                                    } else if (f.getType() == Boolean.class) {
+                                                                        type = "NUMERIC";
+                                                                    } else {
+                                                                        throw new RuntimeException(
+                                                                                                   "Unsupoort ed type: "
+                                                                                                           + type);
+                                                                    }
+                                                                    return object
+                                                                           + " "
+                                                                           + type
+                                                                           + ((pkSet.contains(object)) ? " PRIMARY KEY" : "");
+                                                                }
+                                                            }), ", "));
         sql.append(" )");
 
         return sql.toString();
@@ -96,7 +104,7 @@ public class DBUtil {
         sql.append("select * from ");
         sql.append(tableName);
         sql.append(" where ");
-        sql.append(StringUtil.join(CollUtil.transform(pkList, new CollUtil.Transformer<String, String>() {
+        sql.append(StringUtil.join(CollectionUtil.transform(pkList, new CollectionUtil.Transformer<String, String>() {
 
             // @Override
             public String transform(String object) {
@@ -114,21 +122,22 @@ public class DBUtil {
         List<String> fieldList = getTableFields(clazz);
         List<String> pkList = getPkList(clazz);
         List<String> upIgnoreList = getUpIgnoreList(clazz);
-        List<String> setFieldList = CollUtil.minus(CollUtil.minus(fieldList, pkList), upIgnoreList);
+        List<String> setFieldList = CollectionUtil.minus(CollectionUtil.minus(fieldList, pkList), upIgnoreList);
 
         StringBuilder sql = new StringBuilder();
         sql.append("update ");
         sql.append(tableName);
         sql.append(" set ");
-        sql.append(StringUtil.join(CollUtil.transform(setFieldList, new CollUtil.Transformer<String, String>() {
+        sql.append(StringUtil.join(CollectionUtil.transform(setFieldList,
+                                                            new CollectionUtil.Transformer<String, String>() {
 
-            // @Override
-            public String transform(String object) {
-                return (object + " = ?");
-            }
-        }), ", "));
+                                                                // @Override
+                                                                public String transform(String object) {
+                                                                    return (object + " = ?");
+                                                                }
+                                                            }), ", "));
         sql.append(" where ");
-        sql.append(StringUtil.join(CollUtil.transform(pkList, new CollUtil.Transformer<String, String>() {
+        sql.append(StringUtil.join(CollectionUtil.transform(pkList, new CollectionUtil.Transformer<String, String>() {
 
             // @Override
             public String transform(String object) {
@@ -150,7 +159,7 @@ public class DBUtil {
         sql.append("delete from ");
         sql.append(tableName);
         sql.append(" where ");
-        sql.append(StringUtil.join(CollUtil.transform(pkList, new CollUtil.Transformer<String, String>() {
+        sql.append(StringUtil.join(CollectionUtil.transform(pkList, new CollectionUtil.Transformer<String, String>() {
 
             // @Override
             public String transform(String object) {
@@ -203,14 +212,15 @@ public class DBUtil {
         if (fieldList != null) {
             return fieldList;
         }
-        List<Field> fieldTypeList = CollUtil.filter(getDatabaseTableFields(clazz), new CollUtil.Filter<Field>() {
+        List<Field> fieldTypeList = CollectionUtil.filter(getDatabaseTableFields(clazz),
+                                                          new CollectionUtil.Filter<Field>() {
 
-            // @Override
-            public boolean accept(Field object) {
-                UpdateIgnore ui = object.getAnnotation(UpdateIgnore.class);
-                return (ui != null);
-            }
-        });
+                                                              // @Override
+                                                              public boolean accept(Field object) {
+                                                                  UpdateIgnore ui = object.getAnnotation(UpdateIgnore.class);
+                                                                  return (ui != null);
+                                                              }
+                                                          });
         fieldList = transformToDatabaseName(fieldTypeList);
         fieldUpIgnoreListMap.put(clazz, fieldList);
         return fieldList;
@@ -224,17 +234,18 @@ public class DBUtil {
         if (fieldList != null) {
             return fieldList;
         }
-        List<Field> fieldTypeList = CollUtil.filter(getDatabaseTableFields(clazz), new CollUtil.Filter<Field>() {
+        List<Field> fieldTypeList = CollectionUtil.filter(getDatabaseTableFields(clazz),
+                                                          new CollectionUtil.Filter<Field>() {
 
-            // @Override
-            public boolean accept(Field object) {
-                me.hatter.tools.resourceproxy.dbutils.annotation.Field f = object.getAnnotation(me.hatter.tools.resourceproxy.dbutils.annotation.Field.class);
-                if (f == null) {
-                    return false;
-                }
-                return f.pk();
-            }
-        });
+                                                              // @Override
+                                                              public boolean accept(Field object) {
+                                                                  me.hatter.tools.resourceproxy.dbutils.annotation.Field f = object.getAnnotation(me.hatter.tools.resourceproxy.dbutils.annotation.Field.class);
+                                                                  if (f == null) {
+                                                                      return false;
+                                                                  }
+                                                                  return f.pk();
+                                                              }
+                                                          });
         fieldList = transformToDatabaseName(fieldTypeList);
         fieldPkListMap.put(clazz, fieldList);
         return fieldList;
@@ -256,7 +267,7 @@ public class DBUtil {
     }
 
     private static <T> List<String> transformToQuesList(List<T> list) {
-        return CollUtil.transform(list, new CollUtil.Transformer<T, String>() {
+        return CollectionUtil.transform(list, new CollectionUtil.Transformer<T, String>() {
 
             // @Override
             public String transform(T object) {
@@ -267,7 +278,7 @@ public class DBUtil {
 
     private static Map<String, Field> transformToDatabaseNameToFieldMapping(List<Field> fieldTypeList) {
         List<Object[]> dbNameToFieldList;
-        dbNameToFieldList = CollUtil.transform(fieldTypeList, new CollUtil.Transformer<Field, Object[]>() {
+        dbNameToFieldList = CollectionUtil.transform(fieldTypeList, new CollectionUtil.Transformer<Field, Object[]>() {
 
             // @Override
             public Object[] transform(Field object) {
@@ -287,7 +298,7 @@ public class DBUtil {
     }
 
     private static List<String> transformToDatabaseName(List<Field> fieldTypeList) {
-        return CollUtil.transform(fieldTypeList, new CollUtil.Transformer<Field, String>() {
+        return CollectionUtil.transform(fieldTypeList, new CollectionUtil.Transformer<Field, String>() {
 
             // @Override
             public String transform(Field object) {
@@ -303,16 +314,16 @@ public class DBUtil {
 
     private static List<Field> getDatabaseTableFields(Class<?> clazz) {
         Table table = clazz.getAnnotation(Table.class);
-        CollUtil.Filter<Field> fieldFilter = null;
+        CollectionUtil.Filter<Field> fieldFilter = null;
         if ((table != null) && (!table.defaultAllFields())) {
-            fieldFilter = new CollUtil.Filter<Field>() {
+            fieldFilter = new CollectionUtil.Filter<Field>() {
 
                 public boolean accept(Field object) {
                     return (object.getAnnotation(me.hatter.tools.resourceproxy.dbutils.annotation.Field.class) != null);
                 }
             };
         } else {
-            fieldFilter = new CollUtil.Filter<Field>() {
+            fieldFilter = new CollectionUtil.Filter<Field>() {
 
                 // @Override
                 public boolean accept(Field object) {
@@ -320,6 +331,6 @@ public class DBUtil {
                 }
             };
         }
-        return CollUtil.filter(ReflectUtil.getFields(clazz), fieldFilter);
+        return CollectionUtil.filter(ReflectUtil.getFields(clazz), fieldFilter);
     }
 }

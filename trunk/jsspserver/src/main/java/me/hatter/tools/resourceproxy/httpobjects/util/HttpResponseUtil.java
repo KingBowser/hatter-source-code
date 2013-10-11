@@ -18,10 +18,11 @@ import java.util.zip.GZIPInputStream;
 import java.util.zip.Inflater;
 import java.util.zip.InflaterInputStream;
 
+import me.hatter.tools.commons.collection.CollectionUtil;
+import me.hatter.tools.commons.collection.CollectionUtil.StringToUpperCase;
 import me.hatter.tools.commons.io.IOUtil;
 import me.hatter.tools.commons.log.LogTool;
 import me.hatter.tools.commons.log.LogTools;
-import me.hatter.tools.resourceproxy.commons.util.CollUtil;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpResponse;
 
 public class HttpResponseUtil {
@@ -30,16 +31,18 @@ public class HttpResponseUtil {
 
     private static Set<Integer>  NO_CONTENT_STATUS         = new HashSet<Integer>(Arrays.asList(301, 302, 304));
     private static Set<String>   IGNORE_HEADER_SET         = new HashSet<String>(
-                                                                                 CollUtil.toUpperCase(Arrays.asList("Transfer-Encoding", // ,
-                                                                                                                    "Content-Encoding", // ,
-                                                                                                                    "Content-Length", // ,
-                                                                                                                    "Cache-Control", // ,
-                                                                                                                    "Expires")));
+                                                                                 CollectionUtil.transform(Arrays.asList("Transfer-Encoding", // ,
+                                                                                                                        "Content-Encoding", // ,
+                                                                                                                        "Content-Length", // ,
+                                                                                                                        "Cache-Control", // ,
+                                                                                                                        "Expires"),
+                                                                                                          new StringToUpperCase()));
     private static Set<String>   STRINGFY_CONTENT_TYPE_SET = new HashSet<String>(
-                                                                                 CollUtil.toUpperCase(Arrays.asList("application/javascript",
-                                                                                                                    "application/x-javascript",
-                                                                                                                    "application/json",
-                                                                                                                    "application/xml")));
+                                                                                 CollectionUtil.transform(Arrays.asList("application/javascript",
+                                                                                                                        "application/x-javascript",
+                                                                                                                        "application/json",
+                                                                                                                        "application/xml"),
+                                                                                                          new StringToUpperCase()));
 
     public static HttpResponse build(HttpURLConnection httpURLConnection) throws IOException {
         if (logTool.isInfoEnable()) {

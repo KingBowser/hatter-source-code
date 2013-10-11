@@ -2,8 +2,8 @@ package me.hatter.tools.jsspserver.filter;
 
 import java.io.File;
 
-import me.hatter.tools.resourceproxy.commons.resource.Resource;
-import me.hatter.tools.resourceproxy.commons.resource.Resources;
+import me.hatter.tools.commons.resource.Resource;
+import me.hatter.tools.commons.resource.Resources;
 import me.hatter.tools.resourceproxy.jsspexec.JsspExecutor;
 
 public class FilterTool {

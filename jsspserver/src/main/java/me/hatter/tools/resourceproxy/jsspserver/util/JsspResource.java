@@ -1,7 +1,7 @@
 package me.hatter.tools.resourceproxy.jsspserver.util;
 
-import me.hatter.tools.resourceproxy.commons.resource.Resource;
-import me.hatter.tools.resourceproxy.commons.resource.Resources;
+import me.hatter.tools.commons.resource.Resource;
+import me.hatter.tools.commons.resource.Resources;
 import me.hatter.tools.resourceproxy.jsspexec.JsspExecutor;
 
 public class JsspResource {

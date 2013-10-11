@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 
 import me.hatter.tools.commons.log.LogTool;
 import me.hatter.tools.commons.log.LogTools;
-import me.hatter.tools.resourceproxy.commons.resource.Resource;
+import me.hatter.tools.commons.resource.Resource;
 import me.hatter.tools.resourceproxy.commons.util.StringUtil;
 
 public class JsspResourceManager {

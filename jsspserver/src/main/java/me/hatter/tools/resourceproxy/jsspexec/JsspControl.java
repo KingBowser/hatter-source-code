@@ -4,7 +4,7 @@ import java.io.StringReader;
 import java.util.HashMap;
 import java.util.Map;
 
-import me.hatter.tools.resourceproxy.commons.resource.Resource;
+import me.hatter.tools.commons.resource.Resource;
 import me.hatter.tools.resourceproxy.jsspexec.jsspreader.ExplainedJsspReader;
 import me.hatter.tools.resourceproxy.jsspexec.jsspreader.SimpleJsspReader;
 import me.hatter.tools.resourceproxy.jsspexec.utl.BufferWriter;

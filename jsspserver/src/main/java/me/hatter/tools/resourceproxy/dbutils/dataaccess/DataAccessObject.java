@@ -23,8 +23,11 @@ import me.hatter.tools.resourceproxy.commons.util.CollUtil;
 import me.hatter.tools.resourceproxy.commons.util.ReflectUtil;
 import me.hatter.tools.resourceproxy.commons.util.StringUtil;
 import me.hatter.tools.resourceproxy.dbutils.config.PropertyConfig;
+import me.hatter.tools.resourceproxy.dbutils.dataaccess.dialect.DatabaseDialect;
 import me.hatter.tools.resourceproxy.dbutils.factory.ConnectionFactory;
 import me.hatter.tools.resourceproxy.dbutils.factory.ConnectionPool;
+import me.hatter.tools.resourceproxy.dbutils.factory.impl.DefaultConnectionFactoryImpl;
+import me.hatter.tools.resourceproxy.dbutils.factory.impl.DefaultConnectionPoolImpl;
 import me.hatter.tools.resourceproxy.dbutils.util.DBUtil;
 import me.hatter.tools.resourceproxy.dbutils.util.XSQL;
 
@@ -32,6 +35,7 @@ public class DataAccessObject {
 
     private static final LogTool logTool              = LogTools.getLogTool(DataAccessObject.class);
 
+    protected DatabaseDialect    databaseDialect;
     protected ConnectionPool     connectionPool;
     protected Connection         _connection;
     protected AtomicInteger      _connectionExecCount = new AtomicInteger(0);
@@ -42,14 +46,15 @@ public class DataAccessObject {
 
     public DataAccessObject(ConnectionPool connectionPool) {
         this.connectionPool = connectionPool;
+        this.databaseDialect = connectionPool.getConnectionFactory().getDatabaseDialect();
     }
 
     public DataAccessObject(ConnectionFactory connectionFactory) {
-        this(new ConnectionPool(connectionFactory));
+        this(new DefaultConnectionPoolImpl(connectionFactory));
     }
 
     public DataAccessObject(PropertyConfig propertyConfig) {
-        this(new ConnectionFactory(propertyConfig));
+        this(new DefaultConnectionFactoryImpl(propertyConfig));
     }
 
     public long getLoggingMillis() {
@@ -177,12 +182,18 @@ public class DataAccessObject {
         }
     }
 
+    @Deprecated
     public Integer insertObjectAndGetSqliteLastId(final Object object) {
         return insertObjectAndGetLastId(object, "select last_insert_rowid() id");
     }
 
+    @Deprecated
     public Integer insertObjectAndGetMySQLLastId(final Object object) {
         return insertObjectAndGetLastId(object, "select last_insert_id() id");
+    }
+
+    public Integer insertObjectAndGetLastId(final Object object) {
+        return insertObjectAndGetLastId(object, databaseDialect.lastIdQuery());
     }
 
     public Integer insertObjectAndGetLastId(final Object object, final String lastIdQuery) {

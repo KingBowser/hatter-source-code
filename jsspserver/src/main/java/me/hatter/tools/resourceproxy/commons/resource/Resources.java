@@ -8,6 +8,8 @@ import java.net.URL;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import me.hatter.tools.commons.io.IOUtil;
+import me.hatter.tools.resourceproxy.commons.resource.impl.FileResource;
+import me.hatter.tools.resourceproxy.commons.resource.impl.URLResource;
 
 public class Resources {
 

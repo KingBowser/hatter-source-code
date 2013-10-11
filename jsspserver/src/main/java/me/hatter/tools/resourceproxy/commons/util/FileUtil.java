@@ -14,6 +14,8 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
+import me.hatter.tools.commons.io.IOUtil;
+
 public final class FileUtil {
 
     public static final String SEPARATER         = File.separator;
@@ -50,7 +52,7 @@ public final class FileUtil {
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
-            IOUtil.closeQuitely(fis);
+            IOUtil.closeQuietly(fis);
         }
     }
 
@@ -68,7 +70,7 @@ public final class FileUtil {
                     pw.println(line);
                 }
             } finally {
-                IOUtil.closeQuitely(br);
+                IOUtil.closeQuietly(br);
             }
 
             pw.flush();

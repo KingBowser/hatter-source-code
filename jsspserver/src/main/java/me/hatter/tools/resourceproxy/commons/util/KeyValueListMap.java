@@ -5,6 +5,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import me.hatter.tools.commons.collection.CollectionUtil;
+
 public class KeyValueListMap extends LinkedHashMap<String, List<String>> {
 
     private static final long serialVersionUID = 1L;
@@ -50,7 +52,7 @@ public class KeyValueListMap extends LinkedHashMap<String, List<String>> {
     }
 
     public String getFirst(String key) {
-        return CollUtil.firstObject(get(key));
+        return CollectionUtil.firstObject(get(key));
     }
 
     public List<String> getIgnoreCase(String key) {
@@ -67,6 +69,6 @@ public class KeyValueListMap extends LinkedHashMap<String, List<String>> {
     }
 
     public String getFirstIgnoreCase(String key) {
-        return CollUtil.firstObject(getIgnoreCase(key));
+        return CollectionUtil.firstObject(getIgnoreCase(key));
     }
 }

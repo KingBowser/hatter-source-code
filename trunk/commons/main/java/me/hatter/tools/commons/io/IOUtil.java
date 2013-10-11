@@ -2,6 +2,7 @@ package me.hatter.tools.commons.io;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.Closeable;
 import java.io.IOException;
@@ -64,6 +65,29 @@ public class IOUtil {
             return new String(readToBytes(inputStream), charset);
         } catch (IOException e) {
             throw ExceptionUtil.wrapRuntimeException(e);
+        }
+    }
+
+    public static String readToString(Reader reader) {
+        StringBuilder sb = new StringBuilder();
+        if (reader != null) {
+            BufferedReader br = asBufferedReader(reader);
+            try {
+                for (int b; ((b = br.read()) != -1);) {
+                    sb.append((char) b);
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return sb.toString();
+    }
+
+    public static String readToStringAndClose(Reader reader) {
+        try {
+            return readToString(reader);
+        } finally {
+            closeQuietly(reader);
         }
     }
 
@@ -209,6 +233,30 @@ public class IOUtil {
             }
         } catch (IOException e) {
             // IGNORE EXCEPTION
+        }
+    }
+
+    public static BufferedReader asBufferedReader(Reader reader) {
+        if (reader instanceof BufferedReader) {
+            return (BufferedReader) reader;
+        } else {
+            return new BufferedReader(reader);
+        }
+    }
+
+    public static BufferedInputStream asBufferedInputStream(InputStream inputStream) {
+        if (inputStream instanceof BufferedInputStream) {
+            return (BufferedInputStream) inputStream;
+        } else {
+            return new BufferedInputStream(inputStream);
+        }
+    }
+
+    public static BufferedOutputStream asBufferedOutputStream(OutputStream outputStream) {
+        if (outputStream instanceof BufferedOutputStream) {
+            return (BufferedOutputStream) outputStream;
+        } else {
+            return new BufferedOutputStream(outputStream);
         }
     }
 }

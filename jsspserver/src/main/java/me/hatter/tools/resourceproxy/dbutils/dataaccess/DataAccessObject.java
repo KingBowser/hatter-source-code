@@ -17,6 +17,7 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
+import me.hatter.tools.commons.assertion.AssertUtil;
 import me.hatter.tools.commons.collection.CollectionUtil;
 import me.hatter.tools.commons.log.LogTool;
 import me.hatter.tools.commons.log.LogTools;
@@ -340,6 +341,35 @@ public class DataAccessObject {
                 if (logging && logTool.isInfoEnable()) logTool.info("Delete sql: " + sql);
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 try {
+                    preparedStatement.execute();
+                } finally {
+                    preparedStatement.close();
+                }
+                return null;
+            }
+        });
+    }
+
+    public void deleteObject(final Class<?> clazz, final Object... pks) {
+        final List<String> refFieldList = new ArrayList<String>();
+        final String sql = DBUtil.generateDeleteSQL(clazz, refFieldList);
+        AssertUtil.isTrue(pks != null, "Must assign pk list.");
+        AssertUtil.isTrue(refFieldList.size() == pks.length, "PK size not match!");
+
+        execute(new Execute<Void>() {
+
+            // @Override
+            public Void execute(Connection connection) throws Exception {
+                if (logging && logTool.isInfoEnable()) logTool.info("Delete sql: " + sql);
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                try {
+                    for (int i = 0; i < pks.length; i++) {
+                        int index = i + 1;
+                        Object o = pks[i];
+                        if (logging && logTool.isInfoEnable()) logTool.info("Object @" + index + "=" + o);
+                        Class<?> type = (o == null) ? null : o.getClass();
+                        setPreparedStatmentByValue(preparedStatement, index, type, o);
+                    }
                     preparedStatement.execute();
                 } finally {
                     preparedStatement.close();

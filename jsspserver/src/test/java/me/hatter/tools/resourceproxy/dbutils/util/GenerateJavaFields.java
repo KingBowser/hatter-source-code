@@ -22,6 +22,7 @@ public class GenerateJavaFields {
 
     public static void main(String[] args) {
         // System.out.println(REGEX);
+        System.out.println();
         String desc = FileUtil.readFileToString(new File(Environment.getUserDesktop(), "desc.txt"));
         List<String> descLines = IOUtil.readToList(desc);
         for (String line : descLines) {
@@ -60,7 +61,6 @@ public class GenerateJavaFields {
                 }
                 result.add(_field);
                 result.add(";");
-                System.out.println();
                 if (key.equals("PRI")) {
                     System.out.println("@Field(pk=true)");
                 }

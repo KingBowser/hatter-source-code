@@ -211,6 +211,16 @@ eclipse {
   }
   classpath {
     defaultOutputDir = file('classes')
+    downloadSources = true
+    file {
+      whenMerged { classpath ->
+        classpath.entries.findAll { it.kind=='lib' }.each {
+          if ((it.path != null) && (it.sourcePath == null) && file(it.path.replace(".jar", "-sources.jar")).exists()) { 
+            it.sourcePath = getFileReferenceFactory().fromPath(it.path.replace(".jar", "-sources.jar"))
+          }
+        }
+      }
+    }
   }
 }
 

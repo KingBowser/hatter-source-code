@@ -65,6 +65,13 @@ task install << {
   ant.chmod(file: "${installTargetBin}${shellCommandName}", perm: 'a+x')
 }
 
+task packjarsrc << {
+  ant.jar(destfile: "${baseProjectName}-sources.jar") {
+    fileset(dir: 'src/main/java', includes: '**/*.java')
+  }
+}
+packjarsrc.dependsOn build
+
 task packjar << {
   def packtempclasses = "packtempclasses"
   def libs = ant.path {
@@ -73,16 +80,16 @@ task packjar << {
   libs.list().each {
     ant.unzip(dest: packtempclasses, src: it)
   }
-  ant.copy(todir: packtempclasses) {
-    fileset(dir: 'src/main/java', includes: '**/*.java')
-  }
+  // ant.copy(todir: packtempclasses) {
+  //   fileset(dir: 'src/main/java', includes: '**/*.java')
+  // }
   new File(packtempclasses + "/commons-version-build.txt").write(new Date().format("yyyyMMdd"), "UTF-8")
   ant.jar(destfile: "${baseProjectName}.jar") {
     fileset(dir: packtempclasses, includes: '**/*.*')
   }
   ant.delete(dir: packtempclasses)
 }
-packjar.dependsOn build
+packjar.dependsOn packjarsrc
 
 task packall << {
   def packtempclasses = "packtempclasses"

@@ -67,6 +67,15 @@ public class PropertyConfig {
         return createPropertyConfig(properties);
     }
 
+    public static PropertyConfig createMySQLConfigWithOutParam(String host, String sid, String userName, String password) {
+        Properties properties = new Properties();
+        properties.setProperty("jdbc.driver", Driver.MYSQL);
+        properties.setProperty("jdbc.url", "jdbc:mysql://" + host + "/" + sid);
+        properties.setProperty("jdbc.username", userName);
+        properties.setProperty("jdbc.password", password);
+        return createPropertyConfig(properties);
+    }
+
     public static PropertyConfig createOracleConfig(String host, String sid, String userName, String password) {
         Properties properties = new Properties();
         properties.setProperty("jdbc.driver", Driver.ORACLE);

@@ -105,7 +105,7 @@ public class ConverterUtil {
             if (StringUtil.isBlank(sval)) {
                 return null;
             }
-            return Arrays.asList("1", "on", "yes", "true").contains(StringUtil.toLowerCase(sval));
+            return Arrays.asList("1", "t", "on", "yes", "true").contains(StringUtil.toLowerCase(sval));
         }
         if ((clazz == int.class) || (clazz == Integer.class)) {
             if (obj instanceof Number) {

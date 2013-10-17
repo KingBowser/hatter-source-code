@@ -1,5 +1,6 @@
 package me.hatter.tools.commons.environment;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,6 +49,13 @@ public class Environment {
         public String getVendor() {
             return this.vendor;
         }
+    }
+
+    public static File getUserDesktop() {
+        if (getVendor() == JavaVendor.Apple) {
+            return new File(USER_HOME, "Desktop");
+        }
+        return new File(USER_HOME); // XXX
     }
 
     public static JavaVendor getVendor() {

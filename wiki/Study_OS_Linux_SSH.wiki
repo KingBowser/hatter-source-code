@@ -20,6 +20,10 @@ ssh -f -N <user name>@<ip or domain> -D <port>
 ssh -i id_rsa  // private key, the pub key >> authorized_keys [id_rsa的机器需要和目标机打通]
 }}}
 
+`mac 下自动打通工具：`
+{{{
+https://github.com/beautifulcode/ssh-copy-id-for-OSX
+}}}
 
 ===参考资料===
 `[1].` http://en.wikipedia.org/wiki/Secure_Shell<br>

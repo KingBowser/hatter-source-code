@@ -35,10 +35,23 @@ import me.hatter.tools.resourceproxy.jsspserver.util.JsspResourceManager;
 
 public class JSSPFilter implements Filter {
 
-    private static final LogTool logTool = LogTools.getLogTool(JSSPFilter.class);
+    private static final LogTool logTool              = LogTools.getLogTool(JSSPFilter.class);
+
+    public static final String   DEFAULT_WELCOME_PAGE = "/index.jssp";
+    private String               welcomePage          = DEFAULT_WELCOME_PAGE;
+    private FilterConfig         filterConfig;
 
     public void init(FilterConfig filterConfig) throws ServletException {
         FilterTool.initDefaultInstance(filterConfig.getServletContext().getRealPath("jssp"));
+
+        this.filterConfig = filterConfig;
+        String wp = this.filterConfig.getInitParameter("welcome-page");
+        if (StringUtil.isNotEmpty(wp)) {
+            this.welcomePage = wp;
+        }
+        if (logTool.isInfoEnable()) {
+            logTool.info("Welcome page: " + this.welcomePage);
+        }
     }
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException,
@@ -46,7 +59,7 @@ public class JSSPFilter implements Filter {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
 
-        String fpath = httpRequest.getServletPath();
+        String fpath = ("/".equals(httpRequest.getServletPath()) ? welcomePage : httpRequest.getServletPath());
         if (fpath.toLowerCase().endsWith(".jssp")) {
             try {
                 JsspResource jsspResource = JsspResourceManager.getJsspResource(FilterTool.defaultInstance().getResource(fpath));
@@ -133,5 +146,4 @@ public class JSSPFilter implements Filter {
 
     public void destroy() {
     }
-
 }

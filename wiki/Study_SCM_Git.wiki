@@ -16,4 +16,10 @@ github:
 fixed issue NUM #NUM , comment
 }}}
 
+修改历史数据？？
+{{{
+git filter-branch -f --env-filter "GIT_AUTHOR_NAME='yourname'; GIT_AUTHOR_EMAIL='youremail@xxx.com'; GIT_COMMITTER_NAME='yourname'; GIT_COMMITTER_EMAIL='youremail@xxx.com';" HEAD
+}}}
+
+
 ===参考资料===

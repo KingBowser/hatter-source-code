@@ -10,7 +10,7 @@
         		return;
         	}
         	var oldHref = a.href;
-          a.href = "/redirect?url=" + encodeURIComponent(a.href);
+          a.href = "//hatter.me/redirect?url=" + encodeURIComponent(a.href);
           setTimeout(function() {
           	if (/.*\/redirect\?.*/.test(a.href)) {
           	  a.href = oldHref;

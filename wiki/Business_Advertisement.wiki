@@ -1,4 +1,4 @@
 #summary Advertisement
 #sidebar TableOfContents
 
-
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/business/advertisement/cpx_compare.gif]

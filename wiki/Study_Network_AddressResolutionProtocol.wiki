@@ -10,7 +10,7 @@
 
 
 
-_广播包目的MAC地址为FF-FF-FF-FF-FF-FF，交换机设备接收到广播包后，会把它转发给局域网内的所有主机_
+_广播包目的MAC地址为FF-FF-FF-FF-FF-FF，交换机设备接收到广播包后，会把它转发给局域网内的所有主机。_
 
 ===参考资料===
 `[1].` http://zh.wikipedia.org/wiki/%E5%9C%B0%E5%9D%80%E8%A7%A3%E6%9E%90%E5%8D%8F%E8%AE%AE<br>

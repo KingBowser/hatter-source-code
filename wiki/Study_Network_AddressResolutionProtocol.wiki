@@ -1,7 +1,7 @@
 #summary Address Resolution Protocol
 #sidebar TableOfContents
 
-=地址解析协议（Address Resolution Protocol）=
+=地址解析协议 (Address Resolution Protocol)=
 
 
 ===参考资料===

@@ -2,3 +2,7 @@
 #sidebar TableOfContents
 
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/business/advertisement/cpx_compare.gif]
+
+
+===参考资料===
+`[1].` http://qing.blog.sina.com.cn/tj/653c2694330008bo.html<br>

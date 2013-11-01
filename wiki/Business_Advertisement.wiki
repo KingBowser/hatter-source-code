@@ -1,6 +1,8 @@
 #summary Advertisement
 #sidebar TableOfContents
 
+|| *CPC* || Cost Per Click ||  按点击付费 ||
+
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/business/advertisement/cpx_compare.gif]
 
 

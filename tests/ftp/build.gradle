@@ -1,0 +1,238 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+def baseProjectName = 'test-ftp'
+def shellCommandName = baseProjectName
+def eclipseProjectName = baseProjectName
+def eclipseProjectComment = 'my test application'
+def jarManifestMainClass = 'me.hatter.tools.xxx.Main'
+def installTargetBin = '/usr/local/bin/'
+
+archivesBaseName = baseProjectName
+sourceCompatibility = 1.5
+targetCompatibility = 1.5
+
+// repositories {
+//   mavenCentral()
+// }
+
+tasks.withType(Compile) {  
+  options.encoding = "UTF-8"  
+}
+
+// defaultTasks 'packjar'
+
+task initapp << {
+  file('lib').mkdirs()
+  file('src/main/java').mkdirs()
+  file('src/main/resources').mkdirs()
+  file('src/test/java').mkdirs()
+  file('src/test/resources').mkdirs()
+  println 'Init app finished [lib, src/main/java|resources, src/test/java|resources].'
+}
+
+task initwar << {
+  file('src/main/webapp').mkdirs()
+  file('src/main/webapp/js').mkdirs()
+  file('src/main/webapp/css').mkdirs()
+  file('src/main/webapp/img').mkdirs()
+  file('src/main/webapp/jssp').mkdirs()
+  file('src/main/webapp/WEB-INF').mkdirs()
+  file('src/main/webapp/WEB-INF/web.xml').createNewFile()
+}
+initwar.dependsOn initapp
+
+task install << {
+  def installBinDirLib = "${baseProjectName}_lib"
+  if (!file("${installTargetBin}${installBinDirLib}").exists()) {
+    file("${installTargetBin}${installBinDirLib}").mkdirs()
+  }
+  copy {
+    from ('lib')
+    into "${installTargetBin}${installBinDirLib}/"
+    include '*.jar'
+  }
+  copy {
+    from ('build/libs')
+    into "${installTargetBin}${installBinDirLib}/"
+    include '*.jar'
+  }
+  copy {
+    from ('.')
+    into "${installTargetBin}"
+    include shellCommandName
+  }
+  ant.chmod(file: "${installTargetBin}${shellCommandName}", perm: 'a+x')
+}
+
+task packjarsrc << {
+  ant.jar(destfile: "${baseProjectName}-sources.jar") {
+    fileset(dir: 'src/main/java', includes: '**/*.java')
+  }
+}
+packjarsrc.dependsOn build
+
+task packjar << {
+  def packtempclasses = "packtempclasses"
+  def libs = ant.path {
+     fileset(dir: 'build/libs', includes: '*.jar')
+  }
+  libs.list().each {
+    ant.unzip(dest: packtempclasses, src: it)
+  }
+  // ant.copy(todir: packtempclasses) {
+  //   fileset(dir: 'src/main/java', includes: '**/*.java')
+  // }
+  new File(packtempclasses + "/commons-version-build.txt").write(new Date().format("yyyyMMdd"), "UTF-8")
+  ant.jar(destfile: "${baseProjectName}.jar") {
+    fileset(dir: packtempclasses, includes: '**/*.*')
+  }
+  ant.delete(dir: packtempclasses)
+}
+packjar.dependsOn packjarsrc
+
+task packall << {
+  def packtempclasses = "packtempclasses"
+  def packtempmanifest = "packtempmanifest"
+  def libs = ant.path {
+    fileset(dir: 'lib', includes: '*.jar')
+    fileset(dir: 'build/libs', includes: '*.jar')
+  }
+  libs.list().each {
+    ant.unzip(dest: packtempclasses, src: it) 
+  }
+  new File(packtempclasses + "/commons-version-build.txt").write(new Date().format("yyyyMMdd"), "UTF-8")
+  def antmanifest = ant.manifest(file: packtempmanifest) {
+    attribute(name: 'Main-Class', value: jarManifestMainClass)
+  }
+  ant.jar(destfile: "${baseProjectName}all.jar", manifest: packtempmanifest) {
+    fileset(dir: packtempclasses, includes: '**/*.*')
+  }
+  ant.delete(dir: packtempclasses)
+  ant.delete(file: packtempmanifest)
+}
+packall.dependsOn build
+
+task packall2 << {
+  def packtempclasses = "packtempclasses"
+  def packtempmanifest = "packtempmanifest"
+  def libresources = "libresources"
+  def libs = ant.path {
+    fileset(dir: 'lib', includes: '*.jar') {
+      exclude(name: "*-sources.jar")
+      exclude(name: "*-javadoc.jar")
+      exclude(name: "commons-1.*.jar")
+    }
+  }
+  def libcommons = ant.path {
+    fileset(dir: 'lib', includes: 'commons-1.*.jar')
+  }
+  def jars = ant.path {
+    fileset(dir: 'build/libs', includes: '*.jar')
+  }
+  libcommons.list().each {
+    ant.unzip(dest: packtempclasses, src: it)
+  }
+  jars.list().each {
+    ant.unzip(dest: packtempclasses, src: it) 
+  }
+  file(packtempclasses + "/" + libresources).mkdirs()
+  ant.copy(todir: packtempclasses + "/" + libresources) {
+    fileset(dir: 'lib', includes: '*.jar') {
+      exclude(name: "*-sources.jar")
+      exclude(name: "*-javadoc.jar")
+      exclude(name: "commons-1.*.jar")
+    }
+  }
+  def libresourcesfile = new File(packtempclasses + "/" + libresources + "_jars.txt")
+  def libstr = "";
+  libs.list().each {
+    libstr += it.substring(it.lastIndexOf("/") + 1) + "\n";
+  }
+  libresourcesfile.write(libstr, "UTF-8");
+  new File(packtempclasses + "/commons-version-build.txt").write(new Date().format("yyyyMMdd"), "UTF-8")
+  def antmanifest = ant.manifest(file: packtempmanifest) {
+    attribute(name: 'Main-Class', value: jarManifestMainClass)
+  }
+  ant.jar(destfile: "${baseProjectName}all.jar", manifest: packtempmanifest) {
+    fileset(dir: packtempclasses, includes: '**/*.*')
+  }
+  ant.delete(dir: packtempclasses)
+  ant.delete(file: packtempmanifest)
+}
+packall2.dependsOn build
+
+task packwar << {
+  ant.delete(dir: 'war')
+  file('war').mkdirs()
+  copy {
+    from ('src/main/webapp')
+    into "war"
+    include '**/*.*'
+  }
+  file('war/WEB-INF/lib').mkdirs()
+  copy {
+    from ('lib')
+    into "war/WEB-INF/lib/"
+    include '*.jar'
+    exclude '*-sources.jar'
+  }
+  file('war/WEB-INF/classes').mkdirs()
+  copy {
+    from ('build/classes/main')
+    into "war/WEB-INF/classes/"
+    include '**/*.*'
+  }
+  copy {
+    from ('src/main/resources')
+    into "war/WEB-INF/classes/"
+    include '**/*.*'
+  }
+}
+packwar.dependsOn build
+
+task packwar2 << {
+  ant.jar(destfile: "web.war") {
+    fileset(dir: "war", includes: '**/*.*')
+  }
+}
+packwar2.dependsOn packwar
+
+dependencies {
+    compile files(fileTree(dir: 'lib', includes: ['*.jar'], excludes: ['*-sources.jar', '*-javadoc.jar']))
+    // compile files(file(System.properties['java.home'].replaceAll('\\/jre(\\/)?$', "") + "/lib/sa-jdi.jar"))
+    // compile files(file(System.properties['java.home'].replaceAll('\\/jre(\\/)?$', "") + "/lib/tools.jar"))
+}
+
+eclipse {
+  project {
+    name = eclipseProjectName
+    comment = eclipseProjectComment
+  }
+  classpath {
+    defaultOutputDir = file('classes')
+    downloadSources = true
+    file {
+      whenMerged { classpath ->
+        classpath.entries.findAll { it.kind=='lib' }.each {
+          if ((it.path != null) && (it.sourcePath == null) && file(it.path.replace(".jar", "-sources.jar")).exists()) { 
+            it.sourcePath = getFileReferenceFactory().fromPath(it.path.replace(".jar", "-sources.jar"))
+          }
+        }
+      }
+    }
+  }
+}
+
+eclipseJdt << {
+  File f = file('.settings/org.eclipse.core.resources.prefs')
+  f.write('eclipse.preferences.version=1\n')
+  f.append('encoding/<project>=utf-8')
+}
+
+jar {
+  manifest {
+    attributes('Main-Class': jarManifestMainClass)
+  }
+}
+

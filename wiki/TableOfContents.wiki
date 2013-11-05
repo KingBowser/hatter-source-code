@@ -105,6 +105,7 @@
   * [Study_Programming_Mobile Mobile]
   * [Study_Programming_Parser Parser]
   * [Study_Scala Scala]
+ * [Study_MachineLearning Machine learning]
  * [Study_Network Network]
   * [Study_Network_AddressResolutionProtocol Address Resolution Protocol]
   * [Study_Network_LocalTriangulation Local Triangulation]

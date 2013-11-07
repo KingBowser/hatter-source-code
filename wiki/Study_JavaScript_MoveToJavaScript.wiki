@@ -30,6 +30,15 @@
 || RapydScript || 增强版的PyvaScript ||
 || Skulpt || 客户端的Python ||
 
+==Ruby to JavaScript==
+
+|| 8ball || 一个可以将Ruby（或Ruby子集）的源码转换为JavaScript源码的编译器 ||
+|| ColdRuby || 一个Ruby 1.9 MRI字节码编译器和JS运行时，包括一个C++运行时以及用于本地执行的V8引擎 ||
+|| HotRuby || 可以在浏览器内部或Flash平台上运行由YARV编译的Ruby操作码 ||
+|| Opal || 一个Ruby to JavaScript编译器，可用于任何JS环境 ||
+|| rb2js || 一个Ruby to JavaScript编译器 ||
+|| Red || 允许你以Ruby的方式编写代码，然后以JavaScript的方式运行代码 ||
+
 
 ===参考资料===
 `[1].` http://www.iteye.com/news/28426<br>

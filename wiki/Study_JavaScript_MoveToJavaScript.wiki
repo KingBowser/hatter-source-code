@@ -60,5 +60,11 @@
 || js-scala || 在Scala中将JavaScript作为嵌入式的DSL语言 ||
 || Scala+GWT || 通过GWT工具链将Scala代码编译为JavaScript语言 ||
 
+==Others==
+
+|| Go2js || 可以将Go代码行到行地编译为JavaScript代码 ||
+|| Perlito || 可以将Perl 5/6代码编译为JavaScript、Ruby、SBCL和Go语言代码。 ||
+
+
 ===参考资料===
 `[1].` http://www.iteye.com/news/28426<br>

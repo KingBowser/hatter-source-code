@@ -39,6 +39,21 @@
 || rb2js || 一个Ruby to JavaScript编译器 ||
 || Red || 允许你以Ruby的方式编写代码，然后以JavaScript的方式运行代码 ||
 
+==.NET to JavaScript==
+
+|| Apps in Motion || 允许使用C#来构建可以运行在任何设备上的Web应用程序 ||
+|| Blade || 一个Visual Studio扩展，可以将C#代码转换为JavaScript ||
+|| FunScript || 可通过TypeScript的类型提供器将F#代码转换为JavaScript或JQuery代码 ||
+|| jsc || 可将.NET程序重新编译为JavaScript、ActionScript、PHP或Java程序 ||
+|| JSIL || 可将MSIL（.NET字节码）转换为 JavaScript ||
+|| NemerleWeb || 可将Nemerle语言（微软的多范型语言）编译为JavaScript ||
+|| Pit || 可将F#代码编译为Javascript ||
+|| Prefix（开发中） || 可将C#代码编译为Javascript ||
+|| Saltarelle || 可将C#代码编译为Javascript ||
+|| SharpKit（商业工具） || 可将C#代码编译为Javascript ||
+|| Script# || 可将C#代码编译为Javascript ||
+|| WebSharper || 可将F#代码编译为Javascript. ||
+
 
 ===参考资料===
 `[1].` http://www.iteye.com/news/28426<br>

@@ -11,6 +11,12 @@
 || Processing || 一个基于Java的可视化语言，可以编译为 JavaScript ||
 || STJS || Strongly-Typed JavaScript（强类型的JavaScript），一个可以将Java源码转换为JavaScript代码的Maven插件 ||
 
+==C/C++ to JavaScript==
+
+|| Emscripten || Mozilla开发的LLVM后端，可以将任何通过LLVM前端（比如C/C++ Clang）生成的LLVMIR中间码编译成JavaScript代码。 ||
+|| mala || 可以将vala代码（vala代码在编译时，首先会编译为C代码）编译为JavaScript ||
+|| Mandreel || 可以将C++和Objective-C代码编译为高度优化的JavaScript源码 ||
+|| Clue || 一个C语言编译器，可以将C语言代码编译为高质量的Lua、Javascript或Perl代码。 ||
 
 ===参考资料===
 `[1].` http://www.iteye.com/news/28426<br>

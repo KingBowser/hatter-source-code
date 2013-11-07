@@ -54,6 +54,11 @@
 || Script# || 可将C#代码编译为Javascript ||
 || WebSharper || 可将F#代码编译为Javascript. ||
 
+==Scala to JavaScript==
+
+|| Scala.js || 一款将Scala编译为JavaScript的编译器，支持全部Scala语言特性，允许开发者用Scala开发从前端到后端的Web应用 ||
+|| js-scala || 在Scala中将JavaScript作为嵌入式的DSL语言 ||
+|| Scala+GWT || 通过GWT工具链将Scala代码编译为JavaScript语言 ||
 
 ===参考资料===
 `[1].` http://www.iteye.com/news/28426<br>

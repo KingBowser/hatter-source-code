@@ -4,7 +4,7 @@
 ==Java to JavaScript==
 
 || BicaVM || 一个使用JavaScript实现的JVM，可以运行60%的Java字节码 ||
-|| Ceylon || 一个可编译为JavaScript的、模块化的、静态类型JVM语言[*]Doppio：一个使用Coffeescript实现的JVM，使得Java程序可以运行在任何JavaScript引擎上[*]GrooScript：一个可以将Groovy代码转为JavaScript代码的小框架 ||
+|| Ceylon || 一个可编译为JavaScript的、模块化的、静态类型JVM语言\[*\]Doppio：一个使用Coffeescript实现的JVM，使得Java程序可以运行在任何JavaScript引擎上\[*\]GrooScript：一个可以将Groovy代码转为JavaScript代码的小框架 ||
 || j2js || 可以将Java字节码转换为JavaScript代码 ||
 || Java2Script || Eclipse中的Java to JavaScript编译插件，并实现了一个JavaScript版的Eclipse SWT ||
 || Kotlin || 可以编译为JVM字节码和JavaScript的静态类型编程语言 ||

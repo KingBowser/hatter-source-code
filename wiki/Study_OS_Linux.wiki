@@ -235,3 +235,4 @@ sed 's/aaa/bbb/g' file.name.txt
 `[3].` http://www.cnblogs.com/liuhao/archive/2012/11/13/2768898.html<br>
 `[4].` http://www.aqee.net/what-are-the-most-useful-swiss-army-knife-one-liners-on-unix/<br>
 `[5].` http://linux.cn/portal-view-aid-211.html<br>
+`[6].` http://weibo.com/jiangbinglover<br>

@@ -226,6 +226,8 @@ sed 's/aaa/bbb/g' file.name.txt
 `/etc/fstab`
 `http://smilejay.com/2011/03/fstab/`
 
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/linux/linux_trouble_shot.jpg]
+
 <br><br>
 ===参考资料===
 `[1].` http://www.hungry.com/~jamie/xexport.html<br>

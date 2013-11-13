@@ -1,6 +1,7 @@
 #summary Sidebar
  * [Study_List Main Page]
  * [Study_Algorithm Algorithm]
+  * [Study_Algorithm_Recommendation Recommendation]
   * [Study_Algorithm_MachineLearning Machine learning]
   * [Study_Algorithm_R R]
  * [Study_Android Android]

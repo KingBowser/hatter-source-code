@@ -25,7 +25,8 @@ public class Sample {
 }}}
 
 ==三、Java底层知识==
- # 了解字节码
+ # 了解字节码、class文件格式
+ # 写一个程序要求实现javap的功能
  # 使用CGLIB做一个AOP程序
  # 使用ASM实现上述CGLIB实现的功能
 

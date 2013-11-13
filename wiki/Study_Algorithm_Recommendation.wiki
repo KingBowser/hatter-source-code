@@ -1,0 +1,8 @@
+#summary Recommendation
+#sidebar TableOfContents
+
+
+
+
+===参考资料===
+`[1]. ` http://www.bjt.name/2013/06/recommendation-system/<br>

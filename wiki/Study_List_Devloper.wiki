@@ -4,6 +4,11 @@
 =Java工程师必知必会=
 
 ==一、Java基础知识==
+ # 看一下以下类的源代码
+  * java.lang.String
+  * java.util.ArrayList & java.util.LinkedList
+  * java.util.HashMap & java.util.LinkedHashMap & java.util.TreeMap
+  * java.util.HashSet & java.util.LinkedHashSet & java.util.TreeSet
  # Java实现对List排序
  # Java实现对List去重
  # Java实现对List去重，并且需要保留数据原始的出现顺序

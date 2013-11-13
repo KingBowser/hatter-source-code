@@ -1,6 +1,7 @@
 #summary Sidebar
  * [Study_List Main Page]
  * [Study_Algorithm Algorithm]
+  * [Study_Algorithm_MachineLearning Machine learning]
  * [Study_Android Android]
  * [Study_AugmentedBNF Augmented BNF]
  * [Study_BarCode BarCode]

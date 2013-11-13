@@ -91,6 +91,18 @@ public static void main(java.lang.String[]);
  sysdate - 1/24
  sysdate - 1/(12*2)
 }}}
+ # 实现对一个List通过DSL筛选
+{{{
+  QList<Map<String, Object>> mapList = new QList<Map<String, Object>>;
+  mapList.add({"name": "hatter test"});
+  mapList.add({"id": -1,"name": "hatter test"});
+  mapList.add({"id": 0, "name": "hatter test"});
+  mapList.add({"id": 1, "name": "hatter test"});
+  mapList.add({"id": 2, "name": "test hatter"});
+  mapList.query("id is not null and id > 0 and name like '%hatter%'");
+
+要求返回列表中匹配的对象，即最后两个对象；
+}}}
  # 用Java实现以下程序（语法和变量作用域处理都和JavaScript类似）：
 {{{
 代码：

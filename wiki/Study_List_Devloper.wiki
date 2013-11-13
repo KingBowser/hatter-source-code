@@ -27,7 +27,7 @@ public class Sample {
   }
 }
 }}}
- # 学会使用java.uti.concurrent.*
+ # 学会使用 `java.uti.concurrent.*`
 
 ==三、Java底层知识==
  # 了解字节码、class文件格式

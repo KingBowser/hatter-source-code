@@ -27,7 +27,7 @@ public class Sample {
  # 了解字节码、class文件格式
  # 写一个程序要求实现javap的功能（手工完成，不借助ASM等工具）
 {{{
-如代码：
+如Java源代码：
   public static void main() {
     int i = 0;
     i += 1;
@@ -35,7 +35,7 @@ public class Sample {
     System.out.println(i);
   }
 
-输出以下代码：
+编译后读取class文件输出以下代码：
 public static void main();
   Code:
    Stack=2, Locals=1, Args_size=0

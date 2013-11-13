@@ -97,8 +97,9 @@ public static void main(java.lang.String[]);
   mapList.add({"name": "hatter test"});
   mapList.add({"id": -1,"name": "hatter test"});
   mapList.add({"id": 0, "name": "hatter test"});
-  mapList.add({"id": 1, "name": "hatter test"});
-  mapList.add({"id": 2, "name": "test hatter"});
+  mapList.add({"id": 1, "name": "test test"});
+  mapList.add({"id": 2, "name": "hatter test"});
+  mapList.add({"id": 3, "name": "test hatter"});
   mapList.query("id is not null and id > 0 and name like '%hatter%'");
 
 要求返回列表中匹配的对象，即最后两个对象；

@@ -15,7 +15,7 @@
  # 以下代码是不是线程安全？为什么？如果为count加上volatile修饰是否能够做到线程安全？
 {{{
 public class Sample {
-  private static final int count = 0;
+  private static int count = 0;
 
   public static void increment() {
     count++;

@@ -4,14 +4,37 @@
 =Java工程师必知必会=
 
 ==一、Java基础知识==
-
-==二、Java底层知识==
-
-
-==三、HTTP编程知识==
+ # Java实现对List排序
+ # Java实现对List去重
+ # Java实现对List去重，并且需要保留数据原始的出现顺序
 
 
-==四、网络安全知识==
+==二、Java并发编程==
+ # 何为Java内存模型
+ # synchronized的作用是什么？
+ # volatile的作用是什么？
+ # 以下代码是不是线程安全？为什么？如果为count加上volatile修饰是否能够做到线程安全？
+{{{
+public class Sample {
+  private static final int count = 0;
+
+  public static void increment() {
+    count++;
+  }
+}
+}}}
+
+==三、Java底层知识==
+ # 了解字节码
+ # 使用CGLIB做一个AOP程序
+ # 使用ASM实现上述CGLIB实现的功能
+
+==四、HTTP编程知识==
+ # 用Java写一个简单的表态文件的HTTP服务器
+  # 实现客户端缓存功能，支持返回304
+  # 实现可并发下载一个文件
+
+==五、网络安全知识==
  # 什么是DES、AES？
  # 什么是RSA、DSA？
  # 什么是MD5，SHA1？
@@ -22,4 +45,5 @@
  # 什么是CSS攻击？
  # 什么是SQL注入？
 
-==五、JavaScript知识==
+==六、JavaScript知识==
+

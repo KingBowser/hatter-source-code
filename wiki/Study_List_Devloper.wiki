@@ -1,0 +1,25 @@
+#summary Java工程师必知必会
+#sidebar TableOfContents
+
+=Java工程师必知必会=
+
+==一、Java基础知识==
+
+==二、Java底层知识==
+
+
+==三、HTTP编程知识==
+
+
+==四、网络安全知识==
+ # 什么是DES、AES？
+ # 什么是RSA、DSA？
+ # 什么是MD5，SHA1？
+ # 什么是HTTPS、TLS，为什么HTTPS相对安全？
+ # 什么是中间人攻击、如果避免中间人攻击？
+ # 什么是DOS、DDOS、CC攻击？
+ # 什么是CSRF攻击？
+ # 什么是CSS攻击？
+ # 什么是SQL注入？
+
+==五、JavaScript知识==

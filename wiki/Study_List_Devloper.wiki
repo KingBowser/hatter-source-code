@@ -50,3 +50,13 @@ public class Sample {
  # 什么是SQL注入？
 
 ==六、JavaScript知识==
+
+
+==七、编译原理知识==
+ # 用Java实现以下表达式解析：
+{{{
+ sysdate
+ sysdate - 1
+ sysdate - 1/24
+ sysdate - 1/(12*2)
+}}}

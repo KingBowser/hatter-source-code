@@ -33,6 +33,10 @@ public class Sample {
  # 用Java写一个简单的表态文件的HTTP服务器
   # 实现客户端缓存功能，支持返回304
   # 实现可并发下载一个文件
+  # 使用线程池处理客户端请求
+  # 使用nio处理客户端请求
+  # 支持简单的rewrite规则
+ # 用Java实现FTP、SMTP协议
 
 ==五、网络安全知识==
  # 什么是DES、AES？
@@ -46,4 +50,3 @@ public class Sample {
  # 什么是SQL注入？
 
 ==六、JavaScript知识==
-

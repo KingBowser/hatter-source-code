@@ -2,7 +2,9 @@
 #sidebar TableOfContents
 
 
-[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/r/Liu-FAQ.pdf R 常见问题解答]
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/r/Liu-FAQ.pdf R 常见问题解答(R frequently asked questions)]
+
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/r/Liu-R-refcard.pdf R 参考卡片]
 
 
 ===参考资料===

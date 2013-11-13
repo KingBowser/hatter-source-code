@@ -12,7 +12,7 @@
  # 何为Java内存模型
  # synchronized的作用是什么？
  # volatile的作用是什么？
- # 以下代码是不是线程安全？为什么？如果为count加上volatile修饰是否能够做到线程安全？
+ # 以下代码是不是线程安全？为什么？如果为count加上volatile修饰是否能够做到线程安全？你觉得该怎么做是线程案例的？
 {{{
 public class Sample {
   private static int count = 0;
@@ -22,6 +22,7 @@ public class Sample {
   }
 }
 }}}
+ # 学会使用java.uti.concurrent.*
 
 ==三、Java底层知识==
  # 了解字节码、class文件格式

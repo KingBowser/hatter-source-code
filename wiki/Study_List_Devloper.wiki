@@ -81,7 +81,10 @@ public static void main(java.lang.String[]);
  # 什么是SQL注入？
 
 ==六、JavaScript知识==
-
+ # 什么是prototype？
+ # 什么是闭包？
+ # 用jQuery写个程序
+ # 用node.js写个程序
 
 ==七、编译原理知识==
  # 用Java实现以下表达式解析并返回结果（语法和Oracle中的`select sysdate-1 from dual`类似）：

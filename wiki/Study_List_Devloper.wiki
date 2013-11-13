@@ -30,7 +30,7 @@ public class Sample {
  # 学会使用 `java.uti.concurrent.*`
 
 ==三、Java底层知识==
- # 了解字节码、class文件格式
+ # 学习了解字节码、class文件格式
  # 写一个程序要求实现javap的功能（手工完成，不借助ASM等工具）
 {{{
 如Java源代码：

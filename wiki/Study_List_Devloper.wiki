@@ -60,3 +60,23 @@ public class Sample {
  sysdate - 1/24
  sysdate - 1/(12*2)
 }}}
+ # 用Java实现以下程序：
+{{{
+代码：
+var a = 1;
+var b = 2;
+var c = function() {
+  var a = 3;
+  println(a);
+  println(b);
+};
+c();
+print(a);
+print(b);
+
+输出：
+3
+2
+1
+2
+}}}

@@ -8,7 +8,6 @@
  # Java实现对List去重
  # Java实现对List去重，并且需要保留数据原始的出现顺序
 
-
 ==二、Java并发编程==
  # 何为Java内存模型
  # synchronized的作用是什么？
@@ -26,7 +25,39 @@ public class Sample {
 
 ==三、Java底层知识==
  # 了解字节码、class文件格式
- # 写一个程序要求实现javap的功能
+ # 写一个程序要求实现javap的功能（手工完成，不借助ASM等工具）
+如代码：
+{{{
+  public static void main() {
+    int i = 0;
+    i += 1;
+    i *= 1;
+    System.out.println(i);
+  }
+}}}
+输出以下代码：
+{{{
+public static void main();
+  Code:
+   Stack=2, Locals=1, Args_size=0
+   0:	iconst_0
+   1:	istore_0
+   2:	iinc	0, 1
+   5:	iload_0
+   6:	iconst_1
+   7:	imul
+   8:	istore_0
+   9:	getstatic	#2; //Field java/lang/System.out:Ljava/io/PrintStream;
+   12:	iload_0
+   13:	invokevirtual	#3; //Method java/io/PrintStream.println:(I)V
+   16:	return
+  LineNumberTable: 
+   line 4: 0
+   line 5: 2
+   line 6: 5
+   line 7: 9
+   line 8: 16
+}}}
  # 使用CGLIB做一个AOP程序
  # 使用ASM实现上述CGLIB实现的功能
 

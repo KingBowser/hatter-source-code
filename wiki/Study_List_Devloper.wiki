@@ -28,7 +28,7 @@ public class Sample {
  # 写一个程序要求实现javap的功能（手工完成，不借助ASM等工具）
 {{{
 如Java源代码：
-  public static void main() {
+  public static void main(String[] args) {
     int i = 0;
     i += 1;
     i *= 1;
@@ -36,18 +36,18 @@ public class Sample {
   }
 
 编译后读取class文件输出以下代码：
-public static void main();
+public static void main(java.lang.String[]);
   Code:
-   Stack=2, Locals=1, Args_size=0
+   Stack=2, Locals=2, Args_size=1
    0:	iconst_0
-   1:	istore_0
-   2:	iinc	0, 1
-   5:	iload_0
+   1:	istore_1
+   2:	iinc	1, 1
+   5:	iload_1
    6:	iconst_1
    7:	imul
-   8:	istore_0
+   8:	istore_1
    9:	getstatic	#2; //Field java/lang/System.out:Ljava/io/PrintStream;
-   12:	iload_0
+   12:	iload_1
    13:	invokevirtual	#3; //Method java/io/PrintStream.println:(I)V
    16:	return
   LineNumberTable: 

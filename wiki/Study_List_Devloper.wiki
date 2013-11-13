@@ -60,7 +60,7 @@ public class Sample {
  sysdate - 1/24
  sysdate - 1/(12*2)
 }}}
- # 用Java实现以下程序：
+ # 用Java实现以下程序（语法和变量作用域处理都和JavaScript类似）：
 {{{
 代码：
 var a = 1;
@@ -71,8 +71,8 @@ var c = function() {
   println(b);
 };
 c();
-print(a);
-print(b);
+println(a);
+println(b);
 
 输出：
 3

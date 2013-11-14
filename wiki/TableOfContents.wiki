@@ -5,6 +5,7 @@
   * [Study_Algorithm_Recommendation Recommendation]
   * [Study_Algorithm_MachineLearning Machine learning]
   * [Study_Algorithm_R R]
+   * [Study_Algorithm_MyRWay My R Way]
  * [Study_Android Android]
  * [Study_AugmentedBNF Augmented BNF]
  * [Study_BarCode BarCode]

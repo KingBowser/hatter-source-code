@@ -6,6 +6,10 @@
 
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/r/Liu-R-refcard.pdf R 参考卡片]
 
+[https://github.com/nexr/RHive/ RHive]
+
+http://julialang.org/ ??
+
 
 ===参考资料===
 `[1]. ` http://www.bjt.name/todo<br>

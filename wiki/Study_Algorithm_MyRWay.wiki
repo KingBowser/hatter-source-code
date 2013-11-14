@@ -1,0 +1,5 @@
+#summary My R Way
+#sidebar TableOfContents
+
+
+ # [Study_Algorithm_MyRWay_1]

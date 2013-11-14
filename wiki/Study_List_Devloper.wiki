@@ -94,8 +94,11 @@ public static void main(java.lang.String[]);
 ====相关资料====
 `[1].` http://book.douban.com/subject/1138768/<br>
 `[2].` http://book.douban.com/subject/6522893/<br>
-`[3].` http://asm.ow2.org/<br>
-`[4].` http://cglib.sourceforge.net/<br>
+`[2].` http://en.wikipedia.org/wiki/Java_class_file<br>
+`[3].` http://en.wikipedia.org/wiki/Java_bytecode<br>
+`[4].` http://en.wikipedia.org/wiki/Java_bytecode_instruction_listings<br>
+`[5].` http://asm.ow2.org/<br>
+`[6].` http://cglib.sourceforge.net/<br>
 
 ==四、网络编程知识==
  # 用Java写一个简单的表态文件的HTTP服务器

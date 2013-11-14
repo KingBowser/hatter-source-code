@@ -38,10 +38,11 @@ h <- 1/(1 + h)
 diag(h) <- 0
 ## 推荐引擎的四个参数：相似矩阵、购买了什么，得分是多少，推荐几个
 recommend <- function(h = h, k = c(3, 5), score = c(4, 5), m = 1) {
-  if(length(k) > 1)
+  if(length(k) > 1) {
     v <- colSums(h[k,] * score)/colSums(h[k,])
-  else
+  } else {
     v <- h[k,]
+  }
   v[k] <- 0
   od <- order(v, decreasing=T)[1:m]
   return(list(colnames(h)[od], v[od]))

@@ -125,7 +125,10 @@ public static void main(java.lang.String[]);
  # 用openssl签一个证书部署到apache或nginx
 
 ====相关资料====
-`[1].` http://www.openssl.org/<br>
+`[1].` http://en.wikipedia.org/wiki/Cryptographic_hash_function<br>
+`[2].` http://en.wikipedia.org/wiki/Block_cipher<br>
+`[3].` http://en.wikipedia.org/wiki/Transport_Layer_Security<br>
+`[4].` http://www.openssl.org/<br>
 
 ==六、JavaScript知识==
  # 什么是prototype？

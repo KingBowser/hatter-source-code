@@ -115,13 +115,17 @@ public static void main(java.lang.String[]);
  # 什么是DES、AES？
  # 什么是RSA、DSA？
  # 什么是MD5，SHA1？
- # 什么是HTTPS、TLS，为什么HTTPS相对安全？
+ # 什么是SSL、TLS，为什么HTTPS相对比较安全？
  # 什么是中间人攻击、如果避免中间人攻击？
  # 什么是DOS、DDOS、CC攻击？
  # 什么是CSRF攻击？
  # 什么是CSS攻击？
  # 什么是SQL注入？
  # 什么是Hash碰撞拒绝服务攻击？
+ # 用openssl签一个证书部署到apache或nginx
+
+====相关资料====
+`[1].` http://www.openssl.org/<br>
 
 ==六、JavaScript知识==
  # 什么是prototype？

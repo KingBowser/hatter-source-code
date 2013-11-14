@@ -15,7 +15,7 @@
  # Java实现通过正则表达式提取一段文本中的电子邮件，并将 `@` 替换为 `#` 输出
 
 ====参考资料====
-`[1]. ` JDK src.zip 源代码
+`[1]. ` JDK src.zip 源代码<br>
 
 ==二、Java并发编程==
  # Java内存模型是什么？
@@ -76,6 +76,12 @@ public static void main(java.lang.String[]);
  # 使用CGLIB做一个AOP程序
  # 使用ASM实现上述CGLIB实现的功能
 
+====参考资料====
+`[1]. ` http://book.douban.com/subject/1138768/<br>
+`[2]. ` http://book.douban.com/subject/6522893/<br>
+`[3]. ` http://asm.ow2.org/<br>
+`[4]. ` http://cglib.sourceforge.net/<br>
+
 ==四、网络编程知识==
  # 用Java写一个简单的表态文件的HTTP服务器
   # 实现客户端缓存功能，支持返回304
@@ -85,6 +91,10 @@ public static void main(java.lang.String[]);
   # 支持简单的rewrite规则
  # 用Java实现FTP、SMTP协议
  # 什么是CDN？如果实现？DNS起到什么作用？
+
+====参考资料====
+`[1]. ` http://www.ietf.org/rfc/rfc2616.txt<br>
+`[2].` http://tools.ietf.org/rfc/rfc5321.txt<br>
 
 ==五、网络安全知识==
  # 什么是DES、AES？

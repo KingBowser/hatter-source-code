@@ -127,8 +127,9 @@ public static void main(java.lang.String[]);
 ====相关资料====
 `[1].` http://en.wikipedia.org/wiki/Cryptographic_hash_function<br>
 `[2].` http://en.wikipedia.org/wiki/Block_cipher<br>
-`[3].` http://en.wikipedia.org/wiki/Transport_Layer_Security<br>
-`[4].` http://www.openssl.org/<br>
+`[3].` http://en.wikipedia.org/wiki/Public-key_cryptography<br>
+`[4].` http://en.wikipedia.org/wiki/Transport_Layer_Security<br>
+`[5].` http://www.openssl.org/<br>
 
 ==六、JavaScript知识==
  # 什么是prototype？

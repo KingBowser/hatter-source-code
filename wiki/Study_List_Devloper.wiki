@@ -25,6 +25,9 @@
   * https://github.com/CSUG/HouseMD
   * http://wiki.cyclopsgroup.org/jmxterm
   * https://github.com/jlusdy/TBJMap
+ # 学习Java诊断工具
+  * http://www.eclipse.org/mat/
+  * http://visualvm.java.net/oqlhelp.html
 
 ====相关资料====
 `[1].` JDK src.zip 源代码<br>

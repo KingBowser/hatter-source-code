@@ -102,4 +102,5 @@ select classof(cl).name from instanceof java.lang.ClassLoader cl
 
 
 ===参考资料===
-`[1].` jhat/oqlhelp/
+`[1].` jhat/oqlhelp/<br>
+`[2].` http://visualvm.java.net/oqlhelp.html<br>

@@ -15,7 +15,7 @@
  # Java实现通过正则表达式提取一段文本中的电子邮件，并将 `@` 替换为 `#` 输出
 
 ====参考资料====
-`[1]. ` JDK src.zip 源代码<br>
+`[1].` JDK src.zip 源代码<br>
 
 ==二、Java并发编程==
  # Java内存模型是什么？
@@ -34,9 +34,9 @@ public class Sample {
  # 学会使用 `java.uti.concurrent.*`
 
 ====参考资料====
-`[1]. ` http://www.cs.umd.edu/~pugh/java/memoryModel/<br>
-`[2]. ` http://gee.cs.oswego.edu/dl/jmm/cookbook.html<br>
-`[3]. ` http://book.douban.com/subject/10484692/<br>
+`[1].` http://www.cs.umd.edu/~pugh/java/memoryModel/<br>
+`[2].` http://gee.cs.oswego.edu/dl/jmm/cookbook.html<br>
+`[3].` http://book.douban.com/subject/10484692/<br>
 `[4].` http://www.intel.com/content/www/us/en/processors/architectures-software-developer-manuals.html<br>
 
 ==三、Java底层知识==
@@ -77,10 +77,10 @@ public static void main(java.lang.String[]);
  # 使用ASM实现上述CGLIB实现的功能
 
 ====参考资料====
-`[1]. ` http://book.douban.com/subject/1138768/<br>
-`[2]. ` http://book.douban.com/subject/6522893/<br>
-`[3]. ` http://asm.ow2.org/<br>
-`[4]. ` http://cglib.sourceforge.net/<br>
+`[1].` http://book.douban.com/subject/1138768/<br>
+`[2].` http://book.douban.com/subject/6522893/<br>
+`[3].` http://asm.ow2.org/<br>
+`[4].` http://cglib.sourceforge.net/<br>
 
 ==四、网络编程知识==
  # 用Java写一个简单的表态文件的HTTP服务器
@@ -93,7 +93,7 @@ public static void main(java.lang.String[]);
  # 什么是CDN？如果实现？DNS起到什么作用？
 
 ====参考资料====
-`[1]. ` http://www.ietf.org/rfc/rfc2616.txt<br>
+`[1].` http://www.ietf.org/rfc/rfc2616.txt<br>
 `[2].` http://tools.ietf.org/rfc/rfc5321.txt<br>
 
 ==五、网络安全知识==
@@ -113,6 +113,9 @@ public static void main(java.lang.String[]);
  # 什么是闭包？
  # 用jQuery写个程序
  # 用node.js写个程序
+
+====参考资料====
+`[1].` http://www.ecmascript.org/<br>
 
 ==七、编译原理知识==
  # 用Java实现以下表达式解析并返回结果（语法和Oracle中的`select sysdate-1 from dual`类似）：

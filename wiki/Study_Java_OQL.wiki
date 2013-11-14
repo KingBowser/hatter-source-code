@@ -37,6 +37,9 @@ select file.path.value.toString() from java.io.File file
 
 // 查找所有ClassLoader的名字
 select classof(cl).name from instanceof java.lang.ClassLoader cl
+
+// 查询所有value不同的整数
+select unique(x, "it.value") from java.lang.Integer x
 }}}
 
 ==内建对象、函数==

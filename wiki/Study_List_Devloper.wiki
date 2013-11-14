@@ -3,7 +3,7 @@
 
 =`Java`工程师的学习列表=
 
-==一、Java基础知识==
+==一、`Java`基础知识==
  # 看一下以下类的源代码
   * `java.lang.String`
   * `java.util.ArrayList & java.util.LinkedList`
@@ -32,7 +32,7 @@
 `[3].` https://code.google.com/p/guava-libraries/<br>
 `[4].` http://netty.io/<br>
 
-==二、Java并发编程==
+==二、`Java`并发编程==
  # Java内存模型是什么？
  # synchronized的作用是什么？
  # volatile的作用是什么？
@@ -54,7 +54,7 @@ public class Sample {
 `[3].` http://book.douban.com/subject/10484692/<br>
 `[4].` http://www.intel.com/content/www/us/en/processors/architectures-software-developer-manuals.html<br>
 
-==三、Java底层知识==
+==三、`Java`底层知识==
  # 学习了解字节码、class文件格式
  # 写一个程序要求实现javap的功能（手工完成，不借助ASM等工具）
 {{{
@@ -134,7 +134,7 @@ public static void main(java.lang.String[]);
 `[4].` http://en.wikipedia.org/wiki/Transport_Layer_Security<br>
 `[5].` http://www.openssl.org/<br>
 
-==六、JavaScript知识==
+==六、`JavaScript`知识==
  # 什么是prototype？
  # 什么是闭包？
  # 用jQuery写个程序

@@ -190,6 +190,9 @@ println(b);
 ==八、数据库知识==
  # 关系型数据库
   * MySQL
+   * 如何看执行计划？
+   * 如何搭建MySQL主备？
+   * binlog是什么？
   * Derby, H2, PostgreSQL （任选一个）
   * SQLite
  # 图数据库

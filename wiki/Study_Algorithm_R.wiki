@@ -1,6 +1,7 @@
 #summary R
 #sidebar TableOfContents
 
+R 是 S 的一种开源实现，是一种用于数据分析和图形的编程环境。
 
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/r/Liu-FAQ.pdf R 常见问题解答(R frequently asked questions)]
 
@@ -13,3 +14,4 @@ http://julialang.org/ ??
 
 ===参考资料===
 `[1]. ` http://www.bjt.name/todo<br>
+`[2].` http://www.ibm.com/developerworks/cn/data/library/bd-learnr/index.html<br>

@@ -1,6 +1,8 @@
 #summary My R Way 1
 #sidebar TableOfContents
 
+[http://latex.codecogs.com/gif.latex?cos(\theta)=\frac{\sum_{i=1}^{n}Ai*Bi}{\sqrt{\sum_{i=1}^{n}(Ai)^{2}}*\sqrt{\sum_{i-1}^{n}(Bi)^{2}}}]
+
 {{{
 ## 用户,Item,Score
 x <- read.csv(textConnection("

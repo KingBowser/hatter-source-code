@@ -13,7 +13,9 @@ Lex 和 Yacc 是 UNIX 两个非常重要的、功能强大的工具。事实上�
 || `JavaCC` || http://javacc.java.net/ || The Java Parser Generator ||
 || `ANTLR` || http://www.antlr.org/ || ANTLR Parser Generator ||
 
-JavaCC: https://java.net/projects/javacc/downloads/directory/contrib/grammars
+JavaCC: 
+ * https://javacc.java.net/doc/docindex.html
+ * https://java.net/projects/javacc/downloads/directory/contrib/grammars
 
 ANTLR3: http://jnb.ociweb.com/jnb/jnbJun2008.html
 

@@ -51,7 +51,11 @@ public class Sample {
 }}}
  # 学会使用 `java.uti.concurrent.**`
   * `java.util.concurrent.locks.ReentrantLock`
-  * `java.util.concurrent.locks.ReadWriteLock`
+  * `java.util.concurrent.locks.ReentrantReadWriteLock`
+  * `java.util.concurrent.atomic.Atomic*`
+  * `java.util.concurrent.ConcurrentHashMap`
+  * `java.util.concurrent.Executors`
+  * `...`
 
 ====相关资料====
 `[1].` http://www.cs.umd.edu/~pugh/java/memoryModel/<br>

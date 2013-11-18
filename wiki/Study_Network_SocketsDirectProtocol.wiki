@@ -1,3 +1,9 @@
 #summary Sockets Direct Protocol
 #sidebar TableOfContents
 
+
+
+===参考资料===
+`[1].` http://zh.wikipedia.org/wiki/Sockets_Direct_Protocol<br>
+`[2].` http://en.wikipedia.org/wiki/Remote_direct_memory_access<br>
+`[3].` http://hi.baidu.com/widebright/item/54a035f658312848932af2af<br>

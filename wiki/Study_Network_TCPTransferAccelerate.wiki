@@ -1,6 +1,10 @@
 #summary TCP传输加速
 #sidebar TableOfContents
 
+ * Loss-based （基于丢包的拥塞判断及处理）– 以丢包来判断拥塞并调整传输速率
+ * Delay-based（基于延迟的拥塞判断及处理）– 以往返延迟（Round Trip Time, RTT）变化来判断拥塞并调整传输速率
+ * Learning-based（基于学习的拥塞判断及处理）– 通过对路径上传输历史的学习动态判断拥塞并调整传输速率
+
 
 ===参考资料===
 `[1].` http://www.appexnetworks.com.cn/white-papers/Zeta-TCP.pdf<br>

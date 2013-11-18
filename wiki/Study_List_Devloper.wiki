@@ -9,7 +9,9 @@
   * `java.util.ArrayList & java.util.LinkedList`
   * `java.util.HashMap & java.util.LinkedHashMap & java.util.TreeMap`
   * `java.util.HashSet & java.util.LinkedHashSet & java.util.TreeSet`
- # Java实现对List排序
+ # Java实现对Array/List排序
+  * `java.uti.Arrays.sort()`
+  * `java.util.Collections.sort()`
  # Java实现对List去重
  # Java实现对List去重，并且需要保留数据原始的出现顺序
  # Java实现通过正则表达式提取一段文本中的电子邮件，并将 `@` 替换为 `#` 输出

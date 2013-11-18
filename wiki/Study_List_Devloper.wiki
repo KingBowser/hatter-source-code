@@ -149,6 +149,8 @@ public static void main(java.lang.String[]);
  # 什么是CDN？如果实现？DNS起到什么作用？
   * 搭建一个DNS服务器
   * 搭建一个 `Squid` 或 `Apache Traffic Server` 服务器
+   * http://www.squid-cache.org/
+   * http://trafficserver.apache.org/
 
 ====相关资料====
 `[1].` http://www.ietf.org/rfc/rfc2616.txt<br>

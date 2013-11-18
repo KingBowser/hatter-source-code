@@ -124,7 +124,9 @@ public static void main(java.lang.String[]);
    line 8: 16
 }}}
  # 使用CGLIB做一个AOP程序
+  * http://cglib.sourceforge.net/
  # 使用ASM实现上述CGLIB实现的功能
+  * http://asm.ow2.org/
 
 ====相关资料====
 `[1].` http://book.douban.com/subject/1138768/<br>

@@ -56,6 +56,27 @@ public class Sample {
   * `java.util.concurrent.ConcurrentHashMap`
   * `java.util.concurrent.Executors`
   * `...`
+ # 解释一下下面两段代码的差别：
+
+{{{
+// 代码1
+public class Sample {
+  private static int count = 0;
+
+  public static void increment() {
+    count++;
+  }
+}
+
+// 代码2
+public class Sample {
+  private static AtomicInteger count = new AtomicInteger(0);
+
+  public static void increment() {
+    count.getAndDecrement();
+  }
+}
+}}}
 
 ====相关资料====
 `[1].` http://www.cs.umd.edu/~pugh/java/memoryModel/<br>

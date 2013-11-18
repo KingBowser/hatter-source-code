@@ -145,6 +145,9 @@ public static void main(java.lang.String[]);
   * 使用nio处理客户端请求
   * 支持简单的rewrite规则
   * _*上述功能在实现的时候需要满足“开闭原则”*_
+ # 了解 `nginx` 和 `apache` 服务器的特性并搭建一个对应的服务器
+  * http://nginx.org/
+  * http://httpd.apache.org/
  # 用Java实现FTP、SMTP协议
  # 什么是CDN？如果实现？DNS起到什么作用？
   * 搭建一个DNS服务器
@@ -156,8 +159,6 @@ public static void main(java.lang.String[]);
 `[1].` http://www.ietf.org/rfc/rfc2616.txt<br>
 `[2].` http://tools.ietf.org/rfc/rfc5321.txt<br>
 `[3].` http://en.wikipedia.org/wiki/Open/closed_principle<br>
-`[4].` http://www.squid-cache.org/<br>
-`[5].` http://trafficserver.apache.org/<br>
 
 ==五、网络安全知识==
  # 什么是DES、AES？

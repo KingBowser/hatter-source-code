@@ -8,3 +8,6 @@ Sockets Direct Protocol（SDP）最初由Infiniband行业协会（InfiniBand Tra
 `[1].` http://zh.wikipedia.org/wiki/Sockets_Direct_Protocol<br>
 `[2].` http://en.wikipedia.org/wiki/Remote_direct_memory_access<br>
 `[3].` http://hi.baidu.com/widebright/item/54a035f658312848932af2af<br>
+`[4].` http://www.cs.albany.edu/~jhh/courses/readings/frey.icdcs09.rdma.pdf<br>
+`[5].` http://www.systems.ethz.ch/sites/default/files/file/Spring2013_Courses/AdvCompNetw_Spring2013/11-Network-Virtualization-1up.pdf<br>
+`[6].` http://www.ietf.org/rfc/rfc4297.txt<br>

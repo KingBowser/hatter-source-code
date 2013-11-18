@@ -5,6 +5,10 @@ Sockets Direct Protocol（SDP）最初由Infiniband行业协会（InfiniBand Tra
 
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/network/RDMA/Figure1.jpg]
 
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/network/RDMA/TraditionalDMA.png]
+
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/network/RDMA/RemoteDMA.png]
+
 
 ===参考资料===
 `[1].` http://zh.wikipedia.org/wiki/Sockets_Direct_Protocol<br>

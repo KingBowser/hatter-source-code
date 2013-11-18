@@ -1,6 +1,7 @@
 #summary Sockets Direct Protocol
 #sidebar TableOfContents
 
+Sockets Direct Protocol（SDP）最初由Infiniband行业协会（InfiniBand Trade Association）的软件工作组（Software Working Group）所指定，主要针对Infiniband架构。后来SDP发展成为利用RDMA特性进行传输的重要协议，并被推广到iWARP等网络上。SDP利用RDMA网络特性能够高效的进行零拷贝的数据传输。SDP协议的设计目标是为了使得应用程序能够透明地利用RDMA通信机制来加速传统的TCP/IP网络通信。
 
 
 ===参考资料===

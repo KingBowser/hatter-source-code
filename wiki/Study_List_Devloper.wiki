@@ -144,7 +144,7 @@ public static void main(java.lang.String[]);
   * 使用线程池处理客户端请求
   * 使用nio处理客户端请求
   * 支持简单的rewrite规则
-  * *上述功能在实现的时候需要满足“开闭原则”*
+  * _*上述功能在实现的时候需要满足“开闭原则”*_
  # 用Java实现FTP、SMTP协议
  # 什么是CDN？如果实现？DNS起到什么作用？
 

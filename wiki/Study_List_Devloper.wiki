@@ -63,7 +63,7 @@ public class Sample {
 public class Sample {
   private static int count = 0;
 
-  public static void increment() {
+  synchronized public static void increment() {
     count++;
   }
 }

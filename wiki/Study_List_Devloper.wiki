@@ -51,6 +51,8 @@
 `[2].` http://commons.apache.org/<br>
 `[3].` https://code.google.com/p/guava-libraries/<br>
 `[4].` http://netty.io/<br>
+`[5].` http://stackoverflow.com/questions/2954372/difference-between-spi-and-api<br>
+`[6].` http://stackoverflow.com/questions/11404230/how-to-implement-the-api-spi-pattern-in-java<br>
 
 ==二、`Java`并发编程==
  # Java内存模型是什么？

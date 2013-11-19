@@ -31,6 +31,9 @@
   * `commons.lang, commons.*, ...`
   * `guava-libraries`
   * `netty`
+ # 什么是 API & SPI ？
+  * http://en.wikipedia.org/wiki/Application_programming_interface
+  * http://en.wikipedia.org/wiki/Service_provider_interface
  # 学习使用Java工具
   * `jps, jstack, jmap, jconsole, jinfo, jhat, javap, ...`
   * http://kenai.com/projects/btrace

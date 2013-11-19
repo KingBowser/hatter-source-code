@@ -209,6 +209,7 @@ public static void main(java.lang.String[]);
  # 什么是prototype？
   * 修改代码，使程序输出“1 3 5”： http://jsfiddle.net/Ts7Fk/
  # 什么是闭包？
+  * 看一下这段代码，并解释一下为什么按Button1时没有alert出“This is button: 1”，如何修改：http://jsfiddle.net/FDPj3/
  # 用jQuery写个程序
  # 用node.js写个程序
 

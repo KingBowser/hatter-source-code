@@ -214,8 +214,9 @@ public static void main(java.lang.String[]);
    * http://jsfiddle.net/FDPj3/1/
  # 了解并学习一个JS框架
   * jQuery
-  * extJS
-  * DOJO
+  * ExtJS
+  * Dojo
+  * AngularJS
  # 写一个Greasemonkey插件
   * http://en.wikipedia.org/wiki/Greasemonkey
  # 用node.js写个程序

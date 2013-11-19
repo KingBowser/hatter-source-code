@@ -272,6 +272,9 @@ println(b);
 `[1].` http://db-engines.com/en/ranking<br>
 
 ==九、其他知识==
+ # 学习使用git
+  * https://github.com/
+  * https://git.oschina.net/
 
 ====相关资料====
 

@@ -6,9 +6,21 @@
 ==一、`Java`基础知识==
  # 看一下以下类的源代码
   * `java.lang.String`
+  * `java.lang.Enum`
+  * `java.math.BigDecimal`
+  * `java.lang.ThreadLocal`
+  * `java.lang.ClassLoader` & `java.net.URLClassLoader`
   * `java.util.ArrayList & java.util.LinkedList`
   * `java.util.HashMap & java.util.LinkedHashMap & java.util.TreeMap`
   * `java.util.HashSet & java.util.LinkedHashSet & java.util.TreeSet`
+ # 浏览一下以下类的接口及说明
+  * `java.io.*`
+  * `java.lang.*`
+  * `java.lang.management.*`
+  * `java.lang.ref.*`
+  * `java.lang.reflect.*`
+  * `java.util.*`
+  * `java.net.*`
  # Java实现对Array/List排序
   * `java.uti.Arrays.sort()`
   * `java.util.Collections.sort()`

@@ -211,7 +211,7 @@ public static void main(java.lang.String[]);
    * http://jsfiddle.net/Ts7Fk/
  # 什么是闭包？
   * 看一下这段代码，并解释一下为什么按Button1时没有alert出“This is button: 1”，如何修改：
-   * http://jsfiddle.net/FDPj3/
+   * http://jsfiddle.net/FDPj3/1/
  # 了解并学习一个JS框架
   * jQuery
   * extJS

@@ -1,0 +1,13 @@
+#summary I/O
+#sidebar TableOfContents
+
+unix的五种I/O模型：
+ * 阻塞I/O
+ * 非阻塞I/O
+ * I/O复用(select和poll)
+ * 信号驱动I/O（SIGIO)
+ * 异步I/O
+
+
+===参考资料===
+`[1].` http://jasonwu.me/2012/12/04/the_unp_reading_notes_io_model.html<br>

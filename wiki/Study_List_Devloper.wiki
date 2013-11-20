@@ -299,6 +299,14 @@ println(b);
   * https://git.oschina.net/
  # 学习使用gradle
   * http://www.gradle.org/
+ # 学习一个小语种语言
+  * `Groovy`
+  * `Scala`
+  * `LISP, Common LISP, Schema, Clojure`
+  * `R`
+  * `Julia`
+  * `Lua`
+  * `Ruby`
 
 ====相关资料====
 `[1].` http://git-scm.com/<br>

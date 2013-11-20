@@ -1,7 +1,7 @@
 #summary I/O
 #sidebar TableOfContents
 
-unix的五种I/O模型：
+Linux/Unix的五种I/O模型：
  * 阻塞I/O
  * 非阻塞I/O
  * I/O复用(select和poll)

@@ -16,9 +16,9 @@ Linux/Unix的五种I/O模型：
 
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/linux/io/sio.jpg]
 
-http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/linux/io/aio.jpg
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/linux/io/aio.jpg]
 
-http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/linux/io/io_cmp.jpg
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/linux/io/io_cmp.jpg]
 
 
 

@@ -7,3 +7,4 @@
 
 ===参考资料===
 `[1].` http://wenku.baidu.com/view/c684fc4ecf84b9d528ea7aa4.html<br>
+`[2].` http://jasonwu.me/2012/09/11/detailed_lvs_difference_between_the_three_models.html<br>

@@ -156,7 +156,7 @@ public static void main(java.lang.String[]);
 `[7].` http://cglib.sourceforge.net/<br>
 
 ==四、网络编程知识==
- # 用Java写一个简单的表态文件的HTTP服务器
+ # 用Java写一个简单的静态文件的HTTP服务器
   * 实现客户端缓存功能，支持返回304
   * 实现可并发下载一个文件
   * 使用线程池处理客户端请求

@@ -307,6 +307,21 @@ println(b);
   * `Julia`
   * `Lua`
   * `Ruby`
+ #  尝试了解编码的本质
+  * 不使用 `String.getBytes()` 等其他工具类/函数完成下面功能
+{{{
+    public static void main(String[] args) throws IOException {
+        String str = "Hello, 我们是中国人。";
+        byte[] utf8Bytes = toUTF8Bytes(str);
+        FileOutputStream fos = new FileOutputStream("f.txt");
+        fos.write(utf8Bytes);
+        fos.close();
+    }
+
+    public static byte[] toUTF8Bytes(String str) {
+        return null; // TODO
+    }
+}}}
 
 ====相关资料====
 `[1].` http://git-scm.com/<br>

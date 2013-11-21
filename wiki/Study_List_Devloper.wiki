@@ -308,6 +308,10 @@ println(b);
   * `Lua`
   * `Ruby`
  #  尝试了解编码的本质
+  * 了解以下概念
+   * `ASCII, ISO-8859-1`
+   * `GB2312, GBK, GB18030`
+   * `Unicode, UTF-8`
   * 不使用 `String.getBytes()` 等其他工具类/函数完成下面功能
 {{{
     public static void main(String[] args) throws IOException {
@@ -322,6 +326,13 @@ println(b);
         return null; // TODO
     }
 }}}
+  * 写个程序自动判断一个文件是哪种编码
+ # 尝试了解时间的本质
+  * 了解以下概念
+   ＊ 时区
+    * 冬令时、夏令时
+    * 闰年、闰秒
+  * `System.currentTimeMillis()` 返回的时间是什么
 
 ====相关资料====
 `[1].` http://git-scm.com/<br>

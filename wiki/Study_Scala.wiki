@@ -1,5 +1,7 @@
 #summary Scala Study
 #sidebar TableOfContents
 
+[http://twitter.github.io/scala_school/zh_cn/index.html]
+
 ==Official Website==
 [http://www.scala-lang.org/]

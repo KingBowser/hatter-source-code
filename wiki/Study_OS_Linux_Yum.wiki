@@ -1,4 +1,4 @@
-#summary Linux VmStat
+#summary Linux Yum
 #sidebar TableOfContents
 
 {{{

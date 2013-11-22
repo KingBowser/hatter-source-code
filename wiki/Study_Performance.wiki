@@ -2,9 +2,12 @@
 #sidebar TableOfContents
 
 =性能参数=
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/performance/time_comp.jpg]
 
 =性能工具=
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/performance/linux-performance-analysis-and-tools.jpeg]
+
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/performance/linux-performance-analysis-and-tools.pdf]
 
 ===参考资料===
 `[1].` http://weibo.com/2216172320/AjVON5lfN<br>

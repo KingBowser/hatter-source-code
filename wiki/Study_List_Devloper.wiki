@@ -350,3 +350,10 @@ println(b);
 ==【推荐阅读】==
  * http://book.douban.com/subject/25723064/
  * http://book.douban.com/subject/23008813/
+ * http://book.douban.com/subject/10555435/
+ * http://book.douban.com/subject/10549733/
+ * http://book.douban.com/subject/1091086/
+ * http://book.douban.com/subject/20271450/
+ * http://book.douban.com/subject/1138768/
+ * http://book.douban.com/subject/6522893/
+ * http://book.douban.com/subject/1477390/

@@ -1,6 +1,10 @@
 #summary Performance
 #sidebar TableOfContents
 
+=性能参数=
 
+=性能工具=
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/performance/linux-performance-analysis-and-tools.jpeg]
 
 ===参考资料===
+`[1].` http://weibo.com/2216172320/AjVON5lfN<br>

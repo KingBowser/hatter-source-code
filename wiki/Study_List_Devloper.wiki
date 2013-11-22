@@ -333,6 +333,7 @@ println(b);
     * 时区 & 冬令时、夏令时
      * ftp://ftp.iana.org/tz/data/asia
     * 闰年
+     * http://en.wikipedia.org/wiki/Leap_year
     * 闰秒
      * ftp://ftp.iana.org/tz/data/leapseconds
   * `System.currentTimeMillis()` 返回的时间是什么

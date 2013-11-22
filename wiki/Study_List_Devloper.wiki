@@ -330,9 +330,11 @@ println(b);
   * 写个程序自动判断一个文件是哪种编码
  # 尝试了解时间的本质
   * 了解以下概念
-    * 时区
-    * 冬令时、夏令时
-    * 闰年、闰秒
+    * 时区 & 冬令时、夏令时
+     * ftp://ftp.iana.org/tz/data/asia
+    * 闰年
+    * 闰秒
+     * ftp://ftp.iana.org/tz/data/leapseconds
   * `System.currentTimeMillis()` 返回的时间是什么
 
 ====相关资料====

@@ -45,7 +45,7 @@
  # 学习Java诊断工具
   * http://www.eclipse.org/mat/
   * http://visualvm.java.net/oqlhelp.html
- # 使用工具尝试解决以下问题，并写下总结【没有问题也要创造问题、解决问题】
+ # 使用工具尝试解决以下问题，并写下总结 【 _*没有问题也要创造问题、解决问题*_ 】
   * 当一个Java程序响应很慢时如何查找问题？
   * 当一个Java程序频繁 `FullGC` 时如何解决问题？
   * 当一个Java应用发生 `OutOfMemoryError` 时该如何解决？

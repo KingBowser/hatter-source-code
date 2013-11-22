@@ -338,7 +338,7 @@ println(b);
 ====相关资料====
 `[1].` http://git-scm.com/<br>
 `[2].` http://en.wikipedia.org/wiki/UTF-8<br>
-`[3].` ftp://ftp.iana.org/tz/data/asia<br>
+`[3].` http://www.iana.org/time-zones<br>
 
 ==十、综合应用==
  # 参考node.js用Java实现一个 :)

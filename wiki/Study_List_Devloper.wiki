@@ -80,8 +80,7 @@ public class Sample {
   * `java.util.concurrent.ConcurrentHashMap`
   * `java.util.concurrent.Executors`
   * `...`
- # 解释一下下面两段代码的差别：
-
+ # 分析并解释一下下面两段代码的差别：
 {{{
 // 代码1
 public class Sample {

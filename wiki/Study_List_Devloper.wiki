@@ -368,3 +368,4 @@ println(b);
 || 深入理解Java虚拟机 || http://book.douban.com/subject/6522893/ ||
 || 代码大全（第2版） || http://book.douban.com/subject/1477390/ ||
 || 重构 || http://book.douban.com/subject/1229923/ ||
+|| Effective Java 中文版 || http://book.douban.com/subject/1103015/ ||

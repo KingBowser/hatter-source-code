@@ -13,7 +13,7 @@ $ jcmd <pid | main class> <command | PerfCounter.print | -f filename>
 }}}
 
 
-jcmd
+==jcmd命令列表：==
 || `help` || || ||
 || `ManagementAgent.stop` || || ||
 || `ManagementAgent.start_local` || || ||

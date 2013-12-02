@@ -13,6 +13,28 @@ $ jcmd <pid | main class> <command | PerfCounter.print | -f filename>
 }}}
 
 
+jcmd
+|| `help` || || ||
+|| `ManagementAgent.stop` || || ||
+|| `ManagementAgent.start_local` || || ||
+|| `ManagementAgent.start` || || ||
+|| `Thread.print` || || ||
+|| `GC.class_histogram` || || ||
+|| `GC.heap_dump` || || ||
+|| `GC.run_finalization` || || ||
+|| `GC.run` || || ||
+|| `VM.uptime` || || ||
+|| `VM.flags` || || ||
+|| `VM.system_properties` || || ||
+|| `VM.command_line` || || ||
+|| `VM.version` || || ||
+|| `VM.commercial_features` || || ||
+|| `JFR.stop` || || ||
+|| `JFR.start` || || ||
+|| `JFR.dump` || || ||
+|| `JFR.check` || || ||
+
+
 ===参考资料===
 `[1].` http://www.coppermine.jp/docs/programming/2012/08/jdk7u4.html<br>
 `[2].` http://www.slideshare.net/TsunenagaHanyuda/jcmd-16803399<br>

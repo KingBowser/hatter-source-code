@@ -1,6 +1,10 @@
 #summary HotSpot Java Command
 #sidebar TableOfContents
 
+{{{
+jcmd <pid> <command> ...
+}}}
+
 
 ===参考资料===
 `[1].` http://www.coppermine.jp/docs/programming/2012/08/jdk7u4.html<br>

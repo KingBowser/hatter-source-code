@@ -1,0 +1,7 @@
+#summary HotSpot Memory Native Memory Tracking
+#sidebar TableOfContents
+
+
+===参考资料===
+`[1].` http://hirt.se/blog/?p=401<br>
+`[2].` http://www.slideshare.net/TakahiroYamada3/native-memory-tracking<br>

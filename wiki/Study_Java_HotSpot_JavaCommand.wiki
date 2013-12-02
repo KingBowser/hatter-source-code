@@ -14,7 +14,8 @@ $ jcmd <pid | main class> <command | PerfCounter.print | -f filename>
 
 
 ==jcmd命令列表：==
-|| `help` || || ||
+|| *命令名* || *成本* || *说明* ||
+|| `help` || `N/A` || 帮助 ||
 || `ManagementAgent.stop` || || ||
 || `ManagementAgent.start_local` || || ||
 || `ManagementAgent.start` || || ||

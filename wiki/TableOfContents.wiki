@@ -62,6 +62,7 @@
    * [Study_Java_HotSpot_Error Error]
    * [Study_Java_HotSpot_GCCause GCCause]
    * [Study_Java_HotSpot_Glossay Glossay]
+   * [Study_Java_HotSpot_JavaCommand Java Command]
    * [Study_Java_HotSpot_NativeMemoryTracking Native Memory Tracking]
    * [Study_Java_HotSpot_Memory Memory]
    * [Study_Java_HotSpot_Network Network]

@@ -3,6 +3,13 @@
 
 {{{
 jcmd <pid> <command> ...
+
+Sample:
+$ jcmd
+
+$ jcmd <pid> help
+
+$ jcmd <pid | main class> <command | PerfCounter.print | -f filename>
 }}}
 
 

@@ -51,5 +51,11 @@ SCM (Source Control Management)
 || `hg serve -p 8002 &` ||
 || `git daemon –base-path=/path/to/repo –export-all &` ||
 
+=SCM管理平台=
+|| *Bitbucket* || https://bitbucket.org/ ||
+|| *GitHub* || https://github.com/ ||
+|| *Google Code* || https://code.google.com/hosting/ ||
+|| *SourceForge* || http://sourceforge.net/ ||
+
 ===参考资料===
 `[1].` http://www.1uu2.com/archives/992<br>

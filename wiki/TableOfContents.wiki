@@ -37,6 +37,7 @@
   * [Study_Database_Oracle Oracle]
    * [Study_Database_Oracle_Hint Hint]
   * [Study_Database_SQLite SQLite]
+  * [Study_Database_Visualization Visualization]
  * [Study_GPU GPU]
   * [Study_GPU_GPGPU GPGPU]
  * [Study_Hadoop Hadoop]

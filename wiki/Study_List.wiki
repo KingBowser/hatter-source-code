@@ -23,6 +23,8 @@ Hi, 这是我的学习记录。
 
 http://grepcode.com/
 
+http://learnxinyminutes.com/
+
 [https://code.google.com/p/hatter-source-code/wiki/HotSpot_Profiler Manage HotSpot JVM]
 
 My Book list: [Study_List_Books]

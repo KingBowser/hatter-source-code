@@ -16,6 +16,7 @@
   * [Study_Build_Gradle Gradle]
   * [Study_Build_Leiningen Leiningen]
   * [Study_Build_Maven Maven]
+ * [Study_Cache Cache]
  * [Study_Cloud Cloud]
  * [Study_CPU CPU]
   * [Study_CPU_Intel Intel]

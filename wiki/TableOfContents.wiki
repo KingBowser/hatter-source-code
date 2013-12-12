@@ -31,7 +31,7 @@
    * [Study_Database_MySQL_Collation Collation]
    * [Study_Database_MySQL_Explain Explain]
    * [Study_Database_MySQL_InnoDB InnoDB]
-   * [Study_Database_MySQL_Lock Lock]
+   * [Study_Database_MySQL_InnoDB_Lock Lock]
    * [Study_Database_MySQL_Show Show]
    * [Study_Database_MySQL_Q_And_A Question&Answer]
     * [Study_Database_MySQL_Q_And_A_BinLogDeleteSync BinLogDeleteSync]

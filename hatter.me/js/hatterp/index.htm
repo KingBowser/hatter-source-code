@@ -26,6 +26,21 @@ function updateCode() {
   }
 }
 
+function openP() {
+  var url = document.getElementById("targetUrl").value;
+  if (url.length == 0) {
+    // DO NOTHING
+  } else {
+    var u = [];
+    u.push("https://");
+    u.push("hatter.me");
+    u.push("/p");
+    u.push("?url=");
+    u.push(encodeURIComponent(url));
+    window.open(u.join(""));
+  }
+}
+
 </script>
 
 <br>
@@ -39,6 +54,9 @@ function updateCode() {
   </tr>
   <tr>
   <td>WGET:</td><td><code id="codeWget"></code></td>
+  </tr>
+  <tr>
+  <td><button class="btn btn-primary" onclick="openP();">&nbsp;&nbsp;G O !&nbsp;&nbsp;</button></td>
   </tr>
 </div>
 

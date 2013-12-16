@@ -110,6 +110,10 @@
 从1951年至今，人类一共发明了256种编程语言，每一种语言的出现都带有某些新特征。编程语言不断的在革新，很快就会有超出这个清单的新编程语言出现。
 }}}
 
+{{{
+http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/programming/prg_history.jpg
+}}}
+
 
 ===参考资料===
 `[1].` http://www.yankay.com/go-clear-concurreny/<br>

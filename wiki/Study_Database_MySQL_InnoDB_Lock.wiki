@@ -1,6 +1,8 @@
 #summary MySQL InnoDB Lock
 #sidebar TableOfContents
 
+MySQL InnoDB存储引擎，实现的是基于多版本的并发控制协议——MVCC (Multi-Version Concurrency Control) (注：与MVCC相对的，是基于锁的并发控制，Lock-Based Concurrency Control)。MVCC最大的好处：读不加锁，读写不冲突。几乎所有的RDBMS，都支持了MVCC。
+
  * *快照读(snapshot read)*：简单的select操作，属于快照读，不加锁。(也有例外)
   * `select * from table where ?;`
  * *当前读(current read)*：特殊的读操作，插入/更新/删除操作，属于当前读，需要加锁。

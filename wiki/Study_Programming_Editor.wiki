@@ -30,6 +30,12 @@
 || *Name* || *License* || *Web site* || *Description* ||
 || `pandoc` || LGPL || http://johnmacfarlane.net/pandoc/ || a universal document converter ||
 
+==浏览器编辑器==
+|| *Name* || *License* || *Web site* || *Description* ||
+|| `EpicEditor ` || `-` || http://oscargodson.github.io/EpicEditor/ || An Embeddable JavaScript Markdown Editor ||
+|| `Ace` || `BSD` || http://ace.c9.io/ || Ace is an embeddable code editor written in JavaScript. ||
+|| `CodeMirror` || `MIT` || http://codemirror.net/ || CodeMirror is a versatile text editor implemented in JavaScript for the browser. ||
+
 ==Markdown==
 http://daringfireball.net/projects/markdown/
 

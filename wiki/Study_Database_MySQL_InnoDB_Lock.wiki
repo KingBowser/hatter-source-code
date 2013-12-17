@@ -9,6 +9,8 @@
   * `insert into table values (…);`
   * `update table set ? where ?;`
   * `delete from table where ?;`
+
+
 ===参考资料===
 `[1].` http://dev.mysql.com/doc/refman/5.0/en/innodb-lock-modes.html<br>
 `[2].` http://dev.mysql.com/doc/refman/5.0/en/innodb-record-level-locks.html<br>

@@ -64,6 +64,7 @@ _[http://www.ecma-international.org/publications/standards/Ecma-262-arch.htm]_
 || `Closure Compiler` || http://closure-compiler.appspot.com/home || Closure Compiler Service ||
 || `Jash` || http://www.billyreisinger.com/jash/ || Jash: JavaScript Shell ||
 || `jsFiddle ` || http://jsfiddle.net/ || mootools shell, easy test you snippets before implementing ||
+|| `-` || http://fiddle.jshell.net/ || `-` ||
 || `JS Bin` || http://jsbin.com/ || JS Bin - Collaborative JavaScript Debugging ||
 || `CodeMirror` || http://codemirror.net/ || CodeMirror is a JavaScript component that provides a code editor in the browser ||
 || `Mergely` || http://www.mergely.com/ || Mergely - Diff and merge documents online ||

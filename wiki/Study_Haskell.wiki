@@ -3,7 +3,7 @@
 
 http://www.haskell.org/
 
-{{
+{{{
 $ ghci
 Prelude>
 }}}

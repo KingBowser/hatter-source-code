@@ -8,6 +8,10 @@
 /etc/security/limits.d/90-nproc.conf
 }}}
 
+{{{
+cat /proc/<pid>/limits
+}}}
+
 ==ulimit 参数说明==
 || 选项 [options] || 含义 || 例子 ||
 || -H	 || 设置硬资源限制，一旦设置不能增加。 ||  ulimit -Hs 64；限制硬资源，线程栈大小为 64K。 ||

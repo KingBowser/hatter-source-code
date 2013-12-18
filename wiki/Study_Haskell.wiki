@@ -3,6 +3,11 @@
 
 http://www.haskell.org/
 
+{{
+$ ghci
+Prelude>
+}}}
+
 http://shuklan.com/haskell/index.html
 
 http://learnyouahaskell.com/chapters

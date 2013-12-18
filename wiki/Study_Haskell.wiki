@@ -6,6 +6,9 @@ http://www.haskell.org/
 {{{
 $ ghci
 Prelude>
+
+1 + 1
+(+) 1 1
 }}}
 
 http://shuklan.com/haskell/index.html

@@ -5,7 +5,7 @@ http://www.haskell.org/
 
 {{{
 $ ghci
-Prelude>
+Prelude> :quit
 
 1 + 1
 (+) 1 1

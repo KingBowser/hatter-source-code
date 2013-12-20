@@ -359,7 +359,7 @@ println(b);
 ----
 ==【别人学什么】==
 || *前端工程师学什么？* || https://github.com/JacksonTian/fks ||
-|| *不知道谁的演习笔记，不过不错哦* || http://dirlt.com/ ||
+|| *[http://weibo.com/dirlt @章炎-友盟]* || http://dirlt.com/ ||
 
 ==【推荐阅读】==
 || 大型网站技术架构 || http://book.douban.com/subject/25723064/ ||

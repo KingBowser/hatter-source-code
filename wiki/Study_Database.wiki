@@ -56,3 +56,7 @@ Neo4j is a high-performance, NOSQL graph database with all the features of a mat
 http://db-engines.com/en/ranking
 
 取数据库元数据信息： http://db.apache.org/ddlutils/
+
+===参考资料===
+`[1].` http://cargocultcoder.blogspot.se/2012/12/what-databases-fix.html<br>
+`[2].` http://www.aqee.net/what-databases-fix/<br>

@@ -39,6 +39,7 @@ jstat -J-Djstat.showUnsupported=true -snap <pid>
 >>> hotspot.log
 }}}
 
+http://jinwoohwang.com/index.html
 
 ==Java Performance==
  * [http://www.javaperformancetuning.com/]

@@ -57,6 +57,8 @@ http://db-engines.com/en/ranking
 
 取数据库元数据信息： http://db.apache.org/ddlutils/
 
+----
+
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/database/whysomanydb.jpg]
 
 ===参考资料===

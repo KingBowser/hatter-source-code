@@ -114,6 +114,9 @@
 http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/programming/prg_history.jpg
 }}}
 
+ * Computer History Museum
+ http://www.softwarepreservation.org/
+
 
 ===参考资料===
 `[1].` http://www.yankay.com/go-clear-concurreny/<br>

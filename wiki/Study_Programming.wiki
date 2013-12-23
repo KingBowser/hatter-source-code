@@ -114,8 +114,7 @@
 http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/programming/prg_history.jpg
 }}}
 
- * Computer History Museum
- http://www.softwarepreservation.org/
+|| *Computer History Museum* || http://www.softwarepreservation.org/ ||
 
 
 ===参考资料===

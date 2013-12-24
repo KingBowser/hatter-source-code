@@ -77,7 +77,10 @@ _[http://www.ecma-international.org/publications/standards/Ecma-262-arch.htm]_
 || `node.js` || http://nodejs.org/ || Node.js is a platform built on Chrome's JavaScript runtime for easily building fast, scalable network applications.  ||
 || `Grunt` || http://gruntjs.com/ || Grunt: The JavaScript Task Runner ||
 
-===五、MVC MVVM框架 ^[6]^===
+===五、游戏===
+|| `Phaser` || http://phaser.io/ || Desktop and Mobile HTML5 game framework ||
+
+===六、MVC MVVM框架 ^[6]^===
 || `Backbone` || http://backbonejs.org/ ||
 || `Meteor` || http://www.meteor.com/ ||
 || `Ember` || http://emberjs.com/ ||
@@ -88,28 +91,28 @@ _[http://www.ecma-international.org/publications/standards/Ecma-262-arch.htm]_
 || `CanJS` || http://canjs.us/ ||
 || `Avalon` || http://rubylouvre.github.io/mvvm/ ||
 
-===六、在服务器端应用===
+===七、在服务器端应用===
 || `ASP/ASP.NET` ||  ||  ||
 || `node.js` || http://nodejs.org/ || Node.js is a platform built on Chrome's JavaScript runtime for easily building fast, scalable network applications. ||
 || `jssp` || http://jssp.sourceforge.net/ || JSSP - JavaScript Server Pages ||
 
-===七、调试工具===
+===八、调试工具===
 || `Firebug` || http://getfirebug.com/ || The most popular and powerful web development tool ||
 || `Firebug Lite` || http://getfirebug.com/firebuglite || Firebug Lite: doing the Firebug way, anywhere ||
 || `leak-finder-for-javascript` || http://code.google.com/p/leak-finder-for-javascript/ || Tool for finding memory leaks in JavaScript programs ||
 || `jsdt` || http://code.google.com/p/jsdt/ || Javascript Debug Toolkit is a software can debug javascript in ie,firefox,safari,chrome,opera,mobile ie browser,mobile opera browser and so on ||
 
-===八、相关网站===
+===九、相关网站===
 || The HTML5 test || http://html5test.com/ || The HTML5 test score is an indication of how well your browser supports the upcoming HTML5 standard and related specifications ||
 || OpenAjax || http://www.openajax.org/ || The OpenAjax Alliance is an organization of leading vendors, open source projects, and companies using Ajax that are dedicated to the successful adoption of open and interoperable Ajax-based Web technologies. ||
 || Command Line API || http://getfirebug.com/wiki/index.php/Command_Line_API || The Firebug Command Line provides these special functions for your convenience. ||
 
-===九、友情连接===
+===十、友情连接===
 || ECMAScript5.1中文版 || http://www.ecmascript.cn/ || ECMAScript5.1中文版 ||
 || 开源中国在线工具-OSCTools || http://www.ostools.net/ || 开源中国在线工具,osctools为开发设计人员提供在线工具，提供jsbin在线 CSS、JS 调试，在线 Java API文档,在线 PHP API文档,在线 Node.js API文档,Less CSS编译器，MarkDown编译器等其他在线工具 ||
 || JSDB.io || http://jsdb.io/ || JSDB.io - The Database of JavaScript Libraries ||
 
-===十、参考资料===
+===十一、参考资料===
 `[1].` http://en.wikipedia.org/wiki/JavaScript<br>
 `[2].` http://en.wikipedia.org/wiki/ECMAScript<br>
 `[3].` http://ejohn.org/blog/the-world-of-ecmascript/<br>

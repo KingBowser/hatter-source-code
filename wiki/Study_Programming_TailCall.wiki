@@ -1,0 +1,9 @@
+#summary Tail Call
+#sidebar TableOfContents
+
+
+
+
+===参考资料===
+`[1].` http://zh.wikipedia.org/wiki/%E5%B0%BE%E8%B0%83%E7%94%A8<br>
+`[2].` http://ssw.jku.at/Research/Papers/Schwaighofer09Master/schwaighofer09master.pdf<br>

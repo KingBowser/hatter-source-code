@@ -217,6 +217,11 @@ tr \\0 \\n </proc/PID/environ
 ps eww -p PID
 }}}
 
+{{{
+/var/run/utmp -- database of currently logged-in users
+/var/log/wtmp  -- database of past user logins
+}}}
+
 
 {{{
 sed 's/aaa/bbb/g' file.name.txt 

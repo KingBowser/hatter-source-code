@@ -4,8 +4,17 @@ import java.util.Collection;
 
 public class ClassDef {
 
-    private String                   name;
-    private Collection<MethodDef>    methodDefs;
+    private String                refJar;
+    private String                name;
+    private Collection<MethodDef> methodDefs;
+
+    public String getRefJar() {
+        return refJar;
+    }
+
+    public void setRefJar(String refJar) {
+        this.refJar = refJar;
+    }
 
     public String getName() {
         return name;

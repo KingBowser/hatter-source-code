@@ -1,9 +1,17 @@
 package me.hatter.tools.bytecodecheck;
 
+import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
+import org.kamranzafar.jtar.TarEntry;
+import org.kamranzafar.jtar.TarInputStream;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.tree.AbstractInsnNode;
 import org.objectweb.asm.tree.ClassNode;
@@ -14,17 +22,67 @@ import org.objectweb.asm.tree.MethodNode;
 
 public class CheckMain {
 
-    public static void main(String[] args) throws IOException {
+    private static final String MATCHING_CLASS_NAME_PREFIX = "com/alibaba/";
 
-        ClassReader cr = new ClassReader("me.hatter.tools.bytecodecheck.CheckMain");
-        ClassDef cd = parseClassDef(cr);
+    public static void main(String[] args) throws IOException {
+        // UnixArgsutil.parseGlobalArgs(args);
+
+        String tarFile = "/Users/hatterjiang/temp/ttt/bss__.tar";
+        TarInputStream tis = new TarInputStream(new BufferedInputStream(new FileInputStream(tarFile)));
+        try {
+            for (TarEntry tarEntry; ((tarEntry = tis.getNextEntry()) != null);) {
+                String entryName = tarEntry.getName();
+                if (!entryName.endsWith(".jar")) {
+                    continue;
+                }
+                byte data[] = new byte[2048];
+                ByteArrayOutputStream tbaos = new ByteArrayOutputStream();
+                for (int count; (count = tis.read(data)) != -1;) {
+                    tbaos.write(data, 0, count);
+                }
+                tbaos.flush();
+                byte[] jarBytes = tbaos.toByteArray();
+                tbaos.close();
+
+                System.out.println("Entry name: " + entryName);
+
+                ByteArrayInputStream bais = new ByteArrayInputStream(jarBytes);
+                ZipInputStream zis = new ZipInputStream(bais);
+                for (ZipEntry ze; ((ze = zis.getNextEntry()) != null);) {
+                    if (!ze.getName().endsWith(".class")) {
+                        continue;
+                    }
+                    ByteArrayOutputStream jbaos = new ByteArrayOutputStream();
+                    for (int count; (count = zis.read(data)) != -1;) {
+                        jbaos.write(data, 0, count);
+                    }
+                    jbaos.flush();
+                    byte[] classBytes = jbaos.toByteArray();
+                    jbaos.close();
+
+                    try {
+                        ClassReader cr = new ClassReader(classBytes);
+                        ClassDef classDef = parseClassDef(cr, entryName);
+                        if (!classDef.getName().startsWith(MATCHING_CLASS_NAME_PREFIX)) {
+                            continue;
+                        }
+                        System.out.println("   :::::" + classDef.getName());
+                    } catch (Exception e) {
+                        System.out.println(" >>>>> " + ze.getName());
+                    }
+                }
+            }
+        } finally {
+            tis.close();
+        }
     }
 
-    private static ClassDef parseClassDef(ClassReader cr) {
+    private static ClassDef parseClassDef(ClassReader cr, String refJar) {
         ClassNode cn = new ClassNode();
         cr.accept(cn, 0);
 
         ClassDef classDef = new ClassDef();
+        classDef.setRefJar(refJar);
         classDef.setName(cn.name);
         classDef.setMethodDefs(new HashSet<MethodDef>());
         // System.out.println(cn.name);

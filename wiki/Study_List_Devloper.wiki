@@ -361,6 +361,7 @@ println(b);
 || *前端工程师学什么？* || https://github.com/JacksonTian/fks ||
 || *[http://weibo.com/dirlt @章炎-友盟]* || http://dirlt.com/ ||
 || *七天学会NodeJS* || http://nqdeng.github.io/7-days-nodejs/ ||
+|| *算法面试大全* || http://blog.csdn.net/v_july_v/article/details/6543438 ||
 
 ==【推荐阅读】==
 || 大型网站技术架构 || http://book.douban.com/subject/25723064/ ||

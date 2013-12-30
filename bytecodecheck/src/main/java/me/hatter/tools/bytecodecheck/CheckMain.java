@@ -22,7 +22,7 @@ import org.objectweb.asm.tree.MethodNode;
 
 public class CheckMain {
 
-    private static final String MATCHING_CLASS_NAME_PREFIX = "com/alibaba/";
+    private static final String MATCHING_CLASS_NAME_PREFIX = "com/" + "a" + "l" + "i" + "b" + "a" + "b" + "a/";
 
     public static void main(String[] args) throws IOException {
         // UnixArgsutil.parseGlobalArgs(args);

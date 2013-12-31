@@ -11,6 +11,9 @@
 
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/business/advertisement/cpx_compare.gif]
 
+RTB - Cookie Mapping 
+ [https://developers.google.com/ad-exchange/rtb/cookie-guide?hl=zh-CN[
+
 
 ===参考资料===
 `[1].` http://qing.blog.sina.com.cn/tj/653c2694330008bo.html<br>

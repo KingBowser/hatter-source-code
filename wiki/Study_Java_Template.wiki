@@ -1,5 +1,6 @@
 #summary Java Template
 #sidebar TableOfContents
 
+velocity
 
 http://subchen.github.io/jetbrick-template/

@@ -1,6 +1,9 @@
 #summary JavaScript Application APIs
 #sidebar TableOfContents
 
+ The ZeroClipboard library provides an easy way to copy text to the clipboard using an invisible Adobe Flash movie and a JavaScript interface.
+ http://zeroclipboard.org/
+
  * Full Screen
 {{{
 // Find the right method, call on correct element

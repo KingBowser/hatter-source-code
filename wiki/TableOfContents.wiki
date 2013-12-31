@@ -83,6 +83,7 @@
   * [Study_Java_MBean MBean]
   * [Study_Java_MemoryModel Memory Model]
   * [Study_Java_OQL Object Query Language]
+  * [Study_Java_Template Template]
   * [Study_Java_Tool Tool]
   * [Study_Java_Zing Zing]
  * [Study_OpenAuthentication Open Authentication]

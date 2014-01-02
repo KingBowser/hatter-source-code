@@ -57,6 +57,7 @@ SCM (Source Control Management)
 || *Google Code* || https://code.google.com/hosting/ ||
 || *SourceForge* || http://sourceforge.net/ ||
 || *开源中国社区* || https://git.oschina.net/ ||
+|| *GitCafe* || https://gitcafe.com/ ||
 
 ===参考资料===
 `[1].` http://www.1uu2.com/archives/992<br>

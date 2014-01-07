@@ -5,6 +5,9 @@ Azul创新的Zing JVM和无停顿垃圾回收（GC）使Apache的 Lucene 项目�
 
 Zing是基于Oracle Hotspot虚拟机的为Linux和x86高度优化的100% Java兼容的Java虚拟机。
 
+开源版：
+https://github.com/GregBowyer/ManagedRuntimeInitiative
+
 
 ===参考资料===
 `[1].` http://www.azulsystems.com/products/zing/whatisit<br>

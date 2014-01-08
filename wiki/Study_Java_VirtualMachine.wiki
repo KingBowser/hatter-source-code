@@ -3,6 +3,6 @@
 
 
 
-==谁在写VM==
+==谁在写JVM==
  * http://simpleman7210.iteye.com/
  * https://github.com/cloudsec/ajvm

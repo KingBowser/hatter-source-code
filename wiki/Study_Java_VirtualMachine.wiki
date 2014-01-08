@@ -1,2 +1,8 @@
 #summary Virtual Machine
 #sidebar TableOfContents
+
+
+
+==谁在写VM==
+ * http://simpleman7210.iteye.com/
+ * https://github.com/cloudsec/ajvm

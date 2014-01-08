@@ -86,6 +86,7 @@
   * [Study_Java_OQL Object Query Language]
   * [Study_Java_Template Template]
   * [Study_Java_Tool Tool]
+  * [Study_Java_VirtualMachine Virtual Machine]
   * [Study_Java_Zing Zing]
  * [Study_OpenAuthentication Open Authentication]
  * [Study_OpenSource Open Source]

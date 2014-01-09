@@ -11,6 +11,7 @@
 || `LiteIDE` || LGPL || http://code.google.com/p/liteide/ || LiteIDE is a simple, open source, cross-platform Go IDE. ||
 || `OpenOffice` || Apache || http://www.openoffice.org/ || The Free and Open Productivity Suite ||
 || `Sublime Text 2` || Commercial || http://www.sublimetext.com/ || Sublime Text is a sophisticated text editor for code, markup and prose. ||
+|| `Light Table` ||  `-` || http://www.lighttable.com/ || Light Table is a new interactive IDE ||
 || `Smultron ` || Commercial || http://www.peterborgapps.com/smultron/ || An elegant and powerful text editor that is easy to use. ||
 
 ==图形(UML)编辑软件==

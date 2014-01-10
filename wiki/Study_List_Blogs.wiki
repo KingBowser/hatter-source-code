@@ -8,5 +8,5 @@
  * http://www.dbathink.com/
 
 
-==博客软件==
+==博客生成软件==
  * https://github.com/ericzhang-cn/papery

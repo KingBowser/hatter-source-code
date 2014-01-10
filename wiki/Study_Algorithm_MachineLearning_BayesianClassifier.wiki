@@ -1,2 +1,6 @@
 #summary Bayesian classifier
 #sidebar TableOfContents
+
+ http://zh.wikipedia.org/wiki/%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%AE%9A%E7%90%86
+
+ http://www.cnblogs.com/leoo2sk/archive/2010/09/17/naive-bayesian-classifier.html

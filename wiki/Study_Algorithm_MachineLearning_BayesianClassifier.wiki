@@ -1,0 +1,2 @@
+#summary Bayesian classifier
+#sidebar TableOfContents

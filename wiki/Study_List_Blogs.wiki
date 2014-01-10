@@ -1,8 +1,12 @@
 #summary Blogs
 #sidebar TableOfContents
 
-
+==朋友的博客==
  * http://guanmian.net/
  * http://www.hiyangqi.com/
  * http://pangxiege.com/wordpress/
  * http://www.dbathink.com/
+
+
+==博客软件==
+ * https://github.com/ericzhang-cn/papery

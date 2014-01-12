@@ -168,6 +168,7 @@ htop
 netstat
 ulimit
 mpstat
+pidstat
 
 pstree -p <PID>
 

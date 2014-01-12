@@ -51,11 +51,13 @@ http://barcode-coder.com/en/
 || Wifi Network config || `WIFI:S:ssid;T:WEP;P:password;;` ||
 || iCal || `-` ||
 
-QR 应用：
- * Google Authenticator: https://code.google.com/p/google-authenticator/
-
+QR生成或读取:
  * Google ZXing: https://code.google.com/p/zxing/
  * Google QR Code API: https://google-developers.appspot.com/chart/infographics/docs/qr_codes
+
+QR应用：
+ * Google Authenticator: https://code.google.com/p/google-authenticator/
+
 
 ^注^ QR Code is registered trademark of DENSO WAVE INCORPORATED.
 

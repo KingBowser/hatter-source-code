@@ -51,6 +51,9 @@ http://barcode-coder.com/en/
 || Wifi Network config || `WIFI:S:ssid;T:WEP;P:password;;` ||
 || iCal || `-` ||
 
+QR 应用：
+ * Google Authenticator: https://code.google.com/p/google-authenticator/
+
  * Google ZXing: https://code.google.com/p/zxing/
  * Google QR Code API: https://google-developers.appspot.com/chart/infographics/docs/qr_codes
 

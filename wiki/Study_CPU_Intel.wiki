@@ -29,7 +29,7 @@ All in one: [https://hatter-source-code.googlecode.com/svn/trunk/attachments/pdf
 
 [http://www.intel.com/content/www/us/en/processors/architectures-software-developer-manuals.html Architectures Software developer manuals]
 
-[http://sc.tamu.edu/systems/eos/]
+[http://sc.tamu.edu/systems/eos/]  [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/cpu/intel/nehalem.pdf Nehalem]
 
 ^注^：Intel 即为 Intel Corporation 的注册商标
 

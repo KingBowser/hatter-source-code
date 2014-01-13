@@ -2,6 +2,9 @@
 #sidebar TableOfContents
 
 ==Charts==
+
 * http://www.chartjs.org/
 
 * http://www.jscharts.com/
+
+* http://www.jqplot.com/

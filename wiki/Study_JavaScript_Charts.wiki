@@ -3,8 +3,8 @@
 
 ==Charts==
 
-* http://www.chartjs.org/
+ * http://www.chartjs.org/
 
-* http://www.jscharts.com/
+ * http://www.jscharts.com/
 
-* http://www.jqplot.com/
+ * http://www.jqplot.com/

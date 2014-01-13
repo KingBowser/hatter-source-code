@@ -32,5 +32,11 @@
  * 最优化（Optimization）：大多数以上方法，直接或者间接使用最优化算法。
 
 
+----
+
+ * http://mahout.apache.org/
+ * https://github.com/huichen/mlf
+
+
 ===参考资料===
 `[1]. ` http://zh.wikipedia.org/wiki/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0<br>

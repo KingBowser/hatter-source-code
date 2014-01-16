@@ -31,6 +31,10 @@ All in one: [https://hatter-source-code.googlecode.com/svn/trunk/attachments/pdf
 
 [http://sc.tamu.edu/systems/eos/]  [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/cpu/intel/nehalem.pdf Nehalem]
 
+[http://www.realworldtech.com/sandy-bridge/] Sandy Bridge
+
+http://www.realworldtech.com/haswell-cpu/ Haswell
+
 ^注^：Intel 即为 Intel Corporation 的注册商标
 
 

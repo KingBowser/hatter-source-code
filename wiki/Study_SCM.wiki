@@ -59,5 +59,8 @@ SCM (Source Control Management)
 || *开源中国社区* || https://git.oschina.net/ ||
 || *GitCafe* || https://gitcafe.com/ ||
 
+=SCM托管软件=
+|| *GitLab: Self Hosted Git Management Application* || http://gitlab.org/ ||
+
 ===参考资料===
 `[1].` http://www.1uu2.com/archives/992<br>

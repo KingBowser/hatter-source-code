@@ -57,6 +57,13 @@ public class PropertyConfig {
         return createPropertyConfig(properties);
     }
 
+    public static PropertyConfig createSqliteConfigForMemory() {
+        Properties properties = new Properties();
+        properties.setProperty("jdbc.driver", Driver.SQLITE);
+        properties.setProperty("jdbc.url", "jdbc:sqlite::memory:");
+        return createPropertyConfig(properties);
+    }
+
     public static PropertyConfig createMySQLConfig(String host, String sid, String userName, String password) {
         Properties properties = new Properties();
         properties.setProperty("jdbc.driver", Driver.MYSQL);

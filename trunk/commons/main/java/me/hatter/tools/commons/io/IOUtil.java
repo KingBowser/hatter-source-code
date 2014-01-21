@@ -3,12 +3,17 @@ package me.hatter.tools.commons.io;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.io.Reader;
+import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,18 +49,6 @@ public class IOUtil {
         return readToStringAndClose(is);
     }
 
-    public static String readToStringAndClose(InputStream inputStream) {
-        return readToStringAndClose(inputStream, CHARSET_UTF8);
-    }
-
-    public static String readToStringAndClose(InputStream inputStream, String charset) {
-        try {
-            return readToString(inputStream, charset);
-        } finally {
-            closeQuietly(inputStream);
-        }
-    }
-
     public static String readToString(InputStream inputStream) {
         return readToString(inputStream, CHARSET_UTF8);
     }
@@ -65,6 +58,18 @@ public class IOUtil {
             return new String(readToBytes(inputStream), charset);
         } catch (IOException e) {
             throw ExceptionUtil.wrapRuntimeException(e);
+        }
+    }
+
+    public static String readToStringAndClose(InputStream inputStream) {
+        return readToStringAndClose(inputStream, CHARSET_UTF8);
+    }
+
+    public static String readToStringAndClose(InputStream inputStream, String charset) {
+        try {
+            return readToString(inputStream, charset);
+        } finally {
+            closeQuietly(inputStream);
         }
     }
 
@@ -162,7 +167,7 @@ public class IOUtil {
     }
 
     public static void writeBytes(OutputStream outputStream, byte[] bytes) {
-        OutputStream bos = getBufferedOutputStream(outputStream);
+        OutputStream bos = asBufferedOutputStream(outputStream);
         try {
             bos.write(bytes);
             bos.flush();
@@ -171,8 +176,7 @@ public class IOUtil {
         }
     }
 
-    // public static
-
+    @Deprecated
     public static InputStream getBufferedInputStream(InputStream inputStream) {
         if (inputStream instanceof BufferedInputStream) {
             return (BufferedInputStream) inputStream;
@@ -181,6 +185,7 @@ public class IOUtil {
         }
     }
 
+    @Deprecated
     public static OutputStream getBufferedOutputStream(OutputStream outputStream) {
         if (outputStream instanceof BufferedOutputStream) {
             return (BufferedOutputStream) outputStream;
@@ -189,6 +194,7 @@ public class IOUtil {
         }
     }
 
+    // copy block ----------------------------------------------------------------------------------------
     public static long copy(InputStream is, OutputStream os) throws IOException {
         long total = 0;
         byte[] b = new byte[8 * KB];
@@ -236,11 +242,65 @@ public class IOUtil {
         }
     }
 
+    // to block ----------------------------------------------------------------------------------------
+    public static BufferedReader toBufferedReader(InputStream is) {
+        return toBufferedReader(is, CHARSET_UTF8);
+    }
+
+    public static BufferedReader toBufferedReader(InputStream is, String charset) {
+        try {
+            return new BufferedReader(new InputStreamReader(is, charset));
+        } catch (UnsupportedEncodingException e) {
+            throw ExceptionUtil.wrapRuntimeException(e);
+        }
+    }
+
+    public static BufferedWriter toBufferedWriter(OutputStream os) {
+        return toBufferedWriter(os, CHARSET_UTF8);
+    }
+
+    public static BufferedWriter toBufferedWriter(OutputStream os, String charset) {
+        try {
+            return new BufferedWriter(new OutputStreamWriter(os, charset));
+        } catch (UnsupportedEncodingException e) {
+            throw ExceptionUtil.wrapRuntimeException(e);
+        }
+    }
+
+    public static PrintWriter toPrintWriter(OutputStream os) {
+        return toPrintWriter(os, CHARSET_UTF8);
+    }
+
+    public static PrintWriter toPrintWriter(OutputStream os, String charset) {
+        try {
+            return new PrintWriter(new OutputStreamWriter(os, charset));
+        } catch (UnsupportedEncodingException e) {
+            throw ExceptionUtil.wrapRuntimeException(e);
+        }
+    }
+
+    // as block ----------------------------------------------------------------------------------------
+    public static PrintWriter asPrintWriter(Writer writer) {
+        if (writer instanceof PrintWriter) {
+            return (PrintWriter) writer;
+        } else {
+            return new PrintWriter(writer);
+        }
+    }
+
     public static BufferedReader asBufferedReader(Reader reader) {
         if (reader instanceof BufferedReader) {
             return (BufferedReader) reader;
         } else {
             return new BufferedReader(reader);
+        }
+    }
+
+    public static BufferedWriter asBufferedWriter(Writer writer) {
+        if (writer instanceof BufferedWriter) {
+            return (BufferedWriter) writer;
+        } else {
+            return new BufferedWriter(writer);
         }
     }
 

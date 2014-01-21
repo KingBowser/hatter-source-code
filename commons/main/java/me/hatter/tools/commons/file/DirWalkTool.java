@@ -1,6 +1,5 @@
 package me.hatter.tools.commons.file;
 
-import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -40,14 +39,14 @@ public class DirWalkTool {
         } else {
             if (walker.accept(file)) {
                 try {
-                    InputStream is = new BufferedInputStream(new FileInputStream(file));
+                    InputStream is = IOUtil.asBufferedInputStream(new FileInputStream(file));
                     try {
                         walker.readInputStream(is, file);
                     } finally {
                         IOUtil.closeQuietly(is);
                     }
                 } catch (FileNotFoundException e) {
-                    throw new RuntimeException(e);
+                    throw new RuntimeException(e); // SHOULD NOT HAPPEN?
                 }
             }
         }

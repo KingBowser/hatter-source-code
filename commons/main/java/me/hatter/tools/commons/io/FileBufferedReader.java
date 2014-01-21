@@ -10,8 +10,8 @@ import java.io.UnsupportedEncodingException;
 
 public class FileBufferedReader extends BufferedReader {
 
-    public FileBufferedReader(File file) throws FileNotFoundException {
-        super(new InputStreamReader(new FileInputStream(file)));
+    public FileBufferedReader(File file) throws UnsupportedEncodingException, FileNotFoundException {
+        super(new InputStreamReader(new FileInputStream(file), IOUtil.CHARSET_UTF8));
     }
 
     public FileBufferedReader(File file, String charset) throws UnsupportedEncodingException, FileNotFoundException {

@@ -38,11 +38,16 @@
 || `CodeMirror` || `MIT` || http://codemirror.net/ || CodeMirror is a versatile text editor implemented in JavaScript for the browser. ||
 
 ==Markdown==
+
 http://daringfireball.net/projects/markdown/
 
 http://mouapp.com/
 
 online markdown: http://www.zybuluo.com/mdeditor
+
+==Image==
+
+https://github.com/graphsketcher/GraphSketcher GraphSketcher
 
 ===参考资料===
 `[1].` http://en.wikipedia.org/wiki/Diagramming_software<br>

@@ -84,6 +84,8 @@
 
 {{{
 http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/programming/prg_history.jpg
+
+http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/programming/programminglanguages.png
 }}}
 
 || *Computer History Museum* || http://www.softwarepreservation.org/ ||

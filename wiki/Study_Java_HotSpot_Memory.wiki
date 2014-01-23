@@ -18,11 +18,11 @@
 || *Permanent Generation* || 保存虚拟机自己的静态(refective)数据；主要存放加载的Class类级别静态对象如class本身，method，field等等；permanent generation空间不足会引发full GC(详见HotSpot VM GC种类) ||
 || *Code Cache* || 用于编译和保存本地代码（native code）的内存；JVM内部处理或优化 ||
 
-\\
+<br>
 ----
-\\
+<br>
 
-*想跟踪Java程序中哪里new对象最多，有什么好办法。*\\
+*想跟踪Java程序中哪里new对象最多，有什么好办法。*<br>
 在最新的Oracle JDK7里自带的Java Flight Recorder正好能满足这种需求。只要看AllocObjectInNewTLAB和AllocObjectOutsideTLAB就能几乎无额外开销得到一个非精准的profile。虽说非精准但很多时候已经足以解决问题。用起来超方便。
 
 

@@ -95,3 +95,4 @@ http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/programming/
 `[1].` http://www.yankay.com/go-clear-concurreny/<br>
 `[2].` http://www.blogjava.net/jxlazzw/archive/2012/11/30/392280.html<br>
 `[3].` http://blog.sae.sina.com.cn/archives/2054<br>
+`[4].` http://bgriffen.scripts.mit.edu/www/2014/01/graphs-of-wikipedia-programming-languages-and-paradigms/<br>

@@ -1,3 +1,4 @@
 #summary DB Tool Study
 #sidebar TableOfContents
 
+|| `Sequel Pro` || http://sequelpro.com/ || MySQL database management for Mac OS X ||

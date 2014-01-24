@@ -55,6 +55,7 @@
  * [Study_Java Java]
   * [Study_Java_BTrace BTrace]
   * [Study_Java_ByteCode ByteCode]
+  * [Study_Java_Compile Compile]
   * [Study_Java_Compress Compress]
   * [Study_Java_Concurrency Concurrency]
    * [Study_Java_Concurrency_LockFreeHashMap LockFreeHashMap]

@@ -1,0 +1,54 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" contect="text/html;charset=UTF-8">
+<script type="text/javascript" src="application.system.setting.js"></script>
+<script type="text/javascript">document.write("<title>" + APPLICATION_NAME + "</title>");</script>
+<script type="text/javascript">document.write(GET_HTML_APPLICATION_SETTING());</script>
+<link rel="stylesheet" type="text/css" href="application.stylesheet.css"> 
+</head>
+<body bgcolor="#ece9d8" style="overflow:auto;" 
+marginwidth="0" marginheight="0" leftmargin="0" topmargin="0" 
+rightmargin="0" bottommargin="0" 
+onload="application_body_onload();" onunload="application_body_onunload();" >
+<script type="text/javascript">
+document.write('<script type="text/javascript" src="');
+document.write(APPLICATION_LIBRARY_PATH);
+document.write('cn.aprilsoft.jsapp.core.js">' + '</' + 'script>');
+</script>
+<!-- Application include,import,genectrl,application -->
+<script type="text/javascript" src="application.include.js"></script>
+<script type="text/javascript" src="application.import.js"></script>
+<script type="text/javascript" src="application.createctrl.js"></script>
+<script type="text/javascript" src="application.other.include.js"></script>
+<script type="text/javascript" src="application.startup.js"></script>
+
+<!-- HTML BLOCK -->
+
+<table class="full">
+  <tr>
+    <td style="height: 40px; font-size: 30px;" align="center" colspan="2">
+      Template Merge
+    </td>
+  </tr>
+  <tr>
+    <td style="height: 55%;">
+      <textarea class="full" id="text_template"></textarea>
+    </td>
+    <td style="height: 55%; width: 30%;">
+      <textarea class="full" id="text_vars"></textarea>
+    </td>
+  </tr>
+  <tr>
+    <td style="height: 40px;" align="right" colspan="2">
+      <button class="full_height" style="width: 200px; font-size: 22px;" onclick="merge();">[Merge]</button>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <textarea class="full" id="text_output" colspan="2"></textarea>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

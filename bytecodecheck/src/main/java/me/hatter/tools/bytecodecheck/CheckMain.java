@@ -4,9 +4,13 @@ import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -28,6 +32,25 @@ public class CheckMain {
         // UnixArgsutil.parseGlobalArgs(args);
 
         String tarFile = "/Users/hatterjiang/temp/ttt/bss__.tar";
+        Map<String, List<ClassDef>> allClassDefMap = parseTar(tarFile);
+
+        for (String className : allClassDefMap.keySet()) {
+            if (allClassDefMap.get(className).size() != 1) {
+                System.out.println(className + ":" + allClassDefMap.get(className).size());
+            }
+        }
+    }
+
+    private static void tryMatch(Map<String, List<ClassDef>> allClassDefMap, ClassDef classDef) {
+        for (MethodDef methodDef : classDef.getMethodDefs()) {
+            for (MethodInvoke methodInvoke : methodDef.getMethodInvokes()) {
+                // TODO
+            }
+        }
+    }
+
+    private static Map<String, List<ClassDef>> parseTar(String tarFile) throws FileNotFoundException, IOException {
+        Map<String, List<ClassDef>> allClassDefMap = new HashMap<String, List<ClassDef>>();
         TarInputStream tis = new TarInputStream(new BufferedInputStream(new FileInputStream(tarFile)));
         try {
             for (TarEntry tarEntry; ((tarEntry = tis.getNextEntry()) != null);) {
@@ -44,7 +67,7 @@ public class CheckMain {
                 byte[] jarBytes = tbaos.toByteArray();
                 tbaos.close();
 
-                System.out.println("Entry name: " + entryName);
+                // System.out.println("Entry name: " + entryName);
 
                 ByteArrayInputStream bais = new ByteArrayInputStream(jarBytes);
                 ZipInputStream zis = new ZipInputStream(bais);
@@ -66,15 +89,20 @@ public class CheckMain {
                         if (!classDef.getName().startsWith(MATCHING_CLASS_NAME_PREFIX)) {
                             continue;
                         }
-                        System.out.println("   :::::" + classDef.getName());
+                        // System.out.println("   :::::" + classDef.getName());
+                        if (allClassDefMap.get(classDef.getName()) == null) {
+                            allClassDefMap.put(classDef.getName(), new ArrayList<ClassDef>());
+                        }
+                        allClassDefMap.get(classDef.getName()).add(classDef);
                     } catch (Exception e) {
-                        System.out.println(" >>>>> " + ze.getName());
+                        System.out.println("[ERROR] Parse failed:" + ze.getName());
                     }
                 }
             }
         } finally {
             tis.close();
         }
+        return allClassDefMap;
     }
 
     private static ClassDef parseClassDef(ClassReader cr, String refJar) {

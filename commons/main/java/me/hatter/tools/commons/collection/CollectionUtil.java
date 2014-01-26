@@ -7,9 +7,11 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 
 import me.hatter.tools.commons.reflect.ReflectUtil;
 
@@ -39,6 +41,22 @@ public class CollectionUtil {
         public static Filter<String> stringNotEmpty() {
             return new StringNotEmpty();
         }
+
+        public static <T> Filter<T> trueFilter() {
+            return new TrueFilter<T>();
+        }
+
+        public static <T> Filter<T> falseFilter() {
+            return new FalseFilter<T>();
+        }
+
+        public static <T> Filter<T> andFilter(Filter<T>... filters) {
+            return new AndFilter<T>(filters);
+        }
+
+        public static <T> Filter<T> orFilter(Filter<T>... filters) {
+            return new OrFilter<T>(filters);
+        }
     }
 
     public static class Transformers {
@@ -67,6 +85,62 @@ public class CollectionUtil {
 
         public boolean accept(String object) {
             return ((object != null) && (!object.isEmpty()));
+        }
+    }
+
+    public static class TrueFilter<T> implements Filter<T> {
+
+        public boolean accept(T object) {
+            return true;
+        }
+    }
+
+    public static class FalseFilter<T> implements Filter<T> {
+
+        public boolean accept(T object) {
+            return false;
+        }
+    }
+
+    public static class AndFilter<T> implements Filter<T> {
+
+        private Filter<T>[] filters;
+
+        public AndFilter(Filter<T>... filters) {
+            this.filters = filters;
+        }
+
+        public boolean accept(T object) {
+            if ((filters == null) || (filters.length == 0)) {
+                return true;
+            }
+            for (Filter<T> filter : filters) {
+                if (!filter.accept(object)) {
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
+
+    public static class OrFilter<T> implements Filter<T> {
+
+        private Filter<T>[] filters;
+
+        public OrFilter(Filter<T>... filters) {
+            this.filters = filters;
+        }
+
+        public boolean accept(T object) {
+            if ((filters == null) || (filters.length == 0)) {
+                return true;
+            }
+            for (Filter<T> filter : filters) {
+                if (filter.accept(object)) {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 
@@ -132,6 +206,10 @@ public class CollectionUtil {
         return transform(list, new CollectionUtil.StringToLowerCase());
     }
 
+    public static <T> Collection<T> emptyToNull(Collection<T> coll) {
+        return (isEmpty(coll)) ? null : coll;
+    }
+
     public static <T> Collection<T> notNull(Collection<T> coll) {
         return (coll == null) ? new ArrayList<T>(0) : coll;
     }
@@ -179,12 +257,11 @@ public class CollectionUtil {
     }
 
     public static <T> List<T> filterAll(Collection<T> list, Filter<T>... filters) {
-        if ((filters != null) && (filters.length > 0)) {
-            for (Filter<T> filter : filters) {
-                list = filter(list, filter);
-            }
-        }
-        return collectionAsList(list);
+        return filter(list, new AndFilter<T>(filters));
+    }
+
+    public static <T> List<T> filterAny(Collection<T> list, Filter<T>... filters) {
+        return filter(list, new OrFilter<T>(filters));
     }
 
     public static <T, D> List<D> transform(Collection<T> list, Transformer<T, D> transformer) {
@@ -203,7 +280,7 @@ public class CollectionUtil {
                 list = transform(list, transformer);
             }
         }
-        return collectionAsList(list);
+        return toList(list);
     }
 
     public static <O, K> Map<K, O> toMap(Collection<O> list, KeyGetter<O, K> keyGetter) {
@@ -322,24 +399,73 @@ public class CollectionUtil {
         return list;
     }
 
-    public static <T> List<T> collectionAsList(Collection<T> coll) {
-        if (coll == null) {
-            return null;
-        }
-        return (coll instanceof List) ? ((List<T>) coll) : new ArrayList<T>(coll);
+    @Deprecated
+    public static <T> Set<T> collectionAsSet(Collection<T> coll) {
+        return toSet(coll);
     }
 
-    public static <T> Set<T> collectionAsSet(Collection<T> coll) {
+    @Deprecated
+    public static <T> List<T> collectionAsList(Collection<T> coll) {
+        return toList(coll);
+    }
+
+    // -- Set ---
+    public static <T> Set<T> toSet(Collection<T> coll) {
         if (coll == null) {
             return null;
         }
         return (coll instanceof Set) ? ((Set<T>) coll) : new HashSet<T>(coll);
     }
 
-    public static List<Object> asList(Object obj, Object... objects) {
-        List<Object> list = new ArrayList<Object>(1 + objects.length);
+    public static <T> HashSet<T> toHashSet(Collection<T> coll) {
+        if (coll == null) {
+            return null;
+        }
+        return (coll instanceof HashSet) ? ((HashSet<T>) coll) : new HashSet<T>(coll);
+    }
+
+    public static <T> TreeSet<T> toTreeSet(Collection<T> coll) {
+        if (coll == null) {
+            return null;
+        }
+        return (coll instanceof TreeSet) ? ((TreeSet<T>) coll) : new TreeSet<T>(coll);
+    }
+
+    public static <T> Set<T> asSet(T obj, T... objects) {
+        Set<T> set = new HashSet<T>(1 + objects.length);
+        set.add(obj);
+        for (T o : objects) {
+            set.add(o);
+        }
+        return set;
+    }
+
+    // -- List ---
+    public static <T> List<T> toList(Collection<T> coll) {
+        if (coll == null) {
+            return null;
+        }
+        return (coll instanceof List) ? ((List<T>) coll) : new ArrayList<T>(coll);
+    }
+
+    public static <T> ArrayList<T> toArrayList(Collection<T> coll) {
+        if (coll == null) {
+            return null;
+        }
+        return (coll instanceof ArrayList) ? ((ArrayList<T>) coll) : new ArrayList<T>(coll);
+    }
+
+    public static <T> LinkedList<T> toLinkedList(Collection<T> coll) {
+        if (coll == null) {
+            return null;
+        }
+        return (coll instanceof LinkedList) ? ((LinkedList<T>) coll) : new LinkedList<T>(coll);
+    }
+
+    public static <T> List<T> asList(T obj, T... objects) {
+        List<T> list = new ArrayList<T>(1 + objects.length);
         list.add(obj);
-        for (Object o : objects) {
+        for (T o : objects) {
             list.add(o);
         }
         return list;

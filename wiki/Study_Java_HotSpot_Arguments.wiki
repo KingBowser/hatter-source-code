@@ -536,7 +536,7 @@ Sample:
 || `ReadPrefetchInstr` || `` || `` || ||
 || `PrintJavaStackAtFatalState` || `` || `` || ||
 || `SelfDestructTimer` || `` || `` || ||
-|| `MaxJavaStackTraceDepth` || `` || `` || ||
+|| `MaxJavaStackTraceDepth` || `intx` || `product` || 异常抛出时打印栈的最大深度 ||
 || `SafepointTimeoutDelay` || `` || `` || ||
 || `NmethodSweepFraction` || `` || `` || ||
 || `NmethodSweepCheckInterval` || `` || `` || ||

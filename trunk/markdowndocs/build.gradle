@@ -12,6 +12,9 @@ archivesBaseName = baseProjectName
 sourceCompatibility = 1.5
 targetCompatibility = 1.5
 
+// https://github.com/sirthias/pegdown
+// https://code.google.com/p/markdown4j/
+
 // repositories {
 //   mavenCentral()
 // }

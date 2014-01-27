@@ -4,6 +4,8 @@
 
 https://github.com/oldmanpushcart/unixtools
 
+crawler4j: https://code.google.com/p/crawler4j/
+
 
 Analyzes Thread Dumps of Sun, SAP and JRockit (partial). 
  https://java.net/projects/tda

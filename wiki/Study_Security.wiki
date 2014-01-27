@@ -4,5 +4,10 @@
 || *OWASP* || https://www.owasp.org/ ||
 || *OWASP中国* || http://www.owasp.org.cn/ ||
 
+密码保护：
+ * scrypt
+ * bscrypt
+ * PBKDF2
+
 =附：一些和计算机相关的攻击方式=
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/security/computer_security.jpeg]

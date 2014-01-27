@@ -6,6 +6,9 @@
 
 密码保护：
  * scrypt
+  * http://www.tarsnap.com/scrypt.html
+  * https://www.tarsnap.com/scrypt/scrypt.pdf
+  * https://scrypt.googlecode.com
  * bscrypt
  * PBKDF2
 

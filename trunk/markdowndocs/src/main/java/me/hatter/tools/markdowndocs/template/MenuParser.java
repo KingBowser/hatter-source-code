@@ -22,6 +22,9 @@ public class MenuParser {
                 if (!file.isDirectory()) {
                     return false;
                 }
+                if (file.getName().startsWith(".")) {
+                    return false;
+                }
                 if (Arrays.asList("assets").contains(file.getName())) {
                     return false;
                 }

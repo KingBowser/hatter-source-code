@@ -26,8 +26,22 @@ public class FileUtil {
         }
     }
 
+    public static String readFileToStringIfExists(File file) {
+        if ((file == null) || (!file.exists())) {
+            return null;
+        }
+        return readFileToString(file);
+    }
+
     public static String readFileToString(File file) {
         return readFileToString(file, IOUtil.CHARSET_UTF8);
+    }
+
+    public static String readFileToStringIfExists(File file, String charset) {
+        if ((file == null) || (!file.exists())) {
+            return null;
+        }
+        return readFileToString(file, charset);
     }
 
     public static String readFileToString(File file, String charset) {

@@ -130,6 +130,10 @@ public class StringUtil {
         return (str == null) ? EMPTY : str;
     }
 
+    public static String defaultValue(final String str, final String defaultValue) {
+        return (isNotEmpty(str)) ? str : defaultValue;
+    }
+
     public static String upper(final String str) {
         return isEmpty(str) ? str : str.toUpperCase();
     }

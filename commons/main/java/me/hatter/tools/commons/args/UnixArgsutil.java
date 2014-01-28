@@ -62,7 +62,10 @@ public class UnixArgsutil {
             if ((keys != null) && (keys.length > 0)) {
                 for (String key : keys) {
                     List<String> vs = keyvalues.get(key);
-                    return ((vs == null) || (vs.size() == 0)) ? null : vs.get(0);
+                    String val = ((vs == null) || (vs.size() == 0)) ? null : vs.get(0);
+                    if (val != null) {
+                        return val;
+                    }
                 }
             }
             return null;

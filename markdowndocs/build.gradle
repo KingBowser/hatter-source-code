@@ -24,7 +24,7 @@ tasks.withType(Compile) {
   options.encoding = "UTF-8"  
 }
 
-// defaultTasks 'packjar'
+defaultTasks 'packall2'
 
 task initapp << {
   file('lib').mkdirs()

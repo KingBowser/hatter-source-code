@@ -32,10 +32,19 @@ public class Main {
     // -d dir
     public static void main(String[] args) {
         ClassLoaderUtil.initLibResources();
-
+        UnixArgsutil.ARGS.addFSet("h", "help");
         UnixArgsutil.parseGlobalArgs(args);
-        if (StringUtil.isNotEmpty(UnixArgsutil.ARGS.kvalue("d"))) {
-            GlobalVars.setBasePath(new File(UnixArgsutil.ARGS.kvalue("d")));
+
+        if (UnixArgsutil.ARGS.flags().containsAny("h", "help")) {
+            System.out.println("");
+            System.out.println("java -jar markdowndocsall.jar [options]");
+            System.out.println("     --h[elp]");
+            System.out.println("     -d dir");
+            System.exit(0);
+        }
+
+        if (StringUtil.isNotEmpty(UnixArgsutil.ARGS.kvalueAny("d", "dir"))) {
+            GlobalVars.setBasePath(new File(UnixArgsutil.ARGS.kvalue("d", "dir")));
         }
 
         try {

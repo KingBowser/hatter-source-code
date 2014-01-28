@@ -5,7 +5,7 @@ def baseProjectName = 'markdowndocs'
 def shellCommandName = baseProjectName
 def eclipseProjectName = baseProjectName
 def eclipseProjectComment = 'my test application'
-def jarManifestMainClass = 'me.hatter.tools.xxx.Main'
+def jarManifestMainClass = 'me.hatter.tools.markdowndocs.Main'
 def installTargetBin = '/usr/local/bin/'
 
 archivesBaseName = baseProjectName

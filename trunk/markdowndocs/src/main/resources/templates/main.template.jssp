@@ -30,6 +30,8 @@
     <% if(config.getFavicon() != null && config.getFavicon().length() > 0) { %>
     <link rel="shortcut icon" href="<%=config.getFavicon()%>">
     <% } %>
+    
+    <%!=page.getHeaderCode()%>
   </head>
   <body>
     <a class="sr-only" href="#content">Skip to main content</a>

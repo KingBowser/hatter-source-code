@@ -5,6 +5,7 @@ import java.util.List;
 public class Page {
 
     private String         path;
+    private String         headerCode;
     private List<MenuItem> lefts;
     private List<MenuItem> rights;
     private String         summary;
@@ -19,6 +20,14 @@ public class Page {
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    public String getHeaderCode() {
+        return headerCode;
+    }
+
+    public void setHeaderCode(String headerCode) {
+        this.headerCode = headerCode;
     }
 
     public List<MenuItem> getLefts() {

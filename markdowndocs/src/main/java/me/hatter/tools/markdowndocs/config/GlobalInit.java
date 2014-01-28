@@ -23,7 +23,7 @@ public class GlobalInit {
 
     public static void initAssetsDir(String dirName, List<String> assets) throws IOException {
         log.info("Init assets: " + dirName);
-        File dir = new File(GlobalVars.getBasePath(), dirName);
+        File dir = new File(new File(GlobalVars.getBasePath(), "assets"), dirName);
         dir.mkdirs();
         for (String asset : assets) {
             File file = new File(dir, asset);

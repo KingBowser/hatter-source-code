@@ -3,9 +3,11 @@ package me.hatter.tools.commons.args;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 public class UnixArgsutil {
 
@@ -13,12 +15,21 @@ public class UnixArgsutil {
 
     public static class UnixArgs {
 
-        private KList    args      = new KList();
-        private KSet     flags     = new KSet();
-        private KMap     keyvalues = new KMap();
+        private KList       args      = new KList();
+        private KSet        flags     = new KSet();
+        private KMap        keyvalues = new KMap();
+        private Set<String> fset      = new HashSet<String>();
 
-        private String[] _args     = null;
-        private KSet     _keys     = null;
+        private String[]    _args     = null;
+        private KSet        _keys     = null;
+
+        public void addFSet(String... fkeys) {
+            if ((fkeys != null) && (fkeys.length > 0)) {
+                for (String fk : fkeys) {
+                    fset.add(fk);
+                }
+            }
+        }
 
         public String[] args() {
             synchronized (this) {
@@ -45,6 +56,16 @@ public class UnixArgsutil {
         public String kvalue(String key) {
             List<String> vs = keyvalues.get(key);
             return ((vs == null) || (vs.size() == 0)) ? null : vs.get(0);
+        }
+
+        public String kvalueAny(String... keys) {
+            if ((keys != null) && (keys.length > 0)) {
+                for (String key : keys) {
+                    List<String> vs = keyvalues.get(key);
+                    return ((vs == null) || (vs.size() == 0)) ? null : vs.get(0);
+                }
+            }
+            return null;
         }
 
         public String kvalue(String key, String defval) {
@@ -169,7 +190,12 @@ public class UnixArgsutil {
                             unixArgs.flags.add(ar);
                         }
                     } else if (arg.startsWith("-")) {
-                        lastk = arg.substring(1);
+                        String kk = arg.substring(1);
+                        if (unixArgs.fset.contains(kk)) {
+                            unixArgs.flags.add(kk);
+                        } else {
+                            lastk = arg.substring(1);
+                        }
                     } else {
                         unixArgs.args.add(arg);
                     }

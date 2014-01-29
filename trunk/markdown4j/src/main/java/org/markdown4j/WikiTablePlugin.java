@@ -27,7 +27,7 @@ public class WikiTablePlugin extends Plugin {
             out.append(" class=\"table table-bordered\"");
         } else {
             for (Entry<String, String> entry : params.entrySet()) {
-                out.append(" " + entry.getKey() + "=\"" + entry.getValue() + "\"");
+                out.append(" " + entry.getKey() + "=\"" + entry.getValue().replace("___", " ") + "\"");
             }
         }
         out.append(">");

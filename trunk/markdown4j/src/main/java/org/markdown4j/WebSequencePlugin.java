@@ -10,13 +10,15 @@ import java.net.URLEncoder;
 import java.util.List;
 import java.util.Map;
 
+import org.markdown4j.Plugin.EmitterCallback;
+
 public class WebSequencePlugin extends Plugin {
 
 	public WebSequencePlugin() {
 		super("sequence");
 	}
 	@Override
-	public void emit(final StringBuilder out, final List<String> lines, final Map<String, String> params) {
+	public void emit(final StringBuilder out, final List<String> lines, final Map<String, String> params, final EmitterCallback emitterCallback) {
 		String style = params.get("style");
 		if(style == null) {
 			style = "default";			

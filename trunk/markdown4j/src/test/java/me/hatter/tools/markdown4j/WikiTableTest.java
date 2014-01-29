@@ -8,8 +8,8 @@ public class WikiTableTest {
 
     public static void main(String[] args) throws IOException {
         String md = "hello world\n=======\n%%%% wikiTable a=b,c=d\n" //
-                    + "|| th1 || th2 \\\n ~~hello~~ ||\n" //
-                    + "| td1 | td2 |\n" //
+                    + "||*2 ___th1 || th2 \\\n ~~hello~~ ||\n" //
+                    + "| td1 |*2  td3 |\n" //
                     + "\n%%%%\n";
         System.out.println(new Markdown4jProcessor().process(md));
     }

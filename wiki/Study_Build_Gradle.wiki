@@ -97,3 +97,9 @@ jar {
   }
 }
 }}}
+
+
+跳过单元测试：
+{{{
+gradle build -x test 
+}}}

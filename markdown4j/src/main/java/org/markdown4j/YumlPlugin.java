@@ -3,6 +3,8 @@ package org.markdown4j;
 import java.util.List;
 import java.util.Map;
 
+import org.markdown4j.Plugin.EmitterCallback;
+
 public class YumlPlugin extends Plugin {
 
 	public YumlPlugin() {
@@ -10,7 +12,7 @@ public class YumlPlugin extends Plugin {
 	}
 
 	@Override
-	public void emit(final StringBuilder out, final List<String> lines, final Map<String, String> params) {
+	public void emit(final StringBuilder out, final List<String> lines, final Map<String, String> params, final EmitterCallback emitterCallback) {
 		StringBuffer sb2 = new StringBuffer();
 		for(String line : lines) {
 			line = line.trim();

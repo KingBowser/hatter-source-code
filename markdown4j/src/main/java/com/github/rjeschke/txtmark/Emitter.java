@@ -1081,7 +1081,12 @@ class Emitter
 
 		Plugin plugin = plugins.get(idPlugin);
 		if(plugin != null) {
-			plugin.emit(out, list, params);
+			plugin.emit(out, list, params, new Plugin.EmitterCallback() {
+                
+                public int recursiveEmitLineNone(StringBuilder out, String in) {
+                    return recursiveEmitLine(out, in, 0, MarkToken.NONE);
+                }
+            });
 		}
     }
     

@@ -19,10 +19,15 @@ public class Markdown4jProcessor {
 		this.builder = builder();
 	}
 	
-	private Builder builder() {
-		decorator = new ExtDecorator();
-		return Configuration.builder().forceExtentedProfile().registerPlugins(new YumlPlugin(), new WebSequencePlugin(), new IncludePlugin()).convertNewline2Br().setDecorator(decorator).setCodeBlockEmitter(new CodeBlockEmitter());
-	}
+    private Builder builder() {
+        decorator = new ExtDecorator();
+        Builder builder = Configuration.builder().forceExtentedProfile();
+        builder.registerPlugins(new YumlPlugin(), new WebSequencePlugin(), new IncludePlugin(), new WikiTablePlugin());
+        builder.convertNewline2Br();
+        builder.setDecorator(decorator);
+        builder.setCodeBlockEmitter(new CodeBlockEmitter());
+        return builder;
+    }
 	public Markdown4jProcessor registerPlugins(Plugin ... plugins) {
 		builder.registerPlugins(plugins);
 		return this;

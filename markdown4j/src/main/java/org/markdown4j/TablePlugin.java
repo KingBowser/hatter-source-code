@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import org.markdown4j.Plugin.EmitterCallback;
+
 public class TablePlugin extends Plugin {
 
 	public TablePlugin() {
@@ -22,7 +24,7 @@ public class TablePlugin extends Plugin {
 
 	@Override
 	public void emit(StringBuilder out, List<String> lines,
-			Map<String, String> params) {
+			Map<String, String> params, final EmitterCallback emitterCallback) {
 		StringBuffer sb2 = new StringBuffer();
 		String lparams = null;
 		int ioh = findSeparatorLine(0, lines);

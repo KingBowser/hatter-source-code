@@ -30,7 +30,7 @@ public class WikiTablePlugin extends Plugin {
                 out.append(" " + entry.getKey() + "=\"" + entry.getValue().replace("___", " ") + "\"");
             }
         }
-        out.append(">");
+        out.append(">\n");
 
         List<String> nLines = preProcessLines(lines);
 

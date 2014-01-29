@@ -3,6 +3,7 @@ package org.markdown4j;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * <pre>
@@ -22,7 +23,13 @@ public class WikiTablePlugin extends Plugin {
     public void emit(StringBuilder out, List<String> lines, Map<String, String> params,
                      final EmitterCallback emitterCallback) {
         out.append("<table");
-        out.append(" class=\"table table-bordered\"");
+        if ((params == null) || params.isEmpty()) {
+            out.append(" class=\"table table-bordered\"");
+        } else {
+            for (Entry<String, String> entry : params.entrySet()) {
+                out.append(" " + entry.getKey() + "=\"" + entry.getValue() + "\"");
+            }
+        }
         out.append(">");
 
         List<String> nLines = preProcessLines(lines);
@@ -49,7 +56,7 @@ public class WikiTablePlugin extends Plugin {
 
                 if (c == '|') {
                     if (cont.length() > 0) {
-                        out.append(isTh ? "<th>" : "<td>");
+                        out.append(isTh ? "<th class=\"active\">" : "<td>");
                         emitterCallback.recursiveEmitLineNone(out, cont.toString());
                         out.append(isTh ? "</th>" : "</td>");
                         cont.delete(0, cont.length());

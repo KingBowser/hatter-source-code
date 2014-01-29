@@ -2,6 +2,7 @@
 #sidebar TableOfContents
 
 || *CWE* || http://cwe.mitre.org/data/index.html ||
+|| *WASC* || http://www.webappsec.org/ ||
 || *OWASP* || https://www.owasp.org/ ||
 || *OWASP中国* || http://www.owasp.org.cn/ ||
 

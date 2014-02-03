@@ -31,6 +31,10 @@ server.4=d1.hatter.zj.cn:2888:3888:observer
 ./zkCli.sh -server host:port  // default port: 2181
 }}}
 
+{{{
+java -cp zookeeper-3.4.5.jar:lib/log4j-1.2.15.jar:lib/slf4j-api-1.6.1.jar:lib/slf4j-log4j12-1.6.1.jar:conf org.apache.zookeeper.server.PurgeTxnLog $log_dir$ $data_dir$ -n 6 
+}}}
+
 =讨论=
 ZooKeeper不适合做什么？ [http://koven2049.iteye.com/blog/1315819 关于zookeeper的讨论]
 

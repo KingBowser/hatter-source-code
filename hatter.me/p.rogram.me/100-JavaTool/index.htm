@@ -163,7 +163,7 @@
                 
                   <li>
                   
-                  <a href="#10-jtop">jtop - Java TOP</a>
+                  <a href="#10-jtop">jtop</a>
                   
                   
                   </li>
@@ -318,9 +318,28 @@
               ================================================== -->
               <div class="bs-docs-section">
                 <div class="page-header">
-                  <h1 id="10-jtop">jtop - Java TOP</h1>
+                  <h1 id="10-jtop">jtop</h1>
                 </div>
                 <p class="lead"><p>jtop is for 'Java TOP'.</p>
+<pre><code>wget https://hatter-source-code.googlecode.com/svn/trunk/jtop/jtop.jar
+</code></pre>
+<p>Usage:</p>
+<pre><code>$ java -jar jtop.jar 
+[ERROR] pid is not assigned.
+Usage[b121209]:
+java -jar jtop.jar [options] &lt;pid&gt; [&lt;interval&gt; [&lt;count&gt;]]
+-OR-
+java -cp jtop.jar jtop [options] &lt;pid&gt; [&lt;interval&gt; [&lt;count&gt;]]
+    -size &lt;B|K|M|G|H&gt;             Size, case insensitive (default: B, H for human)
+    -thread &lt;N&gt;                   Thread Top N (default: 5)
+    -stack &lt;N&gt;                    Stacktrace Top N (default: 8)
+    -excludes                     Excludes (string.contains)
+    -includes                     Includes (string.contains, excludes than includes)
+    --color                       Display color (default: off)
+    --sortmem                     Sort by memory allocted (default: off)
+    --summaryoff                  Do not display summary (default: off)
+    --advanced                    Do display like 'top' (default: off)
+</code></pre>
 </p>
                 
                 

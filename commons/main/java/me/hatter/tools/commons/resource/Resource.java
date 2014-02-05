@@ -17,4 +17,6 @@ public interface Resource {
     long lastModified();
 
     InputStream openInputStream();
+    
+    Object getRaw();
 }

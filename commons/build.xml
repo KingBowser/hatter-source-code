@@ -41,6 +41,9 @@
 			<fileset dir="${src.dir}" includes="**/*.java" />
 			<fileset dir="${config.dir}" includes="**/*.*" />
 		</jar>
+                <jar destfile="commons-1.0-sources.jar">
+			<fileset dir="${src.dir}" includes="**/*.java" />
+		</jar>
 		<delete dir="${classes.dir}" />
 		<!--
 		<delete file="${jar.manifest}" />

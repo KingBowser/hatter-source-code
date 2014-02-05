@@ -3,21 +3,21 @@ package me.hatter.tools.commons.args;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UnixArgsutil {
+public class UnixArgsutil2 {
 
     public static final KArgs ARGS = new KArgs();
 
     public static PICArgs parseGlobalPICArgs(String[] args, long defInterval, int defcount) {
         parseGlobalArgs(args);
         PICArgs picArgs = new PICArgs(defInterval, defcount);
-        picArgs.parseArgs(UnixArgsutil.ARGS.args());
+        picArgs.parseArgs(UnixArgsutil2.ARGS.args());
         return picArgs;
     }
 
     public static PICArgs parseGlobalPICArgs(String[] args) {
         parseGlobalArgs(args);
         PICArgs picArgs = new PICArgs();
-        picArgs.parseArgs(UnixArgsutil.ARGS.args());
+        picArgs.parseArgs(UnixArgsutil2.ARGS.args());
         return picArgs;
     }
 

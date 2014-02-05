@@ -60,6 +60,9 @@ public class MarkdownDocsFilter implements ResourceFilter {
                     }
 
                     String dirName = request.getFPath().equals("/") ? null : request.getFPath().substring(1);
+                    if ((dirName != null) && (dirName.endsWith("/"))) {
+                        dirName = dirName.substring(0, dirName.length() - 1);
+                    }
 
                     Config config = ConfigParser.readConfig(dirName);
                     Page page = PageParser.parsePage(dirName);

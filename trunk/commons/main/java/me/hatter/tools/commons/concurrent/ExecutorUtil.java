@@ -23,8 +23,13 @@ public class ExecutorUtil {
     }
 
     public static ExecutorService getCPULikeExecutor(Integer count) {
+        return getCPULikeExecutor(count, 1.0D);
+    }
+
+    public static ExecutorService getCPULikeExecutor(Integer count, double multiple) {
         int processorCount = (count != null) ? count.intValue() : ManagementFactory.getOperatingSystemMXBean().getAvailableProcessors();
         ExecutorService executor;
+        processorCount = (int) Math.floor(processorCount * multiple);
         if (processorCount <= 1) {
             executor = new OneThreadExecutor();
         } else {

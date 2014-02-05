@@ -66,4 +66,9 @@ public class TextResource implements Resource {
     public String toString() {
         return TextResource.class.getSimpleName() + "{resId=" + resId + ", text:" + text + "}";
     }
+
+    @Override
+    public Object getRaw() {
+        return text;
+    }
 }

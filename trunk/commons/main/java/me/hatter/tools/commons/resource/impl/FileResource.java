@@ -69,4 +69,9 @@ public class FileResource implements Resource {
     public String toString() {
         return FileResource.class.getSimpleName() + "{resId=" + resId + ", file:" + file + "}";
     }
+
+    @Override
+    public Object getRaw() {
+        return file;
+    }
 }

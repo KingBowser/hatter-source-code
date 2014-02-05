@@ -3,6 +3,7 @@ package me.hatter.tools.markdowndocs;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +25,8 @@ import me.hatter.tools.markdowndocs.template.MenuParser;
 import me.hatter.tools.markdowndocs.template.PageParser;
 import me.hatter.tools.resourceproxy.jsspexec.JsspExecutor;
 import me.hatter.tools.resourceproxy.jsspexec.utl.BufferWriter;
+import me.hatter.tools.resourceproxy.jsspserver.handler.HttpServerHandler;
+import me.hatter.tools.resourceproxy.jsspserver.main.MainHttpServer;
 
 public class Main {
 
@@ -33,6 +36,7 @@ public class Main {
     public static void main(String[] args) {
         ClassLoaderUtil.initLibResources();
         UnixArgsutil.ARGS.addFSet("h", "help");
+        UnixArgsutil.ARGS.addFSet("s", "server");
         UnixArgsutil.parseGlobalArgs(args);
 
         if (UnixArgsutil.ARGS.flags().containsAny("h", "help")) {
@@ -47,12 +51,31 @@ public class Main {
             GlobalVars.setBasePath(new File(UnixArgsutil.ARGS.kvalue("d", "dir")));
         }
 
+        File markdowndocs = new File(GlobalVars.getBasePath(), ".markdowndocs");
+        if (!markdowndocs.exists()) {
+            log.error("Markdowndocs root mark file not found! `touch .markdowndocs`");
+            System.exit(-1);
+        }
+
+        JsspExecutor.initJsspWork();
+
+        if (UnixArgsutil.ARGS.flags().containsAny("s", "server")) {
+            log.info("Start server mode...");
+            String port = StringUtil.defaultValue(UnixArgsutil.ARGS.kvalueAny("p", "port"), "8000");
+            MainHttpServer httpServer = new MainHttpServer(new HttpServerHandler(),
+                                                           Arrays.asList(Integer.valueOf(port)));
+            httpServer.run();
+        } else {
+            staticInitPages();
+        }
+    }
+
+    private static void staticInitPages() {
         try {
             GlobalInit.initAssets();
         } catch (IOException e) {
             log.error("Error!!", e);
         }
-        JsspExecutor.initJsspWork();
 
         List<MenuItem> refLefts = new ArrayList<MenuItem>();
         List<MenuItem> refRights = new ArrayList<MenuItem>();

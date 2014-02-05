@@ -1,3 +1,6 @@
+me.hatter.tools.resourceproxy.jsspserver.filter.impl.CacheFilter
+
+me.hatter.tools.markdowndocs.filter.MarkdownDocsHeaderFilter
 me.hatter.tools.markdowndocs.filter.MarkdownDocsFilter
 
 me.hatter.tools.resourceproxy.jsspserver.filter.impl.Default404Filter

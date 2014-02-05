@@ -1,6 +1,6 @@
-jtop
+jtop:::jtop - JVM TOP
 
-jtop is for 'Java TOP'.
+jtop is for 'JVM TOP'.
 
 ```
 wget https://hatter-source-code.googlecode.com/svn/trunk/jtop/jtop.jar

@@ -175,6 +175,13 @@
                   
                   </li>
                 
+                  <li>
+                  
+                  <a href="#99-description">说明信息</a>
+                  
+                  
+                  </li>
+                
               
               
             </ul>
@@ -189,7 +196,7 @@
               ================================================== -->
               <div class="bs-docs-section">
                 <div class="page-header">
-                  <h1 id="01-classdump">classdump</h1>
+                  <h1 id="01-classdump">classdump - 从JVM中把class dump下来</h1>
                 </div>
                 <p class="lead"><p>Get class dump:</p>
 <pre><code>wget https://hatter-source-code.googlecode.com/svn/trunk/classdump/classdumpall.jar
@@ -246,9 +253,51 @@
               ================================================== -->
               <div class="bs-docs-section">
                 <div class="page-header">
-                  <h1 id="04-finding">finding</h1>
+                  <h1 id="04-finding">finding - 为Java优化的源代码查找软件</h1>
                 </div>
-                <p class="lead"></p>
+                <p class="lead"><p>Usage:</p>
+<pre><code>$ java -jar findingall.jar ---NCL Pattern
+
+OR
+
+$ alias finding='java -jar /ABSTRACT_PATH_OF_findingall.jar -o UTF-8 ---NCL'
+$ finding Pattern
+</code></pre>
+<p>Arguments:</p>
+<pre><code>$ finding 
+Usage:
+  Version: 1.0 (b20130428)
+  java -jar findingall.jar [options] &lt;text&gt;
+    -f &lt;option&gt;                  option(default [c,h,cpp,hpp,java,xml])
+       ALL                       all file(s)
+       c                         .c file(s)
+       h                         .h file(s)
+       cpp                       .cpp file(s)
+       hpp                       .hpp file(s)
+       java                      .java file(s)
+    -I &lt;file&gt;                    file name(s) from input file
+    -o &lt;charset&gt;                 console output charset
+    -r &lt;charset[,charset]&gt;       input charset(s), deafult is: UTF-8,GB18030
+    -has &lt;symbol&gt;                only the line has symbol(case insensitive, -HAS case sensitive)
+    -ff &lt;filter&gt;                 file and path filter(regex, starts with '~' means exclude)
+    -CC &lt;thread count&gt;           concurrent thread(s) count
+    -cs &lt;option&gt;                 color schema
+        c1                       schema 1
+        c2                       schema 2
+    --i                          ignore case contains
+    --E                          regex
+    --e                          ignore case regex
+    --0                          only print file name
+    --1                          one file matches only one time
+    --s                          print simple file name
+    --F                          print full file name
+    --N                          print match at new line
+    --C                          color print
+    --L                          line number print
+    --J                          match jar and zip file(s)
+    --c                          match .class file(s)
+</code></pre>
+</p>
                 
                 
               </div>
@@ -318,9 +367,9 @@
               ================================================== -->
               <div class="bs-docs-section">
                 <div class="page-header">
-                  <h1 id="10-jtop">jtop</h1>
+                  <h1 id="10-jtop">jtop - JVM TOP</h1>
                 </div>
-                <p class="lead"><p>jtop is for 'Java TOP'.</p>
+                <p class="lead"><p>jtop is for 'JVM TOP'.</p>
 <pre><code>wget https://hatter-source-code.googlecode.com/svn/trunk/jtop/jtop.jar
 </code></pre>
 <p>Usage:</p>
@@ -353,6 +402,19 @@ java -cp jtop.jar jtop [options] &lt;pid&gt; [&lt;interval&gt; [&lt;count&gt;]]
                   <h1 id="11-permstat">permstat</h1>
                 </div>
                 <p class="lead"></p>
+                
+                
+              </div>
+            
+              
+              <!-- 99-description
+              ================================================== -->
+              <div class="bs-docs-section">
+                <div class="page-header">
+                  <h1 id="99-description">说明信息</h1>
+                </div>
+                <p class="lead"><p>本页所说之JVM一般都是指HotSpot JVM，Java是Oracle(Sun)的注册商标。</p>
+</p>
                 
                 
               </div>

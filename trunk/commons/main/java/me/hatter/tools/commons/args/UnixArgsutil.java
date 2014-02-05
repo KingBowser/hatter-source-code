@@ -1,127 +1,11 @@
 package me.hatter.tools.commons.args;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 
 public class UnixArgsutil {
 
-    public static final UnixArgs ARGS = new UnixArgs();
-
-    public static class UnixArgs {
-
-        private KList       args      = new KList();
-        private KSet        flags     = new KSet();
-        private KMap        keyvalues = new KMap();
-        private Set<String> fset      = new HashSet<String>();
-
-        private String[]    _args     = null;
-        private KSet        _keys     = null;
-
-        public void addFSet(String... fkeys) {
-            if ((fkeys != null) && (fkeys.length > 0)) {
-                for (String fk : fkeys) {
-                    fset.add(fk);
-                }
-            }
-        }
-
-        public String[] args() {
-            synchronized (this) {
-                if (_args == null) {
-                    _args = args.toArray(new String[0]);
-                }
-            }
-            return _args;
-        }
-
-        public KSet flags() {
-            return flags;
-        }
-
-        public KSet keys() {
-            synchronized (this) {
-                if (_keys == null) {
-                    _keys = new KSet(keyvalues.keySet());
-                }
-            }
-            return _keys;
-        }
-
-        public String kvalue(String key) {
-            List<String> vs = keyvalues.get(key);
-            return ((vs == null) || (vs.size() == 0)) ? null : vs.get(0);
-        }
-
-        public String kvalueAny(String... keys) {
-            if ((keys != null) && (keys.length > 0)) {
-                for (String key : keys) {
-                    List<String> vs = keyvalues.get(key);
-                    String val = ((vs == null) || (vs.size() == 0)) ? null : vs.get(0);
-                    if (val != null) {
-                        return val;
-                    }
-                }
-            }
-            return null;
-        }
-
-        public String kvalue(String key, String defval) {
-            List<String> vs = keyvalues.get(key);
-            return ((vs == null) || (vs.size() == 0)) ? defval : vs.get(0);
-        }
-
-        public List<String> kvalues(String key) {
-            List<String> vs = keyvalues.get(key);
-            return (vs == null) ? null : Collections.unmodifiableList(vs);
-        }
-
-        public List<String> kvalues(String key, List<String> defval) {
-            List<String> vs = keyvalues.get(key);
-            return (vs == null) ? defval : Collections.unmodifiableList(vs);
-        }
-    }
-
-    public static class KList extends ArrayList<String> {
-
-        private static final long serialVersionUID = -156830291036307953L;
-    }
-
-    public static class KSet extends LinkedHashSet<String> {
-
-        private static final long serialVersionUID = 178791470286450518L;
-
-        public KSet() {
-        }
-
-        public KSet(Collection<? extends String> c) {
-            super(c);
-        }
-
-        public boolean containsAny(String key, String... keys) {
-            if (this.contains(key)) {
-                return true;
-            }
-            if (keys != null) {
-                for (int i = 0; i < keys.length; i++) {
-                    if (this.contains(keys[i])) {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
-    }
-
-    public static class KMap extends LinkedHashMap<String, List<String>> {
-
-        private static final long serialVersionUID = -156830291036307953L;
-    }
+    public static final KArgs ARGS = new KArgs();
 
     public static PICArgs parseGlobalPICArgs(String[] args, long defInterval, int defcount) {
         parseGlobalArgs(args);
@@ -141,13 +25,13 @@ public class UnixArgsutil {
         processArgs(ARGS, args);
     }
 
-    public static UnixArgs parseArgs(String[] args) {
-        UnixArgs unixArgs = new UnixArgs();
+    public static KArgs parseArgs(String[] args) {
+        KArgs unixArgs = new KArgs();
         processArgs(unixArgs, args);
         return unixArgs;
     }
 
-    public static void processArgs(UnixArgs unixArgs, String[] args) {
+    public static void processArgs(KArgs unixArgs, String[] args) {
         if (args != null) {
             String lastk = null;
             for (int i = 0; i < args.length; i++) {

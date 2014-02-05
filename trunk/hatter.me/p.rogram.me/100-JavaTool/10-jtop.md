@@ -1,4 +1,4 @@
-jtop:::jtop - JVM TOP
+jtop:::jtop - JVM的top命令
 
 jtop is for 'JVM TOP'.
 

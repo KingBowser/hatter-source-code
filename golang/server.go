@@ -72,6 +72,10 @@ var jiangchenhaoDomainSetting = DomainSetting {
 	LOCATION, "/root/hatter.me/jiangchenhao", "utf-8",
 }
 
+var programmeDomainSetting = DomainSetting {
+	LOCATION, "/root/hatter.me/p.rogram.me", "utf-8",
+}
+
 var hatterMeRedirectDomainSetting = DomainSetting {
 	REDIRECT, "http://hatter.me/", "",
 }
@@ -89,6 +93,7 @@ var quickDomainSettingMap = map[string]*DomainSetting {
 	"chenhao.me": &jiangchenhaoDomainSetting,
 	"www.chenhao.me": &jiangchenhaoDomainSetting,
 	"jiang.chenhao.me": &jiangchenhaoDomainSetting,
+	"p.rogram.me": &programmeDomainSetting,
 	"niu.chenhao.me": &DomainSetting {
 		LOCATION, "/root/niuchenhao", "utf-8",
 	},
@@ -163,6 +168,7 @@ var domainPathHandlerMap = map[string]RequestCallFunc {
 var domainFilters = map[string][]RequestCallFunc {
 	"*": []RequestCallFunc {
 		AllDomainPFilter,
+		ProgrammeDomainFilter,
 	},
 	"hatter.me": []RequestCallFunc {
 		DomainPathPProxyRefFilter,
@@ -192,6 +198,25 @@ var domainFilters = map[string][]RequestCallFunc {
 func ReaderSecureFilter(w http.ResponseWriter, r *http.Request) bool {
 	if r.TLS == nil {
 		lib.RedirectURL(w, "https://reader.hatter.me/")
+		return true
+	}
+	return false
+}
+
+func ProgrammeDomainFilter(w http.ResponseWriter, r *http.Request) bool {
+	hostDomain, _, hostError := lib.ParseHost(r.Host)
+	if hostError != nil {
+		return false
+	}
+	if hostDomain == "p.rogram.me" {
+		return false
+	}
+	if strings.HasSuffix(hostDomain, "rogram.me") {
+		if r.TLS != nil {
+			lib.RedirectURL(w, "https://p.rogram.me")
+		} else {
+			lib.RedirectURL(w, "http://p.rogram.me")
+		}
 		return true
 	}
 	return false

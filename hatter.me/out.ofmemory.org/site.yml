@@ -1,0 +1,26 @@
+title: Out.OfMemory.Org
+subtitle: Hatter Jiang's Tech Blog
+link: http://out.ofmemory.org
+meta:
+  description: This is Hatter Jiang's Tech Blog http://out.ofmemory.org
+  keywords: !!seq
+    - OutOfMemory
+    - Hatter Jiang
+    - Tech
+  author: Hatter Jiang
+master:
+  name: Hatter Jiang
+  about: Java Programmer
+  email: mail@hatterjiang.com
+rss:
+  title: Hatter Jiang's Tech Blog
+  desc: Hatter Jiang's Tech Blog
+  lang: zh-cn
+  max: 10
+copyright:
+  owner: Hatter Jiang
+  beginYear: 1983
+  endYear: 2014
+  ICP: <NONE>
+theme: default
+codetheme: night

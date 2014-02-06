@@ -1,0 +1,20 @@
+- id: subversion-using-socks5-proxy
+  title: Subversion使用socks5代理
+  postedOn: !!str 2014-02-06
+  author: Hatter Jiang
+  tags: 
+    - subversion
+    - svn
+    - socks5
+    - proxy
+  abstract: 因为众所周知的原因，在国内经常会无法使用googlecode的svn服务，所以通过socks5代理使用googlecode是一个非常好的选择。
+
+- id: second-post
+  title: 代码及数学公式示例 
+  postedOn: !!str 2013-01-01
+  author: papery
+  tags: 
+    - 代码
+    - 数学公式
+    - papery
+  abstract: 这篇文章展示了如何在papery中使用代码和数学公式。 

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+    <channel>
+        <title>Hatter Jiang&#39;s Tech Blog</title>
+        <link>http://out.ofmemory.org</link>
+        <description>Hatter Jiang&#39;s Tech Blog</description>
+        <lastBuildDate>Thu, 06 Feb 2014 19:17:20 +0800</lastBuildDate>
+        <language>zh-cn</language>
+        
+        <item>
+            <title>Subversion使用socks5代理</title>
+            <link>http://out.ofmemory.org/articles/subversion-using-socks5-proxy.html?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=rss</link>
+            <guid>http://out.ofmemory.org/articles/subversion-using-socks5-proxy.html</guid>
+            <author>mail@hatterjiang.com Hatter Jiang</author>
+            <pubDate>Thu, 06 Feb 2014 00:00:00 +0800</pubDate>
+            <description>&lt;pre&gt;http://www.pps.univ-paris-diderot.fr/~jch/software/polipo/
+&lt;/pre&gt;&lt;pre&gt;make
+&lt;/pre&gt;&lt;pre&gt;-rwxr-xr-x polipo
+&lt;/pre&gt;&lt;p&gt;c.conf:&lt;/p&gt;
+&lt;pre&gt;socksParentProxy = &quot;localhost:7777&quot;
+socksProxyType = socks5
+proxyPort = 7778
+&lt;/pre&gt;&lt;pre&gt;polipo -c c.conf &gt; log 2&gt;&amp;1 &amp;
+&lt;/pre&gt;&lt;pre&gt;[groups]
+groupgooglecode = *.googlecode.com
+
+[groupgooglecode]
+http-proxy-host = localhost
+http-proxy-port = 7778
+http-proxy-compression = no
+&lt;/pre&gt;</description>
+        </item>
+        
+        <item>
+            <title>代码及数学公式示例</title>
+            <link>http://out.ofmemory.org/articles/second-post.html?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=rss</link>
+            <guid>http://out.ofmemory.org/articles/second-post.html</guid>
+            <author>mail@hatterjiang.com Hatter Jiang</author>
+            <pubDate>Tue, 01 Jan 2013 00:00:00 +0800</pubDate>
+            <description>&lt;h1 id=&quot;-&quot;&gt;这是一段代码&lt;/h1&gt;
+&lt;pre class=&quot;prettyprint linenums lang-c&quot;&gt;#include &lt;stdio.h&gt;
+
+int main(int argc, char** argv) {
+    printf(&quot;%s\n&quot;, &quot;Hello, World!&quot;);
+}
+&lt;/pre&gt;
+&lt;h1 id=&quot;-&quot;&gt;这是一些数学公式&lt;/h1&gt;
+&lt;p&gt;\[e^{i\pi}+1=0\]&lt;/p&gt;
+&lt;p&gt;\[\begin{pmatrix}
+  1/\sqrt{2}  &amp; 1/\sqrt{2} \\
+  -1/\sqrt{2} &amp; 1/\sqrt{2}
+\end{pmatrix}
+\begin{pmatrix}
+  3 \\
+  2
+\end{pmatrix}
+=
+\begin{pmatrix}
+  5/\sqrt{2} \\
+  -1/\sqrt{2}
+\end{pmatrix}\]&lt;/p&gt;
+&lt;p&gt;\[Var(a)=\frac{1}{m}\sum_{i=1}^m{(a_i-\mu)^2}\]&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

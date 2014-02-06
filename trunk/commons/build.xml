@@ -38,7 +38,7 @@
 		<jar destfile="commons-1.0.jar"> <!-- manifest="${jar.manifest}"> -->
 			<fileset dir="${classes.dir}" includes="**/*.class" />
                         <fileset dir="${classes.dir}" includes="**/*.jar" />
-			<fileset dir="${src.dir}" includes="**/*.java" />
+			<!--<fileset dir="${src.dir}" includes="**/*.java" />-->
 			<fileset dir="${config.dir}" includes="**/*.*" />
 		</jar>
                 <jar destfile="commons-1.0-sources.jar">

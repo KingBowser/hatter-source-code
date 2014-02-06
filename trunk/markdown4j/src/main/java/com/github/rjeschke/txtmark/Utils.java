@@ -15,6 +15,8 @@
  */
 package com.github.rjeschke.txtmark;
 
+import java.util.concurrent.atomic.AtomicReference;
+
 /**
  * Utilities.
  * 
@@ -660,10 +662,11 @@ class Utils
     }
 
     // BY Hatter,
-    public final static String getMetaFromFence(Line line) {
+    public final static String getMetaFromFence(Line line, AtomicReference<Line> outLine) {
         while ((line != null) && line.value.trim().isEmpty()) {
             line = line.next;
         }
+        outLine.set(line);
         return getMetaFromFence((line == null) ? "" : line.value);
     }
 }

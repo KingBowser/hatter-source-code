@@ -23,6 +23,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringReader;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * Markdown processor class.
@@ -902,8 +903,12 @@ public class Processor
                 block.type = BlockType.PLUGIN;
                 // BY HATTER, fix plugin and plugin has empty lines
                 // block.meta = Utils.getMetaFromFence(block.lines.value);
-                block.meta = Utils.getMetaFromFence(block.lines);
-                block.lines.setEmpty();
+                AtomicReference<Line> outLine = new AtomicReference<Line>();
+                block.meta = Utils.getMetaFromFence(block.lines, outLine);
+                if (outLine.get() != null) {
+                    outLine.get().setEmpty();
+                }
+                // block.lines.setEmpty();
                 if(block.lineTail.getLineType(this.useExtensions) == LineType.PLUGIN)
                     block.lineTail.setEmpty();
                 block.removeSurroundingEmptyLines();

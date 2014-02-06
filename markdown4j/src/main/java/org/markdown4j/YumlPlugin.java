@@ -3,8 +3,6 @@ package org.markdown4j;
 import java.util.List;
 import java.util.Map;
 
-import org.markdown4j.Plugin.EmitterCallback;
-
 public class YumlPlugin extends Plugin {
 
 	public YumlPlugin() {

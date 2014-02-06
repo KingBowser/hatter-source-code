@@ -15,8 +15,6 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.markdown4j.Plugin.EmitterCallback;
-
 public class IncludePlugin extends Plugin {
 
 	public static final String DEFAULT_CHARSET = System.getProperty("file.encoding");

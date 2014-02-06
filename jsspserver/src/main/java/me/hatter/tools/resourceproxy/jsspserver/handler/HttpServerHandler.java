@@ -23,7 +23,7 @@ public class HttpServerHandler implements HttpHandler {
 
     private static final LogTool logTool        = LogTools.getLogTool(HttpServerHandler.class);
 
-    public static int            STATUS_SUCCESS = 500;
+    public static int            STATUS_SUCCESS = 200;
     public static int            STATUS_ERROR   = 500;
 
     public void handle(HttpExchange exchange) throws IOException {
@@ -37,8 +37,14 @@ public class HttpServerHandler implements HttpHandler {
             HttpResponse response = DefaultResourceFilterChain.filterChain(request);
             writeResponse(exchange, response);
         } catch (Throwable t) {
-            logTool.error("Exception occured: ", t);
-            writeThrowableAndClose(exchange, t);
+            if ((t instanceof IOException) && StringUtil.contains(t.getMessage(), "Broken pipe")) {
+                if (logTool.isInfoEnable()) {
+                    logTool.info("Client cancel connection: " + t.getClass().getName() + "@" + t.getMessage());
+                }
+            } else {
+                logTool.error("Exception occured: ", t);
+                writeThrowableAndClose(exchange, t);
+            }
         }
     }
 

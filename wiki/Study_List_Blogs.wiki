@@ -10,3 +10,6 @@
 
 ==博客生成软件==
  * https://github.com/ericzhang-cn/papery
+
+==数据公式==
+ * http://www.mathjax.org/

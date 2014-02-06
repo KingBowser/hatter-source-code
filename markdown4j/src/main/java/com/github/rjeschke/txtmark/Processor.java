@@ -900,7 +900,9 @@ public class Processor
                     line = line.next;
                 block = root.split(line != null ? line.previous : root.lineTail);
                 block.type = BlockType.PLUGIN;
-                block.meta = Utils.getMetaFromFence(block.lines.value);
+                // BY HATTER, fix plugin and plugin has empty lines
+                // block.meta = Utils.getMetaFromFence(block.lines.value);
+                block.meta = Utils.getMetaFromFence(block.lines);
                 block.lines.setEmpty();
                 if(block.lineTail.getLineType(this.useExtensions) == LineType.PLUGIN)
                     block.lineTail.setEmpty();

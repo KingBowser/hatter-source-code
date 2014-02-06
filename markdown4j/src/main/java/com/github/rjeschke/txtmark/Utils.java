@@ -658,4 +658,12 @@ class Utils
         }
         return "";
     }
+
+    // BY Hatter,
+    public final static String getMetaFromFence(Line line) {
+        while ((line != null) && line.value.trim().isEmpty()) {
+            line = line.next;
+        }
+        return getMetaFromFence((line == null) ? "" : line.value);
+    }
 }

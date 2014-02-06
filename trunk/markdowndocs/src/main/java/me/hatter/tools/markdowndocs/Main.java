@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import me.hatter.tools.commons.args.UnixArgsutil;
+import me.hatter.tools.commons.args.UnixArgsUtil;
 import me.hatter.tools.commons.classloader.ClassLoaderUtil;
 import me.hatter.tools.commons.file.FileUtil;
 import me.hatter.tools.commons.log.LogTool;
@@ -35,11 +35,11 @@ public class Main {
     // -d dir
     public static void main(String[] args) {
         ClassLoaderUtil.initLibResources();
-        UnixArgsutil.ARGS.addFSet("h", "help");
-        UnixArgsutil.ARGS.addFSet("s", "server");
-        UnixArgsutil.parseGlobalArgs(args);
+        UnixArgsUtil.ARGS.addFSet("h", "help");
+        UnixArgsUtil.ARGS.addFSet("s", "server");
+        UnixArgsUtil.parseGlobalArgs(args);
 
-        if (UnixArgsutil.ARGS.flags().containsAny("h", "help")) {
+        if (UnixArgsUtil.ARGS.flags().containsAny("h", "help")) {
             System.out.println("");
             System.out.println("java -jar markdowndocsall.jar [options]");
             System.out.println("     --h[elp]");
@@ -47,8 +47,8 @@ public class Main {
             System.exit(0);
         }
 
-        if (StringUtil.isNotEmpty(UnixArgsutil.ARGS.kvalueAny("d", "dir"))) {
-            GlobalVars.setBasePath(new File(UnixArgsutil.ARGS.kvalue("d", "dir")));
+        if (StringUtil.isNotEmpty(UnixArgsUtil.ARGS.kvalueAny("d", "dir"))) {
+            GlobalVars.setBasePath(new File(UnixArgsUtil.ARGS.kvalue("d", "dir")));
         }
 
         File markdowndocs = new File(GlobalVars.getBasePath(), ".markdowndocs");
@@ -59,9 +59,9 @@ public class Main {
 
         JsspExecutor.initJsspWork();
 
-        if (UnixArgsutil.ARGS.flags().containsAny("s", "server")) {
+        if (UnixArgsUtil.ARGS.flags().containsAny("s", "server")) {
             log.info("Start server mode...");
-            String port = StringUtil.defaultValue(UnixArgsutil.ARGS.kvalueAny("p", "port"), "8000");
+            String port = StringUtil.defaultValue(UnixArgsUtil.ARGS.kvalueAny("p", "port"), "8000");
             MainHttpServer httpServer = new MainHttpServer(new HttpServerHandler(),
                                                            Arrays.asList(Integer.valueOf(port)));
             httpServer.run();

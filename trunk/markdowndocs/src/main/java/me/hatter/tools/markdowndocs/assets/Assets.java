@@ -9,6 +9,7 @@ public class Assets {
     public static final List<String> CSSES;
     public static final List<String> JSES;
     public static final List<String> IMGS;
+    public static final List<String> PRETTIFIES;
 
     static {
         List<String> csses = new ArrayList<String>();
@@ -31,5 +32,10 @@ public class Assets {
         imgs.add("apple-touch-icon-144-precomposed.png");
         imgs.add("favicon.png");
         IMGS = Collections.unmodifiableList(imgs);
+
+        List<String> prettifies = new ArrayList<String>();
+        prettifies.add("prettify.css");
+        prettifies.add("prettify.js");
+        PRETTIFIES = Collections.unmodifiableList(prettifies);
     }
 }

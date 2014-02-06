@@ -19,6 +19,7 @@ public class GlobalInit {
         initAssetsDir("css", Assets.CSSES);
         initAssetsDir("js", Assets.JSES);
         initAssetsDir("img", Assets.IMGS);
+        initAssetsDir("prettify", Assets.PRETTIFIES);
     }
 
     public static void initAssetsDir(String dirName, List<String> assets) throws IOException {

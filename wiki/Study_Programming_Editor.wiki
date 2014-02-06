@@ -31,6 +31,11 @@
 || *Name* || *License* || *Web site* || *Description* ||
 || `pandoc` || LGPL || http://johnmacfarlane.net/pandoc/ || a universal document converter ||
 
+==浏览器DIFF==
+|| *Name* || *License* || *Web site* || *Description* ||
+|| `Mergely` || `` || http://www.mergely.com/ || Online diff, merge documents ||
+|| `Pretty Diff` || `` || http://prettydiff.com/ || The difference tool ||
+
 ==浏览器编辑器==
 || *Name* || *License* || *Web site* || *Description* ||
 || `EpicEditor ` || `Free` || http://oscargodson.github.io/EpicEditor/ || An Embeddable JavaScript Markdown Editor ||

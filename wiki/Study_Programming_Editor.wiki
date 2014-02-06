@@ -37,6 +37,7 @@
 || `Ace` || `BSD` || http://ace.c9.io/ || Ace is an embeddable code editor written in JavaScript. ||
 || `CodeMirror` || `MIT` || http://codemirror.net/ || CodeMirror is a versatile text editor implemented in JavaScript for the browser. ||
 || `SyntaxHighlighter` || `MIT` || http://alexgorbatchev.com/SyntaxHighlighter/ || SyntaxHighlighter is a fully functional self-contained code syntax highlighter developed in JavaScript. ||
+|| `google-code-prettify` || `Apache` || https://code.google.com/p/google-code-prettify/ || A Javascript module and CSS file that allows syntax highlighting of source code snippets in an html page. ||
 
 ==Markdown==
 

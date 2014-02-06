@@ -76,6 +76,10 @@ var programmeDomainSetting = DomainSetting {
 	LOCATION, "/root/hatter.me/p.rogram.me", "utf-8",
 }
 
+var outofmemoryorgDomainSetting = DomainSetting {
+	LOCATION, "/root/hatter.me/out.ofmemory.org", "utf-8",
+}
+
 var hatterMeRedirectDomainSetting = DomainSetting {
 	REDIRECT, "http://hatter.me/", "",
 }
@@ -94,6 +98,7 @@ var quickDomainSettingMap = map[string]*DomainSetting {
 	"www.chenhao.me": &jiangchenhaoDomainSetting,
 	"jiang.chenhao.me": &jiangchenhaoDomainSetting,
 	"p.rogram.me": &programmeDomainSetting,
+	"out.ofmemory.org": &outofmemoryorgDomainSetting,
 	"niu.chenhao.me": &DomainSetting {
 		LOCATION, "/root/niuchenhao", "utf-8",
 	},
@@ -169,6 +174,7 @@ var domainFilters = map[string][]RequestCallFunc {
 	"*": []RequestCallFunc {
 		AllDomainPFilter,
 		ProgrammeDomainFilter,
+		OutofmemoryorgDomainFilter,
 	},
 	"hatter.me": []RequestCallFunc {
 		DomainPathPProxyRefFilter,
@@ -216,6 +222,25 @@ func ProgrammeDomainFilter(w http.ResponseWriter, r *http.Request) bool {
 			lib.RedirectURL(w, "https://p.rogram.me")
 		} else {
 			lib.RedirectURL(w, "http://p.rogram.me")
+		}
+		return true
+	}
+	return false
+}
+
+func OutofmemoryorgDomainFilter(w http.ResponseWriter, r *http.Request) bool {
+	hostDomain, _, hostError := lib.ParseHost(r.Host)
+	if hostError != nil {
+		return false
+	}
+	if hostDomain == "out.ofmemory.org" {
+		return false
+	}
+	if strings.HasSuffix(hostDomain, "ofmemory.org") {
+		if r.TLS != nil {
+			lib.RedirectURL(w, "https://out.ofmemory.org")
+		} else {
+			lib.RedirectURL(w, "http://out.ofmemory.org")
 		}
 		return true
 	}

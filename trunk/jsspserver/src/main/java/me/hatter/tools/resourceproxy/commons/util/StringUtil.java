@@ -177,6 +177,13 @@ public class StringUtil {
         return ((str0 != null) && str0.equals(str1));
     }
 
+    public static final boolean contains(final String str0, final String str1) {
+        if (str0 == null) {
+            return (str1 == null);
+        }
+        return str0.contains(str1);
+    }
+
     public static final List<Pair<String, String>> makePairs(final String s, final String regSep, final char eq) {
         if (isEmpty(s)) {
             return new ArrayList<Pair<String, String>>();

@@ -10,8 +10,6 @@ import java.net.URLEncoder;
 import java.util.List;
 import java.util.Map;
 
-import org.markdown4j.Plugin.EmitterCallback;
-
 public class WebSequencePlugin extends Plugin {
 
 	public WebSequencePlugin() {

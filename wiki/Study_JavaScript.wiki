@@ -76,6 +76,7 @@ _[http://www.ecma-international.org/publications/standards/Ecma-262-arch.htm]_
 || `JScrambler ` || https://jscrambler.com/ || Protect your JavaScript | JScrambler ||
 || `node.js` || http://nodejs.org/ || Node.js is a platform built on Chrome's JavaScript runtime for easily building fast, scalable network applications.  ||
 || `Grunt` || http://gruntjs.com/ || Grunt: The JavaScript Task Runner ||
+|| `JsWebP` || http://www.etherdream.com/WebP/ || 让浏览器支持WebP格式 ||
 
 ===五、游戏===
 || `Phaser` || http://phaser.io/ || Desktop and Mobile HTML5 game framework ||
@@ -101,6 +102,7 @@ _[http://www.ecma-international.org/publications/standards/Ecma-262-arch.htm]_
 || `Firebug Lite` || http://getfirebug.com/firebuglite || Firebug Lite: doing the Firebug way, anywhere ||
 || `leak-finder-for-javascript` || http://code.google.com/p/leak-finder-for-javascript/ || Tool for finding memory leaks in JavaScript programs ||
 || `jsdt` || http://code.google.com/p/jsdt/ || Javascript Debug Toolkit is a software can debug javascript in ie,firefox,safari,chrome,opera,mobile ie browser,mobile opera browser and so on ||
+|| `JsGear` || http://www.etherdream.com/JSGear/demo.html || JsGear 是一款JavaScript变速齿轮插件 ||
 
 ===九、相关网站===
 || The HTML5 test || http://html5test.com/ || The HTML5 test score is an indication of how well your browser supports the upcoming HTML5 standard and related specifications ||

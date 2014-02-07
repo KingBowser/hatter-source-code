@@ -881,8 +881,14 @@ public class Processor
                     line = line.next;
                 block = root.split(line != null ? line.previous : root.lineTail);
                 block.type = BlockType.FENCED_CODE;
-                block.meta = Utils.getMetaFromFence(block.lines.value);
-                block.lines.setEmpty();
+                // BY HATTER
+                // block.meta = Utils.getMetaFromFence(block.lines.value);
+                AtomicReference<Line> outLineFC = new AtomicReference<Line>();
+                block.meta = Utils.getMetaFromFence(block.lines, outLineFC);
+                if (outLineFC.get() != null) {
+                    outLineFC.get().setEmpty();
+                }
+                // block.lines.setEmpty();
                 if(block.lineTail.getLineType(this.useExtensions) == LineType.FENCED_CODE)
                     block.lineTail.setEmpty();
                 block.removeSurroundingEmptyLines();

@@ -8,6 +8,10 @@
  * 调用自身函数(Self-called)；
  * 计算仅占用常量栈空间(Stack Space)。
 
+http://wiki.jvmlangsummit.com/Why_Tailcalls
+
+http://www.oracle.com/technetwork/java/javase/gc-tuning-6-140523.html#cms.floating_garbage
+
 ===参考资料===
 `[1].` http://zh.wikipedia.org/wiki/%E5%B0%BE%E8%B0%83%E7%94%A8<br>
 `[2].` http://ssw.jku.at/Research/Papers/Schwaighofer09Master/schwaighofer09master.pdf<br>

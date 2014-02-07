@@ -113,6 +113,7 @@
  * [Study_Performance Performance]
  * [Study_Programming Programming]
   * [Study_Clojure Clojure]
+  * [Study_Programming_Charset Charset]
   * [Study_CSS CSS]
    * [Study_CSS_Selector Selector]
   * [Study_DotNet DotNet]

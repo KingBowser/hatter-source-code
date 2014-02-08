@@ -42,6 +42,8 @@ jstat -J-Djstat.showUnsupported=true -snap <pid>
 
 http://jinwoohwang.com/index.html
 
+虚拟JUG：http://www.youtube.com/user/virtualJUG?feature=watch
+
 ==Java Performance==
  * [http://www.javaperformancetuning.com/]
 

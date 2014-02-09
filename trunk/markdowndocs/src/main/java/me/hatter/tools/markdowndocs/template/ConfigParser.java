@@ -33,10 +33,14 @@ public class ConfigParser {
     }
 
     private static Config parseConfig(File config) {
-        if ((config != null) && (config.exists())) {
-            return JSONObject.parseObject(FileUtil.readFileToString(config), Config.class);
-        } else {
-            return new Config();
+        try {
+            if ((config != null) && (config.exists())) {
+                return JSONObject.parseObject(FileUtil.readFileToString(config), Config.class);
+            } else {
+                return new Config();
+            }
+        } catch (Exception e) {
+            throw new IllegalStateException("Parse config failed: " + config, e);
         }
     }
 }

@@ -20,6 +20,7 @@ import me.hatter.tools.markdowndocs.model.Page;
 import me.hatter.tools.markdowndocs.template.ConfigParser;
 import me.hatter.tools.markdowndocs.template.MenuParser;
 import me.hatter.tools.markdowndocs.template.PageParser;
+import me.hatter.tools.markdowndocs.template.ParameterParser;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpRequest;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpResponse;
 import me.hatter.tools.resourceproxy.jsspexec.JsspExecutor;
@@ -43,7 +44,8 @@ public class MarkdownDocsFilter implements ResourceFilter {
             String contentType = ContentTypes.getContentTypeByExt(ext);
 
             if (request.getFPath().startsWith("/assets")) {
-                URL url = MarkdownDocsFilter.class.getResource(request.getFPath());
+                URL url = MarkdownDocsFilter.class.getResource("/" + ParameterParser.getGlobalParamter().getTemplate()
+                                                               + request.getFPath());
                 if (url != null) {
                     return makeHttpResponse(null, IOUtil.readToBytesAndClose(url.openStream()), contentType);
                 }
@@ -74,7 +76,10 @@ public class MarkdownDocsFilter implements ResourceFilter {
                     addContext.put("page", page);
 
                     BufferWriter bw = new BufferWriter();
-                    URLResource resource = new URLResource(TestMain.class.getResource("/templates/main.template.jssp"),
+                    URLResource resource = new URLResource(
+                                                           TestMain.class.getResource("/"
+                                                                                      + ParameterParser.getGlobalParamter().getTemplate()
+                                                                                      + "/templates/main.template.jssp"),
                                                            "main.template.jssp");
                     JsspExecutor.executeJssp(resource, new HashMap<String, Object>(), addContext, null, bw);
 

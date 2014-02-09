@@ -15,6 +15,7 @@ import me.hatter.tools.commons.log.LogTool;
 import me.hatter.tools.commons.log.LogTools;
 import me.hatter.tools.commons.resource.impl.URLResource;
 import me.hatter.tools.commons.string.StringUtil;
+import me.hatter.tools.markdowndocs.assets.Assets;
 import me.hatter.tools.markdowndocs.config.Config;
 import me.hatter.tools.markdowndocs.config.GlobalInit;
 import me.hatter.tools.markdowndocs.config.GlobalVars;
@@ -23,6 +24,7 @@ import me.hatter.tools.markdowndocs.model.Page;
 import me.hatter.tools.markdowndocs.template.ConfigParser;
 import me.hatter.tools.markdowndocs.template.MenuParser;
 import me.hatter.tools.markdowndocs.template.PageParser;
+import me.hatter.tools.markdowndocs.template.ParameterParser;
 import me.hatter.tools.resourceproxy.jsspexec.JsspExecutor;
 import me.hatter.tools.resourceproxy.jsspexec.utl.BufferWriter;
 import me.hatter.tools.resourceproxy.jsspserver.handler.HttpServerHandler;
@@ -37,6 +39,7 @@ public class Main {
         ClassLoaderUtil.initLibResources();
         UnixArgsUtil.ARGS.addFSet("h", "help");
         UnixArgsUtil.ARGS.addFSet("s", "server");
+        UnixArgsUtil.ARGS.addFSet("init-asset");
         UnixArgsUtil.parseGlobalArgs(args);
 
         if (UnixArgsUtil.ARGS.flags().containsAny("h", "help")) {
@@ -71,8 +74,10 @@ public class Main {
     }
 
     private static void staticInitPages() {
-        try {
-            GlobalInit.initAssets();
+
+        if (!(new File(GlobalVars.getBasePath(), "assets").exists())
+            || UnixArgsUtil.ARGS.flags().contains("init-assets")) try {
+            GlobalInit.initAsset(Assets.getGlobalAsset());
         } catch (IOException e) {
             log.error("Error!!", e);
         }
@@ -98,7 +103,10 @@ public class Main {
             addContext.put("page", page);
 
             BufferWriter bw = new BufferWriter();
-            URLResource resource = new URLResource(TestMain.class.getResource("/templates/main.template.jssp"),
+            URLResource resource = new URLResource(
+                                                   TestMain.class.getResource("/"
+                                                                              + ParameterParser.getGlobalParamter().getTemplate()
+                                                                              + "/templates/main.template.jssp"),
                                                    "main.template.jssp");
             JsspExecutor.executeJssp(resource, new HashMap<String, Object>(), addContext, null, bw);
 

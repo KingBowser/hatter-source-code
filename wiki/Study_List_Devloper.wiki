@@ -2,7 +2,9 @@
 #sidebar TableOfContents
 
 
-=Moved to: [http://p.rogram.me/400-JavaStudyList/]=
+=_Moved to: [http://p.rogram.me/400-JavaStudyList/]_=
+
+=_This page will not update._=
 
 =`Java`工程师的学习列表=
 

@@ -50,26 +50,36 @@
           <a href="/" class="navbar-brand"><%=config.getHeadTitle()%></a>
         </div>
         <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-          <ul class="nav navbar-nav">
-			<% if (page.getLefts() != null) { %>
-			  <% for (var i = 0; i < page.getLefts().size(); i++) { %>
-			    <% var item = page.getLefts().get(i); %>
-			        <li <%if(page.getPath().equals(item.getPath())){%>class="active"<%}%>>
-		              <a href="<%=item.getPath()%>"><%!=item.getTitle()%></a>
+        <% var printNavMenu = function(isLeft, menus) { %>
+          <ul class="nav navbar-nav <%if(!isLeft){%>navbar-right<%}%>">
+			<% if (menus != null) { %>
+			  <% for (var i = 0; i < menus.size(); i++) { %>
+			    <% var menu = menus.get(i); %>
+			    <% if (menu.getList() == null || menu.getList().isEmpty()) { %>
+			        <li <%if(page.getPath().equals(menu.getPath())){%>class="active"<%}%>>
+		              <a href="<%=menu.getPath()%>"><%!=menu.getTitle()%></a>
 		            </li>
+		        <% } else { %>
+		           <li class="dropdown">
+		             <a href="<%=menu.getPath()%>" class="dropdown-toggle" data-toggle="dropdown"><%=menu.getTitle()%> <b class="caret"></b></a>
+		             <ul class="dropdown-menu">
+		             <% for (var s = 0; s < menu.getList().size(); s++) { %>
+		               <% var subMenu = menu.getList().get(s); %>
+		               <% if ("----".equals(subMenu.getTitle())) { %>
+		                 <li class="divider"></li>
+		               <% } else { %>
+		                 <li><a href="<%=subMenu.getPath()%>"><%!=subMenu.getTitle()%></a></li>
+		               <% } %>
+		             <% } %>
+		             </ul>
+		           </li>
+		        <% } %>
 			  <% } %>
 			<% } %>
           </ul>
-          <ul class="nav navbar-nav navbar-right">
-			<% if (page.getRights() != null) { %>
-			  <% for (var i = 0; i < page.getRights().size(); i++) { %>
-			    <% var item = page.getRights().get(i); %>
-			        <li <%if(page.getPath().equals(item.getPath())){%>class="active"<%}%>>
-		              <a href="<%=item.getPath()%>"><%!=item.getTitle()%></a>
-		            </li>
-			  <% } %>
-			<% } %>
-          </ul>
+          <% } %>
+          <% printNavMenu(true, parameter.getLefts()); %>
+          <% printNavMenu(false, parameter.getRights()); %>
         </nav>
       </div>
     </header>

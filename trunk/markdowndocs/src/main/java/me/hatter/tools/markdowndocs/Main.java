@@ -2,10 +2,8 @@ package me.hatter.tools.markdowndocs;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import me.hatter.tools.commons.args.UnixArgsUtil;
@@ -19,10 +17,9 @@ import me.hatter.tools.markdowndocs.assets.Assets;
 import me.hatter.tools.markdowndocs.config.Config;
 import me.hatter.tools.markdowndocs.config.GlobalInit;
 import me.hatter.tools.markdowndocs.config.GlobalVars;
-import me.hatter.tools.markdowndocs.model.MenuItem;
+import me.hatter.tools.markdowndocs.config.Parameter;
 import me.hatter.tools.markdowndocs.model.Page;
 import me.hatter.tools.markdowndocs.template.ConfigParser;
-import me.hatter.tools.markdowndocs.template.MenuParser;
 import me.hatter.tools.markdowndocs.template.PageParser;
 import me.hatter.tools.markdowndocs.template.ParameterParser;
 import me.hatter.tools.resourceproxy.jsspexec.JsspExecutor;
@@ -87,23 +84,16 @@ public class Main {
             log.error("Error!!", e);
         }
 
-        List<MenuItem> refLefts = new ArrayList<MenuItem>();
-        List<MenuItem> refRights = new ArrayList<MenuItem>();
-        MenuParser.parseMenuItems(refLefts, refRights);
+        Parameter parameter = ParameterParser.getGlobalParamter();
+        for (String dirName : parameter.getDirs()) {
+            File dir = (StringUtil.isEmpty(dirName)) ? GlobalVars.getBasePath() : new File(GlobalVars.getBasePath(),
+                                                                                           dirName);
 
-        List<MenuItem> allItems = new ArrayList<MenuItem>();
-        allItems.addAll(refLefts);
-        allItems.addAll(refRights);
-        for (MenuItem item : allItems) {
-            File dir = (StringUtil.isEmpty(item.getDirName())) ? GlobalVars.getBasePath() : new File(
-                                                                                                     GlobalVars.getBasePath(),
-                                                                                                     item.getDirName());
-            Config config = ConfigParser.readConfig(item.getDirName());
-            Page page = PageParser.parsePage(item.getDirName());
-            page.setLefts(refLefts);
-            page.setRights(refRights);
+            Config config = ConfigParser.readConfig(dirName);
+            Page page = PageParser.parsePage(dirName);
 
             Map<String, Object> addContext = new HashMap<String, Object>();
+            addContext.put("parameter", parameter);
             addContext.put("config", config);
             addContext.put("page", page);
 

@@ -3,9 +3,7 @@ package me.hatter.tools.markdowndocs.filter;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import me.hatter.tools.commons.exception.ExceptionUtil;
@@ -15,10 +13,9 @@ import me.hatter.tools.commons.resource.impl.URLResource;
 import me.hatter.tools.commons.string.StringUtil;
 import me.hatter.tools.markdowndocs.TestMain;
 import me.hatter.tools.markdowndocs.config.Config;
-import me.hatter.tools.markdowndocs.model.MenuItem;
+import me.hatter.tools.markdowndocs.config.Parameter;
 import me.hatter.tools.markdowndocs.model.Page;
 import me.hatter.tools.markdowndocs.template.ConfigParser;
-import me.hatter.tools.markdowndocs.template.MenuParser;
 import me.hatter.tools.markdowndocs.template.PageParser;
 import me.hatter.tools.markdowndocs.template.ParameterParser;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpRequest;
@@ -31,9 +28,6 @@ import me.hatter.tools.resourceproxy.jsspserver.util.ContentTypes;
 import me.hatter.tools.resourceproxy.jsspserver.util.HttpConstants;
 
 public class MarkdownDocsFilter implements ResourceFilter {
-
-    List<MenuItem> refLefts  = new ArrayList<MenuItem>();
-    List<MenuItem> refRights = new ArrayList<MenuItem>();
 
     public HttpResponse filter(HttpRequest request, ResourceFilterChain chain) {
         try {
@@ -57,21 +51,17 @@ public class MarkdownDocsFilter implements ResourceFilter {
             }
             if (!request.getFPath().startsWith("/.")) {
                 if (request.getFPath().equals("/") || new File(request.getFPath().substring(1)).isDirectory()) {
-                    if (refLefts.isEmpty()) {
-                        MenuParser.parseMenuItems(refLefts, refRights);
-                    }
-
                     String dirName = request.getFPath().equals("/") ? null : request.getFPath().substring(1);
                     if ((dirName != null) && (dirName.endsWith("/"))) {
                         dirName = dirName.substring(0, dirName.length() - 1);
                     }
 
+                    Parameter parameter = ParameterParser.getGlobalParamter();
                     Config config = ConfigParser.readConfig(dirName);
                     Page page = PageParser.parsePage(dirName);
-                    page.setLefts(refLefts);
-                    page.setRights(refRights);
 
                     Map<String, Object> addContext = new HashMap<String, Object>();
+                    addContext.put("parameter", parameter);
                     addContext.put("config", config);
                     addContext.put("page", page);
 

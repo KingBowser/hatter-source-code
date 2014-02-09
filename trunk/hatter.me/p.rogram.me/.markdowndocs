@@ -1,6 +1,6 @@
 {
   "template": "bsdocs",
-  "dirs": ["JavaTool", "HattersJavaTool", "3rdJavaTool", "JavaStudyList", "Link", "About"],
+  "dirs": [null, "JavaTool", "HattersJavaTool", "3rdJavaTool", "JavaStudyList", "Link", "About"],
   "lefts": [
       {"path":"/", "title": "关于"},
       {"path":"/JavaTool/", "title": "Java工具"},

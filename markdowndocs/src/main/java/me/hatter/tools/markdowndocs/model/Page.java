@@ -6,7 +6,9 @@ public class Page {
 
     private String         path;
     private String         headerCode;
+    @Deprecated
     private List<MenuItem> lefts;
+    @Deprecated
     private List<MenuItem> rights;
     private String         summary;
     private String         notice;

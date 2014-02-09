@@ -42,16 +42,21 @@ public class Main {
         UnixArgsUtil.ARGS.addFSet("init-asset");
         UnixArgsUtil.parseGlobalArgs(args);
 
+        if (StringUtil.isNotEmpty(UnixArgsUtil.ARGS.kvalueAny("d", "dir"))) {
+            GlobalVars.setBasePath(new File(UnixArgsUtil.ARGS.kvalue("d", "dir")));
+        }
+
+        if (UnixArgsUtil.ARGS.keys().containsAny("p", "plugin")) {
+            Plugins.runPlugin(UnixArgsUtil.ARGS.kvalueAny("p", "plugin"));
+            System.exit(0);
+        }
+
         if (UnixArgsUtil.ARGS.flags().containsAny("h", "help")) {
             System.out.println("");
             System.out.println("java -jar markdowndocsall.jar [options]");
             System.out.println("     --h[elp]");
             System.out.println("     -d dir");
             System.exit(0);
-        }
-
-        if (StringUtil.isNotEmpty(UnixArgsUtil.ARGS.kvalueAny("d", "dir"))) {
-            GlobalVars.setBasePath(new File(UnixArgsUtil.ARGS.kvalue("d", "dir")));
         }
 
         File markdowndocs = new File(GlobalVars.getBasePath(), ".markdowndocs");

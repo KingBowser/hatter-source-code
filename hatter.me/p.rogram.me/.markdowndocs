@@ -2,7 +2,7 @@
   "template": "bsdocs",
   "dirs": [null, "java.tool", "hatters.java.tool", "3rd.java.tool", "java.study.list", "link", "about"],
   "lefts": [
-      {"path":"/", "title": "关于"},
+      {"path":"/", "title": "首页"},
       {"path":"/java.tool/", "title": "Java工具"},
       {"path":"/hatters.java.tool/", "title": "Hatter的Java工具"},
       {"path":"/3rd.java.tool/", "title": "第三方Java工具"},

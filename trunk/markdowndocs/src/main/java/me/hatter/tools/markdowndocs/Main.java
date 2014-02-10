@@ -88,6 +88,10 @@ public class Main {
         for (String dirName : parameter.getDirs()) {
             File dir = (StringUtil.isEmpty(dirName)) ? GlobalVars.getBasePath() : new File(GlobalVars.getBasePath(),
                                                                                            dirName);
+            if (!dir.exists()) {
+                log.error("Dir not exists: " + dir);
+                continue;
+            }
 
             Config config = ConfigParser.readConfig(dirName);
             Page page = PageParser.parsePage(dirName);

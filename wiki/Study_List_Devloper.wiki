@@ -2,7 +2,7 @@
 #sidebar TableOfContents
 
 
-=_Moved to: [http://p.rogram.me/JavaStudyList/]_=
+=_Moved to: [http://p.rogram.me/java.study.list/]_=
 
 =_This page will not update._=
 

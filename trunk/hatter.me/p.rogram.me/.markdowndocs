@@ -1,15 +1,15 @@
 {
   "template": "bsdocs",
-  "dirs": [null, "JavaTool", "HattersJavaTool", "3rdJavaTool", "JavaStudyList", "Link", "About"],
+  "dirs": [null, "java.tool", "hatters.java.tool", "3rd.java.tool", "java.study.list", "link", "about"],
   "lefts": [
       {"path":"/", "title": "关于"},
-      {"path":"/JavaTool/", "title": "Java工具"},
-      {"path":"/HattersJavaTool/", "title": "Hatter的Java工具"},
-      {"path":"/3rdJavaTool/", "title": "第三方Java工具"},
-      {"path":"/JavaStudyList/", "title": "Java工程师学习列表"},
-      {"path":"/Link/", "title": "相关链接"}
+      {"path":"/java.tool/", "title": "Java工具"},
+      {"path":"/hatters.java.tool/", "title": "Hatter的Java工具"},
+      {"path":"/3rd.java.tool/", "title": "第三方Java工具"},
+      {"path":"/java.study.list/", "title": "Java工程师学习列表"},
+      {"path":"/link/", "title": "相关链接"}
   ],
   "rights": [
-      {"path":"/About/", "title": "关于"}
+      {"path":"/about/", "title": "关于"}
   ]
 }

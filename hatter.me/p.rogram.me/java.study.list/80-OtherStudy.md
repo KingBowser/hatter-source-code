@@ -1,4 +1,4 @@
-别人学什么
+别人在学什么
 
 %%% wikiTable class=table___table-bordered style=width:600px;
 || 前端工程师学什么？ | [!](https://github.com/JacksonTian/fks) |

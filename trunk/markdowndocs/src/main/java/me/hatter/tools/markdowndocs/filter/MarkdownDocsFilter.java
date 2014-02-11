@@ -74,6 +74,11 @@ public class MarkdownDocsFilter implements ResourceFilter {
                     JsspExecutor.executeJssp(resource, new HashMap<String, Object>(), addContext, null, bw);
 
                     return makeHttpResponse(bw.getBufferedString(), null, contentType);
+                } else {
+                    File file = new File(request.getFPath().substring(1));
+                    if (file.exists()) {
+                        return makeHttpResponse(null, FileUtil.readFileToBytes(file), contentType);
+                    }
                 }
             }
         } catch (IOException e) {

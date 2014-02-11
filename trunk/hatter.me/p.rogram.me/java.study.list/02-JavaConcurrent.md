@@ -14,7 +14,7 @@ ____count++;
 __}
 }
 %%%
-1. 学会使用`java.uti.concurrent.**`
+1. 学会使用`java.uti.concurrent.**`下面的类
     * `java.util.concurrent.locks.ReentrantLock`
     * `java.util.concurrent.locks.ReentrantReadWriteLock`
     * `java.util.concurrent.atomic.Atomic*`

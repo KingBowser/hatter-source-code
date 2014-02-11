@@ -28,12 +28,14 @@ public class ThumbnailatorPlugin implements Plugin {
 
     public void main(KArgs args) {
         final List<String> _t = CollectionUtil.toLowerCase(args.kvalues("type"));
+        final List<String> _f = args.kvalues("file");
         final String _w = args.kvalueAny("width");
         final String _h = args.kvalueAny("height");
         final String _ext = args.kvalueAny("ext");
         final String _quality = args.kvalueAny("quality");
-        if (CollectionUtil.isEmpty(_t) || StringUtil.isEmpty(_w) || StringUtil.isEmpty(_h)) {
-            log.error("Args not complete: type, width, height");
+        if ((CollectionUtil.isEmpty(_t) && CollectionUtil.isEmpty(_f)) || StringUtil.isEmpty(_w)
+            || StringUtil.isEmpty(_h)) {
+            log.error("Args not complete: type|file, width, height");
             return;
         }
         final int w = Integer.parseInt(_w);
@@ -41,17 +43,28 @@ public class ThumbnailatorPlugin implements Plugin {
         final String suffix = "_" + w + "x" + h;
         final double quality = Double.parseDouble(StringUtil.defaultValue(_quality, "0.95"));
 
+        System.out.println("Args:");
+        System.out.println("  type   : " + _t);
+        System.out.println("  file   : " + _f);
+        System.out.println("  width  : " + _w);
+        System.out.println("  height : " + _h);
+        System.out.println("  ext    : " + _ext);
+        System.out.println("  quality: " + _quality);
         GlobalVars.getBasePath().listFiles(new FileFilter() {
 
             public boolean accept(File file) {
-                String name = StringUtil.substringBeforeLast(file.getName(), ".");
-                String type = StringUtil.lower(StringUtil.substringAfterLast(file.getName(), "."));
+                String fullName = file.getName();
+                String name = StringUtil.substringBeforeLast(fullName, ".");
+                String type = StringUtil.lower(StringUtil.substringAfterLast(fullName, "."));
 
-                if (!_t.contains(type)) {
+                if (CollectionUtil.isNotEmpty(_t) && (!_t.contains(type))) {
+                    return false;
+                }
+                if (CollectionUtil.isNotEmpty(_f) && (!_f.contains(fullName))) {
                     return false;
                 }
 
-                if (name.endsWith(suffix)) {
+                if (name.matches(".*_\\d+x\\d+\\." + type)) {
                     log.info("Skip file: " + file);
                     return false;
                 }

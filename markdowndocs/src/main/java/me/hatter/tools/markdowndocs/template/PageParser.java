@@ -175,6 +175,9 @@ public class PageParser {
             }
             group.add(line);
         }
+        if (!group.isEmpty()) {
+            groupList.add(group);
+        }
         return groupList;
     }
 

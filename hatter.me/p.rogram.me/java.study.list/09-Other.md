@@ -16,10 +16,10 @@
     * ...
 1. 尝试了解编码的本质
     * 了解以下概念
-        * ASCII, ISO-8859-1
-        * GB2312, GBK, GB18030
-        * Unicode, UTF-8
-    * 不使用 String.getBytes() 等其他工具类/函数完成下面功能
+        * `ASCII`, `ISO-8859-1`
+        * `GB2312`, `GBK`, `GB18030`
+        * `Unicode`, `UTF-8`
+    * 不使用`String.getBytes()`等其他工具类/函数完成下面功能
 %%%% prettify ln=1 rl=1
 ____public static void main(String[] args) throws IOException {
 ________String str = "Hello, 我们是中国人。";
@@ -33,7 +33,7 @@ ____public static byte[] toUTF8Bytes(String str) {
 ________return null; // TODO
 ____}
 %%%%
-    * 想一下上面的程序能不能写一个转GBK的？
+    * 想一下上面的程序能不能写一个转`GBK`的？
     * 写个程序自动判断一个文件是哪种编码
 1. 尝试了解时间的本质
     * 了解以下概念

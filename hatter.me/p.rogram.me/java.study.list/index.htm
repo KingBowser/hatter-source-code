@@ -699,12 +699,12 @@ println(b);
 </li>
 <li>尝试了解编码的本质<ul>
 <li>了解以下概念<ul>
-<li>ASCII, ISO-8859-1</li>
-<li>GB2312, GBK, GB18030</li>
-<li>Unicode, UTF-8</li>
+<li><code>ASCII</code>, <code>ISO-8859-1</code></li>
+<li><code>GB2312</code>, <code>GBK</code>, <code>GB18030</code></li>
+<li><code>Unicode</code>, <code>UTF-8</code></li>
 </ul>
 </li>
-<li>不使用 String.getBytes() 等其他工具类/函数完成下面功能<pre class="prettyprint linenums"><code>    public static void main(String[] args) throws IOException {
+<li>不使用<code>String.getBytes()</code>等其他工具类/函数完成下面功能<pre class="prettyprint linenums"><code>    public static void main(String[] args) throws IOException {
         String str = "Hello, 我们是中国人。";
         byte[] utf8Bytes = toUTF8Bytes(str);
         FileOutputStream fos = new FileOutputStream("f.txt");
@@ -717,7 +717,7 @@ println(b);
     }
 </code></pre>
 </li>
-<li>想一下上面的程序能不能写一个转GBK的？</li>
+<li>想一下上面的程序能不能写一个转<code>GBK</code>的？</li>
 <li>写个程序自动判断一个文件是哪种编码</li>
 </ul>
 </li>

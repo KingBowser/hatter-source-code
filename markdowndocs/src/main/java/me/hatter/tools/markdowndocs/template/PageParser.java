@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import me.hatter.tools.commons.collection.CollectionUtil;
 import me.hatter.tools.commons.file.FileUtil;
 import me.hatter.tools.commons.io.IOUtil;
 import me.hatter.tools.commons.string.StringUtil;
@@ -110,14 +111,20 @@ public class PageParser {
             page.setSections(new ArrayList<Section>());
             for (Entry<File, List<File>> mdEntry : mdMap.entrySet()) {
                 Section section = new Section();
-                File md = mdEntry.getKey();
-                SubSection _secSection = parseSubSection(md);
-                section.setId(_secSection.getId());
-                section.setName(_secSection.getName());
-                section.setTitle(_secSection.getTitle());
-                section.setContent(_secSection.getContent());
 
-                if ((mdEntry.getValue() != null) && (!mdEntry.getValue().isEmpty())) {
+                File md = mdEntry.getKey();
+                String id = md.getName().substring(0, md.getName().length() - 3);
+                List<String> lines = new ArrayList<String>(IOUtil.readToList(FileUtil.readFileToString(md)));
+                boolean pageExplain = StringUtil.equals("!!EXPLAIN", StringUtil.trim(CollectionUtil.firstObject(lines)));
+
+                if (CollectionUtil.isEmpty(mdEntry.getValue()) && (pageExplain)) {
+                    parseExplainedSection(section, id, parseExplain(lines));
+                } else {
+                    SubSection _secSection = parseSubSection(id, lines);
+                    section.setId(_secSection.getId());
+                    section.setName(_secSection.getName());
+                    section.setTitle(_secSection.getTitle());
+                    section.setContent(_secSection.getContent());
                     section.setSubSections(new ArrayList<SubSection>());
                     for (File smd : mdEntry.getValue()) {
                         section.getSubSections().add(parseSubSection(smd));
@@ -130,10 +137,56 @@ public class PageParser {
         return page;
     }
 
+    public static void parseExplainedSection(Section section, String id, List<List<String>> groupList) {
+        List<String> firstGroup = groupList.get(0);
+        SubSection _secSection = parseSubSection(id, firstGroup);
+        section.setId(_secSection.getId());
+        section.setName(_secSection.getName());
+        section.setTitle(_secSection.getTitle());
+        section.setContent(_secSection.getContent());
+        section.setSubSections(new ArrayList<SubSection>());
+        if (groupList.size() > 1) {
+            for (int i = 1; i < groupList.size(); i++) {
+                List<String> group = groupList.get(i);
+                String firstLine = CollectionUtil.firstObject(group);
+                String _firstLine = firstLine.substring(3);
+                String _id = String.valueOf(i);
+                if (StringUtil.contains(_firstLine, "#")) {
+                    _id = StringUtil.substringBefore(_firstLine, "#");
+                    _firstLine = StringUtil.substringAfter(_firstLine, "#");
+                }
+                group.set(0, _firstLine);
+                section.getSubSections().add(parseSubSection(id + "--" + _id, group));
+            }
+        }
+    }
+
+    public static List<List<String>> parseExplain(List<String> lines) {
+        List<List<String>> groupList = new ArrayList<List<String>>();
+        // !!#xxx# xxxxx
+        List<String> group = new ArrayList<String>();
+        for (int i = 1; i < lines.size(); i++) {
+            String line = lines.get(i);
+            if (line.startsWith("!!#")) {
+                if (!group.isEmpty()) {
+                    groupList.add(group);
+                    group = new ArrayList<String>();
+                }
+            }
+            group.add(line);
+        }
+        return groupList;
+    }
+
     public static SubSection parseSubSection(File md) {
-        SubSection subSection = new SubSection();
-        subSection.setId(md.getName().substring(0, md.getName().length() - 3));
+        String id = md.getName().substring(0, md.getName().length() - 3);
         List<String> lines = new ArrayList<String>(IOUtil.readToList(FileUtil.readFileToString(md)));
+        return parseSubSection(id, lines);
+    }
+
+    public static SubSection parseSubSection(String id, List<String> lines) {
+        SubSection subSection = new SubSection();
+        subSection.setId(id);
         if (lines.size() > 0) {
             String firstLine = lines.remove(0);
             String name = firstLine;

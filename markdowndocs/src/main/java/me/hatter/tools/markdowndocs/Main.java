@@ -36,7 +36,7 @@ public class Main {
         ClassLoaderUtil.initLibResources();
         UnixArgsUtil.ARGS.addFSet("h", "help");
         UnixArgsUtil.ARGS.addFSet("s", "server");
-        UnixArgsUtil.ARGS.addFSet("init-asset");
+        UnixArgsUtil.ARGS.addFSet("init-assets");
         UnixArgsUtil.parseGlobalArgs(args);
 
         if (StringUtil.isNotEmpty(UnixArgsUtil.ARGS.kvalueAny("d", "dir"))) {

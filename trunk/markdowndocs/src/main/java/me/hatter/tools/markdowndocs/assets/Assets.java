@@ -37,6 +37,11 @@ public class Assets {
         resources.add("css/docs.css");
         resources.add("css/pygments-manni.css");
 
+        resources.add("fonts/glyphicons-halflings-regular.eot");
+        resources.add("fonts/glyphicons-halflings-regular.svg");
+        resources.add("fonts/glyphicons-halflings-regular.ttf");
+        resources.add("fonts/glyphicons-halflings-regular.woff");
+
         resources.add("js/application.js");
         resources.add("js/bootstrap.js");
         resources.add("js/holder.js");

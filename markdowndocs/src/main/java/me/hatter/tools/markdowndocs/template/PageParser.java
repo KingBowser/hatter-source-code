@@ -9,6 +9,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import me.hatter.tools.commons.collection.CollectionUtil;
 import me.hatter.tools.commons.file.FileUtil;
@@ -188,6 +190,13 @@ public class PageParser {
     }
 
     public static SubSection parseSubSection(String id, List<String> lines) {
+
+        // remove leading numbers
+        Matcher m = Pattern.compile("\\d{1,4}\\-(.+)").matcher(id);
+        if (m.matches()) {
+            id = m.group(1);
+        }
+
         SubSection subSection = new SubSection();
         subSection.setId(id);
         if (lines.size() > 0) {

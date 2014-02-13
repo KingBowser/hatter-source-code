@@ -167,7 +167,7 @@
                 <% if (subSections != null && subSections.size() > 0) { %>
                   <% for (var i_ss = 0; i_ss < subSections.size(); i_ss++) { %>
                     <% var subSection = subSections.get(i_ss); %>
-                    <h3 id="<%!=subSection.getId()%>"><%=subSection.getTitle()%></h3>
+                    <h3 id="<%!=subSection.getId()%>" style="padding-top:60px;"><%=subSection.getTitle()%></h3>
                     <%!=subSection.getContent()%>
                   <% } %>
                 <% } %>

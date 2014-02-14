@@ -1,12 +1,29 @@
 {
   "template": "bsdocs",
-  "dirs": [null, "java.tool", "hatters.java.tool", "3rd.java.tool", "java.study.list", "link", "recruitment", "about"],
+  "dirs": [null, 
+           "java.tool",
+           "hatters.java.tool",
+           "3rd.java.tool",
+           "java.study.list",
+           "link",
+           "recruitment",
+           "java.memory.model",
+           "about"],
   "lefts": [
       {"path":"/", "title": "首页"},
-      {"path":"/java.tool/", "title": "Java工具"},
-      {"path":"/hatters.java.tool/", "title": "Hatter的Java工具"},
-      {"path":"/3rd.java.tool/", "title": "第三方Java工具"},
+      {"path":"#", "title": "Java技术",
+       "list": [
+         {"path":"/java.tool/", "title": "Java工具"},
+         {"path":"/hatters.java.tool/", "title": "Hatter的Java工具"},
+         {"path":"/3rd.java.tool/", "title": "第三方Java工具"}
+       ]
+      },
       {"path":"/java.study.list/", "title": "Java工程师学习列表"},
+      {"path":"#", "title": "Java技术",
+       "list": [
+         {"path": "/java.memory.model/", "title": "Java内存模型"}
+       ]
+      },
       {"path":"/link/", "title": "相关链接"},
       {"path": "/recruitment/", "title": "招聘"}
   ],

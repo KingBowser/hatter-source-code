@@ -22,7 +22,7 @@ _招聘啦～～～_
 1. 掌握一种非Java语言（如，Ruby、Python、Go等）优先
 
 <br>
-有意向者请发邮件到：[haitao.jianght@alibaba-inc.com](mailto:haitao.jianght@alibaba-inc.com)
+### _有意向者请发邮件到：[haitao.jianght@alibaba-inc.com](mailto:haitao.jianght@alibaba-inc.com)_
 
 <br>
 ### 地理位置

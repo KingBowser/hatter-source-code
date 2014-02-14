@@ -66,7 +66,7 @@ public class Main {
 
         if (UnixArgsUtil.ARGS.flags().containsAny("s", "server")) {
             log.info("Start server mode...");
-            String port = StringUtil.defaultValue(UnixArgsUtil.ARGS.kvalueAny("p", "port"), "8000");
+            String port = StringUtil.defaultValue(UnixArgsUtil.ARGS.kvalueAny("port"), "8000");
             MainHttpServer httpServer = new MainHttpServer(new HttpServerHandler(),
                                                            Arrays.asList(Integer.valueOf(port)));
             httpServer.run();

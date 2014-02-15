@@ -12,6 +12,7 @@
     <!-- Bootstrap core CSS -->
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="/assets/prettify/prettify.css" rel="stylesheet">
+    <link href="/assets/scrollToTop/scrollToTop.css" rel="stylesheet">
 
     <!-- Documentation extras -->
     <link href="/assets/css/docs.css" rel="stylesheet">
@@ -34,6 +35,7 @@
   </head>
   <body onload="prettyPrint();">
     <a class="sr-only" href="#content">Skip to main content</a>
+    <a href="#top" id="toTop" style="z-index:999999;"></a>
 
     <!-- Docs master nav -->
     <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
@@ -209,6 +211,12 @@
     <script src="/assets/js/holder.js"></script>
     <script src="/assets/js/application.js"></script>
     <script src="/assets/prettify/prettify.js"></script>
+    <script src="/assets/scrollToTop/jquery.scrollToTop.min.js"></script>
+    <script type="text/javascript">
+      $(function() {
+        $("#toTop").scrollToTop();
+      });
+    </script>
   </body>
 </html>
 

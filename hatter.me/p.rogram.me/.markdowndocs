@@ -4,6 +4,7 @@
            "java.tool",
            "hatters.java.tool",
            "3rd.java.tool",
+           "hatters.tool",
            "java.study.list",
            "link",
            "recruitment",
@@ -11,11 +12,13 @@
            "about"],
   "lefts": [
       {"path":"/", "title": "首页"},
-      {"path":"#", "title": "Java技术",
+      {"path":"#", "title": "Java工具",
        "list": [
-         {"path":"/java.tool/", "title": "Java工具"},
-         {"path":"/hatters.java.tool/", "title": "Hatter的Java工具"},
-         {"path":"/3rd.java.tool/", "title": "第三方Java工具"}
+         {"path": "/java.tool/", "title": "Java工具"},
+         {"path": "/hatters.java.tool/", "title": "Hatter的Java工具"},
+         {"path": "/3rd.java.tool/", "title": "第三方Java工具"},
+         {"title": "----"},
+         {"path": "/hatters.tool/", "title": "Hatter的小工具"}
        ]
       },
       {"path":"/java.study.list/", "title": "Java工程师学习列表"},

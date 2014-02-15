@@ -55,6 +55,10 @@ public class Assets {
 
         resources.add("prettify/prettify.css");
         resources.add("prettify/prettify.js");
+
+        resources.add("scrollToTop/scrollToTop.css");
+        resources.add("scrollToTop/jquery.scrollToTop.min.js");
+        resources.add("scrollToTop/scrollToTop.png");
         return new Asset("bsdocs", resources);
     }
 }

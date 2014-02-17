@@ -214,6 +214,9 @@
                       <li><a href="#x86--x86x64"> 发展历程</a></li>
                     
                       
+                      <li><a href="#x86--cache"> CPU缓存</a></li>
+                    
+                      
                       <li><a href="#x86--mesi"> 缓存一致性</a></li>
                     
                       
@@ -404,7 +407,7 @@
                     
                   
                     
-                    <h3 id="x86--mesi" style="padding-top:60px;"> 缓存一致性</h3>
+                    <h3 id="x86--cache" style="padding-top:60px;"> CPU缓存</h3>
                     <h4><code>Core 2</code> <code>L1 Cache</code>(容量<code>32K</code>，<code>8路</code>，缓存线<code>64字节</code>):</h4>
 <p><img src=" /java.memory.model/x86/core2_l1_cache.png"/></p>
 <p><em>图片引用自：<a href="http://duartes.org/gustavo/blog/post/intel-cpu-caches" target="_blank">http://duartes.org/gustavo/blog/post/intel-cpu-caches</a></em></p>
@@ -421,6 +424,10 @@
 <tr><th class="active"> shared_cpu_list </th><td> 在哪几个“<code>CPU</code>”之间共享，逗号分隔方式枚举 </td></tr>
 <tr><th class="active"> shared_cpu_map </th><td> 在哪几个“<code>CPU</code>”之间共享，十六进制表示 </td></tr>
 </table>
+                  
+                    
+                    <h3 id="x86--mesi" style="padding-top:60px;"> 缓存一致性</h3>
+                    
                   
                     
                     <h3 id="x86--falsesharing" style="padding-top:60px;">伪共享(False Sharing)</h3>

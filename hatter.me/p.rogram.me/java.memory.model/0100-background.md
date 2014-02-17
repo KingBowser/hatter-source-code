@@ -18,6 +18,8 @@
 |*4 ... |
 %%%
 
+_EPIC相关介绍: [!Itanium 处理器系列的 EPIC 架构](ia64/HP_Integrity_document_02.pdf)_
+
 
 !!#multithread# 多线程(并发)编程
 

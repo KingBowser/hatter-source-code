@@ -18,7 +18,7 @@ final class SetCheck {
 }
 %%%
 
-_代码引用自：[!](http://gee.cs.oswego.edu/dl/cpj/jmm.html)__
+_代码引用自：[!](http://gee.cs.oswego.edu/dl/cpj/jmm.html)_
 
 
 !!#mainmemandworkmem# 内存模型

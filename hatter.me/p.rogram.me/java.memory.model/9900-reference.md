@@ -9,6 +9,7 @@
 1. [!显式并行指令运算(EPIC)](http://zh.wikipedia.org/wiki/%E9%A1%AF%E5%BC%8F%E4%B8%A6%E8%A1%8C%E6%8C%87%E4%BB%A4%E9%81%8B%E7%AE%97)
 1. [!DEC Alpha](http://en.wikipedia.org/wiki/DEC_Alpha)
 1. [!PA-RISC](http://en.wikipedia.org/wiki/PA-RISC)
-
+1. [!The Java® Language Specification Java SE 7 Edition](http://docs.oracle.com/javase/specs/jls/se7/html/)
+1. [!The Java® Virtual Machine Specification Java SE 7 Edition](http://docs.oracle.com/javase/specs/jvms/se7/html/)
 
 

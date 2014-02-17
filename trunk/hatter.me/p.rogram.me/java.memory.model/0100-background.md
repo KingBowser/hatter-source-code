@@ -8,7 +8,7 @@
 !!#somanymicroarch# 种类繁多的微架构
 
 %%% wikiTable class=table___table-bordered style=width:600px;
-|| 微架构 || (R/C)ISC || 说明 ||
+|| 微架构 || 设计 || 说明 ||
 || X86 | `CISC` | `IA32`,`AMD64`,`Intel64` |
 || IA64 | `EPIC` |  |
 || ARM | `RISC` |  |

@@ -22,4 +22,6 @@
 1. [!The Go Memory Model](http://golang.org/ref/mem)
 1. [!Cache: a place for concealment and safekeeping](http://duartes.org/gustavo/blog/post/intel-cpu-caches)
 1. [!Cache：一个隐藏并保管数据的场所](http://blog.csdn.net/drshenlei/article/details/4277959)
+1. [!x86](http://zh.wikipedia.org/wiki/X86)
+1. [!Study_CPU_MESI](https://code.google.com/p/hatter-source-code/wiki/Study_CPU_MESI)
 

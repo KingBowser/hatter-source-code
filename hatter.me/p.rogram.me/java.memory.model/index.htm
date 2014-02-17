@@ -240,6 +240,9 @@
                       <li><a href="#javamemorymodel--mainmemandworkmem"> 内存模型</a></li>
                     
                       
+                      <li><a href="#javamemorymodel--final"> final</a></li>
+                    
+                      
                       <li><a href="#javamemorymodel--volatile"> volatile</a></li>
                     
                       
@@ -365,12 +368,32 @@
                 <div class="page-header">
                   <h1 id="javamemorymodel">Java内存模型</h1>
                 </div>
-                <p class="lead"></p>
+                <p class="lead"><pre class="prettyprint linenums"><code>final class SetCheck {
+  private int  a = 0;
+  private long b = 0;
+
+  void set() {
+    a =  1;
+    b = -1;
+  }
+
+  boolean check() {
+    return ((b ==  0) ||
+            (b == -1 &amp;&amp; a == 1)); 
+  }
+}
+</code></pre>
+<p><em>代码引用自：<a href="http://gee.cs.oswego.edu/dl/cpj/jmm.html" target="_blank">http://gee.cs.oswego.edu/dl/cpj/jmm.html</a></em>_</p>
+</p>
                 
                 
                   
                     
                     <h3 id="javamemorymodel--mainmemandworkmem" style="padding-top:60px;"> 内存模型</h3>
+                    
+                  
+                    
+                    <h3 id="javamemorymodel--final" style="padding-top:60px;"> final</h3>
                     
                   
                     
@@ -449,7 +472,8 @@ public class Sample {
 <li><a href="http://en.wikipedia.org/wiki/DEC_Alpha" target="_blank">DEC Alpha</a></li>
 <li><a href="http://en.wikipedia.org/wiki/PA-RISC" target="_blank">PA-RISC</a></li>
 <li><a href="http://docs.oracle.com/javase/specs/jls/se7/html/" target="_blank">The Java® Language Specification Java SE 7 Edition</a></li>
-<li><a href="http://docs.oracle.com/javase/specs/jvms/se7/html/" target="_blank">The Java® Virtual Machine Specification Java SE 7 Edition</a></li>
+<li><a href="http://docs.oracle.com/javase/specs/jvms/se7/html/" target="_blank">The Java® Virtual Machine Specification Java SE 7 Edition</a>1.</li>
+<li><a href="http://gee.cs.oswego.edu/dl/cpj/jmm.html" target="_blank">Synchronization and the Java Memory Model</a></li>
 </ol>
 </p>
                 

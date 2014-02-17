@@ -30,6 +30,7 @@ _代码引用自：[!](http://gee.cs.oswego.edu/dl/cpj/jmm.html)_
 !!#volatile# volatile
 
 
+
 !!#synchronized# synchronized
 
 

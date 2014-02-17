@@ -163,11 +163,284 @@
 
     <div class="container bs-docs-container">
       
-        <p><br>
-<br  />https://jcp.org/en/jsr/detail?id=133</p>
-<p>http://www.cs.umd.edu/~pugh/java/memoryModel/jsr-133-faq.html</p>
-<p>http://g.oswego.edu/dl/jmm/cookbook.html</p>
+      <!-- DOC BODY START
+      ================================================== -->
+      <div class="row">
+        <div class="col-md-3">
+          <div class="bs-sidebar hidden-print" role="complementary">
+            <ul class="nav bs-sidenav">
+              
+                
+                  <li>
+                  
+                  <a href="#background">背景</a>
+                  
+                  
+                    <ul class="nav">
+                    
+                      
+                      <li><a href="#background--microarch"> 种类繁多的微架构</a></li>
+                    
+                      
+                      <li><a href="#background--multithread"> 多线程(并发)编程</a></li>
+                    
+                      
+                      <li><a href="#background--compiler"> 编译器的各种优化</a></li>
+                    
+                    </ul>
+                  
+                  </li>
+                
+                  <li>
+                  
+                  <a href="#x86">微架构之X86</a>
+                  
+                  
+                    <ul class="nav">
+                    
+                      
+                      <li><a href="#x86--x86x64"> 发展历程</a></li>
+                    
+                      
+                      <li><a href="#x86--mesi"> 缓存一致性</a></li>
+                    
+                      
+                      <li><a href="#x86--falsesharing"> 伪共享</a></li>
+                    
+                      
+                      <li><a href="#x86--qpi"> QPI</a></li>
+                    
+                      
+                      <li><a href="#x86--reordering"> 指令重排</a></li>
+                    
+                      
+                      <li><a href="#x86--liushuixian"> 流水线技术</a></li>
+                    
+                    </ul>
+                  
+                  </li>
+                
+                  <li>
+                  
+                  <a href="#javamemorymodel">Java内存模型</a>
+                  
+                  
+                    <ul class="nav">
+                    
+                      
+                      <li><a href="#javamemorymodel--mainmemandworkmem"> 内存模型</a></li>
+                    
+                      
+                      <li><a href="#javamemorymodel--volatile"> volatile</a></li>
+                    
+                      
+                      <li><a href="#javamemorymodel--synchronized"> synchronized</a></li>
+                    
+                    </ul>
+                  
+                  </li>
+                
+                  <li>
+                  
+                  <a href="#code">代码分析</a>
+                  
+                  
+                    <ul class="nav">
+                    
+                      
+                      <li><a href="#code--sample1"> Sample 1</a></li>
+                    
+                      
+                      <li><a href="#code--sample2"> Sample 2</a></li>
+                    
+                    </ul>
+                  
+                  </li>
+                
+                  <li>
+                  
+                  <a href="#reference">参考资料</a>
+                  
+                  
+                  </li>
+                
+              
+              
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-9" role="main">
 
+          
+            
+              
+              <!-- background
+              ================================================== -->
+              <div class="bs-docs-section">
+                <div class="page-header">
+                  <h1 id="background">背景</h1>
+                </div>
+                <p class="lead"><p>&hellip;</p>
+</p>
+                
+                
+                  
+                    
+                    <h3 id="background--microarch" style="padding-top:60px;"> 种类繁多的微架构</h3>
+                    <p>X86/X84
+<br  />IA32/IA64/Intel64
+<br  />AMD64
+<br  />ARM</p>
+
+                  
+                    
+                    <h3 id="background--multithread" style="padding-top:60px;"> 多线程(并发)编程</h3>
+                    
+                  
+                    
+                    <h3 id="background--compiler" style="padding-top:60px;"> 编译器的各种优化</h3>
+                    
+                  
+                
+              </div>
+            
+              
+              <!-- x86
+              ================================================== -->
+              <div class="bs-docs-section">
+                <div class="page-header">
+                  <h1 id="x86">微架构之X86</h1>
+                </div>
+                <p class="lead"><p>&hellip;</p>
+</p>
+                
+                
+                  
+                    
+                    <h3 id="x86--x86x64" style="padding-top:60px;"> 发展历程</h3>
+                    
+                  
+                    
+                    <h3 id="x86--mesi" style="padding-top:60px;"> 缓存一致性</h3>
+                    
+                  
+                    
+                    <h3 id="x86--falsesharing" style="padding-top:60px;"> 伪共享</h3>
+                    
+                  
+                    
+                    <h3 id="x86--qpi" style="padding-top:60px;"> QPI</h3>
+                    
+                  
+                    
+                    <h3 id="x86--reordering" style="padding-top:60px;"> 指令重排</h3>
+                    
+                  
+                    
+                    <h3 id="x86--liushuixian" style="padding-top:60px;"> 流水线技术</h3>
+                    
+                  
+                
+              </div>
+            
+              
+              <!-- javamemorymodel
+              ================================================== -->
+              <div class="bs-docs-section">
+                <div class="page-header">
+                  <h1 id="javamemorymodel">Java内存模型</h1>
+                </div>
+                <p class="lead"></p>
+                
+                
+                  
+                    
+                    <h3 id="javamemorymodel--mainmemandworkmem" style="padding-top:60px;"> 内存模型</h3>
+                    
+                  
+                    
+                    <h3 id="javamemorymodel--volatile" style="padding-top:60px;"> volatile</h3>
+                    
+                  
+                    
+                    <h3 id="javamemorymodel--synchronized" style="padding-top:60px;"> synchronized</h3>
+                    
+                  
+                
+              </div>
+            
+              
+              <!-- code
+              ================================================== -->
+              <div class="bs-docs-section">
+                <div class="page-header">
+                  <h1 id="code">代码分析</h1>
+                </div>
+                <p class="lead"></p>
+                
+                
+                  
+                    
+                    <h3 id="code--sample1" style="padding-top:60px;"> Sample 1</h3>
+                    <pre class="prettyprint linenums"><code>public class Sample {
+  private static int count = 0;
+
+  public static void increment() {
+    count++;
+  }
+}
+</code></pre>
+
+                  
+                    
+                    <h3 id="code--sample2" style="padding-top:60px;"> Sample 2</h3>
+                    <pre class="prettyprint linenums"><code>// 代码1
+public class Sample {
+  private static int count = 0;
+
+  synchronized public static void increment() {
+    count++;
+  }
+}
+
+// 代码2
+public class Sample {
+  private static AtomicInteger count = new AtomicInteger(0);
+
+  public static void increment() {
+    count.getAndIncrement();
+  }
+}
+</code></pre>
+
+                  
+                
+              </div>
+            
+              
+              <!-- reference
+              ================================================== -->
+              <div class="bs-docs-section">
+                <div class="page-header">
+                  <h1 id="reference">参考资料</h1>
+                </div>
+                <p class="lead"><ol>
+<li><a href="https://jcp.org/en/jsr/detail?id=133" target="_blank">JSR 133: JavaTM Memory Model and Thread Specification Revision</a></li>
+<li><a href="http://www.cs.umd.edu/~pugh/java/memoryModel/jsr-133-faq.html" target="_blank">JSR 133 (Java Memory Model) FAQ</a></li>
+<li><a href="http://g.oswego.edu/dl/jmm/cookbook.html" target="_blank">The JSR-133 Cookbook for Compiler Writers</a></li>
+</ol>
+</p>
+                
+                
+              </div>
+            
+          
+          
+
+          <!-- End Content
+          ================================================== -->
+        </div>
+      </div>
       
       <!-- DOC BODY END
       ================================================== -->

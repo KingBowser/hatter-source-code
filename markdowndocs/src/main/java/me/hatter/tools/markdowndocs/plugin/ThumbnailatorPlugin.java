@@ -26,6 +26,10 @@ public class ThumbnailatorPlugin implements Plugin {
         return Arrays.asList("slt", "thumb", "thumbnail", "tn").contains(plg);
     }
 
+    public void printHelp() {
+        // XXX
+    }
+
     public void main(KArgs args) {
         final List<String> _t = CollectionUtil.toLowerCase(args.kvalues("type"));
         final List<String> _f = args.kvalues("file");

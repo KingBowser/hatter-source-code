@@ -44,7 +44,14 @@ public class Main {
         }
 
         if (UnixArgsUtil.ARGS.keys().containsAny("p", "plugin")) {
-            Plugins.runPlugin(UnixArgsUtil.ARGS.kvalueAny("p", "plugin"));
+            Plugin plugin = Plugins.findPlugin(UnixArgsUtil.ARGS.kvalueAny("p", "plugin"));
+            if (plugin != null) {
+                if (UnixArgsUtil.ARGS.flags().containsAny("h", "help")) {
+                    plugin.printHelp();
+                } else {
+                    plugin.main(UnixArgsUtil.ARGS);
+                }
+            }
             System.exit(0);
         }
 
@@ -56,9 +63,9 @@ public class Main {
             System.exit(0);
         }
 
-        File markdowndocs = new File(GlobalVars.getBasePath(), ".markdowndocs");
+        File markdowndocs = new File(GlobalVars.getBasePath(), "markdowndocs.json");
         if (!markdowndocs.exists()) {
-            log.error("Markdowndocs root mark file not found! `touch .markdowndocs`");
+            log.error("Markdowndocs root mark file not found! `vi markdowndocs.json`");
             System.exit(-1);
         }
 

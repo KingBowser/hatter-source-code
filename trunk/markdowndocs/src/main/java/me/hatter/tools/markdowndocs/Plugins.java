@@ -3,7 +3,6 @@ package me.hatter.tools.markdowndocs;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.hatter.tools.commons.args.UnixArgsUtil;
 import me.hatter.tools.commons.log.LogTool;
 import me.hatter.tools.commons.log.LogTools;
 import me.hatter.tools.commons.string.StringUtil;
@@ -24,14 +23,15 @@ public class Plugins {
         }
     }
 
-    public static void runPlugin(final String plg) {
+    public static Plugin findPlugin(final String plg) {
         String _plg = StringUtil.lower(StringUtil.trim(plg));
         for (Plugin plugin : plugins) {
             if (plugin.matches(_plg)) {
-                plugin.main(UnixArgsUtil.ARGS);
-                return;
+                // plugin.main(UnixArgsUtil.ARGS);
+                return plugin;
             }
         }
         log.warn("Cannot find any plugin for: " + plg);
+        return null;
     }
 }

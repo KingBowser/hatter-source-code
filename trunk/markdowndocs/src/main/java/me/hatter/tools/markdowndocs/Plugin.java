@@ -8,5 +8,7 @@ public interface Plugin {
 
     boolean matches(String plg);
 
+    void printHelp();
+
     void main(KArgs args);
 }

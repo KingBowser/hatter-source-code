@@ -16,7 +16,7 @@ public class ParameterParser {
         if (parameter != null) {
             return parameter;
         }
-        File md = new File(GlobalVars.getBasePath(), ".markdowndocs");
+        File md = new File(GlobalVars.getBasePath(), "markdowndocs.json");
         parameter = parseParameter(md);
         return parameter;
     }

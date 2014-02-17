@@ -26,6 +26,10 @@ public class ConvertPlugin implements Plugin {
         return Arrays.asList("con", "conv", "convert").contains(plg);
     }
 
+    public void printHelp() {
+        // XXX
+    }
+
     public void main(KArgs args) {
         final List<String> _t = CollectionUtil.toLowerCase(args.kvalues("type"));
         final String _ext = StringUtil.lower(args.kvalueAny("ext"));

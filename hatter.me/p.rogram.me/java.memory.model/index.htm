@@ -205,7 +205,7 @@
                 
                   <li>
                   
-                  <a href="#x86">微架构之X86</a>
+                  <a href="#x86">微架构之x86</a>
                   
                   
                     <ul class="nav">
@@ -306,7 +306,7 @@
                     
                     <h3 id="background--somanymicroarch" style="padding-top:60px;"> 种类繁多的微架构</h3>
                     <table style="width:600px;" class="table table-bordered">
-<tr><th class="active"> 微架构 </th><th class="active"> (R/C)ISC </th><th class="active"> 说明 </th></tr>
+<tr><th class="active"> 微架构 </th><th class="active"> 设计 </th><th class="active"> 说明 </th></tr>
 <tr><th class="active"> X86 </th><td> <code>CISC</code> </td><td> <code>IA32</code>,<code>AMD64</code>,<code>Intel64</code> </td></tr>
 <tr><th class="active"> IA64 </th><td> <code>EPIC</code> </td><td>  </td></tr>
 <tr><th class="active"> ARM </th><td> <code>RISC</code> </td><td>  </td></tr>
@@ -395,16 +395,19 @@
               ================================================== -->
               <div class="bs-docs-section">
                 <div class="page-header">
-                  <h1 id="x86">微架构之X86</h1>
+                  <h1 id="x86">微架构之x86</h1>
                 </div>
-                <p class="lead"><p>&hellip;</p>
+                <p class="lead"><p><code>x86</code>是一个指令集架构家族，最早由英特尔在<code>Intel 8086</code> CPU上开发出来。该系列较早期的处理器名称是以数字来表示<code>80x86</code>。由于以<code>86</code>作为结尾，包括<code>Intel 8086</code>、<code>80186</code>、<code>80286</code>、<code>80386</code>以及<code>80486</code>，因此其架构被称为<code>x86</code>。</p>
 </p>
                 
                 
                   
                     
                     <h3 id="x86--x86x64" style="padding-top:60px;"> 发展历程</h3>
-                    
+                    <p><code>x86</code>架构于<code>1978年</code>推出的<code>Intel 8086</code>中央处理器中首度出现，它是从<code>Intel 8008</code>处理器中发展而来的，而<code>8008</code>则是发展自<code>Intel 4004</code>的。<code>8086</code>在三年后为<code>IBM PC</code>所选用，之后x86便成为了个人计算机的标准平台，成为了历来最成功的CPU架构。</p>
+<p><code>8086</code>是<code>16位</code>处理器；直到<code>1985年</code> <code>32位</code>的<code>80386</code>的开发，这个架构都维持是<code>16位</code>。接着一系列的处理器表示了<code>32位</code>架构的细微改进，推出了数种的扩充，直到<code>2003年</code> <code>AMD</code>对于这个架构发展了<code>64位</code>的扩充，并命名为<code>AMD64</code>。后来英特尔也推出了与之兼容的处理器，并命名为<code>Intel 64</code>。两者一般被统称为<code>x86-64</code>或<code>x64</code>，开创了<code>x86</code>的<code>64位</code>时代。</p>
+<p><em>英特尔在<code>1990年代</code>就与惠普合作提出了一种用在安腾系列处理器中的独立的<code>64位</code>架构，这种架构被称为<code>IA-64</code>。<code>IA-64</code>是一种崭新的系统，和x86架构完全没有相似性；不应该把它与<code>x86-64</code>或<code>x64</code>弄混。</em></p>
+
                   
                     
                     <h3 id="x86--cache" style="padding-top:60px;"> CPU缓存</h3>
@@ -427,7 +430,18 @@
                   
                     
                     <h3 id="x86--mesi" style="padding-top:60px;"> 缓存一致性</h3>
-                    
+                    <p>缓存一致性(<code>MESI</code>, <code>Modified Exclusive Shared Invalid</code>)协议，也称为伊利诺伊协议(<code>Illinois protocol</code>，由伊利诺伊大学香槟[<code>Urbana-Champaign</code>]分校开发)，被广泛用于缓存一致性和内存一致性。是支持缓存回写的最通用的一种协议。</p>
+<p>在<code>MESI</code>协议中，每个缓存行有4个状态，可用2个bit表示，它们分别是：</p>
+<table style="width:700px;" class="table table-bordered">
+<tr><th class="active"> 状态 </th><th class="active"> 描述 </th></tr>
+<tr><th class="active"> M(Modified) </th><td> 这行数据有效，数据被修改了，和内存中的数据不一致，数据只存在于本<code>Cache</code>中。 </td></tr>
+<tr><th class="active"> E(Exclusive) </th><td> 这行数据有效，数据和内存中的数据一致，数据只存在于本<code>Cache</code>中。 </td></tr>
+<tr><th class="active"> S(Shared) </th><td> 这行数据有效，数据和内存中的数据一致，数据存在于很多<code>Cache</code>中。 </td></tr>
+<tr><th class="active"> I(Invalid) </th><td> 这行数据无效 </td></tr>
+</table><p><code>MESI</code>状态迁移图：
+<br  /><img src="mesi.jpg" /></p>
+<p><em>其中<code>Intel</code>使用<a href="http://en.wikipedia.org/wiki/MESIF_protocol" target="_blank"><code>MESIF</code></a>，<code>AMD</code>使用<a href="http://en.wikipedia.org/wiki/MOESI_protocol" target="_blank"><code>MOESI</code></a></em></p>
+
                   
                     
                     <h3 id="x86--falsesharing" style="padding-top:60px;">伪共享(False Sharing)</h3>
@@ -455,7 +469,8 @@
                 <div class="page-header">
                   <h1 id="javamemorymodel">Java内存模型</h1>
                 </div>
-                <p class="lead"><pre class="prettyprint linenums"><code>final class SetCheck {
+                <p class="lead"><p>我们先来看一段代码：</p>
+<pre class="prettyprint linenums"><code>final class SetCheck {
   private int  a = 0;
   private long b = 0;
 
@@ -571,6 +586,8 @@ public class Sample {
 <li><a href="http://golang.org/ref/mem" target="_blank">The Go Memory Model</a></li>
 <li><a href="http://duartes.org/gustavo/blog/post/intel-cpu-caches" target="_blank">Cache: a place for concealment and safekeeping</a></li>
 <li><a href="http://blog.csdn.net/drshenlei/article/details/4277959" target="_blank">Cache：一个隐藏并保管数据的场所</a></li>
+<li><a href="http://zh.wikipedia.org/wiki/X86" target="_blank">x86</a></li>
+<li><a href="https://code.google.com/p/hatter-source-code/wiki/Study_CPU_MESI" target="_blank">Study_CPU_MESI</a></li>
 </ol>
 </p>
                 

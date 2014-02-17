@@ -1,6 +1,8 @@
 !!EXPLAIN
 Java内存模型
 
+我们先来看一段代码：
+
 %%% prettify ln=1
 final class SetCheck {
   private int  a = 0;

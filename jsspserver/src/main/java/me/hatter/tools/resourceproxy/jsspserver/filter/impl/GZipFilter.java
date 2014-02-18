@@ -8,7 +8,7 @@ import me.hatter.tools.resourceproxy.jsspserver.filter.ResourceFilterChain;
 public class GZipFilter implements ResourceFilter {
 
     // @Override
-    public HttpResponse filter(HttpRequest request, ResourceFilterChain chain) {
+    public HttpResponse filter(HttpRequest request, ResourceFilterChain chain) throws Exception {
         HttpResponse response = chain.next().filter(request, chain);
         // TODO check is support gzip and then do gzip
         return response;

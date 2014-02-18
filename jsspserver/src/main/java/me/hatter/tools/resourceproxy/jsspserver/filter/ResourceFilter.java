@@ -5,5 +5,5 @@ import me.hatter.tools.resourceproxy.httpobjects.objects.HttpResponse;
 
 public interface ResourceFilter {
 
-    HttpResponse filter(HttpRequest request, ResourceFilterChain chain);
+    HttpResponse filter(HttpRequest request, ResourceFilterChain chain) throws Exception;
 }

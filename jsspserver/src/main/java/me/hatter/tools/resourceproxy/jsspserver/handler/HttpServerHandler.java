@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.List;
 
 import me.hatter.tools.commons.log.LogTool;
 import me.hatter.tools.commons.log.LogTools;
@@ -11,7 +12,8 @@ import me.hatter.tools.resourceproxy.commons.util.StringUtil;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpRequest;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpResponse;
 import me.hatter.tools.resourceproxy.httpobjects.util.HttpRequestUtil;
-import me.hatter.tools.resourceproxy.jsspserver.filter.DefaultResourceFilterChain;
+import me.hatter.tools.resourceproxy.jsspserver.filter.ResourceFilter;
+import me.hatter.tools.resourceproxy.jsspserver.filter.ResourceFilterChainFactory;
 import me.hatter.tools.resourceproxy.jsspserver.util.ContentTypes;
 import me.hatter.tools.resourceproxy.jsspserver.util.HttpConstants;
 
@@ -21,10 +23,29 @@ import com.sun.net.httpserver.HttpHandler;
 
 public class HttpServerHandler implements HttpHandler {
 
-    private static final LogTool logTool        = LogTools.getLogTool(HttpServerHandler.class);
+    private static final LogTool  logTool = LogTools.getLogTool(HttpServerHandler.class);
 
-    public static int            STATUS_SUCCESS = 200;
-    public static int            STATUS_ERROR   = 500;
+    // @me/hatter/tools/resourceproxy/jsspserver/util/HttpConstants.java
+    // public static int STATUS_SUCCESS = 200;
+    // public static int STATUS_ERROR = 500;
+
+    private HttpResquestProcessor httpResquestProcessor;
+
+    public HttpServerHandler() {
+        this(new DefaultHttpResquestProcessor());
+    }
+
+    public HttpServerHandler(HttpResquestProcessor httpResquestProcessor) {
+        this.httpResquestProcessor = httpResquestProcessor;
+    }
+
+    public HttpServerHandler(ResourceFilterChainFactory resourceFilterChainFactory) {
+        this(new FactoryHttpResquestProcessor(resourceFilterChainFactory));
+    }
+
+    public HttpServerHandler(List<ResourceFilter> filterList) {
+        this(new FactoryHttpResquestProcessor(filterList));
+    }
 
     public void handle(HttpExchange exchange) throws IOException {
         try {
@@ -34,7 +55,7 @@ public class HttpServerHandler implements HttpHandler {
                              + request.getRemoteAddress());
             }
 
-            HttpResponse response = DefaultResourceFilterChain.filterChain(request);
+            HttpResponse response = httpResquestProcessor.process(request);
             writeResponse(exchange, response);
         } catch (Throwable t) {
             if ((t instanceof IOException) && StringUtil.contains(t.getMessage(), "Broken pipe")) {

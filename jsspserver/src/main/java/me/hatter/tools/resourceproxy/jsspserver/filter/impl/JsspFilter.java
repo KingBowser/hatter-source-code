@@ -45,7 +45,7 @@ public class JsspFilter implements ResourceFilter {
     }
 
     // @Override
-    public HttpResponse filter(HttpRequest request, ResourceFilterChain chain) {
+    public HttpResponse filter(HttpRequest request, ResourceFilterChain chain) throws Exception {
         String fpath = request.getFPath();
         if (fpath.toLowerCase().endsWith(".jssp")) {
             JsspResource jsspResource = JsspResourceManager.getJsspResource(getResource(fpath));

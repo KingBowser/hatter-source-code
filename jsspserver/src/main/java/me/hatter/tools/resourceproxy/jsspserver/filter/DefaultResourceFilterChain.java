@@ -21,7 +21,7 @@ public class DefaultResourceFilterChain implements ResourceFilterChain {
         return (index >= filterList.size()) ? null : filterList.get(index++);
     };
 
-    public static HttpResponse filterChain(HttpRequest request) {
+    public static HttpResponse filterChain(HttpRequest request) throws Exception {
         ResourceFilterChain chain = new DefaultResourceFilterChain();
         return chain.next().filter(request, chain);
     }

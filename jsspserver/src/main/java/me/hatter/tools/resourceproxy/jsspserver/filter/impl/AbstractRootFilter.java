@@ -14,7 +14,7 @@ public abstract class AbstractRootFilter implements ResourceFilter {
     public static final String   ROOT_PATH = "/";
 
     // @Override
-    public HttpResponse filter(HttpRequest request, ResourceFilterChain chain) {
+    public HttpResponse filter(HttpRequest request, ResourceFilterChain chain) throws Exception {
         if (ROOT_PATH.equals(request.getFPath())) {
             if (logTool.isInfoEnable()) {
                 logTool.info("Redirect for root: " + homePath());

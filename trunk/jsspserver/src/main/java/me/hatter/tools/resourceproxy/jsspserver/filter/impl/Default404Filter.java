@@ -12,7 +12,7 @@ public class Default404Filter implements ResourceFilter {
     public static final Default404Filter INSTANCE = new Default404Filter();
 
     // @Override
-    public HttpResponse filter(HttpRequest request, ResourceFilterChain chain) {
+    public HttpResponse filter(HttpRequest request, ResourceFilterChain chain) throws Exception {
         // this is the last filter
         HttpResponse response = new HttpResponse();
         response.setContentType(ContentTypes.PLAIN_CONTENT_TYPE);

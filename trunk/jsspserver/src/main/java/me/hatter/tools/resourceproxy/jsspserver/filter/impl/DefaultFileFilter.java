@@ -18,7 +18,7 @@ public class DefaultFileFilter implements ResourceFilter {
     private static final LogTool logTool = LogTools.getLogTool(DefaultFileFilter.class);
 
     // @Override
-    public HttpResponse filter(HttpRequest request, ResourceFilterChain chain) {
+    public HttpResponse filter(HttpRequest request, ResourceFilterChain chain) throws Exception {
         String fpath = request.getFPath();
         if (fpath.equals("/")) {
             return chain.next().filter(request, chain);

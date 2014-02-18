@@ -14,7 +14,7 @@ public class CacheJsFilter implements ResourceFilter {
     private static int DEFAULT_CACHE_MINUTE = Integer.parseInt(System.getProperty("cache.minute", "5"));
 
     // @Override
-    public HttpResponse filter(HttpRequest request, ResourceFilterChain chain) {
+    public HttpResponse filter(HttpRequest request, ResourceFilterChain chain) throws Exception {
         HttpResponse response = chain.next().filter(request, chain);
         String fpath = request.getFPath().trim().toLowerCase();
         int indexOfLastDot = fpath.lastIndexOf('.');

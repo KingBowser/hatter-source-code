@@ -6,13 +6,28 @@
            "3rd.java.tool",
            "hatters.tool",
            "java.study.list",
-           "link",
-           "recruitment",
+           "java.link",
            "java.memory.model",
+           "html5.link",
+           "recruitment",
            "about"],
   "lefts": [
       {"path":"/", "title": "首页"},
-      {"path":"#", "title": "Java工具",
+      {"path":"#", "title": "Java",
+       "list": [
+         {"path":"/java.study.list/", "title": "Java工程师学习列表"},
+         {"title": "----"},
+         {"path": "/java.memory.model/", "title": "Java内存模型"},
+         {"title": "----"},
+         {"path":"/java.link/", "title": "Java相关链接"}
+       ]
+      },
+      {"path":"#", "title": "HTML5",
+       "list": [
+         {"path":"/html5.link/", "title": "HTML5相关链接"}
+       ]
+      },
+      {"path":"#", "title": "工具",
        "list": [
          {"path": "/java.tool/", "title": "Java工具"},
          {"path": "/hatters.java.tool/", "title": "Hatter的Java工具"},
@@ -21,13 +36,6 @@
          {"path": "/hatters.tool/", "title": "Hatter的小工具"}
        ]
       },
-      {"path":"/java.study.list/", "title": "Java工程师学习列表"},
-      {"path":"#", "title": "Java技术",
-       "list": [
-         {"path": "/java.memory.model/", "title": "Java内存模型"}
-       ]
-      },
-      {"path":"/link/", "title": "相关链接"},
       {"path": "/recruitment/", "title": "招聘"}
   ],
   "rights": [

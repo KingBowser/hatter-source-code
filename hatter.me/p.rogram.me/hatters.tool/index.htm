@@ -223,7 +223,37 @@
                 <div class="page-header">
                   <h1 id="markdowndocs">markdowndocs</h1>
                 </div>
-                <p class="lead"></p>
+                <p class="lead"><p><code>markdowndocs</code>使用的<a href="http://getbootstrap.com/" target="_blank"><code>Bootstrap</code></a>作为UI，其中也使用了<code>prettify</code>和<code>scrollToTop</code>插件。<code>markdown</code>合并使用了<a href="https://code.google.com/p/markdown4j/" target="_blank"><code>markdown4j</code></a>，HTML渲染和HTTPServer使用了<code>jsspserver</code>。</p>
+<p>应用依赖的jar包如下：</p>
+<ul>
+<li><code>commons-1.0.jar</code> - 工具类库</li>
+<li><code>fastjson-1.1.24.jar</code> - 用于JSON解析</li>
+<li><code>jsspserver-1.0.jar</code> - 用于jssp合并及HTTPServer</li>
+<li><code>markdown4j-2.2.jar</code> - 用于合并markdown</li>
+<li><code>thumbnailator-0.4.7.jar</code> - 用于生成缩略图</li>
+</ul>
+<p>使用方法参看：</p>
+<ul>
+<li><a href="https://code.google.com/p/markdown4j/" target="_blank">https://code.google.com/p/markdown4j/</a></li>
+<li><a href="https://github.com/rjeschke/txtmark" target="_blank">https://github.com/rjeschke/txtmark</a></li>
+<li><a href="http://daringfireball.net/projects/markdown/" target="_blank">http://daringfireball.net/projects/markdown/</a></li>
+</ul>
+<p>改进功能：</p>
+<ul>
+<li>连接<code>[]()</code><ul>
+<li><code>[](http://example.com)</code> 输出：<pre><code>&lt;a href="http://example.com"&gt;http://example.com&lt;/a&gt;
+</code></pre>
+</li>
+<li><code>[!](http://example.com)</code> 输出：<pre><code>&lt;a href="http://example.com" target="_blank"&gt;http://example.com&lt;/a&gt;
+</code></pre>
+</li>
+<li><code>[!Example](http://example.com)</code> 输出：<pre><code>&lt;a href="Example" target="_blank"&gt;http://example.com&lt;/a&gt;
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</p>
                 
                 
                   

@@ -24,4 +24,5 @@
 1. [!Cache：一个隐藏并保管数据的场所](http://blog.csdn.net/drshenlei/article/details/4277959)
 1. [!x86](http://zh.wikipedia.org/wiki/X86)
 1. [!Study_CPU_MESI](https://code.google.com/p/hatter-source-code/wiki/Study_CPU_MESI)
+1. [!Study_Java_HotSpot_Concurrent](https://code.google.com/p/hatter-source-code/wiki/Study_Java_HotSpot_Concurrent)
 

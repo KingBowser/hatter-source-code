@@ -8,6 +8,7 @@
            "java.study.list",
            "java.link",
            "java.memory.model",
+           "jsr133.cookbook",
            "html5.link",
            "recruitment",
            "about"],
@@ -18,6 +19,7 @@
          {"path":"/java.study.list/", "title": "Java工程师学习列表"},
          {"title": "----"},
          {"path": "/java.memory.model/", "title": "Java内存模型"},
+         {"path": "/jsr133.cookbook/", "title": "The JSR-133 Cookbook for Compiler Writers"},
          {"title": "----"},
          {"path":"/java.link/", "title": "Java相关链接"}
        ]

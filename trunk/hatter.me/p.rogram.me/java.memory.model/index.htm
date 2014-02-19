@@ -86,6 +86,11 @@
 		             
 		               
 		               
+		                 <li ><a href="/jsr133.cookbook/">The JSR-133 Cookbook for Compiler Writers</a></li>
+		               
+		             
+		               
+		               
 		                 <li class="divider"></li>
 		               
 		             
@@ -320,7 +325,8 @@
                 <div class="page-header">
                   <h1 id="background">背景</h1>
                 </div>
-                <p class="lead"><p>&hellip;</p>
+                <p class="lead"><p>虽然计算机的发展历史也就短短的几十年，但计算机计算的发展却非常迅速，特别是现在已经出现了几十核的<code>CPU</code>，但芯片的时钟频率目前已是非常难以提升，芯片厂商也只有发展多核这条路了。对于程序员来说，如何在多核情况下充分利用好硬件资源写出能够“正确”的代码就显的尤为重要。</p>
+<p>Java内存模型就是教人如果在并发编程的情况下写出“正确”的代码。导致程序员可能写出“不正确”的代码的因素很多，如编译器的优化、CPU高速缓存优化等。这些优化有些是软件实现的，有些是硬件实现的，而Java内存模型是通过一个抽象模型（用来屏蔽软件或硬件的具体实现）指导程序员写出并发“正确”的代码。</p>
 </p>
                 
                 
@@ -522,7 +528,21 @@
                   
                     
                     <h3 id="javamemorymodel--volatile" style="padding-top:60px;"> volatile</h3>
-                    
+                    <p><code>volatile</code>关键词是告诉编译器说“这个变量是易变的，请保证始终读、写唯一的值，并且请保证原子性”，当编译器接收到这些信息后，编译器会做如下处理：</p>
+<ol>
+<li>禁止编译器本身对该变量的读、写缓存优化</li>
+<li>根据当前的微架构，在生成读、写该变量的硬件指令时禁止CPU的高速缓存<ul>
+<li><code>X86</code>：微架构已经保证了缓存的强一致性，无须使用特别的指令</li>
+<li><code>IA64</code>：使用<code>ld.acq</code>或<code>st.rel</code>指令进行读、写，保证CPU的高速缓存被更新</li>
+</ul>
+</li>
+<li>禁止对这个变量读写前后的指令重排<ul>
+<li><code>X86</code>：<code>mfence</code> or <code>cpuid</code> or <code>locked insn</code> (<code>lock; addl $0,0(%%esp)</code>)</li>
+<li><code>IA64</code>：<code>mf</code></li>
+</ul>
+</li>
+</ol>
+
                   
                     
                     <h3 id="javamemorymodel--synchronized" style="padding-top:60px;"> synchronized</h3>
@@ -610,6 +630,7 @@ public class Sample {
 <li><a href="http://blog.csdn.net/drshenlei/article/details/4277959" target="_blank">Cache：一个隐藏并保管数据的场所</a></li>
 <li><a href="http://zh.wikipedia.org/wiki/X86" target="_blank">x86</a></li>
 <li><a href="https://code.google.com/p/hatter-source-code/wiki/Study_CPU_MESI" target="_blank">Study_CPU_MESI</a></li>
+<li><a href="https://code.google.com/p/hatter-source-code/wiki/Study_Java_HotSpot_Concurrent" target="_blank">Study_Java_HotSpot_Concurrent</a></li>
 </ol>
 </p>
                 

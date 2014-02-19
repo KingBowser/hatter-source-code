@@ -3,6 +3,8 @@ markdowndocs
 
 `markdowndocs`使用的[!`Bootstrap`](http://getbootstrap.com/)作为UI，其中也使用了`prettify`和`scrollToTop`插件。`markdown`合并使用了[!`markdown4j`](https://code.google.com/p/markdown4j/)，HTML渲染和HTTPServer使用了`jsspserver`。
 
+!!#dep# 依赖
+
 应用依赖的jar包如下：
 * `commons-1.0.jar` - 工具类库
 * `fastjson-1.1.24.jar` - 用于JSON解析
@@ -10,12 +12,17 @@ markdowndocs
 * `markdown4j-2.2.jar` - 用于合并markdown
 * `thumbnailator-0.4.7.jar` - 用于生成缩略图
 
-使用方法参看：
+!!#usage# 使用方法
+
+&lt;&lt;TODO&gt;&gt;
+
+Markdown使用方法参看：
 * [!](https://code.google.com/p/markdown4j/)
 * [!](https://github.com/rjeschke/txtmark)
 * [!](http://daringfireball.net/projects/markdown/)
 
-改进功能：
+!!#improvment# 功能改进
+
 * 连接`[]()`
     * `[](http://example.com)` 输出：
 ```

@@ -1,0 +1,4 @@
+#summary CDN study
+#sidebar TableOfContents
+
+开放静态文件  - http://www.staticfile.org/

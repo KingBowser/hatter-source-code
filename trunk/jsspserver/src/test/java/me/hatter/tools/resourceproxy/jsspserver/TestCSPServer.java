@@ -23,7 +23,7 @@ public class TestCSPServer {
             boolean isReport = true;
             String header = isReport ? "content-security-policy-report-only" : "content-security-policy";
             response.getHeaderMap().set(header,
-                                        "img-src 'self' http://*.aliimg.com;script-src 'self' http://*.alibaba.com http://*.aliimg.com;report-uri http://127.0.0.1:8000/");
+                                        "img-src 'self' http://*.aliimg.com;script-src 'self' http://*.aliimg.com;report-uri http://127.0.0.1:8000/");
             return response;
         }
     }

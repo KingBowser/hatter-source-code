@@ -12,4 +12,7 @@ _Hi，这个页面建设时间还非常短，各种信息正在整理中。_
 _&lt;&lt;TODO&gt;&gt;_
 
 <br>
+站内连接：[Java工程师学习列表](/java.study.list/)
+
+<br>
 访问我的私人代码库：[!](https://code.google.com/p/hatter-source-code/)

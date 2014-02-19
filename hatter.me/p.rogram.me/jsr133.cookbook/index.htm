@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>第三方Java工具 - P.ROGRAM.ME</title>
+    <title>JSR-133写给编译器作者的菜谱 - P.ROGRAM.ME</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
@@ -65,7 +65,7 @@
 			    
 			    
 		           
-		           <li class="dropdown ">
+		           <li class="dropdown active">
 		             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Java <b class="caret"></b></a>
 		             <ul class="dropdown-menu">
 		             
@@ -86,7 +86,7 @@
 		             
 		               
 		               
-		                 <li ><a href="/jsr133.cookbook/">The JSR-133 Cookbook for Compiler Writers</a></li>
+		                 <li class="active"><a href="/jsr133.cookbook/">The JSR-133 Cookbook for Compiler Writers</a></li>
 		               
 		             
 		               
@@ -122,7 +122,7 @@
 			    
 			    
 		           
-		           <li class="dropdown active">
+		           <li class="dropdown ">
 		             <a href="#" class="dropdown-toggle" data-toggle="dropdown">工具 <b class="caret"></b></a>
 		             <ul class="dropdown-menu">
 		             
@@ -138,7 +138,7 @@
 		             
 		               
 		               
-		                 <li class="active"><a href="/3rd.java.tool/">第三方Java工具</a></li>
+		                 <li ><a href="/3rd.java.tool/">第三方Java工具</a></li>
 		               
 		             
 		               
@@ -184,7 +184,29 @@
     </header>
 
     
+    <!-- Docs page layout -->
+    <div class="bs-header" id="content">
+      <div class="container">
+        <h2>The JSR-133 Cookbook for Compiler Writers</h2>
+<p>by <a href="http://gee.cs.oswego.edu/dl" target="_blank">Doug Lea</a>, with help from members of the <a href="http://www.cs.umd.edu/~pugh/java/memoryModel/" target="_blank">JMM mailing list</a>.
+<br  />&ndash; <a href="http://gee.cs.oswego.edu/dl" target="_blank">Doug Lea</a>，在<a href="http://www.cs.umd.edu/~pugh/java/memoryModel/" target="_blank">JMM邮件列表</a>成员们的帮助下完成。</p>
 
+        
+      </div>
+    </div>
+    
+
+    
+    <!-- Callout for the old docs link -->
+    <div class="bs-old-docs">
+      <div class="container">
+        <p><strong>Preface: Over the 10+ years since this was initially written, many processor and language memory model specifications and issues have become clearer and better understood. And many have not. While this guide is maintained to remain accurate, it is incomplete about some of these evolving details. For more extensive coverage, see especially the work of Peter Sewell and the <a href="http://www.cl.cam.ac.uk/~pes20/weakmemory/index.html" target="_blank">Cambridge Relaxed Memory Concurrency Group</a></strong>
+<br  /><strong>前言：从最初开始写这个文件以来的过去10几年里，很多处理器和语言内存模型标准和问题已经被描述的很清晰且更容易被读懂。</strong></p>
+<p>This is an unofficial guide to implementing the new Java Memory Model (JMM) specified by JSR-133 . It provides at most brief backgrounds about why various rules exist, instead concentrating on their consequences for compilers and JVMs with respect to instruction reorderings, multiprocessor barrier instructions, and atomic operations. It includes a set of recommended recipes for complying to JSR-133. This guide is &ldquo;unofficial&rdquo; because it includes interpretations of particular processor properties and specifications. We cannot guarantee that the intepretations are correct. Also, processor specifications and implementations may change over time.</p>
+
+        
+      </div>
+    </div>
     
 
 
@@ -200,8 +222,15 @@
                 
                   <li>
                   
-                  <a href="#mat">mat</a>
+                  <a href="#reorderings">Reorderings</a>
                   
+                  
+                    <ul class="nav">
+                    
+                      
+                      <li><a href="#reorderings--volatile-and-monitors"> Volatiles and Monitors</a></li>
+                    
+                    </ul>
                   
                   </li>
                 
@@ -215,14 +244,23 @@
           
             
               
-              <!-- mat
+              <!-- reorderings
               ================================================== -->
               <div class="bs-docs-section">
                 <div class="page-header">
-                  <h1 id="mat">mat</h1>
+                  <h1 id="reorderings">Reorderings(指令重排)</h1>
                 </div>
-                <p class="lead"></p>
+                <p class="lead"><p>For a compiler writer, the JMM mainly consists of rules disallowing reorderings of certain instructions that access fields (where &ldquo;fields&rdquo; include array elements) as well as monitors (locks).
+<br  />对于写编译器的人来说，Java内存模型，&hellip;&hellip;</p>
+</p>
                 
+                
+                  
+                    
+                    <h3 id="reorderings--volatile-and-monitors" style="padding-top:60px;"> Volatiles and Monitors</h3>
+                    <p>The main JMM rules for volatiles and monitors can be viewed as a matrix with cells indicating that you cannot reorder instructions associated with particular sequences of bytecodes. This table is not itself the JMM specification; it is just a useful way of viewing its main consequences for compilers and runtime systems.</p>
+
+                  
                 
               </div>
             
@@ -242,7 +280,8 @@
     ================================================== -->
     <footer class="bs-footer" role="contentinfo">
       <div class="container">
-        <p><em>P.ROGRAM.ME, Hatter Jiang's website <a href="http://hatter.me" target="_blank">http://hatter.me</a> 我们在<a href="http://p.rogram.me/recruitment/">招聘</a></em></p>
+        <p><a href="http://gee.cs.oswego.edu/dl" target="_blank">Doug Lea</a></p>
+<p>Last modified: Tue Mar 22 07:11:36 EDT 2011</p>
 
         
       </div>

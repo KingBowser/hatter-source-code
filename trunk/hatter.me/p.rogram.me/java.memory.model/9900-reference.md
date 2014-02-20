@@ -25,4 +25,5 @@
 1. [!x86](http://zh.wikipedia.org/wiki/X86)
 1. [!Study_CPU_MESI](https://code.google.com/p/hatter-source-code/wiki/Study_CPU_MESI)
 1. [!Study_Java_HotSpot_Concurrent](https://code.google.com/p/hatter-source-code/wiki/Study_Java_HotSpot_Concurrent)
-
+1. [!Java @Contended annotation to help reduce false sharing](https://blogs.oracle.com/dave/entry/java_contented_annotation_to_help)
+1. [!JEP 142: Reduce Cache Contention on Specified Fields](http://openjdk.java.net/jeps/142)

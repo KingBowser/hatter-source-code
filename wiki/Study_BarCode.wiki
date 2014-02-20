@@ -55,6 +55,12 @@ QR生成或读取:
  * Google ZXing: https://code.google.com/p/zxing/
  * Google QR Code API: https://google-developers.appspot.com/chart/infographics/docs/qr_codes
 
+JS QR:
+ * http://d-project.googlecode.com/svn/trunk/misc/qrcode/index.html
+ * https://github.com/jeromeetienne/jquery-qrcode
+ * https://code.google.com/p/jsqrencode/
+ * https://github.com/yyx990803/QR.js
+
 QR应用：
  * Google Authenticator: https://code.google.com/p/google-authenticator/
 

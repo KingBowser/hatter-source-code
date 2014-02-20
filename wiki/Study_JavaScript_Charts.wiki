@@ -3,11 +3,11 @@
 
 ==Charts==
 
-* http://www.chartjs.org/
-* http://www.jscharts.com/
-* http://www.jqplot.com/
+ * http://www.chartjs.org/
+ * http://www.jscharts.com/
+ * http://www.jqplot.com/
 
 ==QR==
 
-* https://code.google.com/p/jsqrencode/
-* https://github.com/yyx990803/QR.js
+ * https://code.google.com/p/jsqrencode/
+ * https://github.com/yyx990803/QR.js

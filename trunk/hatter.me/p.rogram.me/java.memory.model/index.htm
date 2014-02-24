@@ -632,9 +632,9 @@
                     <h3 id="javamemorymodel--mainmemandworkmem" style="padding-top:60px;"> 内存模型</h3>
                     <p><img src="jmm.png" /></p>
 <h3>原子性</h3>
-<p>Which instructions must have indivisible effects. For purposes of the model, these rules need to be stated only for simple reads and writes of memory cells representing fields - instance and static variables, also including array elements, but not including local variables inside methods.</p>
+<p>某些指令的执行是需要有不可分割的效果的（执行不可打断）。为了这样的模型，该规则仅用于简单的读、写内存单元，包含了实例及静态字段（当然也包含数组元素），但不包含在函数中的局部变量。</p>
 <h3>可见性</h3>
-<p>Under what conditions the effects of one thread are visible to another. The effects of interest here are writes to fields, as seen via reads of those fields.</p>
+<p>在一个线程写入变量后另外一个线程需要对该变化可见。效果是当一个线程写入一个字段后，另外一个线程需要对这个字段可见（写入的最新值）。</p>
 <h3>重排序</h3>
 <p>Under what conditions the effects of operations can appear out of order to any given thread. The main ordering issues surround reads and writes associated with sequences of assignment statements.</p>
 <h3>happen-before</h3>
@@ -670,8 +670,7 @@
 </ul>
 </li>
 </ol>
-<p>In terms of atomicity, visibility, and ordering, declaring a field as volatile is nearly identical in effect to using a little fully synchronized class protecting only that field via get/set methods, as in:
-<br  />对于原子性、可见性和重排序来说，定义一个<code>volatile</code>的字段的作用等价于下面这样的类（定义一个<code>synchronized</code>保护的使用<code>get</code>/<code>set</code>方法访问类）：</p>
+<p>对于原子性、可见性和重排序来说，定义一个<code>volatile</code>的字段的作用等价于下面这样的类（定义一个<code>synchronized</code>保护的使用<code>get</code>/<code>set</code>方法访问的类）：</p>
 <pre class="prettyprint linenums"><code>final class VFloat {
   private float value;
 

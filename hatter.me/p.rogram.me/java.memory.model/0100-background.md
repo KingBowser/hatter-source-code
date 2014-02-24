@@ -10,10 +10,10 @@ Java内存模型就是教人如果在并发编程的情况下写出“正确”�
 
 %%% wikiTable class=table___table-bordered style=width:600px;
 || 微架构 || 设计 || 说明 ||
-|| X86 | `CISC` | `IA32`,`AMD64`,`Intel64` |
-|| IA64 | `EPIC` |  |
-|| ARM | `RISC` |  |
-|| Power PC | `RISC` |  |
+|| X86 | `CISC` | `IA32 ➟ AMD64 ➟ Intel64` |
+|| IA64 | `EPIC` | `Intel` `HP` |
+|| ARM | `RISC` | `Advanced RISC Machine` |
+|| Power PC | `RISC` | `Apple–IBM–Motorola alliance` |
 || ALPHA | `RISC` |  |
 || PA-RISC | `RISC` |  |
 |*4 ... |
@@ -22,10 +22,25 @@ Java内存模型就是教人如果在并发编程的情况下写出“正确”�
 _EPIC相关介绍: [!Itanium 处理器系列的 EPIC 架构](ia64/HP_Integrity_document_02.pdf)_
 
 
-!!#multithread# 多线程(并发)编程
+!!#multithread# 多线程(并行)编程
+
+对于传统的单核处理器来说微架构层面不存在可见性的问题，因为因为CPU仅拥有一套高速缓存，不同线程不可能因此读到不同值。
+
+并发和并行的区别就是一个处理器同时处理多个任务和多个处理器或者是多核的处理器同时处理多个不同的任务。前者是逻辑上的同时发生（simultaneous），而后者是物理上的同时发生：
+* 并发性(concurrency)，又称共行性，是指能处理多个同时性活动的能力，并发事件之间不一定要同一时刻发生。
+* 并行(parallelism)是指同时发生的两个并发事件，具有并发的含义，而并发则不一定并行。
+
+_来个比喻：并发和并行的区别就是一个人同时吃三个馒头和三个人同时吃三个馒头。_
+
+<img src="concurrentparalel.jpg"/>
+
+<br>
+_图片引用自：[!](http://www.cnblogs.com/NickyYe/archive/2008/12/01/1344802.html)_
+
+线程间并行运行的问题举例会在“微架构优化举例”中提到。
 
 
-!!#compiler# 编译器的各种优化
+!!#compiler# 编译器优化举例
 
 下面是一个`C#`的关于`volatile`的例子：
 
@@ -78,53 +93,44 @@ _代码引用自：[!](http://igoro.com/archive/volatile-keyword-in-c-memory-mod
 
 
 
-!!#micromarch# 微架构的各种优化
+!!#micromarch# 微架构优化举例
 
-The mainstream x86 and x64 processors implement a strong memory model where memory access is effectively volatile. So, a volatile field forces the compiler to avoid some high-level optimizations like hoisting a read out of a loop, but otherwise results in the same assembly code as a non-volatile read.
+`x86`和`x64`(`x86_64`)实现了强一致的内存模型，即所有的内存访问都已经是`volatile`的。所以`volatile`的字段会强制编译器避免做了些高级优化，如在一个循环中读写一个变量，生成的代码将会是一个非`volatile`的内存读（这种方式已经在上面举例说明）。
 
-The Itanium processor implements a weaker memory model. To target Itanium, the JIT compiler has to use special instructions for volatile memory accesses: LD.ACQ and ST.REL, instead of LD and ST. Instruction LD.ACQ effectively says, “refresh my cache and then read a value” and ST.REL says, “write a value to my cache and then flush the cache to main memory”. LD and ST on the other hand may just access the processor’s cache, which is not visible to other processors.
+然而，安腾处理器实现了一个弱的内存模型。对于目标处理器如果是安腾的话，对于`volatile`内存访问编译器需要使用一些特别的指令：`ld.acq`和`st.red`替代`ld`和`st`。指令`ld.acq`的意思是说“请先刷新缓存并读入该值”，而指令`st.rel`是说“把值写入缓存，并将这个值刷新到主内存”。而`ld`和`st`指令仅访问处理器的缓存，而这个缓存对于别的处理器可能是不可见的。
 
-<br><br>
-----
+下面我们看一下图例：
+
+<br>
 #### 1. 初始状态
 
 <img src="/java.memory.model/ia64/mm/1-init.png"/>
 
-<br><br>
-----
+<br>
 #### 2. 普通写
 
-A non-volatile write could just update the value in the thread’s cache, and not the value in main memory:
+对于非`volatile`的写数据有可能是仅仅更新的当前线程所在处理器的缓存，而未更新该值到主内存中：
 
 <img src="/java.memory.model/ia64/mm/2-write.png"/>
 
-<br><br>
-----
+<br>
 #### 3. `volatile`写
 
-However, in C# all writes are volatile (unlike say in Java), regardless of whether you write to a volatile or a non-volatile field. So, the above situation actually never happens in C#.
-
-A volatile write updates the thread’s cache, and then flushes the entire cache to main memory. If we were to now set the volatile field v to 11, both values u and v would get flushed to main memory:
+对于`volatile`写数据将会先写入当前线程所有处理器的缓存，然后即将对应的缓存数据刷新到主内存中。如，我们将字段`v`设置为`11`，那么变量值`u`、`v`都会被刷新到主内存中：
 
 <img src="/java.memory.model/ia64/mm/3-volatile-write.png"/>
 
-<br><br>
-----
+<br>
 #### 4. 普通读
 
-Since all C# writes are volatile, you can think of all writes as going straight to main memory.
-
-A regular, non-volatile read can read the value from the thread’s cache, rather than from main memory. Despite the fact that thread 1 set u to 11, when thread 2 reads u, it will still see value 10:
+通常来说，对于非`volatile`读则仅从当前线程所在处理器的缓存读入值，而不是从主内存中。所以，即便线程1将`u`设置为`11`，而线程2在读`u`时，他也将只能读到`10`。
 
 <img src="/java.memory.model/ia64/mm/4-read.png"/>
 
-<br><br>
-----
+<br>
 #### 5. `volatile`读
 
-When you read a non-volatile field in C#, a non-volatile read occurs, and you may see a stale value from the thread’s cache. Or, you may see the updated value. Whether you see the old or the new value depends on your compiler and your processor.
-
-Finally, let’s take a look at an example of a volatile read. Thread 2 will read the volatile field v:
+最后，我们看一个`volatile`读的例子。线程2通过`volatile`读到字段`v`的最新值：
 
 <img src="/java.memory.model/ia64/mm/5-volatile-read.png"/>
 

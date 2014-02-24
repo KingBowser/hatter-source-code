@@ -670,7 +670,8 @@
 </ul>
 </li>
 </ol>
-<p>In terms of atomicity, visibility, and ordering, declaring a field as volatile is nearly identical in effect to using a little fully synchronized class protecting only that field via get/set methods, as in:</p>
+<p>In terms of atomicity, visibility, and ordering, declaring a field as volatile is nearly identical in effect to using a little fully synchronized class protecting only that field via get/set methods, as in:
+<br  />对于原子性、可见性和重排序来说，定义一个<code>volatile</code>的字段的作用等价于下面这样的类（定义一个<code>synchronized</code>保护的使用<code>get</code>/<code>set</code>方法访问类）：</p>
 <pre class="prettyprint linenums"><code>final class VFloat {
   private float value;
 

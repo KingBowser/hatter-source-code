@@ -54,6 +54,7 @@
  * [Study_IDE IDE]
   * [Study_IDE_Eclipse Eclipse]
  * [Study_Java Java]
+  * [Study_Java_AtomicInteger AtomicInteger]
   * [Study_Java_BTrace BTrace]
   * [Study_Java_ByteCode ByteCode]
   * [Study_Java_Compile Compile]

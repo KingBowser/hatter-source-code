@@ -65,7 +65,7 @@ Under what conditions the effects of operations can appear out of order to any g
     * `X86`：`mfence` or `cpuid` or `locked insn` (`lock; addl $0,0(%%esp)`)
     * `IA64`：`mf`
 
-In terms of atomicity, visibility, and ordering, declaring a field as volatile is nearly identical in effect to using a little fully synchronized class protecting only that field via get/set methods, as in:
+对于原子性、可见性和重排序来说，定义一个`volatile`的字段的作用等价于下面这样的类（定义一个`synchronized`保护的使用`get`/`set`方法访问的类）：
 
 %%% prettify ln=1
 final class VFloat {

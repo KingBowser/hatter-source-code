@@ -14,8 +14,8 @@ Java内存模型就是教人如果在并发编程的情况下写出“正确”�
 || IA64 | `EPIC` | `Intel` `HP` |
 || ARM | `RISC` | `Advanced RISC Machine` |
 || Power PC | `RISC` | `Apple–IBM–Motorola alliance` |
-|| ALPHA | `RISC` |  |
-|| PA-RISC | `RISC` |  |
+|| ALPHA | `RISC` | ... |
+|| PA-RISC | `RISC` | ... |
 |*4 ... |
 %%%
 

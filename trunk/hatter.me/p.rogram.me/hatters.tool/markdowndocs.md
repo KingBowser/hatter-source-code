@@ -14,9 +14,15 @@ markdowndocs
 
 !!#usage# 使用方法
 
-&lt;&lt;TODO&gt;&gt;
+Usage:
+```
+java -jar markdowndocsall.jar [-s]
+```
 
-Markdown使用方法参看：
+不指定参数的情况下会自动生成所需的HTML文件。当指定`-s`参数时在端口（默认8000）上启动一下HTTP服务，在保存markdown文件时可即时查看。
+
+
+Markdown语法请参看：
 * [!](https://code.google.com/p/markdown4j/)
 * [!](https://github.com/rjeschke/txtmark)
 * [!](http://daringfireball.net/projects/markdown/)

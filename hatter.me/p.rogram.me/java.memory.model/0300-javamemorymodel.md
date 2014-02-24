@@ -29,11 +29,11 @@ _代码引用自：[!](http://gee.cs.oswego.edu/dl/cpj/jmm.html)_
 
 ### 原子性
 
-Which instructions must have indivisible effects. For purposes of the model, these rules need to be stated only for simple reads and writes of memory cells representing fields - instance and static variables, also including array elements, but not including local variables inside methods.
+某些指令的执行是需要有不可分割的效果的（执行不可打断）。为了这样的模型，该规则仅用于简单的读、写内存单元，包含了实例及静态字段（当然也包含数组元素），但不包含在函数中的局部变量。
 
 ### 可见性
 
-Under what conditions the effects of one thread are visible to another. The effects of interest here are writes to fields, as seen via reads of those fields.
+在一个线程写入变量后另外一个线程需要对该变化可见。效果是当一个线程写入一个字段后，另外一个线程需要对这个字段可见（写入的最新值）。
 
 ### 重排序
 

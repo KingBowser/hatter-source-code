@@ -90,7 +90,7 @@ _代码引用自：http://gee.cs.oswego.edu/dl/cpj/jmm.html_
 
 `@Contended`通过[!JEP 142 (在特定字段上减少高速缓存竞争访问)](http://openjdk.java.net/jeps/142)引入，即针对伪共享提供一种解决方案，解决方法是通过`@Contended`来标记哪些字段是竞争访问的，编译器在编译的时候即将存在竞争访问的字段对齐到不同的缓存线。
 
-`jdk/src/share/classes/java/lang/Thread.java`：
+Sample代码`jdk/src/share/classes/java/lang/Thread.java`：
 %%% prettify
 2034     // The following three initially uninitialized fields are exclusively
 2035     // managed by class java.util.concurrent.ThreadLocalRandom. Additionally,

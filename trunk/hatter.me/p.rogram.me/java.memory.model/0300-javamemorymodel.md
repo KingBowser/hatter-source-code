@@ -27,6 +27,18 @@ _代码引用自：[!](http://gee.cs.oswego.edu/dl/cpj/jmm.html)_
 
 <img src="jmm.png"/>
 
+### 原子性
+
+Which instructions must have indivisible effects. For purposes of the model, these rules need to be stated only for simple reads and writes of memory cells representing fields - instance and static variables, also including array elements, but not including local variables inside methods.
+
+### 可见性
+
+Under what conditions the effects of one thread are visible to another. The effects of interest here are writes to fields, as seen via reads of those fields.
+
+### 重排序
+
+Under what conditions the effects of operations can appear out of order to any given thread. The main ordering issues surround reads and writes associated with sequences of assignment statements.
+
 ### happen-before
 
 1. 同一个线程中的每个`Action`都`happens-before`于出现在其后的任何一个`Action`。
@@ -53,10 +65,24 @@ _代码引用自：[!](http://gee.cs.oswego.edu/dl/cpj/jmm.html)_
     * `X86`：`mfence` or `cpuid` or `locked insn` (`lock; addl $0,0(%%esp)`)
     * `IA64`：`mf`
 
+In terms of atomicity, visibility, and ordering, declaring a field as volatile is nearly identical in effect to using a little fully synchronized class protecting only that field via get/set methods, as in:
+
+%%% prettify ln=1
+final class VFloat {
+  private float value;
+
+  final synchronized void  set(float f) { value = f; }
+  final synchronized float get()        { return value; }
+}
+%%%
+
+<br>
+_代码引用自：http://gee.cs.oswego.edu/dl/cpj/jmm.html_
+
 !!#synchronized# synchronized
 
 
-`synchronized`[!Study_Java_HotSpot_Concurrent](https://code.google.com/p/hatter-source-code/wiki/Study_Java_HotSpot_Concurrent)
+`synchronized`的锁原理及优化详见：[!Study_Java_HotSpot_Concurrent](https://code.google.com/p/hatter-source-code/wiki/Study_Java_HotSpot_Concurrent)
 
 !!#contended# @Contended
 

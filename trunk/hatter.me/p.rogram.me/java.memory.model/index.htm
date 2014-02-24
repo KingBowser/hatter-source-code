@@ -631,6 +631,12 @@
                     
                     <h3 id="javamemorymodel--mainmemandworkmem" style="padding-top:60px;"> 内存模型</h3>
                     <p><img src="jmm.png" /></p>
+<h3>原子性</h3>
+<p>Which instructions must have indivisible effects. For purposes of the model, these rules need to be stated only for simple reads and writes of memory cells representing fields - instance and static variables, also including array elements, but not including local variables inside methods.</p>
+<h3>可见性</h3>
+<p>Under what conditions the effects of one thread are visible to another. The effects of interest here are writes to fields, as seen via reads of those fields.</p>
+<h3>重排序</h3>
+<p>Under what conditions the effects of operations can appear out of order to any given thread. The main ordering issues surround reads and writes associated with sequences of assignment statements.</p>
 <h3>happen-before</h3>
 <ol>
 <li>同一个线程中的每个<code>Action</code>都<code>happens-before</code>于出现在其后的任何一个<code>Action</code>。</li>
@@ -664,11 +670,21 @@
 </ul>
 </li>
 </ol>
+<p>In terms of atomicity, visibility, and ordering, declaring a field as volatile is nearly identical in effect to using a little fully synchronized class protecting only that field via get/set methods, as in:</p>
+<pre class="prettyprint linenums"><code>final class VFloat {
+  private float value;
+
+  final synchronized void  set(float f) { value = f; }
+  final synchronized float get()        { return value; }
+}
+</code></pre>
+<p><br>
+<br  /><em>代码引用自：http://gee.cs.oswego.edu/dl/cpj/jmm.html</em></p>
 
                   
                     
                     <h3 id="javamemorymodel--synchronized" style="padding-top:60px;"> synchronized</h3>
-                    <p><code>synchronized</code><a href="https://code.google.com/p/hatter-source-code/wiki/Study_Java_HotSpot_Concurrent" target="_blank">Study_Java_HotSpot_Concurrent</a></p>
+                    <p><code>synchronized</code>的锁原理及优化详见：<a href="https://code.google.com/p/hatter-source-code/wiki/Study_Java_HotSpot_Concurrent" target="_blank">Study_Java_HotSpot_Concurrent</a></p>
 
                   
                     

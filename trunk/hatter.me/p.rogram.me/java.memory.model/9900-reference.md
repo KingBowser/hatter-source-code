@@ -27,3 +27,11 @@
 1. [!Study_Java_HotSpot_Concurrent](https://code.google.com/p/hatter-source-code/wiki/Study_Java_HotSpot_Concurrent)
 1. [!Java @Contended annotation to help reduce false sharing](https://blogs.oracle.com/dave/entry/java_contented_annotation_to_help)
 1. [!JEP 142: Reduce Cache Contention on Specified Fields](http://openjdk.java.net/jeps/142)
+1. [!PowerPC](http://en.wikipedia.org/wiki/PowerPC)
+1. [!ARM架构](http://zh.wikipedia.org/wiki/ARM%E6%9E%B6%E6%A7%8B)
+1. [!ARM Holdings](http://zh.wikipedia.org/wiki/%E5%AE%89%E8%AC%80%E5%9C%8B%E9%9A%9B%E7%A7%91%E6%8A%80)
+1. [!并发和并行的区别：吃馒头的比喻](http://developer.51cto.com/art/200908/141553.htm)
+1. [!False Sharing](http://mechanical-sympathy.blogspot.com/2011/07/false-sharing.html)
+1. [!happens-before规则和指令重排](http://www.cnblogs.com/vipper/p/3307991.html)
+1. [!Intel® 64 and IA-32 Architectures Software Developer Manuals](http://www.intel.com/content/www/us/en/processors/architectures-software-developer-manuals.html)
+

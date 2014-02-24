@@ -218,13 +218,13 @@
                       <li><a href="#background--somanymicroarch"> 种类繁多的微架构</a></li>
                     
                       
-                      <li><a href="#background--multithread"> 多线程(并发)编程</a></li>
+                      <li><a href="#background--multithread"> 多线程(并行)编程</a></li>
                     
                       
-                      <li><a href="#background--compiler"> 编译器的各种优化</a></li>
+                      <li><a href="#background--compiler"> 编译器优化举例</a></li>
                     
                       
-                      <li><a href="#background--micromarch"> 微架构的各种优化</a></li>
+                      <li><a href="#background--micromarch"> 微架构优化举例</a></li>
                     
                     </ul>
                   
@@ -250,16 +250,10 @@
                       <li><a href="#x86--falsesharing"> 伪共享</a></li>
                     
                       
-                      <li><a href="#x86--qpi"> QPI</a></li>
-                    
-                      
                       <li><a href="#x86--reordering"> 指令重排</a></li>
                     
                       
-                      <li><a href="#x86--liushuixian"> 流水线技术</a></li>
-                    
-                      
-                      <li><a href="#x86--cpuqpi"> CPU访问内存及相关性能</a></li>
+                      <li><a href="#x86--accessperformance"> CPU访问相关性能</a></li>
                     
                     </ul>
                   
@@ -341,10 +335,10 @@
                     <h3 id="background--somanymicroarch" style="padding-top:60px;"> 种类繁多的微架构</h3>
                     <table style="width:600px;" class="table table-bordered">
 <tr><th class="active"> 微架构 </th><th class="active"> 设计 </th><th class="active"> 说明 </th></tr>
-<tr><th class="active"> X86 </th><td> <code>CISC</code> </td><td> <code>IA32</code>,<code>AMD64</code>,<code>Intel64</code> </td></tr>
-<tr><th class="active"> IA64 </th><td> <code>EPIC</code> </td><td>  </td></tr>
-<tr><th class="active"> ARM </th><td> <code>RISC</code> </td><td>  </td></tr>
-<tr><th class="active"> Power PC </th><td> <code>RISC</code> </td><td>  </td></tr>
+<tr><th class="active"> X86 </th><td> <code>CISC</code> </td><td> <code>IA32 ➟ AMD64 ➟ Intel64</code> </td></tr>
+<tr><th class="active"> IA64 </th><td> <code>EPIC</code> </td><td> <code>Intel</code> <code>HP</code> </td></tr>
+<tr><th class="active"> ARM </th><td> <code>RISC</code> </td><td> <code>Advanced RISC Machine</code> </td></tr>
+<tr><th class="active"> Power PC </th><td> <code>RISC</code> </td><td> <code>Apple–IBM–Motorola alliance</code> </td></tr>
 <tr><th class="active"> ALPHA </th><td> <code>RISC</code> </td><td>  </td></tr>
 <tr><th class="active"> PA-RISC </th><td> <code>RISC</code> </td><td>  </td></tr>
 <tr><td colspan="4"> &hellip; </td></tr>
@@ -352,11 +346,22 @@
 
                   
                     
-                    <h3 id="background--multithread" style="padding-top:60px;"> 多线程(并发)编程</h3>
-                    
+                    <h3 id="background--multithread" style="padding-top:60px;"> 多线程(并行)编程</h3>
+                    <p>对于传统的单核处理器来说微架构层面不存在可见性的问题，因为因为CPU仅拥有一套高速缓存，不同线程不可能因此读到不同值。</p>
+<p>并发和并行的区别就是一个处理器同时处理多个任务和多个处理器或者是多核的处理器同时处理多个不同的任务。前者是逻辑上的同时发生（simultaneous），而后者是物理上的同时发生：</p>
+<ul>
+<li>并发性(concurrency)，又称共行性，是指能处理多个同时性活动的能力，并发事件之间不一定要同一时刻发生。</li>
+<li>并行(parallelism)是指同时发生的两个并发事件，具有并发的含义，而并发则不一定并行。</li>
+</ul>
+<p><em>来个比喻：并发和并行的区别就是一个人同时吃三个馒头和三个人同时吃三个馒头。</em></p>
+<p><img src="concurrentparalel.jpg" /></p>
+<p><br>
+<br  /><em>图片引用自：<a href="http://www.cnblogs.com/NickyYe/archive/2008/12/01/1344802.html" target="_blank">http://www.cnblogs.com/NickyYe/archive/2008/12/01/1344802.html</a></em></p>
+<p>线程间并行运行的问题举例会在“微架构优化举例”中提到。</p>
+
                   
                     
-                    <h3 id="background--compiler" style="padding-top:60px;"> 编译器的各种优化</h3>
+                    <h3 id="background--compiler" style="padding-top:60px;"> 编译器优化举例</h3>
                     <p>下面是一个<code>C#</code>的关于<code>volatile</code>的例子：</p>
 <pre class="prettyprint linenums"><code>class Test
 {
@@ -396,30 +401,28 @@
 
                   
                     
-                    <h3 id="background--micromarch" style="padding-top:60px;"> 微架构的各种优化</h3>
-                    <p>The mainstream x86 and x64 processors implement a strong memory model where memory access is effectively volatile. So, a volatile field forces the compiler to avoid some high-level optimizations like hoisting a read out of a loop, but otherwise results in the same assembly code as a non-volatile read.</p>
-<p>The Itanium processor implements a weaker memory model. To target Itanium, the JIT compiler has to use special instructions for volatile memory accesses: LD.ACQ and ST.REL, instead of LD and ST. Instruction LD.ACQ effectively says, “refresh my cache and then read a value” and ST.REL says, “write a value to my cache and then flush the cache to main memory”. LD and ST on the other hand may just access the processor’s cache, which is not visible to other processors.</p>
-<h2><br><br></h2>
+                    <h3 id="background--micromarch" style="padding-top:60px;"> 微架构优化举例</h3>
+                    <p><code>x86</code>和<code>x64</code>(<code>x86_64</code>)实现了强一致的内存模型，即所有的内存访问都已经是<code>volatile</code>的。所以<code>volatile</code>的字段会强制编译器避免做了些高级优化，如在一个循环中读写一个变量，生成的代码将会是一个非<code>volatile</code>的内存读（这种方式已经在上面举例说明）。</p>
+<p>然而，安腾处理器实现了一个弱的内存模型。对于目标处理器如果是安腾的话，对于<code>volatile</code>内存访问编译器需要使用一些特别的指令：<code>ld.acq</code>和<code>st.red</code>替代<code>ld</code>和<code>st</code>。指令<code>ld.acq</code>的意思是说“请先刷新缓存并读入该值”，而指令<code>st.rel</code>是说“把值写入缓存，并将这个值刷新到主内存”。而<code>ld</code>和<code>st</code>指令仅访问处理器的缓存，而这个缓存对于别的处理器可能是不可见的。</p>
+<p>下面我们看一下图例：</p>
+<p><br></p>
 <h4>1. 初始状态</h4>
 <p><img src=" /java.memory.model/ia64/mm/1-init.png"/></p>
-<h2><br><br></h2>
+<p><br></p>
 <h4>2. 普通写</h4>
-<p>A non-volatile write could just update the value in the thread’s cache, and not the value in main memory:</p>
+<p>对于非<code>volatile</code>的写数据有可能是仅仅更新的当前线程所在处理器的缓存，而未更新该值到主内存中：</p>
 <p><img src=" /java.memory.model/ia64/mm/2-write.png"/></p>
-<h2><br><br></h2>
+<p><br></p>
 <h4>3. <code>volatile</code>写</h4>
-<p>However, in C# all writes are volatile (unlike say in Java), regardless of whether you write to a volatile or a non-volatile field. So, the above situation actually never happens in C#.</p>
-<p>A volatile write updates the thread’s cache, and then flushes the entire cache to main memory. If we were to now set the volatile field v to 11, both values u and v would get flushed to main memory:</p>
+<p>对于<code>volatile</code>写数据将会先写入当前线程所有处理器的缓存，然后即将对应的缓存数据刷新到主内存中。如，我们将字段<code>v</code>设置为<code>11</code>，那么变量值<code>u</code>、<code>v</code>都会被刷新到主内存中：</p>
 <p><img src=" /java.memory.model/ia64/mm/3-volatile-write.png"/></p>
-<h2><br><br></h2>
+<p><br></p>
 <h4>4. 普通读</h4>
-<p>Since all C# writes are volatile, you can think of all writes as going straight to main memory.</p>
-<p>A regular, non-volatile read can read the value from the thread’s cache, rather than from main memory. Despite the fact that thread 1 set u to 11, when thread 2 reads u, it will still see value 10:</p>
+<p>通常来说，对于非<code>volatile</code>读则仅从当前线程所在处理器的缓存读入值，而不是从主内存中。所以，即便线程1将<code>u</code>设置为<code>11</code>，而线程2在读<code>u</code>时，他也将只能读到<code>10</code>。</p>
 <p><img src=" /java.memory.model/ia64/mm/4-read.png"/></p>
-<h2><br><br></h2>
+<p><br></p>
 <h4>5. <code>volatile</code>读</h4>
-<p>When you read a non-volatile field in C#, a non-volatile read occurs, and you may see a stale value from the thread’s cache. Or, you may see the updated value. Whether you see the old or the new value depends on your compiler and your processor.</p>
-<p>Finally, let’s take a look at an example of a volatile read. Thread 2 will read the volatile field v:</p>
+<p>最后，我们看一个<code>volatile</code>读的例子。线程2通过<code>volatile</code>读到字段<code>v</code>的最新值：</p>
 <p><img src=" /java.memory.model/ia64/mm/5-volatile-read.png"/></p>
 <p><br>
 <br  /><em>图片引用自：<a href="http://igoro.com/archive/volatile-keyword-in-c-memory-model-explained/" target="_blank">http://igoro.com/archive/volatile-keyword-in-c-memory-model-explained/</a></em></p>
@@ -488,23 +491,106 @@
                     
                     <h3 id="x86--falsesharing" style="padding-top:60px;">伪共享(False Sharing)</h3>
                     <p><code>伪共享</code>是在多核CPU下才会出现的一种特殊的竞争访问内存的情况，即当两个在一个缓存线中的变量在被两个线程频繁修改的时候会出现大量<code>L1</code>, <code>L1 L2</code>或<code>L1 L2 L3</code>缓存失效。</p>
+<h4>伪共享原理介绍：</h4>
 <p><img src="false_sharing.png" /></p>
+<h4>测试伪共享的代码：</h4>
+<pre class="prettyprint linenums"><code>public final class FalseSharing
+    implements Runnable
+{
+    public final static int NUM_THREADS = 4; // change
+    public final static long ITERATIONS = 500L * 1000L * 1000L;
+    private final int arrayIndex;
+
+    private static VolatileLong[] longs = new VolatileLong[NUM_THREADS];
+    static
+    {
+        for (int i = 0; i &lt; longs.length; i++)
+        {
+            longs[i] = new VolatileLong();
+        }
+    }
+
+    public FalseSharing(final int arrayIndex)
+    {
+        this.arrayIndex = arrayIndex;
+    }
+
+    public static void main(final String[] args) throws Exception
+    {
+        final long start = System.nanoTime();
+        runTest();
+        System.out.println("duration = " + (System.nanoTime() - start));
+    }
+
+    private static void runTest() throws InterruptedException
+    {
+        Thread[] threads = new Thread[NUM_THREADS];
+
+        for (int i = 0; i &lt; threads.length; i++)
+        {
+            threads[i] = new Thread(new FalseSharing(i));
+        }
+
+        for (Thread t : threads)
+        {
+            t.start();
+        }
+
+        for (Thread t : threads)
+        {
+            t.join();
+        }
+    }
+
+    public void run()
+    {
+        long i = ITERATIONS + 1;
+        while (0 != --i)
+        {
+            longs[arrayIndex].value = i;
+        }
+    }
+
+    public final static class VolatileLong
+    {
+        public volatile long value = 0L;
+        public long p1, p2, p3, p4, p5, p6; // comment out
+    }
+}
+</code></pre>
+<h4>伪共享是否做padding的测试结果：</h4>
+<p><img src="false_share_test_result.png" /></p>
+<p><br>
+<br  />图片及代码引用自：<a href="http://mechanical-sympathy.blogspot.com/2011/07/false-sharing.html" target="_blank">http://mechanical-sympathy.blogspot.com/2011/07/false-sharing.html</a></p>
 
                   
                     
-                    <h3 id="x86--qpi" style="padding-top:60px;"> QPI</h3>
-                    
-                  
-                    
                     <h3 id="x86--reordering" style="padding-top:60px;"> 指令重排</h3>
-                    
+                    <p>我们知道现代CPU的主频越来越高，与cache的交互次数也越来越多。当CPU的计算速度远远超过访问cache时，会产生cache wait，过多的cache  wait就会造成性能瓶颈。
+<br  />针对这种情况，多数架构（包括X86）采用了一种将cache分片的解决方案，即将一块cache划分成互不关联地多个 slots (逻辑存储单元，又名 Memory Bank 或 Cache Bank)，CPU可以自行选择在多个idle bank中进行存取。这种SMP的设计，显著提高了CPU的并行处理能力，也回避了cache访问瓶颈。</p>
+<h5>Memory Bank的划分：</h5>
+<ul>
+<li>一般 Memory bank 是按cache address来划分的。比如 偶数adress 0×12345000 分到 bank 0, 奇数address 0×12345100 分到 bank1。</li>
+</ul>
+<h5>重排序的种类：</h5>
+<ul>
+<li>编译期重排：编译源代码时，编译器依据对上下文的分析，对指令进行重排序，以之更适合于CPU的并行执行。</li>
+<li>运行期重排：CPU在执行过程中，动态分析依赖部件的效能，对指令做重排序优化。</li>
+</ul>
+<h5>多处理器(含多核和超线程)系统中的指令重排遵循以下规则：</h5>
+<ul>
+<li>Individual processors use the same ordering principles as in a single-processor system.</li>
+<li>Writes by a single processor are observed in the same order by all processors.</li>
+<li>Writes from an individual processor are NOT ordered with respect to the writes from other processors.</li>
+<li>Memory ordering obeys causality (memory ordering respects transitive visibility).</li>
+<li>Any two stores are seen in a consistent order by processors other than those performing the stores</li>
+<li>Locked instructions have a total order.</li>
+</ul>
+<p><em><code>x86</code>指令重排详见：<code>8.2 MEMORY ORDERING</code>: <a href="http://www.intel.com/content/dam/www/public/us/en/documents/manuals/64-ia-32-architectures-software-developer-vol-3a-part-1-manual.pdf" target="_blank">Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A: System Programming Guide, Part 1</a></em></p>
+
                   
                     
-                    <h3 id="x86--liushuixian" style="padding-top:60px;"> 流水线技术</h3>
-                    
-                  
-                    
-                    <h3 id="x86--cpuqpi" style="padding-top:60px;"> CPU访问内存及相关性能</h3>
+                    <h3 id="x86--accessperformance" style="padding-top:60px;"> CPU访问相关性能</h3>
                     <p><a href="intel_nehalem.png" target="_blank"><img src="intel_nehalem_800x800.png" /></a></p>
 
                   
@@ -542,6 +628,17 @@
                     
                     <h3 id="javamemorymodel--mainmemandworkmem" style="padding-top:60px;"> 内存模型</h3>
                     <p><img src="jmm.png" /></p>
+<h3>happen-before</h3>
+<ol>
+<li>同一个线程中的每个<code>Action</code>都<code>happens-before</code>于出现在其后的任何一个<code>Action</code>。</li>
+<li>对一个监视器的解锁<code>happens-before</code>于每一个后续对同一个监视器的加锁。</li>
+<li>对<code>volatile</code>字段的写入操作<code>happens-before</code>于每一个后续的同一个字段的读操作。</li>
+<li><code>Thread.start()</code>的调用会<code>happens-before</code>于启动线程里面的动作。</li>
+<li><code>Thread</code>中的所有动作都<code>happens-before</code>于其他线程检查到此线程结束或者<code>Thread.join()</code>中返回或者<code>Thread.isAlive()==false</code>。</li>
+<li>一个线程<code>A</code>调用另一个另一个线程B的<code>interrupt()</code>都<code>happens-before</code>于线程<code>A</code>发现<code>B</code>被<code>A</code>中断（<code>B</code>抛出异常或者<code>A</code>检测到<code>B</code>的<code>isInterrupted()</code>或者<code>interrupted()</code>）。</li>
+<li>一个对象构造函数的结束<code>happens-before</code>与该对象的<code>finalizer</code>的开始</li>
+<li>如果A动作<code>happens-before</code>于<code>B</code>动作，而B动作<code>happens-before</code>与<code>C</code>动作，那么<code>A</code>动作<code>happens-before</code>于<code>C</code>动作。</li>
+</ol>
 
                   
                     
@@ -572,7 +669,23 @@
                   
                     
                     <h3 id="javamemorymodel--contended" style="padding-top:60px;"> @Contended</h3>
-                    <p><code>@Contended</code>通过<a href="http://openjdk.java.net/jeps/142" target="_blank">JEP 142 (在特定字段上减少高速缓存竞争访问)</a>引入，即针对伪共享提供一种解决方案，解决方法是通过<code>@Contended</code>来标记哪些字段是竞争访问的，编译器在编译的时候即将存在竞争访问的字段对齐到不同的缓存线。</p>
+                    <p><span class="glyphicon glyphicon-thumbs-down" style="color:red;"></span> <code>sun.misc.Contended</code></p>
+<p><code>@Contended</code>通过<a href="http://openjdk.java.net/jeps/142" target="_blank">JEP 142 (在特定字段上减少高速缓存竞争访问)</a>引入，即针对伪共享提供一种解决方案，解决方法是通过<code>@Contended</code>来标记哪些字段是竞争访问的，编译器在编译的时候即将存在竞争访问的字段对齐到不同的缓存线。</p>
+<p><code>jdk/src/share/classes/java/lang/Thread.java</code>：</p>
+<pre class="prettyprint"><code>2034     // The following three initially uninitialized fields are exclusively
+2035     // managed by class java.util.concurrent.ThreadLocalRandom. Additionally,
+2036     // these fields are isolated from other fields in Thread due to being
+2037     // heavily updated.
+2038     /** The current seed for a ThreadLocalRandom */
+2039     @sun.misc.Contended("tlr")
+2040     long threadLocalRandomSeed;
+2041     /** Probe hash value; nonzero if threadLocalRandomSeed initialized */
+2042     @sun.misc.Contended("tlr")
+2043     int threadLocalRandomProbe;
+2044     /** Secondary seed isolated from public ThreadLocalRandom sequence */
+2045     @sun.misc.Contended("tlr")
+2046     int threadLocalRandomSecondarySeed;
+</code></pre>
 
                   
                 
@@ -660,6 +773,13 @@ public class Sample {
 <li><a href="https://code.google.com/p/hatter-source-code/wiki/Study_Java_HotSpot_Concurrent" target="_blank">Study_Java_HotSpot_Concurrent</a></li>
 <li><a href="https://blogs.oracle.com/dave/entry/java_contented_annotation_to_help" target="_blank">Java @Contended annotation to help reduce false sharing</a></li>
 <li><a href="http://openjdk.java.net/jeps/142" target="_blank">JEP 142: Reduce Cache Contention on Specified Fields</a></li>
+<li><a href="http://en.wikipedia.org/wiki/PowerPC" target="_blank">PowerPC</a></li>
+<li><a href="http://zh.wikipedia.org/wiki/ARM%E6%9E%B6%E6%A7%8B" target="_blank">ARM架构</a></li>
+<li><a href="http://zh.wikipedia.org/wiki/%E5%AE%89%E8%AC%80%E5%9C%8B%E9%9A%9B%E7%A7%91%E6%8A%80" target="_blank">ARM Holdings</a></li>
+<li><a href="http://developer.51cto.com/art/200908/141553.htm" target="_blank">并发和并行的区别：吃馒头的比喻</a></li>
+<li><a href="http://mechanical-sympathy.blogspot.com/2011/07/false-sharing.html" target="_blank">False Sharing</a></li>
+<li><a href="http://www.cnblogs.com/vipper/p/3307991.html" target="_blank">happens-before规则和指令重排</a></li>
+<li><a href="http://www.intel.com/content/www/us/en/processors/architectures-software-developer-manuals.html" target="_blank">Intel® 64 and IA-32 Architectures Software Developer Manuals</a></li>
 </ol>
 </p>
                 

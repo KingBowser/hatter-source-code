@@ -1,6 +1,25 @@
 #summary AtomicInteger
 #sidebar TableOfContents
 
+JDK 8 - AtomicInteger
+{{{
+public final int getAndIncrement() {
+        return unsafe.getAndAddInt(this, valueOffset, 1);
+}
+}}}
+JDK7 - AtomicInteger
+{{{
+ public final int getAndIncrement() {
+        for (;;) {
+            int current = get();
+            int next = current + 1;
+            if (compareAndSet(current, next))
+                return current;
+        }
+    }
+}}}
+
+
 
 
 http://ashkrit.blogspot.com/2014/02/atomicinteger-java-7-vs-java-8.html

@@ -636,7 +636,7 @@
 <h3>可见性</h3>
 <p>在一个线程写入变量后另外一个线程需要对该变化可见。效果是当一个线程写入一个字段后，另外一个线程需要对这个字段可见（写入的最新值）。</p>
 <h3>重排序</h3>
-<p>Under what conditions the effects of operations can appear out of order to any given thread. The main ordering issues surround reads and writes associated with sequences of assignment statements.</p>
+<p>任意一个线程都可能表现的乱序执行。而排序问题也总是围绕赋值语句的读、写顺序。</p>
 <h3>happen-before</h3>
 <ol>
 <li>同一个线程中的每个<code>Action</code>都<code>happens-before</code>于出现在其后的任何一个<code>Action</code>。</li>

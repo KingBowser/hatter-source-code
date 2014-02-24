@@ -37,7 +37,7 @@ _代码引用自：[!](http://gee.cs.oswego.edu/dl/cpj/jmm.html)_
 
 ### 重排序
 
-Under what conditions the effects of operations can appear out of order to any given thread. The main ordering issues surround reads and writes associated with sequences of assignment statements.
+任意一个线程都可能表现的乱序执行。而排序问题也总是围绕赋值语句的读、写顺序。
 
 ### happen-before
 

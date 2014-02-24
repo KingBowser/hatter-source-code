@@ -10,7 +10,7 @@
 1. [!DEC Alpha](http://en.wikipedia.org/wiki/DEC_Alpha)
 1. [!PA-RISC](http://en.wikipedia.org/wiki/PA-RISC)
 1. [!The Java® Language Specification Java SE 7 Edition](http://docs.oracle.com/javase/specs/jls/se7/html/)
-1. [!The Java® Virtual Machine Specification Java SE 7 Edition](http://docs.oracle.com/javase/specs/jvms/se7/html/)1.
+1. [!The Java® Virtual Machine Specification Java SE 7 Edition](http://docs.oracle.com/javase/specs/jvms/se7/html/)
 1. [!Synchronization and the Java Memory Model](http://gee.cs.oswego.edu/dl/cpj/jmm.html)
 1. [!Common Language Infrastructure (CLI)](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-335.pdf)
 1. [!CLR Memory Model](http://blogs.msdn.com/b/jaredpar/archive/2008/01/17/clr-memory-model.aspx)

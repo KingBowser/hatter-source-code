@@ -56,6 +56,8 @@ _代码引用自：[!](http://gee.cs.oswego.edu/dl/cpj/jmm.html)_
 !!#synchronized# synchronized
 
 
+`synchronized`[!Study_Java_HotSpot_Concurrent](https://code.google.com/p/hatter-source-code/wiki/Study_Java_HotSpot_Concurrent)
+
 !!#contended# @Contended
 
 <span class="glyphicon glyphicon-thumbs-down" style="color:red;"></span> `sun.misc.Contended`

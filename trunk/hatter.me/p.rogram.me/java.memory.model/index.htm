@@ -298,6 +298,9 @@
                       
                       <li><a href="#code--sample2"> Sample 2</a></li>
                     
+                      
+                      <li><a href="#code--sample3"> Sample 3</a></li>
+                    
                     </ul>
                   
                   </li>
@@ -665,7 +668,8 @@
                   
                     
                     <h3 id="javamemorymodel--synchronized" style="padding-top:60px;"> synchronized</h3>
-                    
+                    <p><code>synchronized</code><a href="https://code.google.com/p/hatter-source-code/wiki/Study_Java_HotSpot_Concurrent" target="_blank">Study_Java_HotSpot_Concurrent</a></p>
+
                   
                     
                     <h3 id="javamemorymodel--contended" style="padding-top:60px;"> @Contended</h3>
@@ -704,7 +708,8 @@
                   
                     
                     <h3 id="code--sample1" style="padding-top:60px;"> Sample 1</h3>
-                    <pre class="prettyprint linenums"><code>public class Sample {
+                    <h4>源代码：</h4>
+<pre class="prettyprint linenums"><code>public class Sample {
   private static int count = 0;
 
   public static void increment() {
@@ -716,7 +721,8 @@
                   
                     
                     <h3 id="code--sample2" style="padding-top:60px;"> Sample 2</h3>
-                    <pre class="prettyprint linenums"><code>// 代码1
+                    <h4>源代码：</h4>
+<pre class="prettyprint linenums"><code>// 代码1
 public class Sample {
   private static int count = 0;
 
@@ -733,6 +739,63 @@ public class Sample {
     count.getAndIncrement();
   }
 }
+</code></pre>
+
+                  
+                    
+                    <h3 id="code--sample3" style="padding-top:60px;"> Sample 3</h3>
+                    <h4>源代码：</h4>
+<pre class="prettyprint linenums"><code>public class CacheTest {
+
+    public static void main(String[] args) {
+        int[] arr = new int[64 * 1024 * 1024];
+        for (int _loop = 0; _loop &lt; 10; _loop++) {
+            System.out.print("Round: " + _loop);
+            {
+                long s = System.currentTimeMillis();
+                for (int i = 0; i &lt; arr.length; i++) {
+                    arr[i] *= 3;
+                }
+                System.out.print("\t" + (System.currentTimeMillis() - s) + " ms");
+            }
+            {
+                long s = System.currentTimeMillis();
+                for (int i = 0; i &lt; arr.length; i += 8) {
+                    arr[i] *= 3;
+                }
+                System.out.print("\t" + (System.currentTimeMillis() - s) + " ms");
+            }
+            {
+                long s = System.currentTimeMillis();
+                for (int i = 0; i &lt; arr.length; i += 16) {
+                    arr[i] *= 3;
+                }
+                System.out.print("\t" + (System.currentTimeMillis() - s) + " ms");
+            }
+            {
+                long s = System.currentTimeMillis();
+                for (int i = 0; i &lt; arr.length; i += 32) {
+                    arr[i] *= 3;
+                }
+                System.out.print("\t" + (System.currentTimeMillis() - s) + " ms");
+            }
+            System.out.println();
+        }
+    }
+}
+</code></pre>
+<h4>测试结果如下：</h4>
+<p>从下面的结果可以看到只有到了第4列消耗的时间大幅减少。为什么呢？</p>
+<pre class="prettyprint linenums"><code>Round: 0  164 ms  135 ms  132 ms  90 ms
+Round: 1  169 ms  136 ms  147 ms  103 ms
+Round: 2  140 ms  131 ms  131 ms  83 ms
+Round: 3  141 ms  131 ms  133 ms  82 ms
+Round: 4  165 ms  140 ms  134 ms  84 ms
+Round: 5  172 ms  135 ms  129 ms  89 ms
+Round: 6  143 ms  149 ms  129 ms  93 ms
+Round: 7  140 ms  136 ms  130 ms  88 ms
+Round: 8  137 ms  136 ms  129 ms  86 ms
+Round: 9  137 ms  131 ms  132 ms  82 ms
 </code></pre>
 
                   

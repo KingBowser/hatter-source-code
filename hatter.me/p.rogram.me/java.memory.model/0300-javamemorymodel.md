@@ -22,6 +22,8 @@ final class SetCheck {
 
 _代码引用自：[!](http://gee.cs.oswego.edu/dl/cpj/jmm.html)_
 
+逻辑上来讲，因为`a = 1`早于`b = -1`，所以`check()`函数返回必定为`true`，但实际情况却未必如此，在某些特殊的场景下(如并发场景下在特殊的微架构平台上)可能会返回`false`。需要解决这一类问题，Java才引入了Java内存模型。
+
 
 !!#mainmemandworkmem# 内存模型
 
@@ -35,22 +37,60 @@ _代码引用自：[!](http://gee.cs.oswego.edu/dl/cpj/jmm.html)_
 
 在一个线程写入变量后另外一个线程需要对该变化可见。效果是当一个线程写入一个字段后，另外一个线程需要对这个字段可见（写入的最新值）。
 
+> ### happen-before
+> 
+> 1. 同一个线程中的每个`Action`都`happens-before`于出现在其后的任何一个`Action`。
+> 1. 对一个监视器的解锁`happens-before`于每一个后续对同一个监视器的加锁。
+> 1. 对`volatile`字段的写入操作`happens-before`于每一个后续的同一个字段的读操作。
+> 1. `Thread.start()`的调用会`happens-before`于启动线程里面的动作。
+> 1. `Thread`中的所有动作都`happens-before`于其他线程检查到此线程结束或者`Thread.join()`中返回或者`Thread.isAlive()==false`。
+> 1. 一个线程`A`调用另一个另一个线程B的`interrupt()`都`happens-before`于线程`A`发现`B`被`A`中断（`B`抛出异常或者`A`检测到`B`的`isInterrupted()`或者`> interrupted()`）。
+> 1. 一个对象构造函数的结束`happens-before`与该对象的`finalizer`的开始
+> 1. 如果A动作`happens-before`于`B`动作，而B动作`happens-before`与`C`动作，那么`A`动作`happens-before`于`C`动作。
+
 ### 重排序
 
 任意一个线程都可能表现的乱序执行。而排序问题也总是围绕赋值语句的读、写顺序。
 
-### happen-before
-
-1. 同一个线程中的每个`Action`都`happens-before`于出现在其后的任何一个`Action`。
-1. 对一个监视器的解锁`happens-before`于每一个后续对同一个监视器的加锁。
-1. 对`volatile`字段的写入操作`happens-before`于每一个后续的同一个字段的读操作。
-1. `Thread.start()`的调用会`happens-before`于启动线程里面的动作。
-1. `Thread`中的所有动作都`happens-before`于其他线程检查到此线程结束或者`Thread.join()`中返回或者`Thread.isAlive()==false`。
-1. 一个线程`A`调用另一个另一个线程B的`interrupt()`都`happens-before`于线程`A`发现`B`被`A`中断（`B`抛出异常或者`A`检测到`B`的`isInterrupted()`或者`interrupted()`）。
-1. 一个对象构造函数的结束`happens-before`与该对象的`finalizer`的开始
-1. 如果A动作`happens-before`于`B`动作，而B动作`happens-before`与`C`动作，那么`A`动作`happens-before`于`C`动作。
 
 !!#final# final
+
+一个对象的`final`字段值是在它的构造方法里面设置的。假设对象被正确的构造了，一旦对象被构造，在构造方法里面设置给`final`字段的的值在没有同步的情况下对所有其他的线程都会可见。另外，引用这些`final`字段的对象或数组都将会看到`final`字段的最新值。
+
+```
+class FinalFieldExample {
+  final int x;
+  int y;
+  static FinalFieldExample f;
+  public FinalFieldExample() {
+    x = 3;
+    y = 4;
+  }
+
+  static void writer() {
+    f = new FinalFieldExample();
+  }
+
+  static void reader() {
+    if (f != null) {
+      int i = f.x; // <---- 能读到x的正确值：3
+      int j = f.y; // <---- 不一定能读到y的正确值：4
+    }
+  }
+}
+```
+
+```
+public FinalFieldExample() { // bad!
+  x = 3;
+  y = 4;
+  // bad construction - allowing this to escape
+  global.obj = this; // <---- 在这里外部程序也未必能够看到x的正确值：3
+}
+```
+
+<br>
+_代码引用自：http://www.cs.umd.edu/~pugh/java/memoryModel/jsr-133-faq.html_
 
 
 !!#volatile# volatile

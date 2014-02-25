@@ -751,7 +751,8 @@
                 <div class="page-header">
                   <h1 id="code">代码分析</h1>
                 </div>
-                <p class="lead"></p>
+                <p class="lead"><p>对于Java内存模型主要就是多线程编程下面是否功能正常工作，所以我们这里看看几段代码吧。</p>
+</p>
                 
                 
                   
@@ -766,6 +767,7 @@
   }
 }
 </code></pre>
+<p>这个代码线程安全么？为什么？</p>
 
                   
                     
@@ -789,6 +791,7 @@ public class Sample {
   }
 }
 </code></pre>
+<p>上面两段代码其实也是悲观锁和乐观锁的盒子，<code>synchronized</code>需要先取得锁，而<code>getAndIncrement</code>则使用<code>lock cmpxchg</code>或<code>lock xadd</code>完成，当使用<code>lock cmpxchg</code>则相当于乐观锁，最后<code>lock xadd</code>相当于在更新数据库的时候直接执行<code>update set value=value+1 where id=?</code>。</p>
 
                   
                     

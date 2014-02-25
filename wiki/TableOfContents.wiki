@@ -44,6 +44,7 @@
   * [Study_Database_SQLite SQLite]
   * [Study_Database_Tool Tool]
   * [Study_Database_Visualization Visualization]
+ * [Study_Emulation Emulation]
  * [Study_GPU GPU]
   * [Study_GPU_GPGPU GPGPU]
  * [Study_Hadoop Hadoop]

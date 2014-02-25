@@ -624,6 +624,7 @@
 }
 </code></pre>
 <p><em>代码引用自：<a href="http://gee.cs.oswego.edu/dl/cpj/jmm.html" target="_blank">http://gee.cs.oswego.edu/dl/cpj/jmm.html</a></em></p>
+<p>逻辑上来讲，因为<code>a = 1</code>早于<code>b = -1</code>，所以<code>check()</code>函数返回必定为<code>true</code>，但实际情况却未必如此，在某些特殊的场景下(如并发场景下在特殊的微架构平台上)可能会返回<code>false</code>。需要解决这一类问题，Java才引入了Java内存模型。</p>
 </p>
                 
                 
@@ -635,24 +636,56 @@
 <p>某些指令的执行是需要有不可分割的效果的（执行不可打断）。为了这样的模型，该规则仅用于简单的读、写内存单元，包含了实例及静态字段（当然也包含数组元素），但不包含在函数中的局部变量。</p>
 <h3>可见性</h3>
 <p>在一个线程写入变量后另外一个线程需要对该变化可见。效果是当一个线程写入一个字段后，另外一个线程需要对这个字段可见（写入的最新值）。</p>
-<h3>重排序</h3>
-<p>任意一个线程都可能表现的乱序执行。而排序问题也总是围绕赋值语句的读、写顺序。</p>
-<h3>happen-before</h3>
+<blockquote><h3>happen-before</h3>
 <ol>
 <li>同一个线程中的每个<code>Action</code>都<code>happens-before</code>于出现在其后的任何一个<code>Action</code>。</li>
 <li>对一个监视器的解锁<code>happens-before</code>于每一个后续对同一个监视器的加锁。</li>
 <li>对<code>volatile</code>字段的写入操作<code>happens-before</code>于每一个后续的同一个字段的读操作。</li>
 <li><code>Thread.start()</code>的调用会<code>happens-before</code>于启动线程里面的动作。</li>
 <li><code>Thread</code>中的所有动作都<code>happens-before</code>于其他线程检查到此线程结束或者<code>Thread.join()</code>中返回或者<code>Thread.isAlive()==false</code>。</li>
-<li>一个线程<code>A</code>调用另一个另一个线程B的<code>interrupt()</code>都<code>happens-before</code>于线程<code>A</code>发现<code>B</code>被<code>A</code>中断（<code>B</code>抛出异常或者<code>A</code>检测到<code>B</code>的<code>isInterrupted()</code>或者<code>interrupted()</code>）。</li>
+<li>一个线程<code>A</code>调用另一个另一个线程B的<code>interrupt()</code>都<code>happens-before</code>于线程<code>A</code>发现<code>B</code>被<code>A</code>中断（<code>B</code>抛出异常或者<code>A</code>检测到<code>B</code>的<code>isInterrupted()</code>或者<code>&gt; interrupted()</code>）。</li>
 <li>一个对象构造函数的结束<code>happens-before</code>与该对象的<code>finalizer</code>的开始</li>
 <li>如果A动作<code>happens-before</code>于<code>B</code>动作，而B动作<code>happens-before</code>与<code>C</code>动作，那么<code>A</code>动作<code>happens-before</code>于<code>C</code>动作。</li>
 </ol>
+</blockquote>
+<h3>重排序</h3>
+<p>任意一个线程都可能表现的乱序执行。而排序问题也总是围绕赋值语句的读、写顺序。</p>
 
                   
                     
                     <h3 id="javamemorymodel--final" style="padding-top:60px;"> final</h3>
-                    
+                    <p>一个对象的<code>final</code>字段值是在它的构造方法里面设置的。假设对象被正确的构造了，一旦对象被构造，在构造方法里面设置给<code>final</code>字段的的值在没有同步的情况下对所有其他的线程都会可见。另外，引用这些<code>final</code>字段的对象或数组都将会看到<code>final</code>字段的最新值。</p>
+<pre><code>class FinalFieldExample {
+  final int x;
+  int y;
+  static FinalFieldExample f;
+  public FinalFieldExample() {
+    x = 3;
+    y = 4;
+  }
+
+  static void writer() {
+    f = new FinalFieldExample();
+  }
+
+  static void reader() {
+    if (f != null) {
+      int i = f.x; // &lt;---- 能读到x的正确值：3
+      int j = f.y; // &lt;---- 不一定能读到y的正确值：4
+    }
+  }
+}
+</code></pre>
+<pre><code>public FinalFieldExample() { // bad!
+  x = 3;
+  y = 4;
+  // bad construction - allowing this to escape
+  global.obj = this; // &lt;---- 在这里外部程序也未必能够看到x的正确值：3
+}
+</code></pre>
+<p><br>
+<br  /><em>代码引用自：http://www.cs.umd.edu/~pugh/java/memoryModel/jsr-133-faq.html</em></p>
+
                   
                     
                     <h3 id="javamemorymodel--volatile" style="padding-top:60px;"> volatile</h3>
@@ -833,6 +866,7 @@ Round: 9  137 ms  131 ms  132 ms  82 ms
 <li><a href="https://jcp.org/en/jsr/detail?id=133" target="_blank">JSR 133: JavaTM Memory Model and Thread Specification Revision</a></li>
 <li><a href="http://www.cs.umd.edu/~pugh/java/memoryModel/jsr-133-faq.html" target="_blank">JSR 133 (Java Memory Model) FAQ</a></li>
 <li><a href="http://g.oswego.edu/dl/jmm/cookbook.html" target="_blank">The JSR-133 Cookbook for Compiler Writers</a></li>
+<li><a href="http://ifeve.com/jmm-faq/" target="_blank">Java内存模型FAQ</a></li>
 <li><a href="http://en.wikipedia.org/wiki/Memory_ordering" target="_blank">Memory ordering</a></li>
 <li><a href="http://zh.wikipedia.org/wiki/Itanium" target="_blank">Itanium</a></li>
 <li><a href="http://zh.wikipedia.org/wiki/%E9%A1%AF%E5%BC%8F%E4%B8%A6%E8%A1%8C%E6%8C%87%E4%BB%A4%E9%81%8B%E7%AE%97" target="_blank">显式并行指令运算(EPIC)</a></li>

@@ -98,6 +98,7 @@ jar {
 }
 }}}
 
+_[https://hatter-source-code.googlecode.com/svn/trunk/gradle/build.gradle]_
 
 跳过单元测试：
 {{{

@@ -131,6 +131,7 @@
   * [Study_JavaScript JavaScript]
    * [Study_JavaScript_Application Application]
    * [Study_JavaScript_Charts Charts]
+   * [Study_JavaScript_Greasemonkey Greasemonkey]
    * [Study_JavaScript_MoveToJavaScript Move to JavaScript]
    * [Study_JavaScript_NodeJS Node.js]
   * [Study_Programming_Mobile Mobile]

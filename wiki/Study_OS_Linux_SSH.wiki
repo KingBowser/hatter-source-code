@@ -25,5 +25,13 @@ ssh -i id_rsa  // private key, the pub key >> authorized_keys [id_rsa的机器�
 https://github.com/beautifulcode/ssh-copy-id-for-OSX
 }}}
 
+`mac下设置keepalive：`
+{{{
+~/.ssh/config
+
+ServerAliveInterval 300
+ServerAliveCountMax 36
+}}}
+
 ===参考资料===
 `[1].` http://en.wikipedia.org/wiki/Secure_Shell<br>

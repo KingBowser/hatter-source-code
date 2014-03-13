@@ -33,13 +33,17 @@ public class JavaUtil {
             if (extraceJars && file.toString().endsWith(".jar")) {
                 try {
                     JarFile jarFile = new JarFile(file);
-                    Enumeration<JarEntry> entries = jarFile.entries();
-                    while (entries.hasMoreElements()) {
-                        JarEntry jarEntry = entries.nextElement();
-                        if (walker.accept(jarEntry)) {
-                            InputStream is = jarFile.getInputStream(jarEntry);
-                            walker.read(is, jarEntry.getName());
+                    try {
+                        Enumeration<JarEntry> entries = jarFile.entries();
+                        while (entries.hasMoreElements()) {
+                            JarEntry jarEntry = entries.nextElement();
+                            if (walker.accept(jarEntry)) {
+                                InputStream is = jarFile.getInputStream(jarEntry);
+                                walker.read(is, jarEntry.getName());
+                            }
                         }
+                    } finally {
+                        jarFile.close();
                     }
                 } catch (Exception e) {
                     throw new RuntimeException(e);

@@ -65,7 +65,7 @@ public class HotSpotProcessUtil {
         return vmList;
     }
 
-    @SuppressWarnings("unchecked")
+//    @SuppressWarnings("unchecked")
     public static void iteratorVMs(VMVisitor visitor) {
         try {
             MonitoredHost host = getMonitoredHost();
@@ -83,7 +83,7 @@ public class HotSpotProcessUtil {
         }
     }
 
-    @SuppressWarnings("unchecked")
+//    @SuppressWarnings("unchecked")
     public static Map<String, String> listVMMonitor(int pid) throws URISyntaxException, MonitorException {
         MonitoredHost host = getMonitoredHost();
         MonitoredVm vm = getMonitoredVm(host, pid);

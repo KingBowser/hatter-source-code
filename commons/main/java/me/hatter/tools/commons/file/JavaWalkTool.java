@@ -118,17 +118,21 @@ public class JavaWalkTool {
             if (walker.isJar(file, file.getName()) && walker.accept(file, file.getName(), AcceptType.JarFile)) {
                 try {
                     JarFile jarFile = new JarFile(file);
-                    Enumeration<JarEntry> entries = jarFile.entries();
-                    while (entries.hasMoreElements()) {
-                        JarEntry jarEntry = entries.nextElement();
-                        if (walker.accept(null, jarEntry.getName(), AcceptType.Entry)) {
-                            InputStream is = jarFile.getInputStream(jarEntry);
-                            try {
-                                walker.readInputStream(is, file, jarEntry.getName(), AcceptType.Entry);
-                            } finally {
-                                IOUtil.closeQuietly(is);
+                    try {
+                        Enumeration<JarEntry> entries = jarFile.entries();
+                        while (entries.hasMoreElements()) {
+                            JarEntry jarEntry = entries.nextElement();
+                            if (walker.accept(null, jarEntry.getName(), AcceptType.Entry)) {
+                                InputStream is = jarFile.getInputStream(jarEntry);
+                                try {
+                                    walker.readInputStream(is, file, jarEntry.getName(), AcceptType.Entry);
+                                } finally {
+                                    IOUtil.closeQuietly(is);
+                                }
                             }
                         }
+                    } finally {
+                        jarFile.close();
                     }
                 } catch (Exception e) {
                     throw new RuntimeException(e);

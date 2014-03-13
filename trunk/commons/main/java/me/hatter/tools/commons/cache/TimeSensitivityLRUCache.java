@@ -7,6 +7,7 @@ import java.util.Set;
 // INTERFACES ARE NOT EXACT
 public class TimeSensitivityLRUCache<K, V> implements Map<K, V> {
 
+    @SuppressWarnings("unused")
     private static final long                         serialVersionUID = 1L;
     private final LRUCache<K, CacheObjectWithTime<V>> lruCache;
     private final long                                maxLiveMillis;

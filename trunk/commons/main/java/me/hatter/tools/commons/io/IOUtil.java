@@ -99,18 +99,26 @@ public class IOUtil {
     public static List<String> readToList(String text) {
         List<String> list = new ArrayList<String>();
         StringBufferedReader reader = new StringBufferedReader(text);
-        for (String line; ((line = reader.readOneLine()) != null);) {
-            list.add(line);
+        try {
+            for (String line; ((line = reader.readOneLine()) != null);) {
+                list.add(line);
+            }
+        } finally {
+            IOUtil.closeQuietly(reader);
         }
         return list;
     }
 
     public static String writeFromList(List<String> list) {
         StringPrintWriter writer = new StringPrintWriter();
-        if (list != null) {
-            for (String line : list) {
-                writer.println(line);
+        try {
+            if (list != null) {
+                for (String line : list) {
+                    writer.println(line);
+                }
             }
+        } finally {
+            IOUtil.closeQuietly(writer);
         }
         return writer.toString();
     }

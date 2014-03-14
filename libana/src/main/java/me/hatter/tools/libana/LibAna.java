@@ -16,6 +16,7 @@ import me.hatter.tools.commons.color.Font;
 import me.hatter.tools.commons.environment.Environment;
 import me.hatter.tools.commons.file.JavaWalkTool;
 import me.hatter.tools.commons.file.JavaWalkTool.AbstractClassReaderJarWalker;
+import me.hatter.tools.commons.io.IOUtil;
 import me.hatter.tools.commons.io.StringPrintWriter;
 import me.hatter.tools.commons.regex.RegexUtil;
 import me.hatter.tools.commons.string.StringUtil;
@@ -164,6 +165,7 @@ public class LibAna {
             out.println("Jar file2: " + jarFile2);
             out.println(writer.toString());
         }
+        IOUtil.closeQuitely(writer);
     }
 
     private static Map<String, MethodNode> methodNodeListToMap(List<MethodNode> methodNodeList) {

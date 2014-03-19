@@ -27,5 +27,14 @@ git config user.name 'User Name'
 git config user.email 'xxxx@mail.com'
 }}}
 
+* git 默认中文文件名是 xx%
+是因为 对0x80以上的字符进行quote
+ 
+只需要
+{{{
+git config core.quotepath false
+}}}
+core.quotepath设为false的话，就不会对0x80以上的字符进行quote。中文显示正常
+
 
 ===参考资料===

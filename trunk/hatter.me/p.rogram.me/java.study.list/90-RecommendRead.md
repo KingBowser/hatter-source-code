@@ -12,5 +12,6 @@
 || 代码大全（第2版） | [!](http://book.douban.com/subject/1477390/) |
 || 重构 | [!](http://book.douban.com/subject/1229923/) |
 || Effective Java 中文版 | [!](http://book.douban.com/subject/1103015/) |
+|| 白帽子讲Web安全 | [!](http://book.douban.com/subject/10546925/) |
 %%%
 

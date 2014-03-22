@@ -2,6 +2,10 @@
 #sidebar TableOfContents
 
 
+{{{
+$ git clone <repo> -b gh-pages
+}}}
+
 
 {{{
 $ cd repository

@@ -16,5 +16,12 @@ $ git rm -rf .
 }}}
 
 
+{{{
+$ echo "My GitHub Page" > index.html
+$ git add index.html
+$ git commit -a -m "First pages commit"
+$ git push origin gh-pages
+}}}
+
 ===参考资料===
 `[1].` https://help.github.com/articles/creating-project-pages-manually<br>

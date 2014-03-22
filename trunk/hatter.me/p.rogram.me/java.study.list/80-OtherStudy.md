@@ -5,6 +5,6 @@
 || [!@章炎-友盟](http://weibo.com/dirlt) | [!](http://dirlt.com/) |
 || 七天学会NodeJS | [!](http://nqdeng.github.io/7-days-nodejs/) |
 || 算法面试大全 | [!](http://blog.csdn.net/v_july_v/article/details/6543438) |
-|| 学习笔记 | [!](https://github.com/qyuhen/book) |
+|| 雨痕个人学习笔记 | [!](https://github.com/qyuhen/book) |
 %%%
 

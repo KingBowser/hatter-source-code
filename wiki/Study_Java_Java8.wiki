@@ -1,2 +1,9 @@
 #summary Java 8
 #sidebar TableOfContents
+
+
+
+===参考资料===
+`[1].` http://openjdk.java.net/projects/jdk8/features<br>
+`[2].` http://www.iteye.com/news/28870-java-8-release<br>
+`[3].` http://winterbe.com/posts/2014/03/16/java-8-tutorial/<br>

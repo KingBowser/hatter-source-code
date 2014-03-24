@@ -1,0 +1,32 @@
+#summary GPG
+#sidebar TableOfContents
+
+{{{
+gpg -e -r <name> <filename>
+
+gpg <filename>
+
+gpg --gen-key
+
+gpg --list-keys / -k
+
+gpg --list-secret-key / -K
+
+gpg --export <name> -a > <filename.asc>
+
+gpg --import <filename.asc>
+
+gpg --delete-keys <name>
+
+gpg --delete-secret-keys <name>
+
+gpg --sign-key <name>
+}}}
+
+===参考资料===
+`[1].` http://www.openpgp.org/<br>
+`[2].` https://gpgtools.org/<br>
+`[3].` http://www.pgpi.org/<br>
+`[4].` http://www.gnupg.org/<br>
+
+

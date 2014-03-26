@@ -10,6 +10,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import me.hatter.tools.commons.io.IOUtil;
 import me.hatter.tools.commons.resource.impl.FileResource;
 import me.hatter.tools.commons.resource.impl.URLResource;
+import me.hatter.tools.commons.string.StringUtil;
 
 public class Resources {
 
@@ -85,5 +86,18 @@ public class Resources {
         } finally {
             IOUtil.closeQuietly(is);
         }
+    }
+
+    public static String getSimpleName(String resId) {
+        if (resId == null) {
+            return null;
+        }
+        if (resId.contains("/")) {
+            resId = StringUtil.substringAfterLast(resId, "/");
+        }
+        if (resId.contains("\\")) {
+            resId = StringUtil.substringAfterLast(resId, "\\");
+        }
+        return resId;
     }
 }

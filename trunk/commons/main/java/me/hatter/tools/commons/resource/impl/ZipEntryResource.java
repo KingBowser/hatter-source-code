@@ -52,4 +52,11 @@ public class ZipEntryResource implements Resource {
         return new Object[] { zipFile, zipEntry };
     }
 
+    public ZipFile getZipFile() {
+        return zipFile;
+    }
+
+    public ZipEntry getZipEntry() {
+        return zipEntry;
+    }
 }

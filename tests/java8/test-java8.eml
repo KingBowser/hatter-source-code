@@ -5,4 +5,7 @@
 		<testFolder url="file://$MODULE_DIR$/src/test/java"/>
 		<testFolder url="file://$MODULE_DIR$/src/test/resources"/>
 	</contentEntry>
+	<levels>
+		<level name="commons-1.0" value="project"/>
+	</levels>
 </component>

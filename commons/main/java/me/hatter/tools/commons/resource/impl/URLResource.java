@@ -74,8 +74,12 @@ public class URLResource implements Resource {
     public String toString() {
         return URLResource.class.getSimpleName() + "{resId=" + resId + ", url:" + url + "}";
     }
-    
+
     public Object getRaw() {
+        return url;
+    }
+
+    public URL getURL() {
         return url;
     }
 }

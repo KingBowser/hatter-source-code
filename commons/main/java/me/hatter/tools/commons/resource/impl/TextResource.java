@@ -71,4 +71,8 @@ public class TextResource implements Resource {
     public Object getRaw() {
         return text;
     }
+
+    public String getText() {
+        return text;
+    }
 }

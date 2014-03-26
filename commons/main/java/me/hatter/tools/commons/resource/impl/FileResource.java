@@ -74,4 +74,8 @@ public class FileResource implements Resource {
     public Object getRaw() {
         return file;
     }
+
+    public File getFile() {
+        return file;
+    }
 }

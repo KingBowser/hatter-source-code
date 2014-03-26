@@ -28,7 +28,8 @@ import me.hatter.tools.commons.io.IOUtil;
 import me.hatter.tools.commons.io.StringBufferedReader;
 import me.hatter.tools.commons.io.StringPrintWriter;
 import me.hatter.tools.commons.io.SysOutUtil;
-import me.hatter.tools.commons.log.LogUtil;
+import me.hatter.tools.commons.log.LogTool;
+import me.hatter.tools.commons.log.LogTools;
 import me.hatter.tools.commons.number.IntegerUtil;
 import me.hatter.tools.commons.resource.Resource;
 import me.hatter.tools.commons.resource.Resources;
@@ -54,6 +55,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class Finding {
+
+    private static final LogTool      logTool    = LogTools.getLogTool(Finding.class);
 
     public static final char          CHAR_27    = (char) 27;
     public static final String        RESET      = CHAR_27 + "[0m";
@@ -84,7 +87,7 @@ public class Finding {
                 "test".getBytes(o);
                 SysOutUtil.setOutputCharset(o);
             } catch (UnsupportedEncodingException e) {
-                LogUtil.warn("Charset is not supported: " + o);
+                logTool.warn("Charset is not supported: " + o);
             }
         }
 
@@ -173,7 +176,7 @@ public class Finding {
                             }
                         }
                     } catch (Exception e) {
-                        LogUtil.error("Read zip file failed: " + ((FileResource) resource).getFile().toString(), e);
+                        logTool.error("Read zip file failed: " + ((FileResource) resource).getFile().toString(), e);
                     }
                     return; // SKIP NEXT
                 }
@@ -192,11 +195,11 @@ public class Finding {
                 try {
                     text = readResourceContent(resource);
                 } catch (Exception e) {
-                    LogUtil.error("Read resource failed: " + resource, e);
+                    logTool.error("Read resource failed: " + resource, e);
                     return;
                 }
                 StringBufferedReader reader = new StringBufferedReader(text);
-                List<String> outputBuffer = new ArrayList<String>(); // TODO
+                List<String> outputBuffer = new ArrayList<String>();
                 try {
                     for (String line; ((line = reader.readOneLine()) != null);) {
                         String ln = line.trim();
@@ -383,7 +386,7 @@ public class Finding {
         }
 
         if ((inf != null) && (!inf.exists())) {
-            LogUtil.error("File or Directory not found: " + inf.toString());
+            logTool.error("File or Directory not found: " + inf.toString());
             System.exit(-1);
         }
 
@@ -424,7 +427,7 @@ public class Finding {
         try {
             executor.awaitTermination(Long.MAX_VALUE, TimeUnit.MILLISECONDS);
         } catch (InterruptedException e) {
-            LogUtil.error("Waite all thread(s) finish failed: ", e);
+            logTool.error("Waite all thread(s) finish failed: ", e);
         }
 
         final long endMillis = System.currentTimeMillis();
@@ -474,7 +477,7 @@ public class Finding {
                 } else if ("output".equals(kind)) {
                     // IGNORE
                 } else {
-                    LogUtil.warn("Not supported kind: " + kind);
+                    logTool.warn("Not supported kind: " + kind);
                 }
             }
             IOUtil.closeQuietly(xmlParser);

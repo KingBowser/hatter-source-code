@@ -31,7 +31,7 @@ public class OneThreadExecutor extends AbstractExecutorService {
 
     @Override
     public boolean awaitTermination(long timeout, TimeUnit unit) throws InterruptedException {
-        throw new UnsupportedOperationException();
+        return true;
     }
 
     @Override

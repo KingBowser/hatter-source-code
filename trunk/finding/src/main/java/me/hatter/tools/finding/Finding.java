@@ -19,7 +19,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
-import me.hatter.tools.commons.args.UnixArgsutil;
+import me.hatter.tools.commons.args.UnixArgsUtil;
 import me.hatter.tools.commons.concurrent.ExecutorUtil;
 import me.hatter.tools.commons.encoding.EncodingDetectUtil;
 import me.hatter.tools.commons.environment.Environment;
@@ -31,6 +31,7 @@ import me.hatter.tools.commons.io.SysOutUtil;
 import me.hatter.tools.commons.log.LogUtil;
 import me.hatter.tools.commons.number.IntegerUtil;
 import me.hatter.tools.commons.resource.Resource;
+import me.hatter.tools.commons.resource.Resources;
 import me.hatter.tools.commons.resource.impl.FileResource;
 import me.hatter.tools.commons.resource.impl.ZipEntryResource;
 import me.hatter.tools.commons.screen.TermUtils;
@@ -72,12 +73,12 @@ public class Finding {
     }
 
     public static void main(String[] args) {
-        UnixArgsutil.parseGlobalArgs(args);
-        if (UnixArgsutil.ARGS.args().length == 0) {
+        UnixArgsUtil.parseGlobalArgs(args);
+        if (UnixArgsUtil.ARGS.args().length == 0) {
             usage();
         }
 
-        final String o = UnixArgsutil.ARGS.kvalue("o");
+        final String o = UnixArgsUtil.ARGS.kvalue("o");
         if ((o != null) && (!o.isEmpty())) {
             try {
                 "test".getBytes(o);
@@ -88,10 +89,10 @@ public class Finding {
         }
 
         final Set<String> extSet = getExtSet();
-        final String search = UnixArgsutil.ARGS.args()[0];
+        final String search = UnixArgsUtil.ARGS.args()[0];
         final Matcher matcher = getMatcher(search);
 
-        List<String> ffs = UnixArgsutil.ARGS.kvalues("ff");
+        List<String> ffs = UnixArgsUtil.ARGS.kvalues("ff");
         if ((ffs != null) && (!ffs.isEmpty())) {
             for (String ff : ffs) {
                 if ((ff != null) && (!ff.isEmpty())) {
@@ -104,20 +105,20 @@ public class Finding {
             }
         }
 
-        final boolean is_0 = UnixArgsutil.ARGS.flags().contains("0");
-        final boolean is_1 = UnixArgsutil.ARGS.flags().contains("1");
-        final boolean is_s = UnixArgsutil.ARGS.flags().contains("s");
-        final boolean is_F = UnixArgsutil.ARGS.flags().contains("F");
-        final boolean is_N = UnixArgsutil.ARGS.flags().contains("N");
-        final boolean is_C = UnixArgsutil.ARGS.flags().contains("C");
-        final boolean is_L = UnixArgsutil.ARGS.flags().contains("L");
+        final boolean is_0 = UnixArgsUtil.ARGS.flags().contains("0");
+        final boolean is_1 = UnixArgsUtil.ARGS.flags().contains("1");
+        final boolean is_s = UnixArgsUtil.ARGS.flags().contains("s");
+        final boolean is_F = UnixArgsUtil.ARGS.flags().contains("F");
+        final boolean is_N = UnixArgsUtil.ARGS.flags().contains("N");
+        final boolean is_C = UnixArgsUtil.ARGS.flags().contains("C");
+        final boolean is_L = UnixArgsUtil.ARGS.flags().contains("L");
         final long startMillis = System.currentTimeMillis();
         final AtomicLong totalCount = new AtomicLong(0);
         final AtomicLong fileCount = new AtomicLong(0);
         final AtomicLong matchCount = new AtomicLong(0);
         final Set<String> processedResourceIdSet = new HashSet<String>();
 
-        String cs = UnixArgsutil.ARGS.kvalue("cs");
+        String cs = UnixArgsUtil.ARGS.kvalue("cs");
         int fileColor = TermUtils.XBack.GREEN;
         int matchColor = TermUtils.XBack.RED;
         if (StringUtil.isNotBlank(cs)) {
@@ -132,7 +133,7 @@ public class Finding {
         final int fFileColor = fileColor;
         final int fMatchColor = matchColor;
 
-        final ExecutorService executor = ExecutorUtil.getCPULikeExecutor(IntegerUtil.tryParse(UnixArgsutil.ARGS.kvalue("CC")));
+        final ExecutorService executor = ExecutorUtil.getCPULikeExecutor(IntegerUtil.tryParse(UnixArgsUtil.ARGS.kvalue("CC")));
 
         final MatchResourceFilter matchResourceFilter = new MatchResourceFilter() {
 
@@ -145,7 +146,7 @@ public class Finding {
                 }
                 boolean isPackageResource = false;
                 if (extSet != null) {
-                    String ext = StringUtil.substringAfterLast(resource.getResourceId(), ".");
+                    String ext = StringUtil.substringAfterLast(resource.getResId(), ".");
                     if (ext == null) {
                         return;
                     }
@@ -178,7 +179,7 @@ public class Finding {
                 }
 
                 // check the resource should be processed once
-                String resourceId = resource.getResourceId();
+                String resourceId = resource.getResId();
                 synchronized (processedResourceIdSet) {
                     if (processedResourceIdSet.contains(resourceId)) return;
                     processedResourceIdSet.add(resourceId);
@@ -195,93 +196,110 @@ public class Finding {
                     return;
                 }
                 StringBufferedReader reader = new StringBufferedReader(text);
-                for (String line; ((line = reader.readOneLine()) != null);) {
-                    String ln = line.trim();
-                    totalCount.incrementAndGet();
-                    boolean is_match = matcher.match(ln);
-                    if (is_match) {
-                        String fileColorSt = is_C ? (CHAR_27 + "[;" + fFileColor + "m") : "";
-                        String matchColorSt = is_C ? (CHAR_27 + "[;" + fMatchColor + "m") : "";
-                        String colorEd = is_C ? RESET : "";
-                        String fn;
-                        if (is_F) {
-                            fn = resource.getResourceId();
-                        } else if (is_s) {
-                            fn = resource.getResourceName();
-                        } else {
-                            fn = resource.getResourceId();
-                            if (fn.startsWith("file:")) {
-                                fn = fn.substring(5);
+                List<String> outputBuffer = new ArrayList<String>(); // TODO
+                try {
+                    for (String line; ((line = reader.readOneLine()) != null);) {
+                        String ln = line.trim();
+                        totalCount.incrementAndGet();
+                        boolean is_match = matcher.match(ln);
+                        if (is_match) {
+                            String fileColorSt = is_C ? (CHAR_27 + "[;" + fFileColor + "m") : "";
+                            String matchColorSt = is_C ? (CHAR_27 + "[;" + fMatchColor + "m") : "";
+                            String colorEd = is_C ? RESET : "";
+                            String fn;
+                            if (is_F) {
+                                fn = resource.getResId();
+                            } else if (is_s) {
+                                fn = Resources.getSimpleName(resource.getResId());
+                            } else {
+                                fn = resource.getResId();
+                                if (fn.startsWith("file:")) {
+                                    fn = fn.substring(5);
+                                }
+                                if (fn.startsWith(Environment.USER_DIR)) {
+                                    fn = "." + fn.substring(Environment.USER_DIR.length());
+                                }
+                                if (fn.startsWith(Environment.USER_HOME)) {
+                                    fn = "~" + fn.substring(Environment.USER_HOME.length());
+                                }
+                                fn = (fn.startsWith("././")) ? fn.substring(2) : fn;
                             }
-                            if (fn.startsWith(Environment.USER_DIR)) {
-                                fn = "." + fn.substring(Environment.USER_DIR.length());
-                            }
-                            if (fn.startsWith(Environment.USER_HOME)) {
-                                fn = "~" + fn.substring(Environment.USER_HOME.length());
-                            }
-                            fn = (fn.startsWith("././")) ? fn.substring(2) : fn;
-                        }
-                        fn = fileColorSt + fn + colorEd;
+                            fn = fileColorSt + fn + colorEd;
 
-                        String outln = ln;
-                        if (is_C && (matcher instanceof ContainsMatcher)) {
-                            outln = StringUtil.EMPTY;
-                            boolean _is_i = UnixArgsutil.ARGS.flags().contains("i");
-                            String mln = _is_i ? ln.toLowerCase() : ln;
-                            String oln = ln;
-                            String mse = _is_i ? search.toLowerCase() : search;
-                            int matchIndex;
-                            while ((matchIndex = mln.indexOf(mse)) >= 0) {
-                                outln += oln.substring(0, matchIndex);
-                                outln += matchColorSt;
-                                outln += oln.substring(matchIndex, (matchIndex + mse.length()));
-                                outln += colorEd;
-                                mln = mln.substring(matchIndex + mse.length());
-                                oln = oln.substring(matchIndex + mse.length());
+                            String outln = ln;
+                            if (is_C && (matcher instanceof ContainsMatcher)) {
+                                outln = StringUtil.EMPTY;
+                                boolean _is_i = UnixArgsUtil.ARGS.flags().contains("i");
+                                String mln = _is_i ? ln.toLowerCase() : ln;
+                                String oln = ln;
+                                String mse = _is_i ? search.toLowerCase() : search;
+                                int matchIndex;
+                                while ((matchIndex = mln.indexOf(mse)) >= 0) {
+                                    outln += oln.substring(0, matchIndex);
+                                    outln += matchColorSt;
+                                    outln += oln.substring(matchIndex, (matchIndex + mse.length()));
+                                    outln += colorEd;
+                                    mln = mln.substring(matchIndex + mse.length());
+                                    oln = oln.substring(matchIndex + mse.length());
+                                }
+                                outln += oln;
                             }
-                            outln += oln;
-                        }
 
-                        StringPrintWriter printWriter = new StringPrintWriter();
-                        String _linenum = is_L ? "(" + StringUtil.paddingSpaceLeft(String.valueOf(linenumber), 5) + ")" : StringUtil.EMPTY;
-                        if (is_N) {
+                            StringPrintWriter printWriter = new StringPrintWriter();
+                            String _linenum = is_L ? "(" + StringUtil.paddingSpaceLeft(String.valueOf(linenumber), 5)
+                                                     + ")" : StringUtil.EMPTY;
+                            if (is_N) {
+                                if (mcount == 0) {
+                                    printWriter.println(fn);
+                                }
+                                if (!is_0) {
+                                    printWriter.println("\t" + _linenum + ": " + outln);
+                                }
+                            } else {
+                                printWriter.print(fn);
+                                if (!is_0) {
+                                    printWriter.print(_linenum + ": " + outln);
+                                }
+                                printWriter.println();
+                            }
+                            outputBuffer.add(printWriter.toString());
+                            IOUtil.closeQuietly(printWriter);
+
+                            if (is_0 || is_1) {
+                                printOutputBuffer(outputBuffer);
+                                return;
+                            }
                             if (mcount == 0) {
-                                printWriter.println(fn);
+                                matchCount.incrementAndGet();
                             }
-                            if (!is_0) {
-                                printWriter.println("\t" + _linenum + ": " + outln);
-                            }
-                        } else {
-                            printWriter.print(fn);
-                            if (!is_0) {
-                                printWriter.print(_linenum + ": " + outln);
-                            }
-                            printWriter.println();
+                            mcount++;
                         }
-                        synchronized (sysOutLock) {
-                            SysOutUtil.stdout.print(printWriter.toString());
-                        }
-
-                        if (is_0 || is_1) {
-                            return;
-                        }
-                        if (mcount == 0) {
-                            matchCount.incrementAndGet();
-                        }
-                        mcount++;
+                        linenumber++;
                     }
-                    linenumber++;
+                } finally {
+                    IOUtil.closeQuietly(reader);
+                }
+                printOutputBuffer(outputBuffer);
+            }
+
+            private void printOutputBuffer(List<String> outputBuffer) {
+                if (outputBuffer != null) {
+                    synchronized (sysOutLock) {
+                        for (String output : outputBuffer) {
+                            SysOutUtil.stdout.print(output.toString());
+                        }
+                    }
                 }
             }
 
             private String readResourceContent(Resource resource) {
-                String ext = StringUtil.substringAfterLast(resource.getResourceId(), ".");
+                String ext = StringUtil.substringAfterLast(resource.getResId(), ".");
                 if ("class".equals(ext.toLowerCase())) {
                     byte[] bytes = IOUtil.readToBytes(resource.openInputStream());
                     ClassReader classReader = new ClassReader(bytes);
                     return readClassContent(classReader);
                 } else {
-                    String r = UnixArgsutil.ARGS.kvalue("r");
+                    String r = UnixArgsUtil.ARGS.kvalue("r");
                     if ((r == null) || StringUtil.isBlank(r)) { // DEFAULT
                         return EncodingDetectUtil.detectString(IOUtil.readToBytesAndClose(resource.openInputStream()),
                                                                null, "UTF-8", "GB18030"); // auto detect encoding
@@ -360,8 +378,8 @@ public class Finding {
 
         final File dir = new File(Environment.USER_DIR);
         File inf = null;
-        if (UnixArgsutil.ARGS.kvalue("I") != null) {
-            inf = new File(resolveUserPath(UnixArgsutil.ARGS.kvalue("I")));
+        if (UnixArgsUtil.ARGS.kvalue("I") != null) {
+            inf = new File(resolveUserPath(UnixArgsUtil.ARGS.kvalue("I")));
         }
 
         if ((inf != null) && (!inf.exists())) {
@@ -392,6 +410,7 @@ public class Finding {
                     }, null);
                 }
             }
+            IOUtil.closeQuietly(reader);
         } else {
             FileUtil.listFiles(((inf == null) ? dir : inf), new FileFilter() {
 
@@ -458,6 +477,7 @@ public class Finding {
                     LogUtil.warn("Not supported kind: " + kind);
                 }
             }
+            IOUtil.closeQuietly(xmlParser);
             return StringUtil.join(resultFileSet, Environment.LINE_SEPARATOR);
         } else {
             return content;
@@ -484,7 +504,7 @@ public class Finding {
         if ("M2_REPO".equals(variant)) {
             variantValue = new File(Environment.USER_HOME, ".m2/repository");
         } else {
-            String vv = UnixArgsutil.ARGS.kvalue("X" + variant);
+            String vv = UnixArgsUtil.ARGS.kvalue("X" + variant);
             if (vv == null) {
                 throw new RuntimeException("Variant '" + variant + "' cannot found!f");
             }
@@ -505,7 +525,7 @@ public class Finding {
         if (ffList.isEmpty()) {
             return true;
         }
-        String fstr = resource.getResourceId().toString();
+        String fstr = resource.getResId().toString();
         boolean hasMatch = false;
         for (MatchPattern matchPattern : ffList) {
             if (matchPattern.isInclude) {
@@ -522,16 +542,16 @@ public class Finding {
     }
 
     private static Matcher getMatcher(String search) {
-        boolean is_i = UnixArgsutil.ARGS.flags().contains("i");
-        boolean is_E = UnixArgsutil.ARGS.flags().contains("E");
+        boolean is_i = UnixArgsUtil.ARGS.flags().contains("i");
+        boolean is_E = UnixArgsUtil.ARGS.flags().contains("E");
 
         boolean has_is_i = false;
         String has = null;
-        if (UnixArgsutil.ARGS.keys().contains("HAS")) {
-            has = UnixArgsutil.ARGS.kvalue("HAS");
-        } else if (UnixArgsutil.ARGS.keys().contains("has")) {
+        if (UnixArgsUtil.ARGS.keys().contains("HAS")) {
+            has = UnixArgsUtil.ARGS.kvalue("HAS");
+        } else if (UnixArgsUtil.ARGS.keys().contains("has")) {
             has_is_i = true;
-            has = UnixArgsutil.ARGS.kvalue("has");
+            has = UnixArgsUtil.ARGS.kvalue("has");
         }
 
         Matcher parent = null;
@@ -553,7 +573,7 @@ public class Finding {
     }
 
     private static Set<String> getExtSet() {
-        String f = UnixArgsutil.ARGS.kvalue("f");
+        String f = UnixArgsUtil.ARGS.kvalue("f");
         if ("ALL".equals(f)) {
             return null;
         }
@@ -568,14 +588,14 @@ public class Finding {
                 extSet.add(ff);
             }
         }
-        if (UnixArgsutil.ARGS.flags().contains("J")
-            || StringUtil.notNull(UnixArgsutil.ARGS.kvalue("I")).endsWith(".classpath")) {
+        if (UnixArgsUtil.ARGS.flags().contains("J")
+            || StringUtil.notNull(UnixArgsUtil.ARGS.kvalue("I")).endsWith(".classpath")) {
             extSet.add("jar");
             extSet.add("war");
             extSet.add("sar");
             extSet.add("zip");
         }
-        if (UnixArgsutil.ARGS.flags().contains("c")) {
+        if (UnixArgsUtil.ARGS.flags().contains("c")) {
             extSet.add("class");
         }
         return extSet;

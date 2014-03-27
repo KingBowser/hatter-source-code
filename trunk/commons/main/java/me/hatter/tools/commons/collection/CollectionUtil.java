@@ -50,10 +50,12 @@ public class CollectionUtil {
             return new FalseFilter<T>();
         }
 
+        @SafeVarargs
         public static <T> Filter<T> andFilter(Filter<T>... filters) {
             return new AndFilter<T>(filters);
         }
 
+        @SafeVarargs
         public static <T> Filter<T> orFilter(Filter<T>... filters) {
             return new OrFilter<T>(filters);
         }
@@ -106,6 +108,7 @@ public class CollectionUtil {
 
         private Filter<T>[] filters;
 
+        @SafeVarargs
         public AndFilter(Filter<T>... filters) {
             this.filters = filters;
         }
@@ -127,6 +130,7 @@ public class CollectionUtil {
 
         private Filter<T>[] filters;
 
+        @SafeVarargs
         public OrFilter(Filter<T>... filters) {
             this.filters = filters;
         }
@@ -256,10 +260,12 @@ public class CollectionUtil {
         return result;
     }
 
+    @SafeVarargs
     public static <T> List<T> filterAll(Collection<T> list, Filter<T>... filters) {
         return filter(list, new AndFilter<T>(filters));
     }
 
+    @SafeVarargs
     public static <T> List<T> filterAny(Collection<T> list, Filter<T>... filters) {
         return filter(list, new OrFilter<T>(filters));
     }
@@ -274,6 +280,7 @@ public class CollectionUtil {
         return result;
     }
 
+    @SafeVarargs
     public static <T> List<T> transformAll(Collection<T> list, Transformer<T, T>... transformers) {
         if ((transformers != null) && (transformers.length > 0)) {
             for (Transformer<T, T> transformer : transformers) {
@@ -347,7 +354,6 @@ public class CollectionUtil {
         return ((list == null) || list.isEmpty()) ? null : list.get(0);
     }
 
-    @SuppressWarnings("unchecked")
     public static <T> List<T> objectToList(T object) {
         return new ArrayList<T>(Arrays.asList(object));
     }
@@ -431,6 +437,7 @@ public class CollectionUtil {
         return (coll instanceof TreeSet) ? ((TreeSet<T>) coll) : new TreeSet<T>(coll);
     }
 
+    @SafeVarargs
     public static <T> Set<T> asSet(T obj, T... objects) {
         Set<T> set = new HashSet<T>(1 + objects.length);
         set.add(obj);
@@ -462,6 +469,7 @@ public class CollectionUtil {
         return (coll instanceof LinkedList) ? ((LinkedList<T>) coll) : new LinkedList<T>(coll);
     }
 
+    @SafeVarargs
     public static <T> List<T> asList(T obj, T... objects) {
         List<T> list = new ArrayList<T>(1 + objects.length);
         list.add(obj);

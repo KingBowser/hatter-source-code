@@ -24,6 +24,9 @@ RSA、ElGamal、背包算法、Rabin(Rabin的加密法可以說是RSA方法的�
 || `The GNU Privacy Guard` || http://www.gnupg.org/ || GnuPG is the GNU project's complete and free implementation of the OpenPGP standard as defined by RFC4880 ||
 || `AxCrypt` || http://www.axantum.com/axcrypt/ || AxCrypt is the leading open source file encryption software for Windows. ||
 
+=JavaScript工具=
+|| `gibberish-aes` || https://github.com/mdp/gibberish-aes || A fully OpenSSL compliant javascript library for AES encryption. ||
+
 ===参考资料===
 `[1].` http://zh.wikipedia.org/wiki/%E5%AF%B9%E7%A7%B0%E5%AF%86%E9%92%A5%E5%8A%A0%E5%AF%86<br>
 `[2].` http://en.wikipedia.org/wiki/Symmetric-key_algorithm<br>

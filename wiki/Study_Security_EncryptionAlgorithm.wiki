@@ -27,6 +27,7 @@ RSA、ElGamal、背包算法、Rabin(Rabin的加密法可以說是RSA方法的�
 =JavaScript工具=
 || `gibberish-aes` || https://github.com/mdp/gibberish-aes || A fully OpenSSL compliant javascript library for AES encryption. ||
 || `AES Advanced Encryption Standard` || http://www.movable-type.co.uk/scripts/aes.html || JavaScript Implementation of AES Advanced Encryption Standard in Counter Mode | Movable Type Scripts ||
+|| `Block TEA (Tiny Encryption Algorithm)` || http://www.movable-type.co.uk/scripts/tea-block.html || JavaScript Implementation of Block TEA Tiny Encryption Algorithm (xxtea) ||
 
 
 ===参考资料===

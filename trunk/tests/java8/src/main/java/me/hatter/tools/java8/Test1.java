@@ -12,5 +12,7 @@ public class Test1 {
         list.stream().filter((v) -> v % 2 == 0).forEach(System.out::println);
         System.out.println("------------------------------------------------");
         list.parallelStream().filter((v) -> v % 2 == 0).forEach(System.out::println);
+        System.out.println("------------------------------------------------");
+        list.parallelStream().filter(v -> v % 2 == 0).forEach(System.out::println);
     }
 }

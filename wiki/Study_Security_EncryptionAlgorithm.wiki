@@ -24,6 +24,7 @@ RSA、ElGamal、背包算法、Rabin(Rabin的加密法可以說是RSA方法的�
 || `The GNU Privacy Guard` || http://www.gnupg.org/ || GnuPG is the GNU project's complete and free implementation of the OpenPGP standard as defined by RFC4880 ||
 || `AxCrypt` || http://www.axantum.com/axcrypt/ || AxCrypt is the leading open source file encryption software for Windows. ||
 || `Cryptix` || http://www.cryptix.org/ || The Cryptix project: R.I.P. ||
+|| `Bouncy Castle` || http://www.bouncycastle.org/ || The Legion of the Bouncy Castle ||
 
 =JavaScript工具=
 || `gibberish-aes` || https://github.com/mdp/gibberish-aes || A fully OpenSSL compliant javascript library for AES encryption. ||

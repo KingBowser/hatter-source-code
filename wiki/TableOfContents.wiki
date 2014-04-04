@@ -170,6 +170,7 @@
  * [Study_VPS VPS]
  * [ReportedBugList Reported Bug(Issue) List]
  * [Study_Others Others]
+  * [Study_Others_Edu Edu]
   * [Study_Others_Icon Icon]
   * [Study_Others_Plastic Plastic]
   * [Study_Others_Reader Reader]

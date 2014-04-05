@@ -17,6 +17,7 @@ import java.sql.Statement;
 import java.sql.Struct;
 import java.util.Map;
 import java.util.Properties;
+import java.util.concurrent.Executor;
 
 public class FilterConnection implements Connection {
 
@@ -225,4 +226,26 @@ public class FilterConnection implements Connection {
     public Struct createStruct(String typeName, Object[] attributes) throws SQLException {
         return conn.createStruct(typeName, attributes);
     }
+
+    //** JavaSE7 START, remove the leading "/" when compile under JavaSE6
+    public void setSchema(String schema) throws SQLException {
+        conn.setSchema(schema);
+    }
+
+    public String getSchema() throws SQLException {
+        return conn.getSchema();
+    }
+
+    public void abort(Executor executor) throws SQLException {
+        conn.abort(executor);
+    }
+
+    public void setNetworkTimeout(Executor executor, int milliseconds) throws SQLException {
+        conn.setNetworkTimeout(executor, milliseconds);
+    }
+
+    public int getNetworkTimeout() throws SQLException {
+        return conn.getNetworkTimeout();
+    }
+    // JavaSE7 END */
 }

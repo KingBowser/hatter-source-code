@@ -27,6 +27,7 @@ public class IOUtil {
     public static final int    MB           = KB * KB;
     public static final int    GB           = MB * KB;
     public static final int    TB           = GB * KB;
+    public static final int    PB           = TB * KB;
     public static final String CHARSET_UTF8 = "UTF-8";
 
     public static String readResourceBySystemClassloaderToString(String resourceName) {

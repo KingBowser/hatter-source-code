@@ -9,10 +9,14 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringReader;
 import java.lang.management.ManagementFactory;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -22,6 +26,7 @@ import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 import javax.script.SimpleBindings;
 
+import me.hatter.tools.commons.classloader.ClassLoaderUtil;
 import me.hatter.tools.commons.io.IOUtil;
 import me.hatter.tools.commons.log.LogTool;
 import me.hatter.tools.commons.log.LogTools;
@@ -32,17 +37,37 @@ import me.hatter.tools.resourceproxy.commons.util.JavaUtil;
 import me.hatter.tools.resourceproxy.commons.util.StringUtil;
 import me.hatter.tools.resourceproxy.jsspexec.exception.JsspEvalException;
 import me.hatter.tools.resourceproxy.jsspexec.jsspreader.SimpleJsspReader;
-import me.hatter.tools.resourceproxy.jsspexec.utl.BufferWriter;
-import me.hatter.tools.resourceproxy.jsspexec.utl.LineNumberWriter;
+import me.hatter.tools.resourceproxy.jsspexec.util.BufferWriter;
+import me.hatter.tools.resourceproxy.jsspexec.util.LineNumberWriter;
 
 public class JsspExecutor {
 
     private static final LogTool             logTool              = LogTools.getLogTool(JsspExecutor.class);
 
+    public static String                     INIT_SCRIPT_JS       = "META-INF/jssp/init.script.js";
     public static String                     DEFAULT_CHARSET      = "UTF-8";
     public static String                     JSSP_EXPLAINED_EXT   = ".jssp_explain";
     private static final String              JSSP_SCRIPT_LANGUAGE = "JavaScript";
     private static final ScriptEngineManager JSSP_ENG_MAN         = new ScriptEngineManager();
+
+    private static final Map<URL, String>    initScripts          = new HashMap<URL, String>();
+    static {
+        if (!Arrays.asList("1", "on", "true", "yes").contains(StringUtil.lower(StringUtil.trim(System.getProperty("jssp.init.script.js.disable"))))) {
+            try {
+                Enumeration<URL> initScriptUrls = ClassLoaderUtil.getClassLoaderByClass(JsspExecutor.class).getResources(INIT_SCRIPT_JS);
+                while (initScriptUrls.hasMoreElements()) {
+                    URL initScriptUrl = initScriptUrls.nextElement();
+                    if (logTool.isInfoEnable()) {
+                        logTool.info("Found init script: " + initScriptUrl);
+                    }
+                    String initScript = IOUtil.readToStringAndClose(initScriptUrl.openStream());
+                    initScripts.put(initScriptUrl, initScript);
+                }
+            } catch (IOException e) {
+                logTool.error("Run init script failed!", e);
+            }
+        }
+    }
 
     public static void main(String[] a) throws Exception {
         initJsspWork();
@@ -110,6 +135,17 @@ public class JsspExecutor {
         b.put("app_context", context);
         b.put("ac", context);
         b.put("out", out);
+
+        // run init scripts
+        if ((initScripts != null) && (initScripts.size() > 0)) {
+            for (Entry<URL, String> initScriptEntry : initScripts.entrySet()) {
+                try {
+                    se.eval(initScriptEntry.getValue(), b);
+                } catch (ScriptException e) {
+                    logTool.error("Run script failed, src: " + initScriptEntry.getKey(), e);
+                }
+            }
+        }
 
         String explainedSource = IOUtil.readToString(reader);
         try {

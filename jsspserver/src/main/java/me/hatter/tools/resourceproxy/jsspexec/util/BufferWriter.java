@@ -1,4 +1,4 @@
-package me.hatter.tools.resourceproxy.jsspexec.utl;
+package me.hatter.tools.resourceproxy.jsspexec.util;
 
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;

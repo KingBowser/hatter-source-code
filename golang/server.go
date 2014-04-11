@@ -175,6 +175,7 @@ var domainFilters = map[string][]RequestCallFunc {
 		AllDomainPFilter,
 		ProgrammeDomainFilter,
 		OutofmemoryorgDomainFilter,
+		AlibabaHireMeDomainFilter,
 	},
 	"hatter.me": []RequestCallFunc {
 		DomainPathPProxyRefFilter,
@@ -204,6 +205,18 @@ var domainFilters = map[string][]RequestCallFunc {
 func ReaderSecureFilter(w http.ResponseWriter, r *http.Request) bool {
 	if r.TLS == nil {
 		lib.RedirectURL(w, "https://reader.hatter.me/")
+		return true
+	}
+	return false
+}
+
+func AlibabaHireMeDomainFilter(w http.ResponseWriter, r *http.Request) bool {
+	hostDomain, _, hostError := lib.ParseHost(r.Host)
+	if hostError != nil {
+		return false
+	}
+	if hostDomain == "alibaba-hire.me" || strings.HasSuffix(hostDomain, "alibaba-hire.me")  {
+		lib.RedirectURL(w, "http://alibabahire.me")
 		return true
 	}
 	return false

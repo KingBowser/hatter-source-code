@@ -11,5 +11,11 @@
  * Protocol Assignments
  IANA is the central repository for protocol name and number registries used in many Internet protocols.
 
+----
+
+|| *Protocol Registries* || http://www.iana.org/protocols ||
+|| *Time Zone Database* || http://www.iana.org/time-zones ||
+
+----
 
 || *Media Types* || http://www.iana.org/assignments/media-types/media-types.xhtml ||

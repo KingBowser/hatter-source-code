@@ -19,6 +19,8 @@ RSA、ElGamal、背包算法、Rabin(Rabin的加密法可以說是RSA方法的�
 =应用=
  * TLS 
 
+|| `OpenSSL` || http://www.openssl.org/ ||OpenSSL: The Open Source toolkit for SSL/TLS ||
+
 =相关软件=
 || `TrueCrypt` || http://www.truecrypt.org/ || Free open-source disk encryption software for Windows 7/Vista/XP, Mac OS X, and Linux ||
 || `The GNU Privacy Guard` || http://www.gnupg.org/ || GnuPG is the GNU project's complete and free implementation of the OpenPGP standard as defined by RFC4880 ||

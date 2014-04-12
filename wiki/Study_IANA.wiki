@@ -10,3 +10,6 @@
  IANA coordinates allocations from the global IP and AS number spaces, such as those made to Regional Internet Registries.
  * Protocol Assignments
  IANA is the central repository for protocol name and number registries used in many Internet protocols.
+
+
+|| *Media Types* || http://www.iana.org/assignments/media-types/media-types.xhtml ||

@@ -4,3 +4,9 @@
 ==The Internet Assigned Numbers Authority (IANA) is responsible for the global coordination of the DNS Root, IP addressing, and other Internet protocol resources.==
 
 [http://www.iana.org/]
+ * Domain Names
+ IANA manages the DNS Root Zone (assignments of ccTLDs and gTLDs) along with other functions such as the .int and .arpa zones.
+ * Number Resources
+ IANA coordinates allocations from the global IP and AS number spaces, such as those made to Regional Internet Registries.
+ * Protocol Assignments
+ IANA is the central repository for protocol name and number registries used in many Internet protocols.

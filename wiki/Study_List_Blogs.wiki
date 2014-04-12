@@ -7,6 +7,10 @@
  * http://pangxiege.com/wordpress/
  * http://www.dbathink.com/
 
+==ＤＢＡ的博客==
+ * http://hidba.org/
+ * http://www.orczhou.com/
+ * http://www.penglixun.com/
 
 ==博客生成软件==
  * https://github.com/ericzhang-cn/papery

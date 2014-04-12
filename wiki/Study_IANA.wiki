@@ -13,8 +13,9 @@
 
 ----
 
+|| *Domain Name Services* || http://www.iana.org/domains ||
+|| *Number Resources* || http://www.iana.org/numbers ||
 || *Protocol Registries* || http://www.iana.org/protocols ||
-|| *Time Zone Database* || http://www.iana.org/time-zones ||
 
 ----
 

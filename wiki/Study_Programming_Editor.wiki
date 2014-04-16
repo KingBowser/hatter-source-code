@@ -13,7 +13,7 @@
 || `Sublime Text 2` || Commercial || http://www.sublimetext.com/ || Sublime Text is a sophisticated text editor for code, markup and prose. ||
 || `Light Table` ||  `-` || http://www.lighttable.com/ || Light Table is a new interactive IDE ||
 || `Smultron ` || Commercial || http://www.peterborgapps.com/smultron/ || An elegant and powerful text editor that is easy to use. ||
-|| `Atom` ||MIT  || https://atom.io/ || 
+|| `Atom` ||MIT  || https://atom.io/ || A hackable text editor for the 21st Century ||
 || `Brackets` || MIT || http://brackets.io/ || Brackets is an open source code editor for web designers and front-end developers. ||
 || `HBuilder` || `Unknow` || http://www.dcloud.net.cn/ || DCloud HBuilder-最佳HTML5开发工具 ||
 

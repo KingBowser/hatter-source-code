@@ -1,2 +1,5 @@
 #summary IDE study.
 #sidebar TableOfContents
+
+
+=[Study_Programming_Editor]=

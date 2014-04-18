@@ -11,7 +11,7 @@
   * https://www.tarsnap.com/scrypt.html
   * https://www.tarsnap.com/scrypt/scrypt.pdf
   * https://scrypt.googlecode.com
- * bscrypt
+ * bcrypt
  * PBKDF2
 
 =附：一些和计算机相关的攻击方式=

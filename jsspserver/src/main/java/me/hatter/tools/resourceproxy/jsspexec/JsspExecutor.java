@@ -66,6 +66,8 @@ public class JsspExecutor {
             } catch (IOException e) {
                 logTool.error("Run init script failed!", e);
             }
+        } else {
+            logTool.info("Jssp init script is disabled.");
         }
     }
 

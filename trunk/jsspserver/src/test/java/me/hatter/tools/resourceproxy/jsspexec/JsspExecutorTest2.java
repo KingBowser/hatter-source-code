@@ -2,7 +2,10 @@ package me.hatter.tools.resourceproxy.jsspexec;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import me.hatter.tools.commons.resource.impl.FileResource;
@@ -14,6 +17,12 @@ public class JsspExecutorTest2 {
         JsspExecutor.initJsspWork();
 
         Map<String, Object> context = new HashMap<String, Object>();
+        context.put("aa", new ArrayList<String>(Arrays.asList("1", "3", "5")));
+        Map<String, String> mm = new LinkedHashMap<String, String>();
+        mm.put("a", "aaa");
+        mm.put("b", "bbb");
+        mm.put("c", "ccc");
+        context.put("mm", mm);
         BufferWriter bw = new BufferWriter();
         File f = File.createTempFile("test", "jssp");
         f.deleteOnExit();
@@ -23,6 +32,12 @@ public class JsspExecutorTest2 {
                  + "<%var a =[1,3,5,7,9];a.each(function(o,i){%><%=i%> : <%=o%>\n<%});%>"//
                  + "==============\n"//
                  + "<%var a =[1,3,5,7,9];a.forEach(function(o,i){%><%=i%> : <%=o%>\n<%});%>"//
+                 + "==============\n"//
+                 + "<%$EACH(ac.get('aa'), function(o,i){%><%=i%> : <%=o%>\n<%});%>"//
+                 + "==============\n"//
+                 + "<%$EACH(ac.get('aa'), function(o){%>: <%=o%>\n<%});%>"//
+                 + "==============\n"//
+                 + "<%$MAP_EACH(ac.get('mm'), function(k,v){%><%=k%>: <%=v%>\n<%})%>" //
                  + "==============\n"//
         );
         fw.flush();

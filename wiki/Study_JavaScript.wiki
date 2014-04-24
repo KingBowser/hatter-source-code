@@ -77,6 +77,7 @@ _[http://www.ecma-international.org/publications/standards/Ecma-262-arch.htm]_
 || `node.js` || http://nodejs.org/ || Node.js is a platform built on Chrome's JavaScript runtime for easily building fast, scalable network applications.  ||
 || `Grunt` || http://gruntjs.com/ || Grunt: The JavaScript Task Runner ||
 || `JsWebP` || http://www.etherdream.com/WebP/ || 让浏览器支持WebP格式 ||
+|| `Moment.js` || http://momentjs.com/ || A javascript date library for parsing, validating, manipulating, and formatting dates. ||
 
 ===五、游戏===
 || `Phaser` || http://phaser.io/ || Desktop and Mobile HTML5 game framework ||

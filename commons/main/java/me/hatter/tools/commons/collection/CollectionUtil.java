@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
+import me.hatter.tools.commons.assertion.AssertUtil;
 import me.hatter.tools.commons.reflect.ReflectUtil;
 
 public class CollectionUtil {
@@ -477,5 +478,31 @@ public class CollectionUtil {
             list.add(o);
         }
         return list;
+    }
+
+    public static <T> List<List<T>> split(Collection<T> list, int groupSize) {
+        return split(list, groupSize, false);
+    }
+
+    public static <T> List<List<T>> split(Collection<T> list, int groupSize, boolean skipNull) {
+        AssertUtil.isTrue(groupSize > 0);
+        List<List<T>> groupList = new ArrayList<List<T>>();
+        List<T> group = new ArrayList<T>();
+        if (list != null) {
+            for (T obj : list) {
+                if (skipNull && (obj == null)) {
+                    continue;
+                }
+                if (group.size() == groupSize) {
+                    groupList.add(group);
+                    group = new ArrayList<T>();
+                }
+                group.add(obj);
+            }
+            if (!group.isEmpty()) {
+                groupList.add(group);
+            }
+        }
+        return groupList;
     }
 }

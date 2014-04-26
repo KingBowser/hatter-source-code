@@ -11,14 +11,14 @@ import me.hatter.tools.markdowndocs.model.Page;
 import me.hatter.tools.markdowndocs.template.ConfigParser;
 import me.hatter.tools.markdowndocs.template.PageParser;
 import me.hatter.tools.resourceproxy.jsspexec.JsspExecutor;
-import me.hatter.tools.resourceproxy.jsspexec.utl.BufferWriter;
+import me.hatter.tools.resourceproxy.jsspexec.util.BufferWriter;
 
 public class TestMain {
 
     public static void main(String[] args) {
         GlobalVars.setBasePath(new File("/Users/hatterjiang/Code/hatter-source-code/markdowndocs/samplex"));
         Config config = ConfigParser.readConfig("01-Top10");
-        Page page = PageParser.parsePage("01-Top10");
+        Page page = PageParser.parsePage(config, "01-Top10");
 
         JsspExecutor.initJsspWork();
 

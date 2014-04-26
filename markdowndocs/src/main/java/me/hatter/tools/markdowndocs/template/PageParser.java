@@ -1,10 +1,13 @@
 package me.hatter.tools.markdowndocs.template;
 
 import java.io.File;
+import java.io.FileFilter;
 import java.io.FilenameFilter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,31 +15,43 @@ import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import me.hatter.tools.commons.args.UnixArgsUtil;
 import me.hatter.tools.commons.collection.CollectionUtil;
 import me.hatter.tools.commons.file.FileUtil;
 import me.hatter.tools.commons.io.IOUtil;
+import me.hatter.tools.commons.log.LogTool;
+import me.hatter.tools.commons.log.LogTools;
+import me.hatter.tools.commons.resource.impl.URLResource;
 import me.hatter.tools.commons.string.StringUtil;
+import me.hatter.tools.markdowndocs.TestMain;
+import me.hatter.tools.markdowndocs.config.Config;
 import me.hatter.tools.markdowndocs.config.GlobalVars;
+import me.hatter.tools.markdowndocs.model.Image;
 import me.hatter.tools.markdowndocs.model.Page;
 import me.hatter.tools.markdowndocs.model.Section;
 import me.hatter.tools.markdowndocs.model.SubSection;
+import me.hatter.tools.resourceproxy.jsspexec.JsspExecutor;
+import me.hatter.tools.resourceproxy.jsspexec.util.BufferWriter;
+import net.coobird.thumbnailator.Thumbnails;
 
 public class PageParser {
+
+    private static final LogTool log = LogTools.getLogTool(PageParser.class);
 
     // public static void main(String[] args) {
     // System.out.println(JSON.toJSONString(parsePage(new File(
     // "/Users/hatterjiang/Code/hatter-source-code/markdowndocs/samplex/01-Top10"))));
     // }
 
-    public static Page parsePage(String dirName) {
+    public static Page parsePage(Config config, String dirName) {
         if (StringUtil.isEmpty(dirName)) {
-            return parsePage(null, GlobalVars.getBasePath());
+            return parsePage(config, null, GlobalVars.getBasePath());
         } else {
-            return parsePage(dirName, new File(GlobalVars.getBasePath(), dirName));
+            return parsePage(config, dirName, new File(GlobalVars.getBasePath(), dirName));
         }
     }
 
-    public static Page parsePage(String dirName, File dir) {
+    public static Page parsePage(Config config, String dirName, File dir) {
         if ((dir == null) || (!dir.exists())) {
             return null;
         }
@@ -56,13 +71,98 @@ public class PageParser {
             page.setFooter(Markdown4jParser.parseMarkdown(new File(GlobalVars.getBasePath(), "footer.md")));
         }
 
-        File[] mds = listMdFiles(dir);
-        if ((mds != null) && (mds.length > 0)) {
-            sortMdFiles(mds);
-            parseMdFiles(page, mds);
+        File images = new File(dir, "images");
+        if (images.exists() && images.isDirectory()) {
+            parseImages(config, page, images);
+        } else {
+            File[] mds = listMdFiles(dir);
+            if ((mds != null) && (mds.length > 0)) {
+                sortMdFiles(mds);
+                parseMdFiles(page, mds);
+            }
         }
-
         return page;
+    }
+
+    private static void parseImages(final Config config, Page page, File images) {
+        final List<Image> imageList = new ArrayList<Image>();
+        images.listFiles(new FileFilter() {
+
+            public boolean accept(File file) {
+                boolean isHolder = false;
+                if (file.getName().endsWith(".holder")) { // if holder
+                    isHolder = true;
+                    log.info("Holder found: " + file);
+                    file = new File(file.getParentFile(), StringUtil.substringBeforeLast(file.getName(), "."));
+                }
+
+                String fullName = file.getName();
+                String name = StringUtil.substringBeforeLast(fullName, ".");
+                String type = StringUtil.lower(StringUtil.substringAfterLast(fullName, "."));
+
+                if (!Arrays.asList("jpg", "jpeg", "png", "bmp").contains(type)) {
+                    return false;
+                }
+                if (fullName.matches(".*_\\d+x\\d+\\.\\w+$")) {
+                    log.info("Skip file: " + file);
+                    return false;
+                }
+
+                final Image img = new Image();
+                imageList.add(img);
+                img.setOriName(fullName);
+
+                img.setSmallName(generateThumbnail(config, img, file, name, config.getSmallSize().intValue(), isHolder));
+                img.setBigName(generateThumbnail(config, img, file, name, config.getBigSize().intValue(), isHolder));
+
+                if (UnixArgsUtil.ARGS.flags().contains("clearimages") && (!isHolder)) {
+                    log.info("Clear image: " + file);
+                    FileUtil.writeStringToFile(new File(file.getParentFile(), file.getName() + ".holder"),
+                                               "IMAGE_HOLDER");
+                    file.delete();
+                }
+
+                return false;
+            }
+
+            private String generateThumbnail(final Config config, Image img, File file, String name, int size,
+                                             boolean isHolder) {
+                final String suffix = "_" + size + "x" + size;
+                File imageFile = new File(file.getParentFile(), name + suffix + "." + config.getImgType());
+                if (imageFile.exists()) {
+                    log.info("Thumbnail exists: " + imageFile);
+                } else {
+                    if (isHolder) {
+                        log.error("Cannot generate thumbnail from holder: " + file);
+                    } else {
+                        log.info("Generate thumbnail: " + imageFile);
+                        try {
+                            Thumbnails.of(file).size(size, size).outputQuality(config.getQuality()).toFile(imageFile);
+                        } catch (IOException e) {
+                            log.error("Generate thumbnail failed: " + file, e);
+                        }
+                    }
+                }
+                return imageFile.getName();
+            }
+        });
+
+        Map<String, Object> addContext = new HashMap<String, Object>();
+        addContext.put("images", imageList);
+
+        BufferWriter bw = new BufferWriter();
+        URLResource resource = new URLResource(
+                                               TestMain.class.getResource("/"
+                                                                          + ParameterParser.getGlobalParamter().getTemplate()
+                                                                          + "/templates/images.template.jssp"),
+                                               "images.template.jssp");
+        JsspExecutor.executeJssp(resource, new HashMap<String, Object>(), addContext, null, bw);
+        String index = page.getIndex();
+        if (StringUtil.isBlank(index)) {
+            page.setIndex(bw.getBufferedString());
+        } else {
+            page.setIndex(index.replace("$IMAGES$", bw.getBufferedString()));
+        }
     }
 
     private static void parseMdFiles(Page page, File[] mds) {

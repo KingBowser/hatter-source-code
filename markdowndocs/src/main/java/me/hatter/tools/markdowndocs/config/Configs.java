@@ -14,6 +14,10 @@ public class Configs {
         DEFAULT.setFavicon114("/assets/img/apple-touch-icon-144-precomposed.png");
         DEFAULT.setFavicon("/assets/img/favicon.png");
         DEFAULT.setHeadTitle("Sample Head Title");
+        DEFAULT.setImgType("png");
+        DEFAULT.setSmallSize(200);
+        DEFAULT.setBigSize(1200);
+        DEFAULT.setQuality(0.95);
     }
 
     public static Config mergeConfig(Config... confings) {

@@ -7,7 +7,7 @@ import me.hatter.tools.resourceproxy.jsspserver.filter.ResourceFilterChain;
 
 public class MarkdownDocsHeaderFilter implements ResourceFilter {
 
-    public HttpResponse filter(HttpRequest request, ResourceFilterChain chain) {
+    public HttpResponse filter(HttpRequest request, ResourceFilterChain chain) throws Exception {
         HttpResponse response = chain.next().filter(request, chain);
         if (response != null) {
             response.getHeaderMap().set("Server", "MarkdownDocsServer");

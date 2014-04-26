@@ -23,7 +23,7 @@ import me.hatter.tools.markdowndocs.template.ConfigParser;
 import me.hatter.tools.markdowndocs.template.PageParser;
 import me.hatter.tools.markdowndocs.template.ParameterParser;
 import me.hatter.tools.resourceproxy.jsspexec.JsspExecutor;
-import me.hatter.tools.resourceproxy.jsspexec.utl.BufferWriter;
+import me.hatter.tools.resourceproxy.jsspexec.util.BufferWriter;
 import me.hatter.tools.resourceproxy.jsspserver.handler.HttpServerHandler;
 import me.hatter.tools.resourceproxy.jsspserver.main.MainHttpServer;
 
@@ -101,7 +101,7 @@ public class Main {
             }
 
             Config config = ConfigParser.readConfig(dirName);
-            Page page = PageParser.parsePage(dirName);
+            Page page = PageParser.parsePage(config, dirName);
 
             Map<String, Object> addContext = new HashMap<String, Object>();
             addContext.put("parameter", parameter);

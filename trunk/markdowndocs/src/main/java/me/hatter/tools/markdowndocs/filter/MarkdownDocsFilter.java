@@ -21,7 +21,7 @@ import me.hatter.tools.markdowndocs.template.ParameterParser;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpRequest;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpResponse;
 import me.hatter.tools.resourceproxy.jsspexec.JsspExecutor;
-import me.hatter.tools.resourceproxy.jsspexec.utl.BufferWriter;
+import me.hatter.tools.resourceproxy.jsspexec.util.BufferWriter;
 import me.hatter.tools.resourceproxy.jsspserver.filter.ResourceFilter;
 import me.hatter.tools.resourceproxy.jsspserver.filter.ResourceFilterChain;
 import me.hatter.tools.resourceproxy.jsspserver.util.ContentTypes;
@@ -29,7 +29,7 @@ import me.hatter.tools.resourceproxy.jsspserver.util.HttpConstants;
 
 public class MarkdownDocsFilter implements ResourceFilter {
 
-    public HttpResponse filter(HttpRequest request, ResourceFilterChain chain) {
+    public HttpResponse filter(HttpRequest request, ResourceFilterChain chain) throws Exception {
         try {
             String ext = StringUtil.substringAfterLast(request.getFPath(), ".");
             if (request.getFPath().endsWith("/")) {
@@ -58,7 +58,7 @@ public class MarkdownDocsFilter implements ResourceFilter {
 
                     Parameter parameter = ParameterParser.getGlobalParamter();
                     Config config = ConfigParser.readConfig(dirName);
-                    Page page = PageParser.parsePage(dirName);
+                    Page page = PageParser.parsePage(config, dirName);
 
                     Map<String, Object> addContext = new HashMap<String, Object>();
                     addContext.put("parameter", parameter);

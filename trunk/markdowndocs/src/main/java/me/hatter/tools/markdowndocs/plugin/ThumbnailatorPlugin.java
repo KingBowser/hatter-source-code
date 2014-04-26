@@ -68,7 +68,7 @@ public class ThumbnailatorPlugin implements Plugin {
                     return false;
                 }
 
-                if (name.matches(".*_\\d+x\\d+\\." + type)) {
+                if (fullName.matches(".*_\\d+x\\d+\\.[\\w+]$")) {
                     log.info("Skip file: " + file);
                     return false;
                 }

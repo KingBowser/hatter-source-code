@@ -56,6 +56,79 @@ public class PageParser {
             page.setFooter(Markdown4jParser.parseMarkdown(new File(GlobalVars.getBasePath(), "footer.md")));
         }
 
+        File[] mds = listMdFiles(dir);
+        if ((mds != null) && (mds.length > 0)) {
+            sortMdFiles(mds);
+            parseMdFiles(page, mds);
+        }
+
+        return page;
+    }
+
+    private static void parseMdFiles(Page page, File[] mds) {
+        Map<File, List<File>> mdMap = new LinkedHashMap<File, List<File>>();
+        File lastSMd = null;
+        for (File md : mds) {
+            if (lastSMd == null) {
+                // first section
+                lastSMd = md;
+                mdMap.put(lastSMd, new ArrayList<File>());
+            } else {
+                if (md.getName().startsWith(lastSMd.getName().substring(0, lastSMd.getName().length() - 3))) {
+                    // subsection
+                    mdMap.get(lastSMd).add(md);
+                } else {
+                    // new section
+                    lastSMd = md;
+                    mdMap.put(lastSMd, new ArrayList<File>());
+                }
+            }
+        }
+
+        page.setSections(new ArrayList<Section>());
+        for (Entry<File, List<File>> mdEntry : mdMap.entrySet()) {
+            Section section = new Section();
+
+            File md = mdEntry.getKey();
+            String id = md.getName().substring(0, md.getName().length() - 3);
+            List<String> lines = new ArrayList<String>(IOUtil.readToList(FileUtil.readFileToString(md)));
+            boolean pageExplain = StringUtil.equals("!!EXPLAIN", StringUtil.trim(CollectionUtil.firstObject(lines)));
+
+            if (CollectionUtil.isEmpty(mdEntry.getValue()) && (pageExplain)) {
+                parseExplainedSection(section, id, parseExplain(lines));
+            } else {
+                SubSection _secSection = parseSubSection(id, lines);
+                section.setId(_secSection.getId());
+                section.setName(_secSection.getName());
+                section.setTitle(_secSection.getTitle());
+                section.setContent(_secSection.getContent());
+                section.setSubSections(new ArrayList<SubSection>());
+                for (File smd : mdEntry.getValue()) {
+                    section.getSubSections().add(parseSubSection(smd));
+                }
+            }
+            page.getSections().add(section);
+        }
+    }
+
+    private static void sortMdFiles(File[] mds) {
+        Arrays.sort(mds, new Comparator<File>() {
+
+            public int compare(File f1, File f2) {
+                String n1 = f1.getName().substring(0, f1.getName().length() - 3);
+                String n2 = f2.getName().substring(0, f2.getName().length() - 3);
+                if (n1.startsWith(n2)) {
+                    return 1;
+                }
+                if (n2.startsWith(n1)) {
+                    return -1;
+                }
+                return n1.compareTo(n2);
+            }
+        });
+    }
+
+    private static File[] listMdFiles(File dir) {
         File[] mds;
         mds = dir.listFiles(new FilenameFilter() {
 
@@ -71,72 +144,7 @@ public class PageParser {
                 return true;
             }
         });
-        if ((mds != null) && (mds.length > 0)) {
-            Arrays.sort(mds, new Comparator<File>() {
-
-                public int compare(File f1, File f2) {
-                    String n1 = f1.getName().substring(0, f1.getName().length() - 3);
-                    String n2 = f2.getName().substring(0, f2.getName().length() - 3);
-                    if (n1.startsWith(n2)) {
-                        return 1;
-                    }
-                    if (n2.startsWith(n1)) {
-                        return -1;
-                    }
-                    return n1.compareTo(n2);
-                }
-            });
-
-            // for (File f : mds) {
-            // System.out.println(f);
-            // }
-
-            Map<File, List<File>> mdMap = new LinkedHashMap<File, List<File>>();
-            File lastSMd = null;
-            for (File md : mds) {
-                if (lastSMd == null) {
-                    // first section
-                    lastSMd = md;
-                    mdMap.put(lastSMd, new ArrayList<File>());
-                } else {
-                    if (md.getName().startsWith(lastSMd.getName().substring(0, lastSMd.getName().length() - 3))) {
-                        // subsection
-                        mdMap.get(lastSMd).add(md);
-                    } else {
-                        // new section
-                        lastSMd = md;
-                        mdMap.put(lastSMd, new ArrayList<File>());
-                    }
-                }
-            }
-
-            page.setSections(new ArrayList<Section>());
-            for (Entry<File, List<File>> mdEntry : mdMap.entrySet()) {
-                Section section = new Section();
-
-                File md = mdEntry.getKey();
-                String id = md.getName().substring(0, md.getName().length() - 3);
-                List<String> lines = new ArrayList<String>(IOUtil.readToList(FileUtil.readFileToString(md)));
-                boolean pageExplain = StringUtil.equals("!!EXPLAIN", StringUtil.trim(CollectionUtil.firstObject(lines)));
-
-                if (CollectionUtil.isEmpty(mdEntry.getValue()) && (pageExplain)) {
-                    parseExplainedSection(section, id, parseExplain(lines));
-                } else {
-                    SubSection _secSection = parseSubSection(id, lines);
-                    section.setId(_secSection.getId());
-                    section.setName(_secSection.getName());
-                    section.setTitle(_secSection.getTitle());
-                    section.setContent(_secSection.getContent());
-                    section.setSubSections(new ArrayList<SubSection>());
-                    for (File smd : mdEntry.getValue()) {
-                        section.getSubSections().add(parseSubSection(smd));
-                    }
-                }
-                page.getSections().add(section);
-            }
-        }
-
-        return page;
+        return mds;
     }
 
     public static void parseExplainedSection(Section section, String id, List<List<String>> groupList) {

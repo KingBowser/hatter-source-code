@@ -1,0 +1,4 @@
+#summary Ebook
+#sidebar TableOfContents
+
+|| `epublib` || https://github.com/psiegman/epublib || a java library for reading and writing epub files |

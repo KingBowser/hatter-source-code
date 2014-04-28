@@ -15,6 +15,7 @@ import java.util.TreeSet;
 
 import me.hatter.tools.commons.assertion.AssertUtil;
 import me.hatter.tools.commons.reflect.ReflectUtil;
+import me.hatter.tools.commons.string.StringUtil;
 
 public class CollectionUtil {
 
@@ -31,6 +32,20 @@ public class CollectionUtil {
     public interface KeyGetter<O, K> {
 
         K getKey(O object);
+    }
+
+    public static class Group<T> extends ArrayList<T> {
+
+        private static final long serialVersionUID = 1L;
+
+        public String join(String separator) {
+            return StringUtil.join(this.toArray(), separator);
+        }
+    }
+
+    public static class Groups<T> extends Group<Group<T>> {
+
+        private static final long serialVersionUID = 1L;
     }
 
     public static class Filters {
@@ -51,12 +66,14 @@ public class CollectionUtil {
             return new FalseFilter<T>();
         }
 
-        @SafeVarargs
+//      @SafeVarargs
+      @SuppressWarnings("unchecked")
         public static <T> Filter<T> andFilter(Filter<T>... filters) {
             return new AndFilter<T>(filters);
         }
 
-        @SafeVarargs
+//      @SafeVarargs
+      @SuppressWarnings("unchecked")
         public static <T> Filter<T> orFilter(Filter<T>... filters) {
             return new OrFilter<T>(filters);
         }
@@ -109,7 +126,8 @@ public class CollectionUtil {
 
         private Filter<T>[] filters;
 
-        @SafeVarargs
+//      @SafeVarargs
+      @SuppressWarnings("unchecked")
         public AndFilter(Filter<T>... filters) {
             this.filters = filters;
         }
@@ -131,7 +149,8 @@ public class CollectionUtil {
 
         private Filter<T>[] filters;
 
-        @SafeVarargs
+//      @SafeVarargs
+      @SuppressWarnings("unchecked")
         public OrFilter(Filter<T>... filters) {
             this.filters = filters;
         }
@@ -261,12 +280,14 @@ public class CollectionUtil {
         return result;
     }
 
-    @SafeVarargs
+//    @SafeVarargs
+    @SuppressWarnings("unchecked")
     public static <T> List<T> filterAll(Collection<T> list, Filter<T>... filters) {
         return filter(list, new AndFilter<T>(filters));
     }
 
-    @SafeVarargs
+//  @SafeVarargs
+  @SuppressWarnings("unchecked")
     public static <T> List<T> filterAny(Collection<T> list, Filter<T>... filters) {
         return filter(list, new OrFilter<T>(filters));
     }
@@ -281,7 +302,8 @@ public class CollectionUtil {
         return result;
     }
 
-    @SafeVarargs
+//  @SafeVarargs
+  @SuppressWarnings("unchecked")
     public static <T> List<T> transformAll(Collection<T> list, Transformer<T, T>... transformers) {
         if ((transformers != null) && (transformers.length > 0)) {
             for (Transformer<T, T> transformer : transformers) {
@@ -355,6 +377,7 @@ public class CollectionUtil {
         return ((list == null) || list.isEmpty()) ? null : list.get(0);
     }
 
+    @SuppressWarnings("unchecked")
     public static <T> List<T> objectToList(T object) {
         return new ArrayList<T>(Arrays.asList(object));
     }
@@ -438,7 +461,8 @@ public class CollectionUtil {
         return (coll instanceof TreeSet) ? ((TreeSet<T>) coll) : new TreeSet<T>(coll);
     }
 
-    @SafeVarargs
+//  @SafeVarargs
+  @SuppressWarnings("unchecked")
     public static <T> Set<T> asSet(T obj, T... objects) {
         Set<T> set = new HashSet<T>(1 + objects.length);
         set.add(obj);
@@ -470,7 +494,8 @@ public class CollectionUtil {
         return (coll instanceof LinkedList) ? ((LinkedList<T>) coll) : new LinkedList<T>(coll);
     }
 
-    @SafeVarargs
+//  @SafeVarargs
+  @SuppressWarnings("unchecked")
     public static <T> List<T> asList(T obj, T... objects) {
         List<T> list = new ArrayList<T>(1 + objects.length);
         list.add(obj);
@@ -480,29 +505,29 @@ public class CollectionUtil {
         return list;
     }
 
-    public static <T> List<List<T>> split(Collection<T> list, int groupSize) {
+    public static <T> Groups<T> split(Collection<T> list, int groupSize) {
         return split(list, groupSize, false);
     }
 
-    public static <T> List<List<T>> split(Collection<T> list, int groupSize, boolean skipNull) {
+    public static <T> Groups<T> split(Collection<T> list, int groupSize, boolean skipNull) {
         AssertUtil.isTrue(groupSize > 0);
-        List<List<T>> groupList = new ArrayList<List<T>>();
-        List<T> group = new ArrayList<T>();
+        Groups<T> groups = new Groups<T>();
+        Group<T> group = new Group<T>();
         if (list != null) {
             for (T obj : list) {
                 if (skipNull && (obj == null)) {
                     continue;
                 }
                 if (group.size() == groupSize) {
-                    groupList.add(group);
-                    group = new ArrayList<T>();
+                    groups.add(group);
+                    group = new Group<T>();
                 }
                 group.add(obj);
             }
             if (!group.isEmpty()) {
-                groupList.add(group);
+                groups.add(group);
             }
         }
-        return groupList;
+        return groups;
     }
 }

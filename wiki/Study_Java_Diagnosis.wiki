@@ -4,7 +4,7 @@
 =Hatter的诊断工具=
 
 || *Name* || *URL* || *License* || *Category* || *Description* ||
-|| [finding] || https://hatter-source-code.googlecode.com/svn/trunk/finding/ || `New_BSD` || `Java Tool` || Find ind source code ||
+|| [finding] || https://hatter-source-code.googlecode.com/svn/trunk/finding/ || `New_BSD` || `Java Tool` || Find in source code ||
 || [invokefind] || https://hatter-source-code.googlecode.com/svn/trunk/invokefind/ || `New_BSD` || `Java Tool` || invoke find ||
 || libana || https://hatter-source-code.googlecode.com/svn/trunk/libana/ || `New_BSD` || `Java Tool` || lib analysis ||
 || [jtop] || https://hatter-source-code.googlecode.com/svn/trunk/jtop/ || `New_BSD` || `HotSpot Tool` || Java edition of `top` ||

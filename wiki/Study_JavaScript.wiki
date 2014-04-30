@@ -116,6 +116,7 @@ _[http://www.ecma-international.org/publications/standards/Ecma-262-arch.htm]_
 || JSDB.io || http://jsdb.io/ || JSDB.io - The Database of JavaScript Libraries ||
 
 ===十一、学习资料===
+|| JavaScript 标准参考教程 || http://javascript.ruanyifeng.com/<br>https://github.com/ruanyf/jstutorial || JavaScript 标准参考教程（alpha） 英文标题：JavaScript Standards Reference Guide ||
 || ECMAScript 6入门 || http://es6.ruanyifeng.com/<br>https://github.com/ruanyf/es6tutorial || 《ECMAScript 6入门》是一本开源的JavaScript语言教程，全面介绍ECMAScript 6新引入的语法特性。 ||
 
 ===十二、参考资料===

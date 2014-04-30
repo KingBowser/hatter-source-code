@@ -1,0 +1,5 @@
+#summary MySQL Malfunction
+#sidebar TableOfContents
+
+
+==[http://www.csdn.net/article/2013-04-22/2814997-Biggest-MySQL-Disasters 从史上八大MySQL事故中学到的经验]==

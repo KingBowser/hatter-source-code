@@ -30,7 +30,9 @@ done
 
 CSNA: http://www.csna.cn/
 
-[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/network/tcpip.gif | TCP/IP]
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/network/tcpip.gif TCP/IP]
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/network/network-protocol-map-2013.pdf  网络通讯协议图]
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/network/troubleshooting.pdf 网络应用故障分析表]
 
 
 ===参考资料===

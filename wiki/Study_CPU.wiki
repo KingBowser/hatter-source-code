@@ -1,6 +1,13 @@
 #summary CPU study
 #sidebar TableOfContents
 
+=brainiac vs speed-demon=
+
+brainiac，追求instruction-level parallelism，speed-demon，追求更高的clock speed
+
+
+----
+
 =X86=
 X86或80X86，X86架构使用可变长度指令CISC(复杂指令集计算机,Complex Instruction Set Computer)。<br>
 X86_32在Intel也称为IA32(Intel Architecture, 32-bit)，IA64

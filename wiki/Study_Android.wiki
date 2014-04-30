@@ -11,4 +11,9 @@
 The fastest Android emulator for app testing and presentation: 
 http://www.genymotion.com/
 
+
+==[https://github.com/Trinea/android-open-project Android开源项目分类汇总]==
+
+http://www.trinea.cn/
+
 ... ...

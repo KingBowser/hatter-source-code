@@ -5,6 +5,8 @@
 
 brainiac，追求instruction-level parallelism，speed-demon，追求更高的clock speed
 
+http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/cpu/brainiac.vs.speed-demon.jpg
+
 
 ----
 

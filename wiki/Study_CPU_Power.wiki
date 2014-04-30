@@ -1,0 +1,4 @@
+#summary Power CPU
+#sidebar TableOfContents
+
+==http://openpowerfoundation.org/==

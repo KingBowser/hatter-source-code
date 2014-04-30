@@ -118,7 +118,7 @@ _[http://www.ecma-international.org/publications/standards/Ecma-262-arch.htm]_
 ===十一、学习资料===
 || ECMAScript 6入门 || http://es6.ruanyifeng.com/ || 《ECMAScript 6入门》是一本开源的JavaScript语言教程，全面介绍ECMAScript 6新引入的语法特性。 ||
 
-===十一、参考资料===
+===十二、参考资料===
 `[1].` http://en.wikipedia.org/wiki/JavaScript<br>
 `[2].` http://en.wikipedia.org/wiki/ECMAScript<br>
 `[3].` http://ejohn.org/blog/the-world-of-ecmascript/<br>

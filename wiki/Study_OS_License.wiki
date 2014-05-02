@@ -1,3 +1,6 @@
 #summary License Study
 #sidebar TableOfContents
 
+
+
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/license/license_select.jpg]

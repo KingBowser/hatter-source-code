@@ -107,6 +107,7 @@
  * [Study_OpenSource Open Source]
  * [Study_License License]
  * [Study_OS_Linux Linux/Unix]
+  * [Study_OS_Linux_BSD BSD]
   * [Study_OS_Linux_ConsoleCodes Console Codes]
   * [Study_OS_Linux_CGroups CGroups]
   * [Study_OS_Linux_CPU CPU]

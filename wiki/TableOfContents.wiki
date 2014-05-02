@@ -105,6 +105,7 @@
   * [Study_Java_Zulu Zulu]
  * [Study_OpenAuthentication Open Authentication]
  * [Study_OpenSource Open Source]
+ * [Study_OS_License License]
  * [Study_OS_Linux Linux/Unix]
   * [Study_OS_Linux_ConsoleCodes Console Codes]
   * [Study_OS_Linux_CGroups CGroups]

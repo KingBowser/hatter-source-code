@@ -9,3 +9,8 @@ FreeBSD 是一种先进的操作系统，它支持 x86 兼容(包括 Pentium® �
 
 
 ==http://www.openbsd.org/==
+
+
+
+===参考资料===
+`[1].` http://www.freebsd.org/zh_CN/advocacy/myths.html<br>

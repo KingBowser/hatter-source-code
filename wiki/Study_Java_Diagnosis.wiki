@@ -39,5 +39,6 @@
 || Thread Top || http://www.performize-it.com/tools/thread-top || ThreadTop is a simple command line tool which uses JMX protocol to connect to a Java process ||
 || Greys Anatomy || https://code.google.com/p/greys-anatomy/<br> https://github.com/chengtongda/greys-anatomy || greys-anatomy 是一个java进程执行过程中的异常诊断工具 ||
 || JIP || http://jiprof.sourceforge.net/ || JIP — The Java Interactive Profiler ||
+|| Diagnostic Tools || http://clarkgrubb.com/diagnostic-tools || Diagnostic Tools: Linux, Mac OS X, Windows ||
 
  * http://www.ibm.com/developerworks/cn/linux/l-cn-perf1/index.html

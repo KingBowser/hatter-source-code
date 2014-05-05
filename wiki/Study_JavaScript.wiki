@@ -80,6 +80,7 @@ _[http://www.ecma-international.org/publications/standards/Ecma-262-arch.htm]_
 || `Moment.js` || http://momentjs.com/ || A javascript date library for parsing, validating, manipulating, and formatting dates. ||
 || `cheet.js` || http://namuol.github.io/cheet.js/ || easy easter eggs (konami code, etc) for your site. ||
 || `rangy` || https://code.google.com/p/rangy/ || A cross-browser JavaScript range and selection library. ||
+|| `JSFuck` || http://www.jsfuck.com/ || JSFuck is an esoteric and educational programming style based on the atomic parts of JavaScript. ||
 
 ===五、游戏===
 || `Phaser` || http://phaser.io/ || Desktop and Mobile HTML5 game framework ||

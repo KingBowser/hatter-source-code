@@ -4,3 +4,4 @@
 || `epublib` || https://github.com/psiegman/epublib || a java library for reading and writing epub files ||
 || `Book Shelf 2.0` || http://book.mvnsearch.org/ || - ||
 || `IT eBooks` || http://www.it-ebooks.info/ || IT eBooks - Free Download IT eBooks ||
+|| `免费的编程中文书籍索引` || https://github.com/justjavac/free-programming-books-zh_CN || - ||

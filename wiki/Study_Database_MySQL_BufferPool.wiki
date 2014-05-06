@@ -14,8 +14,17 @@
 
 LRU链表中的数据分为两部分：Sublist of new和Sublist of old。后者包含访问最近没有访问的数据块（链表越后面的数据块，最近越没有被访问）。默认情况，前者占63%（5/8），后者37%（3/8）。
 
-
 http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/database/mysql/buffer_pool_lru_list.png
+
+当数据块需要从数据文件中读取时，首先会放到old sublist的头部（midpoint）。然后，如果有对这个数据块的访问，那么就将这个数据块放到new sublist的首部。一般来说，一个数据块被取出后，立刻会有读取，也就很快会被放到new sublist的头部。一种糟糕的情况是，如果是mysqldump访问全部数据块，也就会导致所有的数据块被放到new sublist。这样Buffer Pool也就全部被污染了。
+
+2. Buffer Pool中LRU队列如何防止污染
+
+InnoDB Plugin通过引入如下的参数来防止“污染”：
+
+innodb_old_blocks_pct： 控制old sublist在LRU队列的长度
+
+innodb_old_blocks_time：该参数决定了，当Block被插入到midpoint（old sublist）后，必须要在old sublist停留超过innodb_old_blocks_time（ms）时间后，才有可能被转移到new sublist。例如，将innodb_old_blocks_time设置为1000（即1s），当出现Table scan出现时，InnoDB先将数据块载入到midpoint（old sublist）上，程序读取数据块，因为这时，数据块在old sublist中的停留时间还不到innodb_old_blocks_time，所以不会被转移到new sublist中。这就避免了Buffer Pool被污染的情况。更酷的是，这个参数是动态调整的，所以在做意外的Table scan时，动态调整一下该参数就可以了。
 
 
 ===参考资料===

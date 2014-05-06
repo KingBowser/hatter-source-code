@@ -1,6 +1,10 @@
 #summary GPG
 #sidebar TableOfContents
 
+
+http://www.ietf.org/rfc/rfc4880.txt
+
+
 {{{
 gpg -e -r <name> <filename>
 
@@ -28,5 +32,3 @@ gpg --sign-key <name>
 `[2].` https://gpgtools.org/<br>
 `[3].` http://www.pgpi.org/<br>
 `[4].` http://www.gnupg.org/<br>
-
-

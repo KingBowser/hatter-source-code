@@ -2,4 +2,4 @@
 #sidebar TableOfContents
 
 
-`innodb_old_blocks_time` - 配置Buffer Pool在表扫描时是否会被污染，默认是`0`
+`innodb_old_blocks_time` - 配置Buffer Pool在表扫描时是否会被污染，默认是`0`，单位`ms`，设置参考值`1000`

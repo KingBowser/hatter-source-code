@@ -4,6 +4,16 @@
 
 `innodb_old_blocks_time` - 配置Buffer Pool在表扫描时是否会被污染，默认是`0`，单位`ms`，设置参考值`1000`
 
+----
+
+1. Buffer Pool中LRU缺点、细节
+
+这样LRU算法的一个缺点是，如果有某一个查询做了一次全表扫描（例如备份，临时DDL等），都可能会导致整个Buffer Pool中LRU链表中的数据块都被替换了，甚至很多热点数据也会被替换，而这些新进的数据块可能在这一次查询之后就再也不会被读到了。我们也称这种情况为“Buffer Pool被污染”了。
+
+在InnoDB则引入了一些新的机制来避免这种情况。算法仍然是LRU算法，但是加上了中点策略（类似于MyISAM的key buffer中的midpoint strategy）。同时引入了参数innodb_old_blocks_time来控制Buffer Pool不被污染。
+
+LRU链表中的数据分为两部分：Sublist of new和Sublist of old。后者包含访问最近没有访问的数据块（链表越后面的数据块，最近越没有被访问）。默认情况，前者占63%（5/8），后者37%（3/8）。
+
 
 http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/database/mysql/buffer_pool_lru_list.png
 

@@ -33,6 +33,7 @@
   * [Study_Database_MySQL MySQL]
    * [Study_Database_MySQL_Backup Backup]
    * [Study_Database_MySQL_Binlog Binlog]
+   * [Study_Database_MySQL_BufferPool Buffer Pool]
    * [Study_Database_MySQL_Collation Collation]
    * [Study_Database_MySQL_Explain Explain]
    * [Study_Database_MySQL_InnoDB InnoDB]

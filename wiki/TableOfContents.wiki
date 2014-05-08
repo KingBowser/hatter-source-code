@@ -53,6 +53,8 @@
  * [Study_Flash Flash]
  * [Study_GPU GPU]
   * [Study_GPU_GPGPU GPGPU]
+ * [Study_HTTP HTTP]
+  * [Study_HTTP_Nginx Nginx]
  * [Study_Hadoop Hadoop]
   * [Study_Hadoop_Bookkeeper Bookkeeper]
   * [Study_Hadoop_HBase HBase]

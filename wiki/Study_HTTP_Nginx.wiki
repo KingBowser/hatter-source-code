@@ -1,2 +1,12 @@
 #summary Nginx
 #sidebar TableOfContents
+
+Nginx的`proxy_pass`不识别`/etc/hosts`
+
+替代方案：
+You can get around this by installing dnsmasq and setting your resolver to 127.0.0.1. Basically this uses your local DNS as a resolver, but it only resolves what it knows about (among those things is your /etc/hosts) and forwards the rest to your default DNS.
+
+
+
+===参考资料===
+`[1].` http://stackoverflow.com/questions/8305015/when-using-proxy-pass-can-etc-hosts-be-used-to-resolve-domain-names-instead-of/8559797<br>

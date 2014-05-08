@@ -5,27 +5,17 @@
 http://www.ietf.org/rfc/rfc4880.txt
 
 
-{{{
-加密文件 - gpg -e -r <uid> <filename>
+|| 加密文件 || `gpg -e -r <uid> <filename>` ||
+|| 解密文件 || `gpg <filename>` ||
+|| 生成密钥 || `gpg --gen-key` ||
+|| 列出公钥 || `gpg --list-keys / -k` ||
+|| 列出私钥 || `gpg --list-secret-key / -K` ||
+|| 导出公钥 || `gpg --export <uid> -a > <filename.asc>` ||
+|| 导入公钥 || `gpg --import <filename.asc>` ||
+|| 删除公钥 || `gpg --delete-keys <uid>` ||
+|| 删除私钥 || `gpg --delete-secret-keys <uid>` ||
+|| 信任公钥 || `gpg --sign-key <uid>` ||
 
-解密文件 - gpg <filename>
-
-生成密钥 - gpg --gen-key
-
-列出公钥 - gpg --list-keys / -k
-
-列出私钥 - gpg --list-secret-key / -K
-
-导出公钥 - gpg --export <uid> -a > <filename.asc>
-
-导入公钥 - gpg --import <filename.asc>
-
-删除公钥 -  gpg --delete-keys <uid>
-
-删除私钥 - gpg --delete-secret-keys <uid>
-
-信任公钥 - gpg --sign-key <uid>
-}}}
 
 ===参考资料===
 `[1].` http://www.openpgp.org/<br>

@@ -6,11 +6,11 @@ http://www.ietf.org/rfc/rfc4880.txt
 
 
 {{{
-加密文件 - `gpg -e -r <uid> <filename>`
+加密文件 - gpg -e -r <uid> <filename>
 
-解密文件 - `gpg <filename>`
+解密文件 - gpg <filename>
 
-gpg --gen-key
+生成密钥 - gpg --gen-key
 
 gpg --list-keys / -k
 

@@ -6,7 +6,7 @@ http://www.ietf.org/rfc/rfc4880.txt
 
 
 {{{
-gpg -e -r <name> <filename>
+gpg -e -r <uid> <filename>
 
 gpg <filename>
 
@@ -16,15 +16,15 @@ gpg --list-keys / -k
 
 gpg --list-secret-key / -K
 
-gpg --export <name> -a > <filename.asc>
+gpg --export <uid> -a > <filename.asc>
 
 gpg --import <filename.asc>
 
-gpg --delete-keys <name>
+gpg --delete-keys <uid>
 
-gpg --delete-secret-keys <name>
+gpg --delete-secret-keys <uid>
 
-gpg --sign-key <name>
+gpg --sign-key <uid>
 }}}
 
 ===参考资料===

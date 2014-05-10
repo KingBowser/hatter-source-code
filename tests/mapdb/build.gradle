@@ -12,9 +12,9 @@ archivesBaseName = baseProjectName
 sourceCompatibility = 1.5
 targetCompatibility = 1.5
 
-// repositories {
-//   mavenCentral()
-// }
+repositories {
+  mavenCentral()
+}
 
 tasks.withType(Compile) {  
   options.encoding = "UTF-8"  
@@ -202,6 +202,7 @@ dependencies {
     compile files(fileTree(dir: 'lib', includes: ['*.jar'], excludes: ['*-sources.jar', '*-javadoc.jar']))
     // compile files(file(System.properties['java.home'].replaceAll('\\/jre(\\/)?$', "") + "/lib/sa-jdi.jar"))
     // compile files(file(System.properties['java.home'].replaceAll('\\/jre(\\/)?$', "") + "/lib/tools.jar"))
+    compile "org.mapdb:mapdb:1.0.1"
 }
 
 eclipse {

@@ -17,6 +17,7 @@
 || `Riak` || http://basho.com/riak/ || Riak is an open source, distributed database ||
 || `UnQLite` || http://unqlite.org/ || An Embeddable NoSQL Database Engine ||
 || `OpenTSDB` || http://opentsdb.net/ || OpenTSDB is a distributed, scalable Time Series Database (TSDB) written on top of HBase. ||
+|| `MapDB` || http://www.mapdb.org/ || MapDB provides concurrent Maps, Sets and Queues backed by disk storage or off-heap-memory. ||
 
 
 =相关网站=

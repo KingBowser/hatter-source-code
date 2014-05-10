@@ -4,6 +4,16 @@ Array.prototype.each = function(func/*(obj, index)*/) {
   }
 };
 
+$EQUALS = function(o1, o2) {
+  if (o1 == null) { return o2 == null; }
+  return o1.equals(o2);
+};
+
+$STR_EQUALS = function(s1, s2) {
+  if (s1 == null) { return s2 == null; }
+  return $EQUALS(s1 + "", s2 + "");
+};
+
 $EACH = function(obj, func/*obj, index*/) {
   if (obj == null) { return; }
   if (obj instanceof Array) { obj.each(func); return; }

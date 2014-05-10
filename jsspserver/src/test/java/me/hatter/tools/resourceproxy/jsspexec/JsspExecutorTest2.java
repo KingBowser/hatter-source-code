@@ -39,6 +39,8 @@ public class JsspExecutorTest2 {
                  + "==============\n"//
                  + "<%$MAP_EACH(ac.get('mm'), function(k,v){%><%=k%>: <%=v%>\n<%})%>" //
                  + "==============\n"//
+                 + "<%=$EQUALS('a', 'b')%>, "//
+                 + "<%=$STR_EQUALS('a', 'b')%>, "//
         );
         fw.flush();
         fw.close();

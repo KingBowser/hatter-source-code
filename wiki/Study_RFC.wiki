@@ -21,6 +21,9 @@ RFC文件只有新增，不會有取消或中途停止發行的情形。但是�
 ==RFC目录==
 http://www.ietf.org/download/rfc-index.txt
 
+==恶搞RFC==
+http://zh.wikipedia.org/wiki/%E6%83%A1%E6%90%9ERFC
+
 
 ===参考资料===
 `[1].` http://zh.wikipedia.org/wiki/RFC<br>

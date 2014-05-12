@@ -1,6 +1,13 @@
 #summary IO复用
 #sidebar TableOfContents
 
+IO复用的几个具体技术
+ * select
+ * poll
+ * event-based
+  * epoll (Linux)
+  * kqueue (FreeBSD)
+  * ...
 
 
 

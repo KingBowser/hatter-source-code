@@ -138,6 +138,7 @@
    * [Study_DotNet_CSharp CSharp]
    * [Study_DotNet_FSharp FSharp]
   * [Study_Programming_Editor Editor]
+  * [Study_Programming_Fun Fun]
   * [Study_GO Go Lang]
   * [Study_Groovy Groovy]
   * [Study_Haskell Haskell]

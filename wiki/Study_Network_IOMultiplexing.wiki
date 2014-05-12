@@ -5,7 +5,7 @@ IO复用的几个具体技术
  * select
  * poll
  * event-based
-  * epoll (Linux)
+  * epoll (Linux)  - 查看支持最大FD数 `cat /proc/sys/fs/file-max`
   * kqueue (FreeBSD)
   * ...
 

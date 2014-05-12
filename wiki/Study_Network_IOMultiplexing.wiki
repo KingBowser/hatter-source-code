@@ -18,3 +18,5 @@ Related: [Study_OS_Linux_IO]
 
 ===参考资料===
 `[1].` http://daniel.haxx.se/docs/poll-vs-select.html<br>
+`[2].` http://www.cnblogs.com/bigwangdi/p/3182958.html<br>
+`[3].` http://my.oschina.net/zhangjie830621/blog/201386<br>

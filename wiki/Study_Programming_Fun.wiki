@@ -2,6 +2,7 @@
 #sidebar TableOfContents
 
  * https://code.google.com/p/grass-mud-horse/
+ * http://compsoc.dur.ac.uk/whitespace/index.php
  * http://zh.wikipedia.org/wiki/Brainfuck
  * http://www.jsfuck.com/
  * http://vanilla-js.com/

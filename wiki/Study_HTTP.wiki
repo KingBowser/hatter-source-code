@@ -1,2 +1,6 @@
 #summary HTTP
 #sidebar TableOfContents
+
+
+ * https://developers.google.com/speed/pagespeed/
+ * https://developer.yahoo.com/yslow/

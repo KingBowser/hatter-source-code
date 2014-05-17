@@ -6,6 +6,8 @@ public class Page {
 
     private String        path;
     private String        headerCode;
+    private String        indexCode;
+    private String        footerCode;
     private String        summary;
     private String        notice;
     private String        footer;
@@ -26,6 +28,22 @@ public class Page {
 
     public void setHeaderCode(String headerCode) {
         this.headerCode = headerCode;
+    }
+
+    public String getIndexCode() {
+        return indexCode;
+    }
+
+    public void setIndexCode(String indexCode) {
+        this.indexCode = indexCode;
+    }
+
+    public String getFooterCode() {
+        return footerCode;
+    }
+
+    public void setFooterCode(String footerCode) {
+        this.footerCode = footerCode;
     }
 
     public String getSummary() {

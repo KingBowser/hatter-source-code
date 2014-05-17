@@ -59,6 +59,8 @@ public class PageParser {
         Page page = new Page();
         page.setPath(((StringUtil.isEmpty(dirName)) ? "/" : "/" + dirName + "/"));
         page.setHeaderCode(FileUtil.readFileToStringIfExists(new File(dir, "header.code")));
+        page.setIndexCode(FileUtil.readFileToStringIfExists(new File(dir, "index.code")));
+        page.setFooterCode(FileUtil.readFileToStringIfExists(new File(dir, "footer.code")));
         page.setSummary(Markdown4jParser.parseMarkdown(new File(dir, "summary.md")));
         page.setNotice(Markdown4jParser.parseMarkdown(new File(dir, "notice.md")));
         page.setIndex(Markdown4jParser.parseMarkdown(new File(dir, "index.md")));
@@ -66,6 +68,9 @@ public class PageParser {
 
         if (StringUtil.isNotEmpty(dirName) && (page.getHeaderCode() == null)) {
             page.setHeaderCode(FileUtil.readFileToStringIfExists(new File(GlobalVars.getBasePath(), "header.code")));
+        }
+        if (StringUtil.isNotEmpty(dirName) && (page.getFooterCode() == null)) {
+            page.setFooterCode(FileUtil.readFileToStringIfExists(new File(GlobalVars.getBasePath(), "footer.code")));
         }
         if (StringUtil.isNotEmpty(dirName) && (page.getFooter() == null)) {
             page.setFooter(Markdown4jParser.parseMarkdown(new File(GlobalVars.getBasePath(), "footer.md")));

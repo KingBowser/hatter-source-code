@@ -217,6 +217,7 @@
       </div>
       <% } else { %>
         <%!=page.getIndex()%>
+        <%!=page.getIndexCode()%>
       <% } %>
       <!-- DOC BODY END
       ================================================== -->
@@ -259,6 +260,7 @@
         $("#toTop").scrollToTop();
       });
     </script>
+    <%!=page.getFooterCode()%>
   </body>
 </html>
 

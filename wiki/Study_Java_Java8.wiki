@@ -2,8 +2,9 @@
 #sidebar TableOfContents
 
 
- *  java.lang.IllegalArgumentException: Comparison method violates its general contract!
+ *  `java.lang.IllegalArgumentException: Comparison method violates its general contract!`
 `-Djava.util.Arrays.useLegacyMergeSort=true`
+
 
 
 ===参考资料===

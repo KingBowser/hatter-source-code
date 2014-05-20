@@ -2,6 +2,8 @@
 #sidebar TableOfContents
 
 
+`-Djava.util.Arrays.useLegacyMergeSort=true`
+
 
 ===参考资料===
 `[1].` http://openjdk.java.net/projects/jdk8/features<br>

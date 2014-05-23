@@ -2,4 +2,4 @@
 #sidebar TableOfContents
 
 
-==编码规范 by @mdo - [http://codeguide.bootcss.com/]==
+==编码规范 by @mdo - [http://codeguide.bootcss.com/] [http://codeguide.co/]==

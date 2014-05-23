@@ -12,6 +12,7 @@
  * [Study_Android Android]
  * [Study_AugmentedBNF Augmented BNF]
  * [Study_BarCode BarCode]
+ * [Study_BigData BigData]
  * [Study_Browser Browser]
  * [Study_Build Build]
   * [Study_Build_Ant Ant]

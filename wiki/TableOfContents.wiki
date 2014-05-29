@@ -131,6 +131,7 @@
  * [Study_Programming Programming]
   * [Study_Programming_Charset Charset]
   * [Study_Clojure Clojure]
+  * [Study_Cookie Cookie]
   * [Study_CSS CSS]
    * [Study_CSS_Selector Selector]
   * [Study_DotNet DotNet]

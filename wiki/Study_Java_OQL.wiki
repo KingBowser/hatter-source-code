@@ -103,6 +103,8 @@ select unique(x, "it.value") from java.lang.Integer x
   * `toArray(array/enumeration)`
   * `unique(array/enumeration, [expression])`
 
+==MAT OQL [http://help.eclipse.org/indigo/index.jsp?topic=%2Forg.eclipse.mat.ui.help%2Ftasks%2Fqueryingheapobjects.html]==
+
 
 ===参考资料===
 `[1].` jhat/oqlhelp/<br>

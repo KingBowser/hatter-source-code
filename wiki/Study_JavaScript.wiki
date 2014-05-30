@@ -81,6 +81,8 @@ _[http://www.ecma-international.org/publications/standards/Ecma-262-arch.htm]_
 || `cheet.js` || http://namuol.github.io/cheet.js/ || easy easter eggs (konami code, etc) for your site. ||
 || `rangy` || https://code.google.com/p/rangy/ || A cross-browser JavaScript range and selection library. ||
 || `JSFuck` || http://www.jsfuck.com/ || JSFuck is an esoteric and educational programming style based on the atomic parts of JavaScript. ||
+|| `CasperJS` || http://casperjs.org/ || CasperJS is a navigation scripting & testing utility for PhantomJS and SlimerJS written in Javascript ||
+
 
 ===五、游戏===
 || `Phaser` || http://phaser.io/ || Desktop and Mobile HTML5 game framework ||

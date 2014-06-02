@@ -75,6 +75,7 @@
    * [Study_Java_Concurrency_LockFreeHashMap LockFreeHashMap]
   * [Study_Java_Coverage Coverage]
   * [Study_Java_Diagnosis Diagnosis]
+  * [Study_Java_Encrypt Encrypt]
   * [Study_Java_GarbageCollection Garbage Collection]
   * [Study_Java_HotSpot HotSpot]
    * [Study_Java_HotSpot_Arguments Arguments]

@@ -44,3 +44,5 @@ RSA、ElGamal、背包算法、Rabin(Rabin的加密法可以說是RSA方法的�
 http://zh.wikipedia.org/wiki/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%AF%86%E9%92%A5%E5%8A%A0%E5%AF%86<br>
 `[4].` http://en.wikipedia.org/wiki/Public-key_cryptography<br>
 `[5].` http://en.wikipedia.org/wiki/Transport_Layer_Security<br>
+
+SEE ALSO: [Study_Java_Encrypt]

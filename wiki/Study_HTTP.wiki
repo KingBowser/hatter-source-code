@@ -4,3 +4,5 @@
 
  * PageSpeed - https://developers.google.com/speed/pagespeed/
  * YSlow - https://developer.yahoo.com/yslow/
+
+ * OkHttp - http://square.github.io/okhttp/

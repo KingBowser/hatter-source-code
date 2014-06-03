@@ -77,6 +77,7 @@
   * [Study_Java_Diagnosis Diagnosis]
   * [Study_Java_Encrypt Encrypt]
   * [Study_Java_GarbageCollection Garbage Collection]
+  * [Study_Java_HotDeploy Hot Deploy]
   * [Study_Java_HotSpot HotSpot]
    * [Study_Java_HotSpot_Arguments Arguments]
    * [Study_Java_HotSpot_ClassLayout ClassLayout]

@@ -4,7 +4,7 @@
 
 =Collation:=
 {{{
-charset_[chiese|japanese|general|...]_[ci|cs|...]
+charset_[chinese|japanese|general|...]_[ci|cs|...]
 }}}
 
 ====`ci|cs|...`====

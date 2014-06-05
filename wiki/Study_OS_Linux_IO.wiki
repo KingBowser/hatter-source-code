@@ -21,6 +21,10 @@ Linux/Unix的五种I/O模型：
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/linux/io/io_cmp.jpg]
 
 
+==Linux I/O Stack==
+
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/linux/io/linux-io-stack-diagram_v1.0.png]
+
 
 <br>
 Related: [Study_Network_IOMultiplexing]

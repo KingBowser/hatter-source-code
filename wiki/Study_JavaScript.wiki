@@ -53,6 +53,7 @@ _[http://www.ecma-international.org/publications/standards/Ecma-262-arch.htm]_
 || `JSHint` || http://www.jshint.com/ || JSHint is a tool to detect errors and potential problems in JavaScript code ||
 || `/packer/` || http://dean.edwards.name/packer/ || A JavaScript Compressor ||
 || `Beautify` || http://jsbeautifier.org/ || Beautify, unpack or deobfuscate JavaScript and HTML, make JSON/JSONP readable, etc ||
+|| `JS NICE` || http://www.jsnice.org/ || JS NICE: Statistical renaming, Type inference and Deobfuscation ||
 || `JRX` || http://cuneytyilmaz.com/prog/jrx/ || This is a simple JavaScript real-time regular expression evaluator, similar to RX tool of Activestate's Komodo IDE ||
 || `RegexPal` || http://hatter.me/js/regexpal/ || a JavaScript regular expression tester ||
 || `interactive xpath tester` || http://ponderer.org/download/xpath/ || interactive xpath tester ||

@@ -65,6 +65,8 @@
  * [Study_IANA IANA]
  * [Study_IDE IDE]
   * [Study_IDE_Eclipse Eclipse]
+ * [Study_IEEE IEEE]
+ * [Study_ISO ISO]
  * [Study_Java Java]
   * [Study_Java_AtomicInteger AtomicInteger]
   * [Study_Java_BTrace BTrace]

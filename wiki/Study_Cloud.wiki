@@ -9,6 +9,10 @@
 || `WSO2 Stratos` || http://wso2.com/cloud/stratos || WSO2 Stratos is the most complete, enterprise-grade cloud solution. Offering an open Platform as a Service (PaaS), it supports more core services than any other available PaaS today. ||
 || `Cloud Foundry` || http://www.cloudfoundry.com/ || The open platform as a service providing a faster and easier way to build, test, deploy and scale applications. ||
 
+OpenShift
+
+Docker
+
 
  * EC2
  * S3

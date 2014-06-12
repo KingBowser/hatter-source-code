@@ -9,3 +9,6 @@ Google的Sample：[http://developer.chrome.com/extensions/samples.html]
 =FireFox=
 
 =Opera=
+
+
+UserAgent - [http://www.useragentstring.com/pages/useragentstring.php]

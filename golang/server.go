@@ -86,6 +86,7 @@ var hatterMeRedirectDomainSetting = DomainSetting {
 
 var quickDomainSettingMap = map[string]*DomainSetting {
 	"hatter.me": &hatterMeDomainSetting,
+	"www.hatter.me": &hatterMeDomainSetting,
 	"aprilsoft.cn": &hatterMeRedirectDomainSetting,
 	"www.aprilsoft.cn": &hatterMeRedirectDomainSetting,
 	"iwebsky.com": &hatterMeRedirectDomainSetting,

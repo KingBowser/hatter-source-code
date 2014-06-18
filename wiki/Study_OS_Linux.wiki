@@ -162,6 +162,11 @@ curl -O http://ftp.gnu.org/gnu/wget/wget-1.13.4.tar.gz
 cmd; echo $?
 }}}
 
+dstat
+{{{
+$ dstat -cdlmnpsy <SECONDS>
+}}}
+
 {{{
 sar
 top

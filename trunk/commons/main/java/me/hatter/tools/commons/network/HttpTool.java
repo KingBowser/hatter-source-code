@@ -14,16 +14,26 @@ public class HttpTool {
     private String charset             = "UTF-8";
 
     public static HttpTool defaultInstance(String charset) {
-        HttpTool tool = defaultInstance();
-        tool.charset = charset;
-        return tool;
+        return defaultInstance().charset(charset);
     }
 
     public static HttpTool defaultInstance() {
-        HttpTool tool = new HttpTool();
-        tool.connTimeoutInMillis = 10000;
-        tool.readTimeoutInMillis = 100000;
-        return tool;
+        return new HttpTool().connTimeout(10000).readTimeout(100000);
+    }
+
+    public HttpTool connTimeout(int connTimeoutInMillis) {
+        this.connTimeoutInMillis = connTimeoutInMillis;
+        return this;
+    }
+
+    public HttpTool readTimeout(int readTimeoutInMillis) {
+        this.readTimeoutInMillis = readTimeoutInMillis;
+        return this;
+    }
+
+    public HttpTool charset(String charset) {
+        this.charset = charset;
+        return this;
     }
 
     public String readFromURL(String url) {

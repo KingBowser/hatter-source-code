@@ -182,6 +182,7 @@
   * [Study_Security_CVE CVE]
   * [Study_Security_CWE CWE]
   * [Study_Security_EncryptionAlgorithm Encryption Algorithm]
+  * [Study_Security_Mail Mail]
   * [Study_Security_NIST NIST]
   * [Study_Security_OWASP OWASP]
   * [Study_Security_TLS TLS Secure TCP/HTTP]

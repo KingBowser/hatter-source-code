@@ -1,5 +1,6 @@
 #summary Open Source China Study
 #sidebar TableOfContents
 
-=开源力量 [http://www.osforce.cn/]=
-=开源力量Weibo [http://weibo.com/opensourceforce]=
+==开源力量 [http://www.osforce.cn/]==
+==开源力量Weibo [http://weibo.com/opensourceforce]==
+==开源力量Youku [http://www.youku.com/playlist_show/id_20992237.html]==

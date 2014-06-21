@@ -80,6 +80,10 @@ var outofmemoryorgDomainSetting = DomainSetting {
 	LOCATION, "/root/hatter.me/out.ofmemory.org", "utf-8",
 }
 
+var haoshufuclubDomainSetting = DomainSetting {
+	LOCATION, "/root/hatter.me/haoshufu.club", "utf-8",
+}
+
 var hatterMeRedirectDomainSetting = DomainSetting {
 	REDIRECT, "http://hatter.me/", "",
 }
@@ -100,6 +104,8 @@ var quickDomainSettingMap = map[string]*DomainSetting {
 	"jiang.chenhao.me": &jiangchenhaoDomainSetting,
 	"p.rogram.me": &programmeDomainSetting,
 	"out.ofmemory.org": &outofmemoryorgDomainSetting,
+	"haoshufu.club": &haoshufuclubDomainSetting,
+	"www.haoshufu.club": &haoshufuclubDomainSetting,
 	"niu.chenhao.me": &DomainSetting {
 		LOCATION, "/root/niuchenhao", "utf-8",
 	},

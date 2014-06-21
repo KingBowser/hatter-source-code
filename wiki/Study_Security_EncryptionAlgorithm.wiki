@@ -24,7 +24,7 @@ RSA、ElGamal、背包算法、Rabin(Rabin的加密法可以說是RSA方法的�
 || `PolarSSL` || https://polarssl.org/ || SSL Library PolarSSL ||
 || `CyaSSL` || https://github.com/cyassl/cyassl || CyaSSL is a small, fast, portable implementation of TLS/SSL for embedded devices to the cloud. ||
 || `LibReSSL` || http://www.libressl.org/ || LibReSSL is a FREE version of the SSL/TLS protocol forked from OpenSSL ||
-|| `boringssl` || https://boringssl.googlesource.com/boringssl/ || git clone https://boringssl.googlesource.com/boringssl ||
+|| `BoringSSL` || https://boringssl.googlesource.com/boringssl/ || Boring SSL ||
 
 
 =相关软件=

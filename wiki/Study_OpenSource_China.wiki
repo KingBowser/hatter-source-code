@@ -1,2 +1,4 @@
 #summary Open Source China Study
 #sidebar TableOfContents
+
+=开源力量 [http://www.osforce.cn/]=

@@ -23,6 +23,7 @@
  * [Study_Cache Cache]
   * [Study_Cache_CDN CDN]
  * [Study_Cloud Cloud]
+ * [Study_Compile Compile]
  * [Study_CPU CPU]
   * [Study_CPU_ARM ARM]
   * [Study_CPU_Intel Intel]

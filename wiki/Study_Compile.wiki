@@ -1,3 +1,6 @@
 #summary Compile study
 #sidebar TableOfContents
 
+《100个gcc小技巧》  - https://github.com/hellogcc/100-gcc-tips
+
+《100个gdb小技巧》 - https://github.com/hellogcc/100-gdb-tips

@@ -2,6 +2,7 @@
  * [Study_List Main Page]
   * [Study_List_Blogs Blogs]
   * [Study_List_Devloper Developer]
+ * [Study_AJAX AJAX]
  * [Study_Algorithm Algorithm]
   * [Study_Algorithm_Recommendation Recommendation]
   * [Study_Algorithm_MachineLearning Machine learning]

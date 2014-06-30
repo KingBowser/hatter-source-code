@@ -83,6 +83,7 @@ _[http://www.ecma-international.org/publications/standards/Ecma-262-arch.htm]_
 || `rangy` || https://code.google.com/p/rangy/ || A cross-browser JavaScript range and selection library. ||
 || `JSFuck` || http://www.jsfuck.com/ || JSFuck is an esoteric and educational programming style based on the atomic parts of JavaScript. ||
 || `CasperJS` || http://casperjs.org/ || CasperJS is a navigation scripting & testing utility for PhantomJS and SlimerJS written in Javascript ||
+|| `JsFramework` || http://jsframework.com/ || JsFramework is an object oriented JavaScript library with a programming model similar to the Microsoft .NET Framework ||
 
 
 ===五、游戏===

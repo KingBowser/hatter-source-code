@@ -3,13 +3,13 @@
 
 =AJAX=
 
-Asynchronous JavaScript and XML
+`Asynchronous JavaScript and XML`
 
 
 
 =PJAX=
 
-ajax + history.pushState = pjax
+`ajax + history.pushState = pjax`
 
  * http://pjax.heroku.com/
  * https://github.com/defunkt/jquery-pjax

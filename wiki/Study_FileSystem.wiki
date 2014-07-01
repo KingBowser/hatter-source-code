@@ -1,6 +1,13 @@
 #summary File System
 #sidebar TableOfContents
 
+=分布式文件系统=
 
  * MooseFS
   * http://www.moosefs.org/ - MooseFS is a fault tolerant, network distributed file system.
+
+
+=本地文件系统=
+ * FAT
+ * EXT2/3
+ * ZFS

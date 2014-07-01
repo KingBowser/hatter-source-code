@@ -52,6 +52,10 @@ Firebird is a relational database offering many ANSI SQL standard features that 
 http://neo4j.org/<br>
 Neo4j is a high-performance, NOSQL graph database with all the features of a mature and robust database. 
 
+==cayley==
+https://github.com/google/cayley<br>
+An open-source graph database.
+
 ==OpenTSDB==
 http://opentsdb.net/<br>
 OpenTSDB is a distributed, scalable Time Series Database (TSDB) written on top of HBase.

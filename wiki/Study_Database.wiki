@@ -18,7 +18,7 @@ The MySQL database has become the world's most popular open source database beca
 || `Percona Server` || http://www.percona.com/software/percona-server/ || Percona Server is an enhanced drop-in replacement for MySQL ||
 || `OurDelta` || http://ourdelta.org/ || OurDelta - Enhanced, packaged convenience for MySQL and MariaDB ||
 
-SEE ALSO: [Study_Database_MySQL_Branch]
+_SEE ALSO: [Study_Database_MySQL_Branch]_
 
 ==PostgreSQL==
 http://www.postgresql.org/<br>

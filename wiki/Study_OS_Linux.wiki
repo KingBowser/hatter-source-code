@@ -236,6 +236,9 @@ ps eww -p PID
 
 {{{
 sed 's/aaa/bbb/g' file.name.txt 
+
+// replace in files
+sed -i 's/old-word/new-word/g' *.txt
 }}}
 
 http://www.bsd.org/

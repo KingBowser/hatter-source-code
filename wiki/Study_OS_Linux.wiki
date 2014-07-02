@@ -266,3 +266,4 @@ atop  http://www.atoptool.nl/
 `[4].` http://www.aqee.net/what-are-the-most-useful-swiss-army-knife-one-liners-on-unix/<br>
 `[5].` http://linux.cn/portal-view-aid-211.html<br>
 `[6].` http://weibo.com/jiangbinglover<br>
+`[7].` http://www.cyberciti.biz/faq/unix-linux-replace-string-words-in-many-files/<br>

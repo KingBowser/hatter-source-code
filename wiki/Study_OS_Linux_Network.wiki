@@ -1,6 +1,9 @@
 #summary Linux Network Study
 #sidebar TableOfContents
 
+|| *Command* || *Description* ||
+|| `netstat -tpln` || 检查本地监听端口 ||
+
 
 
 _SEE ALSO: [Study_Network] [Study_Java_HotSpot_Network]_

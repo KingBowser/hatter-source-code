@@ -5,3 +5,7 @@
 
 || `ECMA262` || ECMAScript® Language Specification ||
 || `ECMA408` || Dart Programming Language Specification ||
+
+
+===参考资料===
+`[1].` http://www.ecma-international.org/publications/standards/Standard.htm<br>

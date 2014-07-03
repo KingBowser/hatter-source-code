@@ -4,6 +4,14 @@
 || *Command* || *Description* ||
 || `netstat -tpln` || 检查本地监听端口 ||
 
+----
+
+|| *Parameter* || *Description* ||
+|| `t` || tcp ||
+|| `p` || 显示进程 ||
+|| `l` || 处于监听的端口 ||
+|| `n` || 数字显示ip、端口 ||
+
 
 
 _SEE ALSO: [Study_Network] [Study_Java_HotSpot_Network]_

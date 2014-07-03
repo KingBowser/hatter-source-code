@@ -807,6 +807,9 @@ func HandleRequest(w http.ResponseWriter, r *http.Request) {
 	if r.Referer() != "" {
 		log.Println("---- Referer:", r.Referer())
 	}
+	if r.Header.Get("User-Agent") != "" {
+		log.Println("---- User-Agent:", r.Header.Get("User-Agent"))
+	}
 	if r.RemoteAddr != "" {
 		log.Println("---- Remote addr:", lib.GetRemoteAddrIP(r.RemoteAddr))
 	}

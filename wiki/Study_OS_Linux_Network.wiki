@@ -15,6 +15,10 @@
 
 <br>
 
+`/etc/services` 文件存放：端口和服务(字符串端口)的对应关系
+
+<br>
+
 
 _SEE ALSO: [Study_Network] [Study_Java_HotSpot_Network]_
 

@@ -6,6 +6,8 @@
 
 ==[http://www.progdoc.de/papers/Jax2012/jax2012.html#(1) OpenJDK JVM Internals]==
 
+==[http://openjdk.java.net/groups/hotspot/docs/RuntimeOverview.html Hotspot Runtime Overview]==
+
 ==[HotSpot_Profiler HotSpot Collections]==
 
  * Check out HotSpot:

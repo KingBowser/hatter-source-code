@@ -3,7 +3,7 @@
 
 || *Command* || *Description* ||
 || `netstat -tpln` || 检查本地监听端口 ||
-
+|| `netstat -tpn | grep ESTABLISHED` || 检查已建立的连接信息 ||
 
 
 || *Parameter* || *Description* ||

@@ -4,3 +4,7 @@
 
 
 _SEE ALSO: [Study_Network] [Study_Java_HotSpot_Network]_
+
+
+===参考资料===
+`[1].` http://blog.163.com/xychenbaihu@yeah/blog/static/132229655201222502510543<br>

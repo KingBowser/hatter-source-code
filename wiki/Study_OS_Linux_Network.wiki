@@ -4,6 +4,7 @@
 || *Command* || *Description* ||
 || `netstat -tpln` || 检查本地监听端口 ||
 || `netstat -tpn | grep ESTABLISHED` || 检查已建立的连接信息 ||
+|| `netstat -i` || 查看丢包，网络是否繁忙，错误包是否严重 ||
 
 
 || *Parameter* || *Description* ||

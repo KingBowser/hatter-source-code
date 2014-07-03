@@ -3,5 +3,5 @@
 
 [http://www.ecma-international.org/]
 
-|| ECMA262 || ECMAScript® Language Specification ||
-|| ECMA408 || Dart Programming Language Specification ||
+|| `ECMA262` || ECMAScript® Language Specification ||
+|| `ECMA408` || Dart Programming Language Specification ||

@@ -9,8 +9,8 @@ def jarManifestMainClass = 'me.hatter.tools.xxx.Main'
 def installTargetBin = '/usr/local/bin/'
 
 archivesBaseName = baseProjectName
-sourceCompatibility = 1.5
-targetCompatibility = 1.5
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 // repositories {
 //   mavenCentral()

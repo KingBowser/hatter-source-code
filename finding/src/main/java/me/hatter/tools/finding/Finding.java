@@ -297,7 +297,7 @@ public class Finding {
 
             private String readResourceContent(Resource resource) {
                 String ext = StringUtil.substringAfterLast(resource.getResId(), ".");
-                if ("class".equals(ext.toLowerCase())) {
+                if ((ext != null) && "class".equals(ext.toLowerCase())) {
                     byte[] bytes = IOUtil.readToBytes(resource.openInputStream());
                     ClassReader classReader = new ClassReader(bytes);
                     return readClassContent(classReader);

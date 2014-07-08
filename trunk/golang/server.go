@@ -657,10 +657,11 @@ func HandleProxyDomainURL(w http.ResponseWriter, r *http.Request, proxyFullURL s
 	if userAgent != ""  && (strings.Contains(userAgent, "Baiduspider") || 
 	                        strings.Contains(userAgent, "EasouSpider") || 
 						   strings.Contains(userAgent, "360Spider") || 
-						   strings.Contains(userAgent, "Sogou web spider")) {
+						   strings.Contains(userAgent, "Sogou web spider") || 
+						   strings.Contains(userAgent, "Googlebot")) {
 		w.WriteHeader(403)
 		fmt.Fprint(w, "Blocked UA:", userAgent)
-		log.Println("Blocked UA: ", userAgent)
+		log.Println("//// Blocked UA: ", userAgent)
 		return true
 	}
 	

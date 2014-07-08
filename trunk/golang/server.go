@@ -653,13 +653,14 @@ func HandleProxyDomainSetting(w http.ResponseWriter, r *http.Request, setting *D
 func HandleProxyDomainURL(w http.ResponseWriter, r *http.Request, proxyFullURL string) bool {
 	log.Println("Proxy to url:", proxyFullURL)
 	
-	if r.Header.Get("User-Agent") != ""  && (strings.Contains(r.Header.Get("User-Agent"), "Baiduspider")
-	                                      || strings.Contains(r.Header.Get("User-Agent"), "EasouSpider")
-	                                      || strings.Contains(r.Header.Get("User-Agent"), "360Spider")
-	                                      || strings.Contains(r.Header.Get("User-Agent"), "Sogou web spider")) {
+	userAgent := r.Header.Get("User-Agent")
+	if userAgent != ""  && (strings.Contains(userAgent, "Baiduspider") || 
+	                        strings.Contains(userAgent, "EasouSpider") || 
+						   strings.Contains(userAgent, "360Spider") || 
+						   strings.Contains(userAgent, "Sogou web spider")) {
 		w.WriteHeader(403)
-		fmt.Fprint(w, "Blocked UA:", r.Header.Get("User-Agent"))
-		log.Println("Blocked UA: ", r.Header.Get("User-Agent"))
+		fmt.Fprint(w, "Blocked UA:", userAgent)
+		log.Println("Blocked UA: ", userAgent)
 		return true
 	}
 	

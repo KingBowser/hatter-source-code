@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 
+import me.hatter.tools.commons.function.IndexedProcedure;
+
 public class FileBufferedReader extends BufferedReader {
 
     public FileBufferedReader(File file) throws UnsupportedEncodingException, FileNotFoundException {
@@ -23,6 +25,13 @@ public class FileBufferedReader extends BufferedReader {
             return super.readLine();
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public void each(IndexedProcedure<String> indexedProcedure) {
+        int i = 0;
+        for (String line; ((line = readOneLine()) != null); i++) {
+            indexedProcedure.apply(line, i);
         }
     }
 }

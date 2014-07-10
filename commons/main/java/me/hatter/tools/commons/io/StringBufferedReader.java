@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.StringReader;
 
 import me.hatter.tools.commons.function.IndexedProcedure;
+import me.hatter.tools.commons.function.Procedure;
 
 public class StringBufferedReader extends BufferedReader {
 
@@ -17,6 +18,12 @@ public class StringBufferedReader extends BufferedReader {
             return super.readLine();
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public void each(Procedure<String> procedure) {
+        for (String line; ((line = readOneLine()) != null);) {
+            procedure.apply(line);
         }
     }
 

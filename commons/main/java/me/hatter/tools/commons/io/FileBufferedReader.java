@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 
 import me.hatter.tools.commons.function.IndexedProcedure;
+import me.hatter.tools.commons.function.Procedure;
 
 public class FileBufferedReader extends BufferedReader {
 
@@ -25,6 +26,12 @@ public class FileBufferedReader extends BufferedReader {
             return super.readLine();
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public void each(Procedure<String> procedure) {
+        for (String line; ((line = readOneLine()) != null);) {
+            procedure.apply(line);
         }
     }
 

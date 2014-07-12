@@ -64,6 +64,18 @@ public class IteratorTool<T> {
         return t;
     }
 
+    public List<T> asList() {
+        final List<T> list = new ArrayList<T>();
+        each(new Procedure<T>() {
+
+            @Override
+            public void apply(T obj) {
+                list.add(obj);
+            }
+        });
+        return list;
+    }
+
     public void each(Procedure<T> procedure) {
         while (iterator.hasNext()) {
             procedure.apply(iterator.next());

@@ -14,15 +14,13 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import me.hatter.tools.commons.assertion.AssertUtil;
+import me.hatter.tools.commons.function.Filter;
+import me.hatter.tools.commons.function.Filters.AndFilter;
+import me.hatter.tools.commons.function.Filters.OrFilter;
 import me.hatter.tools.commons.reflect.ReflectUtil;
 import me.hatter.tools.commons.string.StringUtil;
 
 public class CollectionUtil {
-
-    public interface Filter<T> {
-
-        boolean accept(T object);
-    }
 
     public interface Transformer<T, D> {
 
@@ -48,37 +46,6 @@ public class CollectionUtil {
         private static final long serialVersionUID = 1L;
     }
 
-    public static class Filters {
-
-        public static <T> Filter<T> objectNotNull() {
-            return new NotNullFilter<T>();
-        }
-
-        public static Filter<String> stringNotEmpty() {
-            return new StringNotEmpty();
-        }
-
-        public static <T> Filter<T> trueFilter() {
-            return new TrueFilter<T>();
-        }
-
-        public static <T> Filter<T> falseFilter() {
-            return new FalseFilter<T>();
-        }
-
-//      @SafeVarargs
-      @SuppressWarnings("unchecked")
-        public static <T> Filter<T> andFilter(Filter<T>... filters) {
-            return new AndFilter<T>(filters);
-        }
-
-//      @SafeVarargs
-      @SuppressWarnings("unchecked")
-        public static <T> Filter<T> orFilter(Filter<T>... filters) {
-            return new OrFilter<T>(filters);
-        }
-    }
-
     public static class Transformers {
 
         public static Transformer<String, String> stringToUpperCase() {
@@ -91,80 +58,6 @@ public class CollectionUtil {
 
         public static Transformer<String, String> stringTrim() {
             return new StringTrim();
-        }
-    }
-
-    public static class NotNullFilter<T> implements Filter<T> {
-
-        public boolean accept(T object) {
-            return (object != null);
-        }
-    }
-
-    public static class StringNotEmpty implements Filter<String> {
-
-        public boolean accept(String object) {
-            return ((object != null) && (!object.isEmpty()));
-        }
-    }
-
-    public static class TrueFilter<T> implements Filter<T> {
-
-        public boolean accept(T object) {
-            return true;
-        }
-    }
-
-    public static class FalseFilter<T> implements Filter<T> {
-
-        public boolean accept(T object) {
-            return false;
-        }
-    }
-
-    public static class AndFilter<T> implements Filter<T> {
-
-        private Filter<T>[] filters;
-
-//      @SafeVarargs
-      @SuppressWarnings("unchecked")
-        public AndFilter(Filter<T>... filters) {
-            this.filters = filters;
-        }
-
-        public boolean accept(T object) {
-            if ((filters == null) || (filters.length == 0)) {
-                return true;
-            }
-            for (Filter<T> filter : filters) {
-                if (!filter.accept(object)) {
-                    return false;
-                }
-            }
-            return true;
-        }
-    }
-
-    public static class OrFilter<T> implements Filter<T> {
-
-        private Filter<T>[] filters;
-
-//      @SafeVarargs
-      @SuppressWarnings("unchecked")
-        public OrFilter(Filter<T>... filters) {
-            this.filters = filters;
-        }
-
-        public boolean accept(T object) {
-            if ((filters == null) || (filters.length == 0)) {
-                return true;
-            }
-            for (Filter<T> filter : filters) {
-                if (filter.accept(object)) {
-                    return true;
-                }
-            }
-            return false;
         }
     }
 
@@ -255,7 +148,7 @@ public class CollectionUtil {
 
     public static <T> List<T> minus(Collection<T> list, Collection<T> minusList) {
         final Set<T> minusSet = new HashSet<T>(minusList);
-        return filter(list, new CollectionUtil.Filter<T>() {
+        return filter(list, new Filter<T>() {
 
             @Override
             public boolean accept(T object) {
@@ -280,14 +173,14 @@ public class CollectionUtil {
         return result;
     }
 
-//    @SafeVarargs
+    // @SafeVarargs
     @SuppressWarnings("unchecked")
     public static <T> List<T> filterAll(Collection<T> list, Filter<T>... filters) {
         return filter(list, new AndFilter<T>(filters));
     }
 
-//  @SafeVarargs
-  @SuppressWarnings("unchecked")
+    // @SafeVarargs
+    @SuppressWarnings("unchecked")
     public static <T> List<T> filterAny(Collection<T> list, Filter<T>... filters) {
         return filter(list, new OrFilter<T>(filters));
     }
@@ -302,8 +195,8 @@ public class CollectionUtil {
         return result;
     }
 
-//  @SafeVarargs
-  @SuppressWarnings("unchecked")
+    // @SafeVarargs
+    @SuppressWarnings("unchecked")
     public static <T> List<T> transformAll(Collection<T> list, Transformer<T, T>... transformers) {
         if ((transformers != null) && (transformers.length > 0)) {
             for (Transformer<T, T> transformer : transformers) {
@@ -461,8 +354,8 @@ public class CollectionUtil {
         return (coll instanceof TreeSet) ? ((TreeSet<T>) coll) : new TreeSet<T>(coll);
     }
 
-//  @SafeVarargs
-  @SuppressWarnings("unchecked")
+    // @SafeVarargs
+    @SuppressWarnings("unchecked")
     public static <T> Set<T> asSet(T obj, T... objects) {
         Set<T> set = new HashSet<T>(1 + objects.length);
         set.add(obj);
@@ -494,8 +387,8 @@ public class CollectionUtil {
         return (coll instanceof LinkedList) ? ((LinkedList<T>) coll) : new LinkedList<T>(coll);
     }
 
-//  @SafeVarargs
-  @SuppressWarnings("unchecked")
+    // @SafeVarargs
+    @SuppressWarnings("unchecked")
     public static <T> List<T> asList(T obj, T... objects) {
         List<T> list = new ArrayList<T>(1 + objects.length);
         list.add(obj);

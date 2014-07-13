@@ -59,7 +59,7 @@ public class IteratorTool<T> {
     public T reduce(final BiFunction<T, T, T> biFunc) {
         T t = iterator.hasNext() ? iterator.next() : null;
         while (iterator.hasNext()) {
-            t = biFunc.apply(iterator.next(), t);
+            t = biFunc.apply(t, iterator.next());
         }
         return t;
     }

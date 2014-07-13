@@ -3,9 +3,10 @@ package me.hatter.tools.commons.io;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.Iterator;
 
-import me.hatter.tools.commons.function.IndexedProcedure;
-import me.hatter.tools.commons.function.Procedure;
+import me.hatter.tools.commons.assertion.AssertUtil;
+import me.hatter.tools.commons.collection.IteratorTool;
 
 public class StringBufferedReader extends BufferedReader {
 
@@ -21,16 +22,28 @@ public class StringBufferedReader extends BufferedReader {
         }
     }
 
-    public void each(Procedure<String> procedure) {
-        for (String line; ((line = readOneLine()) != null);) {
-            procedure.apply(line);
-        }
-    }
+    public IteratorTool<String> toIteratorTool() {
+        return IteratorTool.from(new Iterator<String>() {
 
-    public void each(IndexedProcedure<String> indexedProcedure) {
-        int i = 0;
-        for (String line; ((line = readOneLine()) != null); i++) {
-            indexedProcedure.apply(line, i);
-        }
+            private String nextLine = readOneLine();
+
+            @Override
+            public boolean hasNext() {
+                return (nextLine != null);
+            }
+
+            @Override
+            public String next() {
+                AssertUtil.isTrue(hasNext());
+                String line = nextLine;
+                nextLine = readOneLine();
+                return line;
+            }
+
+            @Override
+            public void remove() {
+                throw new IllegalStateException(this.getClass().getSimpleName() + " has no remove()");
+            }
+        });
     }
 }

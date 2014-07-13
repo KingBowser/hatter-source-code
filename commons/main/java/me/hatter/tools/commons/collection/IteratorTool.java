@@ -71,6 +71,32 @@ public class IteratorTool<T> {
         return t;
     }
 
+    public Integer sumAsInteger() {
+        return (Integer) reduce(new BiFunction<T, T, T>() {
+
+            @Override
+            @SuppressWarnings("unchecked")
+            public T apply(T objT, T objU) {
+                Integer a = (objT == null) ? 0 : ((Integer) objT);
+                Integer b = (objU == null) ? 0 : ((Integer) objU);
+                return (T) (Integer) (a + b);
+            }
+        });
+    }
+
+    public Long sumAsLong() {
+        return (Long) reduce(new BiFunction<T, T, T>() {
+
+            @Override
+            @SuppressWarnings("unchecked")
+            public T apply(T objT, T objU) {
+                Long a = (objT == null) ? 0L : ((Long) objT);
+                Long b = (objU == null) ? 0L : ((Long) objU);
+                return (T) (Long) (a + b);
+            }
+        });
+    }
+
     public List<T> asList() {
         final List<T> list = new ArrayList<T>();
         each(new Procedure<T>() {

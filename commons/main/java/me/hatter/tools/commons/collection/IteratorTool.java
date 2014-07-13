@@ -1,14 +1,21 @@
 package me.hatter.tools.commons.collection;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
+import me.hatter.tools.commons.assertion.AssertUtil;
 import me.hatter.tools.commons.function.BiFunction;
 import me.hatter.tools.commons.function.Filter;
 import me.hatter.tools.commons.function.Function;
 import me.hatter.tools.commons.function.IndexedProcedure;
 import me.hatter.tools.commons.function.Procedure;
+import me.hatter.tools.commons.map.CountMap;
 
 public class IteratorTool<T> {
 
@@ -74,6 +81,56 @@ public class IteratorTool<T> {
             }
         });
         return list;
+    }
+
+    public Set<T> asSet() {
+        final Set<T> set = new HashSet<T>();
+        each(new Procedure<T>() {
+
+            @Override
+            public void apply(T obj) {
+                set.add(obj);
+            }
+        });
+        return set;
+    }
+
+    public IteratorTool<T> distinct() {
+        final LinkedHashSet<T> set = new LinkedHashSet<T>();
+        each(new Procedure<T>() {
+
+            @Override
+            public void apply(T obj) {
+                set.add(obj);
+            }
+        });
+        return IteratorTool.from(set);
+    }
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    public IteratorTool<T> asSorted() {
+        List list = (List) asList();
+        AssertUtil.isTrue(list.get(0) instanceof Comparator);
+        Collections.sort((List<Comparable>) list);
+        return IteratorTool.from((List<T>) list);
+    }
+
+    public IteratorTool<T> asSorted(Comparator<T> comparator) {
+        List<T> list = asList();
+        Collections.sort(list, comparator);
+        return IteratorTool.from(list);
+    }
+
+    public CountMap<T> count() {
+        final CountMap<T> countMap = new CountMap<T>();
+        each(new Procedure<T>() {
+
+            @Override
+            public void apply(T obj) {
+                countMap.incrementAndGet(obj);
+            }
+        });
+        return countMap;
     }
 
     public void each(Procedure<T> procedure) {

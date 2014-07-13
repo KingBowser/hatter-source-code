@@ -136,7 +136,7 @@ public class IteratorTool<T> {
     @SuppressWarnings({ "unchecked", "rawtypes" })
     public IteratorTool<T> asSorted() {
         List list = (List) asList();
-        AssertUtil.isTrue(list.get(0) instanceof Comparator);
+        AssertUtil.isTrue(list.get(0) instanceof Comparable);
         Collections.sort((List<Comparable>) list);
         return IteratorTool.from((List<T>) list);
     }

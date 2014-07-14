@@ -12,6 +12,8 @@ import me.hatter.tools.commons.io.IOUtil;
 
 public class FileUtil {
 
+    @Deprecated
+    // Environment.LINE_SEPARATOR
     public static final String SEPARATER = File.separator;
 
     public static void writeStringToFile(File file, String content) {

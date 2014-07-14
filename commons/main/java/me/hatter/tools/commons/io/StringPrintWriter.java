@@ -18,6 +18,16 @@ public class StringPrintWriter extends PrintWriter {
         return (StringWriter) out;
     }
 
+    public StringPrintWriter doPrint(String str) {
+        this.print(str);
+        return this;
+    }
+
+    public StringPrintWriter doPrintln(String str) {
+        this.println(str);
+        return this;
+    }
+
     public String toString() {
         return getWriter().toString();
     }

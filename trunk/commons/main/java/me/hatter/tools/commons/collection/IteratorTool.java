@@ -147,7 +147,7 @@ public class IteratorTool<T> {
         return IteratorTool.from(list);
     }
 
-    public CountMap<T> count() {
+    public CountMap<T> toCountMap() {
         final CountMap<T> countMap = new CountMap<T>();
         each(new Procedure<T>() {
 

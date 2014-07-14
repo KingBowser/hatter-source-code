@@ -108,11 +108,11 @@ public class CollectionUtil {
         }
     }
 
-    public static <T> IteratorTool<T> from(Iterator<T> iterator) {
+    public static <T> IteratorTool<T> it(Iterator<T> iterator) {
         return new IteratorTool<T>(iterator);
     }
 
-    public static <T> IteratorTool<T> from(Iterable<T> iterable) {
+    public static <T> IteratorTool<T> it(Iterable<T> iterable) {
         return new IteratorTool<T>(iterable);
     }
 

@@ -1,5 +1,7 @@
 package me.hatter.tools.commons.map;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -7,6 +9,9 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicLong;
 
 import me.hatter.tools.commons.collection.IteratorTool;
+import me.hatter.tools.commons.environment.Environment;
+import me.hatter.tools.commons.function.Procedure;
+import me.hatter.tools.commons.string.StringUtil;
 
 public class CountMap<T> {
 
@@ -42,6 +47,24 @@ public class CountMap<T> {
 
     public IteratorTool<Entry<T, AtomicLong>> toEntrySetIteratorTool() {
         return IteratorTool.from(map.entrySet());
+    }
+
+    public String dump(final String format) {
+        final List<String> list = new ArrayList<String>();
+        toEntrySetIteratorTool().each(new Procedure<Entry<T, AtomicLong>>() {
+
+            @Override
+            public void apply(Entry<T, AtomicLong> obj) {
+                String l = format.replace("$KEY", String.valueOf(obj.getKey()));
+                l = l.replace("$VALUE", String.valueOf(obj.getValue().get()));
+                list.add(l);
+            }
+        });
+        return StringUtil.join(list, Environment.LINE_SEPARATOR);
+    }
+
+    public void dumpToStdout(String format) {
+        System.out.println(dump(format));
     }
 
     public ConcurrentMap<T, AtomicLong> getOriMap() {

@@ -13,6 +13,7 @@ import me.hatter.tools.commons.assertion.AssertUtil;
 import me.hatter.tools.commons.function.BiFunction;
 import me.hatter.tools.commons.function.Filter;
 import me.hatter.tools.commons.function.Function;
+import me.hatter.tools.commons.function.IndexedFunction;
 import me.hatter.tools.commons.function.IndexedProcedure;
 import me.hatter.tools.commons.function.Procedure;
 import me.hatter.tools.commons.map.CountMap;
@@ -58,6 +59,18 @@ public class IteratorTool<T> {
             @Override
             public void apply(T obj) {
                 list.add(func.apply(obj));
+            }
+        });
+        return from(list);
+    }
+
+    public <U> IteratorTool<U> map(final IndexedFunction<T, U> func) {
+        final List<U> list = new ArrayList<U>();
+        each(new IndexedProcedure<T>() {
+
+            @Override
+            public void apply(T obj, int index) {
+                list.add(func.apply(obj, index));
             }
         });
         return from(list);

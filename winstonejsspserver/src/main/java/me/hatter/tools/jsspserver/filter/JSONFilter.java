@@ -87,6 +87,10 @@ public class JSONFilter implements Filter {
                     String callback = StringUtil.trimToNull(httpRequest.getParameter("callback"));
                     if (callback != null) {
                         callback = callback.replaceAll("[^a-zA-Z0-9_.]", "_");
+                        if (callback.length() > 80) {
+                            // protect from: http://miki.it/blog/2014/7/8/abusing-jsonp-with-rosetta-flash/
+                            callback = callback.substring(0, 80);
+                        }
                     }
                     BufferWriter bw = new BufferWriter();
                     Object jsonp = context.get(JSON_KEY);

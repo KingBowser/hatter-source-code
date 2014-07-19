@@ -1,6 +1,7 @@
 package me.hatter.tools.commons.collection;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
@@ -170,6 +171,17 @@ public class IteratorTool<T> {
         return collection;
     }
 
+    public IteratorTool<T> reverse() {
+        List<T> list = asList();
+        for (int i = 0; i < (list.size() / 2); i++) {
+            T a = list.get(i);
+            T b = list.get(list.size() - i - 1);
+            list.set(i, b);
+            list.set(list.size() - i - 1, a);
+        }
+        return from(list);
+    }
+
     public IteratorTool<T> distinct() {
         return IteratorTool.from(asSet());
     }
@@ -189,9 +201,24 @@ public class IteratorTool<T> {
         });
     }
 
+    public static void main(String[] args) {
+        CollectionUtil.it(Arrays.asList(1, 2, 3, 4)).skip(1).print();
+    }
+
+    public IteratorTool<T> skip(final int count) {
+        AssertUtil.isTrue(count >= 0);
+        return filter(new IndexedFilter<T>() {
+
+            @Override
+            public boolean accept(T obj, int index) {
+                return (index >= count);
+            }
+        });
+    }
+
     @SuppressWarnings("unchecked")
     public IteratorTool<T> tail(final int count) {
-        AssertUtil.isTrue(count > 0);
+        AssertUtil.isTrue(count >= 0);
         final Object[] array = new Object[count];
         final AtomicInteger i = new AtomicInteger(0);
         final AtomicInteger realCount = new AtomicInteger(0);
@@ -256,5 +283,35 @@ public class IteratorTool<T> {
         for (int i = 0; iterator.hasNext(); i++) {
             indexedProcedure.apply(iterator.next(), i);
         }
+    }
+
+    public void print() {
+        each(new Procedure<T>() {
+
+            @Override
+            public void apply(T obj) {
+                System.out.println(obj);
+            }
+        });
+    }
+
+    public void print(final Function<T, String> function) {
+        each(new Procedure<T>() {
+
+            @Override
+            public void apply(T obj) {
+                System.out.println(function.apply(obj));
+            }
+        });
+    }
+
+    public void print(final IndexedFunction<T, String> indexedFunction) {
+        each(new IndexedProcedure<T>() {
+
+            @Override
+            public void apply(T obj, int index) {
+                System.out.println(indexedFunction.apply(obj, index));
+            }
+        });
     }
 }

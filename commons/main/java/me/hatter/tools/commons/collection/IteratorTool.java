@@ -1,7 +1,6 @@
 package me.hatter.tools.commons.collection;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
@@ -191,7 +190,7 @@ public class IteratorTool<T> {
     }
 
     public IteratorTool<T> head(final int count) {
-        AssertUtil.isTrue(count > 0);
+        AssertUtil.isTrue(count >= 0);
         return filter(new IndexedFilter<T>() {
 
             @Override
@@ -199,10 +198,6 @@ public class IteratorTool<T> {
                 return (index < count);
             }
         });
-    }
-
-    public static void main(String[] args) {
-        CollectionUtil.it(Arrays.asList(1, 2, 3, 4)).skip(1).print();
     }
 
     public IteratorTool<T> skip(final int count) {
@@ -219,6 +214,9 @@ public class IteratorTool<T> {
     @SuppressWarnings("unchecked")
     public IteratorTool<T> tail(final int count) {
         AssertUtil.isTrue(count >= 0);
+        if (count == 0) {
+            return from(new ArrayList<T>());
+        }
         final Object[] array = new Object[count];
         final AtomicInteger i = new AtomicInteger(0);
         final AtomicInteger realCount = new AtomicInteger(0);

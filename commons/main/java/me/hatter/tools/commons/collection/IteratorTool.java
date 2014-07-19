@@ -1,18 +1,23 @@
 package me.hatter.tools.commons.collection;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import me.hatter.tools.commons.assertion.AssertUtil;
 import me.hatter.tools.commons.function.BiFunction;
 import me.hatter.tools.commons.function.Filter;
 import me.hatter.tools.commons.function.Function;
+import me.hatter.tools.commons.function.IndexedFilter;
 import me.hatter.tools.commons.function.IndexedFunction;
 import me.hatter.tools.commons.function.IndexedProcedure;
 import me.hatter.tools.commons.function.Procedure;
@@ -35,8 +40,10 @@ public class IteratorTool<T> {
     }
 
     public IteratorTool(Iterable<T> iterable) {
-        this.iterator = iterable.iterator();
+        this(iterable.iterator());
     }
+
+    // ========================================================================
 
     public IteratorTool<T> filter(final Filter<T> filter) {
         final List<T> list = new ArrayList<T>();
@@ -45,6 +52,20 @@ public class IteratorTool<T> {
             @Override
             public void apply(T obj) {
                 if (filter.accept(obj)) {
+                    list.add(obj);
+                }
+            }
+        });
+        return from(list);
+    }
+
+    public IteratorTool<T> filter(final IndexedFilter<T> filter) {
+        final List<T> list = new ArrayList<T>();
+        each(new IndexedProcedure<T>() {
+
+            @Override
+            public void apply(T obj, int index) {
+                if (filter.accept(obj, index)) {
                     list.add(obj);
                 }
             }
@@ -110,40 +131,93 @@ public class IteratorTool<T> {
         });
     }
 
-    public List<T> asList() {
-        final List<T> list = new ArrayList<T>();
-        each(new Procedure<T>() {
+    public List<T> list() {
+        return asList();
+    }
 
-            @Override
-            public void apply(T obj) {
-                list.add(obj);
-            }
-        });
-        return list;
+    public List<T> asList() {
+        return (List<T>) fillCollection(new ArrayList<T>());
+    }
+
+    public LinkedList<T> asLinkedList() {
+        return (LinkedList<T>) fillCollection(new LinkedList<T>());
+    }
+
+    public Set<T> set() {
+        return asSet();
     }
 
     public Set<T> asSet() {
-        final Set<T> set = new HashSet<T>();
+        return (Set<T>) fillCollection(new HashSet<T>());
+    }
+
+    public LinkedHashSet<T> asLinkedSet() {
+        return (LinkedHashSet<T>) fillCollection(new LinkedHashSet<T>());
+    }
+
+    public TreeSet<T> asTreeSet() {
+        return (TreeSet<T>) fillCollection(new TreeSet<T>());
+    }
+
+    public Collection<T> fillCollection(final Collection<T> collection) {
         each(new Procedure<T>() {
 
             @Override
             public void apply(T obj) {
-                set.add(obj);
+                collection.add(obj);
             }
         });
-        return set;
+        return collection;
     }
 
     public IteratorTool<T> distinct() {
-        final LinkedHashSet<T> set = new LinkedHashSet<T>();
+        return IteratorTool.from(asSet());
+    }
+
+    public IteratorTool<T> distinctOrdered() {
+        return IteratorTool.from(asLinkedSet());
+    }
+
+    public IteratorTool<T> head(final int count) {
+        AssertUtil.isTrue(count > 0);
+        return filter(new IndexedFilter<T>() {
+
+            @Override
+            public boolean accept(T obj, int index) {
+                return (index < count);
+            }
+        });
+    }
+
+    @SuppressWarnings("unchecked")
+    public IteratorTool<T> tail(final int count) {
+        AssertUtil.isTrue(count > 0);
+        final Object[] array = new Object[count];
+        final AtomicInteger i = new AtomicInteger(0);
+        final AtomicInteger realCount = new AtomicInteger(0);
         each(new Procedure<T>() {
 
             @Override
             public void apply(T obj) {
-                set.add(obj);
+                if (i.get() >= count) {
+                    i.set(0);
+                }
+                array[i.getAndIncrement()] = obj;
+                realCount.incrementAndGet();
             }
         });
-        return IteratorTool.from(set);
+        List<T> list = new ArrayList<T>(count);
+        if (realCount.get() < count) { // skip null elements
+            i.set(i.get() + count - realCount.get());
+        }
+        for (int x = 0; x < Math.min(count, realCount.get()); x++) {
+            if (i.get() >= count) {
+                i.set(0);
+            }
+            list.add((T) array[i.getAndIncrement()]);
+        }
+
+        return from(list);
     }
 
     @SuppressWarnings({ "unchecked", "rawtypes" })

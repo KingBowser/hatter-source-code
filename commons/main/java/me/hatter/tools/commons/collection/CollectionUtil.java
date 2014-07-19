@@ -374,6 +374,16 @@ public class CollectionUtil {
         return set;
     }
 
+    @SuppressWarnings("unchecked")
+    public static <T> Set<T> asTreeSet(T obj, T... objects) {
+        Set<T> set = new TreeSet<T>();
+        set.add(obj);
+        for (T o : objects) {
+            set.add(o);
+        }
+        return set;
+    }
+
     // -- List ---
     public static <T> List<T> toList(Collection<T> coll) {
         if (coll == null) {

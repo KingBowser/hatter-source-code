@@ -7,6 +7,7 @@
   * [Study_Algorithm_Recommendation Recommendation]
   * [Study_Algorithm_MachineLearning Machine learning]
    * [Study_Algorithm_MachineLearning_BayesianClassifier Bayesian classifier]
+   * [Study_Algorithm_MachineLearning_Documents Documents]
   * [Study_Algorithm_SkipList Skip List]
   * [Study_Algorithm_R R]
    * [Study_Algorithm_MyRWay My R Way]

@@ -11,3 +11,7 @@
 <br>
 
 What’s wrong with HTTP - [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/http/whats_wrong_with_http.pdf]
+
+
+===参考资料===
+`[1].` http://www.stevesouders.com/blog/2008/03/20/roundup-on-parallel-connections/<br>

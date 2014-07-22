@@ -1,0 +1,5 @@
+#summary Documents
+#sidebar TableOfContents
+
+
+=Machine Learning Books - [http://www.reddit.com/r/MachineLearning/comments/1jeawf/machine_learning_books/]=

@@ -87,6 +87,9 @@ OpenSSL Command-Line HOWTO:
 http://www.madboa.com/geek/openssl/
 }}}
 
+----
+SNI - http://wiki.apache.org/httpd/NameBasedSSLVHostsWithSNI
+
 ===参考资料===
 `[1].` https://wzyboy.im/post/799.html<br>
 `[2].` http://golang.org/pkg/net/http/#ListenAndServeTLS<br>

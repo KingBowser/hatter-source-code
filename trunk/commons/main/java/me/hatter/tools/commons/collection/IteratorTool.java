@@ -131,6 +131,37 @@ public class IteratorTool<T> {
         });
     }
 
+    public String join(String separator) {
+        return join(separator, false, "");
+    }
+
+    public String join(final String separator, final boolean skipEmpty, final String defaultString) {
+        final StringBuilder sb = new StringBuilder();
+        each(new Procedure<T>() {
+
+            @Override
+            public void apply(T obj) {
+                String s = (obj == null) ? null : obj.toString();
+                if ((s == null) || s.isEmpty()) {
+                    if (skipEmpty) {
+                        // DO NOTHING
+                    } else {
+                        if (sb.length() > 0) {
+                            sb.append(separator);
+                        }
+                        sb.append(defaultString);
+                    }
+                    return;
+                }
+                if (sb.length() > 0) {
+                    sb.append(separator);
+                }
+                sb.append(s);
+            }
+        });
+        return sb.toString();
+    }
+
     public List<T> list() {
         return asList();
     }

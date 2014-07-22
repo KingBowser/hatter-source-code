@@ -111,6 +111,8 @@ _[http://www.ecma-international.org/publications/standards/Ecma-262-arch.htm]_
 || `leak-finder-for-javascript` || http://code.google.com/p/leak-finder-for-javascript/ || Tool for finding memory leaks in JavaScript programs ||
 || `jsdt` || http://code.google.com/p/jsdt/ || Javascript Debug Toolkit is a software can debug javascript in ie,firefox,safari,chrome,opera,mobile ie browser,mobile opera browser and so on ||
 || `JsGear` || http://www.etherdream.com/JSGear/demo.html || JsGear 是一款JavaScript变速齿轮插件 ||
+|| `Fiddler` || http://www.telerik.com/fiddler || The free web debugging proxy for any browser, system or platform ||
+|| `Livepool` || http://rehorn.github.io/livepool/ || Cross platform debugging proxy for web developers base on NodeJS ||
 
 ===九、相关网站===
 || The HTML5 test || http://html5test.com/ || The HTML5 test score is an indication of how well your browser supports the upcoming HTML5 standard and related specifications ||

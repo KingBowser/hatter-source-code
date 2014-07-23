@@ -72,6 +72,17 @@ public class SimpleClassMethod {
     }
 
     public String toString4() {
+        return ByteCodeUtil.getSimpleClassName(cls) + "#" + met + "("
+               + StringUtil.join(CollectionUtil.it(par).map(new Function<String, String>() {
+
+                   @Override
+                   public String apply(String obj) {
+                       return ByteCodeUtil.getSimpleClassName(obj);
+                   }
+               }).asList(), ", ") + ")";
+    }
+
+    public String toString5() {
         return met + "(" + StringUtil.join(CollectionUtil.it(par).map(new Function<String, String>() {
 
             @Override

@@ -190,12 +190,20 @@ public class IteratorTool<T> {
     }
 
     public T[] array(Class<? extends T[]> clazz) {
-        return toArray(clazz);
+        return asArray(clazz);
     }
 
-    public T[] toArray(Class<? extends T[]> clazz) {
+    public T[] asArray(Class<? extends T[]> clazz) {
         List<T> list = (List<T>) list();
         return (T[]) Arrays.copyOf(list.toArray(), list.size(), clazz);
+    }
+
+    public Object[] array() {
+        return asArray();
+    }
+
+    public Object[] asArray() {
+        return list().toArray();
     }
 
     public List<T> list() {

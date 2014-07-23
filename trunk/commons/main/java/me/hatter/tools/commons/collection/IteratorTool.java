@@ -97,6 +97,32 @@ public class IteratorTool<T> {
         return from(list);
     }
 
+    public IteratorTool<T> process(final Procedure<T> procedure) {
+        final List<T> list = new ArrayList<T>();
+        each(new Procedure<T>() {
+
+            @Override
+            public void apply(T obj) {
+                procedure.apply(obj);
+                list.add(obj);
+            }
+        });
+        return from(list);
+    }
+
+    public IteratorTool<T> process(final IndexedProcedure<T> indexedProcedure) {
+        final List<T> list = new ArrayList<T>();
+        each(new IndexedProcedure<T>() {
+
+            @Override
+            public void apply(T obj, int index) {
+                indexedProcedure.apply(obj, index);
+                list.add(obj);
+            }
+        });
+        return from(list);
+    }
+
     public T reduce(final BiFunction<T, T, T> biFunc) {
         T t = iterator.hasNext() ? iterator.next() : null;
         while (iterator.hasNext()) {

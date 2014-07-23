@@ -15,3 +15,8 @@ UserAgent - [http://www.useragentstring.com/pages/useragentstring.php]
 
 
 What's My UserAgent: [http://www.whatsmyuseragent.com/]
+
+
+
+=Browser history=
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/browser/browser-history.png]

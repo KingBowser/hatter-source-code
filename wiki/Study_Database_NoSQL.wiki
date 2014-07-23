@@ -19,7 +19,7 @@
 || `UnQLite` || http://unqlite.org/ || An Embeddable NoSQL Database Engine ||
 || `OpenTSDB` || http://opentsdb.net/ || OpenTSDB is a distributed, scalable Time Series Database (TSDB) written on top of HBase. ||
 || `MapDB` || http://www.mapdb.org/ || MapDB provides concurrent Maps, Sets and Queues backed by disk storage or off-heap-memory. ||
-|| `SSDB` || http://www.ideawu.com/ssdb/ || 一个高性能的用来存储数十亿级别列表数据的 NoSQL 数据库, 用于替代 Redis. ||
+|| `SSDB` || http://ssdb.io/ || 一个高性能的用来存储数十亿级别列表数据的 NoSQL 数据库, 用于替代 Redis. ||
 
 =相关网站=
 || `NoSQL Fan` || http://blog.nosqlfan.com/ || 关注NoSQL相关的新闻与技术 ||

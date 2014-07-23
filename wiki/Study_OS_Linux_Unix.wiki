@@ -7,3 +7,4 @@
 
 ===参考资料===
 `[1].` http://www.howtogeek.com/182649/htg-explains-what-is-unix/<br>
+`[2].` http://en.wikipedia.org/wiki/Unix-like<br>

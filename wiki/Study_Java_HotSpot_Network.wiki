@@ -5,6 +5,11 @@
 
 参数配置[http://docs.oracle.com/javase/6/docs/technotes/guides/net/properties.html Properties]：
 
-
+`sun.net.NetworkClient`
+{{{
+                        vals[0] = Integer.getInteger("sun.net.client.defaultReadTimeout", 0).intValue();
+                        vals[1] = Integer.getInteger("sun.net.client.defaultConnectTimeout", 0).intValue();
+                        encs[0] = System.getProperty("file.encoding", "ISO8859_1");
+}}}
 
 _SEE ALSO: [Study_Network] [Study_OS_Linux_Network]_

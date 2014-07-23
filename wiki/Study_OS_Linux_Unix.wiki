@@ -6,5 +6,5 @@
 
 
 ===参考资料===
-`[1.]` http://upload.wikimedia.org/wikipedia/commons/5/51/Unix_history.svg<br>
+`[1.]` http://en.wikipedia.org/wiki/File:Unix_history.svg<br>
 `[2].` http://www.howtogeek.com/182649/htg-explains-what-is-unix/<br>

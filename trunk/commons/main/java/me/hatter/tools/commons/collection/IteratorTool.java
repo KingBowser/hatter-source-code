@@ -1,6 +1,7 @@
 package me.hatter.tools.commons.collection;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
@@ -188,6 +189,15 @@ public class IteratorTool<T> {
         return sb.toString();
     }
 
+    public T[] array(Class<? extends T[]> clazz) {
+        return toArray(clazz);
+    }
+
+    public T[] toArray(Class<? extends T[]> clazz) {
+        List<T> list = (List<T>) list();
+        return (T[]) Arrays.copyOf(list.toArray(), list.size(), clazz);
+    }
+
     public List<T> list() {
         return asList();
     }
@@ -257,6 +267,10 @@ public class IteratorTool<T> {
         });
     }
 
+    public IteratorTool<T> top(final int count) {
+        return head(count);
+    }
+
     public IteratorTool<T> skip(final int count) {
         AssertUtil.isTrue(count >= 0);
         return filter(new IndexedFilter<T>() {
@@ -300,6 +314,21 @@ public class IteratorTool<T> {
         }
 
         return from(list);
+    }
+
+    public IteratorTool<T> index(final int... indexes) {
+        return filter(new IndexedFilter<T>() {
+
+            @Override
+            public boolean accept(Object obj, int index) {
+                for (int i : indexes) {
+                    if (i == index) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
     }
 
     @SuppressWarnings({ "unchecked", "rawtypes" })

@@ -9,6 +9,7 @@
 || `Redis` || http://redis.io/ || Redis is an open source, advanced key-value store. It is often referred to as a data structure server since keys can contain strings, hashes, lists, sets and sorted sets ||
 || `LevelDB` || http://code.google.com/p/leveldb/ || LevelDB is a fast key-value storage library written at Google that provides an ordered mapping from string keys to string values ||
 || `neo4j` || http://neo4j.org/ || Neo4j is a high-performance, NOSQL graph database with all the features of a mature and robust database ||
+|| `cayley` || https://github.com/google/cayley || An open-source graph database ||
 || `Cassandra` || http://cassandra.apache.org/ || The Apache Cassandra database is the right choice when you need scalability and high availability without compromising performance ||
 || `CouchDB` || http://couchdb.apache.org/ || Apache CouchDB™ is a database that uses JSON for documents, JavaScript for MapReduce queries, and regular HTTP for an API ||
 || `Tair` || http://tair.taobao.org/ || Tair是一个高性能，分布式，可扩展，高可靠的key/value结构存储系统 ||

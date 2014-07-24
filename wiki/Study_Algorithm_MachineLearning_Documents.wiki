@@ -10,3 +10,4 @@
 ===参考资料===
 `[1].` http://hao.memect.com/?p=405<br>
 `[2].` http://meta-guide.com/software-meta-guide/100-best-github-deep-learning/<br>
+`[3].` http://www.oschina.net/news/53818/awesome-machine-learning<br>

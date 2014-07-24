@@ -2,4 +2,5 @@
 #sidebar TableOfContents
 
 
-=Machine Learning Books - [http://www.reddit.com/r/MachineLearning/comments/1jeawf/machine_learning_books/]=
+==Machine Learning Books - [http://www.reddit.com/r/MachineLearning/comments/1jeawf/machine_learning_books/]==
+==100 Best GitHub: Deep Learning - [http://meta-guide.com/software-meta-guide/100-best-github-deep-learning/]==

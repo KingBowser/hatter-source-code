@@ -4,7 +4,7 @@
 
 ==Machine Learning Books - [http://www.reddit.com/r/MachineLearning/comments/1jeawf/machine_learning_books/]==
 ==100 Best GitHub: Deep Learning - [http://meta-guide.com/software-meta-guide/100-best-github-deep-learning/]==
-
+==推荐！国外程序员整理的机器学习资源大全 - [http://www.oschina.net/news/53818/awesome-machine-learning]==
 
 
 ===参考资料===

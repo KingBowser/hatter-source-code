@@ -20,6 +20,7 @@ tasks.withType(Compile) {
   options.encoding = "UTF-8"  
 }
 
+// '-x test' skip unit test
 // defaultTasks 'packjar'
 
 task initapp << {

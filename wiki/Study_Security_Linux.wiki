@@ -1,2 +1,5 @@
 #summary Linux Security
 #sidebar TableOfContents
+
+
+Secure Programming for Linux and Unix HOWTO -- Creating Secure Software - [http://www.dwheeler.com/secure-programs/]

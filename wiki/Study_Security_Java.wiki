@@ -1,2 +1,6 @@
 #summary Java Security
 #sidebar TableOfContents
+
+
+==Securing JAVA - [http://www.securingjava.com/toc.html]==
+==Java Security Resources - [https://www.owasp.org/index.php/Java_Security_Resources]==

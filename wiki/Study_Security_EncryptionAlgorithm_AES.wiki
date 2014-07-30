@@ -1,0 +1,16 @@
+#summary AES
+#sidebar TableOfContents
+
+
+AES（Advanced Encryption Standard，高级加密标准）又叫Rijndael加密法，用来替代DES算法。常见AES加密模式有ECB、CBC、CFB、OFB和CTR等五种， CFB、OFB都带反馈，做流加密用的多，CBC和CTR、ECB多用于独立block加密，由于ECB算法有点小缺点（相同输入，相同输出，容易明文攻击），所以CBC和CTR这两种加解密方式用的较多，也是很多标准规范要求的实现算法，下面看一下这两种算法原理。
+
+AES跟Rijndael相比有点小区别，就是使用固定块（block size）为128bits（16字节）（原Rijndael块大小更灵活），密钥长度支持128、192或256位。
+
+CBC加密原理：明文跟向量异或，再用KEY进行加密，结果作为下个BLOCK的初始化向量。解密原理：使用密钥先对密文解密，解密后再同初始向量异或得到明文。
+CBC需要对明文块大小进行Padding（补位），由于前后加密的相关性，只能实施串行化动作，无法并行运算。另外，CBC需要参量：密钥和初始化向量。
+
+CTR加密原理：用密钥对输入的计数器加密，然后同明文异或得到密文。解密原理：用密钥对输入计数器加密，然后同密文异或得到明文。
+CTR不需要Padding，而且采用了流密钥方式加解密，适合于并行运算，CTR涉及参量：Nounce随机数、Counter计数器和密钥。Nounce随机数和Counter计数器整体可看作计数器，因为只要算法约定好，就可以回避掉串行化运算。
+
+===参考资料===
+`[1].` http://www.metsky.com/archives/585.html<br>

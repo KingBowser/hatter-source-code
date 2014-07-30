@@ -37,3 +37,4 @@ JCE中AES支持五中模式：CBC，CFB，ECB，OFB，PCBC；支持三种填充�
 ===参考资料===
 `[1].` http://www.metsky.com/archives/585.html<br>
 `[2].` http://blog.sina.com.cn/s/blog_679daa6b0100zmpp.html<br>
+`[3].` http://en.wikipedia.org/wiki/Block_cipher_modes_of_operation<br>

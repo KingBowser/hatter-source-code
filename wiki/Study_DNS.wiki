@@ -8,3 +8,4 @@ Client Subnet in DNS Requests draft-vandergaast-edns-client-subnet-02 - [http://
 
 ===参考资料===
 `[1].` http://noops.me/?p=653<br>
+`[2].` http://archercai.blog.sohu.com/60779796.html<br>

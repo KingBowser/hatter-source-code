@@ -1,0 +1,2 @@
+#summary Panama
+#sidebar TableOfContents

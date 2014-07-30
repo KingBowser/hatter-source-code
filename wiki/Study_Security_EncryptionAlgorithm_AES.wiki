@@ -16,7 +16,7 @@ AES跟Rijndael相比有点小区别，就是使用固定块（block size）为12
 
 
 || *算法/模式/填充* || *16字节加密后数据长度* || *不满16字节加密后长度* ||
-|| AES/CBC/NoPadding       ||      16               ||          不支持 ||
+|| `AES/CBC/NoPadding`       ||      16               ||          不支持 ||
 || AES/CBC/PKCS5Padding      ||    32               ||          16 ||
 || AES/CBC/ISO10126Padding  ||     32             ||             16 ||
 || AES/CFB/NoPadding        ||     16                ||          原始数据长度 ||

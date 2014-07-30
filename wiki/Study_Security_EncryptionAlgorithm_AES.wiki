@@ -14,6 +14,8 @@ AES跟Rijndael相比有点小区别，就是使用固定块（block size）为12
  用密钥对输入的计数器加密，然后同明文异或得到密文。解密原理：用密钥对输入计数器加密，然后同密文异或得到明文。
  CTR不需要Padding，而且采用了流密钥方式加解密，适合于并行运算，CTR涉及参量：Nounce随机数、Counter计数器和密钥。Nounce随机数和Counter计数器整体可看作计数器，因为只要算法约定好，就可以回避掉串行化运算。
 
+JCE中AES支持五中模式：CBC，CFB，ECB，OFB，PCBC；支持三种填充：NoPadding，PKCS5Padding，ISO10126Padding。不支持SSL3Padding。不支持“NONE”模式。不带模式和填充来获取AES算法的时候，其默认使用ECB/PKCS5Padding。
+
 
 || *算法/模式/填充* || *16字节加密后数据长度* || *不满16字节加密后长度* ||
 || `AES/CBC/NoPadding`       ||      16               ||          不支持 ||

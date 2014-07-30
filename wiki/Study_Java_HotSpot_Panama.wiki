@@ -1,2 +1,8 @@
 #summary Panama
 #sidebar TableOfContents
+
+http://openjdk.java.net/projects/panama/
+
+http://openjdk.java.net/jeps/191
+
+Java Native Runtime - [https://github.com/jnr]

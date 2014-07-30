@@ -6,4 +6,7 @@
 《100个gdb小技巧》 - https://github.com/hellogcc/100-gdb-tips
 
 
+Complete x86/x64 JIT and Remote Assembler for C++ - [https://github.com/kobalicek/asmjit]
+
+
 _SEE ALSO: [Study_Programming_Parser]_

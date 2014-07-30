@@ -34,3 +34,4 @@ AES跟Rijndael相比有点小区别，就是使用固定块（block size）为12
 
 ===参考资料===
 `[1].` http://www.metsky.com/archives/585.html<br>
+`[2].` http://blog.sina.com.cn/s/blog_679daa6b0100zmpp.html<br>

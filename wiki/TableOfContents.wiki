@@ -103,6 +103,7 @@
    * [Study_Java_HotSpot_Network Network]
    * [Study_Java_HotSpot_ObjectLayout ObjectLayout]
    * [Study_Java_HotSpot_OOME OOME]
+   * [Study_Java_HotSpot_Panama Panama]
    * [Study_Java_HotSpot_ServiceabilityAgent Serviceability Agent]
    * [Study_Java_HotSpot_Thread Thread]
     * [Study_Java_HotSpot_Thread_VMThread VMThrad]

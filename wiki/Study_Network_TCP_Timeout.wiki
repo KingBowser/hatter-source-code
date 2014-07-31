@@ -1,2 +1,10 @@
 #summary TCP超时
 #sidebar TableOfContents
+
+
+Linux有两个重要的内核参数与TCP超时重传相关：/proc/sys/net/ipv4/tcp_retries1和/proc/sys/net/ipv4/tcp_retries2。前者指定在底层IP接管之前TCP最少执行的重传次数，默认值是3。后者指定连接放弃前TCP最多可以执行的重传次数，默认值是15（一般对应13～30?min）。在我们的实例中，TCP超时重传发生了5次，连接坚持的时间是15?min（可以用date命令来测量）。
+
+
+
+===参考资料===
+`[1].` http://book.51cto.com/art/201306/400277.htm<br>

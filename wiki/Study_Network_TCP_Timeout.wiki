@@ -12,3 +12,4 @@ TCP拥塞控制的标准文档是RFC 5681，其中详细介绍了拥塞控制的
 ===参考资料===
 `[1].` http://book.51cto.com/art/201306/400277.htm<br>
 `[2].` http://book.51cto.com/art/201306/400278.htm<br>
+`[3].` http://www.oschina.net/question/17_31076<br>

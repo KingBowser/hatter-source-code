@@ -172,6 +172,7 @@
   * [Study_Programming_Type Type]
   * [Study_Programming_Parser Parser]
   * [Study_Scala Scala]
+  * [Study_Programming_XPath XPath]
  * [Study_Network Network]
   * [Study_Network_AddressResolutionProtocol Address Resolution Protocol]
   * [Study_Network_IOMultiplexing IO Multiplexing]

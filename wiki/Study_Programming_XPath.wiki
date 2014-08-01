@@ -1,0 +1,8 @@
+#summary XPath Study
+#sidebar TableOfContents
+
+
+
+===参考资料===
+`[1].` http://www.nczonline.net/blog/2009/03/17/xpath-in-javascript-part-1/<br>
+

@@ -1,6 +1,8 @@
 package me.hatter.tools.commons.url;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URLEncoder;
 
 public class URLUtil {
@@ -20,5 +22,18 @@ public class URLUtil {
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static String getHost(String url) throws URISyntaxException {
+        url = url.replace('\\', '/');
+        int indexOfQ = url.indexOf('?');
+        if (indexOfQ > 0) {
+            url = url.substring(0, indexOfQ);
+        }
+        int indexOfS = url.indexOf('#');
+        if (indexOfS > 0) {
+            url = url.substring(0, indexOfS);
+        }
+        return new URI(url).getHost();
     }
 }

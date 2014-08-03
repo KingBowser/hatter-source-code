@@ -1,2 +1,5 @@
 #summary Java Concurrency Study
 #sidebar TableOfContents
+
+
+=[Java Concurrency in Practice http://jcip.net/]=

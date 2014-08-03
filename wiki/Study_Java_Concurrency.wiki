@@ -2,4 +2,4 @@
 #sidebar TableOfContents
 
 
-=[Java Concurrency in Practice http://jcip.net/]=
+=[http://jcip.net/ Java Concurrency in Practice]=

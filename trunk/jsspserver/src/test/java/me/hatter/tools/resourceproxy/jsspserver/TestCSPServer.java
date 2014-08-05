@@ -42,11 +42,11 @@ public class TestCSPServer {
 
     public static void main(String[] args) {
         List<ResourceFilter> filters = new ArrayList<ResourceFilter>();
-        filters.add(new LogFilter());
+        filters.add(LogFilter.INSTANCE);
         filters.add(new RedirectFilter());
         filters.add(new CSPFilter());
         filters.add(new ListingFileFilter("/Users/hatterjiang/temp"));
-        filters.add(new Default404Filter());
+        filters.add(Default404Filter.INSTANCE);
 
         MainHttpServer httpServer = new MainHttpServer(filters, 8000);
         httpServer.run();

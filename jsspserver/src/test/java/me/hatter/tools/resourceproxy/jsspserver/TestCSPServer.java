@@ -1,7 +1,6 @@
 package me.hatter.tools.resourceproxy.jsspserver;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpRequest;
@@ -11,7 +10,6 @@ import me.hatter.tools.resourceproxy.jsspserver.filter.ResourceFilterChain;
 import me.hatter.tools.resourceproxy.jsspserver.filter.impl.Default404Filter;
 import me.hatter.tools.resourceproxy.jsspserver.filter.impl.ListingFileFilter;
 import me.hatter.tools.resourceproxy.jsspserver.filter.impl.LogFilter;
-import me.hatter.tools.resourceproxy.jsspserver.handler.HttpServerHandler;
 import me.hatter.tools.resourceproxy.jsspserver.main.MainHttpServer;
 
 public class TestCSPServer {

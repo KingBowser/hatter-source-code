@@ -28,14 +28,29 @@ public class TestCSPServer {
         }
     }
 
+    public static class RedirectFilter implements ResourceFilter {
+
+        public HttpResponse filter(HttpRequest request, ResourceFilterChain chain) throws Exception {
+            if (request.getFPath().equals("/redirect")) {
+                HttpResponse response = new HttpResponse();
+                response.redirect(request.getQueryValue("url"));
+                return response;
+            } else {
+                HttpResponse response = chain.next().filter(request, chain);
+                return response;
+            }
+        }
+    }
+
     public static void main(String[] args) {
         List<ResourceFilter> filters = new ArrayList<ResourceFilter>();
         filters.add(new LogFilter());
+        filters.add(new RedirectFilter());
         filters.add(new CSPFilter());
-        filters.add(new ListingFileFilter("/Users/hatterjiang/temp/csp"));
+        filters.add(new ListingFileFilter("/Users/hatterjiang/temp"));
         filters.add(new Default404Filter());
 
-        MainHttpServer httpServer = new MainHttpServer(new HttpServerHandler(filters), Arrays.asList(8000));
+        MainHttpServer httpServer = new MainHttpServer(filters, 8000);
         httpServer.run();
     }
 }

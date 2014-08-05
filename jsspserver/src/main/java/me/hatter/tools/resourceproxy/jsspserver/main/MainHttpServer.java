@@ -4,12 +4,15 @@ import java.io.IOException;
 import java.net.BindException;
 import java.net.InetSocketAddress;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.Executors;
 
 import me.hatter.tools.commons.log.LogTool;
 import me.hatter.tools.commons.log.LogTools;
 import me.hatter.tools.resourceproxy.commons.util.StringUtil;
+import me.hatter.tools.resourceproxy.jsspserver.filter.ResourceFilter;
+import me.hatter.tools.resourceproxy.jsspserver.handler.HttpServerHandler;
 
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
@@ -20,6 +23,18 @@ public class MainHttpServer implements Runnable {
 
     private List<Integer>        ports;
     private HttpHandler          httpHandler;
+
+    public MainHttpServer(HttpHandler httpHandler, Integer port) {
+        this(httpHandler, Arrays.asList(port));
+    }
+
+    public MainHttpServer(List<ResourceFilter> filters, Integer port) {
+        this(filters, Arrays.asList(port));
+    }
+
+    public MainHttpServer(List<ResourceFilter> filters, List<Integer> ports) {
+        this(new HttpServerHandler(filters), ports);
+    }
 
     public MainHttpServer(HttpHandler httpHandler, List<Integer> ports) {
         this.httpHandler = httpHandler;

@@ -13,7 +13,9 @@ import me.hatter.tools.resourceproxy.jsspserver.filter.ResourceFilterChain;
 
 public class LogFilter implements ResourceFilter {
 
-    private static final LogTool log = LogTools.getLogTool(LogFilter.class);
+    public static final LogFilter INSTANCE = new LogFilter();
+
+    private static final LogTool  log      = LogTools.getLogTool(LogFilter.class);
 
     public HttpResponse filter(HttpRequest request, ResourceFilterChain chain) throws Exception {
         List<String> list = new ArrayList<String>();

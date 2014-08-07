@@ -1,0 +1,9 @@
+#summary OAuth study.
+#sidebar TableOfContents
+
+
+http://oauth.net/2/
+
+
+
+http://openid.net/

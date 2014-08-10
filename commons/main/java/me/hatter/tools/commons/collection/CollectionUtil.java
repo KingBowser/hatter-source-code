@@ -117,52 +117,7 @@ public class CollectionUtil {
     }
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public static <T> IteratorTool<T> it(Object[] objects) {
-        return it((List) Arrays.asList(objects));
-    }
-
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-    public static <T> IteratorTool<T> it(String[] objects) {
-        return it((List) Arrays.asList(objects));
-    }
-
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-    public static <T> IteratorTool<T> it(Integer[] objects) {
-        return it((List) Arrays.asList(objects));
-    }
-
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-    public static <T> IteratorTool<T> it(Long[] objects) {
-        return it((List) Arrays.asList(objects));
-    }
-
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-    public static <T> IteratorTool<T> it(Float[] objects) {
-        return it((List) Arrays.asList(objects));
-    }
-
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-    public static <T> IteratorTool<T> it(Double[] objects) {
-        return it((List) Arrays.asList(objects));
-    }
-
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-    public static <T> IteratorTool<T> it(int[] objects) {
-        return it((List) Arrays.asList(objects));
-    }
-
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-    public static <T> IteratorTool<T> it(long[] objects) {
-        return it((List) Arrays.asList(objects));
-    }
-
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-    public static <T> IteratorTool<T> it(float[] objects) {
-        return it((List) Arrays.asList(objects));
-    }
-
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-    public static <T> IteratorTool<T> it(double[] objects) {
+    public static <T> IteratorTool<T> it(T... objects) {
         return it((List) Arrays.asList(objects));
     }
 

@@ -83,6 +83,12 @@ public class HttpTool {
         return this;
     }
 
+    public String read() {
+        return IOUtil.readToStringAndClose(readInputStreamFromURL(generateFullUrl(url, charset, params)), charset);
+    }
+
+    // use read
+    @Deprecated
     public String readFromURL() {
         return IOUtil.readToStringAndClose(readInputStreamFromURL(generateFullUrl(url, charset, params)), charset);
     }
@@ -103,6 +109,12 @@ public class HttpTool {
         }
     }
 
+    public String post(List<KeyValue> postParams) {
+        return IOUtil.readToStringAndClose(postAndReadInputStreamFromURL(generateParams(charset, postParams)), charset);
+    }
+
+    // use post
+    @Deprecated
     public String postAndReadFromURL(List<KeyValue> postParams) {
         return IOUtil.readToStringAndClose(postAndReadInputStreamFromURL(generateParams(charset, postParams)), charset);
     }

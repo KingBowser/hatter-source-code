@@ -135,3 +135,5 @@ _[http://www.ecma-international.org/publications/standards/Ecma-262-arch.htm]_
 `[4].` http://ued.alimama.com/posts/543<br>
 `[5].` http://www.daimi.au.dk/~amoeller/VM/javascript-VM.pdf<br>
 `[6].` http://www.cnblogs.com/aaronjs/p/3149402.html<br>
+`[7].` http://designdrizzle.com/10-great-javascript-tools-which-web-developers-shouldnt-miss/<br>
+`[8].` http://www.oschina.net/translate/10-great-javascript-tools-which-web-developers-shouldnt-miss<br>

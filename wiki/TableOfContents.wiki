@@ -65,6 +65,7 @@
  * [Study_GPU GPU]
   * [Study_GPU_GPGPU GPGPU]
  * [Study_HTTP HTTP]
+  * [Study_HTTP_Httpd Httpd]
   * [Study_HTTP_Nginx Nginx]
  * [Study_Hadoop Hadoop]
   * [Study_Hadoop_Bookkeeper Bookkeeper]

@@ -1,0 +1,8 @@
+#summary Dig
+#sidebar TableOfContents
+
+安装`dig`：
+{{{
+yum install bind-utils
+}}}
+

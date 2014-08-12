@@ -45,3 +45,8 @@ patch -p0 < dig.patch
 make && make install
 make 
 }}}
+
+
+===参考资料===
+`[1].` http://blog.chinaunix.net/uid-8926237-id-3470426.html<br>
+`[2].` http://wilmer.gaa.st/edns-client-subnet/<br>

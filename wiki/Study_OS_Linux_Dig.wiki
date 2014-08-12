@@ -6,3 +6,5 @@
 yum install bind-utils
 }}}
 
+支持`edns-client-subnet`：
+http://wilmer.gaa.st/edns-client-subnet/

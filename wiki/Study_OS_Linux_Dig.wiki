@@ -26,7 +26,7 @@ www.l.google.com.       300     IN      A       74.125.79.99
 www.l.google.com.       300     IN      A       74.125.79.147
 }}}
 
-安装支持`edns-client-subnet`的`dig`：
+安装支持`edns-client-subnet`的`dig`(`bind`)：
 {{{
 yum install patch
 yum install gcc
@@ -45,5 +45,3 @@ patch -p0 < dig.patch
 make && make install
 make 
 }}}
-
-

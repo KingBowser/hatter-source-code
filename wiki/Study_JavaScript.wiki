@@ -84,6 +84,7 @@ _[http://www.ecma-international.org/publications/standards/Ecma-262-arch.htm]_
 || `JSFuck` || http://www.jsfuck.com/ || JSFuck is an esoteric and educational programming style based on the atomic parts of JavaScript. ||
 || `CasperJS` || http://casperjs.org/ || CasperJS is a navigation scripting & testing utility for PhantomJS and SlimerJS written in Javascript ||
 || `JsFramework` || http://jsframework.com/ || JsFramework is an object oriented JavaScript library with a programming model similar to the Microsoft .NET Framework ||
+|| `gif.js` || https://github.com/jnordberg/gif.js || JavaScript GIF encoding library ||
 
 
 ===五、游戏===
@@ -137,3 +138,4 @@ _[http://www.ecma-international.org/publications/standards/Ecma-262-arch.htm]_
 `[6].` http://www.cnblogs.com/aaronjs/p/3149402.html<br>
 `[7].` http://designdrizzle.com/10-great-javascript-tools-which-web-developers-shouldnt-miss/<br>
 `[8].` http://www.oschina.net/translate/10-great-javascript-tools-which-web-developers-shouldnt-miss<br>
+`[9].` http://bbs.html5cn.org/thread-3235-1-1.html<br>

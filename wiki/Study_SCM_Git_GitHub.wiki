@@ -34,6 +34,9 @@ $ git branch --set-upstream-to=origin/gh-pages
 
 ==[https://help.github.com/articles/setting-up-a-custom-domain-with-github-pages Setting up a custom domain with GitHub Pages]==
 
+==http://jlord.github.io/git-it/==
+
+
 ===参考资料===
 `[1].` https://help.github.com/articles/creating-project-pages-manually<br>
 `[2].` https://help.github.com/articles/setting-up-a-custom-domain-with-pages<br>

@@ -19,3 +19,6 @@
 ==5. Winstone==
  * https://code.google.com/p/winstone/issues/detail?id=18
  * https://code.google.com/p/winstone/issues/detail?id=19
+
+==6.W3C-WebApSec==
+ * https://github.com/w3c/webappsec/issues/44

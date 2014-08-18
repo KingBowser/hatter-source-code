@@ -36,9 +36,7 @@ public class SvnCheck {
         String[] branches = currentBranch.split(",");
 
         List<String> rms = new ArrayList<String>();
-        rms.add("http://svn.alibaba-inc.com/repos/ali_sourcing/system/business/");
-        rms.add("http://svn.alibaba-inc.com/repos/ali_sourcing/");
-        rms.add("http://svn.alibaba-inc.com/repos/ali_express/");
+// TODO
 
         List<String> cmds = new ArrayList<String>();
         for (String b : branches) {

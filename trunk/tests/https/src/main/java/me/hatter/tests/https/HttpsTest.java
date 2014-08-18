@@ -13,6 +13,8 @@ import me.hatter.tools.commons.io.IOUtil;
 
 //  openssl s_client -connect google.com:443 | openssl x509 -text
 // https://developer.android.com/training/articles/security-ssl.html#CommonProblems
+// https://developer.android.com/reference/javax/net/ssl/HttpsURLConnection.html
+// https://developer.android.com/reference/javax/net/ssl/SSLSocket.html
 public class HttpsTest {
 
     public static void main(String[] args) throws IOException {

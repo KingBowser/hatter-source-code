@@ -2,6 +2,11 @@ package me.hatter.tools.markdownslide;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -56,6 +61,17 @@ public class Main {
                     throw new RuntimeException("File `slides.md` not found!");
                 }
 
+                if (!(new File(Environment.USER_DIR, "assets")).exists()
+                    || UnixArgsUtil.ARGS.flags().contains("init-assets")) {
+                    copyResource("assets/js/remark-0.6.5.min.js");
+                    copyResource("assets/js/remark.language.js");
+                    copyResource("assets/ttf/droidserif.ttf");
+                    copyResource("assets/ttf/ubuntumono-bold.ttf");
+                    copyResource("assets/ttf/ubuntumono-italic.ttf");
+                    copyResource("assets/ttf/ubuntumono-regular.ttf");
+                    copyResource("assets/ttf/yanonekaffeesatz-regular.ttf");
+                }
+
                 Map<String, Object> addContext = new HashMap<String, Object>();
                 addContext.put("config", Configs.getConfig());
                 addContext.put("inline_css",
@@ -69,10 +85,32 @@ public class Main {
                                                                                              + "/templates/template.jssp"),
                                                        "template.jssp");
                 JsspExecutor.executeJssp(resource, new HashMap<String, Object>(), addContext, null, bw);
-                FileUtil.writeStringToFile(new File(Environment.USER_DIR, "index.htm"), bw.getBufferedString());
+
+                File indexHtml = new File(Environment.USER_DIR, "index.htm");
+                log.info("Generate file: " + indexHtml);
+                FileUtil.writeStringToFile(indexHtml, bw.getBufferedString());
             } catch (Exception e) {
                 log.error("Generate slide index.htm faild!", e);
             }
+        }
+    }
+
+    private static void copyResource(String resource) throws IOException {
+        File dest = new File(Environment.USER_DIR, resource);
+        log.info("Generate file: " + dest);
+        dest.getParentFile().mkdirs();
+        OutputStream os = new FileOutputStream(dest);
+        try {
+            URL u = MarkdownSlideFilter.class.getResource("/" + Configs.getConfig().getTemplate() + "/" + resource);
+            InputStream is = u.openStream();
+            try {
+                IOUtil.copy(is, os);
+            } finally {
+                IOUtil.closeQuietly(is);
+            }
+            os.flush();
+        } finally {
+            IOUtil.closeQuietly(os);
         }
     }
 }

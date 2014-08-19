@@ -2,6 +2,7 @@ package me.hatter.tools.markdownslide.filter;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,23 +25,30 @@ public class MarkdownSlideFilter implements ResourceFilter {
 
     private volatile static File inlineCss = null;
 
-    @Override
-    public HttpResponse filter(HttpRequest request, ResourceFilterChain chain) throws Exception {
-        if (request.getFPath().equals("/")) {
-            synchronized (MarkdownSlideFilter.class) {
-                if (inlineCss == null) {
-                    inlineCss = new File(Environment.USER_DIR, "inline.css");
-                    if (!inlineCss.exists()) {
-                        URL defaultInlineCss = MarkdownSlideAssetsFilter.class.getResource("/"
-                                                                                           + Configs.getConfig().getTemplate()
-                                                                                           + "/assets/css/default_inline.css");
-                        if (defaultInlineCss != null) {
-                            FileUtil.writeStringToFile(inlineCss,
-                                                       IOUtil.readToStringAndClose(defaultInlineCss.openStream()));
-                        }
+    synchronized public static File initInlineCss() {
+        if (inlineCss == null) {
+            inlineCss = new File(Environment.USER_DIR, "inline.css");
+            if (!inlineCss.exists()) {
+                URL defaultInlineCss = MarkdownSlideAssetsFilter.class.getResource("/"
+                                                                                   + Configs.getConfig().getTemplate()
+                                                                                   + "/assets/css/default_inline.css");
+                if (defaultInlineCss != null) {
+                    try {
+                        FileUtil.writeStringToFile(inlineCss,
+                                                   IOUtil.readToStringAndClose(defaultInlineCss.openStream()));
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
                     }
                 }
             }
+        }
+        return inlineCss;
+    }
+
+    @Override
+    public HttpResponse filter(HttpRequest request, ResourceFilterChain chain) throws Exception {
+        if (request.getFPath().equals("/")) {
+            initInlineCss();
 
             File slidesMd = new File(Environment.USER_DIR, "slides.md");
             if (!slidesMd.exists()) {

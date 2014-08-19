@@ -1,9 +1,0 @@
-me.hatter.tools.resourceproxy.jsspserver.filter.impl.CacheJsFilter
-me.hatter.tools.resourceproxy.jsspserver.filter.impl.CacheCssFilter
-me.hatter.tools.resourceproxy.jsspserver.filter.impl.CacheImgFilter
-
-me.hatter.tools.markdownslide.filter.MarkdownSlideHeaderFilter
-me.hatter.tools.markdownslide.filter.MarkdownSlideAssetsFilter
-me.hatter.tools.markdownslide.filter.MarkdownSlideFilter
-
-me.hatter.tools.resourceproxy.jsspserver.filter.impl.Default404Filter

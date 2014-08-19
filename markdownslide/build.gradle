@@ -5,7 +5,7 @@ def baseProjectName = 'markdownslide'
 def shellCommandName = baseProjectName
 def eclipseProjectName = baseProjectName
 def eclipseProjectComment = 'my test application'
-def jarManifestMainClass = 'me.hatter.tools.xxx.Main'
+def jarManifestMainClass = 'me.hatter.tools.markdownslide.Main'
 def installTargetBin = '/usr/local/bin/'
 
 archivesBaseName = baseProjectName
@@ -21,7 +21,7 @@ tasks.withType(Compile) {
 }
 
 // '-x test' skip unit test
-// defaultTasks 'packjar'
+defaultTasks 'packall2'
 
 task initapp << {
   file('lib').mkdirs()

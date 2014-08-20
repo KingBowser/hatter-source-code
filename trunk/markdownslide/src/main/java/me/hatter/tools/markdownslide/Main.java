@@ -1,7 +1,6 @@
 package me.hatter.tools.markdownslide;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,6 +21,7 @@ import me.hatter.tools.commons.resource.impl.URLResource;
 import me.hatter.tools.commons.string.StringUtil;
 import me.hatter.tools.markdownslide.config.Configs;
 import me.hatter.tools.markdownslide.filter.MarkdownSlideFilter;
+import me.hatter.tools.markdownslide.util.MarkdownSlideUtil;
 import me.hatter.tools.resourceproxy.jsspexec.JsspExecutor;
 import me.hatter.tools.resourceproxy.jsspexec.util.BufferWriter;
 import me.hatter.tools.resourceproxy.jsspserver.handler.HttpServerHandler;
@@ -46,6 +46,7 @@ public class Main {
             System.exit(0);
         }
 
+        Configs.getConfig();
         JsspExecutor.initJsspWork();
 
         if (UnixArgsUtil.ARGS.flags().containsAny("s", "server")) {
@@ -74,9 +75,8 @@ public class Main {
 
                 Map<String, Object> addContext = new HashMap<String, Object>();
                 addContext.put("config", Configs.getConfig());
-                addContext.put("inline_css",
-                               IOUtil.readToStringAndClose(new FileInputStream(MarkdownSlideFilter.initInlineCss())));
-                addContext.put("slides_md", IOUtil.readToStringAndClose(new FileInputStream(slidesMd)));
+                addContext.put("inline_css", FileUtil.readFileToString(MarkdownSlideFilter.initInlineCss()));
+                addContext.put("slides_md", MarkdownSlideUtil.processMds(FileUtil.readFileToString(slidesMd)));
 
                 BufferWriter bw = new BufferWriter();
                 URLResource resource = new URLResource(

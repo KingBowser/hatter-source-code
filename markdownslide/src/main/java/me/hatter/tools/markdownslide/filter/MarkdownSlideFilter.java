@@ -1,7 +1,6 @@
 package me.hatter.tools.markdownslide.filter;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
@@ -12,6 +11,7 @@ import me.hatter.tools.commons.file.FileUtil;
 import me.hatter.tools.commons.io.IOUtil;
 import me.hatter.tools.commons.resource.impl.URLResource;
 import me.hatter.tools.markdownslide.config.Configs;
+import me.hatter.tools.markdownslide.util.MarkdownSlideUtil;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpRequest;
 import me.hatter.tools.resourceproxy.httpobjects.objects.HttpResponse;
 import me.hatter.tools.resourceproxy.jsspexec.JsspExecutor;
@@ -57,8 +57,8 @@ public class MarkdownSlideFilter implements ResourceFilter {
 
             Map<String, Object> addContext = new HashMap<String, Object>();
             addContext.put("config", Configs.getConfig());
-            addContext.put("inline_css", IOUtil.readToStringAndClose(new FileInputStream(inlineCss)));
-            addContext.put("slides_md", IOUtil.readToStringAndClose(new FileInputStream(slidesMd)));
+            addContext.put("inline_css", FileUtil.readFileToString(inlineCss));
+            addContext.put("slides_md", MarkdownSlideUtil.processMds(FileUtil.readFileToString(slidesMd)));
 
             BufferWriter bw = new BufferWriter();
             URLResource resource = new URLResource(

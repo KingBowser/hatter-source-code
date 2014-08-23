@@ -5,6 +5,9 @@
     <meta name="keywords" content="<%=config.getKeywords()%>" />
     <meta name="description" content="<%=config.getDescription()%>" />
     <title><%=config.getTitle()%></title>
+    <% if(config.getFavicon() != null && config.getFavicon().length() > 0) { %>
+    <link rel="shortcut icon" href="<%=config.getFavicon()%>">
+    <% } %>
     <style type="text/css">
 <%!=inline_css%>
     </style>

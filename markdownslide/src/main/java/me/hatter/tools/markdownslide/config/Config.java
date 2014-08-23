@@ -3,6 +3,7 @@ package me.hatter.tools.markdownslide.config;
 public class Config {
 
     private String  template;
+    private String  favicon;
     private String  title;
     private String  description;
     private String  keywords;
@@ -14,6 +15,14 @@ public class Config {
 
     public void setTemplate(String template) {
         this.template = template;
+    }
+
+    public String getFavicon() {
+        return favicon;
+    }
+
+    public void setFavicon(String favicon) {
+        this.favicon = favicon;
     }
 
     public String getTitle() {

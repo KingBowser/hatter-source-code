@@ -245,3 +245,6 @@
 || 894 || Zambia || ZMB ||
 || 716 || Zimbabwe || ZWE ||
 
+
+===参考资料===
+`[1].` http://unstats.un.org/unsd/methods/m49/m49alpha.htm<br>

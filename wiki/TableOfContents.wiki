@@ -226,6 +226,8 @@
  * [Study_VPS VPS]
  * [ReportedBugList Reported Bug(Issue) List]
  * [Study_Others Others]
+  * [Study_Others_Code Code]
+  * [Study_Others_Code_CountryOrArea Countries or areas, codes and abbreviations]
   * [Study_Others_Edu Edu]
   * [Study_Others_Icon Icon]
   * [Study_Others_Plastic Plastic]

@@ -200,7 +200,7 @@
 || 534 || Sint Maarten (Dutch part) || SXM ||
 || 703 || Slovakia || SVK ||
 || 705 || Slovenia || SVN ||
-|| 90 || olomon Islands || SLB ||
+|| 090 || Solomon Islands || SLB ||
 || 706 || Somalia || SOM ||
 || 710 || South Africa || ZAF ||
 || 728 || South Sudan || SSD ||

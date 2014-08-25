@@ -262,3 +262,38 @@
 || Zambia || ZM || 894 || 014 || Eastern Africa || Africa || 
 || Zimbabwe || ZW || 716 || 014 || Eastern Africa || Africa || 
 
+
+|| *Region* || *ISO-3166 Code* || *CC Num* || *Region Number* || *Region* || 
+|| Northern America || XQ || 021 || 019 || Americas || 
+|| Caribbean || XN || 029 || 019 || Americas || 
+|| Central America || XO || 013 || 019 || Americas || 
+|| South America || XP || 005 || 019 || Americas || 
+|| Americas || XC || 019 || 001 || World || 
+|| Northern Europe || QM || 154 || 150 || Europe || 
+|| Southern Europe || QN || 039 || 150 || Europe || 
+|| Western Europe || QO || 155 || 150 || Europe || 
+|| Eastern Europe || XW || 151 || 150 || Europe || 
+|| Europe || XE || 150 || 001 || World || 
+|| Central Asia || XR || 143 || 142 || Asia || 
+|| Eastern Asia || XS || 030 || 142 || Asia || 
+|| Southern Asia || XT || 034 || 142 || Asia || 
+|| South-Eastern Asia || XU || 035 || 142 || Asia || 
+|| Western Asia || XV || 145 || 142 || Asia || 
+|| Asia || XD || 142 || 001 || World || 
+|| Eastern Africa || XH || 014 || 002 || Africa || 
+|| Middle Africa || XI || 017 || 002 || Africa || 
+|| Northern Africa || XJ || 015 || 002 || Africa || 
+|| Southern Africa || XK || 018 || 002 || Africa || 
+|| Western Africa || XL || 011 || 002 || Africa || 
+|| Africa || XB || 002 || 001 || World || 
+|| Australia and New Zealand || QP || 053 || 009 || Oceania || 
+|| Melanesia || QQ || 054 || 009 || Oceania || 
+|| Micronesia || QR || 057 || 009 || Oceania || 
+|| Polynesia || QS || 061 || 009 || Oceania || 
+|| Oceania || XF || 009 || 001 || World || 
+|| Unclassified || XG || 990 || 001 || World || 
+|| World || XA || 001 || 000 || ||
+
+
+===参考资料===
+`[1].` http://resources.potaroo.net/iso3166/regiontablecc.html<br>

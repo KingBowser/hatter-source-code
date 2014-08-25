@@ -228,6 +228,7 @@
  * [Study_Others Others]
   * [Study_Others_Code Code]
    * [Study_Others_Code_CountryOrArea Countries or areas, codes and abbreviations]
+   * [Study_Others_Code_CountryOrArea2Letters Countries or areas, codes and abbreviations(2 letters)]
   * [Study_Others_Edu Edu]
   * [Study_Others_Icon Icon]
   * [Study_Others_Plastic Plastic]

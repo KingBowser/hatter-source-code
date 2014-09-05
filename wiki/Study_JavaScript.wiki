@@ -85,6 +85,8 @@ _[http://www.ecma-international.org/publications/standards/Ecma-262-arch.htm]_
 || `CasperJS` || http://casperjs.org/ || CasperJS is a navigation scripting & testing utility for PhantomJS and SlimerJS written in Javascript ||
 || `JsFramework` || http://jsframework.com/ || JsFramework is an object oriented JavaScript library with a programming model similar to the Microsoft .NET Framework ||
 || `gif.js` || https://github.com/jnordberg/gif.js || JavaScript GIF encoding library ||
+|| `math.js` || http://mathjs.org/ || an extensive math library for JavaScript and Node.js ||
+
 
 
 ===五、游戏===

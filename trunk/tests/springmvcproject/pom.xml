@@ -137,7 +137,7 @@
         </configuration>
       </plugin>
       <plugin>
-        <groupId>com.alibaba.org.apache.maven.plugins</groupId>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-eclipse-plugin</artifactId>
         <configuration>
           <addVersionToProjectName>false</addVersionToProjectName>
@@ -182,8 +182,8 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
-          <junitArtifactName>com.alibaba.external:test.junit</junitArtifactName>
-          <testNGArtifactName>com.alibaba.external:test.testng</testNGArtifactName>
+          <junitArtifactName>junit</junitArtifactName>
+          <testNGArtifactName>testng</testNGArtifactName>
           <excludes>
             <exclude>**/monitor/*.java</exclude>
             <exclude>**/sysadmin/SysAdminTest.java</exclude>

@@ -64,7 +64,7 @@ GRANT privilege [, privilege...] TO user [, user| role, PUBLIC...]
 查看权限：
 {{{
 SELECT grantee,privilege,admin_option FROM dba_sys_privs
-               WHERE grantee IN ('ALIBABA1949', 'HZBOPS');
+               WHERE grantee IN ('_DB_');
 }}}
 
  * 显示所有用户：`select * from all_users;`

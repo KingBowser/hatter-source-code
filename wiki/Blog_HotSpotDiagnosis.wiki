@@ -15,8 +15,8 @@ HotSpot即OpenJDK也是Sun/Oracle官方JDK标准JVM实现。所以我们最常�
 常常在一个应用里有同一个jar包的不同版本，但我们无法断定当前JVM加载的是哪个版本，这时候可以通过 `classdump` 打印URLClassLoader中加载的所有jar包，并列出他们的顺序。而我们实现的使用场景中常常还会使用类增强的手段，如使用ASM、javasist等，这时候需要分析内存中的字节码，此时也可以使用 `classdump` 将对应的类输出到磁盘文件。
 {{{
 $ java -jar classdumpall.jar <PID> -filter org.apache.zookeeper.server.persistence.File*
-[INFO] Add system classloader jar url: /usr/alibaba/install/jdk1.6.0_25/lib/tools.jar
-[INFO] Add system classloader jar url: /usr/alibaba/install/jdk1.6.0_25/lib/sa-jdi.jar
+[INFO] Add system classloader jar url: /usr/java/jdk1.6.0_25/lib/tools.jar
+[INFO] Add system classloader jar url: /usr/java/jdk1.6.0_25/lib/sa-jdi.jar
 Attaching to process ID 23537, please wait...
 Debugger attached successfully.
 Server compiler detected.
@@ -243,12 +243,12 @@ $ gdb -ex "set pagination 0" -ex "thread apply all bt" --batch -p  <PID> | grep 
 Thread 49 (Thread 0x40781940 (LWP 19278)):
 //                                ^-- light weight process id = 19278
 #0  0x0000003bc8a0ab00 in pthread_cond_timedwait@@GLIBC_2.3.2 () from /lib64/libpthread.so.0
-#1  0x00002ad0cd0370e6 in os::PlatformEvent::park () from /usr/alibaba/install/jdk1.6.0_25/jre/lib/amd64/server/libjvm.so
-#2  0x00002ad0cd008abb in Monitor::IWait () from /usr/alibaba/install/jdk1.6.0_25/jre/lib/amd64/server/libjvm.so
-#3  0x00002ad0cd00914e in Monitor::wait () from /usr/alibaba/install/jdk1.6.0_25/jre/lib/amd64/server/libjvm.so
-#4  0x00002ad0cd193df3 in VMThread::loop () from /usr/alibaba/install/jdk1.6.0_25/jre/lib/amd64/server/libjvm.so
-#5  0x00002ad0cd1939ee in VMThread::run () from /usr/alibaba/install/jdk1.6.0_25/jre/lib/amd64/server/libjvm.so
-#6  0x00002ad0cd03796f in java_start () from /usr/alibaba/install/jdk1.6.0_25/jre/lib/amd64/server/libjvm.so
+#1  0x00002ad0cd0370e6 in os::PlatformEvent::park () from /usr/java/jdk1.6.0_25/jre/lib/amd64/server/libjvm.so
+#2  0x00002ad0cd008abb in Monitor::IWait () from /usr/java/jdk1.6.0_25/jre/lib/amd64/server/libjvm.so
+#3  0x00002ad0cd00914e in Monitor::wait () from /usr/java/jdk1.6.0_25/jre/lib/amd64/server/libjvm.so
+#4  0x00002ad0cd193df3 in VMThread::loop () from /usr/java/jdk1.6.0_25/jre/lib/amd64/server/libjvm.so
+#5  0x00002ad0cd1939ee in VMThread::run () from /usr/java/jdk1.6.0_25/jre/lib/amd64/server/libjvm.so
+#6  0x00002ad0cd03796f in java_start () from /usr/java/jdk1.6.0_25/jre/lib/amd64/server/libjvm.so
 #7  0x0000003bc8a06367 in start_thread () from /lib64/libpthread.so.0
 #8  0x0000003bc7ed30ad in clone () from /lib64/libc.so.6
 }}}

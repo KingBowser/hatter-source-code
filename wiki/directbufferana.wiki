@@ -7,8 +7,8 @@ wget https://hatter-source-code.googlecode.com/svn/trunk/directbufferana/directb
 }}}
 {{{
 $ java -jar directbufferanaall.jar 
-[INFO] Add system classloader jar url: /usr/alibaba/install/jdk1.6.0_25/lib/tools.jar
-[INFO] Add system classloader jar url: /usr/alibaba/install/jdk1.6.0_25/lib/sa-jdi.jar
+[INFO] Add system classloader jar url: /usr/java/jdk1.6.0_25/lib/tools.jar
+[INFO] Add system classloader jar url: /usr/java/jdk1.6.0_25/lib/sa-jdi.jar
 Usage:
   java -jar directbufferana.jar <PID>
 }}}
@@ -16,8 +16,8 @@ Usage:
 Sample:
 {{{
 $ java -jar directbufferanaall.jar 19261
-[INFO] Add system classloader jar url: /usr/alibaba/install/jdk1.6.0_25/lib/tools.jar
-[INFO] Add system classloader jar url: /usr/alibaba/install/jdk1.6.0_25/lib/sa-jdi.jar
+[INFO] Add system classloader jar url: /usr/java/jdk1.6.0_25/lib/tools.jar
+[INFO] Add system classloader jar url: /usr/java/jdk1.6.0_25/lib/sa-jdi.jar
 Attaching to process ID 19261, please wait...
 Debugger attached successfully.
 Server compiler detected.

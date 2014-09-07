@@ -14,6 +14,7 @@ openwebsecurity.org.	2285	IN	TXT	"v=spf1 include:_spf.google.com ~all"
 
 
 2. ...
+[使用域密钥对电子邮件进行身份验证 - 启用电子邮件签名功能]
 
 
 3. 创建`DMARC`记录
@@ -23,6 +24,8 @@ openwebsecurity.org.	2285	IN	TXT	"v=spf1 include:_spf.google.com ~all"
 _dmarc.openwebsecurity.org. 3599 IN	TXT	"v=DMARC1\; p=none\; rua=mailto:hatter@openwebsecurity.org\; ruf=mailto:hatter@openwebsecurity.org"
 }}}
 查看并解释：[https://dmarcian.com/dmarc-inspector/]
+
+生成`DMARC`小工具：[http://kitterman.com/dmarc/assistant.html]
 
 
 ===参考资料===

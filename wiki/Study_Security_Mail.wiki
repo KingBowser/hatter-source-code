@@ -17,6 +17,8 @@ openwebsecurity.org.	2285	IN	TXT	"v=spf1 include:_spf.google.com ~all"
 
 测试小工具：http://www.kitterman.com/spf/validate.html
 
+超强测试工具：[http://mxtoolbox.com/spf.aspx]
+
 Google IP 地址范围：[https://support.google.com/a/answer/60764?hl=zh-Hans]
 
 2. 配置`DKIM`

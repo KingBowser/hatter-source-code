@@ -10,6 +10,7 @@
 {{{
 openwebsecurity.org.	2285	IN	TXT	"v=spf1 include:_spf.google.com ~all"
 }}}
+查询并解释：[https://dmarcian.com/spf-survey/]
 
 
 2. ...

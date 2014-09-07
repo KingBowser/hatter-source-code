@@ -16,6 +16,8 @@ openwebsecurity.org.	2285	IN	TXT	"v=spf1 include:_spf.google.com ~all"
 
 测试小工具：http://www.kitterman.com/spf/validate.html
 
+Google IP 地址范围：[https://support.google.com/a/answer/60764?hl=zh-Hans]
+
 2. ...
 
 [使用域密钥对电子邮件进行身份验证 - 启用电子邮件签名功能]

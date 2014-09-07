@@ -3,6 +3,8 @@
 
 ==Sample: Google Apps Setup==
 
+
+===参考资料===
 `[1].` http://www.trusteddomain.org/<br>
 `[2].` http://www.dkim.org/<br>
 `[3].` http://www.opendkim.org/<br>

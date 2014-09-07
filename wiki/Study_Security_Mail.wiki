@@ -50,6 +50,11 @@ Authentication-Results: mr.google.com;
     dkim=pass header.i=sender@gmail.com
 }}}
 
+检查配置是否OK，发邮件到：
+{{{
+check-auth@verifier.port25.com
+}}}
+
 <hr>
 
  * http://www.bits.org/publications/security/BITSSecureEmailApr2007.pdf

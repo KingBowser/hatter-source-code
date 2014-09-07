@@ -6,6 +6,7 @@
 1. 创建`SPF`记录
 
 [https://support.google.com/a/answer/178723?hl=zh-Hans&ref_topic=2759192 创建 SPF 记录]
+[http://www.openspf.org/SPF_Record_Syntax]
 
 创建如下：
 {{{

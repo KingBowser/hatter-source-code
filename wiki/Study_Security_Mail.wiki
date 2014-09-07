@@ -73,3 +73,4 @@ check-auth@verifier.port25.com
 `[6].` http://dmarc-qa.com/<br>
 `[7].` http://www.techrepublic.com/blog/google-in-the-enterprise/send-better-email-configure-spf-and-dkim-for-google-apps/<br>
 `[8].` http://jsmtp.com/doc/index.html#!/how_to_sign_with_dkim<br>
+`[9].` http://emailstuff.org/authentication<br>

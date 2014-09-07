@@ -11,8 +11,10 @@
 {{{
 openwebsecurity.org.	2285	IN	TXT	"v=spf1 include:_spf.google.com ~all"
 }}}
+
 查询并解释：[https://dmarcian.com/spf-survey/]
 
+测试小工具：http://www.kitterman.com/spf/validate.html
 
 2. ...
 

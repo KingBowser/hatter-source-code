@@ -12,6 +12,14 @@ openwebsecurity.org.	2285	IN	TXT	"v=spf1 include:_spf.google.com ~all"
 }}}
 
 
+2. ...
+
+
+3. 创建`DMARC`记录
+
+查看并解释：[https://dmarcian.com/dmarc-inspector/]
+
+
 ===参考资料===
 `[1].` http://www.trusteddomain.org/<br>
 `[2].` http://www.dkim.org/<br>

@@ -39,11 +39,14 @@ _dmarc.openwebsecurity.org. 3599 IN	TXT	"v=DMARC1\; p=none\; rua=mailto:hatter@o
 
 [https://support.google.com/mail/answer/180707?hl=zh-Hans 电子邮件身份验证]
 {{{
-当您获取邮件标头之后，请查找“Authentication-Results”（身份验证结果）标头。如果邮件成功通过 SPF 或 DKIM 身份验证，则会显示“spf=pass”或“dkim=pass”
+当您获取邮件标头之后，请查找“Authentication-Results”（身份验证结果）标头。
+如果邮件成功通过 SPF 或 DKIM 身份验证，则会显示“spf=pass”或“dkim=pass”
 
 例如：
 
-Authentication-Results: mr.google.com; spf=pass (google.com: domain of sender@gmail.com designates 10.90.20.10 as permitted sender) smtp.mail=sender@gmail.com; dkim=pass header.i=sender@gmail.com
+Authentication-Results: mr.google.com; 
+    spf=pass (google.com: domain of sender@gmail.com designates 10.90.20.10 as permitted sender) smtp.mail=sender@gmail.com; 
+    dkim=pass header.i=sender@gmail.com
 }}}
 
 

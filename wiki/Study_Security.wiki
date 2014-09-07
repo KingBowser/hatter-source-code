@@ -5,6 +5,7 @@
 || *WASC* || http://www.webappsec.org/ ||
 || *OWASP* || https://www.owasp.org/ ||
 || *OWASP中国* || http://www.owasp.org.cn/ ||
+|| *OTA* || https://otalliance.org/ || 
 
 密码保护：
  * scrypt

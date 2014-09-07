@@ -51,6 +51,12 @@ Authentication-Results: mr.google.com;
 }}}
 
 
+ * http://www.bits.org/publications/security/BITSSecureEmailApr2007.pdf
+ * http://www.bits.org/publications/security/BITSSecureBrowserRec091610.pdf
+ * http://www.bits.org/publications/security/BITSSenderAuthDeployJun09.pdf
+ * http://www.bits.org/publications/security/BITSEmailAuthenticationFeb2013.pdf
+
+
 ===参考资料===
 `[1].` http://www.trusteddomain.org/<br>
 `[2].` http://www.dkim.org/<br>

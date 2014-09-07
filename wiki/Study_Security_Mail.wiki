@@ -56,6 +56,7 @@ Authentication-Results: mr.google.com;
  * http://www.bits.org/publications/security/BITSSecureBrowserRec091610.pdf
  * http://www.bits.org/publications/security/BITSSenderAuthDeployJun09.pdf
  * http://www.bits.org/publications/security/BITSEmailAuthenticationFeb2013.pdf
+ * http://en.wikipedia.org/wiki/Author_Domain_Signing_Practices
 
 
 ===参考资料===

@@ -1,6 +1,8 @@
 #summary Mail study.
 #sidebar TableOfContents
 
+==Sample: Google Apps Setup==
+
 `[1].` http://www.trusteddomain.org/<br>
 `[2].` http://www.dkim.org/<br>
 `[3].` http://www.opendkim.org/<br>

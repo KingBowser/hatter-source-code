@@ -3,6 +3,9 @@
 
 ==Sample: Google Apps Setup==
 
+1. 创建`SPF`记录
+[https://support.google.com/a/answer/178723?hl=zh-Hans&ref_topic=2759192 创建 SPF 记录]
+
 
 ===参考资料===
 `[1].` http://www.trusteddomain.org/<br>

@@ -50,6 +50,7 @@ Authentication-Results: mr.google.com;
     dkim=pass header.i=sender@gmail.com
 }}}
 
+<hr>
 
  * http://www.bits.org/publications/security/BITSSecureEmailApr2007.pdf
  * http://www.bits.org/publications/security/BITSSecureBrowserRec091610.pdf

@@ -75,4 +75,4 @@ check-auth@verifier.port25.com
 `[8].` http://jsmtp.com/doc/index.html#!/how_to_sign_with_dkim<br>
 `[9].` http://emailstuff.org/authentication<br>
 `[10].` http://dkimcore.org/tools/<br>
-`[11].` http://blog.vmeila.com/archives/50/<br>
+`[11].` http://yxcwf.wordpress.com/2011/05/30/dkim%E6%8A%80%E6%9C%AF%E8%AF%B4%E6%98%8E/<br>

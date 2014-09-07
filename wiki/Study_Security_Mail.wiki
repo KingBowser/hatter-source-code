@@ -4,6 +4,7 @@
 ==Sample: Google Apps Setup==
 
 1. 创建`SPF`记录
+
 [https://support.google.com/a/answer/178723?hl=zh-Hans&ref_topic=2759192 创建 SPF 记录]
 
 创建如下：
@@ -14,10 +15,15 @@ openwebsecurity.org.	2285	IN	TXT	"v=spf1 include:_spf.google.com ~all"
 
 
 2. ...
+
 [使用域密钥对电子邮件进行身份验证 - 启用电子邮件签名功能]
+
+DKIM检查工具：http://protodave.com/tools/dkim-key-checker/
 
 
 3. 创建`DMARC`记录
+
+[https://support.google.com/a/answer/2466563?hl=zh-Hans&ref_topic=2759254 创建 DMARC 记录]
 
 创建如下：
 {{{

@@ -1,9 +1,8 @@
 #summary Mail study.
 #sidebar TableOfContents
 
-=http://www.trusteddomain.org/=
-=http://www.dkim.org/=
-=http://www.opendkim.org/=
-=http://www.openspf.org/=
-
-
+==http://www.trusteddomain.org/==
+==http://www.dkim.org/==
+==http://www.opendkim.org/==
+==http://www.openspf.org/==
+==http://www.dmarc.org/==

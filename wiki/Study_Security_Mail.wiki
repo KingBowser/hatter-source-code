@@ -65,6 +65,8 @@ check-auth@verifier.port25.com
  * http://www.bits.org/publications/security/BITSEmailAuthenticationFeb2013.pdf
  * http://en.wikipedia.org/wiki/Author_Domain_Signing_Practices
 
+查看IP是否在黑名单：[http://www.blacklistalert.org/]
+
 
 ===参考资料===
 `[1].` http://www.trusteddomain.org/<br>

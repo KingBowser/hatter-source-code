@@ -8,6 +8,7 @@
 || *OTA* || https://otalliance.org/ || 
 
  * http://www.trusteddomain.org/
+ * http://googleonlinesecurity.blogspot.com/
 
 密码保护：
  * scrypt

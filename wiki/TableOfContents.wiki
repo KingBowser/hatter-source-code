@@ -218,6 +218,7 @@
   * [Study_Security_NIST NIST]
   * [Study_Security_OAuth OAuth]
   * [Study_Security_OWASP OWASP]
+  * [Study_Security_SafeBrowsing Safe Browsing]
   * [Study_Security_TLS TLS Secure TCP/HTTP]
   * [Study_Security_Tool Tool]
    * [Study_Security_Tool_GPG GPG]

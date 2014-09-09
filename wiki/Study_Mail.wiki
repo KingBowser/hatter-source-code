@@ -1,0 +1,6 @@
+#summary Mail
+#sidebar TableOfContents
+
+ * http://james.apache.org/server/
+ * https://code.google.com/p/subethasmtp/
+

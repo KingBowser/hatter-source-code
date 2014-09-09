@@ -4,3 +4,8 @@
  * http://james.apache.org/server/
  * https://code.google.com/p/subethasmtp/
 
+
+
+ * http://javaemailserver.sourceforge.net/
+ * http://quintanasoft.com/dumbster/
+ * http://jpxx.sourceforge.net/

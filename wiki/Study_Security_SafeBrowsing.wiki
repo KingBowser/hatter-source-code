@@ -1,2 +1,8 @@
 #summary Safe Browsing
 #sidebar TableOfContents
+
+==https://www.stopbadware.org/==
+==https://apwg.org/==
+
+[http://www.google.cn/safebrowsing/diagnostic?site=google.com]
+

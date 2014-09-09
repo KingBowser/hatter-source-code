@@ -67,6 +67,8 @@ check-auth@verifier.port25.com
 
 查看IP是否在黑名单：[http://www.blacklistalert.org/]
 
+SMTP协议：[http://tools.ietf.org/html/rfc5321]
+
 
 ===参考资料===
 `[1].` http://www.trusteddomain.org/<br>

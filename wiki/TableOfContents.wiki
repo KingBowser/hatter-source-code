@@ -153,6 +153,7 @@
   * [Study_LB_LVS Linux Virtual Server]
  * [Study_Law Law]
   * [Study_Law_Span Spam]
+ * [Study_Mail Mail]
  * [Study_Performance Performance]
  * [Study_Programming Programming]
   * [Study_Programming_Charset Charset]

@@ -24,6 +24,8 @@ Hi, 这是我的学习记录。
 
 源代码阅读软件： [https://github.com/OpenGrok/OpenGrok/wiki/How-to-install-OpenGrok]
 
+https://github.com/sindresorhus/awesome
+
 https://searchcode.com/
 
 http://grepcode.com/

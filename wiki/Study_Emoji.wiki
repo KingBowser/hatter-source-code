@@ -1,6 +1,8 @@
 #summary Emoji
 #sidebar TableOfContents
 
+=絵文字 EMOJI emoji=
+
 
 =☀☀☀☀☀☀☀☀☀☀☀☀☀☀☀☀☀☀☀☀☀☀☀=
 

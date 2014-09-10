@@ -86,3 +86,4 @@ check-auth@verifier.port25.com
 `[10].` http://dkimcore.org/tools/<br>
 `[11].` http://yxcwf.wordpress.com/2011/05/30/dkim%E6%8A%80%E6%9C%AF%E8%AF%B4%E6%98%8E/<br>
 `[12].` http://www.microsoft.com/senderid<br>
+`[13].` http://internetmessagingtechnology.org/<br>

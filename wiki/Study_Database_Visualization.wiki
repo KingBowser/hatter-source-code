@@ -7,3 +7,4 @@
  * https://github.com/TBEDP/datavjs
  * http://processingjs.org/
  * http://leafletjs.com/
+ * http://gionkunz.github.io/chartist-js/index.html

@@ -59,6 +59,7 @@
   * [Study_DNS_RecordType Record Type]
  * [Study_Ebook Ebook]
  * [Study_ECMA ECMA]
+ * [Study_Emoji Emoji]
  * [Study_Emulation Emulation]
  * [Study_FileSystem File System]
  * [Study_Flash Flash]

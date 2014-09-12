@@ -73,6 +73,13 @@ check-auth@verifier.port25.com
  * [http://tools.ietf.org/html/rfc7001]
 
 
+ADSP:
+{{{
+$ dig +short txt _adsp._domainkey.paypal.com
+"dkim=discardable"
+}}}
+
+
 ===参考资料===
 `[1].` http://www.trusteddomain.org/<br>
 `[2].` http://www.dkim.org/<br>

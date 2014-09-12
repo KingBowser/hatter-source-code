@@ -52,3 +52,4 @@
 
 ===参考资料===
 `[1].` https://code.google.com/p/nevel-jupiter/wiki/DNS_Recode_Type<br>
+`[2].` http://en.wikipedia.org/wiki/List_of_DNS_record_types<br>

@@ -1,6 +1,9 @@
 #summary Mail
 #sidebar TableOfContents
 
+ * [http://en.wikipedia.org/wiki/Message_transfer_agent Message Transfer Agent(MTA)]
+
+
  * http://james.apache.org/server/
  * https://code.google.com/p/subethasmtp/
 

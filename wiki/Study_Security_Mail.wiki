@@ -94,3 +94,6 @@ $ dig +short txt _adsp._domainkey.paypal.com
 `[11].` http://yxcwf.wordpress.com/2011/05/30/dkim%E6%8A%80%E6%9C%AF%E8%AF%B4%E6%98%8E/<br>
 `[12].` http://www.microsoft.com/senderid<br>
 `[13].` http://internetmessagingtechnology.org/<br>
+`[14].` http://en.wikipedia.org/wiki/Author_Domain_Signing_Practices<br>
+`[15].` http://en.wikipedia.org/wiki/List_of_DNS_record_types<br>
+`[16].` http://en.wikipedia.org/wiki/Message_transfer_agent<br>

@@ -207,6 +207,8 @@
    * [Study_SCM_Git_GitHub GitHub]
   * [Study_SCM_Mercurial Mercurial]
   * [Study_SCM_Subversion Subversion]
+ * [Study_Search Search]
+  * [Study_Search_Google Google]
  * [Study_Security Security]
   * [Study_Security_Android Android]
   * [Study_Security_CVE CVE]

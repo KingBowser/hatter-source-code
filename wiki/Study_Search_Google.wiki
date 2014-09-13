@@ -1,2 +1,15 @@
 #summary Google Search Study.
 #sidebar TableOfContents
+
+```
+site:google.com
+```
+
+```
+inurl:helloworld
+```
+
+
+```
+intext:*@hotmail.com
+```

@@ -10,7 +10,8 @@
 
 
 ==二、规范==
- http://www.openauthentication.org/specifications
+[http://www.openauthentication.org/specification]
+
  * HOTP 【 An HMAC-Based OTP Algorithm (RFC 4226) 】
  [http://www.ietf.org/rfc/rfc4226.txt TXT] [http://tools.ietf.org/html/rfc4226 HTML] [http://tools.ietf.org/pdf/rfc4226.pdf PDF]
  * TOTP【 Time-based One-time Password Algorithm (RFC 6238) 】

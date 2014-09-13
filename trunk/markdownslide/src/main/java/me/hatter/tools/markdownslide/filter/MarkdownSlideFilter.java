@@ -1,6 +1,7 @@
 package me.hatter.tools.markdownslide.filter;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
@@ -69,6 +70,20 @@ public class MarkdownSlideFilter implements ResourceFilter {
             JsspExecutor.executeJssp(resource, new HashMap<String, Object>(), addContext, null, bw);
 
             return makeHttpResponse(bw.getBufferedString(), null, ContentTypes.getContentTypeByExt("html"));
+        }
+        File file = new File(Environment.USER_DIR, request.getFPath());
+        if (file.exists()) {
+            int indexOfLastDot = request.getFPath().lastIndexOf('.');
+            String tfileExt = (indexOfLastDot < 0) ? request.getFPath() : request.getFPath().substring(indexOfLastDot + 1);
+            String contentType = ContentTypes.getContentTypeByExt(tfileExt);
+
+            HttpResponse response = new HttpResponse();
+            response.setContentType(contentType);
+            response.setStatus(HttpConstants.STATUS_SUCCESS);
+            response.setStatusMessage("OK");
+            response.getHeaderMap().set(ContentTypes.CONTENT_TYPE, contentType);
+            response.setBytes(IOUtil.readToBytesAndClose(new FileInputStream(file)));
+            return response;
         }
         return chain.next().filter(request, chain);
     }

@@ -11,6 +11,7 @@ Client Subnet in DNS Requests draft-vandergaast-edns-client-subnet-02 - [http://
 ==[http://crypto.stanford.edu/dns/ DNS Rebinding Attacks]==
 
 =[https://www.whatsmydns.net/ What's My DNS]=
+=[http://www.nexcess.net/resources/tools/global-dns-checker/ Global DNS Checker]=
 
 
 查看DNS记录的几种方式：

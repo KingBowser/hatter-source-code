@@ -8,7 +8,9 @@ Client Subnet in DNS Requests draft-vandergaast-edns-client-subnet-02 - [http://
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/dns/edns-client-subnet1.png]
 
 
-[http://crypto.stanford.edu/dns/ DNS Rebinding Attacks]
+==[http://crypto.stanford.edu/dns/ DNS Rebinding Attacks]==
+
+=[https://www.whatsmydns.net/ What's My DNS]=
 
 
 查看DNS记录的几种方式：

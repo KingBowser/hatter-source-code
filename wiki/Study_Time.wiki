@@ -1,7 +1,7 @@
 #summary time
 #sidebar TableOfContents
 
-=[http://www.timeanddate.com/library/abbreviations/timezones/na/pdt.html PDT]= =[http://www.timeanddate.com/library/abbreviations/timezones/na/pst.html PST]=
+=[http://www.timeanddate.com/library/abbreviations/timezones/na/pdt.html PDT] [http://www.timeanddate.com/library/abbreviations/timezones/na/pst.html PST]=
 
 
 ==美国冬令时夏令时==

@@ -1,4 +1,4 @@
-#summary Regular Expression
+#summary Regular Expression (RegExp)
 #sidebar TableOfContents
 
 

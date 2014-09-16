@@ -1,6 +1,8 @@
 #summary time
 #sidebar TableOfContents
 
+=[http://www.timeanddate.com/library/abbreviations/timezones/na/pdt.html PDT]=
+
 
 ==美国冬令时夏令时==
 夏令时永远是在3月的第二个星期天开始, 在11月的第一个星期天结束

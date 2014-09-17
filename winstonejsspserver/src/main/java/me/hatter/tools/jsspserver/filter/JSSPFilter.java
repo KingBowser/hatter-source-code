@@ -27,7 +27,7 @@ import me.hatter.tools.jsspserver.util.ResponseUtil;
 import me.hatter.tools.resourceproxy.jsspexec.JsspExecutor;
 import me.hatter.tools.resourceproxy.jsspexec.JsspReader;
 import me.hatter.tools.resourceproxy.jsspexec.jsspreader.ExplainedJsspReader;
-import me.hatter.tools.resourceproxy.jsspexec.utl.BufferWriter;
+import me.hatter.tools.resourceproxy.jsspexec.util.BufferWriter;
 import me.hatter.tools.resourceproxy.jsspserver.util.ContentTypes;
 import me.hatter.tools.resourceproxy.jsspserver.util.HttpConstants;
 import me.hatter.tools.resourceproxy.jsspserver.util.JsspResource;

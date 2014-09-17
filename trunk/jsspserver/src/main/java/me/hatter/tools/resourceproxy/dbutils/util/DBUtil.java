@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Set;
 
 import me.hatter.tools.commons.collection.CollectionUtil;
+import me.hatter.tools.commons.function.Filter;
 import me.hatter.tools.resourceproxy.commons.util.ReflectUtil;
 import me.hatter.tools.resourceproxy.commons.util.StringUtil;
 import me.hatter.tools.resourceproxy.dbutils.annotation.NonField;
@@ -212,15 +213,14 @@ public class DBUtil {
         if (fieldList != null) {
             return fieldList;
         }
-        List<Field> fieldTypeList = CollectionUtil.filter(getDatabaseTableFields(clazz),
-                                                          new CollectionUtil.Filter<Field>() {
+        List<Field> fieldTypeList = CollectionUtil.filter(getDatabaseTableFields(clazz), new Filter<Field>() {
 
-                                                              // @Override
-                                                              public boolean accept(Field object) {
-                                                                  UpdateIgnore ui = object.getAnnotation(UpdateIgnore.class);
-                                                                  return (ui != null);
-                                                              }
-                                                          });
+            // @Override
+            public boolean accept(Field object) {
+                UpdateIgnore ui = object.getAnnotation(UpdateIgnore.class);
+                return (ui != null);
+            }
+        });
         fieldList = transformToDatabaseName(fieldTypeList);
         fieldUpIgnoreListMap.put(clazz, fieldList);
         return fieldList;
@@ -234,18 +234,17 @@ public class DBUtil {
         if (fieldList != null) {
             return fieldList;
         }
-        List<Field> fieldTypeList = CollectionUtil.filter(getDatabaseTableFields(clazz),
-                                                          new CollectionUtil.Filter<Field>() {
+        List<Field> fieldTypeList = CollectionUtil.filter(getDatabaseTableFields(clazz), new Filter<Field>() {
 
-                                                              // @Override
-                                                              public boolean accept(Field object) {
-                                                                  me.hatter.tools.resourceproxy.dbutils.annotation.Field f = object.getAnnotation(me.hatter.tools.resourceproxy.dbutils.annotation.Field.class);
-                                                                  if (f == null) {
-                                                                      return false;
-                                                                  }
-                                                                  return f.pk();
-                                                              }
-                                                          });
+            // @Override
+            public boolean accept(Field object) {
+                me.hatter.tools.resourceproxy.dbutils.annotation.Field f = object.getAnnotation(me.hatter.tools.resourceproxy.dbutils.annotation.Field.class);
+                if (f == null) {
+                    return false;
+                }
+                return f.pk();
+            }
+        });
         fieldList = transformToDatabaseName(fieldTypeList);
         fieldPkListMap.put(clazz, fieldList);
         return fieldList;
@@ -314,16 +313,16 @@ public class DBUtil {
 
     private static List<Field> getDatabaseTableFields(Class<?> clazz) {
         Table table = clazz.getAnnotation(Table.class);
-        CollectionUtil.Filter<Field> fieldFilter = null;
+        Filter<Field> fieldFilter = null;
         if ((table != null) && (!table.defaultAllFields())) {
-            fieldFilter = new CollectionUtil.Filter<Field>() {
+            fieldFilter = new Filter<Field>() {
 
                 public boolean accept(Field object) {
                     return (object.getAnnotation(me.hatter.tools.resourceproxy.dbutils.annotation.Field.class) != null);
                 }
             };
         } else {
-            fieldFilter = new CollectionUtil.Filter<Field>() {
+            fieldFilter = new Filter<Field>() {
 
                 // @Override
                 public boolean accept(Field object) {

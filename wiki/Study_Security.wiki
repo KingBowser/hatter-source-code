@@ -10,6 +10,9 @@
  * http://www.trusteddomain.org/
  * http://googleonlinesecurity.blogspot.com/
 
+OpenSOC Big Data Security Analytics Framework：
+ * https://opensoc.github.io/
+
 密码保护：
  * scrypt
   * https://www.tarsnap.com/scrypt.html

@@ -1,6 +1,9 @@
 #summary Emulation
 #sidebar TableOfContents
 
+ * http://bellard.org/
+ * http://bellard.org/jslinux/
+
  * http://www.openemulation.com/
  * http://www.virtualnes.com/index.html
  * http://skilldrick.github.io/easy6502/

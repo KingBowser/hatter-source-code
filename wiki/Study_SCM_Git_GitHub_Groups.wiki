@@ -3,3 +3,4 @@
 
  * https://github.com/http2
  * https://github.com/fex-team
+ * https://github.com/shadowsocks

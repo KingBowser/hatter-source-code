@@ -8,5 +8,7 @@
 
 Complete x86/x64 JIT and Remote Assembler for C++ - [https://github.com/kobalicek/asmjit]
 
+ * https://code.google.com/p/memory-sanitizer/
+ * https://code.google.com/p/address-sanitizer/
 
 _SEE ALSO: [Study_Programming_Parser]_

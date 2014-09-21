@@ -6,3 +6,4 @@
  * https://github.com/shadowsocks
  * https://github.com/joyent
  * https://github.com/webplatform
+ * https://github.com/guardianproject

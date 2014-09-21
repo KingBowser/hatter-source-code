@@ -23,3 +23,4 @@ http://www.ietf.org/rfc/rfc4880.txt
 `[3].` http://www.pgpi.org/<br>
 `[4].` http://www.gnupg.org/<br>
 `[5].` http://openpgpjs.org/<br>
+`[6].` http://www.cryptography.org/getpgp.htm<br>

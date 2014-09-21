@@ -11,3 +11,4 @@
  * https://github.com/cure53
  * https://github.com/trevp
  * https://github.com/openssl
+ * https://github.com/clipperz

@@ -12,6 +12,7 @@
  * https://www.opentechfund.org/
  * https://simplysecure.org/
  * https://cure53.de/
+ * https://html5sec.org/
 
 OpenSOC Big Data Security Analytics Framework：
  * https://opensoc.github.io/

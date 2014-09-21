@@ -5,6 +5,7 @@ pngout  http://advsys.net/ken/utils.htm
 
 http://www.cryptix.org/
 
+http://www.gnu.org/software/gnu-crypto/
 
 http://codecrawler.sourceforge.net/
 

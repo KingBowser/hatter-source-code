@@ -22,3 +22,4 @@ http://www.ietf.org/rfc/rfc4880.txt
 `[2].` https://gpgtools.org/<br>
 `[3].` http://www.pgpi.org/<br>
 `[4].` http://www.gnupg.org/<br>
+`[5].` http://openpgpjs.org/<br>

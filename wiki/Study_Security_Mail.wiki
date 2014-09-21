@@ -64,6 +64,7 @@ check-auth@verifier.port25.com
  * http://www.bits.org/publications/security/BITSSenderAuthDeployJun09.pdf
  * http://www.bits.org/publications/security/BITSEmailAuthenticationFeb2013.pdf
  * http://en.wikipedia.org/wiki/Author_Domain_Signing_Practices
+ * https://leap.se/en/services/email
 
 查看IP是否在黑名单：[http://www.blacklistalert.org/]
 

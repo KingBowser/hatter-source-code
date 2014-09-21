@@ -9,6 +9,8 @@
 
  * http://www.trusteddomain.org/
  * http://googleonlinesecurity.blogspot.com/
+ * https://www.opentechfund.org/
+ * https://simplysecure.org/
 
 OpenSOC Big Data Security Analytics Framework：
  * https://opensoc.github.io/

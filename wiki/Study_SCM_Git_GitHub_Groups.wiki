@@ -7,3 +7,4 @@
  * https://github.com/joyent
  * https://github.com/webplatform
  * https://github.com/guardianproject
+ * https://github.com/WhisperSystems

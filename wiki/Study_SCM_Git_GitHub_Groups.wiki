@@ -9,3 +9,4 @@
  * https://github.com/guardianproject
  * https://github.com/WhisperSystems
  * https://github.com/cure53
+ * https://github.com/trevp

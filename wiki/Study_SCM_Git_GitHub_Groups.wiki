@@ -8,3 +8,4 @@
  * https://github.com/webplatform
  * https://github.com/guardianproject
  * https://github.com/WhisperSystems
+ * https://github.com/cure53

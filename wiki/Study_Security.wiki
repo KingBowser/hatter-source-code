@@ -9,7 +9,7 @@
 
  * http://www.trusteddomain.org/
  * http://googleonlinesecurity.blogspot.com/
- * https://www.opentechfund.org/
+ * https://www.opentechfund.org/ [https://www.transifex.com/organization/otf]
  * https://simplysecure.org/
  * https://cure53.de/
  * https://html5sec.org/

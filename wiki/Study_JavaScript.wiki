@@ -86,7 +86,7 @@ _[http://www.ecma-international.org/publications/standards/Ecma-262-arch.htm]_
 || `JsFramework` || http://jsframework.com/ || JsFramework is an object oriented JavaScript library with a programming model similar to the Microsoft .NET Framework ||
 || `gif.js` || https://github.com/jnordberg/gif.js || JavaScript GIF encoding library ||
 || `math.js` || http://mathjs.org/ || an extensive math library for JavaScript and Node.js ||
-
+|| `Browserify ` || http://browserify.org/ || Browserify lets you require('modules') in the browser by bundling up all of your dependencies ||
 
 
 ===五、游戏===

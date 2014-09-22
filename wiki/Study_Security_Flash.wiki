@@ -1,0 +1,5 @@
+#summary Flash Security
+#sidebar TableOfContents
+
+
+ * cross domain [http://www.adobe.com/devnet/articles/crossdomain_policy_file_spec.html]

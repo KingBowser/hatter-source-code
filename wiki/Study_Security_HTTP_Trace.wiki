@@ -1,2 +1,6 @@
 #summary HTTP Trace Security
 #sidebar TableOfContents
+
+
+ * https://www.owasp.org/index.php/Cross_Site_Tracing
+ * http://security.stackexchange.com/questions/31659/testing-for-http-trace-method

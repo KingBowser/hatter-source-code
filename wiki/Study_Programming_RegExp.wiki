@@ -5,6 +5,8 @@
  * [http://www.regexper.com/]
  * [http://www.regexr.com/]
 
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp
+
 
 ===参考资料===
 `[1].` http://en.wikipedia.org/wiki/ReDoS<br>

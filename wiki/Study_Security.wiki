@@ -18,6 +18,7 @@
  * https://clipperz.is/
  * https://cloudsecurityalliance.org/
  * http://seclab.stanford.edu/websec/
+ * https://www.owasp.org/index.php/OWASP_Guide_Project
 
 OpenSOC Big Data Security Analytics Framework：
  * https://opensoc.github.io/

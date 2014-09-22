@@ -13,6 +13,8 @@ Client Subnet in DNS Requests draft-vandergaast-edns-client-subnet-02 - [http://
 =[https://www.whatsmydns.net/ What's My DNS]=
 =[http://www.nexcess.net/resources/tools/global-dns-checker/ Global DNS Checker]=
 
+=[https://publicsuffix.org/ PUBLIC SUFFIX LIST]=
+
 
 查看DNS记录的几种方式：
 {{{

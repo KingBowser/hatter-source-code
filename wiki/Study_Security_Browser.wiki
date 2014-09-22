@@ -2,3 +2,7 @@
 #sidebar TableOfContents
 
 =[http://www.chromium.org/Home/chromium-security Chromium Security]=
+
+
+ * http://dev.chromium.org/Home/chromium-security/guts
+ * http://seclab.stanford.edu/websec/chromium/chromium-security-architecture.pdf

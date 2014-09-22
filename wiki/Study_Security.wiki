@@ -7,8 +7,7 @@
 || *OWASP中国* || http://www.owasp.org.cn/ ||
 || *OTA* || https://otalliance.org/ || 
 
-==[http://www.csm.ornl.gov/~dunigan/security.html]==
-
+ * [http://www.csm.ornl.gov/~dunigan/security.html]
  * http://www.trusteddomain.org/
  * http://googleonlinesecurity.blogspot.com/
  * https://www.opentechfund.org/ [https://www.transifex.com/organization/otf]

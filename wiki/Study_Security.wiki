@@ -17,6 +17,7 @@
  * https://html5sec.org/
  * https://clipperz.is/
  * https://cloudsecurityalliance.org/
+ * http://dev.chromium.org/Home/chromium-security/guts
 
 OpenSOC Big Data Security Analytics Framework：
  * https://opensoc.github.io/

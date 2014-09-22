@@ -20,6 +20,9 @@
  * http://seclab.stanford.edu/websec/
  * https://www.owasp.org/index.php/OWASP_Guide_Project
 
+ * https://docs.google.com/document/d/1RamP4-HJ7GAJY3yv2ju2cK50K9GhOsydJN6KIO81das/pub
+ * http://www.westpoint.ltd.uk/papers/Paul_Johnston_GSEC.pdf
+
 OpenSOC Big Data Security Analytics Framework：
  * https://opensoc.github.io/
  * https://github.com/aol/moloch

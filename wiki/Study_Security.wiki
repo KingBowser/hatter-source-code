@@ -19,6 +19,7 @@
  * https://cloudsecurityalliance.org/
  * http://seclab.stanford.edu/websec/
  * http://www.cgisecurity.com/
+ * http://www.modsecurity.org/
  * https://www.owasp.org/index.php/OWASP_Guide_Project
 
  * https://docs.google.com/document/d/1RamP4-HJ7GAJY3yv2ju2cK50K9GhOsydJN6KIO81das/pub

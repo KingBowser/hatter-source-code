@@ -2,4 +2,4 @@
 #sidebar TableOfContents
 
 
-|| JPEXS Free Flash Decompiler (FFDec) || http://www.free-decompiler.com/flash/ || https://code.google.com/p/asdec/ ||
+|| JPEXS Free Flash Decompiler (FFDec) || http://www.free-decompiler.com/flash/ || https://github.com/jindrapetrik/jpexs-decompiler [https://code.google.com/p/asdec/ Google Code] ||

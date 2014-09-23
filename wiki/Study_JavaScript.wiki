@@ -138,6 +138,7 @@ _[http://www.ecma-international.org/publications/standards/Ecma-262-arch.htm]_
 || ECMAScript 6 Tools || https://github.com/addyosmani/es6-tools || https://github.com/addyosmani/es6-tools ||
 
 ===十二、PPT学习资料===
+|| Code Conventions for the JavaScript Programming Language || http://javascript.crockford.com/code.html || This is a set of coding conventions and rules for use in JavaScript programming. ||
 || JavaScript Memory Management Masterclass || https://speakerdeck.com/addyosmani/javascript-memory-management-masterclass || Presented at at the Google WebPerf Special (London WebPerf Group), August 26th 2014. ||
 
 

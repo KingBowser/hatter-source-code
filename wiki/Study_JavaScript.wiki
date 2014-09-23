@@ -51,6 +51,8 @@ _[http://www.ecma-international.org/publications/standards/Ecma-262-arch.htm]_
 || `JavaScript Shell` || http://www.squarefree.com/shell/ || A command-line interface for JavaScript and DOM ||
 || `JSLint` || http://jslint.com/ || JSLint,The JavaScript Code Quality Tool ||
 || `JSHint` || http://www.jshint.com/ || JSHint is a tool to detect errors and potential problems in JavaScript code ||
+|| `ESLint` || http://eslint.org/ || ESLint The pluggable linting utility for JavaScript ||
+|| `JSLint Error Explanations` || http://jslinterrors.com/ || JSLint Error Explanations ||
 || `/packer/` || http://dean.edwards.name/packer/ || A JavaScript Compressor ||
 || `Beautify` || http://jsbeautifier.org/ || Beautify, unpack or deobfuscate JavaScript and HTML, make JSON/JSONP readable, etc ||
 || `JS NICE` || http://www.jsnice.org/ || JS NICE: Statistical renaming, Type inference and Deobfuscation ||

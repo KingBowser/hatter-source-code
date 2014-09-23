@@ -3,6 +3,8 @@
 
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/java/java.jpeg]
 
+[http://javascript.crockford.com/javacodeconventions.pdf Java Code Conventions]
+
 =JVM (Java Virtual Machine)=
 
 || `Sun Classic ` ||

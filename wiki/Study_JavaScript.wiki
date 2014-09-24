@@ -153,3 +153,4 @@ _[http://www.ecma-international.org/publications/standards/Ecma-262-arch.htm]_
 `[7].` http://designdrizzle.com/10-great-javascript-tools-which-web-developers-shouldnt-miss/<br>
 `[8].` http://www.oschina.net/translate/10-great-javascript-tools-which-web-developers-shouldnt-miss<br>
 `[9].` http://bbs.html5cn.org/thread-3235-1-1.html<br>
+`[10].` http://dean.edwards.name/<br>

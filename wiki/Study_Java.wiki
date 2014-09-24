@@ -3,7 +3,7 @@
 
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/java/java.jpeg]
 
-[http://javascript.crockford.com/javacodeconventions.pdf Java Code Conventions]
+[http://www.oracle.com/technetwork/java/codeconventions-150003.pdfJava Code Conventions][http://javascript.crockford.com/javacodeconventions.pdf  2]
 
 =JVM (Java Virtual Machine)=
 

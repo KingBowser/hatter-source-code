@@ -90,6 +90,7 @@ _[http://www.ecma-international.org/publications/standards/Ecma-262-arch.htm]_
 || `math.js` || http://mathjs.org/ || an extensive math library for JavaScript and Node.js ||
 || `Browserify ` || http://browserify.org/ || Browserify lets you require('modules') in the browser by bundling up all of your dependencies ||
 || `ie7-js` || https://code.google.com/p/ie7-js/ || IE7.js is a JavaScript library to make Microsoft Internet Explorer behave like a standards-compliant browser ||
+|| `jpacker` || https://code.google.com/p/jpacker/ || jPacker is a command-line application ported to Java from Dean Edwards' /packer/ original version and based on Jesse Hansen's C# version ||
 
 
 ===五、游戏===

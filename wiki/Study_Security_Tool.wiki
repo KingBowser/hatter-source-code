@@ -16,3 +16,5 @@ http://pajhome.org.uk/crypt/index.html
 http://codecrawler.sourceforge.net/
 
 http://h3xstream.github.io/find-sec-bugs/
+
+https://www.soldierx.com/tools

@@ -18,6 +18,10 @@
 || `HBuilder` || `Unknow` || http://www.dcloud.net.cn/ || DCloud HBuilder-最佳HTML5开发工具 ||
 
 ==图形(UML)编辑软件==
+
+ * http://www.oschina.net/news/32803/6-java-to-uml-tools
+ * http://www.umlchina.com/Tools/Newindex1.htm
+
 || *Name* || *License* || *Web site* || *Description* ||
 || `astah community` || Free || http://astah.net/editions/community || A free UML editor - that is ready to use the instant you download it, allowing your UML diagrams to be quickly and easily enhanced.  ||
 || `StarUML` || GPL || http://staruml.sourceforge.net/en/ || StarUML is an open source project to develop fast, flexible, extensible, featureful, and freely-available UML/MDA platform running on Win32 platform. ||

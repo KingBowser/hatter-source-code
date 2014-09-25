@@ -1,5 +1,6 @@
 #summary Icon
 #sidebar TableOfContents
 
-Icon库：
-http://glyphicons.com/
+
+ * Free vector icons: http://www.flaticon.com/
+ * Icon库: http://glyphicons.com/

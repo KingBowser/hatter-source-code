@@ -1,2 +1,5 @@
 #summary HTTP Security
 #sidebar TableOfContents
+
+=SecurityHeaders.com=
+[https://securityheaders.com/]

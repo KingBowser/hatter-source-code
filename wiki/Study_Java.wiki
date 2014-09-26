@@ -5,6 +5,8 @@
 
 [http://www.oracle.com/technetwork/java/codeconventions-150003.pdfJava Code Conventions]      [http://javascript.crockford.com/javacodeconventions.pdf  2]
 
+[http://www.javapractices.com/]
+
 =JVM (Java Virtual Machine)=
 
 || `Sun Classic ` ||

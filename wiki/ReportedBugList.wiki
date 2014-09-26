@@ -22,3 +22,6 @@
 
 ==6.W3C-WebAppSec==
  * https://github.com/w3c/webappsec/issues/44
+
+==7.Others==
+ * https://code.google.com/p/flying-saucer/issues/detail?id=245

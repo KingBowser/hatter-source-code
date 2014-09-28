@@ -13,3 +13,4 @@
 =ref.=
  * https://github.com/edsu/rdflib-microdata
  * [http://en.wikipedia.org/wiki/Microdata_(HTML)]
+ * http://diveintohtml5.info/extensibility.html

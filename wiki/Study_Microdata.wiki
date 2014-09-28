@@ -4,6 +4,7 @@
 
  * http://schema.org/
  * http://json-ld.org/
+ * http://rdfa.info/
 
 =spec.=
  * http://schema.org/docs/gs.html

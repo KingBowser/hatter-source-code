@@ -2,8 +2,8 @@
 #sidebar TableOfContents
 
 
- * http://microformats.org/
  * http://schema.org/
+ * http://microformats.org/
  * http://json-ld.org/
  * http://rdfa.info/
  * http://commontag.org/

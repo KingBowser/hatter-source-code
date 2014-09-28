@@ -7,7 +7,7 @@
  * http://json-ld.org/
  * http://rdfa.info/
  * http://commontag.org/
- * http://opengraphprotocol.org/ [http://ogp.me/]
+ * http://opengraphprotocol.org/ [http://ogp.me/ ogp.me]
 
 =spec.=
  * http://schema.org/docs/gs.html

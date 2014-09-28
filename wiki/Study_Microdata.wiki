@@ -33,4 +33,5 @@
  * https://support.google.com/webmasters/answer/146898?hl=en _- RDFa_
 
 =tool=
+ * [http://www.google.com/webmasters/tools/richsnippets Structured Data Testing Tool]
  * http://rdfa.info/tools/ [http://rdfa.info/play/ play]

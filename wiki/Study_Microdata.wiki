@@ -3,11 +3,13 @@
 
 
  * http://schema.org/
+ * http://json-ld.org/
 
 =spec.=
  * http://schema.org/docs/gs.html
  * http://www.w3.org/TR/microdata/
  * http://www.w3.org/TR/microdata-rdf/
+ * http://www.w3.org/TR/json-ld/
  * https://html.spec.whatwg.org/multipage/microdata.html
 
 =ref.=

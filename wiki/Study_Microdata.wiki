@@ -1,11 +1,14 @@
 #summary Microdata
 #sidebar TableOfContents
 
+
  * http://schema.org/
 
+=spec.=
  * http://schema.org/docs/gs.html
  * http://www.w3.org/TR/microdata/
  * http://www.w3.org/TR/microdata-rdf/
  * https://html.spec.whatwg.org/multipage/microdata.html
 
+=ref.=
  * https://github.com/edsu/rdflib-microdata

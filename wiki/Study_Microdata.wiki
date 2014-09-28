@@ -23,6 +23,7 @@
  * http://html5doctor.com/microdata/
  * http://manu.sporny.org/2012/mythical-differences/
  * https://developers.google.com/gmail/actions/getting-started - Support in Gmail
+ * http://www.ibm.com/developerworks/cn/web/1108_zhaifeng_microdata/
 
 =tool=
  * http://rdfa.info/tools/ [http://rdfa.info/play/ play]

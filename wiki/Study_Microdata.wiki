@@ -1,6 +1,8 @@
 #summary Microdata
 #sidebar TableOfContents
 
+ * http://schema.org/
+
  * http://www.w3.org/TR/microdata/
  * http://www.w3.org/TR/microdata-rdf/
 

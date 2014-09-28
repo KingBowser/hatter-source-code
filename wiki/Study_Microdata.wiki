@@ -2,6 +2,7 @@
 #sidebar TableOfContents
 
 
+ * http://microformats.org/
  * http://schema.org/
  * http://json-ld.org/
  * http://rdfa.info/
@@ -12,8 +13,10 @@
  * http://www.w3.org/TR/microdata-rdf/
  * http://www.w3.org/TR/json-ld/
  * https://html.spec.whatwg.org/multipage/microdata.html
+ * http://www.loc.gov/standards/datetime/
 
 =ref.=
+ * http://historical-data.org/
  * https://github.com/edsu/rdflib-microdata
  * [http://en.wikipedia.org/wiki/Microdata_(HTML)]
  * http://diveintohtml5.info/extensibility.html

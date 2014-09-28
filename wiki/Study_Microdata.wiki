@@ -21,4 +21,4 @@
  * https://developers.google.com/gmail/actions/getting-started - Support in Gmail
 
 =tool=
- * http://rdfa.info/play/ http://rdfa.info/tools/
+ * http://rdfa.info/tools/ [http://rdfa.info/play/ play]

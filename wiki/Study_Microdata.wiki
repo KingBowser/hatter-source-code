@@ -17,4 +17,5 @@
  * [http://en.wikipedia.org/wiki/Microdata_(HTML)]
  * http://diveintohtml5.info/extensibility.html
  * http://html5doctor.com/microdata/
+ * http://manu.sporny.org/2012/mythical-differences/
  * https://developers.google.com/gmail/actions/getting-started - Support in Gmail

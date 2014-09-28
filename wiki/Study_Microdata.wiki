@@ -26,5 +26,10 @@
  * https://developers.google.com/gmail/actions/getting-started - Support in Gmail
  * http://www.ibm.com/developerworks/cn/web/1108_zhaifeng_microdata/
 
+=goog.=
+ * https://support.google.com/webmasters/answer/176035?hl=en - _microdata_
+ * https://support.google.com/webmasters/answer/146897?hl=en - _microformats_
+ * https://support.google.com/webmasters/answer/146898?hl=en - _RDFa_
+
 =tool=
  * http://rdfa.info/tools/ [http://rdfa.info/play/ play]

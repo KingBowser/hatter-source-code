@@ -19,3 +19,6 @@
  * http://html5doctor.com/microdata/
  * http://manu.sporny.org/2012/mythical-differences/
  * https://developers.google.com/gmail/actions/getting-started - Support in Gmail
+
+=tool=
+ * http://rdfa.info/play/ http://rdfa.info/tools/

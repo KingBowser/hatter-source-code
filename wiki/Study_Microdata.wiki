@@ -27,6 +27,7 @@
  * http://www.ibm.com/developerworks/cn/web/1108_zhaifeng_microdata/
 
 =goog.=
+ * https://support.google.com/webmasters/answer/99170?hl=en
  * https://support.google.com/webmasters/answer/176035?hl=en _- microdata_
  * https://support.google.com/webmasters/answer/146897?hl=en _- microformats_
  * https://support.google.com/webmasters/answer/146898?hl=en _- RDFa_

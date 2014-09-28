@@ -3,6 +3,7 @@
 
  * http://schema.org/
 
+ * http://schema.org/docs/gs.html
  * http://www.w3.org/TR/microdata/
  * http://www.w3.org/TR/microdata-rdf/
 

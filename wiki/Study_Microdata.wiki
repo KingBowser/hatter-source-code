@@ -35,5 +35,5 @@
 
 =tool=
  * [http://www.google.com/webmasters/tools/richsnippets Structured Data Testing Tool]
- * [https://developers.facebook.com/tools/debug/ Debugger]
+ * [https://developers.facebook.com/tools/debug/ Open Graph Debugger]
  * http://rdfa.info/tools/ [http://rdfa.info/play/ play]

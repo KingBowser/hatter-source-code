@@ -53,7 +53,10 @@ public class Environment {
 
     public static File getUserDesktop() {
         if (getVendor() == JavaVendor.Apple) {
-            return new File(USER_HOME, "Desktop");
+            File desktop = new File(USER_HOME, "Desktop");
+            if (desktop.exists() && desktop.isDirectory()) {
+                return desktop;
+            }
         }
         return new File(USER_HOME); // XXX
     }

@@ -19,13 +19,13 @@ public class Filters {
     }
 
     // @SafeVarargs
-    @SuppressWarnings("unchecked")
+    // @SuppressWarnings("unchecked")
     public static <T> Filter<T> andFilter(Filter<T>... filters) {
         return new AndFilter<T>(filters);
     }
 
     // @SafeVarargs
-    @SuppressWarnings("unchecked")
+    // @SuppressWarnings("unchecked")
     public static <T> Filter<T> orFilter(Filter<T>... filters) {
         return new OrFilter<T>(filters);
     }
@@ -63,7 +63,7 @@ public class Filters {
         private Filter<T>[] filters;
 
         // @SafeVarargs
-        @SuppressWarnings("unchecked")
+        // @SuppressWarnings("unchecked")
         public AndFilter(Filter<T>... filters) {
             this.filters = filters;
         }
@@ -86,7 +86,7 @@ public class Filters {
         private Filter<T>[] filters;
 
         // @SafeVarargs
-        @SuppressWarnings("unchecked")
+        // @SuppressWarnings("unchecked")
         public OrFilter(Filter<T>... filters) {
             this.filters = filters;
         }

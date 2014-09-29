@@ -16,6 +16,10 @@ public class ProcessBar {
         this.startMillis = System.currentTimeMillis();
     }
 
+    public long getStartMillis() {
+        return startMillis;
+    }
+
     public ProcessBar start(long startMillis) {
         this.startMillis = startMillis;
         return this;

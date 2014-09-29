@@ -8,7 +8,9 @@ public class JDKUtil {
     public static enum JDKVersion {
         JDK1_0, JDK1_1, JDK1_2, JDK1_3, JDK1_4,
 
-        JDK1_5, JDK1_6, JDK1_7, JDK1_8, Unknow
+        JDK1_5, JDK1_6, JDK1_7, JDK1_8, JDK1_9,
+
+        Unknow
     }
 
     private static Map<JDKVersion, Integer> jdkVersionMap   = new HashMap<JDKUtil.JDKVersion, Integer>();
@@ -22,6 +24,7 @@ public class JDKUtil {
         jdkVersionMap.put(JDKVersion.JDK1_6, Integer.valueOf(16));
         jdkVersionMap.put(JDKVersion.JDK1_7, Integer.valueOf(17));
         jdkVersionMap.put(JDKVersion.JDK1_8, Integer.valueOf(18));
+        jdkVersionMap.put(JDKVersion.JDK1_9, Integer.valueOf(19));
     }
 
     private static final String             javaSpecVersion = System.getProperty("java.specification.version");
@@ -57,6 +60,8 @@ public class JDKUtil {
             return JDKVersion.JDK1_7;
         } else if ("1.8".equals(javaSpecVersion)) {
             return JDKVersion.JDK1_8;
+        } else if ("1.9".equals(javaSpecVersion)) {
+            return JDKVersion.JDK1_9;
         }
         return JDKVersion.Unknow;
     }

@@ -9,6 +9,7 @@ public class ProcessBar {
     private long startMillis = 0L;
     private int  length      = 80;
     private int  pos         = 0;
+    private int  percent     = 0;
     private int  curr        = 0;
     private int  total       = 0;
 
@@ -36,6 +37,7 @@ public class ProcessBar {
             return this;
         }
         this.pos = Math.min(((int) (((double) curr / total) * length)), length);
+        this.percent = Math.min(((int) (((double) curr / total) * 100)), 100);
         this.curr = curr;
         this.total = total;
         return this;
@@ -47,7 +49,7 @@ public class ProcessBar {
         String bar = StringUtil.repeat("+", this.pos) + StringUtil.repeat("-", (length - this.pos));
 
         sb.append("[").append(bar).append("]");
-        sb.append(" ").append(((pos < 10) ? "0" + pos : pos) + "%");
+        sb.append(" ").append(((percent < 10) ? "0" + percent : percent) + "%");
 
         String cost = DateTimeUtil.format(Times.MILLISECONDS(now - startMillis));
         sb.append(" cost: " + cost);

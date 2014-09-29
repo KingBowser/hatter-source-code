@@ -1,8 +1,12 @@
 package me.hatter.tools.commons.datetime;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import me.hatter.tools.commons.collection.Cu;
 
 public class DateTimeUtil {
 
@@ -54,5 +58,62 @@ public class DateTimeUtil {
 
     public static Date before(Date date, long time, TimeUnit unit) {
         return new Date(date.getTime() - unit.toMillis(time));
+    }
+
+    public static String format(Times times) {
+        long _c;
+        long _m = times.toMillis();
+        List<String> result = new ArrayList<String>();
+
+        if (_m < 1000) {
+            return _m + "ms";
+        }
+        _m /= 1000; // s
+        _c = _m % 60;
+        _m /= 60; // m
+        if (_c > 0 && _m < 60) {
+            result.add(_c + "s");
+        }
+        if (_m > 0) {
+            _c = _m % 60;
+            _m /= 60; // h
+            if (_c > 0) {
+                result.add(_c + "m");
+            }
+            if (_m > 0) {
+                _c = _m % 24;
+                _m /= 24; // d
+                if (_c > 0) {
+                    result.add(_c + "h");
+                }
+                if (_m > 0) {
+                    result.add(_m + "d");
+                }
+            }
+        }
+
+        return Cu.it(result).reverse().join(" ");
+    }
+
+    public static String formatSingle(Times times) {
+        long millis = times.toMillis();
+        long _m = millis;
+        if (_m < 1000) {
+            return _m + " ms";
+        }
+        _m /= 1000; // s
+        if (_m < 60) {
+            return _m + " s";
+        }
+        _m /= 60; // m
+        if (_m < 60) {
+            return _m + " m";
+        }
+        _m /= 60; // h
+        if (_m < 24) {
+            return _m + " h";
+        }
+        _m /= 24; // d
+        return _m + " d";
     }
 }

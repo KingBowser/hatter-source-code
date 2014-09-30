@@ -44,10 +44,7 @@ public class ObjectDisplayTool {
             if (depth > 100) {
                 throw new RuntimeException("Depth is to large: " + depth);
             }
-            String objAddr = null;
-            if (value != null) {
-                objAddr = value.getClass().getName() + "@" + Integer.toHexString(System.identityHashCode(value));
-            }
+            String objAddr = ObjectUtil.objectToString(value);
             String padding = StringUtil.repeat("    ", depth);
             if (duplicate) {
                 writer.write(padding + field.getName() + ": $REF(" + objAddr + ")" + Environment.LINE_SEPARATOR);

@@ -117,10 +117,13 @@ public class ObjectDisplayTool {
         try {
             idMap.put(root, 1);
             walker.display(null, root, 0, false, writer);
+
+            _display(walker, root, new AtomicInteger(), writer);
+
+            writer.flush();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        _display(walker, root, new AtomicInteger(), writer);
     }
 
     public void _display(ObjectWalker walker, Object o, AtomicInteger depth, Writer writer) {

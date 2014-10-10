@@ -20,8 +20,8 @@ $ git rm -rf .
 }}}
 
 {{{
-git config user.name 'Hatter Jiang'
-git config user.email 'jht5945@gmail.com'
+$ git config user.name 'Hatter Jiang'
+$ git config user.email 'jht5945@gmail.com'
 }}}
 
 

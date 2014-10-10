@@ -19,6 +19,11 @@ $ git rm -rf .
 # rm '.gitignore'
 }}}
 
+{{{
+git config user.name 'Hatter Jiang'
+git config user.email 'jht5945@gmail.com'
+}}}
+
 
 {{{
 $ echo "My GitHub Page" > index.html

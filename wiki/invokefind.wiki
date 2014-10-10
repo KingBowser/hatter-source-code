@@ -37,7 +37,3 @@ Usage:
 Sample:
   invokefind --vc "xstream.<init>" string.intern
 }}}
- # Outputs
-{{{
-[INFO] Match found: [com/alibaba/dubbo/rpc/http/form/codec/XmlCodec.<init>()V]:  INVOKESPECIAL com/thoughtworks/xstream/XStream.<init> (Lcom/thoughtworks/xstream/io/HierarchicalStreamDriver;)V
-}}}

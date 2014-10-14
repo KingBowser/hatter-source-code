@@ -1,0 +1,82 @@
+<html>
+<head>
+<title>drag read file</title>
+</head>
+<body>
+
+<style type="text/css">
+#sfile {
+  border: 2px dashed #bbb;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  padding: 25px;
+  text-align: center;
+  font: 20pt bold 'Vollkorn';
+  color: #bbb;
+}
+</style>
+
+<div style="width:200px;height:40px;" id="sfile">Drag file here</div>
+
+<br>
+<textarea style="width:100%;height:200px;" id="tfile"></textarea>
+
+<br><br>
+<div id="fimg"></div>
+
+<script type="text/javascript">
+// http://www.sitepoint.com/html5-file-drag-drop-read-analyze-upload-progress-bars/
+// http://www.html5rocks.com/en/tutorials/file/dndfiles/
+// http://en.wikipedia.org/wiki/Data_URI_scheme
+
+var isSupportJSReadFile = !!(window.File && window.FileList && window.FileReader && window.Blob);
+
+function handleDragOver(evt) {
+  evt.stopPropagation && evt.stopPropagation();
+  evt.preventDefault && evt.preventDefault();
+  evt.dataTransfer.dropEffect = 'copy';
+}
+
+function handleFileSelect(evt) {
+  evt.stopPropagation && evt.stopPropagation();
+  evt.preventDefault && evt.preventDefault();
+  var files = evt.target.files || evt.dataTransfer.files;
+  if (files.length > 1) {
+    alert("Too many files!");
+    return;
+  }
+  var f = files[0];
+  console.info("N: " + f.name);
+  console.info("T: " + f.type);
+  console.info("S: " + f.size);
+  console.info("M: " + f.lastModifiedDate);
+  
+  var reader = new FileReader();
+  reader.onloadend = function(evt) {
+    // console.info(evt);
+    if (evt.target.readyState == FileReader.DONE) {
+      var b64 = btoa(evt.target.result);
+      document.getElementById("tfile").value = b64;
+      if (f.type.indexOf("image") === 0)  {
+        document.getElementById("fimg").innerHTML = "<img src=\"data:" + f.type + ";base64," + b64  + "\">";
+      } else {
+        document.getElementById("fimg").innerHTML = "&nbsp;";
+      }
+    }
+  };
+  var blob = f.slice(0, f.size);
+  // console.info("B: " + blob);
+  reader.readAsBinaryString(blob);
+}
+
+//document.getElementById("sfile").addEventListener("change", FileSelectHandler, false);
+var sfile = document.getElementById("sfile");
+sfile.addEventListener("dragover", handleDragOver, false);
+sfile.addEventListener("drop", handleFileSelect, false);
+
+</script>
+
+</body>
+</html>
+

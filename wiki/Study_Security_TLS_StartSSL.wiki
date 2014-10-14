@@ -10,3 +10,9 @@ wget https://www.startssl.com/certs/sub.class1.server.ca.pem
 cat your_cert.pem sub.class1.server.ca.pem ca.pem > new_cert.pem
 
 }}}
+
+
+
+
+===参考资料===
+`[1].` http://www.freehao123.com/startssl-ssl/<br>

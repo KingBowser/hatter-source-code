@@ -396,6 +396,14 @@ func DomainPathWikiFilter(w http.ResponseWriter, r *http.Request) bool {
 		}
 		return false
 	}
+	if isWiki && r.TLS == nil {
+		hostDomain, _, hostError := lib.ParseHost(r.Host)
+		if hostError != nil {
+			return false
+		}
+		lib.RedirectURL(w, lib.JoinURLPath("https://" + hostDomain, r.RequestURI))
+		return true
+	}
 	if wikiName == "" {
 		wikiName = "WikiIndex"
 	}

@@ -12,7 +12,7 @@ cat your_cert.pem sub.class1.server.ca.pem ca.pem > new_cert.pem
 }}}
 
 
-* nginx config
+* nginx config sample
 {{{
     server {
         listen       443 ssl;

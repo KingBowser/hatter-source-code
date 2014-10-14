@@ -7,6 +7,6 @@
 wget https://www.startssl.com/certs/ca.pem
 wget https://www.startssl.com/certs/sub.class1.server.ca.pem
 
-cat your_crt.pem sub.class1.server.ca.pem ca.pem > new_crt.pem
+cat your_cert.pem sub.class1.server.ca.pem ca.pem > new_cert.pem
 
 }}}

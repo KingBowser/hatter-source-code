@@ -40,3 +40,4 @@ cat your_cert.pem sub.class1.server.ca.pem ca.pem > new_cert.pem
 
 ===参考资料===
 `[1].` http://www.freehao123.com/startssl-ssl/<br>
+`[2].` http://nginx.org/cn/docs/http/configuring_https_servers.html<br>

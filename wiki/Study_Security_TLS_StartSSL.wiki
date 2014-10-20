@@ -4,6 +4,10 @@
 =https://www.startssl.com/=
 
 {{{
+openssl rsa -in ssl.key -out ssl.key
+}}}
+
+{{{
 wget https://www.startssl.com/certs/ca.pem
 wget https://www.startssl.com/certs/sub.class1.server.ca.pem
 

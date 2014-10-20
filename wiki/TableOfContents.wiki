@@ -240,7 +240,7 @@
   * [Study_Security_Tool Tool]
    * [Study_Security_Tool_GPG GPG]
    * [Study_Security_Tool_SMIME S/MIME]
-   * [Study_Security_Tool_XML XML]
+  * [Study_Security_XML XML]
  * [Study_SEO SEO]
  * [Study_Software Software]
  * [Study_Time Time]

@@ -4,5 +4,5 @@
  * OOME - https://gist.github.com/jht5945/3bcf5890e547d87c6eb5
  * XXE - https://gist.github.com/jht5945/eea74e3818a1d4b92fff
 
-===参考资料＝＝＝
+===参考资料===
 `[1].` https://www.owasp.org/index.php/XML_External_Entity_(XXE)_Processing<br>

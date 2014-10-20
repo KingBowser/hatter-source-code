@@ -1,4 +1,5 @@
 #summary XML
 #sidebar TableOfContents
 
- * OOME https://gist.github.com/jht5945/3bcf5890e547d87c6eb5
+ * OOME - https://gist.github.com/jht5945/3bcf5890e547d87c6eb5
+ * XXE - https://gist.github.com/jht5945/eea74e3818a1d4b92fff

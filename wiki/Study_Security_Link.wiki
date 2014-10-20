@@ -4,3 +4,6 @@
 =GitHub=
  * https://github.com/OWASP
  * https://github.com/w3c
+
+=Hackers=
+ * http://www.pnigos.com/

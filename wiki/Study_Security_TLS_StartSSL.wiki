@@ -37,6 +37,14 @@ cat your_cert.pem sub.class1.server.ca.pem ca.pem > new_cert.pem
     }
 }}}
 
+* nginx SNI
+{{{
+$ nginx -V
+...
+TLS SNI support enabled
+...
+}}}
+
 
 ===参考资料===
 `[1].` http://www.freehao123.com/startssl-ssl/<br>

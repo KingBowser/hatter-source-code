@@ -24,6 +24,10 @@ _SEE ALSO: [Study_Database_MySQL_Branch]_
 http://www.postgresql.org/<br>
 PostgreSQL is a powerful, open source object-relational database system. It has more than 15 years of active development and a proven architecture that has earned it a strong reputation for reliability, data integrity, and correctness.
 
+==EnterpriseDB==
+http://www.enterprisedb.com/<br>
+Postgres Plus Enterprise Edition is the best database and tools package in the PostgreSQL ecosystem for enterprise database compatibility, performance, scalability, high availability, monitoring, management, disaster recovery and application development.
+
 ==SqLite==
 http://www.sqlite.org/<br>
 SQLite is a software library that implements a self-contained, serverless, zero-configuration, transactional SQL database engine. SQLite is the most widely deployed SQL database engine in the world. 

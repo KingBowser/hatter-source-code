@@ -44,6 +44,11 @@ public class BufferWriter {
         pw.write(StringUtil.escapeHtml(objectToString(o)));
     }
 
+    public void writeNbspEscape(Object o) {
+        String s = objectToString(o);
+        pw.write(StringUtil.isEmpty(s) ? "&nbsp;" : StringUtil.escapeHtml(s));
+    }
+
     public void writePreText(Object o) {
         pw.write(StringUtil.preTextHtml(objectToString(o)));
     }

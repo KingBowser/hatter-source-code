@@ -352,6 +352,12 @@ public class JsspExecutor {
             pw.write("out.writeEscape(");
             pw.write(expression);
             pw.write(");");
+        } else if (script.trim().startsWith("N=")) {
+            int equal = script.indexOf('N');
+            String expression = script.substring(equal + 2);
+            pw.write("out.writeNbspEscape(");
+            pw.write(expression);
+            pw.write(");");
         } else if (script.trim().startsWith("!=")) {
             int equal = script.indexOf('!');
             String expression = script.substring(equal + 2);

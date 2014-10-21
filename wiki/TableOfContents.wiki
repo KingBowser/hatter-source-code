@@ -239,6 +239,7 @@
   * [Study_Security_Test Test]
   * [Study_Security_TLS TLS Secure TCP/HTTP]
    * [Study_Security_TLS_StartSSL StartSSL]
+   * [Study_Security_TLS_StrongTLS Strong TLS]
   * [Study_Security_Tool Tool]
    * [Study_Security_Tool_GPG GPG]
    * [Study_Security_Tool_SMIME S/MIME]

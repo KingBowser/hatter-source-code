@@ -15,6 +15,7 @@
 
 SSL/TLS Test Tool:
  * [https://www.ssllabs.com/ssltest/index.html]
+ * [https://www.ssllabs.com/ssltest/viewMyClient.html]
  * [https://www.wormly.com/test_ssl]
 
 

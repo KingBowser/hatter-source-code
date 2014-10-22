@@ -4,4 +4,7 @@
 =CSP=
 
 
+CSP2: http://www.w3.org/TR/CSP2/
+
+
 referer: https://www.requestpolicy.com/  [https://requestpolicycontinued.github.io/ crp]

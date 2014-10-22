@@ -3,9 +3,13 @@ package me.hatter.tools.commons.totp;
 import java.lang.reflect.UndeclaredThrowableException;
 import java.math.BigInteger;
 import java.security.GeneralSecurityException;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
+
+import me.hatter.tools.commons.totp.Base32String.DecodingException;
 
 // otpauth://totp/Example:alice@google.com?secret=JBSWY3DPEHPK3PXP&issuer=Example
 // https://code.google.com/p/google-authenticator/
@@ -82,5 +86,34 @@ public class TOTP {
             result = "0" + result;
         }
         return result;
+    }
+
+    public static String generateTOTP(byte[] key, long sec30OffSet) {
+        long nowIn30Sec = System.currentTimeMillis() / 1000 / 30;
+        return generateTOTP(key, Long.toHexString(nowIn30Sec + sec30OffSet), "6", "HmacSHA1");
+    }
+
+    public static String generateTOTP(byte[] key) {
+        return generateTOTP(key, 0L);
+    }
+
+    public static String generateTOTP(String base32Key) {
+        try {
+            return generateTOTP(Base32String.decode(base32Key), 0L);
+        } catch (DecodingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static List<String> generateTOTP3(byte[] key) {
+        return Arrays.asList(generateTOTP(key, -1L), generateTOTP(key, 0L), generateTOTP(key, 1L));
+    }
+
+    public static List<String> generateTOTP3(String base32Key) {
+        try {
+            return generateTOTP3(Base32String.decode(base32Key));
+        } catch (DecodingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

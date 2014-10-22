@@ -12,3 +12,4 @@
 
 ===参考资料===
 `[1].` http://docs.oracle.com/cd/E19253-01/819-7058/ike-3/<br>
+`[2].` https://community.qualys.com/blogs/securitylabs/2013/06/25/ssl-labs-deploying-forward-secrecy<br>

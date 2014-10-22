@@ -6,3 +6,4 @@
  * https://raymii.org/s/tutorials/Strong_SSL_Security_On_nginx.html
  * https://www.ssllabs.com/downloads/SSL_TLS_Deployment_Best_Practices_1.3.pdf
  * http://liuqunying.blog.51cto.com/3984207/1565610
+ * https://community.qualys.com/blogs/securitylabs/2013/06/25/ssl-labs-deploying-forward-secrecy

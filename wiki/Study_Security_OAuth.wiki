@@ -2,8 +2,6 @@
 #sidebar TableOfContents
 
 
-http://oauth.net/2/
-
-
-
-http://openid.net/
+* http://oauth.net/2/
+* http://openid.net/
+* http://www.oauthsecurity.com/

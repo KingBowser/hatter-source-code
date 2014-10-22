@@ -2,6 +2,7 @@
 #sidebar TableOfContents
 
  * http://en.wikipedia.org/wiki/Cipher_suite
+ * https://www.iana.org/assignments/comp-meth-ids/comp-meth-ids.xhtml
  * https://www.iana.org/assignments/tls-extensiontype-values/tls-extensiontype-values.xhtml
  * https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml [https://www.iana.org/assignments/tls-parameters/tls-parameters.txt txt]
 

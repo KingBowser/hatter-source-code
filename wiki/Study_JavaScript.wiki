@@ -144,6 +144,12 @@ _[http://www.ecma-international.org/publications/standards/Ecma-262-arch.htm]_
 || JavaScript Memory Management Masterclass || https://speakerdeck.com/addyosmani/javascript-memory-management-masterclass || Presented at at the Google WebPerf Special (London WebPerf Group), August 26th 2014. ||
 
 
+
+ * https://developer.chrome.com/devtools/docs/console-api
+ * https://developer.chrome.com/devtools/docs/commandline-api
+ * https://developer.chrome.com/devtools/docs/integrating
+
+
 ===十三、参考资料===
 `[1].` http://en.wikipedia.org/wiki/JavaScript<br>
 `[2].` http://en.wikipedia.org/wiki/ECMAScript<br>

@@ -4,3 +4,11 @@
  * OWASP DOM Based XSS - https://www.owasp.org/index.php/DOM_Based_XSS
  * DOM XSS Test Cases Wiki Cheatsheet Project - https://code.google.com/p/domxsswiki/wiki/Index
  * DOM Based Cross Site Scripting or XSS of the Third Kind - http://www.webappsec.org/projects/articles/071105.shtml
+
+ * https://www.owasp.org/index.php/Category:OWASP_AntiSamy_Project
+ * http://htmlpurifier.org/
+
+
+ * https://test.openwebsecurity.org/rawfile/purify_playground.htm
+ * https://cure53.de/purify
+ * http://aq.163.com/module/pedia/article-00016.html

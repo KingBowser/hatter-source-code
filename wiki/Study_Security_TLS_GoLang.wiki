@@ -23,3 +23,7 @@ func main() {
 	}
 }
 }}}
+
+
+===参考资料===
+`[1].` http://golang.org/pkg/net/http/#ListenAndServeTLS<br>

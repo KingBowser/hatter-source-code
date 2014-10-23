@@ -1,5 +1,5 @@
 #summary Dom XSS
 #sidebar TableOfContents
 
-OWASP DOM Based XSS - https://www.owasp.org/index.php/DOM_Based_XSS
-DOM XSS Test Cases Wiki Cheatsheet Project - https://code.google.com/p/domxsswiki/wiki/Index
+ * OWASP DOM Based XSS - https://www.owasp.org/index.php/DOM_Based_XSS
+ * DOM XSS Test Cases Wiki Cheatsheet Project - https://code.google.com/p/domxsswiki/wiki/Index

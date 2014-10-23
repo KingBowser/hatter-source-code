@@ -11,3 +11,7 @@ CAN I USE? - http://caniuse.com/contentsecuritypolicy
 
 
 referer: https://www.requestpolicy.com/  [https://requestpolicycontinued.github.io/ crp]
+
+http://www.html5rocks.com/en/tutorials/security/content-security-policy/
+
+https://status.modern.ie/contentsecuritypolicy

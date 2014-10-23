@@ -2,9 +2,6 @@
 #sidebar TableOfContents
 
 
-
-
-
 {{{
 sudo openssl req -new -x509 -days 3650 -nodes -out cert.pem -keyout key.pem
 
@@ -38,3 +35,11 @@ openssl genrsa 2048 > ssl.key
 openssl req -new -key ssl.key > ssl.csr
 }}}
 
+
+{{{
+DER 是內容為二進位碼的證書，而 PEM 則是 Base64 編碼加上特定檔頭的證書。 這兩者可以互轉。
+
+openssl x509 -in x509.crt -inform DER -out x509.pem -outform PEM
+
+openssl x509 -text -in mycert.pem
+}}}

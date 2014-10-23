@@ -9,6 +9,9 @@ CAN I USE? - http://caniuse.com/contentsecuritypolicy
  * CSP - http://www.w3.org/TR/CSP/
  * CSP2 - http://www.w3.org/TR/CSP2/
 
+http://cspisawesome.com/
+
+http://www.cspplayground.com/
 
 referer: https://www.requestpolicy.com/  [https://requestpolicycontinued.github.io/ crp]
 

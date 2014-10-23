@@ -59,3 +59,17 @@ $MAP_EACH = function(map, func/*key, value*/) {
     });
   }
 };
+
+$BOOL = function(obj) {
+  if (obj == null) { return false; }
+  if (obj instanceof java.lang.Boolean) {
+    obj = obj.booleanValue();
+  }
+  if (obj instanceof java.lang.Integer) {
+    obj = obj.intValue();
+  }
+  if (obj instanceof java.lang.Long) {
+    obj = obj.longValue();
+  }
+  return (!!obj);
+};

@@ -13,6 +13,8 @@ http://cspisawesome.com/
 
 http://www.cspplayground.com/
 
+http://cspbuilder.info/
+
 referer: https://www.requestpolicy.com/  [https://requestpolicycontinued.github.io/ crp]
 
 http://www.html5rocks.com/en/tutorials/security/content-security-policy/

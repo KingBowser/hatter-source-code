@@ -12,3 +12,10 @@
 
 ----
  * https://html5sec.org/
+
+
+----
+ * https://code.google.com/p/googlecaja/
+ * https://code.google.com/p/html5security/
+ * https://code.google.com/p/mentaljs/
+ * https://code.google.com/p/domxsswiki/

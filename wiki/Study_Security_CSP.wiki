@@ -17,3 +17,5 @@ http://www.html5rocks.com/en/tutorials/security/content-security-policy/
 https://status.modern.ie/contentsecuritypolicy
 
 https://www.chromestatus.com/features/5205088045891584
+
+https://docs.webplatform.org/wiki/tutorials/content-security-policy

@@ -20,3 +20,4 @@
  * https://test.openwebsecurity.org/rawfile/purify_playground.htm
  * https://cure53.de/purify
  * http://aq.163.com/module/pedia/article-00016.html
+ * http://fex.baidu.com/blog/2014/06/xss-frontend-firewall-1/ [http://www.etherdream.com/FunnyScript/richtext_safe_render.html richtext safe render]

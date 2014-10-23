@@ -15,3 +15,5 @@ referer: https://www.requestpolicy.com/  [https://requestpolicycontinued.github.
 http://www.html5rocks.com/en/tutorials/security/content-security-policy/
 
 https://status.modern.ie/contentsecuritypolicy
+
+https://www.chromestatus.com/features/5205088045891584

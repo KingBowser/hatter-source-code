@@ -20,14 +20,6 @@ SSL/TLS Test Tool:
  * [https://www.fairssl.dk/ssltest/]
  * [http://sourceforge.net/projects/sslscan/]
 
-{{{
-DER 是內容為二進位碼的證書，而 PEM 則是 Base64 編碼加上特定檔頭的證書。 這兩者可以互轉。
-
-openssl x509 -in x509.crt -inform DER -out x509.pem -outform PEM
-
-openssl x509 -text -in mycert.pem
-}}}
-
 ----
 在Go语言中使用HTTPS：
 {{{

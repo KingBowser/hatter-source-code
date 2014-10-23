@@ -23,6 +23,10 @@ public class JsspExecutorTest2 {
         mm.put("b", "bbb");
         mm.put("c", "ccc");
         context.put("mm", mm);
+        context.put("x1", Boolean.TRUE);
+        context.put("x2", Boolean.FALSE);
+        context.put("xy0", 0);
+        context.put("xy1", 1);
         BufferWriter bw = new BufferWriter();
         File f = File.createTempFile("test", "jssp");
         f.deleteOnExit();
@@ -39,8 +43,15 @@ public class JsspExecutorTest2 {
                  + "==============\n"//
                  + "<%$MAP_EACH(ac.get('mm'), function(k,v){%><%=k%>: <%=v%>\n<%})%>" //
                  + "==============\n"//
-                 + "<%=$EQUALS('a', 'b')%>, "//
-                 + "<%=$STR_EQUALS('a', 'b')%>, "//
+                 + "FF:<%=$EQUALS('a', 'b')%>, "//
+                 + "<%=$STR_EQUALS('a', 'b')%>, \n"//
+                 + "TF:<%=$BOOL(true)%>,"//
+                 + "<%=$BOOL(false)%>,\n"//
+                 + "TFF:<%=$BOOL(ac.get('x1'))%>,"//
+                 + "<%=$BOOL(ac.get('x2'))%>,"//
+                 + "<%=$BOOL(ac.get('xx'))%>,\n"//
+                 + "FT:<%=$BOOL(ac.get('xy0'))%>,"//
+                 + "<%=$BOOL(ac.get('xy1'))%>,"//
         );
         fw.flush();
         fw.close();

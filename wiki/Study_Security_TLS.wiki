@@ -52,9 +52,8 @@ http://blog.cloudflare.com/announcing-keyless-ssl-all-the-benefits-of-cloudflare
 
 ===参考资料===
 `[1].` https://wzyboy.im/post/799.html<br>
-`[2].` http://golang.org/pkg/net/http/#ListenAndServeTLS<br>
-`[3].` http://www.xinotes.org/notes/note/1094/<br>
-`[4].` https://help.ubuntu.com/10.04/serverguide/certificates-and-security.html<br>
-`[5].` http://blog.roodo.com/rocksaying/archives/16158079.html<br>
-`[6].` http://www.madboa.com/geek/openssl/<br>
-`[7].` https://www.ssllabs.com/downloads/SSL_TLS_Deployment_Best_Practices_1.3.pdf<br>
+`[2].` http://www.xinotes.org/notes/note/1094/<br>
+`[3].` https://help.ubuntu.com/10.04/serverguide/certificates-and-security.html<br>
+`[4].` http://blog.roodo.com/rocksaying/archives/16158079.html<br>
+`[5].` http://www.madboa.com/geek/openssl/<br>
+`[6].` https://www.ssllabs.com/downloads/SSL_TLS_Deployment_Best_Practices_1.3.pdf<br>

@@ -19,3 +19,4 @@
  * https://code.google.com/p/html5security/
  * https://code.google.com/p/mentaljs/
  * https://code.google.com/p/domxsswiki/
+ * https://code.google.com/p/browsersec/

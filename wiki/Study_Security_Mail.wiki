@@ -98,3 +98,4 @@ $ dig +short txt _adsp._domainkey.paypal.com
 `[14].` http://en.wikipedia.org/wiki/Author_Domain_Signing_Practices<br>
 `[15].` http://en.wikipedia.org/wiki/List_of_DNS_record_types<br>
 `[16].` http://en.wikipedia.org/wiki/Message_transfer_agent<br>
+`[17].` http://en.wikipedia.org/wiki/Email_authentication<br>

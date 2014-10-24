@@ -231,8 +231,14 @@ public class StringUtil {
                 case '"':
                     sb.append("&quot;");
                     break;
+                case '\'':
+                    sb.append("&#x27;");
+                    break;
                 case '&':
                     sb.append("&amp;");
+                    break;
+                case '/':
+                    sb.append("&#x2F;");
                     break;
                 default:
                     sb.append(c);
@@ -259,6 +265,15 @@ public class StringUtil {
                     break;
                 case '"':
                     sb.append("&quot;");
+                    break;
+                case '\'':
+                    sb.append("&#x27;");
+                    break;
+                case '&':
+                    sb.append("&amp;");
+                    break;
+                case '/':
+                    sb.append("&#x2F;");
                     break;
                 default:
                     sb.append(c);

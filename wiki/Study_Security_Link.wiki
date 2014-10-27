@@ -24,4 +24,5 @@
  * https://code.google.com/p/browsersec/
 
 
-[Study_SCM_Git_GitHub_Groups]
+<br>
+Related: [Study_SCM_Git_GitHub_Groups]

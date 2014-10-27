@@ -5,6 +5,7 @@
  * https://github.com/OWASP
  * https://github.com/w3c
  * https://github.com/ESAPI
+ * https://github.com/Contrast-Security-OSS
 
 =Hackers=
  * http://www.pnigos.com/

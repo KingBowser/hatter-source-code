@@ -39,6 +39,8 @@ public class JsspExecutorTest2 {
                  + "==============\n"//
                  + "<%$EACH(ac.get('aa'), function(o,i){%><%=i%> : <%=o%>\n<%});%>"//
                  + "==============\n"//
+                 + "<%$EACH(ac.get('aa'), function(o,i,s){%><%=i%>(<%=s%>) : <%=o%>\n<%});%>"//
+                 + "==============\n"//
                  + "<%$EACH(ac.get('aa'), function(o){%>: <%=o%>\n<%});%>"//
                  + "==============\n"//
                  + "<%$MAP_EACH(ac.get('mm'), function(k,v){%><%=k%>: <%=v%>\n<%})%>" //

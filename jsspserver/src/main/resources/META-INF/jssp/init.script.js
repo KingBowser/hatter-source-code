@@ -4,6 +4,10 @@ Array.prototype.each = function(func/*(obj, index)*/) {
   }
 };
 
+if (!Array.prototype.forEach)  {
+  Array.prototype.forEach = Array.prototype.each;
+}
+
 $EQUALS = function(o1, o2) {
   if (o1 == null) { return o2 == null; }
   return o1.equals(o2);
@@ -14,12 +18,13 @@ $STR_EQUALS = function(s1, s2) {
   return $EQUALS(s1 + "", s2 + "");
 };
 
-$EACH = function(obj, func/*obj, index*/) {
+$EACH = function(obj, func/*obj, index, size*/) {
   if (obj == null) { return; }
   if (obj instanceof Array) { obj.each(func); return; }
   if (obj instanceof java.util.List) {
-    for (var i = 0; i < obj.size(); i++) {
-      func(obj.get(i), i);
+    var _size = obj.size();
+    for (var i = 0; i < _size; i++) {
+      func(obj.get(i), i, _size);
     }
     return;
   }
@@ -28,7 +33,7 @@ $EACH = function(obj, func/*obj, index*/) {
     var i = 0;
     while(itr.hasNext()) {
       var o = itr.next();
-      func(o, i);
+      func(o, i, -1);
     }
     return;
   }
@@ -37,7 +42,7 @@ $EACH = function(obj, func/*obj, index*/) {
     var i = 0;
     while(itr.hasNext()) {
       var o = itr.next();
-      func(o, i);
+      func(o, i, -1);
     }
     return;
   }

@@ -1,5 +1,6 @@
 package me.hatter.tools.resourceproxy.dbutils.conn;
 
+import java.lang.reflect.Method;
 import java.sql.Array;
 import java.sql.Blob;
 import java.sql.CallableStatement;
@@ -18,6 +19,8 @@ import java.sql.Struct;
 import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.Executor;
+
+import me.hatter.tools.commons.reflect.ReflectUtil;
 
 public class FilterConnection implements Connection {
 
@@ -227,25 +230,36 @@ public class FilterConnection implements Connection {
         return conn.createStruct(typeName, attributes);
     }
 
-    //** JavaSE7 START, remove the leading "/" when compile under JavaSE6
+    // ** JavaSE7 START, remove the leading "/" when compile under JavaSE6
     public void setSchema(String schema) throws SQLException {
-        conn.setSchema(schema);
+        // conn.setSchema(schema);
+        Method m = ReflectUtil.getDeclaredMethod(conn.getClass(), "setSchema", new Class[] { String.class });
+        ReflectUtil.invokeMethod(m, conn, new Object[] { schema });
     }
 
     public String getSchema() throws SQLException {
-        return conn.getSchema();
+        // return conn.getSchema();
+        Method m = ReflectUtil.getDeclaredMethod(conn.getClass(), "getSchema", new Class[] {});
+        return (String) ReflectUtil.invokeMethod(m, conn, new Object[] {});
     }
 
     public void abort(Executor executor) throws SQLException {
-        conn.abort(executor);
+        // conn.abort(executor);
+        Method m = ReflectUtil.getDeclaredMethod(conn.getClass(), "abort", new Class[] { Executor.class });
+        ReflectUtil.invokeMethod(m, conn, new Object[] { executor });
     }
 
     public void setNetworkTimeout(Executor executor, int milliseconds) throws SQLException {
-        conn.setNetworkTimeout(executor, milliseconds);
+        // conn.setNetworkTimeout(executor, milliseconds);
+        Method m = ReflectUtil.getDeclaredMethod(conn.getClass(), "setNetworkTimeout", new Class[] { Executor.class,
+                int.class });
+        ReflectUtil.invokeMethod(m, conn, new Object[] { executor, milliseconds });
     }
 
     public int getNetworkTimeout() throws SQLException {
-        return conn.getNetworkTimeout();
+        // return conn.getNetworkTimeout();
+        Method m = ReflectUtil.getDeclaredMethod(conn.getClass(), "getNetworkTimeout", new Class[] {});
+        return (int) (Integer) ReflectUtil.invokeMethod(m, conn, new Object[] {});
     }
     // JavaSE7 END */
 }

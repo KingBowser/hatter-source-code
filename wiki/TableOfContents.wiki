@@ -197,6 +197,7 @@
    * [Study_JavaScript_JSON JSON]
    * [Study_JavaScript_MoveToJavaScript Move to JavaScript]
    * [Study_JavaScript_NodeJS Node.js]
+   * [Study_JavaScript_Performance Performance]
    * [Study_JavaScript_Security Security]
   * [Study_Programming_Mobile Mobile]
   * [Study_Programming_TailCall Tail Call]

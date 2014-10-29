@@ -5,6 +5,7 @@ Cross-Origin Resource Sharing (CORS) is a specification that enables truly open 
 
 Can I use: [http://caniuse.com/#feat=cors]
 
+http://www.corsproxy.com/
 
 
 ===参考资料===

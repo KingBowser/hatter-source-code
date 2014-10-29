@@ -4,3 +4,4 @@
  * http://benchmarkjs.com/
  * http://jsperf.com/
  * http://www.broofa.com/Tools/JSLitmus/
+ * http://labjs.com/

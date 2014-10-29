@@ -10,3 +10,4 @@ http://www.corsproxy.com/
 
 ===参考资料===
 `[1].` http://enable-cors.org/<br>
+`[2].` https://www.owasp.org/images/7/7c/Gentile_OWASP_EU_Tour_2013.pdf<br>

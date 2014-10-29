@@ -1,0 +1,9 @@
+#summary Cross-Origin Resource Sharing (CORS)
+#sidebar TableOfContents
+
+Cross-Origin Resource Sharing (CORS) is a specification that enables truly open access across domain-boundaries. If you serve public content, please consider using CORS to open it up for universal JavaScript/browser access.
+
+
+
+===参考资料===
+`[1].` http://enable-cors.org/<br>

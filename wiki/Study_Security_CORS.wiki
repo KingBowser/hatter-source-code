@@ -3,6 +3,8 @@
 
 Cross-Origin Resource Sharing (CORS) is a specification that enables truly open access across domain-boundaries. If you serve public content, please consider using CORS to open it up for universal JavaScript/browser access.
 
+Can I use: [http://caniuse.com/#feat=cors]
+
 
 
 ===参考资料===

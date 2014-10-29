@@ -9,7 +9,7 @@
 
 ----
 
- * http://stevesouders.com/controljs/
+ * http://stevesouders.com/controljs/ [https://code.google.com/p/controljs/ google code]
  * http://headjs.com/
 
 ----

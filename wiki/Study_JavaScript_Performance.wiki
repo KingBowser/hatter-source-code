@@ -9,4 +9,9 @@
 
 ----
 
+ * http://stevesouders.com/controljs/
+ * http://headjs.com/
+
+----
+
  * http://blog.getify.com/sanity-check-object-creation-performance/

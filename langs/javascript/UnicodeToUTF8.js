@@ -23,6 +23,7 @@ function UnicodeToUtf8Bytes(code) {
   return arr.reverse();
 }
 
+
 var _countBits = function(_c) {
     var cnt = 0;
     while(_c > 0) {
@@ -54,4 +55,25 @@ function UnicodeToUtf8Bytes2(code) {
     }
     arr.push(pre | code);
     return arr.reverse();
+}
+
+
+function UnicodeToUtf8Bytes3(code) {
+    var c = String.fromCharCode(code);
+    var s = unescape(encodeURIComponent(c));
+    var arr = [];
+    for (var i = 0; i < s.length; i++) {
+        arr.push(s.charCodeAt(i));
+    }
+    return arr;
+}
+
+
+function UnicodeStringToUtf8Bytes(code) {
+    var str = unescape(encodeURIComponent(code));
+    var arr = [];
+    for (var i = 0; i < str.length; i++) {
+        arr.push(str.charCodeAt(i));
+    }
+    return arr;
 }

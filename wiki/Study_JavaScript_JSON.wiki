@@ -4,3 +4,5 @@
  * http://json.org/
 
  * http://www.jsoneditoronline.org/
+
+ * https://github.com/getify/JSON.minify

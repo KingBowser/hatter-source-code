@@ -6,3 +6,7 @@
  * http://www.broofa.com/Tools/JSLitmus/
  * http://labjs.com/
  * http://zoompf.com/
+
+----
+
+ * http://blog.getify.com/sanity-check-object-creation-performance/

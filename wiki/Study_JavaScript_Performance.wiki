@@ -1,4 +1,5 @@
 #summary JavaScript Performance
 #sidebar TableOfContents
 
-TODO: fill here
+ * http://benchmarkjs.com/
+ * http://jsperf.com/

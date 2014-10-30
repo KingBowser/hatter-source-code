@@ -8,3 +8,4 @@
 ||  Deprecating the "X-" Prefix and Similar Constructs in Application Protocols || http://tools.ietf.org/html/rfc6648 ||
 || Tags for Identifying Languages || http://tools.ietf.org/html/rfc5646 ||
 || Internet Users' Glossary || http://tools.ietf.org/html/rfc1983 ||
+|| IETF Policy on Character Sets and Languages || http://tools.ietf.org/html/rfc2277 ||

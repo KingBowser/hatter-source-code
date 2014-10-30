@@ -78,3 +78,20 @@ $BOOL = function(obj) {
   }
   return (!!obj);
 };
+
+$INT = function(obj) {
+  if (obj == null) { return 0; }
+  if (obj instanceof java.lang.Integer) {
+    return obj.intValue();
+  }
+  if (obj instanceof java.lang.Number) {
+    return obj.intValue();
+  }
+  return parseInt(obj);
+};
+
+$STR = function(obj) {
+  if (obj == null) { return null; }
+  return ("" + obj);
+};
+

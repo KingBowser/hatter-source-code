@@ -1,0 +1,5 @@
+#summary Subresource Integrity(SRI)
+#sidebar TableOfContents
+
+
+http://www.w3.org/TR/SRI/

@@ -4,3 +4,7 @@
 =[http://www.w3.org/ W3C]=
 
  * http://lists.w3.org/Archives/Public/public-html-admin/
+
+
+ * [http://www.w3.org/standards/techs/agentsecurity#w3c_all  Security for User Agents]
+ * [http://www.w3.org/standards/techs/webappsec#w3c_all SECURITY FOR WEB APPLICATIONS]

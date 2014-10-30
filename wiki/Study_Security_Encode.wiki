@@ -1,0 +1,16 @@
+#summary Encode
+#sidebar TableOfContents
+
+=HTML Entity=
+
+|| `&` to `&amp;`
+|| `<` to `&lt;`
+|| `>` to `&gt;`
+|| `"` to `&quot;`
+|| `'` || `&#x27;`
+|| `/` || `&#x2F;`
+
+
+
+===参考资料===
+`[1].` https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet<br>

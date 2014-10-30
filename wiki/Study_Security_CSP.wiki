@@ -3,11 +3,13 @@
 
 =CSP=
 
+
+ * CSP - http://www.w3.org/TR/CSP/
+ * CSP2 - http://www.w3.org/TR/CSP2/
+
 CAN I USE? - http://caniuse.com/contentsecuritypolicy
 
  * http://content-security-policy.com/
- * CSP - http://www.w3.org/TR/CSP/
- * CSP2 - http://www.w3.org/TR/CSP2/
 
 http://cspisawesome.com/
 

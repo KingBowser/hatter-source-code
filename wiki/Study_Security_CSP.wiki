@@ -10,12 +10,9 @@
 CAN I USE? - http://caniuse.com/contentsecuritypolicy
 
  * http://content-security-policy.com/
-
-http://cspisawesome.com/
-
-http://www.cspplayground.com/
-
-http://cspbuilder.info/
+ * http://cspisawesome.com/
+ * http://www.cspplayground.com/
+ * http://cspbuilder.info/
 
 referer: https://www.requestpolicy.com/  [https://requestpolicycontinued.github.io/ crp]
 

@@ -14,9 +14,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -54,6 +56,7 @@ public class JsspExecutor {
     static {
         if (!Arrays.asList("1", "on", "true", "yes").contains(StringUtil.lower(StringUtil.trim(System.getProperty("jssp.init.script.js.disable"))))) {
             try {
+                Set<String> scriptSrcSet = new HashSet<String>();
                 Enumeration<URL> initScriptUrls = ClassLoaderUtil.getClassLoaderByClass(JsspExecutor.class).getResources(INIT_SCRIPT_JS);
                 while (initScriptUrls.hasMoreElements()) {
                     URL initScriptUrl = initScriptUrls.nextElement();
@@ -61,7 +64,14 @@ public class JsspExecutor {
                         logTool.info("Found init script: " + initScriptUrl);
                     }
                     String initScript = IOUtil.readToStringAndClose(initScriptUrl.openStream());
-                    initScripts.put(initScriptUrl, initScript);
+                    if (scriptSrcSet.contains(initScript)) {
+                        if (logTool.isInfoEnable()) {
+                            logTool.info("Script duplicate: " + initScriptUrl);
+                        }
+                    } else {
+                        scriptSrcSet.add(initScript);
+                        initScripts.put(initScriptUrl, initScript);
+                    }
                 }
             } catch (IOException e) {
                 logTool.error("Run init script failed!", e);

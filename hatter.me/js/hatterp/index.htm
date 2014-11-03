@@ -29,6 +29,10 @@ function updateCode() {
 
 function openP() {
   var url = document.getElementById("targetUrl").value;
+  if (!/^https?.*/i.test(url)) {
+    url = "http://" + url;
+    document.getElementById("targetUrl").value = url;
+  }
   if (url.length == 0) {
     // DO NOTHING
   } else {

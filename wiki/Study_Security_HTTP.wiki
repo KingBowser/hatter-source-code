@@ -3,3 +3,6 @@
 
 =SecurityHeaders.com=
 [https://securityheaders.com/]
+
+
+https://web-payments.org/specs/source/http-signatures/

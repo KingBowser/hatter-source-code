@@ -9,7 +9,7 @@ Show/Set HotSpot system/agent properties.
 = Details =
 
 {{{
-wget https://hatter-source-code.googlecode.com/svn/trunk/jprop/jpropall.jar
+wget https://hatter-source-code.googlecode.com/svn/trunk/javatools/jprop/jpropall.jar
 }}}
 
 

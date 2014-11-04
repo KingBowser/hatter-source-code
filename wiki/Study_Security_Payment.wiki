@@ -3,4 +3,5 @@
 
 
 
-https://web-payments.org/
+ * https://web-payments.org/
+ * https://web-payments.org/specs/#security

@@ -6,7 +6,7 @@ Print string instance count and size in perm.
 Code copied from OpenJDK's `jmap -permstat`, and remove the other codes, so published under LGPL.
 
 {{{
-wget https://hatter-source-code.googlecode.com/svn/trunk/permstat/permstatall.jar
+wget https://hatter-source-code.googlecode.com/svn/trunk/javatools/permstat/permstatall.jar
 }}}
 
 Usage:

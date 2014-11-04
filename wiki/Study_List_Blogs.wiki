@@ -18,5 +18,5 @@
 ==数据公式==
  * http://www.mathjax.org/
 
-==W3==
+==W3C==
  * https://annevankesteren.nl/

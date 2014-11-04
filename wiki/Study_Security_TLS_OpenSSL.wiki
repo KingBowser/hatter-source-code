@@ -14,7 +14,7 @@ openssl ciphers -v 'HIGH:!aNULL:!MD5'
 || *MEDIUM* || - ||
 || *LOW* || - ||
 || *EXPORT* || - ||
-|| *eNULL* || - ||
+|| *eNULL* || 即`NULL`，不加密 ||
 || *aNULL* || - ||
 
 

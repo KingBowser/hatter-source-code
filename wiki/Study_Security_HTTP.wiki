@@ -5,4 +5,7 @@
 [https://securityheaders.com/]
 
 
-https://web-payments.org/specs/source/http-signatures/
+ * https://web-payments.org/specs/source/http-signatures/
+ * https://web-payments.org/specs/source/http-signature-nonces/
+ * https://web-payments.org/specs/source/http-signature-trailers/
+ * https://web-payments.org/specs/source/http-signatures-audit/

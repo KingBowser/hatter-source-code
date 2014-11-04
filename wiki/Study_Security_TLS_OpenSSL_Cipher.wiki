@@ -20,7 +20,7 @@ openssl ciphers -[v|V] 'HIGH:!aNULL:!MD5'
 || *HIGH* || - ||
 || *MEDIUM* || - ||
 || *LOW* || - ||
-|| *EXPORT* || - ||
+|| *EXPORT* || 可出口，应该是美国对于加密算法出口的限制，所以可出口的的加密算法都非常弱 ||
 || *eNULL* || 即`NULL`，不加密 ||
 || *aNULL* || 不认证 ||
 

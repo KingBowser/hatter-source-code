@@ -1,2 +1,24 @@
 #summary OpenSSL Cipher
 #sidebar TableOfContents
+
+
+
+{{{
+openssl ciphers -v 'HIGH:!aNULL:!MD5'
+}}}
+
+|| *DEFAULT* || `ALL:!aNULL:!eNULL` ||
+|| *COMPLEMENTOFDEFAULT* || `aNULL` ?(说明实在看不懂，但从结果看和`aNULL`是一样的) ||
+|| *COMPLEMENTOFALL* || `eNULL` ||
+|| *ALL* || 除了`eNULL`的所有加密算法 ||
+|| *HIGH* || - ||
+|| *MEDIUM* || - ||
+|| *LOW* || - ||
+|| *EXPORT* || - ||
+|| *eNULL* || 即`NULL`，不加密 ||
+|| *aNULL* || - ||
+
+
+
+===参考资料===
+`[1].` https://www.openssl.org/docs/apps/ciphers.html<br>

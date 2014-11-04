@@ -10,7 +10,7 @@ You can use jflg show or set HotSpot JVM flags
 
 Usage:
 {{{
-wget https://hatter-source-code.googlecode.com/svn/trunk/jflag/jflagall.jar
+wget https://hatter-source-code.googlecode.com/svn/trunk/javatools/jflag/jflagall.jar
 }}}
 {{{
 java -jar jflagall.jar

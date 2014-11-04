@@ -2,9 +2,9 @@
 #sidebar TableOfContents
 
 
-
+Sample:
 {{{
-openssl ciphers -v 'HIGH:!aNULL:!MD5'
+openssl ciphers -[v|V] 'HIGH:!aNULL:!MD5'
 }}}
 
 || *Prefix* || *Description* ||

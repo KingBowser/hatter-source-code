@@ -8,6 +8,13 @@ openssl ciphers -v 'HIGH:!aNULL:!MD5'
 
 || *DEFAULT* || `ALL:!aNULL:!eNULL` ||
 || *COMPLEMENTOFALL* || `eNULL` ||
+|| *ALL* || 除了`eNULL`的所有加密算法 ||
+|| *HIGH* || - ||
+|| *MEDIUM* || - ||
+|| *LOW* || - ||
+|| *EXPORT* || - ||
+|| *eNULL* || - ||
+|| *aNULL* || - ||
 
 
 

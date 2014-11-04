@@ -3,7 +3,7 @@
 
 Usage:
 {{{
-wget https://hatter-source-code.googlecode.com/svn/trunk/directbufferana/directbufferanaall.jar
+wget https://hatter-source-code.googlecode.com/svn/trunk/javatools/directbufferana/directbufferanaall.jar
 }}}
 {{{
 $ java -jar directbufferanaall.jar 

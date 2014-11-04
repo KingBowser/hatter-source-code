@@ -7,6 +7,12 @@
 openssl ciphers -v 'HIGH:!aNULL:!MD5'
 }}}
 
+|| *Prefix* || *Description* ||
+|| `e` || 加密 ||
+|| `a` || ? ||
+|| `k` || 密钥交换 ||
+
+|| *Chiper* || *Description* ||
 || *DEFAULT* || `ALL:!aNULL:!eNULL` ||
 || *COMPLEMENTOFDEFAULT* || `aNULL` ?(说明实在看不懂，但从结果看和`aNULL`是一样的) ||
 || *COMPLEMENTOFALL* || `eNULL` ||

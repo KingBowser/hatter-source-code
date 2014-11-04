@@ -10,12 +10,12 @@ Find invoke method in class/jar files.
 
  # Install
   * Check out
-   svn co http://hatter-source-code.googlecode.com/svn/trunk/invokefind/
+   svn co http://hatter-source-code.googlecode.com/svn/trunk/javatools/invokefind/
   * Compile & Install
    ant install
   * Download invokefind.jar and run is also ok.
 {{{
-   wget https://hatter-source-code.googlecode.com/svn/trunk/invokefind/invokefind.jar
+   wget https://hatter-source-code.googlecode.com/svn/trunk/javatools/invokefind/invokefind.jar
    java -jar invokefind.jar
 }}}
  # Usage

@@ -9,7 +9,7 @@ Dump class in HotSpot JVM.
 
 Get class dump:
 {{{
-wget https://hatter-source-code.googlecode.com/svn/trunk/classdump/classdumpall.jar
+wget https://hatter-source-code.googlecode.com/svn/trunk/javatools/classdump/classdumpall.jar
 }}}
 
 {{{

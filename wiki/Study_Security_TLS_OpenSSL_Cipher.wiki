@@ -12,6 +12,12 @@ openssl ciphers -[v|V] 'HIGH:!aNULL:!MD5'
 || `a` || 认证 ||
 || `k` || 密钥交换 ||
 
+|| *Operator* || *Description* ||
+|| `!` || 排除 ||
+|| `-` ||  ||
+|| `+` || 设置排序到最后 ||
+
+
 || *Chiper* || *Description* ||
 || *DEFAULT* || `ALL:!aNULL:!eNULL` ||
 || *COMPLEMENTOFDEFAULT* || `aNULL` ?(说明实在看不懂，但从结果看和`aNULL`是一样的) ||

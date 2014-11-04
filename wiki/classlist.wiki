@@ -9,7 +9,7 @@ Show class stat in perm
 = Details =
 
 {{{
-wget https://hatter-source-code.googlecode.com/svn/trunk/classlist/classlistall.jar
+wget https://hatter-source-code.googlecode.com/svn/trunk/javatools/classlist/classlistall.jar
 }}}
 
 {{{

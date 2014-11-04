@@ -2,10 +2,16 @@
 #sidebar TableOfContents
 
 =SecurityHeaders.com=
-[https://securityheaders.com/]
+ * [https://securityheaders.com/]
 
+<br>
 
  * https://web-payments.org/specs/source/http-signatures/
  * https://web-payments.org/specs/source/http-signature-nonces/
  * https://web-payments.org/specs/source/http-signature-trailers/
  * https://web-payments.org/specs/source/http-signatures-audit/
+
+<br>
+
+ * http://tools.ietf.org/html/draft-burke-content-signature-00
+ * https://tools.ietf.org/html/draft-cavage-http-signatures-03

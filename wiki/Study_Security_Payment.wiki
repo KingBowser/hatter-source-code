@@ -1,0 +1,6 @@
+#summary Payment
+#sidebar TableOfContents
+
+
+
+https://web-payments.org/

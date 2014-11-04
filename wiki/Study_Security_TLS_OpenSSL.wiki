@@ -6,6 +6,10 @@
 openssl ciphers -v 'HIGH:!aNULL:!MD5'
 }}}
 
+|| *DEFAULT* || `ALL:!aNULL:!eNULL` ||
+|| *COMPLEMENTOFALL* || `eNULL` ||
+
+
 
 {{{
 sudo openssl req -new -x509 -days 3650 -nodes -out cert.pem -keyout key.pem
@@ -54,3 +58,7 @@ OpenSSL Command-Line HOWTO:
 {{{
 http://www.madboa.com/geek/openssl/
 }}}
+
+
+===参考资料===
+`[1].` https://www.openssl.org/docs/apps/ciphers.html<br>

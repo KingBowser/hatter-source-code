@@ -9,7 +9,7 @@ openssl ciphers -[v|V] 'HIGH:!aNULL:!MD5'
 
 || *Prefix* || *Description* ||
 || `e` || 加密 ||
-|| `a` || ? ||
+|| `a` || 认证 ||
 || `k` || 密钥交换 ||
 
 || *Chiper* || *Description* ||
@@ -22,7 +22,7 @@ openssl ciphers -[v|V] 'HIGH:!aNULL:!MD5'
 || *LOW* || - ||
 || *EXPORT* || - ||
 || *eNULL* || 即`NULL`，不加密 ||
-|| *aNULL* || - ||
+|| *aNULL* || 不认证 ||
 
 
 

@@ -158,6 +158,7 @@
  * [Study_Mail Mail]
   * [Study_Mail_FSRP From, Sender and Return-Path]
  * [Study_Microdata Microdata]
+ * [Study_Mozilla Mozilla]
  * [Study_Network Network]
   * [Study_Network_AddressResolutionProtocol Address Resolution Protocol]
   * [Study_Network_BGP BGP]

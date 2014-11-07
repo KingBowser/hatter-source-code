@@ -14,8 +14,24 @@
 }}}
 
 
+==行结束符将 C# 源文件的字符划分为行==
+
+new-line:（新行：）
+
+ * 回车符 (U+000D)
+ * 换行符 (U+000A)
+ * 回车符 (U+000D) 后跟换行符 (U+000A)
+ * 行分隔符 (U+2028)
+ * 段落分隔符 (U+2029)
+
+为了与添加文件尾标记的源代码编辑工具兼容，并能够以正确结束的行序列的形式查看源文件，下列转换按顺序应用到 C# 程序中的每个源文件：
+如果源文件的最后一个字符为 Control-Z 字符 (U+001A)，则删除此字符。
+如果源文件非空并且源文件的最后一个字符不是回车符 (U+000D)、换行符 (U+000A)、行分隔符 (U+2028) 或段落分隔符 (U+2029)，则将在源文件的结尾添加一个回车符 (U+000D)。
+
+
 
 
 ===参考资料===
 `[1].` https://github.com/rack/rack-contrib/blob/master/lib/rack/contrib/jsonp.rb#L23<br>
 `[2].` http://masatokinugawa.l0.cm/2013/09/u2028u2029.domxss.html  [http://www.hack80.com/thread-21505-1-1.html zh-CN]<br>
+`[3].` http://msdn.microsoft.com/zh-cn/library/aa664664(v=vs.71).aspx<br>

@@ -1,0 +1,5 @@
+#summary Mozilla
+#sidebar TableOfContents
+
+
+https://hacks.mozilla.org/category/developer-tools/

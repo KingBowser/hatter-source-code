@@ -16,6 +16,8 @@
  * https://github.com/SpiderLabs
  * https://github.com/ESAPI
  * https://github.com/bestiejs
+ * https://github.com/mozilla
+ * https://github.com/google
 
 
 <br>

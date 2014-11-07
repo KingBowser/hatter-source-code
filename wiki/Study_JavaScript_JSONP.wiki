@@ -36,3 +36,4 @@ new-line:（新行：）
 `[2].` http://masatokinugawa.l0.cm/2013/09/u2028u2029.domxss.html  [http://www.hack80.com/thread-21505-1-1.html zh-CN]<br>
 `[3].` http://msdn.microsoft.com/zh-cn/library/aa664664(v=vs.71).aspx<br>
 `[4].` [http://php-tips.com/2009/11/23/%E3%83%A1%E3%83%A2-u2029%E3%81%8C%E5%90%AB%E3%81%BE%E3%82%8C%E3%82%8Bjson%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92eval%E9%96%A2%E6%95%B0%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%83%87%E3%82%B3%E3%83%BC/ http://php-tips.com/2009/11/23/メモ-u2029が含まれるjsonデータをeval関数を使ってデコー/]<br>
+`[5].` http://subtech.g.hatena.ne.jp/mala/20101122/1290436563<br>

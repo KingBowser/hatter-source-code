@@ -1,0 +1,10 @@
+#summary JSONP
+#sidebar TableOfContents
+
+
+
+
+
+===参考资料===
+`[1].` https://github.com/rack/rack-contrib/blob/master/lib/rack/contrib/jsonp.rb#L23<br>
+`[2].` http://masatokinugawa.l0.cm/2013/09/u2028u2029.domxss.html  [http://www.hack80.com/thread-21505-1-1.html zh-CN]<br>

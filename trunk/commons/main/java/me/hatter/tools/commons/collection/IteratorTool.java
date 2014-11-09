@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
@@ -36,12 +37,36 @@ public class IteratorTool<T> {
         return new IteratorTool<T>(iterable);
     }
 
+    public static <T> IteratorTool<T> from(Enumeration<T> enumeration) {
+        return new IteratorTool<T>(enumeration);
+    }
+
     public IteratorTool(Iterator<T> iterator) {
         this.iterator = iterator;
     }
 
     public IteratorTool(Iterable<T> iterable) {
         this(iterable.iterator());
+    }
+
+    public IteratorTool(final Enumeration<T> enumeration) {
+        this(new Iterator<T>() {
+
+            @Override
+            public boolean hasNext() {
+                return enumeration.hasMoreElements();
+            }
+
+            @Override
+            public T next() {
+                return enumeration.nextElement();
+            }
+
+            @Override
+            public void remove() {
+                throw new RuntimeException("Not supported operation.");
+            }
+        });
     }
 
     // ========================================================================

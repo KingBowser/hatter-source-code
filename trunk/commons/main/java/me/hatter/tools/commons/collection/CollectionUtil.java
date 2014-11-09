@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -114,6 +115,10 @@ public class CollectionUtil {
 
     public static <T> IteratorTool<T> it(Iterable<T> iterable) {
         return new IteratorTool<T>(iterable);
+    }
+
+    public static <T> IteratorTool<T> it(Enumeration<T> enumeration) {
+        return new IteratorTool<T>(enumeration);
     }
 
     @SuppressWarnings({ "rawtypes", "unchecked" })

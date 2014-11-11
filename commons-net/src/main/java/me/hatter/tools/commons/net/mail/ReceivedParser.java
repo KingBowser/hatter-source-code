@@ -51,6 +51,7 @@ public class ReceivedParser {
     }
 
     private static Map<String, String> _parseReceived(String received) {
+        received = received.replaceAll("\\s+", " ");
         Map<String, String> receivedMap = new LinkedHashMap<String, String>();
         String time = StringUtil.substringAfterLast(received, ";").trim();
         received = StringUtil.substringBeforeLast(received, ";").trim();

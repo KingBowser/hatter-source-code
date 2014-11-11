@@ -149,6 +149,13 @@ public class StringUtil {
         return ((str0 != null) && str0.equals(str1));
     }
 
+    public static boolean equalsIgnoreCase(final String str0, final String str1) {
+        if (str0 == str1) {
+            return true;
+        }
+        return ((str0 != null) && str0.equalsIgnoreCase(str1));
+    }
+
     public static String repeat(String s, int count) {
         if (count <= 0) {
             return EMPTY;

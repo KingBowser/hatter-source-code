@@ -13,6 +13,7 @@ import me.hatter.tools.commons.function.Function;
 import me.hatter.tools.commons.io.IOUtil;
 import me.hatter.tools.commons.net.mail.header.Mail;
 import me.hatter.tools.commons.net.mail.header.Received;
+import me.hatter.tools.commons.string.StringUtil;
 
 public class MailUtil {
 
@@ -78,4 +79,21 @@ public class MailUtil {
         }
         return hs;
     }
+
+    public static boolean isMailEquals(String m0, String m1) {
+        m0 = StringUtil.trim(parseMailAddress(m0));
+        m1 = StringUtil.trim(parseMailAddress(m1));
+        return StringUtil.equalsIgnoreCase(m0, m1);
+    }
+
+    public static String parseMailAddress(String m) {
+        if (m == null) {
+            return null;
+        }
+        if (m.contains("<")) {
+            return StringUtil.substringBeforeLast(StringUtil.substringAfterLast(m, "<"), ">");
+        }
+        return m;
+    }
+
 }

@@ -39,6 +39,7 @@ public class MailUtil {
         m.setFrom(getValue(getHeader(headers, "From")));
         m.setSender(getValue(getHeader(headers, "Sender")));
         m.setReturnPath(getValue(getHeader(headers, "Return-Path")));
+        m.setReplay(getValue(getHeader(headers, "Reply-To")));
         m.setTo(getValue(getHeader(headers, "To")));
         m.setMailer(getValue(getHeader(headers, "Mailer", "X-Mailer")));
         m.setMessageId(getValue(getHeader(headers, "Message-ID")));

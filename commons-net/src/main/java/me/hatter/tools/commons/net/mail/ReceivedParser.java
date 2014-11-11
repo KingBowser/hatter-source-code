@@ -40,6 +40,10 @@ public class ReceivedParser {
         String reservedHost = StringUtil.trim(StringUtil.substringBeforeLast(reservedHostAndIp, "["));
         String ip = StringUtil.trim(StringUtil.substringAfterLast(StringUtil.substringBeforeLast(reservedHostAndIp, "]"),
                                                                   "["));
+        if (!reservedHostAndIp.contains("[")) {
+            // from hostname(IP)
+            ip = reservedHostAndIp;
+        }
 
         ReceivedFrom f = new ReceivedFrom();
         f.setHost(host);

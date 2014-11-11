@@ -96,4 +96,11 @@ public class MailUtil {
         return m;
     }
 
+    public static String parseMailDomain(String m) {
+        if (m == null) {
+            return null;
+        }
+        m = parseMailAddress(m);
+        return m.contains("@") ? StringUtil.substringAfter(m, "@") : m;
+    }
 }

@@ -17,6 +17,8 @@ http://www.114best.com/ip/114.aspx?w=61.164.241.103
 http://www.yougetsignal.com/tools/web-sites-on-web-server/，菜刀里面的。
 }}}
 
+site report : http://toolbar.netcraft.com/site_report?url=openwebsecurity.org
+
 
 
 ===参考资料===

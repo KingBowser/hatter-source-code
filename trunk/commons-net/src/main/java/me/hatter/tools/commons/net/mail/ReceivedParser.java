@@ -1,7 +1,5 @@
 package me.hatter.tools.commons.net.mail;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -84,12 +82,7 @@ public class ReceivedParser {
         if (date.contains("(")) {
             date = StringUtil.substringBefore(date, "(");
         }
-        SimpleDateFormat df = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z");
-        try {
-            return df.parse(date);
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
+        return DateParser.parseDate(date);
     }
 
     private static String[] split(String s) {

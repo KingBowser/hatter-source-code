@@ -7,6 +7,7 @@ public class Mail {
     private String         from;
     private String         sender;
     private String         returnPath;
+    private String         replay;
     private String         to;
     private String         senderIp;
     private String         messageId;
@@ -37,6 +38,14 @@ public class Mail {
 
     public void setReturnPath(String returnPath) {
         this.returnPath = returnPath;
+    }
+
+    public String getReplay() {
+        return replay;
+    }
+
+    public void setReplay(String replay) {
+        this.replay = replay;
     }
 
     public String getTo() {

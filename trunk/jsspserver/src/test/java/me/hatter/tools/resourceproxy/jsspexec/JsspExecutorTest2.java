@@ -54,6 +54,8 @@ public class JsspExecutorTest2 {
                  + "<%=$BOOL(ac.get('xx'))%>,\n"//
                  + "FT:<%=$BOOL(ac.get('xy0'))%>,"//
                  + "<%=$BOOL(ac.get('xy1'))%>,"//
+                 + "\nSTR_EMPTY:<%=$STR_EMPTY(\"\")%>,"//
+                 + "\nSTR_BLANK:<%=$STR_BLANK(\" \")%>,"//
         );
         fw.flush();
         fw.close();

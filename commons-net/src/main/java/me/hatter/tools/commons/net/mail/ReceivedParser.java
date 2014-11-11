@@ -34,11 +34,12 @@ public class ReceivedParser {
         if (from == null) {
             return null;
         }
-        String host = StringUtil.trim(StringUtil.substringBefore(from, "("));
-        String reservedHostAndIp = StringUtil.substringAfter(StringUtil.substringBefore(from, ")"), "(");
-        String message = StringUtil.trim(StringUtil.substringAfter(from, ")"));
-        String reservedHost = StringUtil.trim(StringUtil.substringBefore(reservedHostAndIp, "["));
-        String ip = StringUtil.trim(StringUtil.substringAfter(StringUtil.substringBefore(reservedHostAndIp, "]"), "["));
+        String host = StringUtil.trim(StringUtil.substringBeforeLast(from, "("));
+        String reservedHostAndIp = StringUtil.substringAfterLast(StringUtil.substringBeforeLast(from, ")"), "(");
+        String message = StringUtil.trim(StringUtil.substringAfterLast(from, ")"));
+        String reservedHost = StringUtil.trim(StringUtil.substringBeforeLast(reservedHostAndIp, "["));
+        String ip = StringUtil.trim(StringUtil.substringAfterLast(StringUtil.substringBeforeLast(reservedHostAndIp, "]"),
+                                                                  "["));
 
         ReceivedFrom f = new ReceivedFrom();
         f.setHost(host);

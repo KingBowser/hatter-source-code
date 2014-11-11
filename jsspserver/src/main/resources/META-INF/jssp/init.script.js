@@ -95,3 +95,15 @@ $STR = function(obj) {
   return ("" + obj);
 };
 
+$STR_EMPTY = function(obj) {
+  if (obj == null) { return true; }
+  if (obj instanceof java.lang.String) {
+    return (obj.length() == 0);
+  }
+  return ("" + obj).length == 0;
+};
+
+$STR_BLANK = function(obj) {
+  if ($STR_EMPTY(obj)) { return true; }
+  return /^\s+$/.test("" + obj);
+};

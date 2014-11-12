@@ -36,11 +36,15 @@ public class ReceivedParser {
         }
         String host = StringUtil.trim(StringUtil.substringBeforeLast(from, "("));
         String reservedHostAndIp = StringUtil.substringAfterLast(StringUtil.substringBeforeLast(from, ")"), "(");
+        if (reservedHostAndIp == null) {
+            // from [127.0.0.1]
+            reservedHostAndIp = from;
+        }
         String message = StringUtil.trim(StringUtil.substringAfterLast(from, ")"));
         String reservedHost = StringUtil.trim(StringUtil.substringBeforeLast(reservedHostAndIp, "["));
         String ip = StringUtil.trim(StringUtil.substringAfterLast(StringUtil.substringBeforeLast(reservedHostAndIp, "]"),
                                                                   "["));
-        if (!reservedHostAndIp.contains("[")) {
+        if ((reservedHostAndIp != null) && (!reservedHostAndIp.contains("["))) {
             // from hostname(IP)
             ip = reservedHostAndIp;
         }

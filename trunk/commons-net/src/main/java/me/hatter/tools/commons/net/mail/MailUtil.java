@@ -2,8 +2,11 @@ package me.hatter.tools.commons.net.mail;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import javax.mail.Header;
 import javax.mail.internet.MimeMessage;
@@ -102,5 +105,14 @@ public class MailUtil {
         }
         m = parseMailAddress(m);
         return m.contains("@") ? StringUtil.substringAfter(m, "@") : m;
+    }
+
+    public static String formatDateCST(Date date) {
+        if (date == null) {
+            return null;
+        }
+        SimpleDateFormat sdf = new SimpleDateFormat("d MMM yyyy HH:mm:ss Z");
+        sdf.setTimeZone(TimeZone.getTimeZone("CST"));
+        return sdf.format(date);
     }
 }

@@ -1,0 +1,6 @@
+#summary DNS whois reverse
+#sidebar TableOfContents
+
+
+ * https://whoisology.com/
+ * http://www.ipaddressden.com/

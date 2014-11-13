@@ -112,7 +112,7 @@ public class MailUtil {
             return null;
         }
         SimpleDateFormat sdf = new SimpleDateFormat("d MMM yyyy HH:mm:ss Z");
-        sdf.setTimeZone(TimeZone.getTimeZone("CST"));
+        sdf.setTimeZone(TimeZone.getTimeZone("GMT+8"));
         return sdf.format(date);
     }
 }

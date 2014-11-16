@@ -6,8 +6,13 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.SocketException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
+import me.hatter.tools.commons.collection.CollectionUtil;
+import me.hatter.tools.commons.environment.Environment;
+import me.hatter.tools.commons.function.Filter;
 import me.hatter.tools.commons.io.IOUtil;
 import me.hatter.tools.commons.log.LogTool;
 import me.hatter.tools.commons.log.LogTools;
@@ -27,6 +32,39 @@ public class WhoisUtil {
         initWhoisServerList();
     }
 
+    public static String whois(String domainName) {
+        boolean recursion = false;
+        if (domainName.toLowerCase().endsWith(".com")) {
+            recursion = true;
+        }
+        List<String> ws = queryWhois(domainName, recursion);
+        return StringUtil.join(ws, StringUtil.repeat(Environment.LINE_SEPARATOR, 3));
+    }
+
+    public static List<String> queryWhois(String domainName, boolean recursion) {
+        List<String> result = new ArrayList<String>();
+        String q1 = queryWhois(domainName);
+        result.add(q1);
+
+        if (recursion && (q1 != null)) {
+            String[] lns = q1.split("(\r\n)|(\r)|(\n)");
+            List<String> res = CollectionUtil.it(Arrays.asList(lns)).filter(new Filter<String>() {
+
+                @Override
+                public boolean accept(String obj) {
+                    return obj.trim().toLowerCase().startsWith("whois server:");
+                }
+            }).asList();
+            if (!res.isEmpty()) {
+                String parsedWhoisSever = StringUtil.trim(StringUtil.substringAfter(res.get(0), ":"));
+                if (StringUtil.isNotBlank(parsedWhoisSever)) {
+                    result.add(queryWhois(domainName, parsedWhoisSever));
+                }
+            }
+        }
+        return result;
+    }
+
     public static String queryWhois(String domainName) {
         if (domainName == null) {
             return null;
@@ -44,11 +82,16 @@ public class WhoisUtil {
     }
 
     public static String queryWhois(String domainName, String whoisServer) {
+        if (log.isInfoEnable()) {
+            log.info("Query '" + domainName + "' from '" + whoisServer + "'.");
+        }
         StringBuilder result = new StringBuilder();
         WhoisClient whois = new WhoisClient();
         try {
+            whois.setConnectTimeout((int) TimeUnit.SECONDS.toMillis(10));
             // default is internic.net
             whois.connect(whoisServer);
+            whois.setSoTimeout((int) TimeUnit.SECONDS.toMillis(60));
             String whoisData1 = whois.query(domainName);
             result.append(whoisData1);
             whois.disconnect();

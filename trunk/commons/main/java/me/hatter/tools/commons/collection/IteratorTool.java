@@ -289,6 +289,14 @@ public class IteratorTool<T> {
         return IteratorTool.from(asLinkedSet());
     }
 
+    public T first() {
+        return CollectionUtil.firstObject(head(1).asList());
+    }
+
+    public T last() {
+        return CollectionUtil.firstObject(tail(1).asList());
+    }
+
     public IteratorTool<T> head(final int count) {
         AssertUtil.isTrue(count >= 0);
         return filter(new IndexedFilter<T>() {

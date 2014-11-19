@@ -3,6 +3,7 @@
 
  * OWASP DOM Based XSS - https://www.owasp.org/index.php/DOM_Based_XSS
  * DOM XSS Test Cases Wiki Cheatsheet Project - https://code.google.com/p/domxsswiki/wiki/Index
+ * ArticlesXSS  - https://code.google.com/p/doctype-mirror/wiki/ArticlesXSS
  * DOM Based Cross Site Scripting or XSS of the Third Kind - http://www.webappsec.org/projects/articles/071105.shtml
 
 <br>

@@ -20,3 +20,5 @@ http://www.iana.org/assignments/character-sets/character-sets.xml
 
 
 http://demo.icu-project.org/icu-bin/convexp
+
+http://site.icu-project.org/charts/charset

@@ -264,6 +264,8 @@
  * [Study_SEO SEO]
  * [Study_Software Software]
  * [Study_Time Time]
+  * [Study_Unicode Unicode]
+   * [Study_Unicode_Spoofing Unicode Spoofing]
  * [Study_VPS VPS]
  * [Study_W3C W3C]
  * [Study_WebSiteAnalysis Web Site Analysis]

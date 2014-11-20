@@ -1,0 +1,9 @@
+#summary Unicode Spoofing
+#sidebar TableOfContents
+
+
+
+===参考资料===
+`[1].` http://www.unicode.org/reports/tr24/#Spoofing<br>
+`[2].` https://archive.icann.org/zh/topics/new-gtlds/update-dns-stability-18feb09-zh.pdf<br>
+

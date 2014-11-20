@@ -7,3 +7,4 @@
 `[1].` http://www.unicode.org/reports/tr24/#Spoofing<br>
 `[2].` https://archive.icann.org/zh/topics/new-gtlds/update-dns-stability-18feb09-zh.pdf<br>
 `[3].` https://www.icann.org/resources/unthemed-pages/idn-guidelines-2006-02-22-en<br>
+`[4].` http://www.unicode.org/reports/tr36/<br>

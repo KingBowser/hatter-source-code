@@ -14,6 +14,13 @@ public class IPv4Subnet {
     public static void main(String[] args) {
         System.out.println(new IPv4Subnet("192.168.0.0/24"));
         System.out.println(new IPv4Subnet("192.168.0.0/24").toString2());
+        System.out.println(new IPv4Subnet("192.168.0.0/24").toString3());
+        System.out.println(new IPv4Subnet("192.168.1.0/16").toString());
+        System.out.println(new IPv4Subnet("192.168.1.0/16").toString2());
+        System.out.println(new IPv4Subnet("192.168.1.0/16").toString3());
+        System.out.println(new IPv4Subnet("192.168.1.0/24").toString());
+        System.out.println(new IPv4Subnet("192.168.1.0/24").toString2());
+        System.out.println(new IPv4Subnet("192.168.1.0/24").toString3());
         System.out.println(new IPv4Subnet("192.168.0.0:255.255.255.0"));
         System.out.println(new IPv4Subnet("192.168.0.0:255.255.255.0").toString2());
         System.out.println(new IPv4Subnet("192.168.0.0:255.255.255.0").matches("192.168.0.1"));
@@ -23,11 +30,13 @@ public class IPv4Subnet {
     public IPv4Subnet(String ip, int mask) {
         this.ip = IPv4Addr.ipToInts(ip);
         this.mask = IPv4Mask.maskIntToIpInts(mask);
+        resolveIpMask();
     }
 
     public IPv4Subnet(IPv4Addr ip, int mask) {
         this.ip = ip.getInts();
         this.mask = IPv4Mask.maskIntToIpInts(mask);
+        resolveIpMask();
     }
 
     public IPv4Subnet(String ipmask) {
@@ -39,11 +48,13 @@ public class IPv4Subnet {
         if (indexOfSlash > 0) {
             this.ip = IPv4Addr.ipToInts(ipmask.substring(0, indexOfSlash));
             this.mask = IPv4Mask.maskIntToIpInts(Integer.valueOf(ipmask.substring(indexOfSlash + 1)));
+            resolveIpMask();
         }
         int indexOfColon = ipmask.indexOf(":");
         if (indexOfColon > 0) {
             this.ip = IPv4Addr.ipToInts(ipmask.substring(0, indexOfColon));
             this.mask = IPv4Addr.ipToInts(ipmask.substring(indexOfColon + 1));
+            resolveIpMask();
         }
         if ((indexOfSlash <= 0) && (indexOfColon <= 0)) {
             throw new IllegalArgumentException("ip mask is illegal: " + ipmask);
@@ -98,7 +109,23 @@ public class IPv4Subnet {
         return IPv4Addr.intsToString(ip) + "/" + IPv4Mask.ipIntsToMaskInt(mask);
     }
 
+    public String toString(String split) {
+        return IPv4Addr.intsToString(ip) + split + IPv4Addr.intsToString(mask);
+    }
+
     public String toString2() {
-        return IPv4Addr.intsToString(ip) + ":" + IPv4Addr.intsToString(mask);
+        return toString(":");
+    }
+
+    public String toString3() {
+        return toString(" - ");
+    }
+
+    private void resolveIpMask() {
+        if ((ip != null) && (mask != null) && (ip.length == mask.length)) {
+            for (int i = 0; i < ip.length; i++) {
+                ip[i] = ip[i] & mask[i];
+            }
+        }
     }
 }

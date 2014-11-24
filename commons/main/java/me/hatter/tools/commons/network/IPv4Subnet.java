@@ -14,13 +14,10 @@ public class IPv4Subnet {
     public static void main(String[] args) {
         System.out.println(new IPv4Subnet("192.168.0.0/24"));
         System.out.println(new IPv4Subnet("192.168.0.0/24").toString2());
-        System.out.println(new IPv4Subnet("192.168.0.0/24").toString3());
         System.out.println(new IPv4Subnet("192.168.1.0/16").toString());
         System.out.println(new IPv4Subnet("192.168.1.0/16").toString2());
-        System.out.println(new IPv4Subnet("192.168.1.0/16").toString3());
         System.out.println(new IPv4Subnet("192.168.1.0/24").toString());
         System.out.println(new IPv4Subnet("192.168.1.0/24").toString2());
-        System.out.println(new IPv4Subnet("192.168.1.0/24").toString3());
         System.out.println(new IPv4Subnet("192.168.0.0:255.255.255.0"));
         System.out.println(new IPv4Subnet("192.168.0.0:255.255.255.0").toString2());
         System.out.println(new IPv4Subnet("192.168.0.0:255.255.255.0").matches("192.168.0.1"));
@@ -115,10 +112,6 @@ public class IPv4Subnet {
 
     public String toString2() {
         return toString(":");
-    }
-
-    public String toString3() {
-        return toString(" - ");
     }
 
     private void resolveIpMask() {

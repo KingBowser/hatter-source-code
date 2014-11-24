@@ -1,0 +1,5 @@
+#summary Scam
+#sidebar TableOfContents
+
+ * ScamAdviser - http://www.scamadviser.com/check-website
+

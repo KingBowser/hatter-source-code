@@ -40,3 +40,4 @@
 
 ===参考资料===
 `[1].` https://www.globalsign.eu/sha-256-compatibility/<br>
+`[2].` https://casecurity.org/wp-content/uploads/2014/09/SHA256-Support-List.pdf<br>

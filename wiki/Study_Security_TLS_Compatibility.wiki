@@ -1,9 +1,7 @@
 #summary Compatibility
 #sidebar TableOfContents
 
-==SHA-256 Compatibility==
- * https://www.globalsign.eu/sha-256-compatibility/
-
+=SHA-256 Compatibility=
 
 ===Browsers Which Support SHA-256:===
 

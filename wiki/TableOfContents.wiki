@@ -272,6 +272,7 @@
  * [Study_WebSiteAnalysis Web Site Analysis]
  * [ReportedBugList Reported Bug(Issue) List]
  * [Study_Others Others]
+  * [Study_Others_Beian Beian]
   * [Study_Others_Code Code]
    * [Study_Others_Code_CountryOrArea Countries or areas, codes and abbreviations]
    * [Study_Others_Code_CountryOrArea2Letters Countries or areas, codes and abbreviations(2 letters)]

@@ -4,6 +4,8 @@
 
  * [http://www.regexper.com/]
  * [http://www.regexr.com/]
+ * [http://regexpal.com/]
+ * [http://regex101.com/]
 
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp
 

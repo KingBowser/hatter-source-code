@@ -1,0 +1,6 @@
+#summary Beian 备案
+#sidebar TableOfContents
+
+ * http://tool.chinaz.com/beian.aspx
+ * ICP备案查询 - http://www.icpchaxun.com/
+ * 网站备案查询 - http://tool.chinaz.com/beian.aspx

@@ -68,7 +68,9 @@ check-auth@verifier.port25.com
 
 查看IP是否在黑名单：[http://www.blacklistalert.org/]
 
-邮件头分析： [http://mxtoolbox.com/Public/Tools/EmailHeaders.aspx]
+====邮件头分析：====
+ * [http://mxtoolbox.com/Public/Tools/EmailHeaders.aspx]
+ * [https://toolbox.googleapps.com/apps/messageheader/]
 
 相关RFC：
  * [http://tools.ietf.org/html/rfc5321]

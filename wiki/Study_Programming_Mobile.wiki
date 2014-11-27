@@ -2,7 +2,7 @@
 #sidebar TableOfContents
 
 
-* http://phonegap.com/
-* http://monodevelop.com/Download/Mono_For_Android
-* http://developer.android.com/sdk/installing/studio.html
+ * http://phonegap.com/
+ * http://monodevelop.com/Download/Mono_For_Android
+ * http://developer.android.com/sdk/installing/studio.html
  * J2ObjC - http://j2objc.org/

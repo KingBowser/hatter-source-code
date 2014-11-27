@@ -16,6 +16,7 @@
 || `Atom` ||MIT  || https://atom.io/ || A hackable text editor for the 21st Century ||
 || `Brackets` || MIT || http://brackets.io/ || Brackets is an open source code editor for web designers and front-end developers. ||
 || `HBuilder` || `Unknow` || http://www.dcloud.net.cn/ || DCloud HBuilder-最佳HTML5开发工具 ||
+|| `OmniSharp` || `Unknow` || http://www.omnisharp.net/ || Cross platform .NET development ||
 
 ==图形(UML)编辑软件==
 

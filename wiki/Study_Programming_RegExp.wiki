@@ -6,6 +6,7 @@
  * [http://www.regexr.com/]
  * [http://regexpal.com/]
  * [http://regex101.com/]
+ * [http://jex.im/regulex/] [https://github.com/JexCheng/regulex github]
 
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp
 

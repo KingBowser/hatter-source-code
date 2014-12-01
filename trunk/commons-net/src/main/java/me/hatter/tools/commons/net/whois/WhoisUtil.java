@@ -96,9 +96,9 @@ public class WhoisUtil {
             result.append(whoisData1);
             whois.disconnect();
         } catch (SocketException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return result.toString();
     }

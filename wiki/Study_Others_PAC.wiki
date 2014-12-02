@@ -13,6 +13,7 @@ var proxyDomainList = [
 ];
 
 var proxyDomainExcludeList = [
+    "example.org",
     "1234567890.com"
 ];
 

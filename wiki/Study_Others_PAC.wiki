@@ -2,6 +2,10 @@
 #sidebar TableOfContents
 
 {{{
+ssh -f -N <USER>@<SERVER> -D <PORT>
+}}}
+
+{{{
 var proxyDomainList = [
     "example.com",
     // add more here

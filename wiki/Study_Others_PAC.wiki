@@ -2,7 +2,7 @@
 #sidebar TableOfContents
 
 {{{
-ssh -f -N <USER>@<SERVER> -D <PORT>
+$ ssh -f -N <USER>@<SERVER> -D <PORT>
 }}}
 
 {{{
@@ -43,5 +43,5 @@ function FindProxyForURL(url, host)
 
 
 {{{
-networksetup -setautoproxyurl Wi-Fi file://localhost/Users/<NAME>/example.pac
+$ networksetup -setautoproxyurl Wi-Fi file://localhost/Users/<NAME>/example.pac
 }}}

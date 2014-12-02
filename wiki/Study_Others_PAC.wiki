@@ -40,3 +40,8 @@ function FindProxyForURL(url, host)
     return "DIRECT";
 }
 }}}
+
+
+{{{
+networksetup -setautoproxyurl Wi-Fi file://localhost/Users/<NAME>/example.pac
+}}}

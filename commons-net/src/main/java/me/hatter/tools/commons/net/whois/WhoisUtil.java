@@ -34,9 +34,13 @@ public class WhoisUtil {
 
     public static String whois(String domainName) {
         boolean recursion = false;
-        if (domainName.toLowerCase().endsWith(".com")) {
+        if (domainName.toLowerCase().endsWith(".com") || domainName.toLowerCase().endsWith(".net")) {
             recursion = true;
         }
+        return whois(domainName, recursion);
+    }
+
+    public static String whois(String domainName, boolean recursion) {
         List<String> ws = queryWhois(domainName, recursion);
         return StringUtil.join(ws, StringUtil.repeat(Environment.LINE_SEPARATOR, 3));
     }

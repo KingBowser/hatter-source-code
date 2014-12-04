@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
 import java.io.Closeable;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -327,5 +328,62 @@ public class IOUtil {
         } else {
             return new BufferedOutputStream(outputStream);
         }
+    }
+
+    // with buffered -------------------------------------------------------------------------------------
+    public FilePrintWriter newFilePrintWriter(File file) {
+        try {
+            return new FilePrintWriter(file);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public FilePrintWriter newFilePrintWriter(File file, String charset) {
+        try {
+            return new FilePrintWriter(file, charset);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public FileBufferedWriter newFileBufferedWriter(File file) {
+        try {
+            return new FileBufferedWriter(file);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public FileBufferedWriter newFileBufferedWriter(File file, String charset) {
+        try {
+            return new FileBufferedWriter(file, charset);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public FileBufferedReader newFileBufferedReader(File file) {
+        try {
+            return new FileBufferedReader(file);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public FileBufferedReader newFileBufferedReader(File file, String charset) {
+        try {
+            return new FileBufferedReader(file, charset);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public StringBufferedReader newStringBufferedReader(String s) {
+        return new StringBufferedReader(s);
+    }
+
+    public StringPrintWriter newStringPrintWriter() {
+        return new StringPrintWriter();
     }
 }

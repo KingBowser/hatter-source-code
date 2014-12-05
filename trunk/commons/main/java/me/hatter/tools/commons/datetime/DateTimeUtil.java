@@ -12,7 +12,10 @@ import me.hatter.tools.commons.shortutil.Cu;
 
 public class DateTimeUtil {
 
-    volatile private static long adjustMillis = 0L;
+    public static final String   PATTERN_1     = "d MMM yyyy HH:mm:ss Z";
+    public static final String   PATTERN_NGINX = "dd/MMM/yyyy:HH:mm:ss Z";
+
+    volatile private static long adjustMillis  = 0L;
 
     public static long currentMillis() {
         return System.currentTimeMillis() + adjustMillis;

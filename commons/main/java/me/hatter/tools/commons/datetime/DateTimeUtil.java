@@ -1,12 +1,14 @@
 package me.hatter.tools.commons.datetime;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import me.hatter.tools.commons.collection.Cu;
+import me.hatter.tools.commons.shortutil.Cu;
 
 public class DateTimeUtil {
 
@@ -58,6 +60,26 @@ public class DateTimeUtil {
 
     public static Date before(Date date, long time, TimeUnit unit) {
         return new Date(date.getTime() - unit.toMillis(time));
+    }
+
+    public static Date parse(String pattern, String date) {
+        return parse(new SimpleDateFormat(pattern), date);
+    }
+
+    public static String format(String pattern, Date date) {
+        return format(new SimpleDateFormat(pattern), date);
+    }
+
+    public static Date parse(SimpleDateFormat sdf, String date) {
+        try {
+            return sdf.parse(date);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static String format(SimpleDateFormat sdf, Date date) {
+        return sdf.format(date);
     }
 
     public static String format(Times times) {

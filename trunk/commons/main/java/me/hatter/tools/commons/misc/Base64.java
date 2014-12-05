@@ -22,6 +22,7 @@ public class Base64 {
         }
     };
 
+    // do base64
     public static String atob(String a) {
         try {
             return new String(base64ToByteArray(a), IOUtil.CHARSET_UTF8);
@@ -30,6 +31,7 @@ public class Base64 {
         }
     }
 
+    // un base64
     public static String btoa(String b) {
         try {
             return byteArrayToBase64(b.getBytes(IOUtil.CHARSET_UTF8));

@@ -2,6 +2,7 @@ package me.hatter.tools.commons.misc;
 
 import java.lang.reflect.Method;
 
+import me.hatter.tools.commons.io.IOUtil;
 
 public class Base64 {
 
@@ -20,6 +21,22 @@ public class Base64 {
             throw new RuntimeException(e);
         }
     };
+
+    public static String atob(String a) {
+        try {
+            return new String(base64ToByteArray(a), IOUtil.CHARSET_UTF8);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static String btoa(String b) {
+        try {
+            return byteArrayToBase64(b.getBytes(IOUtil.CHARSET_UTF8));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public static String byteArrayToBase64(byte[] a) {
         try {

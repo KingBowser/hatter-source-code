@@ -31,8 +31,20 @@ public class IOUtil {
     public static final int    PB           = TB * KB;
     public static final String CHARSET_UTF8 = "UTF-8";
 
+    public static String resourceToString(String resourceName) {
+        return readResourceBySystemClassloaderToString(resourceName);
+    }
+
+    public static List<String> resourceToList(String resourceName) {
+        return readResourceBySystemClassloaderToList(resourceName);
+    }
+
     public static String readResourceBySystemClassloaderToString(String resourceName) {
         return readResourceToString(ClassLoaderUtil.getSystemClassLoader(), resourceName);
+    }
+
+    public static List<String> readResourceBySystemClassloaderToList(String resourceName) {
+        return readToList(readResourceBySystemClassloaderToString(resourceName));
     }
 
     public static String readResourceToString(Class<?> clazz, String resourceName) {
@@ -43,12 +55,20 @@ public class IOUtil {
         return readToStringAndClose(is);
     }
 
+    public static List<String> readResourceToList(Class<?> clazz, String resourceName) {
+        return readToList(readResourceToString(clazz, resourceName));
+    }
+
     public static String readResourceToString(ClassLoader classLoader, String resourceName) {
         InputStream is = classLoader.getResourceAsStream(resourceName);
         if (is == null) {
             throw new RuntimeException("Resource not found(by classloader): " + resourceName);
         }
         return readToStringAndClose(is);
+    }
+
+    public static List<String> readResourceToList(ClassLoader classLoader, String resourceName) {
+        return readToList(readResourceToString(classLoader, resourceName));
     }
 
     public static String readToString(InputStream inputStream) {
@@ -96,6 +116,10 @@ public class IOUtil {
         } finally {
             closeQuietly(reader);
         }
+    }
+
+    public static List<String> toList(String text) {
+        return readToList(text);
     }
 
     public static List<String> readToList(String text) {

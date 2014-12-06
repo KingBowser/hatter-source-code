@@ -31,6 +31,10 @@ public class Base64 {
         }
     }
 
+    public static String atobx2(String a) {
+        return atob(atob(a));
+    }
+
     // un base64
     public static String btoa(String b) {
         try {
@@ -38,6 +42,10 @@ public class Base64 {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static String btoax2(String b) {
+        return btoa(btoa(b));
     }
 
     public static String byteArrayToBase64(byte[] a) {

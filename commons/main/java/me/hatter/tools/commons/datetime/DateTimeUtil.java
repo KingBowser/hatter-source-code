@@ -14,6 +14,7 @@ public class DateTimeUtil {
 
     public static final String   PATTERN_1     = "d MMM yyyy HH:mm:ss Z";
     public static final String   PATTERN_NGINX = "dd/MMM/yyyy:HH:mm:ss Z";
+    public static final String   PATTERN_JS    = "EEE MMM dd yyyy HH:mm:ss 'GMT'Z '('z')'";
 
     volatile private static long adjustMillis  = 0L;
 

@@ -279,6 +279,7 @@
   * [Study_Others_Edu Edu]
   * [Study_Others_EMail EMail]
   * [Study_Others_Icon Icon]
+  * [Study_Others_Location Location]
   * [Study_Others_PAC PAC]
   * [Study_Others_Plastic Plastic]
   * [Study_Others_Reader Reader]

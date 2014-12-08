@@ -1,0 +1,15 @@
+#summary Location
+#sidebar TableOfContents
+
+= Geohash=
+
+ * http://www.openlocation.org/
+ * http://en.wikipedia.org/wiki/Geohash
+
+
+
+
+===参考资料===
+`[1].` http://en.wikipedia.org/wiki/Geohash<br>
+`[2].` https://github.com/davetroy/geohash-js/tree/master<br>
+`[3].` http://www.openlocation.org/<br>

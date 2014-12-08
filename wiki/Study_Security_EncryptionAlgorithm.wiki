@@ -42,6 +42,10 @@ RSA、ElGamal、背包算法、Rabin(Rabin的加密法可以說是RSA方法的�
 || `Block TEA (Tiny Encryption Algorithm)` || http://www.movable-type.co.uk/scripts/tea-block.html || JavaScript Implementation of Block TEA Tiny Encryption Algorithm (xxtea) ||
 
 
+=Web工具=
+|| `ViaCRYPT` || https://viacry.pt/ || One time read messaging system. [https://github.com/vialink/viacrypt @github] ||
+
+
 ===参考资料===
 `[1].` http://zh.wikipedia.org/wiki/%E5%AF%B9%E7%A7%B0%E5%AF%86%E9%92%A5%E5%8A%A0%E5%AF%86<br>
 `[2].` http://en.wikipedia.org/wiki/Symmetric-key_algorithm<br>

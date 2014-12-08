@@ -1,2 +1,0 @@
-#summary Authenticator Study
-#sidebar TableOfContents

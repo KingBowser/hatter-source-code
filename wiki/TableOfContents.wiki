@@ -241,6 +241,7 @@
   * [Study_Security_Message Message]
   * [Study_Security_NIST NIST]
   * [Study_Security_OAuth OAuth]
+  * [Study_Security_OpenAuthentication OpenAuthentication]
   * [Study_Security_OWASP OWASP]
   * [Study_Security_Payment Payment]
   * [Study_Security_Password Password]

@@ -47,6 +47,10 @@ RSA、ElGamal、背包算法、Rabin(Rabin的加密法可以說是RSA方法的�
 || `ViaCRYPT` || https://viacry.pt/ || One time read messaging system. [https://github.com/vialink/viacrypt @github] ||
 
 
+=安全学习=
+|| CrypTool || https://www.cryptool.org/ || The CrypTool Portal raises awareness and interest in encryption techniques for everyone. ||
+
+
 ===参考资料===
 `[1].` http://zh.wikipedia.org/wiki/%E5%AF%B9%E7%A7%B0%E5%AF%86%E9%92%A5%E5%8A%A0%E5%AF%86<br>
 `[2].` http://en.wikipedia.org/wiki/Symmetric-key_algorithm<br>
@@ -54,5 +58,6 @@ RSA、ElGamal、背包算法、Rabin(Rabin的加密法可以說是RSA方法的�
 http://zh.wikipedia.org/wiki/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%AF%86%E9%92%A5%E5%8A%A0%E5%AF%86<br>
 `[4].` http://en.wikipedia.org/wiki/Public-key_cryptography<br>
 `[5].` http://en.wikipedia.org/wiki/Transport_Layer_Security<br>
+`[6].` http://en.wikipedia.org/wiki/CrypTool<br>
 
 SEE ALSO: [Study_Java_Encrypt]

@@ -1,0 +1,10 @@
+#summary UTF7
+#sidebar TableOfContents
+
+
+
+===参考资料===
+`[1].` http://zh.wikipedia.org/wiki/UTF-7<br>
+`[2].` http://zh.wikipedia.org/wiki/Base64<br>
+`[3].` http://www.freeutils.net/source/jcharset/<br>
+`[4].` http://jutf7.sourceforge.net/<br>

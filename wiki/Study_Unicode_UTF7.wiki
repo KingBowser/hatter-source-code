@@ -1,6 +1,8 @@
 #summary UTF7
 #sidebar TableOfContents
 
+ * http://www.freeutils.net/source/jcharset/
+ * http://jutf7.sourceforge.net/
 
 
 ===参考资料===

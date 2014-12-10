@@ -232,6 +232,7 @@
   * [Study_Security_EncryptionAlgorithm Encryption Algorithm]
    * [Study_Security_EncryptionAlgorithm_AES AES]
   * [Study_Security_FIDO FIDO]
+  * [Study_Security_Firewall Firewall]
   * [Study_Security_Flash Flash]
   * [Study_Security_HTTP HTTP]
    * [Study_Security_HTTP_Trace Trace]

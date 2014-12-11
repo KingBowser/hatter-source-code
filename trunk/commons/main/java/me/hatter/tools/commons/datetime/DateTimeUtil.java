@@ -12,11 +12,15 @@ import me.hatter.tools.commons.shortutil.Cu;
 
 public class DateTimeUtil {
 
-    public static final String   PATTERN_1     = "d MMM yyyy HH:mm:ss Z";
-    public static final String   PATTERN_NGINX = "dd/MMM/yyyy:HH:mm:ss Z";
-    public static final String   PATTERN_JS    = "EEE MMM dd yyyy HH:mm:ss 'GMT'Z '('z')'";
+    public static final String       PATTERN_1       = "d MMM yyyy HH:mm:ss Z";
+    public static final String       PATTERN_NGINX   = "dd/MMM/yyyy:HH:mm:ss Z";
+    public static final String       PATTERN_JS      = "EEE MMM dd yyyy HH:mm:ss 'GMT'Z '('z')'";
 
-    volatile private static long adjustMillis  = 0L;
+    public static final DateFormater FORMATTER_1     = new DefaultDateFormatter(PATTERN_1);
+    public static final DateFormater FORMATTER_NGINX = new DefaultDateFormatter(PATTERN_NGINX);
+    public static final DateFormater FORMATTER_JS    = new DefaultDateFormatter(PATTERN_JS);
+
+    volatile private static long     adjustMillis    = 0L;
 
     public static long currentMillis() {
         return System.currentTimeMillis() + adjustMillis;

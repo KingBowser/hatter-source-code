@@ -72,6 +72,10 @@ var jiangchenhaoDomainSetting = DomainSetting {
 	LOCATION, "/root/hatter.me/jiangchenhao", "utf-8",
 }
 
+var jiangjunhaoDomainSetting = DomainSetting {
+        LOCATION, "/root/hatter.me/jiangjunhao", "utf-8",
+}
+
 var programmeDomainSetting = DomainSetting {
 	LOCATION, "/root/hatter.me/p.rogram.me", "utf-8",
 }
@@ -102,6 +106,9 @@ var quickDomainSettingMap = map[string]*DomainSetting {
 	"chenhao.me": &jiangchenhaoDomainSetting,
 	"www.chenhao.me": &jiangchenhaoDomainSetting,
 	"jiang.chenhao.me": &jiangchenhaoDomainSetting,
+        "junhao.me": &jiangjunhaoDomainSetting,
+        "www.junhao.me": &jiangjunhaoDomainSetting,
+        "jiang.junhao.me": &jiangjunhaoDomainSetting,
 	"p.rogram.me": &programmeDomainSetting,
 	"out.ofmemory.org": &outofmemoryorgDomainSetting,
 	"haoshufu.club": &haoshufuclubDomainSetting,

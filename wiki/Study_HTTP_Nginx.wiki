@@ -39,6 +39,13 @@ make
 make install
 }}}
 
+Install OpenSSL(没有时):
+{{{
+cd /usr/local/src
+wget http://www.openssl.org/source/openssl-1.0.1c.tar.gz
+tar -zxvf openssl-1.0.1c.tar.gz
+}}}
+
 
 
 Related: [Study_Security_TLS_StartSSL]

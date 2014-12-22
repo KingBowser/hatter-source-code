@@ -31,7 +31,6 @@ make install
 Install zlib:
 {{{
 cd /usr/local/src
-
 wget http://zlib.net/zlib-1.2.8.tar.gz
 tar -zxvf zlib-1.2.8.tar.gz
 cd zlib-1.2.8

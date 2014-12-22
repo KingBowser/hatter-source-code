@@ -127,7 +127,6 @@
   * [Study_Java_Zing Zing]
   * [Study_Java_Zulu Zulu]
  * [Study_Open Open]
- * [Study_OpenAuthentication Open Authentication]
  * [Study_OpenSource Open Source]
   * [Study_OpenSource_China China]
  * [Study_License License]

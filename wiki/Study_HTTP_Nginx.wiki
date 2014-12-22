@@ -17,6 +17,17 @@ Install g++:
 yum install gcc gcc-c++
 }}}
 
+Install PCRE:
+{{{
+cd /usr/local/src
+wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.34.tar.gz 
+tar -zxvf pcre-8.34.tar.gz
+cd pcre-8.34
+./configure
+make
+make install
+}}}
+
 
 
 Related: [Study_Security_TLS_StartSSL]

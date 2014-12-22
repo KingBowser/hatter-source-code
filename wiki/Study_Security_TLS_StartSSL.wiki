@@ -45,6 +45,8 @@ TLS SNI support enabled
 ...
 }}}
 
+Related: [Study_HTTP_Nginx]
+
 
 ===参考资料===
 `[1].` http://www.freehao123.com/startssl-ssl/<br>

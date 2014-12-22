@@ -6,6 +6,17 @@ Nginx的`proxy_pass`不识别`/etc/hosts`
 替代方案：
 You can get around this by installing dnsmasq and setting your resolver to 127.0.0.1. Basically this uses your local DNS as a resolver, but it only resolves what it knows about (among those things is your /etc/hosts) and forwards the rest to your default DNS.
 
+Install make:
+```
+yum -y install gcc automake autoconf libtool make
+```
+
+Install g++:
+```
+yum install gcc gcc-c++
+```
+
+
 
 Related: [Study_Security_TLS_StartSSL]
 

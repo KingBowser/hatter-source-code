@@ -73,3 +73,4 @@ Related: [Study_Security_TLS_StartSSL]
 ===参考资料===
 `[1].` http://stackoverflow.com/questions/8305015/when-using-proxy-pass-can-etc-hosts-be-used-to-resolve-domain-names-instead-of/8559797<br>
 `[2].` http://www.nginx.cn/install<br>
+`[3].` http://wiki.nginx.org/InstallOptions<br>

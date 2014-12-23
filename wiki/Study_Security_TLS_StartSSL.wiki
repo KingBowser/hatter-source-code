@@ -7,7 +7,8 @@
 openssl rsa -in ssl.key -out ssl.key
 }}}
 
-_http://www.startssl.com/certs/_
+
+* _http://www.startssl.com/certs/_
 {{{
 wget https://www.startssl.com/certs/ca.pem
 wget https://www.startssl.com/certs/sub.class1.server.ca.pem
@@ -37,6 +38,7 @@ cat your_cert.pem sub.class1.server.ca.pem ca.pem > new_cert.pem
         }
     }
 }}}
+
 
 * nginx SNI
 {{{

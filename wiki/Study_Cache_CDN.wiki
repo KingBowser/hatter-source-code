@@ -1,4 +1,6 @@
 #summary CDN study
 #sidebar TableOfContents
 
+[http://www.akamai.cn/ Akamai]
+
 开放静态文件  - http://www.staticfile.org/

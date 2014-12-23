@@ -1,6 +1,7 @@
 #summary CDN study
 #sidebar TableOfContents
 
-[http://www.akamai.cn/ Akamai]
+ * [http://www.akamai.cn/ Akamai]
+ * [http://www.chinacache.com/ China Cache]
 
 开放静态文件  - http://www.staticfile.org/

@@ -14,3 +14,6 @@
  * http://javaemailserver.sourceforge.net/
  * http://quintanasoft.com/dumbster/
  * http://jpxx.sourceforge.net/
+
+<br>
+Related: [Study_Security_Mail]

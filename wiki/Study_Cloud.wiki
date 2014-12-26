@@ -19,4 +19,4 @@ Docker - [http://www.docker.com/]
  * App Engine
 
 <br>
-Rleated: [Study_Cache_CDN]
+Rleted: [Study_Cache_CDN]

@@ -33,3 +33,4 @@ service ntpd start
 ----
 ===参考资料===
 `[1].` http://blueicer.blog.51cto.com/395686/116426<br>
+`[2].` http://os.51cto.com/art/201004/192549.htm<br>

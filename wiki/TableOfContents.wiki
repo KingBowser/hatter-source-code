@@ -270,6 +270,7 @@
  * [Study_SEO SEO]
  * [Study_Software Software]
  * [Study_Time Time]
+ * [Study_Tool Tool]
  * [Study_Unicode Unicode]
   * [Study_Unicode_Spoofing Spoofing]
   * [Study_Unicode_UTF7 UTF7]

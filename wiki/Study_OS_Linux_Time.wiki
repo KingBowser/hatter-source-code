@@ -1,11 +1,20 @@
 #summary Linux Time Study
 #sidebar TableOfContents
 
+
 ==时间更新==
 
 ===指定时间服务器时间同步===
 {{{
 rdate -s time.nist.gov
+}}}
+
+-OR-
+
+{{{
+yum install -y ntpdate
+
+/usr/sbin/ntpdate us.pool.ntp.org
 }}}
 
 ===NTP===

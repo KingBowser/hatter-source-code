@@ -33,5 +33,7 @@ ServerAliveInterval 300
 ServerAliveCountMax 36
 }}}
 
+Related: [Study_Security_Password_PasswordLess]
+
 ===参考资料===
 `[1].` http://en.wikipedia.org/wiki/Secure_Shell<br>

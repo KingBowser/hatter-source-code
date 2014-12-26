@@ -18,6 +18,37 @@
  * https://html5sec.org/
  * http://fex.baidu.com/
 
+----
+
+
+
+ * [http://www.csm.ornl.gov/~dunigan/security.html]
+ * http://www.trusteddomain.org/
+ * http://googleonlinesecurity.blogspot.com/
+ * https://www.opentechfund.org/ [https://www.transifex.com/organization/otf]
+ * https://simplysecure.org/
+ * https://cure53.de/
+ * https://html5sec.org/
+ * http://html5security.org/
+ * https://clipperz.is/
+ * https://cloudsecurityalliance.org/
+ * http://seclab.stanford.edu/websec/
+ * http://www.cgisecurity.com/
+ * http://www.modsecurity.org/
+ * http://www.knownsec.com/
+ * https://www.owasp.org/index.php/OWASP_Guide_Project
+
+
+<br>
+
+ * https://docs.google.com/document/d/1RamP4-HJ7GAJY3yv2ju2cK50K9GhOsydJN6KIO81das/pub
+ * http://www.westpoint.ltd.uk/papers/Paul_Johnston_GSEC.pdf
+
+OpenSOC Big Data Security Analytics Framework：
+ * https://opensoc.github.io/
+ * https://github.com/aol/moloch
+
+
 
 ----
  * https://code.google.com/p/googlecaja/

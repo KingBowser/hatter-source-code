@@ -16,6 +16,9 @@
 
 ----
  * https://html5sec.org/
+ * https://simplysecure.org/
+ * https://cure53.de/
+ * http://html5security.org/
  * http://fex.baidu.com/
 
 ----
@@ -26,10 +29,6 @@
  * http://www.trusteddomain.org/
  * http://googleonlinesecurity.blogspot.com/
  * https://www.opentechfund.org/ [https://www.transifex.com/organization/otf]
- * https://simplysecure.org/
- * https://cure53.de/
- * https://html5sec.org/
- * http://html5security.org/
  * https://clipperz.is/
  * https://cloudsecurityalliance.org/
  * http://seclab.stanford.edu/websec/
@@ -49,9 +48,7 @@ OpenSOC Big Data Security Analytics Framework：
  * https://github.com/aol/moloch
 
 
-
 https://globaleaks.org/
-
 
 
 ----

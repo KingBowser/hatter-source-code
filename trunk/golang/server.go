@@ -106,9 +106,9 @@ var quickDomainSettingMap = map[string]*DomainSetting {
 	"chenhao.me": &jiangchenhaoDomainSetting,
 	"www.chenhao.me": &jiangchenhaoDomainSetting,
 	"jiang.chenhao.me": &jiangchenhaoDomainSetting,
-        "junhao.me": &jiangjunhaoDomainSetting,
-        "www.junhao.me": &jiangjunhaoDomainSetting,
-        "jiang.junhao.me": &jiangjunhaoDomainSetting,
+	"junhao.me": &jiangjunhaoDomainSetting,
+	"www.junhao.me": &jiangjunhaoDomainSetting,
+	"jiang.junhao.me": &jiangjunhaoDomainSetting,
 	"p.rogram.me": &programmeDomainSetting,
 	"out.ofmemory.org": &outofmemoryorgDomainSetting,
 	"haoshufu.club": &haoshufuclubDomainSetting,
@@ -137,11 +137,6 @@ var quickDomainSettingMap = map[string]*DomainSetting {
 	},
 	"xsvn.hatter.me": &DomainSetting {
 		XPROXY, "https://hatter-source-code.googlecode.com/", "",
-	},
-	// **/
-	/**
-	"reader.hatter.me": &DomainSetting {
-		XPROXY, "http://hatter.me:8090/", "",
 	},
 	// **/
 	"go.hatter.me": &DomainSetting {
@@ -189,7 +184,6 @@ var domainFilters = map[string][]RequestCallFunc {
 		AllDomainPFilter,
 		ProgrammeDomainFilter,
 		OutofmemoryorgDomainFilter,
-		AlibabaHireMeDomainFilter,
 	},
 	"hatter.me": []RequestCallFunc {
 		DomainPathPProxyRefFilter,
@@ -204,36 +198,12 @@ var domainFilters = map[string][]RequestCallFunc {
 	"xsvn.hatter.me": []RequestCallFunc {
 		SvnHatterMeFilter,
 	},
-	"reader.hatter.me": []RequestCallFunc {
-		ReaderSecureFilter,
-	},
 	"aprilsoft.cn": []RequestCallFunc {
 		HatterJiangHeadFilter,
 	},
 	"www.aprilsoft.cn": []RequestCallFunc {
 		HatterJiangHeadFilter,
 	},
-}
-
-
-func ReaderSecureFilter(w http.ResponseWriter, r *http.Request) bool {
-	if r.TLS == nil {
-		lib.RedirectURL(w, "https://reader.hatter.me/")
-		return true
-	}
-	return false
-}
-
-func AlibabaHireMeDomainFilter(w http.ResponseWriter, r *http.Request) bool {
-	hostDomain, _, hostError := lib.ParseHost(r.Host)
-	if hostError != nil {
-		return false
-	}
-	if hostDomain == "alibaba-hire.me" || strings.HasSuffix(hostDomain, "alibaba-hire.me")  {
-		lib.RedirectURL(w, "http://alibabahire.me")
-		return true
-	}
-	return false
 }
 
 func ProgrammeDomainFilter(w http.ResponseWriter, r *http.Request) bool {

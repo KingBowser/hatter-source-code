@@ -46,17 +46,14 @@
 
 
 <br>
-
+https://globaleaks.org/
  * https://docs.google.com/document/d/1RamP4-HJ7GAJY3yv2ju2cK50K9GhOsydJN6KIO81das/pub
  * http://www.westpoint.ltd.uk/papers/Paul_Johnston_GSEC.pdf
 
+<br>
 OpenSOC Big Data Security Analytics Framework：
  * https://opensoc.github.io/
  * https://github.com/aol/moloch
-
-
-https://globaleaks.org/
-
 
 
 <br>

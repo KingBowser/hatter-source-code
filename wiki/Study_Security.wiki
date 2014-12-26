@@ -3,7 +3,7 @@
 
 || *CWE* || http://cwe.mitre.org/data/index.html ||
 || *WASC* || http://www.webappsec.org/ ||
-|| *OWASP* || https://www.owasp.org/  _http://www.owasp.org.cn/_ ||
+|| *OWASP* || https://www.owasp.org/  _[http://www.owasp.org.cn/]_ ||
 || *OTA* || https://otalliance.org/ || 
 || *FIDO* || https://fidoalliance.org/ ||
 

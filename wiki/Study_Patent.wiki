@@ -2,3 +2,6 @@
 #sidebar TableOfContents
 
  * Google Patents [https://www.google.com/?tbm=pts&gws_rd=ssl] [https://www.google.com/patents/ 2]
+
+<br>
+Related: [Study_Law]

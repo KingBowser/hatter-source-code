@@ -4,6 +4,7 @@
  * [Study_Security_Tool]
  * [Study_Database_Tool]
  * [Study_Java_Tool]
+ * [Study_Java_Diagnosis]
  * [Study_Java_HotSpot_Tool]
  * [Study_Network_Tool]
  * [Study_OS_Linux_Perftools]

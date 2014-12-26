@@ -87,6 +87,8 @@ $ dig +short txt _adsp._domainkey.paypal.com
 "dkim=discardable"
 }}}
 
+<br>
+Related: [Study_Mail]
 
 ===参考资料===
 `[1].` http://www.trusteddomain.org/<br>

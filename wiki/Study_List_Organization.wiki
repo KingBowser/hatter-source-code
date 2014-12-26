@@ -1,10 +1,10 @@
 #summary Organization
 #sidebar TableOfContents
 
- * [Study_W3C]
- * [Study_IEEE]
- * [Study_ISO]
  * [Study_ECMA]
  * [Study_IANA]
+ * [Study_IEEE]
+ * [Study_ISO]
  * [Study_RFC] - IETF
  * [Study_Security_OWASP]
+ * [Study_W3C]

@@ -27,7 +27,8 @@ service ntpd start
 
 ==时间介绍==
 
-===[Study_Time]===
+<br>
+Related: [Study_Time]
 
 
 ----

@@ -50,6 +50,10 @@ OpenSOC Big Data Security Analytics Framework：
 
 
 
+https://globaleaks.org/
+
+
+
 ----
  * https://code.google.com/p/googlecaja/
  * https://code.google.com/p/html5security/

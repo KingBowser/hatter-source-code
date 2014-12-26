@@ -6,6 +6,7 @@
 || *OWASP* || https://www.owasp.org/ ||
 || *OWASP中国* || http://www.owasp.org.cn/ ||
 || *OTA* || https://otalliance.org/ || 
+|| *FIDO* || https://fidoalliance.org/ ||
 
  * [http://www.csm.ornl.gov/~dunigan/security.html]
  * http://www.trusteddomain.org/

@@ -9,7 +9,7 @@
 =源代码管理网站=
 || GitHub || https://github.com/ ||
 || Google Code || https://code.google.com/hosting/ ||
-|| Bit Bucket || https://bitbucket.org/ ||
+|| Bitbucket || https://bitbucket.org/ ||
 
 
 github:

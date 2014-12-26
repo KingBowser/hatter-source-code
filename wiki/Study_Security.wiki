@@ -37,14 +37,6 @@ OpenSOC Big Data Security Analytics Framework：
  * https://opensoc.github.io/
  * https://github.com/aol/moloch
 
-密码保护：
- * scrypt
-  * https://www.tarsnap.com/scrypt.html
-  * https://www.tarsnap.com/scrypt/scrypt.pdf
-  * https://scrypt.googlecode.com
- * bcrypt
- * PBKDF2
-
 
 ==[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/security/SecurityGainianFenlei.pdf 安全漏洞概念及分类]==
 

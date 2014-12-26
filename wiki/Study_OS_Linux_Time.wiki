@@ -4,7 +4,7 @@
 
 ==时间更新==
 
-===指定时间服务器时间同步===
+ * 指定时间服务器时间同步
 {{{
 rdate -s time.nist.gov
 }}}
@@ -17,7 +17,7 @@ yum install -y ntpdate
 /usr/sbin/ntpdate us.pool.ntp.org
 }}}
 
-===NTP===
+ * NTP
 {{{
 配置文件： /etc/ntp.conf
 

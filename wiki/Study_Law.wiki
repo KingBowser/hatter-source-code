@@ -3,4 +3,4 @@
 
 
 <br>
-Related: [Study_License]
+Related: [Study_Patent] [Study_License]

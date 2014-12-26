@@ -8,6 +8,7 @@
 || *FIDO* || https://fidoalliance.org/ ||
 || *CSA* || https://cloudsecurityalliance.org/ ||
 || *PCI* || https://www.pcisecuritystandards.org/ ||
+|| *EFF* || https://www.eff.org/ ||
 
 
  * [http://www.csm.ornl.gov/~dunigan/security.html]

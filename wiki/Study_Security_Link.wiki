@@ -7,6 +7,13 @@
  * https://github.com/ESAPI
  * https://github.com/Contrast-Security-OSS
 
+=Google Code=
+ * https://code.google.com/p/googlecaja/
+ * https://code.google.com/p/html5security/
+ * https://code.google.com/p/mentaljs/
+ * https://code.google.com/p/domxsswiki/
+ * https://code.google.com/p/browsersec/
+
 =Hackers=
  * http://www.pnigos.com/
  * http://homakov.blogspot.de/
@@ -50,13 +57,6 @@ OpenSOC Big Data Security Analytics Framework：
 
 https://globaleaks.org/
 
-
-----
- * https://code.google.com/p/googlecaja/
- * https://code.google.com/p/html5security/
- * https://code.google.com/p/mentaljs/
- * https://code.google.com/p/domxsswiki/
- * https://code.google.com/p/browsersec/
 
 
 <br>

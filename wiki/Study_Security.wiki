@@ -11,34 +11,7 @@
 || *EFF* || https://www.eff.org/ ||
 
 
-==[Study_Security_Link]==
-
-
- * [http://www.csm.ornl.gov/~dunigan/security.html]
- * http://www.trusteddomain.org/
- * http://googleonlinesecurity.blogspot.com/
- * https://www.opentechfund.org/ [https://www.transifex.com/organization/otf]
- * https://simplysecure.org/
- * https://cure53.de/
- * https://html5sec.org/
- * http://html5security.org/
- * https://clipperz.is/
- * https://cloudsecurityalliance.org/
- * http://seclab.stanford.edu/websec/
- * http://www.cgisecurity.com/
- * http://www.modsecurity.org/
- * http://www.knownsec.com/
- * https://www.owasp.org/index.php/OWASP_Guide_Project
-
-
-<br>
-
- * https://docs.google.com/document/d/1RamP4-HJ7GAJY3yv2ju2cK50K9GhOsydJN6KIO81das/pub
- * http://www.westpoint.ltd.uk/papers/Paul_Johnston_GSEC.pdf
-
-OpenSOC Big Data Security Analytics Framework：
- * https://opensoc.github.io/
- * https://github.com/aol/moloch
+==_[Study_Security_Link]_==
 
 
 ==[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/security/SecurityGainianFenlei.pdf 安全漏洞概念及分类]==
@@ -46,8 +19,6 @@ OpenSOC Big Data Security Analytics Framework：
 =附：一些和计算机相关的攻击方式=
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/security/computer_security.jpeg]
 
-
-https://globaleaks.org/
 
 
 ===参考资料===

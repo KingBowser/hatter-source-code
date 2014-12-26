@@ -1,5 +1,5 @@
-#summary Encryption algorithm study.
-#sidebar TableOfContents (encrypt, crypt)
+#summary Encryption algorithm study. (encrypt, crypt)
+#sidebar TableOfContents
 
 =对称密钥加密=
 ||  *算法* || *密钥长度* || *块大小* || *说明* ||

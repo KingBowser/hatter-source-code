@@ -16,8 +16,6 @@
 =非对称密钥加密=
 RSA、ElGamal、背包算法、Rabin(Rabin的加密法可以說是RSA方法的特例)、Diffie-Hellman (D-H) 密钥交换协议中的公钥加密算法、Elliptic Curve Cryptography（ECC, 椭圆曲线加密算法）
 
-=应用=
- * TLS 
 
 =SSL工具=
 || `OpenSSL` || http://www.openssl.org/ ||OpenSSL: The Open Source toolkit for SSL/TLS ||
@@ -47,6 +45,7 @@ RSA、ElGamal、背包算法、Rabin(Rabin的加密法可以說是RSA方法的�
 || `OpenPGP.js` || http://openpgpjs.org/ || OpenPGP JavaScript Implementation. ||
 || `jsbn` || http://www-cs-students.stanford.edu/~tjw/jsbn/ || The jsbn library is a fast, portable implementation of large-number math in pure JavaScript, enabling public-key crypto and other applications on desktop and mobile browsers. ||
 || `forge` || https://github.com/digitalbazaar/forge || A native implementation of TLS in Javascript and tools to write crypto-based and network-heavy webapps ||
+|| `JavaScript Cryptography Toolkit` || http://ats.oka.nu/titaniumcore/js/crypto/readme.txt || This library is an object oriented cryptography toolkit that implements several fundamental cryptographic algorithms including TWOFISH, SERPENT, RIJNDAEL, RSA with key-generation and SHA(SHA-1,224,256,384,512) for JavaScript. ||
 
 =Web工具=
 || `ViaCRYPT` || https://viacry.pt/ || One time read messaging system. [https://github.com/vialink/viacrypt @github] ||

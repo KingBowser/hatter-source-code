@@ -46,6 +46,7 @@ RSA、ElGamal、背包算法、Rabin(Rabin的加密法可以說是RSA方法的�
 || `Cryptico` || https://github.com/wwwtyro/cryptico || An easy-to-use encryption system utilizing RSA and AES for javascript. ||
 || `OpenPGP.js` || http://openpgpjs.org/ || OpenPGP JavaScript Implementation. ||
 || `jsbn` || http://www-cs-students.stanford.edu/~tjw/jsbn/ || The jsbn library is a fast, portable implementation of large-number math in pure JavaScript, enabling public-key crypto and other applications on desktop and mobile browsers. ||
+|| `forge` || https://github.com/digitalbazaar/forge || A native implementation of TLS in Javascript and tools to write crypto-based and network-heavy webapps ||
 
 =Web工具=
 || `ViaCRYPT` || https://viacry.pt/ || One time read messaging system. [https://github.com/vialink/viacrypt @github] ||

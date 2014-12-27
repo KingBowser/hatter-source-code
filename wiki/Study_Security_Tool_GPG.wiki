@@ -17,6 +17,9 @@ http://www.ietf.org/rfc/rfc4880.txt
 || 信任公钥 || `gpg --sign-key <uid>` ||
 
 
+<br>
+Related: [Study_Security_EncryptionAlgorithm]
+
 ===参考资料===
 `[1].` http://www.openpgp.org/<br>
 `[2].` https://gpgtools.org/<br>

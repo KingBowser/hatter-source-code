@@ -24,3 +24,7 @@ http://h3xstream.github.io/find-sec-bugs/
 https://w3dt.net/ ✩✩✩
 
 https://www.soldierx.com/tools ✩✩✩✩✩
+
+
+<br>
+Related: [Study_Security_EncryptionAlgorithm]

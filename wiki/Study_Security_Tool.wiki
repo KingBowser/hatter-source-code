@@ -25,6 +25,8 @@ https://w3dt.net/ ✩✩✩
 
 https://www.soldierx.com/tools ✩✩✩✩✩
 
+http://openpgpjs.org/
+
 
 <br>
 Related: [Study_Security_EncryptionAlgorithm]

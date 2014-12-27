@@ -33,6 +33,11 @@ ServerAliveInterval 300
 ServerAliveCountMax 36
 }}}
 
+`ssh-otp`:
+{{{
+https://github.com/ziyan/ssh-otp
+}}}
+
 Related: [Study_Security_Password_PasswordLess]
 
 ===参考资料===

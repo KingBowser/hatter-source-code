@@ -44,7 +44,7 @@ RSA、ElGamal、背包算法、Rabin(Rabin的加密法可以說是RSA方法的�
 || `AES Advanced Encryption Standard` || http://www.movable-type.co.uk/scripts/aes.html || JavaScript Implementation of AES Advanced Encryption Standard in Counter Mode | Movable Type Scripts ||
 || `Block TEA (Tiny Encryption Algorithm)` || http://www.movable-type.co.uk/scripts/tea-block.html || JavaScript Implementation of Block TEA Tiny Encryption Algorithm (xxtea) ||
 || `Cryptico` || https://github.com/wwwtyro/cryptico || An easy-to-use encryption system utilizing RSA and AES for javascript. ||
-
+|| `OpenPGP.js` || http://openpgpjs.org/ || OpenPGP JavaScript Implementation. ||
 
 =Web工具=
 || `ViaCRYPT` || https://viacry.pt/ || One time read messaging system. [https://github.com/vialink/viacrypt @github] ||
@@ -57,7 +57,7 @@ RSA、ElGamal、背包算法、Rabin(Rabin的加密法可以說是RSA方法的�
  * http://www.w3.org/TR/WebCryptoAPI/
 
 <br>
-Related: [Study_Java_Encrypt]
+Related: [Study_Java_Encrypt] [Study_Security_Tool_GPG]
 
 ===参考资料===
 `[1].` http://zh.wikipedia.org/wiki/%E5%AF%B9%E7%A7%B0%E5%AF%86%E9%92%A5%E5%8A%A0%E5%AF%86<br>

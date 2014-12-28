@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.net.Proxy;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
@@ -39,10 +40,13 @@ public class HttpTool {
         }
     }
 
+    private static Proxy   _proxy;
+
     private int            connTimeoutInMillis = -1;
     private int            readTimeoutInMillis = -1;
     private String         charset             = "UTF-8";
     private String         url;
+    private Proxy          proxy;
     private List<KeyValue> params              = new ArrayList<KeyValue>();
 
     public static HttpTool defaultInstance(String charset) {
@@ -51,6 +55,10 @@ public class HttpTool {
 
     public static HttpTool defaultInstance() {
         return new HttpTool().connTimeout(10000).readTimeout(100000);
+    }
+
+    public static void setGlobalProxy(Proxy proxy) {
+        _proxy = proxy;
     }
 
     public HttpTool connTimeout(int connTimeoutInMillis) {
@@ -70,6 +78,11 @@ public class HttpTool {
 
     public HttpTool url(String url) {
         this.url = url;
+        return this;
+    }
+
+    public HttpTool proxy(Proxy proxy) {
+        this.proxy = proxy;
         return this;
     }
 
@@ -146,7 +159,8 @@ public class HttpTool {
     }
 
     URLConnection createURLConnection(URL u) throws IOException {
-        URLConnection conn = u.openConnection();
+        Proxy p = (_proxy != null) ? _proxy : proxy;
+        URLConnection conn = (p == null) ? u.openConnection() : u.openConnection(p);
         if (connTimeoutInMillis > 0) {
             conn.setConnectTimeout(connTimeoutInMillis);
         }

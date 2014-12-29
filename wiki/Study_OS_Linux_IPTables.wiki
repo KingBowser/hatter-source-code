@@ -16,6 +16,17 @@ iptables --list
 }}}
 
 
+如果删除规则:
+
+{{{
+iptables -L INPUT --line-numbers
+^---- 列出规则
+
+iptables -D INPUT 4
+^---- 删除规则
+}}}
+
+
 
 ===参考资料===
 `[1].` http://jsczxy2.iteye.com/blog/1436713<br>

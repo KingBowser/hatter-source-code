@@ -15,6 +15,10 @@ service iptables stop
 iptables --list
 }}}
 
+*保存规则:*
+{{{
+/etc/init.d/iptables save
+}}}
 
 *如果删除规则:*
 {{{

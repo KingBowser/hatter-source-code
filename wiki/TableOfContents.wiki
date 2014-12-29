@@ -270,6 +270,7 @@
   * [Study_Security_XML XML]
   * [Study_Security_XSS XSS]
    * [Study_Security_XSS_DomXSS Dom XSS]
+  * [Study_Security_Yadis Yadis]
  * [Study_SEO SEO]
  * [Study_Software Software]
  * [Study_Time Time]

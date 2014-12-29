@@ -48,3 +48,4 @@ Related: [Study_Security_Password_PasswordLess]
 ===参考资料===
 `[1].` http://en.wikipedia.org/wiki/Secure_Shell<br>
 `[2].` http://jsczxy2.iteye.com/blog/1441712<br>
+`[3].` http://www.unixlore.net/articles/five-minutes-to-more-secure-ssh.html<br>

@@ -30,12 +30,6 @@ rsync -vrlHpgtSe ssh --exclude=.svn --delete /localdir/ name@host:/remotedir/
 rsync -auvz --delete .. ..
 }}}
 
-iptables
-{{{
-/etc/sysconfig/iptables
-iptables --list
-service iptables restart
-}}}
 
 {{{
 wget --mirror --directory-prefix=<your directory> http://www.example.com

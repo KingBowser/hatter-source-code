@@ -5,8 +5,17 @@
 *iptables*
 
 {{{
-/etc/sysconfig/iptables
-iptables --list
+service iptables start
 service iptables restart
+service iptables stop
 }}}
 
+{{{
+/etc/sysconfig/iptables
+iptables --list
+}}}
+
+
+
+===参考资料===
+`[1].` http://jsczxy2.iteye.com/blog/1436713<br>

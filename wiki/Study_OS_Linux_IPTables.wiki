@@ -1,2 +1,12 @@
 #summary IPTables (iptables ip tables)
 #sidebar TableOfContents
+
+
+*iptables*
+
+{{{
+/etc/sysconfig/iptables
+iptables --list
+service iptables restart
+}}}
+

@@ -15,6 +15,14 @@ service iptables stop
 iptables --list
 }}}
 
+
+|| `-A` || 指定链名   ||
+|| `-p` || 指定协议类型   ||
+|| `-d` || 指定目标地址   ||
+|| `--dport` || 指定目标端口（destination port 目的端口）   ||
+|| `--sport` || 指定源端口（source port 源端口）   ||
+|| `-j` || 指定动作类型  ||
+
 *保存规则:*
 {{{
 /etc/init.d/iptables save

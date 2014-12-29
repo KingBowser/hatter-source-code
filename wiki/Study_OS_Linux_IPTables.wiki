@@ -35,7 +35,10 @@ iptables -I INPUT -s 123.0.0.0/8 -j DROP
 iptables -I INPUT -s 124.45.0.0/16 -j DROP  
 #封IP段即从123.45.6.1到123.45.6.254的命令是  
 iptables -I INPUT -s 123.45.6.0/24 -j DROP  
-指令I是insert指令 但是该指令会insert在正确位置并不像A指令看你自己的排序位置，因此用屏蔽因为必须在一开始就要加载屏蔽IP，所以必须使用I命令加载，然后注意执行/etc/rc.d/init.d/iptables save进行保存后重启服务即可  }}}
+
+指令I是insert指令 但是该指令会insert在正确位置并不像A指令看你自己的排序位置，因此用屏蔽因为必须在一开始就要加载屏蔽IP，
+所以必须使用I命令加载，然后注意执行/etc/rc.d/init.d/iptables save进行保存后重启服务即可
+}}}
 
 ===参考资料===
 `[1].` http://jsczxy2.iteye.com/blog/1436713<br>

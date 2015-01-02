@@ -12,4 +12,7 @@
  * http://docs.oracle.com/javase/6/docs/technotes/guides/security/p11guide.html
 
 <br>
+http://hatter-source-code.googlecode.com/svn/trunk/tests/https/src/main/java/me/hatter/tests/https/
+
+<br>
 Related: [Study_Security_EncryptionAlgorithm]

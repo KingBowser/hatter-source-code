@@ -10,6 +10,7 @@
 || *PCI* || https://www.pcisecuritystandards.org/ ||
 || *EFF* || https://www.eff.org/ ||
 
+Redphone, Truecrypt, PGP and OTR
 
 ==_[Study_Security_Link]_==
 

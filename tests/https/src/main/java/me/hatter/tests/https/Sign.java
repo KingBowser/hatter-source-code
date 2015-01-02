@@ -8,12 +8,21 @@ import java.security.Signature;
 
 import javax.crypto.Cipher;
 
+import me.hatter.tools.commons.misc.Base64;
+
 // http://stackoverflow.com/questions/521101/using-sha1-and-rsa-with-java-security-signature-vs-messagedigest-and-cipher
+// http://docs.oracle.com/javase/tutorial/security/
+// http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html
+// http://docs.oracle.com/javase/6/docs/technotes/guides/security/SunProviders.html
+// http://docs.oracle.com/javase/6/docs/technotes/guides/security/StandardNames.html
+// http://docs.oracle.com/javase/6/docs/technotes/guides/security/p11guide.html
 public class Sign {
 
     public static void main(String[] args) throws Exception {
         // Generate new key
-        KeyPair keyPair = KeyPairGenerator.getInstance("RSA").generateKeyPair();
+        KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
+        keyPairGenerator.initialize(2048);
+        KeyPair keyPair = keyPairGenerator.generateKeyPair();
         PrivateKey privateKey = keyPair.getPrivate();
         String plaintext = "This is the message being signed";
 
@@ -37,6 +46,7 @@ public class Sign {
         System.out.println("Digest: " + bytes2String(digest));
         System.out.println("Cipher text: " + bytes2String(cipherText));
         System.out.println("Signature: " + bytes2String(signature));
+        System.out.println("Signature: " + Base64.byteArrayToBase64(signature));
     }
 
     private static String bytes2String(byte[] bytes) {

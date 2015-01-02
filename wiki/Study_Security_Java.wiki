@@ -3,7 +3,9 @@
 
 
 ==Securing JAVA - [http://www.securingjava.com/toc.html]==
-==Java Security Resources - [https://www.owasp.org/index.php/Java_Security_Resources]==
+
+==OWASP==
+ * https://www.owasp.org/index.php/Java_Security_Resources
 
 ==Oracle JDK Documents==
  * http://docs.oracle.com/javase/tutorial/security/

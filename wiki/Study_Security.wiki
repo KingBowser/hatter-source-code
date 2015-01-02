@@ -12,6 +12,8 @@
 
 Redphone, Truecrypt, PGP and OTR
 
+[http://blog.cryptographyengineering.com/p/useful-cryptography-resources.html Useful crypto resources]
+
 ==_[Study_Security_Link]_==
 
 

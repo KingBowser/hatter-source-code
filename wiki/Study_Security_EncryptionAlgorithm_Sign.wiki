@@ -4,5 +4,6 @@
 
 
 ===参考资料===
-`[1].` http://www.bmt-online.org/geekisms/RSA_verify<br>
-`[2].` https://tools.ietf.org/html/rfc3447<br>
+`[1].` http://blog.csdn.net/zhuojiuyihu/article/details/5930043<br>
+`[2].` http://www.bmt-online.org/geekisms/RSA_verify<br>
+`[3].` https://tools.ietf.org/html/rfc3447<br>

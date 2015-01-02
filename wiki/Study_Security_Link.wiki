@@ -43,6 +43,7 @@
  * http://www.modsecurity.org/
  * http://www.knownsec.com/
  * https://www.owasp.org/index.php/OWASP_Guide_Project
+ * https://blog.hboeck.de/
 
 
 <br>

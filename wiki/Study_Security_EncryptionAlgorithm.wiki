@@ -34,6 +34,7 @@ RSA、ElGamal、背包算法、Rabin(Rabin的加密法可以說是RSA方法的�
 || `Cryptix` || http://www.cryptix.org/ || The Cryptix project: R.I.P. ||
 || `Bouncy Castle` || http://www.bouncycastle.org/ || The Legion of the Bouncy Castle ||
 || `FlexiProvider` || http://www.flexiprovider.de/ || The FlexiProvider is a powerful toolkit for the Java Cryptography Architecture (JCA/JCE). ||
+|| `BeeCrypt` || http://beecrypt.sourceforge.net/ || BeeCrypt ||
 
 =JavaScript工具=
 || `crypto-js` || https://code.google.com/p/crypto-js/ || JavaScript implementations of standard and secure cryptographic algorithms ||

@@ -2,17 +2,22 @@
 #sidebar TableOfContents
 
 
-==Securing JAVA - [http://www.securingjava.com/toc.html]==
-
-==OWASP==
- * https://www.owasp.org/index.php/Java_Security_Resources
-
 ==Oracle JDK Documents==
  * http://docs.oracle.com/javase/tutorial/security/
  * http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html
  * http://docs.oracle.com/javase/6/docs/technotes/guides/security/SunProviders.html
  * http://docs.oracle.com/javase/6/docs/technotes/guides/security/StandardNames.html
  * http://docs.oracle.com/javase/6/docs/technotes/guides/security/p11guide.html
+
+
+==OWASP==
+ * https://www.owasp.org/index.php/Java_Security_Resources
+
+
+==Other==
+ * http://www.securingjava.com/toc.html
+
+
 
 <br>
 http://hatter-source-code.googlecode.com/svn/trunk/tests/https/src/main/java/me/hatter/tests/https/

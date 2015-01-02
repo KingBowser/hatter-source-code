@@ -18,9 +18,8 @@
  * http://www.securingjava.com/toc.html
 
 
-
-<br>
-http://hatter-source-code.googlecode.com/svn/trunk/tests/https/src/main/java/me/hatter/tests/https/
+==Sample==
+ * http://hatter-source-code.googlecode.com/svn/trunk/tests/https/src/main/java/me/hatter/tests/https/
 
 <br>
 Related: [Study_Security_EncryptionAlgorithm]

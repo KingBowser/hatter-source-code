@@ -12,6 +12,7 @@
 
 ==OWASP==
  * https://www.owasp.org/index.php/Java_Security_Resources
+ * https://www.owasp.org/index.php/Digital_Signature_Implementation_in_Java
 
 
 ==Other==

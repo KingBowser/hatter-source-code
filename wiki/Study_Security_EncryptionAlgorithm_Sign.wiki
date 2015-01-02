@@ -1,0 +1,8 @@
+#summary Sign (DSA, RSA)
+#sidebar TableOfContents
+
+
+
+===参考资料===
+`[1].` http://www.bmt-online.org/geekisms/RSA_verify<br>
+`[2].` https://tools.ietf.org/html/rfc3447<br>

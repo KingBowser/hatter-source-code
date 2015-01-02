@@ -233,6 +233,7 @@
   * [Study_Security_Encode Encode]
   * [Study_Security_EncryptionAlgorithm Encryption Algorithm]
    * [Study_Security_EncryptionAlgorithm_AES AES]
+   * [Study_Security_EncryptionAlgorithm_Sign Sign]
   * [Study_Security_FIDO FIDO]
   * [Study_Security_Firewall Firewall]
   * [Study_Security_Flash Flash]

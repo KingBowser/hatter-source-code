@@ -8,5 +8,7 @@
 || `Kerberos` || 用户认证 || 非浏览器 || 否 || 是 ||
 || `OAuth` || 应用授权 || 全部 || 否 || 否 ||
 || `Openstack Keystone` || 用户认证/应用授权 || 非浏览器 || 是 || 否 ||
+
+
 ===参考资料===
 `[1].` http://www.ibm.com/developerworks/cn/java/j-lo-cms-ticketbasesso/<br>

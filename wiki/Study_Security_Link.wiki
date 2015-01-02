@@ -48,6 +48,7 @@
  * https://factorable.net/
  * https://zmap.io/
  * https://password-hashing.net/
+ * http://competitions.cr.yp.to/
 
 
 <br>

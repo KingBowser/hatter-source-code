@@ -5,6 +5,7 @@
 ==Securing JAVA - [http://www.securingjava.com/toc.html]==
 ==Java Security Resources - [https://www.owasp.org/index.php/Java_Security_Resources]==
 
+==Oracle JDK Documents==
  * http://docs.oracle.com/javase/tutorial/security/
  * http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html
  * http://docs.oracle.com/javase/6/docs/technotes/guides/security/SunProviders.html

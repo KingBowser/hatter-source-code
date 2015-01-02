@@ -1,0 +1,6 @@
+#summary SSO
+#sidebar TableOfContents
+
+
+===参考资料===
+`[1].` http://www.ibm.com/developerworks/cn/java/j-lo-cms-ticketbasesso/<br>

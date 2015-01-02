@@ -19,6 +19,7 @@
  * http://homakov.blogspot.de/
  * http://utf-8.jp/
  * http://masatokinugawa.l0.cm/
+ * http://blog.cryptographyengineering.com/
 
 
 ----

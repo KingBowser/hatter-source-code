@@ -1,5 +1,5 @@
 #summary WAF (Web Application Firewall)
 #sidebar TableOfContents
 
-==IRONBEE - https://www.ironbee.com/==
+==IronBee - https://www.ironbee.com/==
 ==ModSecurity - https://www.modsecurity.org/  [https://github.com/SpiderLabs/ModSecurity github] ==

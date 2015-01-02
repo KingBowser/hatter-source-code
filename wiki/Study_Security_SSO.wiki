@@ -2,5 +2,11 @@
 #sidebar TableOfContents
 
 
+
+|| *产品/协议* || *应用场景* || *主要客户端类型* || *支持离线认证* || *免疫第三方窃听* ||
+|| CAS || 用户认证 || 浏览器 || 否 || 否 ||
+|| Kerberos || 用户认证 || 非浏览器 || 否 || 是 ||
+|| OAuth || 应用授权 || 全部 || 否 || 否 ||
+|| Openstack Keystone || 用户认证/应用授权 || 非浏览器	是 || 否 ||
 ===参考资料===
 `[1].` http://www.ibm.com/developerworks/cn/java/j-lo-cms-ticketbasesso/<br>

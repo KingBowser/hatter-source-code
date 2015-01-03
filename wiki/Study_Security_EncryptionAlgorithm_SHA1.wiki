@@ -11,3 +11,4 @@ Related: [Study_Security_TLS]
 `[2].` https://community.qualys.com/blogs/securitylabs/2014/09/09/sha1-deprecation-what-you-need-to-know<br>
 `[3].` https://www.digicert.com/sha1-sunset/<br>
 `[4].` https://cabforum.org/baseline-requirements-documents/<br>
+`[5].` https://support.google.com/chrome/answer/95617?hl=en<br>

@@ -1,0 +1,9 @@
+#summary SHA1
+#sidebar TableOfContents
+
+
+
+===参考资料===
+`[1].` http://googleonlinesecurity.blogspot.com/2014/09/gradually-sunsetting-sha-1.html<br>
+`[2].` https://community.qualys.com/blogs/securitylabs/2014/09/09/sha1-deprecation-what-you-need-to-know<br>
+`[3].` https://www.digicert.com/sha1-sunset/<br>

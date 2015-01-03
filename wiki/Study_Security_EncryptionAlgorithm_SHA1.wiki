@@ -13,3 +13,4 @@ Related: [Study_Security_TLS] [Study_Security_TLS_Compatibility]
 `[3].` https://www.digicert.com/sha1-sunset/<br>
 `[4].` https://cabforum.org/baseline-requirements-documents/<br>
 `[5].` https://support.google.com/chrome/answer/95617?hl=en<br>
+`[6].` http://blogs.technet.com/b/pki/archive/2013/11/12/sha1-deprecation-policy.aspx<br>

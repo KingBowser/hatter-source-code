@@ -27,6 +27,8 @@ SSL/TLS Test Tool:
  * [https://www.wormly.com/test_ssl]
  * [https://www.fairssl.dk/ssltest/]
  * [http://sourceforge.net/projects/sslscan/]
+ * [https://cheapsslsecurity.com/ssltools/]
+ * [http://sha1affected.com/]
 
 
 ----

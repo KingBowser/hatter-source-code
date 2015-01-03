@@ -1,0 +1,9 @@
+#summary TSocks
+#sidebar TableOfContents
+
+==http://tsocks.sourceforge.net/==
+
+
+
+===参考资料===
+`[1].` https://whatbox.ca/wiki/tsocks<br>

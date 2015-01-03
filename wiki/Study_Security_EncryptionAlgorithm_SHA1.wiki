@@ -2,6 +2,7 @@
 #sidebar TableOfContents
 
 
+http://sha1affected.com/
 
 <br>
 Related: [Study_Security_TLS] [Study_Security_TLS_Compatibility]

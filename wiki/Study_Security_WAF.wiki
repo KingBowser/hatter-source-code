@@ -2,4 +2,4 @@
 #sidebar TableOfContents
 
 ==IronBee - https://www.ironbee.com/==
-==ModSecurity - https://www.modsecurity.org/  [https://github.com/SpiderLabs/ModSecurity [github]] ==
+==ModSecurity - https://www.modsecurity.org/  [https://github.com/SpiderLabs/ModSecurity :github:] ==

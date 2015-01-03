@@ -3,6 +3,14 @@
 = Hatter's Wiki Index =
 <br>
 
+
+=[Study_Java_Diagnosis Java Diagnosis Tools]  - _[Study_Tool]_=
+=[Study_List Study List - Main Page]=
+
+
+=[Study_Security Study Security]=
+
+
 <font size="90px">[TableOfContents]</font>
 
 <br><br>

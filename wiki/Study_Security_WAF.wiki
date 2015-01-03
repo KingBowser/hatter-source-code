@@ -4,5 +4,5 @@
 ==IronBee==
  * https://www.ironbee.com/
 
-==ModSecurity ==
+==ModSecurity==
  * https://www.modsecurity.org/  [https://github.com/SpiderLabs/ModSecurity :github:]

@@ -2,6 +2,7 @@
 #sidebar TableOfContents
 
 || *CWE* || http://cwe.mitre.org/data/index.html ||
+|| *CVE* || http://cve.mitre.org/ ||
 || *WASC* || http://www.webappsec.org/ ||
 || *OWASP* || https://www.owasp.org/  _[http://www.owasp.org.cn/]_ ||
 || *OTA* || https://otalliance.org/ || 

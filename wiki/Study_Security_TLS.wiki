@@ -13,6 +13,7 @@
  * https://www.pcisecuritystandards.org/security_standards/
  * https://www.eff.org/https-everywhere/deploying-https
  * http://httpshaming.tumblr.com/
+ * https://github.com/craigfrancis/dev-security
 
 
 ==[https://cabforum.org/ CA/Browser Forum]==

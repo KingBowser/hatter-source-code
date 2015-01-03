@@ -5,3 +5,4 @@
 
 ===参考资料===
 `[1].` http://www.entrust.com/root-certificates-1024-bit-rsa-keys-removed/<br>
+`[2].` https://cheapsslsecurity.com/blog/mozilla-firefox-protest-1024-bit-certificates/<br>

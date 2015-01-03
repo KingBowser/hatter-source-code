@@ -1,7 +1,6 @@
 #summary Hatter's Wiki Index
 
 = Hatter's Wiki Index =
-<br>
 
 
 =[Study_Java_Diagnosis Java Diagnosis Tools]  - _[Study_Tool]_=
@@ -11,7 +10,7 @@
 =[Study_Security Study Security]=
 
 
-<font size="90px">[TableOfContents]</font>
+<font size="77px">[TableOfContents]</font>
 
 <br><br>
 _This wiki site is: [http://wiki.hellosecurity.org]_

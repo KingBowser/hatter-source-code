@@ -52,6 +52,10 @@ http://blog.cloudflare.com/announcing-keyless-ssl-all-the-benefits-of-cloudflare
 
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/security/ssl/keyless-comic-v1.gif]
 
+
+<br>
+Related: [Study_Security_EncryptionAlgorithm_SHA1]
+
 ===参考资料===
 `[1].` https://wzyboy.im/post/799.html<br>
 `[2].` http://www.xinotes.org/notes/note/1094/<br>

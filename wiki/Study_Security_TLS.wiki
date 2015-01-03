@@ -14,6 +14,7 @@
  * https://www.eff.org/https-everywhere/deploying-https
  * http://httpshaming.tumblr.com/
  * https://github.com/craigfrancis/dev-security
+ * https://www.qualys.com
 
 
 ==[https://cabforum.org/ CA/Browser Forum]==

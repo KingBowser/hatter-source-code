@@ -13,3 +13,5 @@
  * http://liuqunying.blog.51cto.com/3984207/1565610
  * https://community.qualys.com/blogs/securitylabs/2013/06/25/ssl-labs-deploying-forward-secrecy
  * http://docs.oracle.com/cd/E19253-01/819-7058/ike-3/
+
+ * https://cabforum.org/baseline-requirements-documents/

@@ -3,6 +3,8 @@
 
 https://www.google.com/about/appsecurity/tools/
 
+https://developer.mozilla.org/en-US/docs/Tools
+
 pngout  http://advsys.net/ken/utils.htm
 
 https://securityheaders.com/

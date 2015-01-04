@@ -15,6 +15,7 @@
 Redphone, Truecrypt, PGP and OTR
 
  * [https://www.google.com/about/appsecurity/ Google Application Security]
+ * [https://developer.mozilla.org/en-US/docs/Web/Security Web Security]
  * [https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSS Network Security Services]
  * [http://blog.cryptographyengineering.com/p/useful-cryptography-resources.html Useful Crypto Resources]
 

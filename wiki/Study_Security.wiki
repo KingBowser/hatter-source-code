@@ -14,7 +14,7 @@
 
 Redphone, Truecrypt, PGP and OTR
 
-[https://www.google.com/about/appsecurity/]
+[https://www.google.com/about/appsecurity/ Google application security]
 
 [http://blog.cryptographyengineering.com/p/useful-cryptography-resources.html Useful crypto resources]
 

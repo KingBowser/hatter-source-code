@@ -9,6 +9,11 @@
  * http://docs.oracle.com/javase/6/docs/technotes/guides/security/StandardNames.html
  * http://docs.oracle.com/javase/6/docs/technotes/guides/security/p11guide.html
 
+<br>
+ * http://www.oracle.com/technetwork/java/javase/downloads/jce-6-download-429243.html
+ * http://www.oracle.com/technetwork/cn/java/javase/downloads/jce-7-download-432124.html
+ * http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html
+
 
 ==OWASP==
  * https://www.owasp.org/index.php/Java_Security_Resources

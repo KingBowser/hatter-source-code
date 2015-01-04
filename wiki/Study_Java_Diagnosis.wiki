@@ -41,4 +41,5 @@
 || JIP || http://jiprof.sourceforge.net/ || JIP — The Java Interactive Profiler ||
 || Diagnostic Tools || http://clarkgrubb.com/diagnostic-tools || Diagnostic Tools: Linux, Mac OS X, Windows ||
 
+=相关资讯=
  * http://www.ibm.com/developerworks/cn/linux/l-cn-perf1/index.html

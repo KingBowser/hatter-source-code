@@ -52,6 +52,7 @@
  * https://password-hashing.net/
  * http://competitions.cr.yp.to/
  * http://cryptopals.com/
+ * https://www.syscan.org/
 
 
 <br>

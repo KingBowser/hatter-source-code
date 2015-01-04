@@ -6,3 +6,6 @@
 ===参考资料===
 `[1].` http://www.entrust.com/root-certificates-1024-bit-rsa-keys-removed/<br>
 `[2].` https://cheapsslsecurity.com/blog/mozilla-firefox-protest-1024-bit-certificates/<br>
+`[3].` http://blogs.technet.com/b/pki/archive/2012/06/12/rsa-keys-under-1024-bits-are-blocked.aspx<br>
+`[4].` http://blogs.technet.com/b/pki/archive/2012/07/13/blocking-rsa-keys-less-than-1024-bits-part-2.aspx<br>
+`[5].` http://blogs.technet.com/b/pki/archive/2012/08/14/blocking-rsa-keys-less-than-1024-bits-part-3.aspx<br>

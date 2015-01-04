@@ -28,6 +28,7 @@
  * https://cure53.de/
  * http://html5security.org/
  * http://fex.baidu.com/
+ * http://blog.mozilla.org/security/
 
 ----
 

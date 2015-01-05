@@ -15,3 +15,7 @@
 
  * http://tools.ietf.org/html/draft-burke-content-signature-00
  * https://tools.ietf.org/html/draft-cavage-http-signatures-03
+
+<br>
+ * mac下有什么工具能模拟post，get请求，要能带cookies的
+ http://segmentfault.com/q/1010000002439302

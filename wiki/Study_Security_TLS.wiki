@@ -29,6 +29,7 @@ SSL/TLS Test Tool:
  * [http://sourceforge.net/projects/sslscan/]
  * [https://cheapsslsecurity.com/ssltools/]
  * [http://sha1affected.com/]
+ * [http://spdycheck.org/]
 
 
 ----
@@ -56,7 +57,7 @@ http://blog.cloudflare.com/announcing-keyless-ssl-all-the-benefits-of-cloudflare
 
 
 <br>
-Related: [Study_Security_EncryptionAlgorithm_SHA1]
+_Related: [Study_Security_EncryptionAlgorithm_SHA1] [Study_HTTP_SPDY]_
 
 ===参考资料===
 `[1].` https://wzyboy.im/post/799.html<br>

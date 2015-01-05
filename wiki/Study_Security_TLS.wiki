@@ -18,7 +18,6 @@
  * https://www.qualys.com
  * [https://cabforum.org/ CA/Browser Forum]
 
-==[https://www.digicert.com/help/ SSL Certificate Checker]==
 
 
 ==SSL/TLS Test Tool:==
@@ -30,6 +29,7 @@
  * [https://cheapsslsecurity.com/ssltools/]
  * [http://sha1affected.com/]
  * [http://spdycheck.org/]
+ * [https://www.digicert.com/help/ SSL Certificate Checker]
 
 
 <br>

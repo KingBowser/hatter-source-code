@@ -1,0 +1,6 @@
+#summary HTML
+#sidebar TableOfContents
+
+=HTML=
+
+ * https://platform.html5.org/

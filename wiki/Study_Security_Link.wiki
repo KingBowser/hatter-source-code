@@ -54,6 +54,7 @@
  * http://cryptopals.com/
  * https://www.syscan.org/
  * http://www.openbsd.org/security.html
+ * http://www.80sec.com/
 
 <br>
 https://globaleaks.org/

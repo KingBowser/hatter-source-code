@@ -1,5 +1,7 @@
 #summary XSS
 #sidebar TableOfContents
 
+ * http://segmentfault.com/blog/barretlee/1190000000497596
+
 XSS
  * Dom XSS

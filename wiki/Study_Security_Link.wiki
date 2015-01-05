@@ -55,7 +55,6 @@
  * https://www.syscan.org/
  * http://www.openbsd.org/security.html
  * http://www.80sec.com/
- * http://html5sec.org/
 
 <br>
 https://globaleaks.org/

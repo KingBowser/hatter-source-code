@@ -1,0 +1,7 @@
+#summary SPDY
+#sidebar TableOfContents
+
+https://en.wikipedia.org/wiki/SPDY
+
+ * http://spdycheck.org/
+Check if a website properly supports the SPDY protocol, the super fast HTTP replacement, and troubleshoot any problems with the configuration.

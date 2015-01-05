@@ -1,6 +1,8 @@
 #summary Dom XSS
 #sidebar TableOfContents
 
+ * http://ha.ckers.org/xsscalc.html
+
  * OWASP DOM Based XSS - https://www.owasp.org/index.php/DOM_Based_XSS
  * DOM XSS Test Cases Wiki Cheatsheet Project - https://code.google.com/p/domxsswiki/wiki/Index
  * ArticlesXSS  - https://code.google.com/p/doctype-mirror/wiki/ArticlesXSS

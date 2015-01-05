@@ -3,6 +3,7 @@
 
 
  * HTTP2 Spec - [https://github.com/http2/http2-spec]
+ * SPDY - http://www.chromium.org/spdy
 
  * PageSpeed - https://developers.google.com/speed/pagespeed/
  * YSlow - https://developer.yahoo.com/yslow/

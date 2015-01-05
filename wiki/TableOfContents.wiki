@@ -70,6 +70,7 @@
  * [Study_HTTP HTTP]
   * [Study_HTTP_Httpd Httpd]
   * [Study_HTTP_Nginx Nginx]
+  * [Study_HTTP_SPDY SPDY]
   * [Study_HTTP_StatusCode Status Code]
  * [Study_Hadoop Hadoop]
   * [Study_Hadoop_Bookkeeper Bookkeeper]

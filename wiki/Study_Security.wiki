@@ -13,7 +13,6 @@
 || *EFF* || https://www.eff.org/ ||
 || *OISF* || http://www.openinfosecfoundation.org ||
 
-Redphone, Truecrypt, PGP and OTR
 
  * [https://www.google.com/about/appsecurity/ Google Application Security]
  * [http://www.google.com/safetycenter/ Google Safety Center]

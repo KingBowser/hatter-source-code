@@ -443,8 +443,9 @@ public class WinstoneSession implements HttpSession, Serializable {
                                 "WinstoneSession.SkippingNonSerializable",
                                 new String[] { key,
                                         copy.get(key).getClass().getName() });
+                copy.remove(key);
             }
-            copy.remove(key);
+            // copy.remove(key); // move up, fix bug by hatter
         }
         out.writeInt(copy.size());
         for (Iterator i = copy.keySet().iterator(); i.hasNext();) {

@@ -42,7 +42,7 @@ make install
 Install OpenSSL(没有时):
 {{{
 cd /usr/local/src
-wget http://www.openssl.org/source/openssl-1.0.1c.tar.gz
+wget https://www.openssl.org/source/openssl-1.0.1j.tar.gz
 tar -zxvf openssl-1.0.1c.tar.gz
 }}}
 

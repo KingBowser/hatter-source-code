@@ -1,16 +1,12 @@
 #summary OWASP study.
 #sidebar TableOfContents
 
-OWASP GitHub: https://github.com/OWASP
+ * OWASP GitHub: https://github.com/OWASP
+ * OWASP ASVS:  https://code.google.com/p/owasp-asvs/
+ * OWASP ESAPI: https://code.google.com/p/owasp-esapi-java/
+ * OWASP Cheatsheets: https://www.owasp.org/index.php/Category:Cheatsheets
+ * OWASP Top 10: [https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project]
 
-OWASP ASVS:  https://code.google.com/p/owasp-asvs/
+<br>
 
-OWASP ESAPI: https://code.google.com/p/owasp-esapi-java/
-
-OWASP Cheatsheets: https://www.owasp.org/index.php/Category:Cheatsheets
-
-
-[http://search.maven.org/#search%7Cga%7C1%7Cowasp]
-
-
-Top 10: [https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project]
+Maven libraries: [http://search.maven.org/#search%7Cga%7C1%7Cowasp]

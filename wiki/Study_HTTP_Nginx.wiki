@@ -43,7 +43,7 @@ Install OpenSSL(没有时):
 {{{
 cd /usr/local/src
 wget https://www.openssl.org/source/openssl-1.0.1j.tar.gz
-tar -zxvf openssl-1.0.1c.tar.gz
+tar -zxvf openssl-1.0.1j.tar.gz
 }}}
 
 Install nginx:

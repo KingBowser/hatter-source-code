@@ -59,7 +59,8 @@ cd nginx-1.4.2
 --with-http_ssl_module \
 --with-pcre=/usr/local/src/pcre-8.34 \
 --with-zlib=/usr/local/src/zlib-1.2.8 \
---with-openssl=/usr/local/src/openssl-1.0.1c
+--with-openssl=/usr/local/src/openssl-1.0.1j \
+--with-http_spdy_module
 
 make
 make install

@@ -57,7 +57,7 @@ http://blog.cloudflare.com/announcing-keyless-ssl-all-the-benefits-of-cloudflare
 
 
 <br>
-_Related: [Study_Security_EncryptionAlgorithm_SHA1] [Study_HTTP_SPDY]_
+_Related: [Study_Security_EncryptionAlgorithm_SHA1] [Study_HTTP_SPDY] [Study_Security_HTTP_HSTS]_
 
 ===参考资料===
 `[1].` https://wzyboy.im/post/799.html<br>

@@ -3,5 +3,8 @@
 
 chrome://net-internals/#hsts
 
+https://hstspreload.appspot.com/
+
+
 <br>
 _Related: [Study_Security_TLS]_

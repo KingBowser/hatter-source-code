@@ -5,6 +5,8 @@ chrome://net-internals/#hsts
 
 https://hstspreload.appspot.com/
 
+https://www.chromium.org/hsts
+
 
 <br>
 _Related: [Study_Security_TLS]_

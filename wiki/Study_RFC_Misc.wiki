@@ -10,3 +10,4 @@
 || Internet Users' Glossary || http://tools.ietf.org/html/rfc1983 ||
 || IETF Policy on Character Sets and Languages || http://tools.ietf.org/html/rfc2277 ||
 ||  A Universally Unique IDentifier (UUID) URN Namespace || http://tools.ietf.org/html/rfc4122 ||
+|| The Base16, Base32, and Base64 Data Encodings || https://tools.ietf.org/html/rfc4648 ||

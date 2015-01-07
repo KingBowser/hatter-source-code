@@ -20,7 +20,7 @@ import me.hatter.tools.commons.string.StringUtil;
 public class HttpsTest3 {
 
     public static void main(String[] args) throws IOException, Exception {
-        URL url1 = new URL("https://hatter.me/");
+        URL url1 = new URL("https://github.com/");
 
         if (url1.getProtocol().equalsIgnoreCase("https")) {// you dont need this check
             HostnameVerifier hv = new HostnameVerifier() {

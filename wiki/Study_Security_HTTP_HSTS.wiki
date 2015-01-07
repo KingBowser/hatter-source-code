@@ -1,6 +1,7 @@
 #summary HTTPS Strict Transport Security
 #sidebar TableOfContents
 
+chrome://net-internals/#hsts
 
 <br>
 _Related: [Study_Security_TLS]_

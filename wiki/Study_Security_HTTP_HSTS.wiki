@@ -1,0 +1,6 @@
+#summary HTTPS Strict Transport Security
+#sidebar TableOfContents
+
+
+<br>
+_Related: [Study_Security_TLS]_

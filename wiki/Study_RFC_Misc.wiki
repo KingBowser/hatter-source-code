@@ -2,12 +2,12 @@
 #sidebar TableOfContents
 
 
-||  Augmented BNF for Syntax Specifications: ABNF || http://tools.ietf.org/html/rfc5234 ||
-|| Key words for use in RFCs to Indicate Requirement Levels || http://tools.ietf.org/html/rfc2119 ||
-|| The WebSocket Protocol || http://tools.ietf.org/html/rfc6455 ||
-||  Deprecating the "X-" Prefix and Similar Constructs in Application Protocols || http://tools.ietf.org/html/rfc6648 ||
-|| Tags for Identifying Languages || http://tools.ietf.org/html/rfc5646 ||
-|| Internet Users' Glossary || http://tools.ietf.org/html/rfc1983 ||
-|| IETF Policy on Character Sets and Languages || http://tools.ietf.org/html/rfc2277 ||
-||  A Universally Unique IDentifier (UUID) URN Namespace || http://tools.ietf.org/html/rfc4122 ||
+||  Augmented BNF for Syntax Specifications: ABNF || https://tools.ietf.org/html/rfc5234 ||
+|| Key words for use in RFCs to Indicate Requirement Levels || https://tools.ietf.org/html/rfc2119 ||
+|| The WebSocket Protocol || https://tools.ietf.org/html/rfc6455 ||
+||  Deprecating the "X-" Prefix and Similar Constructs in Application Protocols || https://tools.ietf.org/html/rfc6648 ||
+|| Tags for Identifying Languages || https://tools.ietf.org/html/rfc5646 ||
+|| Internet Users' Glossary || https://tools.ietf.org/html/rfc1983 ||
+|| IETF Policy on Character Sets and Languages || https://tools.ietf.org/html/rfc2277 ||
+||  A Universally Unique IDentifier (UUID) URN Namespace || https://tools.ietf.org/html/rfc4122 ||
 || The Base16, Base32, and Base64 Data Encodings || https://tools.ietf.org/html/rfc4648 ||

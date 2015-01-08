@@ -16,6 +16,8 @@ http://www.ietf.org/rfc/rfc4880.txt
 || 删除私钥 || `gpg --delete-secret-keys <uid>` ||
 || 信任公钥 || `gpg --sign-key <uid>` ||
 
+https://keybase.io/
+
 
 <br>
 Related: [Study_Security_EncryptionAlgorithm]

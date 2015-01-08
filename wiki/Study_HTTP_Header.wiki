@@ -24,7 +24,7 @@
 || `Content-Location` ||    /index.htm  ||      || 
 || `Content-MD5` ||    Q2hlY2sgSW50ZWdyaXR5IQ==    ||      || 
 || `Content-Range` ||    bytes 21010-47021/47022 ||      || 
-|| `Content-Security-Policy, <br>X-Content-Security-Policy, X-WebKit-CSP` ||    default-src ‘self’  ||  Different header needed to control different browsers   || 
+|| `Content-Security-Policy, \\X-Content-Security-Policy, X-WebKit-CSP` ||    default-src ‘self’  ||  Different header needed to control different browsers   || 
 || `Content-Security-Policy-Report-Only` ||    default-src ‘self'; …; report-uri /csp_report_parser;   ||      || 
 || `Content-Type` ||    text/html   ||  Can also include charset information (E.g.: text/html;charset=ISO-8859-1)   || 
 || `Date` ||    Fri, 22 Jan 2010 04:00:00 GMT   ||      || 

@@ -1,4 +1,5 @@
 #summary Java study.
+#labels Java
 #sidebar TableOfContents
 
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/java/java.jpeg]

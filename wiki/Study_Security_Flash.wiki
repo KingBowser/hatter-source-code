@@ -7,6 +7,7 @@
 
  * https://www.adobe.com/devnet-docs/acrobatetk/tools/AppSec/index.html
  * https://www.adobe.com/devnet-docs/acrobatetk/tools/AppSec/xdomain.html
+ * https://www.adobe.com/devnet/adobe-media-server/articles/cross-domain-xml-for-streaming.html
 
 
 

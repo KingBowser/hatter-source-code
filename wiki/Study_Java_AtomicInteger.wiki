@@ -1,4 +1,5 @@
 #summary AtomicInteger
+#labels Java
 #sidebar TableOfContents
 
 JDK 8 - AtomicInteger

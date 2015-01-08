@@ -1,4 +1,5 @@
 #summary HotSpot虚拟机的参数
+#labels Java
 #sidebar TableOfContents
 
 ==属性定义==

@@ -1,4 +1,5 @@
 #summary CWE study.
+#labels Security,CWE
 #sidebar TableOfContents
 
 ==Common Weakness Enumeration (CWE) is a list of software weaknesses.==

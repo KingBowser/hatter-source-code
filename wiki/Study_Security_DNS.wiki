@@ -1,4 +1,5 @@
 #summary DNS security study.
+#labels Security,DNS
 #sidebar TableOfContents
 
 http://www.opendns.com/about/innovations/dnscrypt/

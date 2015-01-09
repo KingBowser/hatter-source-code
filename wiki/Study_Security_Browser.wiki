@@ -1,4 +1,5 @@
 #summary Browser Security
+#labels Secuirty,Browser,Chrome
 #sidebar TableOfContents
 
 =[http://www.chromium.org/Home/chromium-security Chromium Security]=

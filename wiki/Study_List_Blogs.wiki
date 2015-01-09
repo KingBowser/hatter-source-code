@@ -1,4 +1,5 @@
 #summary Blogs
+#labels Link,Blog
 #sidebar TableOfContents
 
 ==朋友的博客==
@@ -6,6 +7,7 @@
  * http://www.hiyangqi.com/
  * http://pangxiege.com/wordpress/
  * http://www.dbathink.com/
+ * http://yaniswang.com/
 
 ==DBA的博客==
  * http://hidba.org/

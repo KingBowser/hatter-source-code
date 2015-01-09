@@ -1,4 +1,5 @@
 #summary Encode
+#labels Security,HTML,XSS
 #sidebar TableOfContents
 
 =HTML Entity=

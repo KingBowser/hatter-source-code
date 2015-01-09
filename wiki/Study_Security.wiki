@@ -1,4 +1,5 @@
 #summary Security Study.
+#labels Security
 #sidebar TableOfContents
 
 || *CWE* || http://cwe.mitre.org/data/index.html ||

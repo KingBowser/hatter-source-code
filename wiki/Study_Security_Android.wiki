@@ -1,5 +1,5 @@
 #summary Android Security
-#labels Security
+#labels Security,Android
 #sidebar TableOfContents
 
 [http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/security/android/]

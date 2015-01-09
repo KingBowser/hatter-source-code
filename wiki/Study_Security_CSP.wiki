@@ -1,4 +1,5 @@
 #summary CSP (Content Security Policy)
+#labels Security,CSP
 #sidebar TableOfContents
 
 =CSP=

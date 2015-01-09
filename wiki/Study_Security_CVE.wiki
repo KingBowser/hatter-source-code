@@ -1,4 +1,5 @@
 #summary CVE study.
+#labels Security,CVE
 #sidebar TableOfContents
 
 ==Common Vulnerabilities and Exposures==

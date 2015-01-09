@@ -1,5 +1,5 @@
 #summary SHA1
-#labels Security,Encrypt
+#labels Security,Encrypt,TLS
 #sidebar TableOfContents
 
 HTTPS sites whose certificate chains use SHA-1 and are valid past 1 January 2017 will no longer appear to be fully trustworthy in Chrome’s user interface.

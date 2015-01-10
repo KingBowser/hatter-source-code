@@ -51,3 +51,4 @@ new-line:（新行：）
 `[7].` http://www.unicode.org/reports/tr13/tr13-9.html<br>
 `[8].` http://www.ecma-international.org/ecma-262/5.1/<br>
 `[9].` http://unicode.org/reports/tr14/<br>
+`[10].` http://en.wikipedia.org/wiki/Newline<br>

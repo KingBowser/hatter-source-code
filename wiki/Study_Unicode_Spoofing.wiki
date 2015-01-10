@@ -1,4 +1,5 @@
 #summary Unicode Spoofing
+#labels Security,Unicode,IDN
 #sidebar TableOfContents
 
 [http://kb.mozillazine.org/Network.IDN.blacklist_chars Network.IDN.blacklist chars]

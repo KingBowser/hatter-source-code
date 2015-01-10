@@ -1,4 +1,5 @@
 #summary UTF7
+#labels Unicode,Security,UTF
 #sidebar TableOfContents
 
  * http://www.freeutils.net/source/jcharset/

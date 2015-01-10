@@ -1,2 +1,3 @@
 #summary ISO
+#labels ISO,Organization
 #sidebar TableOfContents

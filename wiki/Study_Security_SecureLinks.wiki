@@ -1,4 +1,5 @@
 #summary Secure Links
+#labels Security
 #sidebar TableOfContents
 
 =[http://www.secure-links.org/]=

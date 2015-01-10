@@ -6,8 +6,7 @@
 
 在ECMAScript的规范里面有这样一段记载。除了`0x0A/0x0D`以外`U+2028/2029`也可以作为换行符来使用。
 
-*Line Terminator Characters*
-
+*Line Terminator Characters* from [http://www.ecma-international.org/ecma-262/5.1/#sec-7.3 7.3 Line Terminators]
 
 || *Code Unit Value* || *Name* || *Formal Name* ||
 || `\u000A` || Line Feed || `<LF>` ||

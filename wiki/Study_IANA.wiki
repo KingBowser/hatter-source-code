@@ -1,4 +1,5 @@
 #summary IANA study.
+#labels IANA,Organization
 #sidebar TableOfContents
 
 ==The Internet Assigned Numbers Authority (IANA) is responsible for the global coordination of the DNS Root, IP addressing, and other Internet protocol resources.==

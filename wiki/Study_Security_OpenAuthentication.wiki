@@ -1,4 +1,5 @@
 #summary Open Authentication
+#labels Security,OTP,Password
 #sidebar TableOfContents
 
 

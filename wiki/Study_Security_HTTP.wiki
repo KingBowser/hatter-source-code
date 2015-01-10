@@ -1,4 +1,5 @@
 #summary HTTP Security
+#labels Security,HTTP
 #sidebar TableOfContents
 
 =SecurityHeaders.com=

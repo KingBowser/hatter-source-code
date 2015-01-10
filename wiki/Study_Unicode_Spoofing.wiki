@@ -1,6 +1,7 @@
 #summary Unicode Spoofing
 #sidebar TableOfContents
 
+[http://kb.mozillazine.org/Network.IDN.blacklist_chars Network.IDN.blacklist chars]
 
 
 ===参考资料===
@@ -9,3 +10,4 @@
 `[3].` https://www.icann.org/resources/unthemed-pages/idn-guidelines-2006-02-22-en<br>
 `[4].` http://www.unicode.org/reports/tr36/<br>
 `[5].` http://www.unicode.org/faq/security.html<br>
+`[6].` http://kb.mozillazine.org/Network.IDN.blacklist_chars<br>

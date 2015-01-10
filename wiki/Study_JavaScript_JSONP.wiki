@@ -40,3 +40,5 @@ new-line:（新行：）
 `[5].` http://subtech.g.hatena.ne.jp/mala/20101122/1290436563<br>
 `[6].` http://qiita.com/kjunichi/items/4c9d0cb408fbc846799f<br>
 `[7].` http://www.unicode.org/reports/tr13/tr13-9.html<br>
+`[8].` http://www.ecma-international.org/ecma-262/5.1/<br>
+`[9].` http://unicode.org/reports/tr14/<br>

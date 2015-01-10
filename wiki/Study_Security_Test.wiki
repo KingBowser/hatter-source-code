@@ -1,4 +1,5 @@
 #summary Test
+#labels Security,Test
 #sidebar TableOfContents
 
 ==[https://www.owasp.org/index.php/OWASP_Testing_Project]==

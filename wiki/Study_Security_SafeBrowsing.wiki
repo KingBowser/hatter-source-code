@@ -1,4 +1,5 @@
 #summary Safe Browsing
+#labels Security,Phishing
 #sidebar TableOfContents
 
 ==https://www.stopbadware.org/==

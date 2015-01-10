@@ -1,4 +1,5 @@
 #summary GitHub Groups Study.
+#labels Organization,Link
 #sidebar TableOfContents
 
  * https://github.com/http2

@@ -1,4 +1,5 @@
 #summary OWASP study.
+#labels Security,OWASP,Organization
 #sidebar TableOfContents
 
  * OWASP GitHub: https://github.com/OWASP

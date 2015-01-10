@@ -1,4 +1,5 @@
 #summary FIDO Alliance
+#labels Security,FIDO
 #sidebar TableOfContents
 
 ==https://fidoalliance.org/==

@@ -1,4 +1,5 @@
 #summary Request For Comment
+#labels IETF,Organization
 #sidebar TableOfContents
 
 = Request For Comment =

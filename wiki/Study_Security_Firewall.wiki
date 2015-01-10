@@ -1,4 +1,5 @@
 #summary Security Firewall
+#labels Security,WAF
 #sidebar TableOfContents
 
 See: [Study_Security_WAF]

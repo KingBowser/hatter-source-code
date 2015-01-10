@@ -1,4 +1,5 @@
 #summary Subresource Integrity(SRI)
+#labels Security,W3C
 #sidebar TableOfContents
 
 

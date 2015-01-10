@@ -1,4 +1,5 @@
 #summary ECMA
+#labels ECMA,Organization
 #sidebar TableOfContents
 
 [http://www.ecma-international.org/]

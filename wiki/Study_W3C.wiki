@@ -1,4 +1,5 @@
 #summary W3C(W3)
+#labels W3C,Organization
 #sidebar TableOfContents
 
 =[http://www.w3.org/ W3C]=

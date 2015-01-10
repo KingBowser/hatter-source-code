@@ -1,4 +1,5 @@
 #summary Unicode
+#labels Unicode,TR
 #sidebar TableOfContents
 
 http://www.unicode.org/

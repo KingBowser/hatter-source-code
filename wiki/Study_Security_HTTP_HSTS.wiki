@@ -1,5 +1,5 @@
 #summary HTTPS Strict Transport Security
-#labels Security,HTTP
+#labels Security,HTTP,HTTPS
 #sidebar TableOfContents
 
 chrome://net-internals/#hsts

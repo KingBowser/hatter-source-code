@@ -1,4 +1,5 @@
 #summary Mail study.
+#labels Security,Mail,Tool,SPF,DKIM,DMARC
 #sidebar TableOfContents
 
 ==Sample: Google Apps Setup==

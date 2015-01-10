@@ -1,4 +1,5 @@
 #summary Message Security
+#labels Security
 #sidebar TableOfContents
 
 =BitMessage=

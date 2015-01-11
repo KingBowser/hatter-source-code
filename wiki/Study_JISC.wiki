@@ -5,3 +5,5 @@
 ==[http://www.jisc.go.jp/]==
 
 Documents: http://kikakurui.com/
+
+|| 情報処理 X 0000-0999 || http://kikakurui.com/x0/index.html ||

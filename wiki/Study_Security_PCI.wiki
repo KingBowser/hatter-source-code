@@ -2,7 +2,10 @@
 #labels PCI,Organization,Security,Payment
 #sidebar TableOfContents
 
-==https://www.pcisecuritystandards.org/==
+
+==[https://www.pcisecuritystandards.org/ About the PCI Security Standards Council]==
+
+The PCI Security Standards Council is an open global forum, launched in 2006, that is responsible for the development, management, education, and awareness of the PCI Security Standards, including the Data Security Standard (PCI DSS), Payment Application Data Security Standard (PA-DSS), and PIN Transaction Security (PTS) requirements.
 
 <br>
 

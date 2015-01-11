@@ -3,6 +3,9 @@
 
 ===一、标准===
 `JavaScript` was originally developed by _*Brendan Eich*_ of `Netscape` under the name `Mocha`, later `LiveScript`, and finally renamed to `JavaScript`. The key design principles within `JavaScript` are taken from the `Self` and `Scheme` programming languages.<br><br>
+
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/javascript/jsspec.pdf JavaScript Language Specification JavaScript 1.1 10/3/96]
+<br>
 标准(ECMA 262)官方网站: http://www.ecmascript.org/ http://www.ecma-international.org/publications/standards/Ecma-262.htm<br>
 || `Ecma262 1st` || https://code.google.com/p/hatter-source-code/downloads/detail?name=Ecma-262-1st.pdf || Jun 1997 ||  ||
 || `Ecma262 2nd` || https://code.google.com/p/hatter-source-code/downloads/detail?name=Ecma-262-2nd.pdf || Aug 1998 ||  ||

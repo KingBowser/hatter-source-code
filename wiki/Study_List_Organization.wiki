@@ -5,6 +5,7 @@
  * [Study_IANA]
  * [Study_IEEE]
  * [Study_ISO]
+ * [Study_JISC]
  * [Study_RFC] - IETF
  * [Study_Security_OWASP]
  * [Study_W3C]

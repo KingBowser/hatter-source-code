@@ -1,4 +1,5 @@
 #summary JISC (Japanese Industrial Standards Committee)
+#labels JISC,Organization
 #sidebar TableOfContents
 
 ==[http://www.jisc.go.jp/]==

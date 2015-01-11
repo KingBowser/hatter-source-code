@@ -2,6 +2,8 @@
 #labels JISC,Organization
 #sidebar TableOfContents
 
+JISCは、Japanese Industrial Standards Committeeの略称で、正式には、日本工業標準調査会といいます。工業標準化法に基づいて経済産業省に設置されている審議会で、工業標準化全般に関する調査・審議を行っています。
+
 ==[http://www.jisc.go.jp/]==
 
 Documents: http://kikakurui.com/

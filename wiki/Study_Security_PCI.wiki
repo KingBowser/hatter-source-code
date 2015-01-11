@@ -1,5 +1,5 @@
 #summary PCI (支付卡行业)
-#labels PCI,Organization,Security
+#labels PCI,Organization,Security,Payment
 #sidebar TableOfContents
 
 ==https://www.pcisecuritystandards.org/==

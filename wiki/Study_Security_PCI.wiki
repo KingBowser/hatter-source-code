@@ -10,4 +10,5 @@ The PCI Security Standards Council is an open global forum, launched in 2006, th
 <br>
 
  * https://www.pcisecuritystandards.org/documents/PCI_DSS_v3_ZH-CN.pdf
+ * https://www.pcisecuritystandards.org/documents/PA-DSS_v3__ZH-CN.pdf
  * https://www.pcisecuritystandards.org/security_standards/index.php

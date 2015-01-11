@@ -1,0 +1,6 @@
+#summary JISC (Japanese Industrial Standards Committee)
+#sidebar TableOfContents
+
+==[http://www.jisc.go.jp/]==
+
+Documents: http://kikakurui.com/

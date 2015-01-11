@@ -1,0 +1,9 @@
+#summary PCI (支付卡行业)
+#labels PCI,Organization
+#sidebar TableOfContents
+
+==https://www.pcisecuritystandards.org/==
+
+
+ * https://www.pcisecuritystandards.org/documents/PCI_DSS_v3_ZH-CN.pdf
+

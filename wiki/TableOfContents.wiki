@@ -130,6 +130,7 @@
   * [Study_Java_VirtualMachine Virtual Machine]
   * [Study_Java_Zing Zing]
   * [Study_Java_Zulu Zulu]
+ * [Study_JIS JIS]
  * [Study_Open Open]
  * [Study_OpenSource Open Source]
   * [Study_OpenSource_China China]

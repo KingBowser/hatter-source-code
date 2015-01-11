@@ -1,4 +1,5 @@
 #summary JavaScript Study
+#labels JavaScript,ECMA,ECMA262,ECMAScript
 #sidebar TableOfContents
 
 ===一、标准===

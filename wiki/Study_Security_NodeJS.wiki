@@ -3,3 +3,7 @@
 #sidebar TableOfContents
 
 Node Security Project - https://nodesecurity.io/
+
+<br>
+ * Node.JS Security - the good, bad and ugly - http://bishankochher.blogspot.com/2011/12/nodejs-security-good-bad-and-ugly.html
+ * Why Node.JS? Security - http://wegnerdesign.com/blog/why-node-js-security/

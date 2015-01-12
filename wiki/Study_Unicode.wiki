@@ -16,3 +16,6 @@ http://www.unicode.org/
 
 \u{1F4A9}
 }}}
+
+<br>
+JavaScript’s internal character encoding: UCS-2 or UTF-16? - https://mathiasbynens.be/notes/javascript-encoding

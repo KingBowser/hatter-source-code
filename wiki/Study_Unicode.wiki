@@ -5,3 +5,8 @@
 http://www.unicode.org/
 
 [http://www.unicode.org/reports/ Unicode Technical Reports]
+
+<br>
+ES6:
+
+'\u{1F4A9}' 

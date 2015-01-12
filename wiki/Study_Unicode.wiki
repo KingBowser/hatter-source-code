@@ -7,7 +7,7 @@ http://www.unicode.org/
 [http://www.unicode.org/reports/ Unicode Technical Reports]
 
 <br>
-ES6:
+U+010000 ~ U+10FFFF - ES6:
 
 {{{
 \uD83D \uDCA9

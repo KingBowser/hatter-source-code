@@ -17,7 +17,8 @@ http://www.unicode.org/
 \u{1F4A9}
 }}}
 
-https://github.com/mathiasbynens/jsesc
+ * https://mothereff.in/js-escapes#1%F0%9D%8C%86
+ * https://github.com/mathiasbynens/jsesc
 
 
 <br>

@@ -9,4 +9,6 @@ http://www.unicode.org/
 <br>
 ES6:
 
-'\u{1F4A9}' 
+```
+\u{1F4A9}
+```

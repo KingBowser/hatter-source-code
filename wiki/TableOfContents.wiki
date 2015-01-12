@@ -280,6 +280,7 @@
   * [Study_Security_Tool Tool]
    * [Study_Security_Tool_GPG GPG]
    * [Study_Security_Tool_SMIME S/MIME]
+  * [Study_Security_Unicode Unicode]
   * [Study_Security_WAF WAF]
   * [Study_Security_XML XML]
   * [Study_Security_XSS XSS]

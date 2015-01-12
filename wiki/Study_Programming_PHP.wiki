@@ -1,0 +1,7 @@
+#summary PHP
+#labels PHP,Lang
+#sidebar TableOfContents
+
+==[http://php.net/ PHP: Hypertext Preprocessor]==
+
+http://www.phpwtf.org/

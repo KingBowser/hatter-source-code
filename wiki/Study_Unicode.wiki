@@ -10,5 +10,7 @@ http://www.unicode.org/
 ES6:
 
 {{{
+\uD83D \uDCA9
+
 \u{1F4A9}
 }}}

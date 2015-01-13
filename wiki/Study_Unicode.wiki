@@ -17,6 +17,11 @@ Unicode的 `U+D800` `U+DFFF` 不占用字符
   ==
 
 \u{1F4A9}
+
+H = Math.floor((C - 0x10000) / 0x400) + 0xD800
+L = (C - 0x10000) % 0x400 + 0xDC00
+
+C = (H - 0xD800) * 0x400 + L - 0xDC00 + 0x10000
 }}}
 
  * https://mothereff.in/js-escapes#1%F0%9D%8C%86

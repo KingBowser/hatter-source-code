@@ -6,6 +6,8 @@ http://www.unicode.org/
 
 [http://www.unicode.org/reports/ Unicode Technical Reports]
 
+Unicode的 `U+D800` `U+DFFF` 不占用字符
+
 <br>
 `U+010000` ~ `U+10FFFF` - ES6:
 

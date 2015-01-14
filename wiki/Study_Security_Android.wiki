@@ -9,4 +9,8 @@ ASEF - Android Security Evaluation Framework - https://code.google.com/p/asef/
 https://whispersystems.org/
 
 <br>
+ * https://code.google.com/p/smali/
+ * https://code.google.com/p/android-apktool/
+
+<br>
 Related: [Study_Android]

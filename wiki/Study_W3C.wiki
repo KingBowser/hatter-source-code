@@ -15,7 +15,8 @@
  * [http://www.w3.org/standards/techs/webappsec#w3c_all  Security for Web Applications]
 
 
-http://www.w3.org/Security/wiki/IG
+ * http://www.chinaw3c.org/
+ * http://www.w3.org/Security/wiki/IG
 
 
 ===参考资料===

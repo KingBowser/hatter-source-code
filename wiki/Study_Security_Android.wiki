@@ -11,6 +11,7 @@ https://whispersystems.org/
 <br>
  * https://code.google.com/p/smali/
  * https://code.google.com/p/android-apktool/
+ * http://proguard.sourceforge.net/
 
 <br>
 Related: [Study_Android]

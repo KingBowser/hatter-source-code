@@ -56,6 +56,8 @@
  * https://www.syscan.org/
  * http://www.openbsd.org/security.html
  * http://www.80sec.com/
+ * https://www.lightbluetouchpaper.org/
+ * http://www.cl.cam.ac.uk/~rja14/
 
 <br>
 https://globaleaks.org/

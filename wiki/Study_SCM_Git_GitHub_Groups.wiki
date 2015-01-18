@@ -29,6 +29,7 @@
  * https://github.com/yahoo
  * https://github.com/w3ctag
  * https://github.com/bestiejs
+ * https://github.com/yandex
 
 
 <br>

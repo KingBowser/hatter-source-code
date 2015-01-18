@@ -25,6 +25,9 @@
  * [https://wiki.mozilla.org/WebAppSec Mozilla Wiki Web Application Security]
  * [http://blog.cryptographyengineering.com/p/useful-cryptography-resources.html Useful Crypto Resources]
 
+==_[http://www.cl.cam.ac.uk/~rja14/book.html 《Security Engineering》]==
+
+
 ==_[Study_Security_Link]_==
 
 

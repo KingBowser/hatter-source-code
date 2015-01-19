@@ -60,6 +60,7 @@
  * http://www.cl.cam.ac.uk/~rja14/
  * http://benv.ca/
  * https://websec.wordpress.com/
+ * http://www.php-security.org/
 
 <br>
 https://globaleaks.org/

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.io.Writer;
 
 public class LineNumberWriter {
 
@@ -12,6 +13,10 @@ public class LineNumberWriter {
 
     public LineNumberWriter(File file, String csn) throws FileNotFoundException, UnsupportedEncodingException {
         pw = new PrintWriter(file, csn);
+    }
+
+    public LineNumberWriter(Writer w) {
+        pw = new PrintWriter(w);
     }
 
     public void flush() {

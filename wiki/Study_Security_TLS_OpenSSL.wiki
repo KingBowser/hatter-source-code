@@ -52,3 +52,4 @@ http://www.madboa.com/geek/openssl/
 
 
 ===参考资料===
+`[1].` https://www.openssl.org/docs/apps/x509.html<br>

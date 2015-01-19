@@ -1,6 +1,6 @@
 #summary Audit
 #sidebar TableOfContents
 
-http://w3af.org/
+http://w3af.org/ - w3af is a Web Application Attack and Audit Framework.
 
-w3af is a Web Application Attack and Audit Framework.
+https://code.google.com/p/fuzzdb/

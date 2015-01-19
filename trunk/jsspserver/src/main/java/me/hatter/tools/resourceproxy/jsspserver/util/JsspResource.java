@@ -55,4 +55,10 @@ public class JsspResource {
         }
         return explainedContent;
     }
+
+    synchronized public String getExplainedContentOnAir() {
+        explained = JsspExecutor.tryExplainJsspOnAir(resource);
+        explainedContent = Resources.readToString(explained, ContentTypes.UTF8_CHARSET);
+        return explainedContent;
+    }
 }

@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringReader;
+import java.io.StringWriter;
 import java.lang.management.ManagementFactory;
 import java.net.URL;
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -100,7 +102,7 @@ public class JsspExecutor {
             }
         };
 
-        executeJssp(new FileResource(f), context, null, jr, bw);
+        executeJsspOnAir(new FileResource(f), context, null, jr, bw);
 
         logTool.info(bw.getBufferedString());
     }
@@ -117,9 +119,20 @@ public class JsspExecutor {
         executeJssp(resource, context, addContext, null, out);
     }
 
+    public static void executeJsspOnAir(Resource resource, Map<String, Object> context, Map<String, Object> addContext,
+                                        BufferWriter out) {
+        executeJsspOnAir(resource, context, addContext, null, out);
+    }
+
     public static void executeJssp(Resource resource, Map<String, Object> context, Map<String, Object> addContext,
                                    JsspReader jsspReader, BufferWriter out) {
         executeExplained(new StringReader(explainAndReadJssp(resource)), context, addContext, jsspReader, out, resource);
+    }
+
+    public static void executeJsspOnAir(Resource resource, Map<String, Object> context, Map<String, Object> addContext,
+                                        JsspReader jsspReader, BufferWriter out) {
+        executeExplained(new StringReader(explainAndReadJsspOnAir(resource)), context, addContext, jsspReader, out,
+                         resource);
     }
 
     public static void executeExplained(Reader reader, Map<String, Object> context, Map<String, Object> addContext,
@@ -224,9 +237,32 @@ public class JsspExecutor {
         }
     }
 
+    public static String explainAndReadJsspOnAir(Resource resource) {
+        try {
+            Resource explained = tryExplainJsspOnAir(resource);
+            InputStream fis = explained.openInputStream();
+            InputStreamReader isr = new InputStreamReader(fis, DEFAULT_CHARSET);
+            try {
+                return IOUtil.readToString(isr);
+            } finally {
+                IOUtil.closeQuietly(isr);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static Resource tryExplainJssp(Resource resource) {
         try {
             return explainJssp(resource);
+        } catch (IOException e) {
+            throw new JsspEvalException("Error occured in explain jssp resource: " + resource, e);
+        }
+    }
+
+    public static Resource tryExplainJsspOnAir(Resource resource) {
+        try {
+            return explainJsspOnAir(resource);
         } catch (IOException e) {
             throw new JsspEvalException("Error occured in explain jssp resource: " + resource, e);
         }
@@ -243,94 +279,113 @@ public class JsspExecutor {
         BufferedReader br = new BufferedReader(new InputStreamReader(fis, DEFAULT_CHARSET));
         try {
             LineNumberWriter pw = new LineNumberWriter(explainedFile, DEFAULT_CHARSET);
-            // support return
-            pw.write("(function() {\r\n");
-            StringBuilder sb = new StringBuilder();
-            boolean inScript = false;
-            boolean isStart = false;
-            boolean isEnd = false;
-            try {
-                List<String> sourceTargetLineMappingList = new ArrayList<String>();
-                int sourceLine = 0;
-                for (String readLine; ((readLine = br.readLine()) != null);) {
-                    sourceTargetLineMappingList.add("[" + sourceLine + ", " + pw.getCurrentLine() + "]");
-
-                    String line = readLine + "\\r\\n";
-
-                    for (int i = 0; i < line.length(); i++) {
-                        char c = line.charAt(i);
-                        if (inScript) {
-                            if ((c == '%') && (i < (line.length() - 1)) && (line.charAt(i + 1) == '>')) {
-                                isStart = false;
-                                isEnd = true;
-                                inScript = false;
-                                i += 1;
-                            } else {
-                                isStart = false;
-                                isEnd = false;
-                            }
-                        } else {
-                            if ((c == '<') && (i < (line.length() - 1)) && (line.charAt(i + 1) == '%')) {
-                                isStart = true;
-                                isEnd = false;
-                                inScript = true;
-                                i += 1;
-                            } else {
-                                isStart = false;
-                                isEnd = false;
-                            }
-                        }
-
-                        boolean process = false;
-
-                        if (isStart || isEnd) {
-                            process = true;
-                        } else {
-                            sb.append(c);
-                            if (i == (line.length() - 1)) {
-                                process = true;
-                            }
-                        }
-
-                        if (process) {
-                            String sbs = sb.toString();
-                            sb = new StringBuilder();
-                            if (isStart) {
-                                if (sbs.length() > 0) {
-                                    explainPlain(pw, sbs);
-                                }
-                            } else if (isEnd) {
-                                if (sbs.length() > 0) {
-                                    explainScript(pw, sbs);
-                                }
-                            } else if (i == (line.length() - 1)) {
-                                if (!inScript) {
-                                    explainPlain(pw, sbs);
-                                } else {
-                                    explainScript(pw, sbs);
-                                }
-                            } else if (line.length() == 0) {
-                                if (!inScript) {
-                                    explainPlain(pw, sbs);
-                                } else {
-                                    explainScript(pw, sbs);
-                                }
-                            }
-                        }
-                    }
-                    sourceLine++;
-                }
-                pw.write("})();\r\n");
-                pw.write("// " + StringUtil.join(sourceTargetLineMappingList, ";") + "\r\n");
-                pw.flush();
-            } finally {
-                pw.close();
-            }
+            explainJssp(br, pw);
         } finally {
             IOUtil.closeQuietly(fis);
         }
 
         return new FileResource(explainedFile);
+    }
+
+    private static final AtomicLong incrementOnAir = new AtomicLong(0);
+
+    public static Resource explainJsspOnAir(Resource resource) throws IOException {
+        StringWriter writer = new StringWriter();
+        InputStream fis = resource.openInputStream();
+        BufferedReader br = new BufferedReader(new InputStreamReader(fis, DEFAULT_CHARSET));
+        try {
+            LineNumberWriter pw = new LineNumberWriter(writer);
+            explainJssp(br, pw);
+        } finally {
+            IOUtil.closeQuietly(fis);
+        }
+        return new TextResource(writer.toString(), resource.getResId() + ":" + incrementOnAir.getAndIncrement());
+    }
+
+    public static void explainJssp(BufferedReader br, LineNumberWriter pw) throws IOException {
+        // support return
+        pw.write("(function() {\r\n");
+        StringBuilder sb = new StringBuilder();
+        boolean inScript = false;
+        boolean isStart = false;
+        boolean isEnd = false;
+        try {
+            List<String> sourceTargetLineMappingList = new ArrayList<String>();
+            int sourceLine = 0;
+            for (String readLine; ((readLine = br.readLine()) != null);) {
+                sourceTargetLineMappingList.add("[" + sourceLine + ", " + pw.getCurrentLine() + "]");
+
+                String line = readLine + "\\r\\n";
+
+                for (int i = 0; i < line.length(); i++) {
+                    char c = line.charAt(i);
+                    if (inScript) {
+                        if ((c == '%') && (i < (line.length() - 1)) && (line.charAt(i + 1) == '>')) {
+                            isStart = false;
+                            isEnd = true;
+                            inScript = false;
+                            i += 1;
+                        } else {
+                            isStart = false;
+                            isEnd = false;
+                        }
+                    } else {
+                        if ((c == '<') && (i < (line.length() - 1)) && (line.charAt(i + 1) == '%')) {
+                            isStart = true;
+                            isEnd = false;
+                            inScript = true;
+                            i += 1;
+                        } else {
+                            isStart = false;
+                            isEnd = false;
+                        }
+                    }
+
+                    boolean process = false;
+
+                    if (isStart || isEnd) {
+                        process = true;
+                    } else {
+                        sb.append(c);
+                        if (i == (line.length() - 1)) {
+                            process = true;
+                        }
+                    }
+
+                    if (process) {
+                        String sbs = sb.toString();
+                        sb = new StringBuilder();
+                        if (isStart) {
+                            if (sbs.length() > 0) {
+                                explainPlain(pw, sbs);
+                            }
+                        } else if (isEnd) {
+                            if (sbs.length() > 0) {
+                                explainScript(pw, sbs);
+                            }
+                        } else if (i == (line.length() - 1)) {
+                            if (!inScript) {
+                                explainPlain(pw, sbs);
+                            } else {
+                                explainScript(pw, sbs);
+                            }
+                        } else if (line.length() == 0) {
+                            if (!inScript) {
+                                explainPlain(pw, sbs);
+                            } else {
+                                explainScript(pw, sbs);
+                            }
+                        }
+                    }
+                }
+                sourceLine++;
+            }
+            pw.write("})();\r\n");
+            pw.write("// " + StringUtil.join(sourceTargetLineMappingList, ";") + "\r\n");
+            pw.flush();
+        } finally {
+            pw.close();
+        }
     }
 
     private static final File getExplainedFile(Resource resource) {

@@ -62,6 +62,7 @@
  * https://websec.wordpress.com/
  * http://www.php-security.org/
  * http://www.securityfocus.com/
+ * http://phpids.org/
 
 <br>
 https://globaleaks.org/

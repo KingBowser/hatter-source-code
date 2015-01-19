@@ -1,0 +1,6 @@
+#summary HTTP Header Spliting
+#labels Security,HTTP
+#sidebar TableOfContents
+
+
+http://de.slideshare.net/d0znpp/smuggling-splitting-poisoning-zeronights-onsec

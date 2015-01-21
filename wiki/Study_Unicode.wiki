@@ -6,6 +6,8 @@ http://www.unicode.org/
 
 [http://www.unicode.org/reports/ Unicode Technical Reports]
 
+[http://www.charbase.com/]
+
 Unicode的 `U+D800` `U+DFFF` 不占用字符
 
 <br>

@@ -13,3 +13,10 @@
 
  * *tcptrace* _Analysis of TCP dump files_
  http://www.tcptrace.org/
+
+* *switcher* _Run SSH and HTTP(S) on the same port_
+ https://github.com/jamescun/switcher
+
+* *tcpswitch* _TCP-Switch Application_
+ http://tcpswitch.sourceforge.net/
+

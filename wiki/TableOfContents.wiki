@@ -215,6 +215,7 @@
   * [Study_Programming_Type Type]
   * [Study_Programming_Parser Parser]
   * [Study_Programming_PHP PHP]
+  * [Study_Programming_Python Python]
   * [Study_Programming_RegExp RegExp]
   * [Study_Scala Scala]
   * [Study_Programming_XPath XPath]

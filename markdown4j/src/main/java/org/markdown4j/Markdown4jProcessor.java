@@ -23,7 +23,7 @@ public class Markdown4jProcessor {
         decorator = new ExtDecorator();
         Builder builder = Configuration.builder().forceExtentedProfile();
         builder.registerPlugins(new YumlPlugin(), new WebSequencePlugin(), new IncludePlugin(), new WikiTablePlugin(),
-                                new PrettifyPlugin());
+                                new PrettifyPlugin(), new DivPlugin());
         builder.convertNewline2Br();
         builder.setDecorator(decorator);
         builder.setCodeBlockEmitter(new CodeBlockEmitter());

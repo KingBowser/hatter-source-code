@@ -33,10 +33,14 @@ public class ErrorServlet extends HttpServlet {
         
         StringWriter sw = new StringWriter();
         PrintWriter pw = new PrintWriter(sw);
-        if (err != null) {
-            err.printStackTrace(pw);
-        } else {
-            pw.println("(none)");
+        if ("debug".equals(System.getProperty("winstone.run.mode"))) {
+            if (err != null) {
+                err.printStackTrace(pw);
+            } else {
+                pw.println("(none)");
+            }
+        }  else {
+            pw.println("StackTrace hidden, see more use: `-Dwinstone.run.mode=debug`");
         }
         pw.flush();
          

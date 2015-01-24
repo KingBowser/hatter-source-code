@@ -24,10 +24,10 @@
 
 
 ----
- * https://html5sec.org/
- * https://simplysecure.org/
  * https://cure53.de/
+ * https://html5sec.org/
  * http://html5security.org/
+ * https://simplysecure.org/
  * http://fex.baidu.com/
  * http://blog.mozilla.org/security/
 

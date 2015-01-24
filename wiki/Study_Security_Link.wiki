@@ -63,6 +63,7 @@
  * http://www.php-security.org/
  * http://www.securityfocus.com/
  * http://phpids.org/
+ * http://w3af.org/
 
 <br>
 https://globaleaks.org/

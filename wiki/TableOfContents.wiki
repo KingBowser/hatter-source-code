@@ -184,6 +184,7 @@
  * [Study_Patent Patent]
  * [Study_Performance Performance]
  * [Study_Programming Programming]
+  * [Study_Programming_CPP C++]
   * [Study_Programming_Charset Charset]
   * [Study_Clojure Clojure]
   * [Study_CSS CSS]

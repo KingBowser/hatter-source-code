@@ -1,5 +1,5 @@
 #summary HTTPS Public Key Pinning
 #sidebar TableOfContents
 
-
-https://developer.mozilla.org/en-US/docs/Web/Security/Public_Key_Pinning
+ * http://tools.ietf.org/html/draft-ietf-websec-key-pinning-21
+ * https://developer.mozilla.org/en-US/docs/Web/Security/Public_Key_Pinning

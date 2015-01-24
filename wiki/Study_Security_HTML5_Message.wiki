@@ -1,0 +1,5 @@
+#summary HTML5 Message
+#labels Security,HTML,HTML5,Message
+#sidebar TableOfContents
+
+https://developer.mozilla.org/zh-CN/docs/Web/API/Window.postMessage

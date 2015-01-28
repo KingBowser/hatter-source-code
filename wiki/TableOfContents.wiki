@@ -237,6 +237,7 @@
   * [Study_Security_CORS CORS]
   * [Study_Security_CSP CSP]
   * [Study_Security_CVE CVE]
+   * [Study_Security_CVE_2015_0235 CVE-2015-0235]
   * [Study_Security_CWE CWE]
   * [Study_Security_DNS DNS]
   * [Study_Security_Encode Encode]

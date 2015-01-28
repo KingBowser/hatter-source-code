@@ -1,0 +1,14 @@
+#summary CVE-2015-0235
+#labels Security,CVE
+#sidebar TableOfContents
+
+{{{
+yum clean all ; yum update glibc
+
+rpm -q --changelog glibc | grep CVE-2015-0235
+}}}
+
+
+
+===参考资料===
+`[1].` http://forums.cpanel.net/f185/new-critical-glibc-vulnerability-cve-2015-0235-aka-ghost-450771.html?amp;goto=newpost<br>

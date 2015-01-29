@@ -1,0 +1,7 @@
+#summary WHAT WG
+#labels W3C,WHATWG
+#sidebar TableOfContents
+
+ * https://html.spec.whatwg.org/
+ * https://xhr.spec.whatwg.org/
+ * https://fetch.spec.whatwg.org/

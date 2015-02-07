@@ -1,0 +1,8 @@
+#summary RFC2397 The "data" URL scheme
+#sidebar TableOfContents
+
+[http://tools.ietf.org/html/rfc2397]
+
+
+http://madscript.com/html5/datauri-best-practice/
+

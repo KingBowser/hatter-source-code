@@ -6,4 +6,5 @@ http://www.softwareishard.com/blog/har-12-spec/
 
 http://www.softwareishard.com/blog/har-adopters/
 
-https://groups.google.com/forum/#!forum/http-archive-specification
+
+http://groups.google.com/group/http-archive-specification

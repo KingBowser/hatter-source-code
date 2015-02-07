@@ -68,6 +68,7 @@
  * [Study_GPU GPU]
   * [Study_GPU_GPGPU GPGPU]
  * [Study_HTTP HTTP]
+  * [Study_HTTP_HAR HAR]
   * [Study_HTTP_Header Header]
   * [Study_HTTP_Httpd Httpd]
   * [Study_HTTP_Nginx Nginx]

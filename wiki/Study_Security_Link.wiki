@@ -22,12 +22,6 @@
  * http://masatokinugawa.l0.cm/
  * http://blog.cryptographyengineering.com/
 
-=Mail Lists=
- * http://lists.webappsec.org/mailman/listinfo/
- * https://lists.owasp.org/mailman/listinfo
- * https://lists.w3.org/
- * https://www.ietf.org/list/
-
 
 ----
  * https://cure53.de/

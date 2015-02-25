@@ -1,0 +1,8 @@
+#summary OCTAVE (Operationally Critical Threat, Asset, and Vulnerability Evaluation)
+#sidebar TableOfContents
+
+
+===参考资料===
+`[1].` http://en.wikipedia.org/wiki/OCTAVE<br>
+`[2].` http://www.proceedings2006.imcsit.org/pliks/160.pdf<br>
+`[3].` http://www.cert.org/resilience/products-services/octave/index.cfm<br>

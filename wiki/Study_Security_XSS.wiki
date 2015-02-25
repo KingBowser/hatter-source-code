@@ -2,7 +2,7 @@
 #sidebar TableOfContents
 
  * http://d.hatena.ne.jp/hasegawayosuke/20061105/p1
- * http://openmya.hacker.jp/hasegawa/security/expression.txt
+ * http://openmya.hacker.jp/hasegawa/security/expression.txt (https://gist.github.com/jht5945/6d9dc08b9cab182af9e4)
  * http://segmentfault.com/blog/barretlee/1190000000497596
 
 XSS

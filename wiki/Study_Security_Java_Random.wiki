@@ -1,0 +1,17 @@
+#summary Java Random
+#sidebar TableOfContents
+
+https://tools.ietf.org/html/rfc4086
+
+
+`java.security.SecureRandom`
+
+{{{
+SecureRandom.getInstance("SHA1PRNG");
+}}}
+
+
+
+===参考资料===
+`[1].` http://stackoverflow.com/questions/13923247/does-the-sha1prng-algorithm-for-securerandom-use-dev-random-for-entropy<br>
+

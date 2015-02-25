@@ -4,6 +4,8 @@
 
 Hacking with Unicode - https://speakerdeck.com/mathiasbynens/hacking-with-unicode
 
+Unicodeとセキュリティ - http://openmya.hacker.jp/hasegawa/public/20041030/unicode-and-security.pdf
+
 
 <br>
 _Related: [Study_Unicode_Spoofing]_

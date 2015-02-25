@@ -13,7 +13,7 @@
 <font size="77px">[TableOfContents]</font>
 
 <br><br>
-_This wiki site is: [https://wiki.hellosecurity.org]_
+_This wiki site is: [https://hellosecurity.org]_
 
 _Source site: [https://code.google.com/p/hatter-source-code/]_
 

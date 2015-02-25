@@ -219,6 +219,7 @@
   * [Study_Programming_PHP PHP]
   * [Study_Programming_Python Python]
   * [Study_Programming_RegExp RegExp]
+  * [Study_Programming_Ruby Ruby]
   * [Study_Scala Scala]
   * [Study_Programming_XPath XPath]
  * [Study_RFC RFC]

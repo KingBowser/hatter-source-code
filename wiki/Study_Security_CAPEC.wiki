@@ -1,0 +1,6 @@
+#summary CAPEC
+#sidebar TableOfContents
+
+Common Attack Pattern Enumeration and Classification
+
+http://capec.mitre.org/

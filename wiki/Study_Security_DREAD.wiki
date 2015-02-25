@@ -16,3 +16,4 @@
 `[3].` https://msdn.microsoft.com/en-us/library/ff648644.aspx<br>
 `[4].` http://www.slideshare.net/chuckbt/stride-and-dread<br>
 `[5].` http://websec.io/2013/03/20/DREADing-Your-Security.html<br>
+`[6].` http://book.51cto.com/art/201204/330062.htm<br>

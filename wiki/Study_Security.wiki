@@ -14,6 +14,7 @@
 || *EFF* || https://www.eff.org/ ||
 || *OISF* || http://www.openinfosecfoundation.org ||
 || *oath* || http://www.openauthentication.org/ ||
+|| *SCAP* || http://www.scap.org.cn/ ||
 
 <br>
 

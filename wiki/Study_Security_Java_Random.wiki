@@ -3,10 +3,8 @@
 
 https://tools.ietf.org/html/rfc4086
 
-<b>J</b>ava <b>C</b>ryptographic <b>A</b>rchitecture
 
-
-`java.security.SecureRandom`
+`java.security.SecureRandom` part of <b>J</b>ava <b>C</b>ryptographic <b>A</b>rchitecture
 
 {{{
 SecureRandom.getInstance("SHA1PRNG");

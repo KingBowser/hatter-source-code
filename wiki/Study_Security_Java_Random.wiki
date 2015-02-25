@@ -3,7 +3,7 @@
 
 https://tools.ietf.org/html/rfc4086
 
-*J*ava *C*ryptographic *A*rchitecture
+<b>J</b>ava <b>C</b>ryptographic <b>A</b>rchitecture
 
 
 `java.security.SecureRandom`

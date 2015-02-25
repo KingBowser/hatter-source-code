@@ -18,7 +18,7 @@
 =Hackers=
  * http://www.pnigos.com/
  * http://homakov.blogspot.de/
- * http://utf-8.jp/
+ * http://utf-8.jp/  http://d.hatena.ne.jp/hasegawayosuke/
  * http://masatokinugawa.l0.cm/
  * http://blog.cryptographyengineering.com/
 

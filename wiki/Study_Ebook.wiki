@@ -8,3 +8,4 @@
 || `Read the Docs` || https://readthedocs.org/ || - ||
 || `Sphinx - Python Documentation  Generator` || http://sphinx-doc.org/ || - ||
 || `no starch press` || http://www.nostarch.com/ || - ||
+|| `AOSA` || http://aosabook.org/ || The Architecture of Open Source Applications ||

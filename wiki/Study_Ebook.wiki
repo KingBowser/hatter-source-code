@@ -9,10 +9,12 @@
 || `no starch press` || http://www.nostarch.com/ || - ||
 || `AOSA` || http://aosabook.org/ || The Architecture of Open Source Applications ||
 
-----
+<br>
+
 
 || `epublib` || https://github.com/psiegman/epublib || a java library for reading and writing epub files ||
 
+<br>
 
 
 [http://aosabook.org/en/distsys.html Scalable Web Architecture and Distributed Systems]

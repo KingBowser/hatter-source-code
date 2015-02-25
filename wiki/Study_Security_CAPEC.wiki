@@ -1,4 +1,5 @@
 #summary CAPEC
+#labels Security,CAPEC
 #sidebar TableOfContents
 
 Common Attack Pattern Enumeration and Classification

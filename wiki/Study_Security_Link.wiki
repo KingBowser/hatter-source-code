@@ -22,6 +22,9 @@
  * http://masatokinugawa.l0.cm/
  * http://blog.cryptographyengineering.com/
 
+=Mail Lists=
+* http://lists.webappsec.org/
+
 
 ----
  * https://cure53.de/

@@ -15,6 +15,8 @@ Client Subnet in DNS Requests draft-vandergaast-edns-client-subnet-02 - [http://
 
 =[https://publicsuffix.org/ PUBLIC SUFFIX LIST]=
 
+<br>
+
 
 查看DNS记录的几种方式：
 {{{
@@ -22,6 +24,8 @@ nslookup -q=TXT <DOMAIN>
 dig +short txt <DOMAIN>
 host -t TXT <DOMAIN>
 }}}
+
+<br>
 
 
 为什么根域名服务器是13个而不是更多？

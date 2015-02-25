@@ -23,8 +23,8 @@
  * http://blog.cryptographyengineering.com/
 
 =Mail Lists=
-* http://lists.webappsec.org/mailman/listinfo/
-* https://lists.owasp.org/mailman/listinfo
+ * http://lists.webappsec.org/mailman/listinfo/
+ * https://lists.owasp.org/mailman/listinfo
 
 
 ----

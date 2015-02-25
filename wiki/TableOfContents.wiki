@@ -245,6 +245,7 @@
    * [Study_Security_CVE_2015_0235 CVE-2015-0235]
   * [Study_Security_CWE CWE]
   * [Study_Security_DNS DNS]
+  * [Study_Security_DREAD DREAD]
   * [Study_Security_Encode Encode]
   * [Study_Security_EncryptionAlgorithm Encryption Algorithm]
    * [Study_Security_EncryptionAlgorithm_1024RSA 1024 bit RSA]

@@ -2,3 +2,6 @@
 #sidebar TableOfContents
 
 https://www.ffmpeg.org/download.html
+
+
+Yum install: http://www.live-in.org/archives/1860.html

@@ -64,6 +64,7 @@
  * http://www.securityfocus.com/
  * http://phpids.org/
  * http://w3af.org/
+ * http://www.acrossecurity.com/research.htm
 
 <br>
 https://globaleaks.org/

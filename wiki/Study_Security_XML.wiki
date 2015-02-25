@@ -1,11 +1,11 @@
 #summary XML
 #sidebar TableOfContents
 
- * OOME - https://gist.github.com/jht5945/3bcf5890e547d87c6eb5
+ * XEE(OOME) - https://gist.github.com/jht5945/3bcf5890e547d87c6eb5
  * XXE - https://gist.github.com/jht5945/eea74e3818a1d4b92fff
 
 ===参考资料===
 `[1].` https://www.owasp.org/index.php/XML_External_Entity_(XXE)_Processing<br>
 `[2].` https://www.owasp.org/images/5/5d/XML_Exteral_Entity_Attack.pdf<br>
 `[3].` http://www.owasp.org.cn/OWASP_Conference/owasp-20140924/05XML.pdf<br>
-`[4].` https://github.com/OWASP/AppSec-Browser-Bundle/blob/master/utilities/webslayer/wordlist/Injections/XML.txt<br>
+`[4].` https://github.com/OWASP/AppSec-Browser-Bundle/blob/master/utilities/webslayer/wordlist/Injections/XML.txt<br>()

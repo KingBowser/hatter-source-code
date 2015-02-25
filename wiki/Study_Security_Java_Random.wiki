@@ -15,3 +15,4 @@ SecureRandom.getInstance("SHA1PRNG");
 ===参考资料===
 `[1].` http://stackoverflow.com/questions/13923247/does-the-sha1prng-algorithm-for-securerandom-use-dev-random-for-entropy<br>
 `[2].` http://es.wikipedia.org/wiki/SHA1PRNG<br>
+`[3].` Secure Password Storage - http://goo.gl/Spvzs<br>

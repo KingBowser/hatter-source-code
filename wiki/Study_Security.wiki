@@ -31,6 +31,8 @@
 
 ==_[http://www.cl.cam.ac.uk/~rja14/book.html 《Security Engineering》]==
 
+==_[https://www.owasp.org/index.php/Secure_Coding_Principles Secure Coding Principles]_==
+
 
 ==_[Study_Security_Link]_==
 

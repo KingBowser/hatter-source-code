@@ -1,0 +1,9 @@
+#summary STRIDE
+#sidebar TableOfContents
+
+
+
+===参考资料===
+`[1].` https://msdn.microsoft.com/en-us/library/ee823878(v=cs.20).aspx<br>
+`[2].` http://en.wikipedia.org/wiki/STRIDE_(security)<br>
+`[3].` http://book.51cto.com/art/201204/330047.htm<br>

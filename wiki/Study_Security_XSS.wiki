@@ -1,6 +1,8 @@
 #summary XSS
 #sidebar TableOfContents
 
+ * http://d.hatena.ne.jp/hasegawayosuke/20061105/p1
+ * http://openmya.hacker.jp/hasegawa/security/expression.txt
  * http://segmentfault.com/blog/barretlee/1190000000497596
 
 XSS

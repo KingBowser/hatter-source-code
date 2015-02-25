@@ -307,6 +307,8 @@
   * [Study_Security_Yadis Yadis]
  * [Study_SEO SEO]
  * [Study_Software Software]
+  * [Study_Software_FFmpeg FFmpeg]
+  * [Study_Software_YouTube YouTube]
  * [Study_Time Time]
  * [Study_Tool Tool]
  * [Study_Unicode Unicode]

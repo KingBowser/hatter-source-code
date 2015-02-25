@@ -1,0 +1,4 @@
+#summary YouTube download
+#sidebar TableOfContents
+
+https://github.com/rg3/youtube-dl

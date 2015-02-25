@@ -283,7 +283,7 @@
   * [Study_Security_SQL SQL]
   * [Study_Security_SRI SRI]
   * [Study_Security_SSO SSO]
-  * [Study_Security_STRIDE STRIDE
+  * [Study_Security_STRIDE STRIDE]
   * [Study_Security_Test Test]
   * [Study_Security_TLS TLS Secure TCP/HTTP]
    * [Study_Security_TLS_Compatibility Compatibility]

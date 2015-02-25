@@ -1,0 +1,10 @@
+#summary DREAD
+#sidebar TableOfContents
+
+
+===参考资料===
+`[1].` https://www.owasp.org/index.php/Threat_Risk_Modeling<br>
+`[2].` http://en.wikipedia.org/wiki/DREAD:_Risk_assessment_model<br>
+`[3].` https://msdn.microsoft.com/en-us/library/ff648644.aspx<br>
+`[4].` http://www.slideshare.net/chuckbt/stride-and-dread<br>
+`[5].` http://websec.io/2013/03/20/DREADing-Your-Security.html<br>

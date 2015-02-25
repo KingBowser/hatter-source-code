@@ -4,3 +4,4 @@
 =HTML=
 
  * https://platform.html5.org/
+ * https://www.webplatform.org/

@@ -6,7 +6,7 @@
 || `IT eBooks` || http://www.it-ebooks.info/ || IT eBooks - Free Download IT eBooks ||
 || `免费的编程中文书籍索引` || https://github.com/justjavac/free-programming-books-zh_CN || - ||
 || `Read the Docs` || https://readthedocs.org/ || - ||
-|| `Sphinx - Python Documentation  Generator` || http://sphinx-doc.org/ || - ||
+|| `Sphinx` || http://sphinx-doc.org/ || Python Documentation  Generator ||
 || `no starch press` || http://www.nostarch.com/ || - ||
 || `AOSA` || http://aosabook.org/ || The Architecture of Open Source Applications ||
 

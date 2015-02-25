@@ -25,6 +25,7 @@
 =Mail Lists=
  * http://lists.webappsec.org/mailman/listinfo/
  * https://lists.owasp.org/mailman/listinfo
+ * https://lists.w3.org/
 
 
 ----

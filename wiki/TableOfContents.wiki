@@ -262,6 +262,7 @@
    * [Study_Security_HTTP_HSTS HTTPS Strict Transport Security]
   * [Study_Security_HTTPHeaderSpliting HTTP Header Spliting]
   * [Study_Security_Java Java]
+   * [Study_Security_Java_Random Random]
   * [Study_Security_Link Link]
   * [Study_Security_Linux Linux/Unix]
   * [Study_Security_Mail Mail]

@@ -20,10 +20,3 @@
 <br>
  * mac下有什么工具能模拟post，get请求，要能带cookies的
  http://segmentfault.com/q/1010000002439302
-
-<br>
-Recommendations for Secure Use of TLS and DTLS - http://datatracker.ietf.org/doc/draft-ietf-uta-tls-bcp/
-
-
-<br>
-https://m.facebook.com/notes/protect-the-graph/windows-ssl-interception-gone-wild/1570074729899339

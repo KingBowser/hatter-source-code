@@ -6,3 +6,4 @@
 || JPEXS Free Flash Decompiler (FFDec) || http://www.free-decompiler.com/flash/ || https://github.com/jindrapetrik/jpexs-decompiler [https://code.google.com/p/asdec/ Google Code] ||
 || http://jflex.de/index.html || http://jflex.de/index.html || http://jflex.de/download.html ||
 || osflash-xray || https://code.google.com/p/osflash-xray/ || https://code.google.com/p/osflash-xray/ ||
+|| Google Swiffy || https://developers.google.com/swiffy/ || - ||

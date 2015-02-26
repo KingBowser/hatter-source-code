@@ -1,6 +1,44 @@
 #summary Organization
 #sidebar TableOfContents
 
+ * 国际标准化组织
+ ** IEC
+ ** ISO
+ ** ITU
+
+ * 地区性的标准化组织
+ ** ANSI
+ ** ARIB
+ ** EIA
+ ** ETSI
+ ** TIA
+ ** ATIS
+ ** TTC
+ ** IEEE
+ ** TTA
+ ** ASTAP
+
+ * 专业性的通信标准化组织
+ ** 3GPP
+ ** IETF
+ ** 3GPP2
+ ** IMS
+ ** oneM2M
+
+ * 论坛及联盟
+ ** MFA
+ ** DSL
+ ** OMA
+ ** mITF
+ ** TD-SCDMA
+ ** TM Forum
+ ** WiMAX Forum
+ ** MEF
+ ** BSF
+ ** FSAN
+
+<b>
+
  * [Study_ECMA]
  * [Study_IANA]
  * [Study_IEEE]
@@ -12,3 +50,7 @@
 
 <br>
 Related: [Study_SCM_Git_GitHub_Groups]
+
+
+===参考资料===
+`[1].` http://www.ccsa.org.cn/organization/<br>

@@ -48,6 +48,15 @@ wget --secure-protocol=sslv3 --no-check-certificate <URL>
 curl -sslv3 -k <URL>
 }}}
 
+
+<br>
+Recommendations for Secure Use of TLS and DTLS - http://datatracker.ietf.org/doc/draft-ietf-uta-tls-bcp/
+
+
+<br>
+https://m.facebook.com/notes/protect-the-graph/windows-ssl-interception-gone-wild/1570074729899339
+
+
 ----
 SNI - http://wiki.apache.org/httpd/NameBasedSSLVHostsWithSNI
 

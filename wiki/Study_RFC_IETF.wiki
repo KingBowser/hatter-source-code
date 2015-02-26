@@ -19,6 +19,7 @@ IETF大量的技术性工作均由其内部的各类工作组协作完成。这�
 
 2、IETF相关组织机构
  
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/ietf/ietf.png]
 
  
     （1）互联网协会(ISCO -Internet Society)

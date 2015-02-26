@@ -223,6 +223,7 @@
   * [Study_Scala Scala]
   * [Study_Programming_XPath XPath]
  * [Study_RFC RFC]
+  * [Study_RFC_IETF IETF]
   * [Study_RFC_Misc Misc]
   * [Study_RFC_RFCs RFCs]
    * [Study_RFC_RFCs_RFC2397 RFC2397]

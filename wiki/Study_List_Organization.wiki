@@ -2,22 +2,20 @@
 #sidebar TableOfContents
 
  * 国际标准化组织
- ** IEC
- ** ISO
- ** ITU
-
+  * IEC
+  * ISO
+  * ITU
  * 地区性的标准化组织
- ** ANSI
- ** ARIB
- ** EIA
- ** ETSI
- ** TIA
- ** ATIS
- ** TTC
- ** IEEE
- ** TTA
- ** ASTAP
-
+  * ANSI
+  * ARIB
+  * EIA
+  * ETSI
+  * TIA
+  * ATIS
+  * TTC
+  * IEEE
+  * TTA
+  * ASTAP
  * 专业性的通信标准化组织
  ** 3GPP
  ** IETF

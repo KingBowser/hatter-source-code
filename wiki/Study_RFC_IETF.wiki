@@ -193,6 +193,7 @@ environments (lemonade) ――互联网电子邮件在不同服务环境下的�
     5.7）传输研究领域（tsv—Transport Area）
     传输研究领域主要负责研究特殊类型或特殊用途的数据包在网络中的（特殊需求的）传输方式。包括音频/视频数据的传输、拥塞控制、IP性能测量、IP信令系统、IP电话业务、IP存储网络、ENUM、媒体网关、伪线仿真等重要研究方向。
     目前这个研究领域共有27个处于活动状态的工作组，就工作组数目来讲，是IETF中最大的一个研究领域。
+{{{
     Audio/Video Transport (avt) ――语音/视频传输工作组
     Datagram Congestion Control Protocol (dccp) ――数据报拥塞控制协议工作组
     Telephone Number Mapping (enum) ――ENUM工作组工作组
@@ -223,7 +224,8 @@ environments (lemonade) ――互联网电子邮件在不同服务环境下的�
     5.8）临时研究领域（sub—Sub-IP Area）
     Sub－IP是IETF成立的一个临时技术区域，目前这个研究领域只有一个处于活动状态的工作组，这个工作组主要负责互联网流量工程的研究，已经形成四个RFC。
     Internet Traffic Engineering (tewg)――互联网流量工程工作组
-
+}}}
 
 ===参考资料===
 `[1].` http://www.ccsa.org.cn/organization/intro.php?org=IETF<br>
+`[2].` http://wenku.baidu.com/view/f1da5823bcd126fff7050b53.html?re=view<br>

@@ -17,23 +17,22 @@
   * TTA
   * ASTAP
  * 专业性的通信标准化组织
- ** 3GPP
- ** IETF
- ** 3GPP2
- ** IMS
- ** oneM2M
-
+  * 3GPP
+  * IETF
+  * 3GPP2
+  * IMS
+  * oneM2M
  * 论坛及联盟
- ** MFA
- ** DSL
- ** OMA
- ** mITF
- ** TD-SCDMA
- ** TM Forum
- ** WiMAX Forum
- ** MEF
- ** BSF
- ** FSAN
+  * MFA
+  * DSL
+  * OMA
+  * mITF
+  * TD-SCDMA
+  * TM Forum
+  * WiMAX Forum
+  * MEF
+  * BSF
+  * FSAN
 
 <b>
 

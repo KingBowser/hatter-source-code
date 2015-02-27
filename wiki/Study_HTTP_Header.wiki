@@ -63,6 +63,8 @@
 || `X-UA-Compatible` ||    Chome=1 ||      || 
 || `X-XSS-Protection` ||    1; mode=block   ||      || 
 
+<br>
+Another file: https://github.com/dret/sedola/blob/master/MD/headers.md
 
 
 ===参考资料===

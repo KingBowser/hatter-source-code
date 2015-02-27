@@ -1,0 +1,4 @@
+#summary Privacy
+#sidebar TableOfContents
+
+https://mikewest.github.io/spec-questionnaire/security-privacy/

@@ -4,6 +4,7 @@
 Testing:
  * https://superfish.tlsfun.de/mitm.php
  * https://projects.dm.id.lv/Public-Key-Pins_test
+ * https://pin.tlsfun.de/
 
 <br>
 

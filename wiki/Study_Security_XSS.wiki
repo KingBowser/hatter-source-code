@@ -20,5 +20,6 @@ XSS案例：
 
 <br>
 XSS auditor bypass：
+ * http://www.thespanner.co.uk/2015/01/07/bypassing-the-ie-xss-filter/
  * http://www.thespanner.co.uk/2015/02/10/xss-auditor-bypass/
  * http://www.thespanner.co.uk/2015/02/19/another-xss-auditor-bypass/

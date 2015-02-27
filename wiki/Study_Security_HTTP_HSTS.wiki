@@ -8,6 +8,8 @@ https://hstspreload.appspot.com/
 
 https://www.chromium.org/hsts
 
+<br>
+Public-Key-Pins test - https://projects.dm.id.lv/Public-Key-Pins_test
 
 <br>
 _Related: [Study_Security_TLS]_

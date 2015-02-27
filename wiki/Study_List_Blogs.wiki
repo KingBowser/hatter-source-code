@@ -32,6 +32,7 @@
 
 ==Security==
  * https://blog.hboeck.de/
+ * http://www.thespanner.co.uk/
 
 <br>
 Related: [Study_Security_Link]

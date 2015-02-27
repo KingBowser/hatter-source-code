@@ -7,6 +7,7 @@
 
  * CSP - http://www.w3.org/TR/CSP/
  * CSP2 - http://www.w3.org/TR/CSP2/
+ * CSP Pinning - http://www.w3.org/TR/csp-pinning/
 
 CAN I USE? - http://caniuse.com/contentsecuritypolicy
 

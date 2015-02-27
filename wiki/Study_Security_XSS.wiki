@@ -17,3 +17,8 @@ XSS分类
 <br>
 XSS案例：
  * http://www.wooyun.org/bugs/wooyun-2010-016008
+
+<br>
+XSS auditor bypass：
+ * http://www.thespanner.co.uk/2015/02/10/xss-auditor-bypass/
+ * http://www.thespanner.co.uk/2015/02/19/another-xss-auditor-bypass/

@@ -18,4 +18,4 @@ _This wiki site is: [https://hellosecurity.org]_
 _Source site: [https://code.google.com/p/hatter-source-code/]_
 
 <br>
-_Hatter Jiang http://hatterjiang.com/_
+_Hatter Jiang [http://hatterjiang.com/]_

@@ -31,7 +31,7 @@
  * [https://msdn.microsoft.com/en-us/library/ff649874.aspx Improving Web Application Security: Threats and Countermeasures]
  * [http://blog.cryptographyengineering.com/p/useful-cryptography-resources.html Useful Crypto Resources]
 
-==_[http://www.cl.cam.ac.uk/~rja14/book.html 《Security Engineering》] [https://www.cs.auckland.ac.nz/~pgut001/pubs/book.pdf 《Engineering Security》]_==
+==_[http://www.cl.cam.ac.uk/~rja14/book.html 《Security Engineering》] & [https://www.cs.auckland.ac.nz/~pgut001/pubs/book.pdf 《Engineering Security》]_==
 
 ==_[https://www.owasp.org/index.php/Secure_Coding_Principles Secure Coding Principles]_==
 

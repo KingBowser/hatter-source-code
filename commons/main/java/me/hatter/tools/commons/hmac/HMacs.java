@@ -27,9 +27,8 @@ public class HMacs {
 
             @Override
             public byte[] sign(byte[] bytes) {
-                Mac mac;
                 try {
-                    mac = Mac.getInstance(d);
+                    Mac mac = Mac.getInstance(d);
                     SecretKeySpec secretKey = new SecretKeySpec(key, d);
                     mac.init(secretKey);
                     return mac.doFinal(bytes);

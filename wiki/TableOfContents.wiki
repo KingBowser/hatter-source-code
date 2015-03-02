@@ -236,6 +236,7 @@
  * [Study_Search Search]
   * [Study_Search_Google Google]
  * [Study_Security Security]
+  * [Study_Security_Acronyms Acronyms]
   * [Study_Security_Android Android]
   * [Study_Security_Audit Audit]
   * [Study_Security_Browser Browser]

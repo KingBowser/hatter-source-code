@@ -34,3 +34,4 @@
 
 ===参考资料===
 `[1].` http://csrc.nist.gov/publications/nistpubs/800-57/sp800-57_part1_rev3_general.pdf<br>
+`[2].` http://csrc.nist.gov/groups/STM/cmvp/documents/140-1/140sp/140sp1047.pdf<br>

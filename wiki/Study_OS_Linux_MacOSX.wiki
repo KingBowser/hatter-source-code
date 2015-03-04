@@ -18,3 +18,9 @@ Make APP:
 PNG 128*128
 make app url: http://hatter-source-code.googlecode.com/svn/trunk/macosx/makeapp.sh
 }}}
+
+
+Mac OS X挂载ISO镜像:
+{{{
+hdiutil mount sample.iso
+}}}

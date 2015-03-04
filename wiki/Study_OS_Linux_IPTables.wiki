@@ -15,6 +15,13 @@ service iptables stop
 iptables --list
 }}}
 
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/linux/iptables/iptables_linux_arch.png]
+
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/linux/iptables/iptables_stream.jpg]
+
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/linux/iptables/iptables_command.png]
+
+
 || *参数* || *说明* ||
 || `-A` || 指定链名   ||
 || `-p` || 指定协议类型   ||

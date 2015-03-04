@@ -51,5 +51,9 @@ http://www.madboa.com/geek/openssl/
 }}}
 
 
+{{{
+openssl s_client -connect <IP or HOST>:443
+}}}
+
 ===参考资料===
 `[1].` https://www.openssl.org/docs/apps/x509.html<br>

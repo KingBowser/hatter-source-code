@@ -54,3 +54,5 @@ iptables -I INPUT -s 123.45.6.0/24 -j DROP
 
 ===参考资料===
 `[1].` http://jsczxy2.iteye.com/blog/1436713<br>
+`[2].` http://www.kuqin.com/shuoit/20150226/344944.html<br>
+`[3].` http://seanlook.com/2014/02/26/iptables-example/<br>

@@ -135,6 +135,7 @@
  * [Study_Open Open]
  * [Study_OpenSource Open Source]
   * [Study_OpenSource_China China]
+ * [Study_OpenStand Open Stand]
  * [Study_License License]
  * [Study_OS_Linux Linux/Unix]
   * [Study_OS_Linux_BSD BSD]

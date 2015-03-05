@@ -55,6 +55,34 @@ http://www.madboa.com/geek/openssl/
 openssl s_client -connect <IP or HOST>:443
 }}}
 
+取得证书信息：
+{{{
+#!/bin/sh
+#
+# usage: retrieve_cert.sh host [port]
+#
+REMHOST=$1
+REMPORT=${2:-443}
+
+echo |\
+openssl s_client -connect ${REMHOST}:${REMPORT} 2>&1 |\
+sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p'
+}}}
+
+取得证书链信息：
+{{{
+#!/bin/sh
+#
+# usage: cert_chain.sh host [port]
+#
+REMHOST=$1
+REMPORT=${2:-443}
+
+echo |\
+openssl s_client -connect ${REMHOST}:${REMPORT} 2>&1 |\
+sed -ne '/Certificate chain/,/---/p'
+}}}
+
 ===参考资料===
 `[1].` https://www.openssl.org/docs/apps/x509.html<br>
 `[2].` https://www.openssl.org/docs/apps/s_client.html<br>

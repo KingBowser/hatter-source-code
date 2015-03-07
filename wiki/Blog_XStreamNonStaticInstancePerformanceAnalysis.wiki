@@ -7,11 +7,7 @@
 {{{
     public String getXmlString() {
 
-        JaxbXstreamWrapper jx = new JaxbXstreamWrapper(new HashMap() {
-            {
-                this.put("actionTrace", ActionTrace.class);
-            }
-        });
+        JaxbXstreamWrapper jx = new JaxbXstreamWrapper();
         return jx.getFromObject(this);
     }
 }}}
@@ -54,8 +50,3 @@ if (!CACULATED_OBJECTS.contains(addr)) {
 但其实我们知道XStream是线程安全的，所以jx对象只要变成static成员就OK了。
 
 这时候再次对40万数据进行测试，发现只要5秒左右就结束了，根本没等我来的及打印GC信息。
-
-在真实的情况下，你可能会看到这样的性能对比：
-
-[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/blog/ygc_cost.png]<br>
-[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/blog/cpu_cost.png]

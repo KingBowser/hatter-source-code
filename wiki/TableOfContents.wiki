@@ -323,6 +323,7 @@
   * [Study_Unicode_UTF7 UTF7]
  * [Study_VPS VPS]
  * [Study_W3C W3C]
+  * [Study_W3C_WASWG WAS WG]
   * [Study_W3C_WHATWG WHAT WG]
  * [Study_WebSiteAnalysis Web Site Analysis]
  * [ReportedBugList Reported Bug(Issue) List]

@@ -25,6 +25,8 @@
   * [Study_Build_Maven Maven]
  * [Study_Cache Cache]
   * [Study_Cache_CDN CDN]
+ * [Study_Charset Charset]
+  * [Study_Charset_ASCII ASCII]
  * [Study_Cloud Cloud]
  * [Study_Compile Compile]
  * [Study_CPU CPU]

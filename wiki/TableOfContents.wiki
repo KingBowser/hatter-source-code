@@ -342,10 +342,6 @@
   * [Study_Others_Reader Reader]
   * [Study_Others_Scam Scam]
   * [Study_Others_WestUnion West Union]
- * _*Papers*_
-  * [Paper_QuickDuplicateMessageProcessingCheck Message Processing Check]
-  * [Paper_SymmetricKeyAlgorithmBasedHTTPAuthentication Authentication]
-  * [Paper_SymmetricKeyAlgorithmBasedHTTPRegistration Registration]
  * _*Blogs*_
   * [Blog_CobarAndDruidNoF5 Cobar+Druid No F5 or LVS]
   * [Blog_FontCreateCauseOOME Font.create()引发OOME问题]

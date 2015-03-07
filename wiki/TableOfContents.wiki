@@ -63,7 +63,7 @@
  * [Study_ECMA ECMA]
  * [Study_Emoji Emoji]
  * [Study_Emulation Emulation]
- * [Study_Encoding Charset]
+ * [Study_Encoding Encoding]
   * [Study_Encoding_ASCII ASCII]
   * [Study_Unicode Unicode]
    * [Study_Unicode_Spoofing Spoofing]

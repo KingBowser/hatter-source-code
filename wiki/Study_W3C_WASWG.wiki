@@ -1,0 +1,6 @@
+#summary WAS WG
+#sidebar TableOfContents
+
+=Web Application Security Working Group=
+
+https://github.com/w3c/webappsec

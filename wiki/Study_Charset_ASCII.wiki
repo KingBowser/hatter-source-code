@@ -1,0 +1,13 @@
+#summary ASCII
+#sidebar TableOfContents
+
+
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/charset/ascii.png]
+
+<br>
+
+[http://hatter-source-code.googlecode.com/svn/trunk/attachments/wiki/charset/ascii_ext.png]
+
+
+===参考资料===
+`[1].` http://www.cnblogs.com/skynet/archive/2011/05/03/2035105.html<br>

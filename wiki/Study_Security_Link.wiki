@@ -52,6 +52,7 @@
  * https://zmap.io/
  * https://password-hashing.net/
  * http://competitions.cr.yp.to/
+ * http://safecurves.cr.yp.to/
  * http://cryptopals.com/
  * https://www.syscan.org/
  * http://www.openbsd.org/security.html
@@ -66,7 +67,10 @@
  * http://w3af.org/
  * http://www.acrossecurity.com/research.htm
  * http://websec.io/
+
+<br>
  * https://bettercrypto.org/
+ * http://www.keylength.com/
 
 <br>
 https://globaleaks.org/

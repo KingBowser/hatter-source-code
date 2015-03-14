@@ -14,6 +14,7 @@
    * [Study_Algorithm_MyRWay My R Way]
  * [Study_Android Android]
  * [Study_AugmentedBNF Augmented BNF]
+ * [Study_App App]
  * [Study_BarCode BarCode]
  * [Study_BigData BigData]
  * [Study_Browser Browser]

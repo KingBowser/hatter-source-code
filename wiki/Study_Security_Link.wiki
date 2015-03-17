@@ -21,6 +21,7 @@
  * http://utf-8.jp/  http://d.hatena.ne.jp/hasegawayosuke/
  * http://masatokinugawa.l0.cm/
  * http://blog.cryptographyengineering.com/
+ * https://soroush.secproject.com/blog/
 
 
 ----

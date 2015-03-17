@@ -3,6 +3,14 @@
 #sidebar TableOfContents
 
 
+美国国家标准技术研究所，National Institute of Standards and Technology（NIST），前身为国家标准局（NBS，1901年~1988年），是一家测量标准实验室，属于美国商务部的非监管机构。该研究所的官方使命为：
+
+Promote U.S. innovation and industrial competitiveness by advancing measurement science, standards, and technology in ways that enhance economic security and improve our quality of life.
+
+促进美国的创新和产业竞争力，推进度量衡学、标准、技术以提高经济安全并改善我们的生活质量。
+
+<br>
+
 Special Publications:
 
 Looking for a NIST Special Publication (NIST SP Series)? Place the series number and dash in the report number field (Example: 800-) and begin your search.
@@ -25,3 +33,9 @@ SPECIAL PUBLICATIONS (800 SERIES) - http://csrc.nist.gov/publications/PubsSPs.ht
 
 
  * Guide to General Server Security - http://csrc.nist.gov/publications/nistpubs/800-123/SP800-123.pdf
+
+
+===参考资料===
+`[1].` http://zh.wikipedia.org/wiki/%E5%9C%8B%E5%AE%B6%E6%A8%99%E6%BA%96%E6%8A%80%E8%A1%93%E7%A0%94%E7%A9%B6%E6%89%80<br>
+`[2].` http://zh.wikipedia.org/wiki/%E8%81%AF%E9%82%A6%E8%B3%87%E6%96%99%E8%99%95%E7%90%86%E6%A8%99%E6%BA%96<br>
+

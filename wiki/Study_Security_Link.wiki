@@ -31,6 +31,7 @@
  * https://simplysecure.org/
  * http://fex.baidu.com/
  * http://blog.mozilla.org/security/
+ * https://bounty.github.com/index.html#home
 
 ----
 

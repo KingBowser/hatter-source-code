@@ -69,6 +69,7 @@
  * http://w3af.org/
  * http://www.acrossecurity.com/research.htm
  * http://websec.io/
+ * https://tools.ietf.org/wg/websec/
 
 <br>
  * https://bettercrypto.org/

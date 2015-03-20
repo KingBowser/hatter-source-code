@@ -6,3 +6,7 @@
 
  * http://www.w3.org/conf/2013sf/slides/W3Conf-Hill-HTML5-Security-Realities.pptx
  * http://w3af.org/understanding-html5-security
+
+<br>
+
+ * http://www.html5rocks.com/en/tutorials/offline/quota-research/

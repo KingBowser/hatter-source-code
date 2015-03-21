@@ -5,3 +5,7 @@
  * http://en.wikipedia.org/wiki/Character_encoding
  * http://www.cnblogs.com/skynet/archive/2011/05/03/2035105.html
  * http://htmlpurifier.org/docs/enduser-utf8.html
+
+<br>
+
+ * http://www.crifan.com/files/doc/docbook/char_encoding/release/html/char_encoding.html

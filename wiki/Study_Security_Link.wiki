@@ -70,6 +70,7 @@
  * http://www.acrossecurity.com/research.htm
  * http://websec.io/
  * https://tools.ietf.org/wg/websec/
+ * http://opensecurity.in/
 
 <br>
  * https://bettercrypto.org/

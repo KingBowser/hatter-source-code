@@ -1,4 +1,4 @@
-package me.hatter.tools.commons.digest;
+package me.hatter.tools.commons.security.digest;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

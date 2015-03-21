@@ -1,4 +1,4 @@
-package me.hatter.tools.commons.digest;
+package me.hatter.tools.commons.security.digest;
 
 @Deprecated
 public class MD5Util {

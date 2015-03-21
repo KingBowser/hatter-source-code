@@ -1,4 +1,4 @@
-package me.hatter.tools.commons.hmac;
+package me.hatter.tools.commons.security.hmac;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;

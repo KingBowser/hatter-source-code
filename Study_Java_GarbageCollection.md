@@ -1,0 +1,3 @@
+Azul System公司的C4（Concurrent Continuously Compacting Collector，译者注，Azul官网给出的名字是Continuously Concurrent Compacting Collector）算法使用独一无二而又非常有趣的方法来实现低延迟的分代式垃圾回收。相比于大多数分代式垃圾回收器，C4的不同之处在于它认为垃圾回收并不是什么坏事（即应用程序产生垃圾很正常），而压缩是不可避免的。在设计之初，C4就是要牺牲各种动态内存管理的需求，以满足需要长时间运行的服务器端应用程序的需求。
+
+

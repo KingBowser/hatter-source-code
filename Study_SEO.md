@@ -1,0 +1,1 @@
+# [Content guidelines](https://support.google.com/webmasters/topic/4598733?hl=en) #

@@ -1,0 +1,3 @@
+![http://hatter-source-code.googlecode.com/svn/trunk/attachments/hatter_me_card.png](http://hatter-source-code.googlecode.com/svn/trunk/attachments/hatter_me_card.png)
+
+![http://s08.flagcounter.com/count/pGKw/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_8/viewers_0/labels_1/pageviews_1/flags_0/.jpg](http://s08.flagcounter.com/count/pGKw/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_8/viewers_0/labels_1/pageviews_1/flags_0/.jpg)

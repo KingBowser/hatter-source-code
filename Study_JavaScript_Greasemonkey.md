@@ -1,0 +1,1 @@
+深入浅出 Greasemonkey - http://sebug.net/paper/books/greasemonkey/
